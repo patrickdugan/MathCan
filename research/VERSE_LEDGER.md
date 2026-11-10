@@ -40,3 +40,11 @@ The mathematical statements describe digital systems and abstract price networks
 - **Lean:** `MathCan/HookState.lean` proves seven auxiliary additive action-word lemmas when the pinned GitHub Lean workflow succeeds; this does not formalize the multiplicative Bellman-Ford converse.
 - **Epistemic scope:** synthetic quantity-independent finite-state rates. No deployment arbitrage, real orderbook/AMM, or scientific novelty claim.
 - **Next gate:** implement nonlinear amount-aware state transitions, with reserve updates, fee accounting, explicit execution feasibility and finite-horizon reachability verification.
+
+## CHTR-04: amount-aware shared reserves and funded hook budgets (2026-11-10)
+
+- **Source:** [Chitraverse](https://github.com/patrickdugan/Chitraverse) and [Chitra–Kulkarni–Srinivasan 2025](https://arxiv.org/abs/2502.02059); source inspiration only.
+- **Mathematics:** [CHTR-04 written proofs](chitraverse/AMOUNT_AWARE_HOOK_BUDGETS.md) of per-pool invariant monotonicity, exact common-equilibrium wealth decomposition, general initial mispricing upper bound using AM-GM, shared-state order dependence, and bounded finite-menu search.
+- **Exact executable oracles:** [amount-aware simulator](chitraverse/amount_aware_hooks.py) and [12 standard-library tests](../tests/test_amount_aware_hooks.py), including prefunded hook constraints and 144 equilibrium reserve/fee combinations.
+- **Formal scope:** [Lean structural accounting lemmas](../MathCan/FundedHooks.lean) under generic per-action conservation hypotheses; the nonlinear and real square-root lemmas remain written math with rational tests.
+- **Risk boundary:** synthetic two-token pools with constant-product fees and prefunded deterministic post-swap hook payments. Token conservation and per-pool nondecreasing product are mandatory. No EVM-accurate callback, external settlement, atomic flash accounting, or real market deployment claim.
