@@ -1,0 +1,6 @@
+name = "mathcan"
+version = "0.2.0"
+defaultTargets = ["MathCan"]
+
+[[lean_lib]]
+name = "MathCan"
