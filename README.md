@@ -53,3 +53,7 @@ For the new series, the next tasks are to formalize the finite partition-refinem
 Research status: exploratory. Every new scientific claim requires independent review and a domain-specific evaluation protocol.
 
 The CHTR-03 finite hook-state results add a separate directed-automata setting. The full multiplicative potential equivalence is proved in the research note and exhaustively tested on small instances. Lean formalizes its additive path-gauge and potential soundness lemmas; see the note for the remaining formalization gap.
+
+## CHTR-04: Amount-aware funded hooks (2026-11-10)
+
+[Research note](research/chitraverse/AMOUNT_AWARE_HOOK_BUDGETS.md) and [exact rational shared-state simulator](research/chitraverse/amount_aware_hooks.py) model multiple constant-product pools, dynamic fee phases, prefunded hook transfers, per-token accounting, and finite menu optimal routing. A common-equilibrium exact wealth identity bounds trader gains by hook spending; an AM-GM surplus bound extends the certificate to initially mispriced pools. The simulator computes a certified rational upper bound using integer square roots. [Twelve regression tests](tests/test_amount_aware_hooks.py) accompany the written proofs; [seven auxiliary Lean lemmas](MathCan/FundedHooks.lean) formalize the accounting skeleton. The nonlinear reserve identity and real AM-GM bound have written proofs and Python checks, with full Lean formalization remaining open.
