@@ -45,6 +45,7 @@ jobs:
           lake env lean MathCan/HookState.lean | tee -a mathcan-axioms.txt
           lake env lean MathCan/FundedHooks.lean | tee -a mathcan-axioms.txt
           lake env lean MathCan/Settlement.lean | tee -a mathcan-axioms.txt
+          lake env lean MathCan/FlashAccounting.lean | tee -a mathcan-axioms.txt
           if grep -Eq 'sorryAx|ofReduceBool' mathcan-axioms.txt; then
             echo 'Admitted proof or native reduction axiom detected.'
             exit 1

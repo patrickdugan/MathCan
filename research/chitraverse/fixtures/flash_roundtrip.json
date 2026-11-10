@@ -1,0 +1,23 @@
+{
+  "physical": {
+    "manager": {"A": 100, "B": 100},
+    "router": {"A": 0, "B": 0},
+    "trader": {"A": 100, "B": 0},
+    "treasury": {"A": 0, "B": 0}
+  },
+  "pools": {"p": {"A": 100, "B": 100}},
+  "trader": "trader",
+  "root": "router",
+  "prices": ["1", "1"],
+  "events": [
+    {"op": "unlock", "actor": "router"},
+    {"op": "swap", "actor": "router", "pool": "p", "input_asset": "A", "amount": 10, "fee_num": 1, "fee_den": 1},
+    {"op": "assert_delta", "actor": "router", "owner": "router", "asset": "B", "delta": 9},
+    {"op": "sync", "actor": "router", "asset": "A"},
+    {"op": "transfer", "actor": "router", "source": "trader", "target": "manager", "asset": "A", "amount": 10},
+    {"op": "settle", "actor": "router"},
+    {"op": "take", "actor": "router", "recipient": "trader", "asset": "B", "amount": 9},
+    {"op": "assert_balance", "actor": "router", "account": "manager", "asset": "B", "balance": 91},
+    {"op": "lock", "actor": "router"}
+  ]
+}
