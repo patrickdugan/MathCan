@@ -54,7 +54,7 @@ theorem pathSum_gauge {V : Type u} (q : V → V → Int)
   | cons next xs ih =>
       simp only [pathSum, endpoint]
       rw [ih next]
-      simp [sub_eq_add_neg, add_assoc, add_left_comm, add_comm]
+      omega
 
 /-- Closed-walk holonomy is exactly invariant under all vertex gauges. -/
 theorem closed_path_gauge {V : Type u} (q : V → V → Int)
@@ -85,7 +85,7 @@ theorem closed_potential_zero {V : Type u}
 theorem edge_residual_gauge (q pu pv xu xv : Int) :
     (q + (pv - pu)) - ((xv + pv) - (xu + pu)) =
       q - (xv - xu) := by
-  simp [sub_eq_add_neg, add_assoc, add_left_comm, add_comm]
+  omega
 
 #print axioms endpoint_append
 #print axioms pathSum_append
