@@ -63,7 +63,7 @@ theorem pathSum_gauge {State : Type u} {Action : Type v}
   | cons a rest ih =>
       simp only [pathSum, endpoint, gauged]
       rw [ih (step a s)]
-      simp [sub_eq_add_neg, add_assoc, add_left_comm, add_comm]
+      omega
 
 /-- Path-ordered hook holonomy is gauge-invariant when state returns. -/
 theorem closed_gauge_invariant {State : Type u} {Action : Type v}
