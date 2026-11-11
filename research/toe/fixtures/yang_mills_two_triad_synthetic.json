@@ -1,0 +1,41 @@
+{
+  "couplings": {
+    "Lambda": "3045/1024",
+    "alpha": "3/50",
+    "beta": "1/100",
+    "g1": "1",
+    "g2": "1",
+    "kappa": "9/5"
+  },
+  "initial": {
+    "E1": "1/32",
+    "E2": "-1/32",
+    "H": "1",
+    "Hdot": "-9/512",
+    "diagonalMatchDot": "0",
+    "mB": "1/128",
+    "mE": "1/512",
+    "mixed": "0",
+    "mixedDot": "-3/1024",
+    "pressure": "5/1024",
+    "psi1": "1/4",
+    "psi2": "1/4",
+    "rho": "15/1024",
+    "thetaMixedDot": "-9/51200"
+  },
+  "one_step": {
+    "diagonal_match_abs_lt": "1/10000000",
+    "dt": "1/10000",
+    "friedmann_residual_abs_lt": "1/1000000000000000",
+    "mixed_sign": -1,
+    "thetaMixedSign": -1
+  },
+  "schema": "mathcan.toe08.yang_mills.v1",
+  "source": {
+    "Bianconi": "https://arxiv.org/abs/2610.34496",
+    "Pereira": "https://arxiv.org/abs/2609.03082",
+    "YangMills": "https://arxiv.org/abs/1102.1932"
+  },
+  "status": "synthetic GR+Yang-Mills demonstration; assumed observer-frame GfE map",
+  "verified_source_equation_scope": "Yang--Mills + Einstein background only; no GfE coupled field equations"
+}
