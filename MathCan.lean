@@ -8,3 +8,4 @@ import MathCan.V4Transient
 import MathCan.FoundryProbe
 import MathCan.OpcodeRefinement
 import MathCan.HookMultiTick
+import MathCan.TOEGraph
