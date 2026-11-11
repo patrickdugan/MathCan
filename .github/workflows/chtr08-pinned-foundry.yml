@@ -1,0 +1,70 @@
+name: CHTR-08 pinned Uniswap v4-core Foundry observation
+
+on:
+  pull_request:
+    paths:
+      - 'research/chitraverse/foundry/**'
+      - 'research/chitraverse/foundry_probe.py'
+      - 'tests/test_foundry_probe.py'
+      - '.github/workflows/chtr08-pinned-foundry.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/chitraverse/foundry/**'
+      - 'research/chitraverse/foundry_probe.py'
+      - '.github/workflows/chtr08-pinned-foundry.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  actual-v4-swap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Uniswap/v4-core
+          ref: bea7f6d1c11cd5dc4f0d5151ffa37a1c239feee6
+          path: .v4-core
+          submodules: recursive
+          persist-credentials: false
+      - uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: stable
+      - name: Verify source pin and install probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C .v4-core rev-parse HEAD)" = bea7f6d1c11cd5dc4f0d5151ffa37a1c239feee6
+          cp research/chitraverse/foundry/MathCanCHTR08.t.sol .v4-core/test/MathCanCHTR08.t.sol
+          mkdir -p .v4-core/.forge-snapshots
+          forge --version
+          git -C .v4-core submodule status --recursive | tee chtr08-submodules.txt
+      - name: Execute real PoolManager.swap with permissioned hook
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd .v4-core
+          forge test --match-path test/MathCanCHTR08.t.sol -vvvv 2>&1 | tee ../chtr08-forge-output.txt
+          test -s .forge-snapshots/mathcan_chtr08_foundry.json
+      - name: Verify Foundry measurements against independent accounting oracle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m research.chitraverse.foundry_probe \
+            .v4-core/.forge-snapshots/mathcan_chtr08_foundry.json \
+            --result chtr08-verified.json
+      - name: Archive execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chtr08-actual-v4-core-swap
+          path: |
+            .v4-core/.forge-snapshots/mathcan_chtr08_foundry.json
+            chtr08-verified.json
+            chtr08-forge-output.txt
+            chtr08-submodules.txt
+          if-no-files-found: warn
