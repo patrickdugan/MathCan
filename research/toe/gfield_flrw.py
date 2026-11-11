@@ -115,6 +115,20 @@ def de_sitter_lambda(H,beta):
     f,fa,fb,*_=invariant(H*H,H*H,beta)
     return (f+H*H*(fa-2*fb))/(6*beta)
 
+def de_sitter_lambda_by_weyl_trace(H,beta):
+    """Independent constant-G covariant Weyl trace: Λ=R_G/12-Λ_G.
+
+    Equation (45) of arXiv:2610.34496 with D=0 and T=0 on de Sitter.
+    Checks the reduced lapse normalization only for Hdot=Hddot=0.
+    """
+    H=_positive(H,"H")
+    A=B=H*H
+    spec=eigenvalues(A,B,beta)
+    rg=sum(mult*(ca*A+cb*B)*G
+           for (_,ca,cb,mult),(_,_,_,G) in zip(SECTORS,spec))
+    return rg/12-lambda_g(A,B,beta)
+
+
 def evolve_redshift(redshifts, *, beta,Lambda,H0=1.0,Hdot0=0.0,max_step=.001):
     """RK4 in redshift for flat vacuum H and Hdot; enforce positive G field."""
     beta=_positive(beta,"beta")
