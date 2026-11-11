@@ -70,11 +70,11 @@ The standard FLRW parameter normalization E(0)=1 and positivity/prior informatio
 
 ## Reproduce
 
-\`\`\`sh
+```sh
 python -m unittest tests.test_toe_cosmology -v
 python -m research.toe.transcript_intake --list
 lake build MathCan
 lake env lean MathCan/TOEGraph.lean
-\`\`\`
+```
 
 The Python code uses exact Fraction arithmetic. The Lean file establishes graph path/gauge statements, while the general Gaussian matrix and FLRW polynomial theorems retain written proofs and rational regression tests. No full copyrighted transcripts are redistributed.
