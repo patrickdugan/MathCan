@@ -44,9 +44,9 @@ theorem count_append (left right : List Int) :
 
 /-- Replacing one currency-delta slot changes the global count by a local
     zero-crossing difference, independently of the surrounding slots. -/
-theorem count_replace (prefix suffix : List Int) (old next : Int) :
-    count (prefix ++ next :: suffix) =
-      count (prefix ++ old :: suffix) + (nz next - nz old) := by
+theorem count_replace (front suffix : List Int) (old next : Int) :
+    count (front ++ next :: suffix) =
+      count (front ++ old :: suffix) + (nz next - nz old) := by
   simp only [count_append, count]
   omega
 
@@ -60,12 +60,12 @@ theorem zero_crossing_equivalence (old next : Int) :
 
 /-- A locally correct count update preserves correctness for the whole
     finite support, including nonzero to nonzero transitions. -/
-theorem count_update_correct (prefix suffix : List Int)
+theorem count_update_correct (front suffix : List Int)
     (old next oldCounter : Int)
-    (h : oldCounter = count (prefix ++ old :: suffix)) :
+    (h : oldCounter = count (front ++ old :: suffix)) :
     oldCounter + nz next - nz old =
-      count (prefix ++ next :: suffix) := by
-  have hs := count_replace prefix suffix old next
+      count (front ++ next :: suffix) := by
+  have hs := count_replace front suffix old next
   rw [h]
   omega
 
