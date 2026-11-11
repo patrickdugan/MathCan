@@ -161,8 +161,15 @@ def verify_trace(obs: dict, manager_artifact: dict | None = None,
             "TSTORE count mismatch")
     _assert(_integer(obs.get("debug_step_count"),"debug_step_count") >= len(got),
             "debug trace step count impossible")
-    _assert(got == expected_manager_tstores(obs,q),
-            f"ordered manager TSTORE mismatch: observed {len(got)} expected {EXPECTED_MANAGER_WRITES}")
+    want = expected_manager_tstores(obs,q)
+    if got != want:
+        first = next((i for i in range(min(len(got), len(want))) if got[i] != want[i]),
+                     min(len(got), len(want)))
+        actual = got[first] if first < len(got) else None
+        target = want[first] if first < len(want) else None
+        raise ProofError(f"ordered manager TSTORE mismatch at index {first}: "
+                         f"observed {actual}, expected {target}, "
+                         f"lengths {len(got)}/{len(want)}")
     _assert(manager_artifact is not None, "compiled PoolManager artifact required")
     _assert(hook_artifact is not None, "compiled hook artifact required")
     _assert(runtime_artifact_hash(manager_artifact, obs["manager"]).lower() == obs["manager_runtime_hash"].lower(),
