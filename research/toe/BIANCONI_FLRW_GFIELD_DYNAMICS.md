@@ -124,6 +124,28 @@ Numerical step refinement changes terminal H and Hdot by less than 5e-9; all fiv
 
 This beta is chosen as a high-curvature numerical stress test. For Planck-scale beta, beta times today's Hubble rate squared would be vastly smaller. This trajectory establishes neither a fit to observations nor a matter-inclusive ΛGfE prediction.
 
+## Independent de Sitter Weyl-trace consistency
+
+Bianconi's covariant trace equation (45) reads
+\(\Lambda=(\mathcal R_{\mathcal G}-\mathcal D)/12+
+\kappa\mathcal T/4-\Lambda_{\mathcal G}\).
+For an exact vacuum de Sitter background the G spectrum is constant, so
+\(\mathcal D=0\) and \(\mathcal T=0\). Consequently
+
+\[
+\Lambda_{\mathrm{trace}}=
+\frac{1}{12}\sum_i z_i(c_{Ai}+c_{Bi})H^2\mathcal G_i
+-\Lambda_{\mathcal G}.
+\]
+
+The independent implementation `de_sitter_lambda_by_weyl_trace` uses
+the source's on-shell G eigenvalues and Lambda_G, separately from
+the reduced lapse function. At \(H=1\) and \(\beta\in
+\{0.001,0.01,0.02\}\), the lapse and covariant trace values agree to
+better than \(10^{-12}\). This tests normalization and the treatment of
+the auxiliary cosmological term at an exact fixed point. The
+time-dependent trajectory still needs a direct covariant residual check.
+
 ## Verification and next physics obligations
 
 Use Python module research.toe.gfield_flrw to print a reproducible receipt, run tests/test_toe04_gfield.py, and build the MathCan Lean library. The nine kernel lemmas cover algebraic traces and polynomial coefficients. The log action, lapse variation, and ODE are supported by the written derivation and finite numerical checks.
