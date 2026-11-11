@@ -19,3 +19,4 @@ import MathCan.TOETwoMultiplet
 import MathCan.TOEYangMills
 import MathCan.TOELorentzBivector
 import MathCan.TOENonAbelian
+import MathCan.TOEMixedPrincipal
