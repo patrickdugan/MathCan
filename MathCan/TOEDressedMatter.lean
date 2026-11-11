@@ -82,14 +82,6 @@ theorem schur_positive_of_components (center peripheral : Int)
     (hc : 0 < center) (hp : 0 ≤ peripheral) :
     0 < center + peripheral := by omega
 
-/-- A nonzero determinant gives uniqueness once elimination reduces the
-homogeneous difference system to determinant times each difference = 0. -/
-theorem determinant_unique_difference (det difference : Int)
-    (hd : det ≠ 0) (heq : det * difference = 0) : difference = 0 := by
-  rcases mul_eq_zero.mp heq with hz | hz
-  · exact False.elim (hd hz)
-  · exact hz
-
 /-- Weyl trace equation and joint Noether compatibility imply on-shell
 constancy of the cosmological multiplier. The variables are time derivatives
 of R_G, D, κT, Λ_G, and Λ respectively, with no separate matter conservation
@@ -116,7 +108,6 @@ theorem scalar_kg_normalization (piDot friction massForce : Int) :
 #print axioms gr_coupling_normalization
 #print axioms gr_lapse_limit
 #print axioms schur_positive_of_components
-#print axioms determinant_unique_difference
 #print axioms lambda_stationary_from_joint_identity
 #print axioms scalar_kg_normalization
 
