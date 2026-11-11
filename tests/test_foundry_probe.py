@@ -7,10 +7,12 @@ import unittest
 
 from research.chitraverse.foundry_probe import (
     SCHEMA, SOURCE_COMMIT, ObservationError, verify_observation,
+    quote_zero_for_one_exact_input_no_crossing,
 )
 
 
 def base_observation():
+    quote = quote_zero_for_one_exact_input_no_crossing(2**96, 10**18, 10**12, 3000)
     return {
         "schema": SCHEMA, "source_commit": SOURCE_COMMIT,
         "manager": "0x" + "01" * 20,
@@ -26,9 +28,9 @@ def base_observation():
         "caller_delta0_settled": 0, "caller_delta1_settled": 0,
         "nonzero_before_swap": 0,
         "caller_delta0": -10**12,
-        "caller_delta1": 997000000000,
+        "caller_delta1": quote["amount_out_token1"],
         "event_delta0": -10**12,
-        "event_delta1": 997000000000,
+        "event_delta1": quote["amount_out_token1"],
         "event_fee_pips": 3000,
         "nonzero_at_swap": 2,
         "nonzero_after_settlement": 0,
@@ -36,14 +38,14 @@ def base_observation():
         "before_swap_hook_observed": True, "after_swap_hook_observed": True,
         "swap_log_observed": True,
         "sqrt_price_before_x96": 79228162514264337593543950336,
-        "sqrt_price_after_x96": 79228100000000000000000000000,
+        "sqrt_price_after_x96": quote["sqrt_price_next_x96"],
         "tick_before": 0, "tick_after": -1,
         "liquidity_before": 10**18,
         "liquidity_after": 10**18,
         "trader0_before": 2*10**18, "trader0_after": 2*10**18-10**12,
-        "trader1_before": 2*10**18, "trader1_after": 2*10**18+997000000000,
+        "trader1_before": 2*10**18, "trader1_after": 2*10**18+quote["amount_out_token1"],
         "vault0_before": 10**18, "vault0_after": 10**18+10**12,
-        "vault1_before": 10**18, "vault1_after": 10**18-997000000000,
+        "vault1_before": 10**18, "vault1_after": 10**18-quote["amount_out_token1"],
     }
 
 
@@ -53,6 +55,7 @@ class FoundryObservationVerificationTests(unittest.TestCase):
         self.assertTrue(result["checked"])
         self.assertFalse(result["complete_source_evidence"])
         self.assertFalse(result["raw_tstore_stream_observed"])
+        self.assertTrue(result["independent_q96_no_crossing_swap_step_matched"])
 
     def _reject(self, **replacements):
         payload = base_observation()
@@ -78,13 +81,31 @@ class FoundryObservationVerificationTests(unittest.TestCase):
         self._reject(after_swap_hook_observed=False)
 
     def test_reject_event_delta_mismatch(self):
-        self._reject(event_delta1=997000000001)
+        self._reject(event_delta1=996999005992)
 
     def test_reject_trader_money_creation(self):
-        self._reject(trader1_after=2*10**18+997000000001)
+        self._reject(trader1_after=2*10**18+996999005992)
 
     def test_reject_vault_money_creation(self):
         self._reject(vault0_after=10**18+10**12+1)
+
+    def test_reject_rounded_price_mismatch(self):
+        baseline = base_observation()
+        self._reject(sqrt_price_after_x96=baseline["sqrt_price_after_x96"] + 1)
+
+    def test_reject_rounded_amount_out_mismatch(self):
+        baseline = base_observation()
+        amount = baseline["caller_delta1"] + 1
+        self._reject(caller_delta1=amount, event_delta1=amount,
+                     trader1_after=baseline["trader1_after"]+1,
+                     vault1_after=baseline["vault1_after"]-1)
+
+    def test_independent_q96_values(self):
+        observed = quote_zero_for_one_exact_input_no_crossing(2**96, 10**18, 10**12, 3000)
+        self.assertEqual(observed, {"net_input": 997000000000,
+             "sqrt_price_next_x96": 79228083523865064300074843162,
+             "amount_out_token1": 996999005991,
+             "fee_paid_token0": 3000000000})
 
     def test_reject_wrong_price_direction(self):
         self._reject(sqrt_price_after_x96=79228162514264337593543950336)

@@ -40,6 +40,36 @@ NUMERIC = FIELDS - {
 class ObservationError(ValueError):
     pass
 
+Q96 = 1 << 96
+FEE_DENOMINATOR = 1_000_000
+
+
+def quote_zero_for_one_exact_input_no_crossing(price_x96: int, liquidity: int,
+                                                   gross_input: int, fee_pips: int):
+    """Independent integer reproduction of one v4 SwapMath/SqrtPriceMath step.
+
+    Preconditions: exact-input swap of token0, no tick crossing, target price not
+    reached, no protocol fee, no return-delta hook. `mulDivRoundingUp` is exact
+    ceiling division and `getAmount1Delta` rounds down. Python big ints prevent
+    intermediate overflow; the Foundry test independently checks the EVM path.
+    """
+    if not (0 < price_x96 < 2**160 and 0 < liquidity < 2**128 and gross_input > 0
+            and 0 <= fee_pips < FEE_DENOMINATOR):
+        raise ObservationError("invalid Q64.96 one-step parameters")
+    effective_in = gross_input * (FEE_DENOMINATOR - fee_pips) // FEE_DENOMINATOR
+    if effective_in == 0:
+        raise ObservationError("zero net input")
+    numerator1 = liquidity * Q96
+    numerator = numerator1 * price_x96
+    denominator = numerator1 + effective_in * price_x96
+    next_price = (numerator + denominator - 1) // denominator
+    if next_price <= 0 or next_price >= price_x96:
+        raise ObservationError("price failed to move in expected direction")
+    output = liquidity * (price_x96 - next_price) // Q96
+    return {"net_input": effective_in, "sqrt_price_next_x96": next_price,
+            "amount_out_token1": output, "fee_paid_token0": gross_input - effective_in}
+
+
 
 def _integer(value, name):
     # Foundry vm.serializeInt may produce an int or a decimal string.
@@ -89,10 +119,19 @@ def verify_observation(source: dict) -> dict:
            and source["swap_log_observed"], "hook callbacks or PoolManager event missing")
     _check(0 < n["sqrt_price_after_x96"] < n["sqrt_price_before_x96"] < 2**160,
            "concentrated-liquidity sqrt price did not decrease")
-    _check(-887272 <= n["tick_after"] <= n["tick_before"] <= 887272,
-           "tick movement out of expected interval")
+    _check(n["tick_before"] == 0 and -119 <= n["tick_after"] <= 0,
+           "tick movement violates the no-crossing fixture")
     _check(n["liquidity_before"] == n["liquidity_after"] > 0,
            "unexpected active-liquidity change")
+    _check(n["sqrt_price_before_x96"] == Q96, "fixture initial price mismatch")
+    quote = quote_zero_for_one_exact_input_no_crossing(
+        n["sqrt_price_before_x96"], n["liquidity_before"],
+        -n["swap_amount_specified"], n["event_fee_pips"])
+    _check(n["sqrt_price_after_x96"] == quote["sqrt_price_next_x96"],
+           "Q96 ceil-round price disagrees with actual Pool.swap")
+    _check(n["caller_delta0"] == n["swap_amount_specified"] and
+           n["caller_delta1"] == quote["amount_out_token1"],
+           "Q96 floor-round output disagrees with actual Pool.swap")
     for key in ("trader0_before", "trader0_after", "trader1_before", "trader1_after",
                 "vault0_before", "vault0_after", "vault1_before", "vault1_after"):
         _check(0 <= n[key] <= 2**256-1, f"invalid ERC20 balance: {key}")
@@ -120,6 +159,9 @@ def verify_observation(source: dict) -> dict:
         "observed_event_and_hook_callbacks": True,
         "observed_concentrated_liquidity_transition": True,
         "observed_exact_erc20_settlement": True,
+        "independent_q96_no_crossing_swap_step_matched": True,
+        "independent_net_input": str(quote["net_input"]),
+        "independent_swap_fee": str(quote["fee_paid_token0"]),
         "complete_source_evidence": False,
         "raw_tstore_stream_observed": False,
         "proof_scope": "instrumented Foundry test observations checked against token deltas, pool slot0 and Swap log; raw opcode trace and Pool.swap tick-step reconstruction remain separate",

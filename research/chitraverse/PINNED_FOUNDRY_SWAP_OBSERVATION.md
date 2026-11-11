@@ -33,6 +33,52 @@ python3 -m research.chitraverse.foundry_probe \
 
 The Python command runs from the MathCan repository root. GitHub Actions performs that workflow in the correct working directories. Standard-library unit tests cover forged/mutated JSON and enforce all observation equalities without installing Foundry locally.
 
+## Exact independent single-tick Q64.96 check
+
+The first pinned Foundry CI execution compiled 121 Solidity files with Solc
+0.8.26 and passed the live-in-Foundry swap. Its output gave `sqrtP0 = 2^96`,
+`L = 10^18`, exact-input `A = 10^12`, fee `3000 / 10^6`, `tick0 = 0`, and
+`tick1 = -1` with no crossing of the initialized [-120,120] position.
+The source branch in [SwapMath.computeSwapStep](https://github.com/Uniswap/v4-core/blob/bea7f6d1c11cd5dc4f0d5151ffa37a1c239feee6/src/libraries/SwapMath.sol#L51-L86)
+uses `FullMath.mulDiv` to floor the input net of fees:
+
+```
+net = floor(10^12 * (10^6 - 3000) / 10^6) = 997000000000.
+```
+
+The no-tick-crossing, token0-input branch of
+[SqrtPriceMath.getNextSqrtPriceFromAmount0RoundingUp](https://github.com/Uniswap/v4-core/blob/bea7f6d1c11cd5dc4f0d5151ffa37a1c239feee6/src/libraries/SqrtPriceMath.sol#L31-L52)
+then computes, with `Q = 2^96`:
+
+```
+nextP = ceil((L*Q*sqrtP0) / (L*Q + net*sqrtP0))
+      = ceil((L*Q)/(L + net))
+      = 79228083523865064300074843162.
+```
+
+[The output amount](https://github.com/Uniswap/v4-core/blob/bea7f6d1c11cd5dc4f0d5151ffa37a1c239feee6/src/libraries/SqrtPriceMath.sol#L234-L254)
+rounds down:
+
+```
+outputB = floor(L*(sqrtP0-nextP) / Q) = 996999005991.
+feeA = gross - net = 3000000000.
+```
+
+The `foundry_probe.py` verifier now recomputes **both integer values** using
+independent arbitrary-precision integer arithmetic and demands exact equality
+with the Foundry measurements, the PoolManager `Swap` log, and the token
+transfers. A single-unit perturbation to either price or output fails the
+verifier. This is a complete independent reconstruction **of the one observed
+within-tick math step**, under the stated no-crossing/zero-hook-delta premises.
+It leaves multi-tick transitions, cross-tick liquidity changes, protocol fee
+branches, customized hook return deltas and generalized execution completeness
+for separate work.
+
+GitHub Actions first successful pinned run: [42941287906](https://github.com/patrickdugan/MathCan/actions/runs/42941287906),
+Foundry 1.9.0, Solidity compiler 0.8.26. Its CI artifact contains the
+instrumented JSON and verbose Forge call trace. CI records a manager runtime
+code hash; binary reproducibility attestation is a separate gate.
+
 ## Mathematical transfer (conditional)
 
 Write `D0,D1` for the router's two signed currency deltas after swap. In the CHTR-07 finite-support model, `count([D0,D1])=2` whenever both are nonzero. Under a **complete** support enumeration and count correspondence, `N=0` forces all recorded deltas to zero, a theorem already certified in `MathCan/V4Transient.lean`. The seven auxiliary theorems of `MathCan/FoundryProbe.lean` formalize the two-currency specialization, individual ERC-20 conservation, emitted event/caller-balance consistency, and composition of complete per-step zero-sum receipts.
@@ -43,7 +89,7 @@ That result validates the observed transaction's token custody: if the manager's
 
 1. **Raw EVM evidence:** record a complete per-call opcode trace with ordered `TLOAD`/`TSTORE`, storage and token calls, raw return data and nested revert boundaries. A `Swap` event and checkpoint views are useful observations but are an incomplete internal execution transcript.
 2. **Source-compilation attestation:** save a reproducible compiler build-info artifact and compare deployed runtime code hashes against the expected compiled `PoolManager` and the etched mock-hook implementation. A runtime code hash without build-info attestation is not a code-origin proof.
-3. **Tick-step semantics:** independently reconstruct every `SwapMath.computeSwapStep` and tick crossing, including exact Q64.96 rounding and fee paths, against per-step observations or formal execution semantics.
+3. **General tick-step semantics:** the one observed within-tick step now has independent integer reconstruction. Extend it to every `SwapMath.computeSwapStep` and tick crossing, including exact Q64.96 rounding, protocol fees and dynamic hook deltas.
 4. **Deployment and external effects:** eventually bind to a block-numbered chain trace, real hook bytecode, fee-on-transfer/rebasing currency effects, and any external accounts. The current Foundry test uses ordinary mock ERC-20s and deterministic zero-delta callbacks.
 
 **Scope:** source-grounded instrumented EVM execution, with each observed equality checked both inside Solidity and in a separate Python oracle. No actual onchain arbitrage, exploited protocol, deployed permission boundary, or universal AMM solvency claim follows from this one finite test.
