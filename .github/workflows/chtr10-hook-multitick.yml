@@ -1,0 +1,80 @@
+name: CHTR-10 pinned hook-return and three-boundary opcode execution
+
+on:
+  pull_request:
+    paths:
+      - 'research/chitraverse/foundry/**'
+      - 'research/chitraverse/hook_multitick.py'
+      - 'tests/test_hook_multitick.py'
+      - 'MathCan/HookMultiTick.lean'
+      - '.github/workflows/chtr10-hook-multitick.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/chitraverse/foundry/**'
+      - 'research/chitraverse/hook_multitick.py'
+      - '.github/workflows/chtr10-hook-multitick.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  real-hook-multitick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Uniswap/v4-core
+          ref: bea7f6d1c11cd5dc4f0d5151ffa37a1c239feee6
+          path: .v4-core
+          submodules: recursive
+          persist-credentials: false
+      - uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: stable
+      - name: Pin Solidity source, Foundry and compiler settings
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C .v4-core rev-parse HEAD)" = bea7f6d1c11cd5dc4f0d5151ffa37a1c239feee6
+          git -C .v4-core submodule status --recursive | tee chtr10-submodules.txt
+          forge --version | tee chtr10-forge-version.txt
+          cp research/chitraverse/foundry/MathCanCHTR10.t.sol .v4-core/test/MathCanCHTR10.t.sol
+          mkdir -p .v4-core/.forge-snapshots
+          cp .v4-core/foundry.toml chtr10-foundry-settings.toml
+      - name: Execute real PoolManager with permissioned return deltas and three crossings
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd .v4-core && forge test --match-path test/MathCanCHTR10.t.sol -vvvv) 2>&1 | tee chtr10-forge-output.txt
+          test -s .v4-core/.forge-snapshots/mathcan_chtr10_hook_multitick.json
+          test -s .v4-core/out/PoolManager.sol/PoolManager.json
+          test -s .v4-core/out/MathCanCHTR10.t.sol/MathCanReturnHook.json
+          sha256sum .v4-core/out/PoolManager.sol/PoolManager.json .v4-core/out/MathCanCHTR10.t.sol/MathCanReturnHook.json | tee chtr10-artifact-sha256.txt
+      - name: Independently verify exact price, hook split, physical balances and ordered TSTOREs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m research.chitraverse.hook_multitick \
+            .v4-core/.forge-snapshots/mathcan_chtr10_hook_multitick.json \
+            --manager-artifact .v4-core/out/PoolManager.sol/PoolManager.json \
+            --hook-artifact .v4-core/out/MathCanCHTR10.t.sol/MathCanReturnHook.json \
+            --out chtr10-verified.json
+          python3 -m unittest tests.test_hook_multitick -v
+      - name: Archive pinned reproduction and exact receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chtr10-pinned-hook-multitick-evidence
+          path: |
+            .v4-core/.forge-snapshots/mathcan_chtr10_hook_multitick.json
+            chtr10-verified.json
+            chtr10-forge-output.txt
+            chtr10-submodules.txt
+            chtr10-forge-version.txt
+            chtr10-foundry-settings.toml
+            chtr10-artifact-sha256.txt
+          if-no-files-found: warn

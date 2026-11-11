@@ -91,3 +91,12 @@ The mathematical statements describe digital systems and abstract price networks
 - **Independent oracle:** [foundry_opcode.py](chitraverse/foundry_opcode.py) reproduces v4 `TickMath` integer multipliers, `SwapMath.computeSwapStep` and `SqrtPriceMath` floor/ceil semantics across two ranges, and matches every ordered manager TSTORE for this deterministic fixture. [Unit tests](../tests/test_foundry_opcode.py) include 19 synthetic mutation cases. No user-provided JSON authenticates its own execution.
 - **Lean:** [OpcodeRefinement.lean](../MathCan/OpcodeRefinement.lean) contains eight conditional algebraic/finite-trace lemmas; it does not kernel-verify v4 Solidity, compiler correctness or the Q64.96 arithmetic.
 - **Next gate:** nonzero hook-return deltas and multiple-tick routes; eventually source-authenticated EVM trace evidence tied to deployed code hash, external balances, and all relevant callbacks.
+
+## CHTR-10: nonzero hook returns and three crossed initialized ticks (2026-11-11)
+
+- **Pinned source:** `Uniswap/v4-core@bea7f6d1c11cd5dc4f0d5151ffa37a1c239feee6`; hook flags `BEFORE_SWAP`, `AFTER_SWAP`, `BEFORE_SWAP_RETURNS_DELTA`, `AFTER_SWAP_RETURNS_DELTA`.
+- **Mathematics:** pool/recipient/hook signed-delta partition; four exact-in Q64.96 integer swap steps crossing −120, −240 and −360; total pool output 47,583,989,168,610,240 and final price 77,577,612,008,717,379,644,593,744,931, with terminal tick −422.
+- **Empirical gate:** [pinned Foundry harness](chitraverse/foundry/MathCanCHTR10.t.sol) collects the actual PoolManager ordered TSTORE stream, physical transfers, nonzero-delta count, hook balance and Swap event. [Independent oracle](chitraverse/hook_multitick.py) expects 21 manager writes and checks manager and hook compiled bytecode hashes.
+- **Tests:** 28 local Python tests covering rounding, source pins, credit, price, hook balance, write omission/reordering and runtime artifact replacement; full MathCan/Foundry CI required.
+- **Lean:** [HookMultiTick.lean](../MathCan/HookMultiTick.lean) proves abstract signed-flow and finite-step identities with `#print axioms` checks. The concrete source/event mapping is checked by Foundry and independent Python, not formally reduced to Lean kernel.
+- **Research boundary:** test-only permissioned hook, deterministic ERC20 transfers and one pinned local swap. Claims about permissionless or mainnet behavior require independently authenticated bytecode and generalized interface verification.
