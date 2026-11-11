@@ -299,6 +299,8 @@ class V4DeltaWitness:
                 if (not isinstance(e["hook_delta"], list) or len(e["hook_delta"]) != 2
                     or not isinstance(e["caller_delta"], list) or len(e["caller_delta"]) != 2):
                     raise WitnessError("two signed account deltas per pair required")
+                if e["kind"] == "donate" and e["hook_delta"] != [0, 0]:
+                    raise WitnessError("PoolManager.donate does not post a hook balance delta")
                 for c, change in zip((c0, c1), e["hook_delta"]):
                     if change:
                         self._update_delta(hook, c, change, writes)
