@@ -5,7 +5,7 @@ from random import Random
 import unittest
 from research.toe.lorentz_bivector import (
     coefficients,covariant_gram6,raised_gram6,exact_determinant,
-    source_block,critical_perturbation,reference_example,root_interval_from_trace,rotate_flavors
+    source_block,critical_perturbation,reference_example,root_interval_from_trace,rotate_flavors,krein_self_adjoint
 )
 
 class LorentzBivectorTests(unittest.TestCase):
@@ -23,6 +23,8 @@ class LorentzBivectorTests(unittest.TestCase):
     def test_offdiag_lorentz_signs(self):
         m=raised_gram6((1,0),(1,0))
         self.assertEqual((m[0][0],m[0][3],m[3][0],m[3][3]),(-1,1,-1,1))
+        x=source_block((1,0),(1,0),alpha=F(1,10),beta=F(1,20),H=1,Hdot=0)
+        self.assertTrue(krein_self_adjoint(x))
 
     def test_diagonal_source_signs(self):
         x=source_block((1,0),(0,1),alpha=F(1,100),beta=F(1,100),H=1,Hdot=0)

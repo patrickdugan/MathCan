@@ -55,6 +55,14 @@ The characteristic polynomial is `λ²-(d_E+d_B)λ+d_E d_B+α² c²`, so
 
 A real diagonalizable positive spectrum requires `D>=0`, a positive trace and determinant, and absence of a nontrivial Jordan block at the repeated-root threshold. For `D>0`, those three inequalities suffice. When `D=0`, `c!=0` gives a defective 2×2 block. In the GfE logarithmic spectral interpretation, that boundary requires separate attention.
 
+**Krein-space structure.** With `S_2=diag(-1,+1)` on each electric–magnetic pair, `Theta_2` satisfies
+
+\[
+\Theta_2^{\mathsf T}S_2=S_2\Theta_2.\tag{4a}
+\]
+
+It is self-adjoint for an *indefinite* inner product rather than the Euclidean one. This permits the real eigenvalues to collide at `D=0` and emerge as a complex-conjugate pair. At exact diagonal matching, the eigenvalues are `d_E ± i α c`; the repeated-root threshold with `c!=0` is a defective two-by-two matrix. The phenomenon is a finite-dimensional Krein collision, and no general claim about the quantum unitarity or stability of GfE follows from this algebra alone.
+
 **TOE-09/T1 (diagonal matching has a stronger spectral gate).** If `d_E=d_B`, then `D=-4α² c²`. For `α>0`, a nonzero mixed response makes the eigenvalues nonreal. Hence diagonal E/B matching together with a real spectral requirement forces `c=0`.
 
 This is separate from Pereira's TT principal-symbol condition. Even an admissible spectral operator would require a full coupled gravity–matter principal analysis.

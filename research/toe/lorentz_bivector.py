@@ -136,6 +136,18 @@ def source_block(electric, magnetic, *, alpha, beta, H, Hdot, curvature=0):
     return LorentzBlock(e,b,c,dE,dB,off,gap,trace,det,disc,safe,diagonalizable)
 
 
+
+def krein_self_adjoint(block: LorentzBlock):
+    """Check Theta^T S = S Theta for S=diag(-1,+1), exactly."""
+    T=((block.theta_e, block.offdiag),(-block.offdiag,block.theta_b))
+    S=((-1,0),(0,1))
+    left=tuple(tuple(sum((T[k][i]*S[k][j] for k in range(2)),F(0))
+                     for j in range(2)) for i in range(2))
+    right=tuple(tuple(sum((S[i][k]*T[k][j] for k in range(2)),F(0))
+                      for j in range(2)) for i in range(2))
+    return left==right
+
+
 def critical_perturbation(u,v,t,alpha):
     """Exact discriminant near a diagonal-matched baseline.
 
