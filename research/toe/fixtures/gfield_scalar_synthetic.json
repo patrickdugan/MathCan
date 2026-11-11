@@ -1,0 +1,111 @@
+{
+  "Lambda": 2.978590919530843,
+  "alpha": 0.06,
+  "beta": 0.01,
+  "curve": [
+    {
+      "G_min": 1.020199959192,
+      "H": 1.0,
+      "Hddot": 0.0536,
+      "Hdot": -0.01,
+      "bare_exchange": 0.000689173627,
+      "constraint_residual": 0.0,
+      "phi": 0.2,
+      "phiddot": 0.264554131863,
+      "phidot": -0.1,
+      "scalar_residual": 0.0,
+      "z": 0.0
+    },
+    {
+      "G_min": 1.020119527999,
+      "H": 1.001232952982,
+      "Hddot": 0.081790616096,
+      "Hdot": -0.016331613304,
+      "bare_exchange": 0.001008642187,
+      "constraint_residual": 0.0,
+      "phi": 0.210846182775,
+      "phiddot": 0.350082629411,
+      "phidot": -0.129082509194,
+      "scalar_residual": 0.0,
+      "z": 0.1
+    },
+    {
+      "G_min": 1.020009321114,
+      "H": 1.003007670447,
+      "Hddot": 0.126219091166,
+      "Hdot": -0.025184276011,
+      "bare_exchange": 0.001531166518,
+      "constraint_residual": -0.0,
+      "phi": 0.223494705286,
+      "phiddot": 0.452215258873,
+      "phidot": -0.163724391193,
+      "scalar_residual": -0.0,
+      "z": 0.2
+    },
+    {
+      "G_min": 1.019850201286,
+      "H": 1.005480916958,
+      "Hddot": 0.196456291315,
+      "Hdot": -0.037799867318,
+      "bare_exchange": 0.002432790973,
+      "constraint_residual": 0.0,
+      "phi": 0.238101757352,
+      "phiddot": 0.572425629361,
+      "phidot": -0.204371127328,
+      "scalar_residual": -0.0,
+      "z": 0.3
+    },
+    {
+      "G_min": 1.019616489208,
+      "H": 1.00887975034,
+      "Hddot": 0.303567403716,
+      "Hdot": -0.055884056289,
+      "bare_exchange": 0.004049089681,
+      "constraint_residual": 0.0,
+      "phi": 0.254810036848,
+      "phiddot": 0.712218098206,
+      "phidot": -0.251446974232,
+      "scalar_residual": 0.0,
+      "z": 0.4
+    },
+    {
+      "G_min": 1.019277452849,
+      "H": 1.013508560043,
+      "Hddot": 0.460179013348,
+      "Hdot": -0.081556548209,
+      "bare_exchange": 0.007005095632,
+      "constraint_residual": -0.0,
+      "phi": 0.273745141335,
+      "phiddot": 0.873144588876,
+      "phidot": -0.305346717255,
+      "scalar_residual": -0.0,
+      "z": 0.5
+    }
+  ],
+  "evidence": "symmetry-reduced model, not full tensor-component verification or observations",
+  "initial": {
+    "H": 1.0,
+    "Hddot": 0.05360000000000001,
+    "Hdot": -0.01,
+    "phi": 0.2,
+    "phidot": -0.1
+  },
+  "kappa": 1.0,
+  "mass": 0.4,
+  "max_lapse_residual": 2.710505431213761e-19,
+  "max_scalar_residual": 1.3010426069826053e-17,
+  "redshifts": [
+    0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5
+  ],
+  "schema": "mathcan.toe05.scalar.v1",
+  "scope": "homogeneous real scalar; flat expanding branch; on-shell G-field; synthetic",
+  "sources": [
+    "arxiv:2610.34496 eqs 5,7,9,31,46-48",
+    "arxiv:2510.22545 secs III-IV"
+  ]
+}
