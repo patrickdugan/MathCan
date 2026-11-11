@@ -12,3 +12,4 @@ import MathCan.TOEGraph
 import MathCan.TOECosmology
 import MathCan.TOEFLRW
 import MathCan.TOEDressedMatter
+import MathCan.TOECovariantGates
