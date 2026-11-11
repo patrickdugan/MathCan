@@ -46,6 +46,7 @@ theorem rank_one_square_expansion (u v : Int) :
   calc
     (u+v)*(u+v) = (u*u+u*v)+(v*u+v*v) := by
       simp only [Int.add_mul, Int.mul_add]
+      omega
     _ = u*u+2*(u*v)+v*v := by
       rw [Int.mul_comm v u]
       omega
