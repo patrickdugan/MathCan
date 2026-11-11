@@ -1,0 +1,96 @@
+{
+  "auxiliary_2form": {
+    "algebraically_eliminated_G2form": true,
+    "exact_resolvent_quadratic_identity": true,
+    "full_Gfield_and_metric_equations_verified": false,
+    "nonzero_first_variation_entries": 4,
+    "schema": "mathcan.toe12.auxiliary_2form.v1"
+  },
+  "complete_GfE_field_symbol": false,
+  "date": "2026-11-11",
+  "projection_one": {
+    "bare_yang_mills_gauge": {
+      "bare_total_transverse_modes": 12,
+      "covector": [
+        "1",
+        "0",
+        "0",
+        "1"
+      ],
+      "nonminimal_gauge_constraints_derived": false,
+      "on_shell_transverse_modes_per_color": 2,
+      "pure_gauge_nullity_per_color": 1,
+      "quotient_dimension_per_color": 3,
+      "six_SU2_adjoint_colors": 6
+    },
+    "hypothetical_completion": {
+      "Q_at_brackets": [
+        "311976134297146898176372629199415100/3163807217495344777240108775857744227905976481",
+        "-140355850495137726855900/13340051596532024127260902132340761",
+        "472723272901526455863288051274987488000000000000000000/177979036818480512748304951994532625424197409356447134985127091459121"
+      ],
+      "epsilon": "12152450000000/56247730776408613951441",
+      "full_physics_completion": false,
+      "left_interval": [
+        "480500997/493000000",
+        "480993997/493000000"
+      ],
+      "old_root": "480993997/493000000",
+      "old_third_root": "2812732928347778628181199/2812735172899996567572050",
+      "right_interval": [
+        "480993997/493000000",
+        "2812732928347778628181199/2812735172899996567572050"
+      ],
+      "three_distinct_positive_x_roots": true
+    },
+    "jordan": {
+      "characteristic": [
+        "1",
+        "0",
+        "-40924948003067657243388529369677/13866784402396983078130206500000",
+        "0",
+        "39694158515228472789351815907483771198969/13672649420763425315036383609000000000000",
+        "0",
+        "-650740459924820425725236304802577026794791/683632471038171265751819180450000000000000"
+      ],
+      "eigenmatrix_rank_at_r": 1,
+      "full_theory_hyperbolicity_verified": false,
+      "nilpotent_square_zero": true,
+      "nonzero_nilpotent_rank": 2,
+      "positive_uniform_symmetrizer_for_this_companion": false,
+      "repeated_root_geometric_multiplicity": 1,
+      "root_r": "480993997/493000000",
+      "root_s": "2812732928347778628181199/2812735172899996567572050",
+      "schema": "mathcan.toe12.jordan.v1",
+      "scope": "restricted formal TOE-11 tensor polarization, not complete GfE gauge-fixed PDE"
+    }
+  },
+  "projection_tensor_six": {
+    "Gfield_0_1_form_or_metric_constraints_complete": false,
+    "determinant_divisible_by_delta_power": 4,
+    "full_tensor_wave_sector_complete": false,
+    "gauge_block_determinant": [
+      "1168253170762689531403295932777501578031591285034721/207669492070478952131772582648990062500000000000000000000",
+      "0"
+    ],
+    "metric_cross_to_gauge_plus_at_zero": "-711381459342108027/281238653882043069757205",
+    "metric_plus_to_gauge_cross_at_zero": "711381459342108027/281238653882043069757205",
+    "parity_sensitive_cross_helicity_coupling": true,
+    "reduced_determinant": [
+      "4676496197322692098051576898327161063002075690538884/177956976598136605832237658869852068575259245597741249966921022059121",
+      "0"
+    ],
+    "root_nullity": 2,
+    "root_r": "480993997/493000000",
+    "schema": "mathcan.toe12.tensor6.v1",
+    "two_jordan_chains_in_six_mode_polynomial": true,
+    "weighted_leading_determinant": "747951907065836107145887032602828319956507840901154499524000000000000000000000000/10009676109475635851516393422186586092301689196874277405283754290569461272571843758125143361"
+  },
+  "provenance": {
+    "Bianconi": "https://arxiv.org/abs/2408.14391",
+    "Pereira": "https://arxiv.org/abs/2609.03082",
+    "TOE10": "https://github.com/patrickdugan/MathCan/blob/main/research/toe/TOE10_NONABELIAN_KREIN_DYNAMICS.md"
+  },
+  "schema": "mathcan.toe12.principal.v1",
+  "source_model": "declared TOE-10/11 non-Abelian two-form+YM trial"
+}
