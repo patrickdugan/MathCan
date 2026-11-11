@@ -9,3 +9,4 @@ import MathCan.FoundryProbe
 import MathCan.OpcodeRefinement
 import MathCan.HookMultiTick
 import MathCan.TOEGraph
+import MathCan.TOECosmology
