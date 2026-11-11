@@ -47,8 +47,10 @@ theorem positive_two_square_zero (a b x2 y2 : Int)
     (ha : 0 < a) (hb : 0 < b)
     (hx : 0 ≤ x2) (hy : 0 ≤ y2)
     (h : a*x2 + b*y2 = 0) : x2 = 0 ∧ y2 = 0 := by
-  have hax : 0 ≤ a*x2 := Int.mul_nonneg (le_of_lt ha) hx
-  have hby : 0 ≤ b*y2 := Int.mul_nonneg (le_of_lt hb) hy
+  have ha0 : 0 ≤ a := by omega
+  have hb0 : 0 ≤ b := by omega
+  have hax : 0 ≤ a*x2 := Int.mul_nonneg ha0 hx
+  have hby : 0 ≤ b*y2 := Int.mul_nonneg hb0 hy
   have hzx : a*x2 = 0 := by omega
   have hzy : b*y2 = 0 := by omega
   constructor
