@@ -19,14 +19,14 @@ def background (x lambda curvature matter radiation : Int) : Int :=
 def anchored (x : Int) (power : Nat) : Int := x^power - 1
 
 theorem anchored_present (power : Nat) : anchored 1 power = 0 := by
-  simp [anchored]
+  simp [anchored, Int.one_pow]
 
 /-- A quadratic-in-x perturbation can be absorbed into curvature and lambda. -/
 theorem curvature_mode_absorbed
     (x lambda curvature matter radiation epsilon : Int) :
     background x (lambda - epsilon) (curvature + epsilon) matter radiation =
       background x lambda curvature matter radiation + epsilon * anchored x 2 := by
-  simp only [background, anchored, add_mul, sub_mul, mul_sub]
+  simp only [background, anchored, Int.add_mul, Int.sub_mul, Int.mul_sub]
   omega
 
 /-- A cubic-in-x perturbation can be absorbed into matter and lambda. -/
@@ -34,7 +34,7 @@ theorem matter_mode_absorbed
     (x lambda curvature matter radiation epsilon : Int) :
     background x (lambda - epsilon) curvature (matter + epsilon) radiation =
       background x lambda curvature matter radiation + epsilon * anchored x 3 := by
-  simp only [background, anchored, add_mul, sub_mul, mul_sub]
+  simp only [background, anchored, Int.add_mul, Int.sub_mul, Int.mul_sub]
   omega
 
 /-- A quartic-in-x perturbation can be absorbed into radiation and lambda. -/
@@ -42,7 +42,7 @@ theorem radiation_mode_absorbed
     (x lambda curvature matter radiation epsilon : Int) :
     background x (lambda - epsilon) curvature matter (radiation + epsilon) =
       background x lambda curvature matter radiation + epsilon * anchored x 4 := by
-  simp only [background, anchored, add_mul, sub_mul, mul_sub]
+  simp only [background, anchored, Int.add_mul, Int.sub_mul, Int.mul_sub]
   omega
 
 /-- The present-day value of the background is the coefficient sum. -/
@@ -61,7 +61,7 @@ theorem conditional_quadratic_blind_mode
       matter (radiation + epsilon) =
       background x lambda curvature matter radiation + epsilon * quadratic := by
   rw [shape]
-  simp only [background, add_mul, sub_mul, mul_sub]
+  simp only [background, Int.add_mul, Int.sub_mul, Int.mul_sub]
   omega
 
 #print axioms anchored_present
