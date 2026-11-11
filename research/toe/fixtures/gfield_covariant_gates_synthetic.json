@@ -1,0 +1,85 @@
+{
+  "schema": "mathcan.toe06.covariant_gates.v1",
+  "source_pins": {
+    "Bianconi": "arxiv:2610.34496",
+    "Pereira": "arxiv:2609.03082",
+    "MathCan_TOE05": "d001d3feb43fb5cf5c15107c55016c0cc77a9524"
+  },
+  "data_type": "synthetic symmetry-reduced trajectory",
+  "full_covariant_tensor_evidence": false,
+  "tt_gate_assumptions": "Pereira single-multiplet symmetry-inheriting strict-principal sector; constant-volume Lambda does not alter four-derivative tensor symbol",
+  "entries": [
+    {
+      "z": 0.0,
+      "Hdot": -0.01,
+      "Ricci_TF2": 0.0003,
+      "tt_discriminant": -1.8424912146909319e-07,
+      "tt_gate_pass": false,
+      "Im_omega_over_p": 4.1066014760286746e-05,
+      "R_G": 38.0447361718049,
+      "Lambda_G": 0.1912243992779968,
+      "required_D_minus_3kappaT": 0.006952346098820783,
+      "spatial_reduced_EL": -3.7415023743060313e-11
+    },
+    {
+      "z": 0.1,
+      "Hdot": -0.016331613304,
+      "Ricci_TF2": 0.0008001647793341694,
+      "tt_discriminant": -4.914150432075103e-07,
+      "tt_gate_pass": false,
+      "Im_omega_over_p": 6.707092955114907e-05,
+      "R_G": 38.01691559852737,
+      "Lambda_G": 0.19104327009083077,
+      "required_D_minus_3kappaT": -0.01869467693271787,
+      "spatial_reduced_EL": -6.29548992689237e-11
+    },
+    {
+      "z": 0.2,
+      "Hdot": -0.025184276011,
+      "Ricci_TF2": 0.0019027432745946902,
+      "tt_discriminant": -1.1685161170962372e-06,
+      "tt_gate_pass": false,
+      "Im_omega_over_p": 0.00010343503187844672,
+      "R_G": 37.982644486507056,
+      "Lambda_G": 0.1908834900620833,
+      "required_D_minus_3kappaT": -0.05104842860806258,
+      "spatial_reduced_EL": -8.751777650023787e-11
+    },
+    {
+      "z": 0.3,
+      "Hdot": -0.037799867318,
+      "Ricci_TF2": 0.004286489907775214,
+      "tt_discriminant": -2.6322634586641805e-06,
+      "tt_gate_pass": false,
+      "Im_omega_over_p": 0.00015526523619441605,
+      "R_G": 37.92993666395713,
+      "Lambda_G": 0.1906670814518969,
+      "required_D_minus_3kappaT": -0.10115934783574687,
+      "spatial_reduced_EL": -9.750838938366035e-11
+    },
+    {
+      "z": 0.4,
+      "Hdot": -0.055884056289,
+      "Ricci_TF2": 0.009369083241936362,
+      "tt_discriminant": -5.752663338265792e-06,
+      "tt_gate_pass": false,
+      "Im_omega_over_p": 0.00022958013184409278,
+      "R_G": 37.84343575915699,
+      "Lambda_G": 0.19029977750928875,
+      "required_D_minus_3kappaT": -0.18325260532459708,
+      "spatial_reduced_EL": -1.0433598971772151e-10
+    },
+    {
+      "z": 0.5,
+      "Hdot": -0.081556548209,
+      "Ricci_TF2": 0.019954411667300824,
+      "tt_discriminant": -1.2249250923403469e-05,
+      "tt_gate_pass": false,
+      "Im_omega_over_p": 0.00033511176293313244,
+      "R_G": 37.706252387690654,
+      "Lambda_G": 0.18969751292183037,
+      "required_D_minus_3kappaT": -0.31320880174143184,
+      "spatial_reduced_EL": -1.183867925566573e-10
+    }
+  ]
+}
