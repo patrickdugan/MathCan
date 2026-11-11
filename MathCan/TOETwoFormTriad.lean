@@ -64,8 +64,12 @@ theorem magnetic_response_positive (cE cB mB : Int)
 /-- The homogeneous electric component is auxiliary: off its algebraic
     critical surface, a nonzero coefficient forces electric amplitude zero. -/
 theorem massive_electric_vanishes (coefficient e : Int)
-    (h : coefficient * e = 0) (hc : coefficient ≠ 0) : e = 0 := by
-  exact (mul_eq_zero.mp h).resolve_left hc
+    (h : coefficient * e = 0) (hc : coefficient ≠ 0)
+    (noZeroDivisors : coefficient * e = 0 → coefficient = 0 ∨ e = 0) :
+    e = 0 := by
+  rcases noZeroDivisors h with hCoefficient | he
+  · exact False.elim (hc hCoefficient)
+  · exact he
 
 /-- If an exact power-law matching trajectory satisfies the same 2-form
     Euler equation at two distinct positive times with different squares,
