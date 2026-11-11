@@ -1,0 +1,78 @@
+name: CHTR-09 pinned opcode TSTORE and crossed-tick refinement
+
+on:
+  pull_request:
+    paths:
+      - 'research/chitraverse/foundry/**'
+      - 'research/chitraverse/foundry_opcode.py'
+      - 'tests/test_foundry_opcode.py'
+      - '.github/workflows/chtr09-opcode-multitick.yml'
+      - 'MathCan/OpcodeRefinement.lean'
+  push:
+    branches: [main]
+    paths:
+      - 'research/chitraverse/foundry/**'
+      - 'research/chitraverse/foundry_opcode.py'
+      - '.github/workflows/chtr09-opcode-multitick.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  opcode-tick-refinement:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Uniswap/v4-core
+          ref: bea7f6d1c11cd5dc4f0d5151ffa37a1c239feee6
+          path: .v4-core
+          submodules: recursive
+          persist-credentials: false
+      - uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: stable
+      - name: Pin exact source, test-only hook and compiler
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C .v4-core rev-parse HEAD)" = bea7f6d1c11cd5dc4f0d5151ffa37a1c239feee6
+          git -C .v4-core submodule status --recursive | tee chtr09-submodules.txt
+          forge --version | tee chtr09-forge-version.txt
+          cp research/chitraverse/foundry/MathCanCHTR08.t.sol .v4-core/test/MathCanCHTR08.t.sol
+          cp research/chitraverse/foundry/MathCanCHTR09.t.sol .v4-core/test/MathCanCHTR09.t.sol
+          mkdir -p .v4-core/.forge-snapshots
+      - name: Execute actual PoolManager with two liquidity ranges and record TSTORE
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd .v4-core && forge test --match-path test/MathCanCHTR09.t.sol -vvvv) 2>&1 | tee chtr09-forge-output.txt
+          test -s .v4-core/.forge-snapshots/mathcan_chtr09_foundry.json
+          cp .v4-core/foundry.toml chtr09-foundry-settings.toml
+          sha256sum .v4-core/out/PoolManager.sol/PoolManager.json | tee chtr09-artifact-sha256.txt
+      - name: Independently verify every ordered manager TSTORE and both swap steps
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m research.chitraverse.foundry_opcode \
+            .v4-core/.forge-snapshots/mathcan_chtr09_foundry.json \
+            --artifact .v4-core/out/PoolManager.sol/PoolManager.json \
+            --out chtr09-verified.json
+          python3 -m unittest tests.test_foundry_opcode -v
+      - name: Archive source-pinned execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chtr09-pinned-opcode-multitick
+          path: |
+            .v4-core/.forge-snapshots/mathcan_chtr09_foundry.json
+            chtr09-verified.json
+            chtr09-forge-output.txt
+            chtr09-submodules.txt
+            chtr09-forge-version.txt
+            chtr09-artifact-sha256.txt
+            chtr09-foundry-settings.toml
+          if-no-files-found: warn
