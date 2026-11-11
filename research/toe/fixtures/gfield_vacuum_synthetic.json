@@ -1,0 +1,46 @@
+{
+  "schema": "mathcan.toe04.v1",
+  "model": "Spatially-flat vacuum metric-only LambdaGfE with algebraic G constraint; synthetic",
+  "beta_dimensionless": 0.02,
+  "Lambda_dimensionless": 2.9693009698787556,
+  "H0": 1,
+  "Hdot0": -0.01,
+  "z": [
+    "0",
+    "1/5",
+    "2/5",
+    "3/5",
+    "4/5",
+    "1",
+    "6/5"
+  ],
+  "H": [
+    1,
+    1.00217241866,
+    1.003927228177,
+    1.004538089586,
+    1.003799920344,
+    1.001868189039,
+    0.999094262219
+  ],
+  "min_G": [
+    1.041232819658,
+    1.041298931097,
+    1.041625088504,
+    1.042061641611,
+    1.041997252455,
+    1.041829012633,
+    1.04158808513
+  ],
+  "LambdaG": [
+    0.446738581713,
+    0.449817658847,
+    0.455637267833,
+    0.461917780429,
+    0.466742700174,
+    0.468916432487,
+    0.467964399585
+  ],
+  "synthetic_profiled_chi2": 0.0002517018845944183,
+  "caution": "Vacuum toy at high dimensionless curvature. Not an observed H(z), not a dressed-fluid solution."
+}
