@@ -37,7 +37,7 @@ theorem form_space_curvature_trace (A B : Int) :
 responses is proportional to the spacetime Einstein-locus defect. -/
 theorem bivector_inverse_denominator_gap (beta A B : Int) :
     (1-2*beta*B) - (1-2*beta*A) = 2*beta*(A-B) := by
-  simp only [mul_sub]
+  simp only [Int.mul_sub]
   omega
 
 /-- Positive weighted strict-principal squares can sum to zero only if each
@@ -47,15 +47,15 @@ theorem positive_two_square_zero (a b x2 y2 : Int)
     (ha : 0 < a) (hb : 0 < b)
     (hx : 0 ≤ x2) (hy : 0 ≤ y2)
     (h : a*x2 + b*y2 = 0) : x2 = 0 ∧ y2 = 0 := by
-  have hax : 0 ≤ a*x2 := mul_nonneg (le_of_lt ha) hx
-  have hby : 0 ≤ b*y2 := mul_nonneg (le_of_lt hb) hy
+  have hax : 0 ≤ a*x2 := Int.mul_nonneg (le_of_lt ha) hx
+  have hby : 0 ≤ b*y2 := Int.mul_nonneg (le_of_lt hb) hy
   have hzx : a*x2 = 0 := by omega
   have hzy : b*y2 = 0 := by omega
   constructor
-  · rcases mul_eq_zero.mp hzx with hz | hz
+  · rcases Int.mul_eq_zero.mp hzx with hz | hz
     · omega
     · exact hz
-  · rcases mul_eq_zero.mp hzy with hz | hz
+  · rcases Int.mul_eq_zero.mp hzy with hz | hz
     · omega
     · exact hz
 
@@ -68,9 +68,9 @@ theorem matched_cone_forces_equal_response
     (nonzeroMomentum : p2 ≠ 0) : WE = WB := by
   rw [lightCone] at secondCone
   have hz : (WE-WB)*p2 = 0 := by
-    rw [sub_mul]
+    rw [Int.sub_mul]
     omega
-  rcases mul_eq_zero.mp hz with hgap | hmomentum
+  rcases Int.mul_eq_zero.mp hz with hgap | hmomentum
   · omega
   · exact False.elim (nonzeroMomentum hmomentum)
 
