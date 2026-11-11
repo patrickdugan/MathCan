@@ -273,6 +273,14 @@ class SourceStepTests(unittest.TestCase):
                          "writes": []}, closing()]
         self.assertFalse(from_json_spec(spec(e)).accepted)
 
+    def test_donate_cannot_supply_hook_account_delta(self):
+        e = [opening(), {"op": "pool_account", "actor": ROUTER, "kind": "donate",
+                         "currency0": A, "currency1": B, "hook": HOOK,
+                         "caller_delta": [0, 0], "hook_delta": [1, 0],
+                         "writes": [w(delta_slot(HOOK, A), 1), w(NONZERO_SLOT, 1)]},
+             closing()]
+        self.assertFalse(from_json_spec(spec(e)).accepted)
+
     def test_invalid_sign_width_rejected(self):
         e = [opening(), {"op": "pool_account", "actor": ROUTER, "kind": "swap",
                          "currency0": A, "currency1": B, "hook": ZERO,
