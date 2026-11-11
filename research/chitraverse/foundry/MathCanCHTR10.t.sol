@@ -203,11 +203,14 @@ contract MathCanCHTR10 is Deployers {
         Vm.DebugStep[] memory steps = vm.stopAndReturnDebugTraceRecording();
         Vm.Log[] memory logs = vm.getRecordedLogs();
         require(steps.length > 0, "empty debugger trace");
-        bytes32[] memory writes = new bytes32[](steps.length * 2);
+        // Each manager TSTORE contributes two 32-byte words. Bound the extracted
+        // manager-only buffer independently of the full Forge debug trace.
+        bytes32[] memory writes = new bytes32[](64);
         uint256 n;
         for (uint256 i=0; i<steps.length; ++i) {
             if (steps[i].opcode != 0x5d || steps[i].contractAddr != address(manager)) continue;
             require(steps[i].stack.length >= 2, "missing TSTORE stack operands");
+            require(n < 32, "too many manager TSTOREs");
             writes[2*n] = bytes32(steps[i].stack[0]);
             writes[2*n+1] = bytes32(steps[i].stack[1]);
             ++n;
