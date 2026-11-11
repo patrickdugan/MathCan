@@ -48,17 +48,18 @@ theorem aligned_flavor_wedge (b1 b2 k : Int) :
   unfold flavorWedge
   have h : b1 * (k*b2) = b2 * (k*b1) := by
     calc
-      b1 * (k*b2) = b1 * (b2*k) := by rw [mul_comm k b2]
-      _ = (b1*b2)*k := by rw [← mul_assoc]
-      _ = (b2*b1)*k := by rw [mul_comm b1 b2]
-      _ = b2 * (b1*k) := by rw [mul_assoc]
-      _ = b2 * (k*b1) := by rw [mul_comm b1 k]
-  simpa only [sub_eq_zero] using h
+      b1 * (k*b2) = b1 * (b2*k) := by rw [Int.mul_comm k b2]
+      _ = (b1*b2)*k := by rw [← Int.mul_assoc]
+      _ = (b2*b1)*k := by rw [Int.mul_comm b1 b2]
+      _ = b2 * (b1*k) := by rw [Int.mul_assoc]
+      _ = b2 * (k*b1) := by rw [Int.mul_comm b1 k]
+  rw [h]
+  omega
 
 /-- A zero square forces zero flavor area, in integer arithmetic. -/
 theorem zero_flavor_square_implies_zero (w : Int)
     (h : w * w = 0) : w = 0 := by
-  rcases mul_eq_zero.mp h with hh | hh
+  rcases Int.mul_eq_zero.mp h with hh | hh
   · exact hh
   · exact hh
 
