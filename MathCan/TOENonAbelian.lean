@@ -30,11 +30,11 @@ theorem flavor_exchange (e1 e2 b1 b2 : Int) :
     whose squares leave the internal contractions fixed. -/
 theorem signed_color_norm (x y z : Int) :
     (-x)*(-x)+(-y)*(-y)+z*z = x*x+y*y+z*z := by
-  simp only [neg_mul_neg]
+  simp [Int.neg_mul, Int.mul_neg]
 
 theorem signed_color_dot (x y z u v w : Int) :
     (-x)*(-u)+(-y)*(-v)+z*w = x*u+y*v+z*w := by
-  simp only [neg_mul_neg]
+  simp [Int.neg_mul, Int.mul_neg]
 
 /-- The covariant contraction is invariant under exchange of independent
     SU(2) factors, although that exchange is not itself a gauge symmetry. -/
@@ -51,7 +51,7 @@ def gapAtCanonicalCoupling (bk s : Int) : Int :=
 theorem canonical_gap_factor (bk s : Int) :
     gapAtCanonicalCoupling bk s = -4*(bk*s) := by
   unfold gapAtCanonicalCoupling
-  rw [sub_mul, ← mul_assoc, ← mul_assoc]
+  rw [Int.sub_mul, Int.mul_assoc, Int.mul_assoc]
   omega
 
 /-- Positive background energy and positive beta*kappa rule out equality
@@ -78,8 +78,12 @@ theorem normalized_mixed_transport
     (hc : cdot = -4*(H*c)+torque) :
     cdot*s - c*sdot = torque*s := by
   rw [hs, hc]
+  have h1 : ((-4)*(H*c)+torque)*s = (-4)*((H*c)*s)+torque*s := by
+    rw [Int.add_mul, Int.mul_assoc]
+  have h2 : c*((-4)*(H*s)) = (-4)*(c*(H*s)) := by ac_rfl
+  rw [h1, h2]
   have hcomm : (H*c)*s = c*(H*s) := by ac_rfl
-  simp only [add_mul, sub_mul, neg_mul, mul_neg, mul_assoc]
+  rw [hcomm]
   omega
 
 /-- The exact discriminant derivative determines which side of a Krein
