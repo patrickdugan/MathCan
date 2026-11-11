@@ -7,3 +7,4 @@ import MathCan.FlashAccounting
 import MathCan.V4Transient
 import MathCan.FoundryProbe
 import MathCan.OpcodeRefinement
+import MathCan.HookMultiTick
