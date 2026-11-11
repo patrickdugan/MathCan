@@ -56,6 +56,7 @@ jobs:
           lake env lean MathCan/TOEDressedMatter.lean | tee -a mathcan-axioms.txt
           lake env lean MathCan/TOETensorCompletion.lean | tee -a mathcan-axioms.txt
           lake env lean MathCan/TOECovariantGates.lean | tee -a mathcan-axioms.txt
+          lake env lean MathCan/TOETwoFormTriad.lean | tee -a mathcan-axioms.txt
           if grep -Eq 'sorryAx|ofReduceBool' mathcan-axioms.txt; then
             echo 'Admitted proof or native reduction axiom detected.'
             exit 1
