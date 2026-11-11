@@ -53,8 +53,8 @@ theorem nonzero_mixed_rate (gpsi split rate : Int)
   have hm : (2*gpsi)*split = 0 := by
     rw [h] at hz
     exact hz
-  rcases mul_eq_zero.mp hm with htwoMul | hsplit
-  · rcases mul_eq_zero.mp htwoMul with htwo | hgpsi
+  rcases Int.mul_eq_zero.mp hm with htwoMul | hsplit
+  · rcases Int.mul_eq_zero.mp htwoMul with htwo | hgpsi
     · omega
     · exact hg hgpsi
   · exact hs hsplit
@@ -69,7 +69,7 @@ theorem radiation_stress_trace (p : Int) :
 theorem nonzero_wedge_square (w : Int) (hw : w ≠ 0) :
     w*w ≠ 0 := by
   intro hz
-  rcases mul_eq_zero.mp hz with hleft | hright
+  rcases Int.mul_eq_zero.mp hz with hleft | hright
   · exact hw hleft
   · exact hw hright
 
@@ -79,7 +79,7 @@ theorem mismatch_forces_mixed_flow (coefficient delta : Int)
     (hc : coefficient ≠ 0) (hd : delta ≠ 0) :
     coefficient*delta ≠ 0 := by
   intro hz
-  rcases mul_eq_zero.mp hz with hleft | hright
+  rcases Int.mul_eq_zero.mp hz with hleft | hright
   · exact hc hleft
   · exact hd hright
 
