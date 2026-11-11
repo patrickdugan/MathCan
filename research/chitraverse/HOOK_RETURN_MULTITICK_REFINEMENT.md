@@ -97,6 +97,11 @@ The test uses Forge `vm.startDebugTraceRecording` and `vm.stopAndReturnDebugTrac
 | Relock | lock slot becomes 0 | 1 |
 | **Total** | | **21** |
 
+The `sync(currency0)` snapshot records **vault custody after the hook takes its
+currency0 credit**. In this fixture it equals the pre-swap vault balance minus
+`1,000,000,000,000,000`; the earlier balance is stale at the moment of `sync`.
+The expected write stream and a regression test bind this intra-unlock timing.
+
 The verifier rejects missing, reordered and modified writes. It checks the final physical ERC-20 movements separately:
 
 \[

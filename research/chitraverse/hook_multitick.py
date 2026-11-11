@@ -93,6 +93,10 @@ def expected_manager_tstores(obs: dict, quote: dict):
     hook_b = HOOK_UNSPECIFIED
     router_b = quote["total_output"] - hook_b
     vault_before = _integer(obs["vault0_before"], "vault0_before")
+    # The hook collects its positive currency0 delta BEFORE router.sync(c0).
+    # The real CurrencyReserves snapshot therefore sees the vault after take().
+    synced_after_hook_take = vault_before - hook_a
+    _assert(synced_after_hook_take >= 0, "vault lacks pre-sync hook payout")
     return [
         (LOCK_SLOT, word(1)),
         (delta_slot(hook,c0),word(hook_a)), (NONZERO_SLOT,word(1)),
@@ -101,7 +105,7 @@ def expected_manager_tstores(obs: dict, quote: dict):
         (delta_slot(router,c1),word(router_b)), (NONZERO_SLOT,word(4)),
         (delta_slot(hook,c0),word(0)), (NONZERO_SLOT,word(3)),
         (delta_slot(hook,c1),word(0)), (NONZERO_SLOT,word(2)),
-        (SYNC_CURRENCY_SLOT,word(int(c0,16))), (SYNC_BALANCE_SLOT,word(vault_before)),
+        (SYNC_CURRENCY_SLOT,word(int(c0,16))), (SYNC_BALANCE_SLOT,word(synced_after_hook_take)),
         (SYNC_CURRENCY_SLOT,word(0)),
         (delta_slot(router,c0),word(0)), (NONZERO_SLOT,word(1)),
         (delta_slot(router,c1),word(0)), (NONZERO_SLOT,word(0)),

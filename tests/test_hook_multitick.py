@@ -89,6 +89,20 @@ class HookMultitickTests(unittest.TestCase):
         with self.assertRaisesRegex(f.ProofError,"exactly three"):
             f.quote_multitick(10**17)
 
+    def test_sync_snapshot_after_hook_collection(self):
+        obs,mgr,hook=fabricated_observation()
+        pairs=f.expected_manager_tstores(obs,f.quote_multitick())
+        self.assertEqual(pairs[14],
+            (f.SYNC_BALANCE_SLOT, f.word(obs["vault0_before"] - f.SPECIFIED)))
+        self.assertTrue(f.verify_trace(obs,mgr,hook)["verified"])
+
+    def test_stale_pre_hook_sync_snapshot_rejected(self):
+        obs,mgr,hook=fabricated_observation()
+        # Capturing a pre-swap balance as the later sync snapshot is invalid.
+        obs["manager_tstore_pairs"][2*14+1] = f.word(obs["vault0_before"])
+        with self.assertRaisesRegex(f.ProofError,"ordered manager TSTORE"):
+            f.verify_trace(obs,mgr,hook)
+
     def test_happy_trace(self):
         obs,mgr,hook=fabricated_observation()
         got=f.verify_trace(obs,mgr,hook)
