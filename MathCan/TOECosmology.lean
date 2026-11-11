@@ -61,7 +61,10 @@ theorem conditional_quadratic_blind_mode
       matter (radiation + epsilon) =
       background x lambda curvature matter radiation + epsilon * quadratic := by
   rw [shape]
-  simp only [background, Int.add_mul, Int.sub_mul, Int.mul_sub]
+  simp only [background, Int.add_mul, Int.sub_mul, Int.mul_add,
+    Int.mul_sub, Int.mul_one]
+  have rearrange : epsilon * (2 * x^2) = (2 * epsilon) * x^2 := by
+    rw [← Int.mul_assoc, Int.mul_comm epsilon 2]
   omega
 
 #print axioms anchored_present
