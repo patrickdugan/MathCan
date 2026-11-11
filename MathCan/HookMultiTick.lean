@@ -26,7 +26,6 @@ def distribute (pool hook : Int) : DeltaSplit :=
 
 theorem distribute_sound (pool hook : Int) : WellSplit (distribute pool hook) := by
   simp [WellSplit, distribute]
-  omega
 
 /-- Every per-currency signed split conserves its total when physical custody
     changes by the opposite of the pool delta. -/
