@@ -1,0 +1,66 @@
+{
+  "partial_jet": {
+    "A": "2/5",
+    "Bcurv": "1",
+    "alpha": "3/500",
+    "beta": "1/100",
+    "cases": {
+      "complex": {
+        "hessian_det": "369225994574038618240109953443000000000000/3164122908288226413286074122542965841850280481",
+        "kinetic_schur_factor": "369225994574038618240109953443000000000000/3164122908288226413286074122542965841850280481",
+        "mix0": "869652000000000000/56250536959999114423441",
+        "mix1": "437050711800000000/56250536959999114423441",
+        "positive_jet": true,
+        "positive_real_spectrum": false,
+        "spectral_disc": "-143892035991/250000000000000000"
+      },
+      "defective": {
+        "hessian_det": "46152098804315310732/395495642357685582840125",
+        "kinetic_schur_factor": "46152098804315310732/395495642357685582840125",
+        "mix0": "869652/56249134561",
+        "mix1": "2187441/281245672805",
+        "positive_jet": true,
+        "positive_real_spectrum": false,
+        "spectral_disc": "0"
+      },
+      "real": {
+        "hessian_det": "369207577201157439256553497443000000000000/3163807217495344777240108775857744227905976481",
+        "kinetic_schur_factor": "369207577201157439256553497443000000000000/3163807217495344777240108775857744227905976481",
+        "mix0": "869652000000000000/56247730776408613951441",
+        "mix1": "437925688200000000/56247730776408613951441",
+        "positive_jet": true,
+        "positive_real_spectrum": true,
+        "spectral_disc": "144108036009/250000000000000000"
+      }
+    },
+    "schema": "mathcan.toe11.partial_jet.v1",
+    "scope": "homogeneous partial-jet Hessian of declared trial action, not full spacetime principal symbol",
+    "sigma": "1/100"
+  },
+  "provenance": "declared SU2^2 2-form trial, frozen local FLRW, no full covariant GfE solution",
+  "schema": "mathcan.toe11.coupled.v1",
+  "single_tensor_polarization": {
+    "all_positive_roots": true,
+    "doubled_gravitational_speed_squared": "480993997/493000000",
+    "mixed_cubic_coefficients": [
+      "-282824470236000000/56247730776408613951441",
+      "289884000000000000/56247730776408613951441"
+    ],
+    "remaining_speed_squared": "2812732928347778628181199/2812735172899996567572050",
+    "schema": "mathcan.toe11.projected_wave.v1",
+    "scope": "single TT metric and single gauge tensor amplitude, declared 2-form plus YM only",
+    "sextic_polynomial_coefficients": [
+      "-650740459924820425725236304802577026794791/158190360874767238862005438792887211395298824050",
+      "39694158515228472789351815907483771198969/3163807217495344777240108775857744227905976481",
+      "-40351998731024710041981089958501522000000/3163807217495344777240108775857744227905976481",
+      "57650114623188529000000000000/13340051596532024127260902132340761"
+    ],
+    "strong_hyperbolicity_verified": false
+  },
+  "wave_point": {
+    "gauge_second_derivative": "19531752217939390851/1406193269410215348786025",
+    "gravitational_highest": "144144108036009/112495461552817227902882",
+    "mixed_third_derivative": "7059529764000000/56247730776408613951441",
+    "only_declared_two_form_sector": true
+  }
+}
