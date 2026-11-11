@@ -100,3 +100,10 @@ The mathematical statements describe digital systems and abstract price networks
 - **Tests:** 28 local Python tests covering rounding, source pins, credit, price, hook balance, write omission/reordering and runtime artifact replacement; full MathCan/Foundry CI required.
 - **Lean:** [HookMultiTick.lean](../MathCan/HookMultiTick.lean) proves abstract signed-flow and finite-step identities with `#print axioms` checks. The concrete source/event mapping is checked by Foundry and independent Python, not formally reduced to Lean kernel.
 - **Research boundary:** test-only permissioned hook, deterministic ERC20 transfers and one pinned local swap. Claims about permissionless or mainnet behavior require independently authenticated bytecode and generalized interface verification.
+
+## TOE-01/02: gauge-relative entropy and cosmological null space (2026-11-11)
+
+- **Sources:** six [TOE transcripts and timestamp anchors](toe/EPISODE_INDEX.json); Bianconi's [gravity from entropy](https://arxiv.org/abs/2408.14391), the [François–Ravera relational framework](https://arxiv.org/abs/2407.04043), and [ΛGfE](https://arxiv.org/abs/2610.34496). Full third-party transcripts stay with their owners or authorized local storage.
+- **Mathematics:** [finite Gaussian gauge-quotient and Friedmann null-space proofs](toe/GAUGE_ENTROPY_COSMOLOGY.md); exact-rational graph/cosmology regression tests; explicit identification limits under graph coarsening and redshift sampling.
+- **Formal status:** [TOEGraph.lean](../MathCan/TOEGraph.lean) states graph gauge and closed-path lemmas for Lean CI. General positive-definite matrix KL and FRW rank arguments are written proofs, awaiting a Mathlib formalization.
+- **Continuation:** review authorized caption sources and primary papers; derive model-specific modified Friedmann equations before observational comparisons; test spectral coarse-graining in RSITopology and Compactification-Theory.

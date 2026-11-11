@@ -1,0 +1,120 @@
+{
+  "schema": "mathcan.toe.sources.v1",
+  "collected_on": "2026-11-11",
+  "copyright_policy": "Public repository contains transcript URLs, timestamps and analytic paraphrases only. No entire third-party transcript copied.",
+  "quality_policy": "Machine-transcribed content may contain mistakes; verify exact scientific claims against original audio and primary papers.",
+  "episodes": [
+    {
+      "id": "toe-bianconi-2026-07-13",
+      "date": "2026-07-13",
+      "guest": "Ginestra Bianconi",
+      "transcript_url": "https://podscan.fm/podcasts/theories-of-everything-with-curt-jaimungal/episodes/ginestra-bianconi-the-physicist-who-unexpectedly-derived-gravity-from-entropy",
+      "status": "timestamped transcript source inspected",
+      "anchors": [
+        [
+          "00:07:38",
+          "geometric quantum relative entropy"
+        ],
+        [
+          "00:23:45",
+          "emergent dark energy"
+        ],
+        [
+          "00:45:20",
+          "holography"
+        ]
+      ],
+      "papers": [
+        "https://arxiv.org/abs/2408.14391",
+        "https://arxiv.org/abs/2510.22545",
+        "https://arxiv.org/abs/2610.34496"
+      ]
+    },
+    {
+      "id": "toe-ravera-2026-09-14",
+      "date": "2026-09-14",
+      "guest": "Lucrezia Ravera",
+      "transcript_url": "https://podcastrex.com/shows/theories-of-everything-with-curt-jaimungal/she-says-spacetime-points-are-just-where-fields-meet/transcript",
+      "status": "timestamped transcript inspected",
+      "anchors": [
+        [
+          "00:05:31",
+          "dressing field"
+        ],
+        [
+          "00:21:00",
+          "gauge redundancy"
+        ],
+        [
+          "00:33:52",
+          "Gribov-Singer"
+        ]
+      ],
+      "papers": [
+        "https://arxiv.org/abs/2407.04043"
+      ]
+    },
+    {
+      "id": "toe-gorard-2026-10-05",
+      "date": "2026-10-05",
+      "guest": "Jonathan Gorard",
+      "transcript_url": "https://podscan.fm/podcasts/theories-of-everything-with-curt-jaimungal/episodes/jonathan-gorard-the-physicist-revolutionizing-physics-with-ai",
+      "status": "public transcript inspected",
+      "anchors": [
+        [
+          "00:00:50",
+          "executable mathematics and scientific discovery"
+        ]
+      ],
+      "papers": []
+    },
+    {
+      "id": "toe-verlinde-2026-02-16",
+      "date": "2026-02-16",
+      "guest": "Erik Verlinde",
+      "transcript_url": "https://podscripts.co/podcasts/theories-of-everything-with-curt-jaimungal/erik-verlinde-this-physicist-unexpectedly-derived-gravity-from-information",
+      "status": "timestamped transcript inspected",
+      "anchors": [
+        [
+          "00:36:31",
+          "entanglement and space"
+        ],
+        [
+          "00:46:18",
+          "Jacobson contrast"
+        ],
+        [
+          "00:56:41",
+          "de Sitter cosmology"
+        ]
+      ],
+      "papers": [
+        "https://arxiv.org/abs/1001.0785",
+        "https://arxiv.org/abs/1611.02269"
+      ]
+    },
+    {
+      "id": "toe-mannheim-2026-10-12",
+      "date": "2026-10-12",
+      "guest": "Philip Mannheim",
+      "transcript_url": "https://www.podscan.fm/podcasts/theories-of-everything-with-curt-jaimungal-1/episodes/philip-mannheim-dark-matter-and-general-relativity-explained-from-scratch",
+      "status": "transcript page located, segment review pending",
+      "anchors": [],
+      "papers": []
+    },
+    {
+      "id": "toe-turok-2026-06-22",
+      "date": "2026-06-22",
+      "guest": "Neil Turok",
+      "transcript_url": "https://podscan.fm/podcasts/theories-of-everything-with-curt-jaimungal/episodes/neil-turok-a-route-to-quantum-gravity-without-strings",
+      "status": "opening transcript inspected",
+      "anchors": [
+        [
+          "00:00:28",
+          "negative norms in quantum gravity"
+        ]
+      ],
+      "papers": []
+    }
+  ]
+}
