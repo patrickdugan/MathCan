@@ -14,3 +14,4 @@ import MathCan.TOEFLRW
 import MathCan.TOEDressedMatter
 import MathCan.TOECovariantGates
 import MathCan.TOETensorCompletion
+import MathCan.TOETwoFormTriad
