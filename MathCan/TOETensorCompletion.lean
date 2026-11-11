@@ -37,7 +37,6 @@ theorem signed_response_decomposition (d : Int) :
   by_cases h : 0 ≤ d
   · simp [positivePart, negativePart, h]
   · simp [positivePart, negativePart, h]
-    omega
 
 /-- A common baseline preserves the desired signed response difference. -/
 theorem baseline_preserves_split (mE mB baseline d : Int)
@@ -111,8 +110,7 @@ def twiceRicciDs (H S U V Ud Udd Vdd : Int) : Int :=
 /-- Standard f(R) temporal derivative contribution for U=V=f_R. -/
 theorem fr_temporal_limit (H S f fd : Int) :
     twiceRicciD00 H S f f fd fd = 6*(H*fd) := by
-  simp only [twiceRicciD00, sub_self, zero_mul, zero_add]
-  rw [mul_add]
+  simp [twiceRicciD00, Int.mul_add]
   omega
 
 /-- Standard f(R) spatial derivative contribution for U=V=f_R. -/
