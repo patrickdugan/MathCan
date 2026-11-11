@@ -121,6 +121,8 @@ The mathematical statements describe digital systems and abstract price networks
 
 - **Sources:** [Bianconi ΛGfE, eqs. (5),(16),(19),(31),(45)–(49)](https://arxiv.org/abs/2610.34496), [Bianconi isotropic spectral decomposition §III.1](https://arxiv.org/abs/2510.22545), and [Pereira quadratic-curvature audit](https://doi.org/10.1103/lxlj-ppwh).
 - **Derivation:** [source-anchored mathematical note](toe/BIANCONI_FLRW_GFIELD_DYNAMICS.md) computes five eigenvalues with degeneracies 1,1,3,3,3 and a strictly convex logarithmic vacuum curvature action; lapse variation determines Hddot along an expanding branch. The auxiliary volume constraint is varied before enforcement.
-- **Executable:** [flat vacuum ODE and eigenvalue solver](toe/gfield_flrw.py), [17 tests](../tests/test_toe04_gfield.py), [synthetic receipt](toe/fixtures/gfield_vacuum_synthetic.json), and a covariance-only projection using the prior TOE-03 fixture.
+- **Executable:** [flat vacuum ODE and eigenvalue solver](toe/gfield_flrw.py), [18 tests](../tests/test_toe04_gfield.py), [synthetic receipt](toe/fixtures/gfield_vacuum_synthetic.json), and a covariance-only projection using the prior TOE-03 fixture.
 - **Formal coverage:** [TOEFLRW.lean](../MathCan/TOEFLRW.lean) proves nine finite algebraic curvature trace identities. The logarithmic variation and ODE remain written/numerical proofs, outside current Lean kernel.
 - **Boundary:** No matter-coupled field equations, observed H(z), full covariant step refinement or physical stability determination. Beta H*²=0.02 is a deliberately exaggerated numerical regime.
+
+- **Covariant fixed-point check:** the de Sitter constant-Lambda value from the reduced lapse equals Bianconi's independent equation (45) with D=T=0 within 1e-12 over three couplings; full time-dependent covariant verification remains open.
