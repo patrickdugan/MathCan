@@ -1,4 +1,4 @@
-import Init
+import MathCan.TOETwoMultiplet
 
 /-!
 # TOE-08: two Yang--Mills triads and a conditional bivector response
@@ -21,13 +21,14 @@ def mixed (e₁ e₂ b₁ b₂ : Int) : Int := e₁*b₁ + e₂*b₂
 theorem opposed_electric_mixed_zero (e b : Int) :
     mixed e (-e) b b = 0 := by
   simp [mixed, Int.neg_mul]
+  omega
 
 /-- The isotropic electric Gram coefficient is insensitive to a sign change. -/
 def electricNorm (e₁ e₂ : Int) : Int := e₁*e₁+e₂*e₂
 
 theorem opposite_electric_norm (e : Int) :
     electricNorm e (-e) = 2*(e*e) := by
-  simp only [electricNorm, Int.neg_mul, Int.mul_neg, neg_neg]
+  simp [electricNorm, Int.neg_mul, Int.mul_neg]
   omega
 
 /-- The E and B diagonal blocks of a declared induced metric. The products
