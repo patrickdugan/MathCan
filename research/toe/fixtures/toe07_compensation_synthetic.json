@@ -1,0 +1,78 @@
+{
+  "schema": "mathcan.toe07.algebraic_response.v1",
+  "source_context": {
+    "Bianconi": "arxiv:2610.34496",
+    "Pereira": "arxiv:2609.03082",
+    "MathCan_TOE05": "d001d3feb43fb5cf5c15107c55016c0cc77a9524"
+  },
+  "not_derived_from_microscopic_action": true,
+  "not_full_covariant_solution": true,
+  "data_type": "synthetic TOE05 trajectory; rational effective response construction",
+  "params": {
+    "beta": "1/100",
+    "alpha": "3/50",
+    "K_over_a_squared": "0"
+  },
+  "responses": [
+    {
+      "z": 0.0,
+      "Hdot": -0.01,
+      "mE": "0",
+      "mB": "1/300",
+      "theta_E": 0.9802,
+      "theta_B": 0.9802,
+      "uncompensated_discriminant": -1.8424912146909319e-07,
+      "compensated_discriminant": "0"
+    },
+    {
+      "z": 0.1,
+      "Hdot": -0.016331613304,
+      "mE": "0",
+      "mB": "2041451663/375000000000",
+      "theta_E": 0.9802772837433389,
+      "theta_B": 0.9802772837433389,
+      "uncompensated_discriminant": -4.914150432075103e-07,
+      "compensated_discriminant": "0"
+    },
+    {
+      "z": 0.2,
+      "Hdot": -0.025184276011,
+      "mE": "0",
+      "mB": "25184276011/3000000000000",
+      "theta_E": 0.9803831977807096,
+      "theta_B": 0.9803831977807096,
+      "uncompensated_discriminant": -1.1685161170962372e-06,
+      "compensated_discriminant": "0"
+    },
+    {
+      "z": 0.3,
+      "Hdot": -0.037799867318,
+      "mE": "0",
+      "mB": "18899933659/1500000000000",
+      "theta_E": 0.980536159859026,
+      "theta_B": 0.980536159859026,
+      "uncompensated_discriminant": -2.6322634586641805e-06,
+      "compensated_discriminant": "0"
+    },
+    {
+      "z": 0.4,
+      "Hdot": -0.055884056289,
+      "mE": "0",
+      "mB": "18628018763/1000000000000",
+      "theta_E": 0.980760914112858,
+      "theta_B": 0.980760914112858,
+      "uncompensated_discriminant": -5.752663338265792e-06,
+      "compensated_discriminant": "0"
+    },
+    {
+      "z": 0.5,
+      "Hdot": -0.081556548209,
+      "mE": "0",
+      "mB": "81556548209/3000000000000",
+      "theta_E": 0.9810871389385712,
+      "theta_B": 0.9810871389385712,
+      "uncompensated_discriminant": -1.2249250923403469e-05,
+      "compensated_discriminant": "0"
+    }
+  ]
+}
