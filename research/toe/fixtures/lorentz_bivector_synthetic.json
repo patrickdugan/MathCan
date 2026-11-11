@@ -1,0 +1,26 @@
+{
+  "B0": [
+    "1/25",
+    "1/25"
+  ],
+  "E0": [
+    "1/50",
+    "-1/50"
+  ],
+  "E_perturbed": [
+    "1/50",
+    "-19/1000"
+  ],
+  "H": "1",
+  "Hdot": "-1/100",
+  "alpha": "1/10",
+  "baseline_positive_real": true,
+  "baseline_theta": "3001/3125",
+  "beta": "1/50",
+  "covariant_gram_determinant": "1/59604644775390625",
+  "extension": "declared two-flavour colour-isotropic sum, not source-derived SU(2) GfE action",
+  "perturbed_discriminant": "-4879/100000000000000",
+  "perturbed_eigenvalue_status": "complex_pair",
+  "raised_gram_determinant": "-1/59604644775390625",
+  "source": "Bianconi 2025 Appendix A gauge F\u2297F plus Appendix B bivector metric"
+}
