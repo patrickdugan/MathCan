@@ -79,9 +79,28 @@ class TestTickCertificate(unittest.TestCase):
         obs,art=fake();art['deployedBytecode']['object']='0x6002600055'
         with self.assertRaisesRegex(f.ProofError,'compiled PoolManager'):f.verify_trace(obs,art)
 
-    def test_immutable_placeholder_rejected(self):
-        obs,art=fake();art['deployedBytecode']['immutableReferences']={'123':[{'start':3,'length':20}]}
-        with self.assertRaisesRegex(f.ProofError,'immutable'):f.verify_trace(obs,art)
+    def test_real_no_delegatecall_immutable_resolved(self):
+        obs,art=fake()
+        # Sole immutable source is NoDelegateCall.original = address(this).
+        blob=b'\x60'*4 + b'\x00'*32 + b'\x55'
+        art['deployedBytecode']={
+            'object':'0x'+blob.hex(),
+            'immutableReferences':{'349':[{'start':4,'length':32}]},
+        }
+        patched=blob[:4]+int(obs['manager'],16).to_bytes(32,'big')+blob[36:]
+        obs['manager_runtime_hash']='0x'+keccak256(patched).hex()
+        self.assertTrue(f.verify_trace(obs,art)['artifact_runtime_matched'])
+
+    def test_unsupported_immutable_shape_rejected(self):
+        obs,art=fake()
+        art['deployedBytecode']['immutableReferences']={'123':[{'start':3,'length':20}]}
+        with self.assertRaisesRegex(f.ProofError,'unsafe immutable'):f.verify_trace(obs,art)
+
+    def test_multiple_immutables_rejected(self):
+        obs,art=fake()
+        art['deployedBytecode']['immutableReferences']={
+          '1':[{'start':0,'length':32}], '2':[{'start':1,'length':32}]}
+        with self.assertRaisesRegex(f.ProofError,'unsupported immutable'):f.verify_trace(obs,art)
 
     def test_swapped_tstores_rejected(self):
         obs,art=fake();obs['manager_tstore_pairs'][2:4],obs['manager_tstore_pairs'][4:6]=obs['manager_tstore_pairs'][4:6],obs['manager_tstore_pairs'][2:4]

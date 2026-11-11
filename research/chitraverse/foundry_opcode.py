@@ -150,18 +150,38 @@ def expected_manager_tstores(obs: dict, quote: dict):
         (LOCK_SLOT, word(0)),
     ]
 
-def runtime_artifact_hash(artifact):
+def runtime_artifact_hash(artifact, manager_address: str):
     _assert(isinstance(artifact, dict), "missing compiler artifact")
     deployed = artifact.get("deployedBytecode")
     _assert(isinstance(deployed,dict), "artifact lacks deployed bytecode")
     raw = deployed.get("object")
     _assert(isinstance(raw,str) and raw.startswith("0x") and len(raw)>6, "invalid deployed bytecode")
-    _assert(not deployed.get("immutableReferences"), "runtime has immutable references; resolve them first")
     try:
-        bytecode=bytes.fromhex(raw[2:])
+        bytecode=bytearray.fromhex(raw[2:])
     except ValueError as exc:
         raise ProofError("unlinked or malformed deployed bytecode") from exc
-    return "0x" + keccak256(bytecode).hex()
+    immutable = deployed.get("immutableReferences") or {}
+    if immutable:
+        # v4-core PoolManager inherits NoDelegateCall, whose only immutable
+        # is `original = address(this)` (constructor in src/NoDelegateCall.sol).
+        # Solc emits a set of 32-byte locations for this *one* immutable id.
+        # Refuse artifacts with additional immutable types or malformed ranges.
+        _assert(isinstance(immutable, dict) and len(immutable) == 1,
+                "unsupported immutable reference layout")
+        _assert(_address(manager_address), "invalid constructor-inlined manager address")
+        encoded = int(manager_address, 16).to_bytes(32, "big")
+        references = next(iter(immutable.values()))
+        _assert(isinstance(references, list) and references, "missing immutable locations")
+        used = set()
+        for ref in references:
+            _assert(isinstance(ref,dict) and set(ref)=={"start","length"}, "malformed immutable reference")
+            offset,size=ref["start"],ref["length"]
+            _assert(type(offset) is int and type(size) is int and size==32 and
+                    0<=offset<=len(bytecode)-size and not any(x in used for x in range(offset,offset+size)),
+                    "unsafe immutable reference offset")
+            used.update(range(offset,offset+size))
+            bytecode[offset:offset+size] = encoded
+    return "0x" + keccak256(bytes(bytecode)).hex()
 
 def verify_trace(obs: dict, artifact: dict | None = None) -> dict:
     _assert(isinstance(obs,dict) and obs.get("schema")==SCHEMA, "unexpected schema")
@@ -208,7 +228,7 @@ def verify_trace(obs: dict, artifact: dict | None = None) -> dict:
     expected=expected_manager_tstores(obs,quote)
     _assert(got==expected, f"ordered TSTORE sequence differs: got {len(got)} expected {len(expected)}")
     if artifact is not None:
-        _assert(runtime_artifact_hash(artifact).lower()==obs["manager_runtime_hash"].lower(),
+        _assert(runtime_artifact_hash(artifact, obs["manager"]).lower()==obs["manager_runtime_hash"].lower(),
                 "compiled PoolManager deployedBytecode disagrees with observed runtime hash")
     return {
         "schema":"mathcan.chtr09.verified.v1",
