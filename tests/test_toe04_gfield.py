@@ -79,6 +79,14 @@ class VacuumEvolutionTests(unittest.TestCase):
         beta=1e-4
         self.assertAlmostEqual((3-de_sitter_lambda(1,beta))/beta**2,157/3,delta=.2)
 
+    def test_de_sitter_covariant_weyl_trace(self):
+        # Source eq. 45 with constant G, D=0 and vacuum stress T=0.
+        from research.toe.gfield_flrw import de_sitter_lambda_by_weyl_trace
+        for beta in (.001,.01,.02):
+            self.assertAlmostEqual(
+                de_sitter_lambda_by_weyl_trace(1,beta),
+                de_sitter_lambda(1,beta),delta=1e-12)
+
     def test_GR_constraint_limit(self):
         for h,q,j,l in ((1.02,-.05,.1,3),(.9,.05,-.02,2.4)):
             beta=1e-7
