@@ -161,3 +161,12 @@ The mathematical statements describe digital systems and abstract price networks
 - **Executable checks:** [`twoform_triad.py`](toe/twoform_triad.py), [`test_toe08_twoform.py`](../tests/test_toe08_twoform.py) with 26 local tests, 1,000 exact continuity samples, random rank tests, a two-form RK4 check, and [`derive_twoform_sympy.py`](toe/derive_twoform_sympy.py) as an optional independent metric variation.
 - **Lean:** [`TOETwoFormTriad.lean`](../MathCan/TOETwoFormTriad.lean) contains 10 intended kernel-checked structural lemmas for the finite triad, source block matching and power-law mass obstruction.
 - **Unresolved physics:** derive GfE's actual microscopic 2-form `M_(2)`, full four-dimensional dressed stress and nonminimal derivative terms, coupled backreaction, and the entire metric-matter characteristic/symmetrizer; the source-specific constitutive link `m_B=chi*b²` is assumed and separately labeled.
+
+### TOE-08B: two-triad flavor-area dynamics
+
+- **Six antisymmetric potentials:** two independent O(3) magnetic triads with their own mass and nonminimal curvature couplings. This is an explicit MathCan trial matter model, not a source-derived pair of full Dirac–Kähler multiplets.
+- **New exact identities:** `S=b1²+b2²`, `Q=b1*v1+b2*v2`, `W=b1*v2-b2*v1`; `Wdot=-3HW+(M1-M2)b1*b2`; `S*(v1²+v2²)=Q²+W²`, and the exact radial identity with positive flavor correction `2W²/S`.
+- **Counterexample:** `a=t²`, two massless uncoupled 2-form triads obey the field equations, match `m_B=chi*S` at `t=1`, and differ from the required `S=t⁻²` at `t=2` by exactly `49/9216`; flavor area `W(2)=1/128`. No gravitational backreaction is claimed.
+- **Kinetic audit:** exact diagonal homogeneous Hessian degenerates at `lambda1*b1²+lambda2*b2²=M_P²`, with the four-dimensional coupled characteristic and constraint handling still open.
+- **Tests:** 14 new Python methods in [`test_toe08_two_multiplet.py`](../tests/test_toe08_two_multiplet.py), including 500 exact radial identities and an analytic counterexample, total 40 new TOE-08 methods.
+- **Lean:** additional conditional integer response and flavor-area lemmas in [`TOETwoMultiplet.lean`](../MathCan/TOETwoMultiplet.lean); runtime kernel and axiom audit required.

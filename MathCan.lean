@@ -15,3 +15,4 @@ import MathCan.TOEDressedMatter
 import MathCan.TOECovariantGates
 import MathCan.TOETensorCompletion
 import MathCan.TOETwoFormTriad
+import MathCan.TOETwoMultiplet

@@ -199,3 +199,100 @@ lake env lean MathCan/TOETwoFormTriad.lean
 ```
 
 The standard-library Python module uses `Fraction` for every algebraic certificate and separately labels its RK4 spectator calculation. Its tests include exact rank checks, curvature response symmetry and contraction, continuity for 1,000 rational states, power-law compatibility, and integer-growth constraints. The new Lean module proves ten finite structural statements. Its proofs do not certify the four-dimensional variational calculus.
+
+## 7. Two independent magnetic triad multiplets: a dynamical flavor-area obstruction
+
+To give the two-multiplet question an explicit trial action, take **two copies** of the O(3)-indexed action (1), indexed by `r=1,2`, with their own `m_r²,lambda_r` and physical magnetic amplitudes `b_r`. There are six antisymmetric tensor potentials in total. A multiplet here means a magnetic SO(3) *triad*; this construction is **not** a pair of complete Dirac–Kähler multiplets as in Pereira's rank discussion. All claims about the source GfE response continue to require the independent constitutive hypothesis below.
+
+The combined homogeneous action is `L_mini=sum_r L_mini[r]`. Each triad obeys
+
+\[
+ \dot b_r=v_r-2Hb_r,\qquad
+ \dot v_r=-Hv_r-M_rb_r,\qquad M_r=m_r^2-2\lambda_rH^2.
+ \tag{19}
+\]
+
+The stress tensor is the sum of the two complete homogeneous stress tensors (9)--(10). With independent Riemann couplings, the curvature response becomes
+
+\[
+ \mathcal P^{ijkl}=\frac{\lambda_1b_1^2+\lambda_2b_2^2}{4}
+ (\delta^{ik}\delta^{jl}-\delta^{il}\delta^{jk}).\tag{20}
+\]
+
+Let `S=b1²+b2²`, `Q=b1*v1+b2*v2`, and the **flavor area**
+`W=b1*v2-b2*v1`. All are directly calculated from the field variables.
+
+**TOE-08/T6 (exact flavor-area transport).** The two field equations imply
+
+\[
+\boxed{\dot S=2Q-4HS,\qquad
+\dot W=-3HW+(M_1-M_2)b_1b_2.}\tag{21}
+\]
+
+For identical couplings, `M_1=M_2`, the comoving flavor area `a³W` is conserved. This is a conserved SO(2) charge in the internal two-triad plane. For different couplings, the last term describes explicit flavor torque.
+
+The ordinary two-dimensional Lagrange identity gives
+
+\[
+\boxed{S(v_1^2+v_2^2)=Q^2+W^2.}\tag{22}
+\]
+
+**TOE-08/T7 (radial compatibility identity).** Differentiate `S` using (19), substitute (22), and obtain for all `S>0`:
+
+\[
+\boxed{
+ \ddot S+7H\dot S+(12H^2+4\dot H)S
+ +2\sum_{r=1}^2M_rb_r^2
+ =\frac{(\dot S+4HS)^2+4W^2}{2S}.}\tag{23}
+\]
+
+Thus radial response evolution records an additional nonnegative contribution `2W²/S` from flavor rotation. For identical multiplets, the response obeys the same scalar radial equation as a single triad only on `W=0` trajectories. The Python oracle checks the exact identity at 500 reproducible rational states with independent masses and couplings.
+
+Under the **separate, provisional GfE constitutive map** `m_E=0`, `m_B=chi*S`, the isolated TT matching condition becomes
+
+\[
+\boxed{\alpha\chi S=-2\beta\dot H.}\tag{24}
+\]
+
+Equation (23) is an additional necessary condition for this equality to persist. Even exact matching at one time does not determine the later field orientation.
+
+### Exact counterexample: rotation breaks sustained matching
+
+Take a prescribed power-law geometry `a(t)=t²`, with `H=2/t`, `m_r=lambda_r=0`. An exact two-triad solution of (19) is
+
+\[
+ b_1=\frac1t,\quad v_1=\frac3{t^2},\qquad
+ b_2=\frac{t^3-1}{6t^4},\quad v_2=\frac1{2t^2}.\tag{25}
+\]
+
+Choose `beta=1/100`, `alpha=1/25`, `chi=1`. At `t=1`, its total amplitude `S=1` exactly satisfies (24), and `dot(S)=-2` matches the target's first derivative. Its nonzero `W(1)=1/2` evolves as `W(t)=1/(2t^6)`. At `t=2`,
+
+\[
+S(2)=\frac14+\frac{49}{9216},\quad
+W(2)=\frac1{128},\quad
+S_{\mathrm{target}}(2)=\frac14.\tag{26}
+\]
+
+The positive mismatch `49/9216` is exact. The model's two-form equations are satisfied identically at every positive time, and the **background is prescribed** rather than backreacted. This supplies a concrete dynamically consistent matter-sector counterexample to the proposition that instantaneous `W_E=W_B` guarantees matching at later times.
+
+### The homogeneous kinetic degeneracy locus
+
+Including a comparison Einstein--Hilbert kinetic term `-3M_P² a dot(a)²/N`, the exact `(a,w1,w2)` velocity Hessian is diagonal, with
+
+\[
+ K_{aa}=\frac{6a}{N}\big(\lambda_1b_1^2+\lambda_2b_2^2-M_P^2\big),
+ \qquad K_{w_rw_r}=\frac3{Na}.\tag{27}
+\]
+
+Consequently the **homogeneous** Hessian degenerates at
+`lambda1*b1²+lambda2*b2²=M_P²`. This is a Cauchy-data diagnostic for the toy minisuperspace model; due to the gravitational constraint and the higher-derivative GfE sector, it is not a ghost criterion or a substitute for the complete coupled wave symbol. Numerical and rational checks explicitly label these limitations.
+
+Reproduce the new branch with:
+
+```sh
+python -m unittest tests.test_toe08_two_multiplet -v
+python -m unittest discover -s tests -v
+lake build MathCan
+```
+
+**Next gates:** derive the actual Dirac--Kähler two-multiplet `M_(2)` construction with its indefinite form-space metric; examine how the nonminimal `RBB` coupling alters the GfE *joint* field equations and principal matrix; track the fate of the flavor-area charge in the coupled GfE action; and test the full constraint/gauge-fixed symmetrizer in a declared finite-frequency regime.
