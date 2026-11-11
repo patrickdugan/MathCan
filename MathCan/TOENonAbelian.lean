@@ -78,8 +78,9 @@ theorem normalized_mixed_transport
     (hc : cdot = -4*(H*c)+torque) :
     cdot*s - c*sdot = torque*s := by
   rw [hs, hc]
-  have hcomm : (H*c)*s = c*(H*s) := by ac_rfl
-  simp only [Int.add_mul, Int.sub_mul, Int.neg_mul, Int.mul_neg, Int.mul_assoc]
+  simp only [Int.add_mul, Int.neg_mul, Int.mul_neg, Int.mul_assoc]
+  have hcomm : 4*(H*(c*s)) = c*(4*(H*s)) := by ac_rfl
+  rw [hcomm]
   omega
 
 /-- The exact discriminant derivative determines which side of a Krein
