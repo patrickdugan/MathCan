@@ -1,0 +1,20 @@
+{
+  "E1": "2",
+  "E2": "100001/100000",
+  "H0": "1",
+  "Lambda0": "419999399997/200000000000",
+  "alpha": "3/500",
+  "background": "Einstein-Yang-Mills, not the full Lambda-GfE system",
+  "beta": "1/100",
+  "boundary_discriminant_derivative": "-54/15625",
+  "branch_change": "positive-real semisimple to complex pair on prescribed GR+YM evolution",
+  "final_discriminant_sign": -1,
+  "initial_discriminant": "24000160000400001/6250000000000000000000000",
+  "initial_positive_real": true,
+  "kappa": "1/10",
+  "provenance": "Bianconi (2025) Abelian F tensor; proposed SU(2)^2 gauge extension",
+  "psi1": "1",
+  "psi2": "0",
+  "schema": "mathcan.toe10.nonabelian.v1",
+  "time_step": "1/10000"
+}
