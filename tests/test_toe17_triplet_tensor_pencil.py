@@ -7,6 +7,7 @@ from research.toe.triplet_tensor_pencil import (
     source_responses, source_tensor_matrix, closed_entries, check_closed_pencil,
     cubic_coefficients, source_jordan_reference, detuned_reference,
     scalar_longitudinal_response, reference_experiment, leading_detuning_slopes,
+    matched_triplet_general,
     _forms_background, _matter_oneforms, _dforms, PAIRS,
 )
 from research.toe.wave_principal import evaluate_polynomial
@@ -68,6 +69,27 @@ class ThreeMultipletPencilTests(unittest.TestCase):
             self.assertEqual(evaluate_polynomial(c,x),factor*(x-1)**2*(a*x-b))
         self.assertEqual(cubic_discriminant(c),0)
         self.assertEqual(evaluate_polynomial(c,1),0)
+
+    def test_general_matched_source_chain_for_four_exact_FLRW_backgrounds(self):
+        backgrounds=(
+            (F(3,500),F(1,100),F(2,5),F(1)),
+            (F(1,100),F(1,100),F(1,4),F(1)),
+            (F(1,200),F(1,100),F(1,2),F(1)),
+            (F(1,100),F(1,50),F(1,4),F(1))
+        )
+        for alpha,beta,A,B in backgrounds:
+            for p in (F(1,2),F(1),F(2)):
+                c=matched_triplet_general(alpha=alpha,beta=beta,A=A,B=B,p=p)
+                self.assertEqual(c['thetaE'],c['thetaB'])
+                self.assertTrue(c['regular_temporal_leading'])
+                self.assertTrue(c['lightcone_multiplicity_exact_two'])
+                self.assertEqual(c['chain_at_positive_root'],-2*beta/alpha)
+                self.assertEqual(c['chain_at_negative_root'],2*beta/alpha)
+                self.assertFalse(c['physical_constraints_complete'])
+
+    def test_general_matched_triplet_rejects_no_positive_p(self):
+        with self.assertRaises(ValueError):matched_triplet_general(p=0)
+        with self.assertRaises(ValueError):matched_triplet_general(p=-1)
 
     def test_nonzero_eigenvalue_at_repeated_lightcone(self):
         hh,hm,mm=closed_entries(1)
@@ -150,6 +172,8 @@ class ThreeMultipletPencilTests(unittest.TestCase):
     def test_receipt_preserves_background_and_constraint_gates(self):
         r=reference_experiment()
         self.assertTrue(r['matched_lightcone_jordan_chain'])
+        self.assertEqual(r['matched_general_chain_positive'],'-10/3')
+        self.assertTrue(r['matched_general_lightcone_multiplicity_two'])
         self.assertEqual(r['matched_extra_squared_frequency'],'1158253/1154113')
         self.assertTrue(r['detuned_plus_three_distinct_positive_roots'])
         self.assertEqual(r['lightcone_detuning_slopes'],('-61/4960','-183/45632'))
