@@ -14,6 +14,7 @@ Scope:
 """
 from __future__ import annotations
 from fractions import Fraction as F
+from functools import lru_cache
 
 from .mixed_principal import det,rat
 from .tensor_subspace import at_frequency,default_params,_fit_polynomial
@@ -112,9 +113,14 @@ def det3_gaussian(h):
     return _cadd(_csub(a,b),c)
 
 
+@lru_cache(maxsize=16)
+def _cached_tensor_coefficients(sigma1, params_items):
+    return augmented_coefficients(sigma1=sigma1,**dict(params_items))
+
+
 def trial_tensor_six(omega,*,sigma1=F(1,100),params=None):
     params=default_params() if params is None else dict(params)
-    coeff=augmented_coefficients(sigma1=rat(sigma1),**params)
+    coeff=_cached_tensor_coefficients(rat(sigma1),tuple(sorted(params.items())))
     return at_frequency(coeff,rat(omega))
 
 
