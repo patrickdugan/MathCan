@@ -119,7 +119,7 @@ class ThreeMultipletPencilTests(unittest.TestCase):
         with self.assertRaises(ValueError):source_responses(lam=0)
         with self.assertRaises(ValueError):source_responses(alpha=0)
         with self.assertRaises(ValueError):source_responses(beta=-1)
-        with self.assertRaises(ValueError):source_responses(lam=F(2000))
+        with self.assertRaises(ValueError):source_responses(beta=F(1))
 
     def test_exterior_derivative_pure_longitudinal_kernel_only(self):
         for w,p in ((0,1),(2,1),(-1,2)):
