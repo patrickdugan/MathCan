@@ -51,6 +51,7 @@ theorem two_multiplet_magnetic_isotropic (x y z : Int) :
     twoMultipletQuadratic x y z = 2*(x*x+y*y+z*z) := by
   unfold twoMultipletQuadratic
   rw [Int.mul_add, Int.mul_add]
+  simp only [Int.mul_assoc]
   omega
 
 /-- Rescaled exact compensation at the pinned FLRW reference:
