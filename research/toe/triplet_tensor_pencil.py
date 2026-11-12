@@ -232,6 +232,49 @@ def source_jordan_reference():
             'jordan_v1':(F(),v1),'regular_temporal_pencil':True}
 
 
+def matched_triplet_general(*,alpha=DEFAULT_ALPHA,beta=DEFAULT_BETA,
+                             A=DEFAULT_A,B=DEFAULT_B,p=F(1)):
+    """Parameter-independent light-cone Jordan chain of the source subblock.
+
+    Lambda is solved from thetaE=thetaB:
+      alpha*(1+lambda)=2*beta*(B-A).
+    Under alpha,beta>0, theta>0, lambda>0, p>0, and
+    0<alpha*W<1, the temporal polynomial is regular, and
+    each lightcone omega0=±p has nullity one and a chain
+    v0=(1,0), v1=(0,-2*beta*omega0/(alpha*p)).
+    Its determinant contains (omega²-p²)^2. The lightcone
+    multiplicity is exactly two when Ws != 2W.
+    """
+    alpha,beta,A,B,p=map(rat,(alpha,beta,A,B,p))
+    if alpha<=0 or beta<=0 or p<=0:
+        raise ValueError('positive alpha,beta,p required')
+    lam=2*beta*(B-A)/alpha-1
+    r=source_responses(alpha=alpha,beta=beta,A=A,B=B,lam=lam)
+    ws,we,wb=r['Ws'],r['We'],r['Wb']
+    if we!=wb or not 0<alpha*we<1:
+        raise AssertionError('positive regular matched-source branch required')
+    c=beta**2*(ws**2/F(2)+2*we**2)
+    k=4*alpha*beta*we**2*p
+    g=4*alpha**2*we**2*p**2
+    cofactor=c*g-k*k
+    expected=4*alpha**2*beta**2*we**2*p**2*(ws**2/F(2)-2*we**2)
+    if cofactor!=expected:
+        raise AssertionError('lightcone cofactor identity failed')
+    for omega0 in (p,-p):
+        hh,hm,mm=closed_entries(omega0,p,lam=lam,alpha=alpha,beta=beta,A=A,B=B)
+        if hh or hm or mm!=g:raise AssertionError('lightcone rank-one matrix')
+        mixed_derivative=8*alpha*beta*we**2*p*omega0
+        v1=-2*beta*omega0/(alpha*p)
+        if mixed_derivative+mm*v1:
+            raise AssertionError('universal source Jordan-chain relation')
+    return {'lambda':lam,'thetaE':r['thetaE'],'thetaB':r['thetaB'],
+            'lightcone_matter_entry':g,'unfactored_cofactor':cofactor,
+            'chain_at_positive_root':-2*beta/alpha,
+            'chain_at_negative_root':2*beta/alpha,
+            'lightcone_multiplicity_exact_two':ws!=2*we,
+            'regular_temporal_leading':True,'physical_constraints_complete':False}
+
+
 def detuned_reference(eps=F(1,1000)):
     """Positive cubic discriminant and three exact positive root brackets."""
     eps=rat(eps)
@@ -300,6 +343,7 @@ def scalar_longitudinal_response(omega=0,p=1):
 
 def reference_experiment():
     j=source_jordan_reference()
+    generic=matched_triplet_general()
     slopes=leading_detuning_slopes()
     plus=detuned_reference(F(1,1000))
     minus=detuned_reference(F(-1,1000))
@@ -307,6 +351,8 @@ def reference_experiment():
         check_closed_pencil(w,p)
     return {'schema':'mathcan.toe17.triplet_tensor.v1',
             'matched_lightcone_jordan_chain':True,
+            'matched_general_chain_positive':str(generic['chain_at_positive_root']),
+            'matched_general_lightcone_multiplicity_two':generic['lightcone_multiplicity_exact_two'],
             'matched_extra_squared_frequency':str(j['extra_root']),
             'detuned_plus_three_distinct_positive_roots':plus['three_distinct_positive_x'],
             'lightcone_detuning_slopes':(str(slopes['steep']),str(slopes['shallow'])),
