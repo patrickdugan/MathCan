@@ -25,3 +25,4 @@ import MathCan.TOEFormSectors
 import MathCan.TOEConeMatching
 import MathCan.TOETensorConstraints
 import MathCan.TOEMultipletKinetics
+import MathCan.TOETripletJordan
