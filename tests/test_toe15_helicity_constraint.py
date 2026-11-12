@@ -6,7 +6,8 @@ from research.toe.helicity_constraint import (
     spin_two_generator, equivariance_certificate, helicity_hermitian,
     det3_gaussian, trial_tensor_six, trial_helicity_certificate,
     trial_helicity_polynomial, outer, combine_outer, two_multiplet_witness,
-    source_response_match, reference_experiment, _rank, _matmul
+    source_response_match, reference_experiment, _rank, _matmul,
+    d_one_at_point, local_dirac_kahler_jet_witness
 )
 from research.toe.tensor_subspace import default_params
 from research.toe.cone_matching import cone_certificate
@@ -114,6 +115,7 @@ class MultipletRankAndResponseTests(unittest.TestCase):
         r=reference_experiment()
         self.assertTrue(r['source_reference_cone_matched'])
         self.assertEqual(r['source_two_multiplet_algebraic_rank'],3)
+        self.assertTrue(r['source_multiplet_pointwise_D_jets_realized'])
         self.assertFalse(r['source_multiplet_jet_integrability_verified'])
         self.assertFalse(r['source_multiplet_background_equations_solved'])
         self.assertFalse(r['complete_constrained_GfE_YM_tensor_system_derived'])
@@ -123,6 +125,29 @@ class MultipletRankAndResponseTests(unittest.TestCase):
         with self.assertRaises(ValueError):source_response_match(alpha=0)
         with self.assertRaises(ValueError):source_response_match(beta=0)
         with self.assertRaises(ValueError):source_response_match(mB=-1000)
+
+    def test_explicit_truncated_dirac_kahler_first_jets(self):
+        jets=local_dirac_kahler_jet_witness()
+        self.assertTrue(jets['local_jet_realized'])
+        self.assertFalse(jets['global_isotropy_verified'])
+        self.assertFalse(jets['eom_satisfied'])
+        self.assertEqual(jets['two_form_differential'],(0,0,0,0,0,1))
+        self.assertEqual(jets['Dphi_0'],(0,0))
+        self.assertEqual(jets['Dphi_1'],((0,)*4,(0,)*4))
+        self.assertEqual(jets['total_bivector_response'],self.w['combined'])
+        self.assertEqual(jets['one_form_gradient'][1][2],F(1,2))
+        self.assertEqual(jets['one_form_gradient'][2][1],-F(1,2))
+
+    def test_exterior_first_jet_is_antisymmetric(self):
+        rng=Random(1502)
+        for _ in range(100):
+            g=[[F(rng.randrange(-7,8),3) for j in range(4)] for i in range(4)]
+            dg=d_one_at_point(g)
+            dgt=d_one_at_point(tuple(tuple(g[j][i] for j in range(4)) for i in range(4)))
+            self.assertEqual(dg,tuple(-v for v in dgt))
+            for mu in range(4):g[mu][mu]+=rng.randrange(-5,6)
+            self.assertEqual(dg,d_one_at_point(g))
+        with self.assertRaises(ValueError):d_one_at_point(((0,0),)*2)
 
     def test_rank_checker_rejects_bad_dimensions(self):
         with self.assertRaises(ValueError):_rank(())
