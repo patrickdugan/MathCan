@@ -147,6 +147,49 @@ The exact curl Hessian is invariant under the rational orthogonal rotations
 
 **This is a candidate that passes the new necessary derivative-isotropy gate**, not an established dynamical escape. Its covariant FLRW continuation, total form-sector kinetic Hessian, background stress tensor, \(\xi R\) mixing, full linearized metric/G-field equations and constraint-reduced characteristic polynomial still have to be derived.
 
+## TOE-16/T6. The triplet adds dynamical helicity-two matter
+
+Write the three flavor-resolved magnetic curls as the columns of a 3×3 matrix \(A\). For the locked triplet \(u_i=e_i\), \(D_M=A+A^\top\). Under diagonal spatial/flavor SO(3), this matrix carries the irreducible decomposition
+
+\[
+3\otimes3 = 1\oplus3\oplus5,\qquad
+A = \frac{\operatorname{tr}A}{3}I_3
++\frac{A-A^\top}{2}
++\left[\frac{A+A^\top}{2}-\frac{\operatorname{tr}A}{3}I_3\right].
+\]
+
+Writing the last two summands as \(A_{\rm anti}\) and \(A_{\rm TT}\), the exact source curl Hessian is
+
+\[
+\boxed{
+H(A)=
+(4c^2-2c)\left(\|A_{\rm TT}\|_F^2+
+3(\operatorname{tr}A/3)^2\right)
+-2c\|A_{\rm anti}\|_F^2,\quad c=\alpha W_B.
+}
+\]
+
+At the reference point \(c=3/496\), the helicity-two coefficient is
+
+\[
+\boxed{4c^2-2c=-735/61504.}
+\]
+
+Both independent \(\pm2\) real polarization matrices \(A_+=\operatorname{diag}(1,-1,0)\) and \(A_\times=e_xe_y^\top+e_ye_x^\top\) have squared Frobenius norm two and Hessian \(-735/30752\) in the two-form source curl channel. They can be realized by transverse one-form perturbations at spatial wavevector \(p_z=1\). Exact polarization and rotation tests certify the decomposition, including 100 rational random matrices.
+
+The metric TT modes directly mix with these new matter spin-two modes through the same two-form trace-log response. For the unit static \(z\)-directed wave, the exact curvature–one-form third-derivative bilinear is
+
+\[
+\boxed{
+H_{hA}^{\mathrm{TT}}=
+-\frac{15}{61504}I_2 .
+}
+\]
+
+The result is independently reconstructed from the earlier audited six-by-six Riemann-pair operator and two one-form amplitudes per matter helicity. The plus/cross off-diagonal terms vanish. This identifies a definite nonzero **highest-derivative two-form metric–matter coupling** at the matched response.
+
+The numerical signs refer to the source sub-Hessian's formal derivative convention. A kinetic-energy or instability claim needs consistent Lorentzian Fourier factors, the 0/1-form sectors, other field fluctuations, the dynamical background and constraint reduction. In particular, an isolated metric cone polynomial is no longer the correct physical determinant when these helicity-two matter modes are active.
+
 ## Reproduce and next exact tasks
 
 - [Source module](multiplet_kinetic.py) implements the rational Hessian, independent determinant interpolation, flavor trace, rank/isotropy checks, static curvature–one-form mixing and locked-triplet rotations.
