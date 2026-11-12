@@ -33,7 +33,7 @@ M_i=u_iu_i^\top+2v_iv_i^\top,\qquad
 \boxed{M_1+M_2=\operatorname{diag}(0,0,0,2,2,2).}
 \]
 
-Each \(M_i\) has rank two; their sum has rank three and is isotropic on the magnetic triplet. This uses only pointwise independent algebraic slots for \(D\Phi_i,\Phi_i\). Whether the assigned slots arise from a smooth covariant field configuration satisfying all field equations is unverified.
+Each \(M_i\) has rank two; their sum has rank three and is isotropic on the magnetic triplet. This uses only pointwise independent algebraic slots for \(D\Phi_i,\Phi_i\). The next subsection constructs smooth local normal-coordinate field jets realizing these slots. Global isotropy, coupled constraints, and equations of motion remain unverified.
 
 With the existing synthetic FLRW curvature values \(A_c=H^2+\dot H=2/5\), \(B_c=H^2=1\), and parameters \(\alpha=3/500,\beta=1/100\), the witness has \(m_E=0,m_B=2\) and
 
@@ -55,6 +55,27 @@ m_E-m_B=\frac{2\beta}{\alpha}(A_c-B_c)=-2.
 
 Therefore the E and B inverse responses match at this synthetic off-shell point. If one retained only the curvature-response two-square TT polynomial of Pereira Eq. (18), it would reduce to a positive multiple of \((\omega^2-p^2)^2\). For dynamically active fundamental matter multiplets, additional mixed and matter Hessians must be derived first.
 
+## T2a. Local Dirac–Kähler jets realize the outer-product slots
+
+The truncated source derivative is \(D=P_F(d+\delta_D)P_F\). The algebraic witness in T2 has an explicit smooth *pointwise normal-coordinate* realization. In coordinates \((t,x,y,z)\), choose for both multiplets the one-form
+
+\[
+\omega_1=\omega_2=\frac12(x\,dy-y\,dx),\qquad d\omega_i=dx\wedge dy=e_{B_z}.
+\]
+
+At the coordinate origin choose constant two-form zeroth-order data
+
+\[
+\zeta_1=dy\wedge dz=e_{B_x},\qquad
+\zeta_2=dz\wedge dx=e_{B_y},
+\]
+
+with their first derivatives set to zero and the scalar fields zero. At the point, the one-form values vanish, as does their coderivative \(\delta_D\omega_i\), since the first-derivative matrix is antisymmetric. The 1-form component of \(D\Phi_i\) also vanishes because the scalar gradients and derivatives of \(\zeta_i\) vanish. The only nonzero component of \(D\Phi_i\) is its bivector \(d\omega_i=e_{B_z}\).
+
+Thus the exact differential map \(D\) realizes the specified \(u_i,v_i\) at an event, with \(M_{(0)}=M_{(1)}=0\) at that event. The oracle explicitly computes all six independent exterior-derivative entries and the scalar coderivative. This removes **local first-jet realizability** as an obstruction to the algebraic witness.
+
+It does not produce homogeneous global fields on FLRW, SO(3) covariance of all coupled principal coefficients, an on-shell matter stress tensor or a solution of the Einstein/G-field equations. A globally symmetry-inheriting completion may be substantially harder: the two individual multiplets carry preferred spatial orientations even though their summed bivector response is isotropic at the selected event.
+
 ## T3. The exact detuning discriminant
 
 Set \(m_B=2+\varepsilon,m_E=0\), \(\theta=\theta_E=124/125\), and hold \(\theta_s>0\). Then
@@ -75,4 +96,4 @@ The TOE-13 algebraic auxiliary G-field Schur map remains valid when its response
 
 **Verification:** research/toe/helicity_constraint.py provides exact rational commutators, Gaussian 3-by-3 determinants, six-by-six determinant cross-checks and rank-two outer-product constructions. tests/test_toe15_helicity_constraint.py verifies these and injects non-equivariant and detuned counterexamples. MathCan/TOETensorConstraints.lean supplies conditional source compensation, minimal-rank, quadratic isotropy, and 2-by-2 little-group lemmas, subject to GitHub CI.
 
-The machine-readable receipt explicitly records source_multiplet_jet_integrability_verified=false, source_multiplet_background_equations_solved=false, complete_constrained_GfE_YM_tensor_system_derived=false and strong_hyperbolicity_verified=false.
+The machine-readable receipt records source_multiplet_pointwise_D_jets_realized=true and explicitly preserves the stronger open gates: source_multiplet_jet_integrability_verified=false, source_multiplet_background_equations_solved=false, complete_constrained_GfE_YM_tensor_system_derived=false and strong_hyperbolicity_verified=false.
