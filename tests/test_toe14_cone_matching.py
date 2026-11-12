@@ -55,6 +55,13 @@ class VacuumSourceComparisonTests(unittest.TestCase):
         self.assertFalse(v['background_cone_matching'])
         self.assertFalse(v['real_characteristic'])
         self.assertNotEqual(v['WE'],v['WB'])
+        ws,we,wb=v['Ws'],v['WE'],v['WB']
+        # Pereira Eq. (25), checked against the independent general-cone oracle.
+        self.assertEqual(v['discriminant'],-4*ws**2*(we-wb)**2)
+        # Eq. (26) gives the exact center and imaginary-square formula.
+        self.assertEqual(v['center'],(ws**2+4*we*wb)/(ws**2+4*we**2))
+        self.assertEqual(v['imaginary_squared'],
+                         (2*ws*(we-wb)/(ws**2+4*we**2))**2)
 
     def test_einstein_background_cone_matching(self):
         for curvature in (-1,F(-1,2),0,F(2,5),1):
@@ -115,7 +122,7 @@ class RestrictedSymbolTests(unittest.TestCase):
         x=reference_experiment()
         self.assertFalse(x['coupled_GfE_YM_constraints_derived'])
         self.assertFalse(x['physical_hyperbolicity_verified'])
-        self.assertFalse(x['vacuum_source_normalization_independently_verified'])
+        self.assertTrue(x['vacuum_source_normalization_independently_verified'])
 
 
 if __name__=='__main__':unittest.main()
