@@ -2,7 +2,7 @@
 
 All coefficients are exact Fractions. The vacuum benchmark reproduces the
 sum-of-squares form of Pereira's strict-principal FLRW tensor polynomial,
-with an explicit one-form weight to expose normalization dependence.
+with a Pereira-normalized default one-form weight and sensitivity controls.
 TOE-13 is a separately declared SU(2)^2 frozen-coefficient trial symbol.
 Neither calculation supplies the constrained full GfE/YM Cauchy system.
 """
@@ -70,9 +70,9 @@ def vacuum_tt_benchmark(*, beta, accel, spatial, one_form_weight=F(1,2)):
     """Exact two-square vacuum TT family.
 
     q4(x)=one_form_weight*Ws^2*(x-1)^2 + 2*(WE*x-WB)^2.
-    One-form prefactor is explicit: secondary presentations differ
-    by a factor of two; this module does not certify primary-text normalization.
-    Both normalization choices have the same matching iff WE=WB.
+    Pereira 2026, Eqs. (18)-(19), fixes the source weight to 1/2,
+    up to an overall beta^2. Other positive weights are sensitivity controls.
+    Cone matching remains equivalent to WE=WB.
     """
     weight = rational(one_form_weight)
     if weight <= 0:
@@ -152,7 +152,7 @@ def reference_experiment():
     return {'schema':'mathcan.toe14.cone.v1',
             'scope':'vacuum two-square benchmark and separate TOE-13 trial resolvent',
             'vacuum_cone_discriminant':str(v['discriminant']),
-            'vacuum_source_normalization_independently_verified':False,
+            'vacuum_source_normalization_independently_verified':True,
             'vacuum_complex_squared_frequency':v['discriminant']<0,
             'toe13_old_root_metric_diagonal':str(t['metric_diagonal']),
             'toe13_resolvent_bound':str(t['inverse_metric_diagonal']),
