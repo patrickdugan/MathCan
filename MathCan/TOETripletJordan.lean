@@ -45,10 +45,10 @@ theorem exact_source_factor (x : Int) :
         ((x-1)*(x-1))*(55815*55815) := by rw [h1,h2]
     _ = ((x-1)*(x-1))*
         (58525*11163*(493*x-490)-55815*55815) := by
-        rw [Int.mul_sub]
+        exact (Int.mul_sub ((x-1)*(x-1))
+          (58525*11163*(493*x-490)) (55815*55815)).symm
     _ = (x-1)*(x-1)*(279075*(1154113*x-1158253)) := by
         rw [hn]
-        simp only [Int.mul_assoc]
 
 theorem exact_lightcone_null :
     hMetric 1 = 0 ∧ hMixed 1 = 0 ∧ hMatter 1 = 33489 := by
