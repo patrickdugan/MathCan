@@ -133,6 +133,46 @@ The integer-scaled Lean module multiplies \(P\) by 228856384 to get \(58525(x-1)
 
 Lean verifies this exact factorization, the rank-one lightcone kernel implication and the integer-rescaled Jordan-chain equation.
 
+## T2a. A parameter-independent matched-source Jordan theorem
+
+The source root defect is structural within this prescribed three-triplet normal-frame tensor subblock. Let \(\alpha,\beta>0\), \(p\ne0\), and let \(W_E=W_B=W>0\), \(W_s>0\). The matched requirement can be solved on a family of local FLRW response values by
+
+\[
+\lambda=\frac{2\beta(B-A)}{\alpha}-1>0,\qquad
+\theta_E=\theta_B>0.
+\]
+
+For either helicity, the exact polynomial reduces to
+
+\[
+P_{hh}=\beta^2 C(\omega^2-p^2)^2,\qquad
+P_{ha}=4\alpha\beta W^2p(\omega^2-p^2),
+\]
+
+\[
+P_{aa}=4\alpha W[(1-\alpha W)\omega^2+(2\alpha W-1)p^2],
+\qquad C=W_s^2/2+2W^2.
+\]
+
+At \(\omega_0=\pm p\), the matter diagonal is \(4\alpha^2W^2p^2\ne0\), while the first row vanishes. The regular leading temporal matrix exists when \(0<\alpha W<1\). The doubled light-cone root has an exact generalized eigenvector pair
+
+\[
+\boxed{
+v_0=(1,0)^\top,\qquad
+v_1=\left(0,-\frac{2\beta\omega_0}{\alpha p}\right)^\top .
+}
+\]
+
+The coefficient multiplying the double factor \((\omega^2-p^2)^2\), evaluated at the light cone, equals
+
+\[
+\boxed{4\alpha^2\beta^2W^2p^2\left(\frac{W_s^2}{2}-2W^2\right).}
+\]
+
+When \(W_s\ne2W\), the multiplicity is exactly two. At \(W_s=2W\), the cofactor also vanishes and the restricted characteristic has a higher collision multiplicity. These identities are independent of the reference numerical parameters. Tests check four sets of rational background coefficients and three nonzero spatial wavenumbers for each, verifying both signs \(\omega_0=\pm p\).
+
+The theorem is conditional on this selected source-mode subspace and on the positive background response; it leaves the background equations and all other Dirac–Kähler field components to the complete GfE evolution problem.
+
 ## T3. Detuning produces three distinct real roots in the restricted pencil
 
 Hold \(u_i=e_{B_i}\), \(v_i=e_{B_i}\) and vary \(\lambda=1+\varepsilon\). Then \(W_E=125/124\) is fixed, while
