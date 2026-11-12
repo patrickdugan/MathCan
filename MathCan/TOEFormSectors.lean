@@ -18,13 +18,15 @@ has opposite spatial diagonal entries and vanishing trace. -/
 def ttRicciTrace (a : Int) : Int := a + (-a)
 
 theorem tt_ricci_scalar_zero (a : Int) : ttRicciTrace a = 0 := by
-  simp [ttRicciTrace]
+  unfold ttRicciTrace
+  omega
 
 /-- Consequently the quadratic 0-form scalar-log response vanishes for an
 isolated TT variation at fourth differential order. -/
 theorem scalar_sector_tt_zero (beta invScalar a : Int) :
     (beta * invScalar) * (ttRicciTrace a) * (ttRicciTrace a) = 0 := by
-  simp [ttRicciTrace]
+  rw [tt_ricci_scalar_zero]
+  simp
 
 /-- Both independent TT helicities receive the same one-form quartic kernel.
 At formal wave covector (omega,0,0,p), the integer-normalized polynomial
