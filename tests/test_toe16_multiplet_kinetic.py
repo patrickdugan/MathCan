@@ -8,6 +8,7 @@ from research.toe.multiplet_kinetic import (
     source_kinetic_hessian, determinant_hessian_oracle,
     flavor_trace_matrix, flavor_trace_independent, rank_gate,
     static_magnetic_mixing, rotate_flavor_locked,reference_experiment,
+    triplet_irrep_hessian, triplet_spin_two_polarizations,
     v3,matmul,transpose
 )
 
@@ -97,6 +98,36 @@ class SourceKineticTests(unittest.TestCase):
         self.assertEqual(source_kinetic_hessian(self.three,A),
                          source_kinetic_hessian(self.three,rotate_flavor_locked(A,R2)))
 
+    def test_triplet_irrep_spin_two_polarizations(self):
+        plus,cross=triplet_spin_two_polarizations()
+        for p in (plus,cross):
+            q=triplet_irrep_hessian(p)
+            self.assertEqual(q['scalar_norm'],0)
+            self.assertEqual(q['vector_norm'],0)
+            self.assertEqual(q['spin2_norm'],2)
+            self.assertEqual(q['spin2_coefficient'],F(-735,61504))
+            self.assertEqual(q['hessian'],F(-735,30752))
+
+    def test_triplet_irrep_random_exact_decomposition(self):
+        rng=Random(1699)
+        for _ in range(100):
+            A=tuple(tuple(F(rng.randrange(-5,6),rng.randrange(1,6))
+                        for j in range(3)) for i in range(3))
+            q=triplet_irrep_hessian(A)
+            self.assertEqual(q['hessian'],source_kinetic_hessian(self.three,A))
+            self.assertGreaterEqual(q['scalar_norm'],0)
+            self.assertGreaterEqual(q['vector_norm'],0)
+            self.assertGreaterEqual(q['spin2_norm'],0)
+
+    def test_spin_two_curl_is_rational_rotation_invariant(self):
+        plus,cross=triplet_spin_two_polarizations()
+        R=((F(3,5),F(-4,5),F()),(F(4,5),F(3,5),F()),(F(),F(),F(1)))
+        for p in (plus,cross):
+            q=triplet_irrep_hessian(p)
+            rotated=triplet_irrep_hessian(rotate_flavor_locked(p,R))
+            self.assertEqual(q['hessian'],rotated['hessian'])
+            self.assertEqual(q['spin2_norm'],rotated['spin2_norm'])
+
     def test_invalid_rotations_rejected(self):
         with self.assertRaises(ValueError):
             rotate_flavor_locked(((0,0,0),)*3,((1,0,0),(0,1,0),(1,0,1)))
@@ -143,6 +174,8 @@ class SourceKineticTests(unittest.TestCase):
         self.assertEqual(r['two_multiplet_parallel_perpendicular_gap'],'9/123008')
         self.assertFalse(r['two_multiplet_curl_trace_isotropic'])
         self.assertTrue(r['three_multiplet_curl_trace_isotropic'])
+        self.assertTrue(r['three_multiplet_helicity2_variables_present'])
+        self.assertEqual(r['three_multiplet_spin2_kinetic_coefficient'],'-735/61504')
         self.assertFalse(r['full_principal_isotropy_verified'])
         self.assertFalse(r['source_background_equations_solved'])
         self.assertFalse(r['physical_constraints_eliminated'])
