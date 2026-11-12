@@ -262,9 +262,44 @@ def triplet_spin_two_polarizations():
                  for m in (plus,cross))
 
 
+def triplet_static_spin2_mixing():
+    """Explicit h(+/cross) to flavor-locked one-form spin-two mixing.
+
+    Uses p_z=1, and the two independent TT metric polarizations. Each
+    triplet spin-two curl basis comes from two transverse one-form modes.
+    The highest-derivative two-form source cross Hessian is diagonal
+    and nonzero: -4 alpha beta W_B^2 for each helicity. This is one
+    source principal subblock, not a physical Cauchy characteristic.
+    """
+    w=witness_three()
+    k=(F(),F(),F(),F(1))
+    hp=[[F() for _ in range(4)] for _ in range(4)]
+    hp[1][1]=F(1);hp[2][2]=F(-1)
+    hx=[[F() for _ in range(4)] for _ in range(4)]
+    hx[1][2]=hx[2][1]=F(1)
+    z=(F(),)*4
+    aplus=((F(),F(),F(-1),F()),(F(),F(-1),F(),F()),z)
+    across=((F(),F(1),F(),F()),(F(),F(),F(-1),F()),z)
+    rows=[]
+    for h in (hp,hx):
+        row=[]
+        for amps in (aplus,across):
+            row.append(sum((static_magnetic_mixing(w,k,h,a,flavor=i)['mixed_H']
+                            for i,a in enumerate(amps)),F()))
+        rows.append(tuple(row))
+    result=tuple(rows)
+    expected=-4*F(3,500)*F(1,100)*(F(125,124)**2)
+    if result!=((expected,F()),(F(),expected)):
+        raise AssertionError("source helicity-two cross mixing mismatch")
+    return {'mixed_helicity_matrix':result, 'mixed_coefficient':expected,
+            'helicity_plus_cross_mixing':F(),
+            'only_two_form_source_principal':True}
+
+
 def reference_experiment():
     w2=witness_two();w3=witness_three()
     spin2=triplet_irrep_hessian(triplet_spin_two_polarizations()[0])
+    mixed=triplet_static_spin2_mixing()
     delta=source_kinetic_hessian(w2,((0,0,1),(0,0,0))) - source_kinetic_hessian(w2,((0,1,0),(0,0,0)))
     expected=2*(F(3,500)/F(124,125))**2
     if delta!=expected or delta!=F(9,123008):
@@ -278,6 +313,7 @@ def reference_experiment():
             'three_multiplet_M_B':str(check_witness(w3)['mB']),
             'three_multiplet_spin2_kinetic_coefficient':str(spin2['spin2_coefficient']),
             'three_multiplet_helicity2_variables_present':spin2['spin2_norm']>0,
+            'three_multiplet_static_spin2_metric_matter_mixing':str(mixed['mixed_coefficient']),
             'three_multiplet_curl_trace_isotropic':True,
             'full_principal_isotropy_verified':False,
             'full_metric_matter_kinetic_derived':False,
