@@ -216,8 +216,55 @@ def rotate_flavor_locked(perturb,R):
     out=matmul(matmul(R,U),transpose(R))
     return tuple(tuple(out[j][i] for j in range(3)) for i in range(3))
 
+def triplet_irrep_hessian(perturb,*,alpha=F(3,500),beta=F(1,100),spatial=1):
+    """Exact diagonal-SO(3) decomposition 3⊗3 = 1 ⊕ 3 ⊕ 5.
+
+    The variation matrix A has columns delta u_i, and the triplet
+    locked background has U=I. Decompose A into trace scalar,
+    antisymmetric vector and symmetric-traceless spin-2 parts.
+    The source log Hessian is
+      (4c²-2c)(||scalar||²+||spin2||²)-2c||vector||²,
+    c=alpha/thetaB. This is an algebraic curl-channel result.
+    """
+    if len(perturb)!=3:raise ValueError("triplet required")
+    A=transpose(tuple(v3(z) for z in perturb))
+    At=transpose(A)
+    S=scale(madd(A,At),F(1,2))
+    K=scale(madd(A,scale(At,-1)),F(1,2))
+    scalar=scale(identity3(),tr(A)/3)
+    spin2=madd(S,scale(scalar,-1))
+    def norm2(x):return sum((z*z for row in x for z in row),F())
+    scalar_norm=norm2(scalar);vector_norm=norm2(K);spin2_norm=norm2(spin2)
+    if norm2(A)!=scalar_norm+vector_norm+spin2_norm:
+        raise AssertionError("SO3 decomposition fails orthogonality")
+    c=rat(alpha)/theta_magnetic(witness_three(),alpha=alpha,beta=beta,spatial=spatial)
+    hs=4*c*c-2*c
+    hv=-2*c
+    derived=hs*(scalar_norm+spin2_norm)+hv*vector_norm
+    direct=source_kinetic_hessian(witness_three(),perturb,alpha=alpha,beta=beta,spatial=spatial)
+    if derived!=direct:
+        raise AssertionError("irrep-resolved source kinetic Hessian mismatch")
+    return {'scalar_trace':tr(A),'scalar_norm':scalar_norm,
+            'vector_norm':vector_norm,'spin2_norm':spin2_norm,
+            'spin2_matrix':spin2,'spin2_coefficient':hs,
+            'vector_coefficient':hv,'hessian':derived}
+
+
+def triplet_spin_two_polarizations():
+    """Magnetic curl matrices with only + and × helicity-2 amplitudes.
+
+    Along p_z=1 these are realized by transverse one-form fluctuations.
+    The first row index is magnetic x/y/z; columns are triplet flavors.
+    """
+    plus=((F(1),F(),F()),(F(),F(-1),F()),(F(),F(),F()))
+    cross=((F(),F(1),F()),(F(1),F(),F()),(F(),F(),F()))
+    return tuple(tuple(tuple(m[j][i] for j in range(3)) for i in range(3))
+                 for m in (plus,cross))
+
+
 def reference_experiment():
     w2=witness_two();w3=witness_three()
+    spin2=triplet_irrep_hessian(triplet_spin_two_polarizations()[0])
     delta=source_kinetic_hessian(w2,((0,0,1),(0,0,0))) - source_kinetic_hessian(w2,((0,1,0),(0,0,0)))
     expected=2*(F(3,500)/F(124,125))**2
     if delta!=expected or delta!=F(9,123008):
@@ -229,6 +276,8 @@ def reference_experiment():
             'two_multiplet_parallel_perpendicular_gap':str(delta),
             'two_multiplet_curl_trace_isotropic':False,
             'three_multiplet_M_B':str(check_witness(w3)['mB']),
+            'three_multiplet_spin2_kinetic_coefficient':str(spin2['spin2_coefficient']),
+            'three_multiplet_helicity2_variables_present':spin2['spin2_norm']>0,
             'three_multiplet_curl_trace_isotropic':True,
             'full_principal_isotropy_verified':False,
             'full_metric_matter_kinetic_derived':False,
