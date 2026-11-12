@@ -11,7 +11,7 @@ The two benchmark models have different actions and parameters. The TOE-11/12/13
 - Pereira, *Vacuum Gravity from Entropy: Stability, Spectra, and Exact Waves*, Phys. Rev. D 114, 104029 (2026), https://doi.org/10.1103/lxlj-ppwh. Full vacuum Minkowski Hessian and poles.
 - MathCan, [TOE-13](TOE13_FORM_SECTOR_PRINCIPAL_COMPLETION.md), the existing frozen 0/1-form completion of the declared two-SU(2) model.
 
-The secondary descriptions of the September 2026 strict TT formula disagree on the normalization of its 1-form term, reporting either \(\frac12 W_s^2(\omega^2-p^2)^2\) or \(W_s^2(\omega^2-p^2)^2\). The oracle therefore exposes a strictly positive parameter \(c_s\), defaulting to \(1/2\) for the written benchmark, and includes checks at both values. **The exact primary-text normalization is not independently certified by TOE-14.** Its cone-matching zero set and discriminant sign are independent of this factor whenever \(c_s>0\). This is an explicit source-verification obligation.
+**Primary-source normalization verified.** Pereira's September 2026 paper, equations (18), (19), (25), and (26), on page 3, fixes the relative one-form TT coefficient at \(c_s=1/2\), up to a common \(\beta^2\) factor. The source PDF is https://borowiecki.dev/pdf/2609.03082. One secondary review uses \(c_s=1\); TOE-14 retains alternate positive weights only as explicitly marked sensitivity controls. The source-normalized **vacuum** result is verified at the level of this reported strict-principal polynomial. A complete source-normalized two-SU(2) matter extension is still missing.
 
 ## T1. Exact two-cone discriminant and zero locus
 
@@ -43,7 +43,7 @@ Thus \(q\) has two nonreal conjugate \(x\)-roots if \(u\ne v\), namely
 
 Over real \(x\), \(q(x)=0\) exactly when \(x=u=v\). The statement concerns the specified homogeneous polynomial. Physical temporal modes require the full constrained symbol and a consistent analytic Fourier convention.
 
-The rational oracle derives both the expanded and factored discriminants independently and checks 216 grid points. The new Lean module proves the matching root identity and the nonzero residual when two cone centers differ, and certifies the nonzero factored discriminant and the Gaussian-integer phase product. It does not kernel-prove the expanded polynomial discriminant equality.
+The rational oracle derives both the expanded and factored discriminants independently and checks 216 grid points. The source-specific Eq. (25) and Eq. (26) forms are also checked as exact Fraction identities. The new Lean module proves the matching root identity and the nonzero residual when two cone centers differ, and certifies the nonzero factored discriminant and the Gaussian-integer phase product. It does not kernel-prove the expanded polynomial discriminant equality.
 
 ## T2. Separate vacuum GfE benchmark
 
@@ -55,7 +55,7 @@ W_E=[1-2\beta A_c]^{-1},\quad
 W_B=[1-2\beta B_c]^{-1}.
 \]
 
-For an explicit 1-form prefactor \(c_s>0\), the source-style two-square polynomial is
+For Pereira's source coefficient \(c_s=1/2\) (with \(c_s>0\) sensitivity variations), the vacuum two-square polynomial is
 
 \[
 q_4(x)=c_sW_s^2(x-1)^2+2(W_Ex-W_B)^2.
@@ -130,7 +130,7 @@ The Python oracle tests this determinant identity over 200 seeded rational tripl
 
 - 13 standard-library Python test methods, covering 216 exact rational cone configurations, two distinct one-form source conventions, vacuum curvature and Minkowski mass checks, a TOE-13 exact resolvent numerator/denominator, and 200 Fourier-phase instances.
 - Lean structural algebra in MathCan/TOEConeMatching.lean, imported into the root MathCan library and the CI transitive-axiom audit. CI must pass before calling these Lean claims kernel-verified.
-- Explicit receipts retain **vacuum_source_normalization_independently_verified=false**, **coupled_GfE_YM_constraints_derived=false**, and **physical_hyperbolicity_verified=false**.
+- Explicit receipts retain **vacuum_source_normalization_independently_verified=true**, **coupled_GfE_YM_constraints_derived=false**, and **physical_hyperbolicity_verified=false**.
 
 Reproduce:
 
