@@ -256,6 +256,31 @@ def detuned_reference(eps=F(1,1000)):
             'three_distinct_positive_x':True}
 
 
+def leading_detuning_slopes():
+    """Exact tangent cone for two roots x=1+k*eps+O(eps²).
+
+    With lambda=1+eps, WB=W-alpha*W²*eps+O(eps²). The two
+    coalescent roots solve
+      (Ws²/2)*k² - 2*W²*(k+alpha*W)² = 0.
+    This is a local necessary polynomial blow-up; root existence for
+    nonzero eps is separately checked by exact sign brackets.
+    """
+    r=source_responses()
+    ws,w,alpha=r['Ws'],r['We'],r['alpha']
+    if w!=r['Wb'] or ws==2*w:
+        raise AssertionError('distinct real tangent slopes require matched reference')
+    k1=-2*alpha*w*w/(2*w-ws)
+    k2=-2*alpha*w*w/(2*w+ws)
+    if k1==k2:
+        raise AssertionError('the tangent slopes must be distinct')
+    for k in (k1,k2):
+        if (ws*ws/F(2))*k*k-2*w*w*(k+alpha*w)**2:
+            raise AssertionError('blown-up double-root quadratic mismatch')
+    if set((k1,k2))!={F(-61,4960),F(-183,45632)}:
+        raise AssertionError('exact detuning tangent slope values changed')
+    return {'steep':k1,'shallow':k2,'two_distinct_real_tangents':True}
+
+
 def scalar_longitudinal_response(omega=0,p=1):
     """Source scalar-sector derivative rejects a YM-style Gauss quotient.
 
@@ -275,6 +300,7 @@ def scalar_longitudinal_response(omega=0,p=1):
 
 def reference_experiment():
     j=source_jordan_reference()
+    slopes=leading_detuning_slopes()
     plus=detuned_reference(F(1,1000))
     minus=detuned_reference(F(-1,1000))
     for w,p in ((F(),F(1)),(F(1),F(1)),(F(3,2),F(2))):
@@ -283,6 +309,7 @@ def reference_experiment():
             'matched_lightcone_jordan_chain':True,
             'matched_extra_squared_frequency':str(j['extra_root']),
             'detuned_plus_three_distinct_positive_roots':plus['three_distinct_positive_x'],
+            'lightcone_detuning_slopes':(str(slopes['steep']),str(slopes['shallow'])),
             'detuned_minus_three_distinct_positive_roots':minus['three_distinct_positive_x'],
             'full_D_has_longitudinal_gauge':False,
             'source_triplet_background_on_shell':False,
