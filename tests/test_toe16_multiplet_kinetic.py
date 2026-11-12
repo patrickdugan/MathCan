@@ -9,6 +9,7 @@ from research.toe.multiplet_kinetic import (
     flavor_trace_matrix, flavor_trace_independent, rank_gate,
     static_magnetic_mixing, rotate_flavor_locked,reference_experiment,
     triplet_irrep_hessian, triplet_spin_two_polarizations,
+    triplet_static_spin2_mixing,
     v3,matmul,transpose
 )
 
@@ -128,6 +129,14 @@ class SourceKineticTests(unittest.TestCase):
             self.assertEqual(q['hessian'],rotated['hessian'])
             self.assertEqual(q['spin2_norm'],rotated['spin2_norm'])
 
+    def test_triplet_metric_matter_spin_two_mixed_block(self):
+        result=triplet_static_spin2_mixing()
+        k=F(-15,61504)
+        self.assertEqual(result['mixed_helicity_matrix'],((k,0),(0,k)))
+        self.assertEqual(result['mixed_coefficient'],k)
+        self.assertEqual(result['helicity_plus_cross_mixing'],0)
+        self.assertTrue(result['only_two_form_source_principal'])
+
     def test_invalid_rotations_rejected(self):
         with self.assertRaises(ValueError):
             rotate_flavor_locked(((0,0,0),)*3,((1,0,0),(0,1,0),(1,0,1)))
@@ -176,6 +185,7 @@ class SourceKineticTests(unittest.TestCase):
         self.assertTrue(r['three_multiplet_curl_trace_isotropic'])
         self.assertTrue(r['three_multiplet_helicity2_variables_present'])
         self.assertEqual(r['three_multiplet_spin2_kinetic_coefficient'],'-735/61504')
+        self.assertEqual(r['three_multiplet_static_spin2_metric_matter_mixing'],'-15/61504')
         self.assertFalse(r['full_principal_isotropy_verified'])
         self.assertFalse(r['source_background_equations_solved'])
         self.assertFalse(r['physical_constraints_eliminated'])
