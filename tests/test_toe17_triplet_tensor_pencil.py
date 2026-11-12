@@ -6,7 +6,7 @@ from random import Random
 from research.toe.triplet_tensor_pencil import (
     source_responses, source_tensor_matrix, closed_entries, check_closed_pencil,
     cubic_coefficients, source_jordan_reference, detuned_reference,
-    scalar_longitudinal_response, reference_experiment,
+    scalar_longitudinal_response, reference_experiment, leading_detuning_slopes,
     _forms_background, _matter_oneforms, _dforms, PAIRS,
 )
 from research.toe.wave_principal import evaluate_polynomial
@@ -108,6 +108,12 @@ class ThreeMultipletPencilTests(unittest.TestCase):
             coeff=cubic_coefficients(lam=1+eps)
             self.assertEqual(z['discriminant'],cubic_discriminant(coeff))
 
+    def test_detuning_tangent_slopes_are_exact_rational_and_real(self):
+        z=leading_detuning_slopes()
+        self.assertEqual(z['steep'],F(-61,4960))
+        self.assertEqual(z['shallow'],F(-183,45632))
+        self.assertTrue(z['two_distinct_real_tangents'])
+
     def test_source_detuning_direct_bivector_matches_closed_form(self):
         for eps in (F(-1,1000),F(1,1000)):
             for omega in (-2,0,F(1,3),1,2):
@@ -146,6 +152,7 @@ class ThreeMultipletPencilTests(unittest.TestCase):
         self.assertTrue(r['matched_lightcone_jordan_chain'])
         self.assertEqual(r['matched_extra_squared_frequency'],'1158253/1154113')
         self.assertTrue(r['detuned_plus_three_distinct_positive_roots'])
+        self.assertEqual(r['lightcone_detuning_slopes'],('-61/4960','-183/45632'))
         self.assertTrue(r['detuned_minus_three_distinct_positive_roots'])
         self.assertFalse(r['full_D_has_longitudinal_gauge'])
         self.assertFalse(r['source_triplet_background_on_shell'])
