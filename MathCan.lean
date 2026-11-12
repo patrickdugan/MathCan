@@ -21,3 +21,4 @@ import MathCan.TOELorentzBivector
 import MathCan.TOENonAbelian
 import MathCan.TOEMixedPrincipal
 import MathCan.TOEJordan
+import MathCan.TOEFormSectors

@@ -1,0 +1,29 @@
+{
+  "formal_two_mode_cubic_discriminant_sign": -1,
+  "formal_two_mode_one_real_two_complex_x": true,
+  "full_GfE_constraints_derived": false,
+  "full_theory_strong_hyperbolicity_verified": false,
+  "old_root_r": "480993997/493000000",
+  "parameters": {
+    "A": "2/5",
+    "Bcurv": "1",
+    "alpha": "3/500",
+    "beta": "1/100",
+    "electric": [
+      "2",
+      "1001/1000"
+    ],
+    "magnetic": [
+      "1",
+      "0"
+    ],
+    "sigma": "1/100"
+  },
+  "root_det_nonzero": true,
+  "root_det_sign": 1,
+  "schema": "mathcan.toe13.formsector.v1",
+  "scope": "conditional 0/1-form TT fourth-order completion of declared 2-form/YM model",
+  "sigma0": "1/100",
+  "sigma1": "1/100",
+  "vector_TT_quartic_coeff": "1/1905152"
+}
