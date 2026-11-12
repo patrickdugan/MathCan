@@ -189,6 +189,65 @@ def two_multiplet_witness():
             'rank':ranks[2], 'mE':F(), 'mB':F(2), 'number_of_multiplets':2}
 
 
+
+BIVECTOR_PAIRS = ((0,1),(0,2),(0,3),(2,3),(3,1),(1,2))
+
+
+def d_one_at_point(gradient):
+    """Exterior derivative of a one-form's first jet in orthonormal coordinates.
+
+    gradient[mu][nu] is partial_mu omega_nu. Independent-pair convention:
+    01, 02, 03, 23, 31, 12. Covariant derivatives agree with partial
+    derivatives at the chosen local normal-coordinate origin.
+    """
+    if len(gradient)!=4 or any(len(row)!=4 for row in gradient):
+        raise ValueError('four-by-four first derivative jet required')
+    return tuple(rat(gradient[a][b])-rat(gradient[b][a]) for a,b in BIVECTOR_PAIRS)
+
+
+def local_dirac_kahler_jet_witness():
+    """Exhibit local jets realizing TOE-15's outer-product slots at a point.
+
+    In coordinates (t,x,y,z), choose for both multiplets
+    omega=(x dy-y dx)/2 so d omega=dx wedge dy (=Bz).
+    Set constant zeroth-order two-form values zeta_1=dy wedge dz
+    (=Bx) and zeta_2=dz wedge dx (=By). Choose scalar 0, and
+    derivatives of zeta and scalar zero at the origin.
+    Then (D Phi)_(0)=(D Phi)_(1)=0, (D Phi)_(2)=d omega=Bz.
+
+    This is a genuine smooth local first-jet realization of the *slots*
+    in the truncated D=d+delta_D complex in normal coordinates. It is
+    not a solution of the matter/gravity EOM or a globally isotropic FLRW
+    field configuration.
+    """
+    gradient=[[F() for _ in range(4)] for _ in range(4)]
+    gradient[1][2]=F(1,2)
+    gradient[2][1]=-F(1,2)
+    gradient=tuple(tuple(x for x in row) for row in gradient)
+    d2=d_one_at_point(gradient)
+    # delta omega is a signed diagonal trace of the first derivative;
+    # delta zeta and d scalar vanish with the specified constant jet.
+    delta_omega=-sum(((-1 if mu==0 else 1)*gradient[mu][mu]
+                      for mu in range(4)),F())
+    if delta_omega!=0 or d2!=(F(),F(),F(),F(),F(),F(1)):
+        raise AssertionError('first-jet exterior/coderivative mismatch')
+    zeta1=(F(),F(),F(),F(1),F(),F())
+    zeta2=(F(),F(),F(),F(),F(1),F())
+    blocks=(combine_outer(d2,zeta1,2),combine_outer(d2,zeta2,2))
+    total=tuple(tuple(blocks[0][i][j]+blocks[1][i][j]
+                      for j in range(6)) for i in range(6))
+    if total!=two_multiplet_witness()['combined']:
+        raise AssertionError('local Dirac-Kahler jets fail response factorization')
+    return {'one_form_gradient':gradient,'two_form_differential':d2,
+            'two_form_backgrounds':(zeta1,zeta2),
+            'Dphi_0':(delta_omega,delta_omega),
+            'Dphi_1':((F(),)*4,(F(),)*4),
+            'source_0form_background':(F(),F()),
+            'source_1form_background':((F(),)*4,(F(),)*4),
+            'total_bivector_response':total,'local_jet_realized':True,
+            'global_isotropy_verified':False,'eom_satisfied':False}
+
+
 def source_response_match(*,alpha=F(3,500),beta=F(1,100),
                           accel=F(2,5),spatial=1,mE=0,mB=2):
     """Pereira (2026), Eq. (39)-(40), on diagonal E/B positive response."""
@@ -215,6 +274,7 @@ def source_response_match(*,alpha=F(3,500),beta=F(1,100),
 
 def reference_experiment():
     w=two_multiplet_witness()
+    jets=local_dirac_kahler_jet_witness()
     matched=source_response_match(mE=w['mE'],mB=w['mB'])
     shifted=source_response_match(mB=F(201,100))
     if not matched['cone_matched'] or matched['thetaE']!=F(124,125):
@@ -233,6 +293,7 @@ def reference_experiment():
             'trial_hermitian_helicity_degree':max(i for i,c in enumerate(coeff) if c),
             'trial_helicity_polynomial_even':all(not c for i,c in enumerate(coeff) if i%2),
             'trial_restricted_six_determinant_is_square':True,
+            'source_multiplet_pointwise_D_jets_realized':jets['local_jet_realized'],
             'source_multiplet_jet_integrability_verified':False,
             'source_multiplet_background_equations_solved':False,
             'complete_constrained_GfE_YM_tensor_system_derived':False,
