@@ -23,3 +23,4 @@ import MathCan.TOEMixedPrincipal
 import MathCan.TOEJordan
 import MathCan.TOEFormSectors
 import MathCan.TOEConeMatching
+import MathCan.TOETensorConstraints
