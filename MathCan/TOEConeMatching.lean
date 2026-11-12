@@ -71,12 +71,12 @@ def gaussianMul (z w : Int × Int) : Int × Int :=
 /-- The upper/lower Fourier phase pair multiplies to the original b^2. -/
 theorem phase_pair_product (b : Int) :
     gaussianMul (0,-b) (0,b) = (b*b,0) := by
-  simp [gaussianMul, neg_mul]
+  simp [gaussianMul, Int.neg_mul]
 
 /-- A two-mode unitary congruence preserves the formal determinant. -/
 theorem phase_determinant_preserved (a b c : Int) :
     a*c - (gaussianMul (0,-b) (0,b)).1 = a*c - b*b := by
-  simp [gaussianMul, neg_mul]
+  simp [gaussianMul, Int.neg_mul]
 
 #print axioms matched_cones_have_root
 #print axioms cone_gap_at_first_root
