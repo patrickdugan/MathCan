@@ -79,6 +79,22 @@ theorem source_polynomial_jordan_chain :
     33489*(-10:Int) + (2*55815)*3 = 0 := by
   omega
 
+/-- Cross-multiplied universal Jordan-chain identity: at omega0=±p,
+the matter block times (2*beta*omega0) equals the derivative of the
+mixed block times (alpha*p). The negative choice for the gauge
+component cancels the derivative equation. -/
+theorem matched_source_general_chain_identity
+    (alpha beta w p omega0 : Int) :
+    (4*alpha*alpha*w*w*p*p)*(2*beta*omega0) =
+      (8*alpha*beta*w*w*p*omega0)*(alpha*p) := by
+  calc
+    (4*alpha*alpha*w*w*p*p)*(2*beta*omega0) =
+       (4*2)*(alpha*alpha*beta*w*w*p*p*omega0) := by ac_rfl
+    _ = 8*(alpha*alpha*beta*w*w*p*p*omega0) := by
+      have h : (4:Int)*2 = 8 := by decide
+      rw [h]
+    _ = (8*alpha*beta*w*w*p*omega0)*(alpha*p) := by ac_rfl
+
 /-- The square-root characteristic has a true order-two zero since
 its remaining cofactor is nonzero at x=1. -/
 theorem repeated_root_cofactor_nonzero :
@@ -99,6 +115,7 @@ theorem longitudinal_coderivative_not_gauge :
 #print axioms exact_root_linear_cofactor_nonzero
 #print axioms root_kernel_matter_zero
 #print axioms source_polynomial_jordan_chain
+#print axioms matched_source_general_chain_identity
 #print axioms repeated_root_cofactor_nonzero
 #print axioms longitudinal_coderivative_not_gauge
 
