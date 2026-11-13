@@ -38,8 +38,43 @@ theorem full_horizon_recovers {α : Type} (xs ys : List α)
   dsimp [prefixEquivalent] at h
   simpa [List.take_of_length_le hx, List.take_of_length_le hy] using h
 
+/-!
+A primitive six-bit recurrence generates the observable masks used by
+Compactification Theory FHC-01B. The finite orbit claims are checked
+by Lean's ordinary kernel-reduced decide tactic (no native_decide).
+-/
+
+/-- Dual mask transition for h_i'=h_{i+1} (i<5),
+    h_5'=h_0 XOR h_1, using six binary coordinates. -/
+def nextMask (r : Nat) : Nat :=
+  Nat.xor ((2 * r) % 64) (if (r / 32) % 2 = 1 then 3 else 0)
+
+/-- The observable mask after exactly t recurrent steps. -/
+def maskAt : Nat → Nat
+  | 0 => 1
+  | n + 1 => nextMask (maskAt n)
+
+/-- The primitive dual recurrence returns to its first mask at 63 steps. -/
+theorem mask_period_63 : maskAt 63 = 1 := by decide
+
+/-- The first 63 observable masks have no repetitions. -/
+theorem mask_orbit_nodup :
+    ((List.range 63).map maskAt).Nodup := by decide
+
+/-- None of those 63 masks vanishes. -/
+theorem mask_orbit_positive :
+    ∀ x ∈ (List.range 63).map maskAt, 0 < x := by decide
+
+/-- There are exactly 63 distinct nonzero observations in the orbit. -/
+theorem mask_orbit_length :
+    ((List.range 63).map maskAt).length = 63 := by decide
+
 #print axioms epsilon_sixth_clearance
 #print axioms epsilon_sixth_equiv
 #print axioms full_horizon_recovers
+#print axioms mask_period_63
+#print axioms mask_orbit_nodup
+#print axioms mask_orbit_positive
+#print axioms mask_orbit_length
 
 end MathCan.FiniteHorizonGap
