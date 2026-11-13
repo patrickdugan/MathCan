@@ -65,8 +65,35 @@ theorem repair_budget_mono (components b c : Nat)
     components ≤ c + 1 := by
   omega
 
+/-- GAT-7: exact finite budget slack identity.
+Productive repairs reduce component count; wasted repairs leave it
+unchanged; unused budget remains unspent. A feasible final service
+requires all components joined. -/
+theorem service_iff_waste_within_budget
+    (components budget productive wasted unused : Nat)
+    (hc : 1 ≤ components)
+    (hbudget : budget = productive + wasted + unused)
+    (hproductive : productive + 1 ≤ components) :
+    (components - 1 + wasted + unused ≤ budget) ↔
+      components = productive + 1 := by
+  omega
+
+/-- On an oracle-winnable starting graph, avoidable failure occurs
+exactly when wasted and unused repairs exceed the slack. -/
+theorem avoidable_regret_iff_excess_slack
+    (components budget productive wasted unused : Nat)
+    (hc : 1 ≤ components)
+    (hbudget : budget = productive + wasted + unused)
+    (hproductive : productive + 1 ≤ components)
+    (horacle : components ≤ budget + 1) :
+    (components ≠ productive + 1) ↔
+      budget - (components - 1) < wasted + unused := by
+  omega
+
 #print axioms four_vertex_connected_coefficients
 #print axioms repair_budget_equiv
 #print axioms repair_budget_mono
+#print axioms service_iff_waste_within_budget
+#print axioms avoidable_regret_iff_excess_slack
 
 end MathCan.GraphAuthorization
