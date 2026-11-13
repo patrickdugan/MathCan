@@ -68,12 +68,10 @@ theorem paired_transport (a b : Int) :
 theorem singleton_x_cancels (a b : Int) :
     singletonXNumerator a b = 0 := by
   simp [singletonXNumerator, liftSign]
-  omega
 
 theorem singleton_y_cancels (a b : Int) :
     singletonYNumerator a b = 0 := by
   simp [singletonYNumerator, liftSign]
-  omega
 
 /-- A uniform average over four lifted points has second-order
 coefficient (a-b)/2; the original one-bit coefficient has
