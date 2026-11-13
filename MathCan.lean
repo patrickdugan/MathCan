@@ -29,3 +29,4 @@ import MathCan.TOETripletJordan
 import MathCan.FiniteHorizonGap
 import MathCan.DeletionMemory
 import MathCan.GraphAuthorization
+import MathCan.DegreeSwitchSpectral
