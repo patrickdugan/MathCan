@@ -68,6 +68,15 @@ theorem mask_orbit_nodup :
 theorem mask_orbit_positive :
     ∀ x ∈ (List.range 63).map maskAt, 0 < x := by decide
 
+/-- Every observed mask belongs to the six-bit nonzero domain. -/
+theorem mask_orbit_bounded :
+    ∀ x ∈ (List.range 63).map maskAt, x < 64 := by decide
+
+/-- Every possible nonzero six-bit mask appears during the first 63 visits. -/
+theorem mask_orbit_complete :
+    ∀ x : Fin 64, x.val ≠ 0 →
+      x.val ∈ (List.range 63).map maskAt := by decide
+
 /-- There are exactly 63 distinct nonzero observations in the orbit. -/
 theorem mask_orbit_length :
     ((List.range 63).map maskAt).length = 63 := by decide
@@ -78,6 +87,8 @@ theorem mask_orbit_length :
 #print axioms mask_period_63
 #print axioms mask_orbit_nodup
 #print axioms mask_orbit_positive
+#print axioms mask_orbit_bounded
+#print axioms mask_orbit_complete
 #print axioms mask_orbit_length
 
 end MathCan.FiniteHorizonGap
