@@ -14,6 +14,9 @@ cross-multiplying its positive denominator.
 
 namespace MathCan.FiniteHorizonGap
 
+set_option maxRecDepth 8192
+set_option maxHeartbeats 800000
+
 /-- The exact one-sixth separation clearance in natural units. -/
 theorem epsilon_sixth_clearance (delta epsilon : Nat)
     (h : 6 * epsilon ≤ delta) :
