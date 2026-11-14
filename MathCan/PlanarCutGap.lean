@@ -71,6 +71,25 @@ theorem scaled_sdp_triangle :
       sdpD3 u w ≤ sdpD3 u v + sdpD3 v w := by
   decide
 
+/-- Total supply-edge distance and all-pairs distance, both scaled
+by three to clear the candidate SDP metric's denominator. -/
+def sdpSupplyNumerator3 : Nat :=
+  ((List.finRange 5).flatMap (fun u =>
+    ((List.finRange 5).filter (fun v => u.val < v.val)).map
+      (fun v => if supplyEdge u v then sdpD3 u v else 0))).sum
+
+def sdpDemandNumerator3 : Nat :=
+  ((List.finRange 5).flatMap (fun u =>
+    ((List.finRange 5).filter (fun v => u.val < v.val)).map
+      (fun v => sdpD3 u v))).sum
+
+/-- The explicit feasible SDP objective is (18/3)/(40/3)=9/20. -/
+theorem finite_sdp_objective_certificate :
+    sdpSupplyNumerator3 = 18 ∧
+    sdpDemandNumerator3 = 40 ∧
+    20 * sdpSupplyNumerator3 = 9 * sdpDemandNumerator3 := by
+  decide
+
 /-- Integer Gram entries equal 3 times the exact rational Gram. -/
 def gram3 (u v : Fin 5) : Int :=
   if u.val < 2 && v.val < 2 then
@@ -173,6 +192,7 @@ theorem relaxation_admission_is_unsound :
 
 #print axioms every_nontrivial_cut_ratio_ge_half
 #print axioms singleton_B_cut_attains_half
+#print axioms finite_sdp_objective_certificate
 #print axioms scaled_sdp_triangle
 #print axioms scaled_sdp_is_squared_gram_distance
 #print axioms sdp_negative_type_face
