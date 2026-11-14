@@ -1,0 +1,46 @@
+name: MathCan TFH-01 finite matching theorem checks
+
+on:
+  push:
+    paths:
+      - 'MathCan/TacticFibers.lean'
+      - 'MathCan.lean'
+      - 'tests/test_tactic_fibers.py'
+      - '.github/workflows/tfh01-tactic-fibres.yml'
+  pull_request:
+    paths:
+      - 'MathCan/TacticFibers.lean'
+      - 'MathCan.lean'
+      - 'tests/test_tactic_fibers.py'
+      - '.github/workflows/tfh01-tactic-fibres.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+jobs:
+  exact-oracle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p 'test_tactic_fibers.py' -v
+  lean-theorems:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Kernel and axiom audit on new TFH-01 module
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/TacticFibers.lean | tee tfh01-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' tfh01-axioms.txt; then exit 1; fi
