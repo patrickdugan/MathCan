@@ -74,3 +74,43 @@ symmetric-choice logical operator of #243.
 No trained neural model or production
 graph-control system has been evaluated
 by these exact finite proof checks.
+
+
+## Additional SWC-01C finite-field bridge
+
+[MathCan/GraphWitnessF3.lean](../../MathCan/GraphWitnessF3.lean)
+imports the source graph relations and
+checks an explicit assignment in F3 on
+the six neighbors of anchor zero in the
+rook graph. The two pinned vertices
+1 and 4 receive values zero and one,
+while every edge among the six
+neighbors has equal assigned values.
+
+In Shrikhande, the same anchor has
+the path of local edges 1–5–4.
+Equality constraints on those two
+edges force \(x_1=x_4\); the pins
+\(x_1=0,x_4=1\) contradict each other
+in F3. Lean checks those incidence
+and contradiction statements.
+
+The source reference independently
+computes all F3 incidence ranks,
+kernel solution counts and all
+fifteen distinct pin choices at every
+anchor, with a brute-force
+729-assignment oracle for selected
+systems. Rank-nullity and the
+component-equivalence theorem are
+proved in Control-Harness THEORY.md;
+they are not claimed as general
+Lean theorems in this companion.
+
+The original SWC-01 source #243
+witnessed symmetric-choice operation
+has a broader formal interpretation.
+The explicit pins and assignments
+here constitute a local F3 witness
+interface, not a replacement for
+the original general logic.
