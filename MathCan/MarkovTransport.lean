@@ -113,6 +113,56 @@ theorem exact_geometry_separation_certificate :
     hammingFirstMomentFour ≤ 4 * totalMassFour := by
   decide
 
+
+/-- A separate MTB-01B negative control: uniform stationary directed
+clockwise walk on the 4×4 lattice square perimeter with sixteen states.
+The walk is not reversible, so Hilbert Markov type 2 does not constrain
+its temporal drift. Every step costs Euclidean distance squared one. -/
+def squareX (i : Nat) : Nat :=
+  let j := i % 16
+  if j < 4 then j
+  else if j < 8 then 4
+  else if j < 12 then 12-j
+  else 0
+
+def squareY (i : Nat) : Nat :=
+  let j := i % 16
+  if j < 4 then 0
+  else if j < 8 then j-4
+  else if j < 12 then 4
+  else 16-j
+
+def natAbsDiff (a b : Nat) : Nat :=
+  if a ≤ b then b-a else a-b
+
+def squareDist2 (i j : Nat) : Nat :=
+  natAbsDiff (squareX i) (squareX j) ^ 2 +
+  natAbsDiff (squareY i) (squareY j) ^ 2
+
+def totalOneStepSquareDrift : Nat :=
+  ((List.range 16).map (fun i => squareDist2 i (i+1))).sum
+
+def totalFourStepSquareDrift : Nat :=
+  ((List.range 16).map (fun i => squareDist2 i (i+4))).sum
+
+/-- Sixteen one-step square displacements, all exactly one. -/
+theorem directed_square_one_step_total :
+    totalOneStepSquareDrift = 16 := by
+  decide
+
+/-- A uniform source over sixteen square vertices has mean
+squared displacement 11 after four directed steps. -/
+theorem directed_square_four_step_total :
+    totalFourStepSquareDrift = 176 := by
+  decide
+
+/-- Applying a reversible-Hilbert type-2 estimate would assert
+four-step drift ≤4× one-step drift. This finite directed chain
+violates that inequality, so reversibility is essential. -/
+theorem nonreversible_Hilbert_misapplication_fails :
+    totalFourStepSquareDrift > 4 * totalOneStepSquareDrift := by
+  decide
+
 #print axioms four_step_hamming_counts
 #print axioms four_step_total_probability_denominator
 #print axioms four_step_first_hamming_moment
@@ -122,5 +172,8 @@ theorem exact_geometry_separation_certificate :
 #print axioms affine_rectangle_two_step_rational_certificate
 #print axioms affine_threshold_flip_certificate
 #print axioms exact_geometry_separation_certificate
+#print axioms directed_square_one_step_total
+#print axioms directed_square_four_step_total
+#print axioms nonreversible_Hilbert_misapplication_fails
 
 end MathCan.MarkovTransport
