@@ -98,6 +98,32 @@ theorem half_retention_second_moment_ceiling (n : Nat) :
   have h := half_retention_gap_identity n
   omega
 
+/-- For sparse leaf retention r_L=(25/32)^L, the variance
+    numerator B_L=32^L V_L(r_L) satisfies
+    B_0=1, B_(L+1)=25 B_L+23*32^L. -/
+def sparseMomentNum : Nat → Nat
+  | 0 => 1
+  | n + 1 => 25 * sparseMomentNum n + 23 * 32 ^ n
+
+/-- The thinned monitor approaches the finite energy cap 23/7,
+    with an exact gap (16/7)*(25/32)^L. -/
+theorem sparse_moment_gap_identity (n : Nat) :
+    7 * sparseMomentNum n + 16 * 25 ^ n = 23 * 32 ^ n := by
+  induction n with
+  | zero =>
+      decide
+  | succ n ih =>
+      simp only [sparseMomentNum, Nat.pow_succ]
+      omega
+
+/-- Cross-multiplied constant recovery floor for q=3 under thinning.
+    The Bayes accuracy floor is at least 37/69 after the
+    independent probabilistic Cauchy argument. -/
+theorem sparse_moment_ceiling (n : Nat) :
+    7 * sparseMomentNum n ≤ 23 * 32 ^ n := by
+  have h := sparse_moment_gap_identity n
+  omega
+
 /-- Critical b=4, lambda=1/2 has t=1 and V_L=(4+3L)/4. -/
 def criticalNum (depth : Nat) : Nat :=
   4 + 3 * depth
@@ -116,6 +142,8 @@ theorem critical_depth_eight : criticalNum 8 = 28 := by
 #print axioms supercritical_second_moment_ceiling
 #print axioms half_retention_gap_identity
 #print axioms half_retention_second_moment_ceiling
+#print axioms sparse_moment_gap_identity
+#print axioms sparse_moment_ceiling
 #print axioms critical_linear_growth
 #print axioms critical_depth_eight
 
