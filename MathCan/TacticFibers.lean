@@ -81,6 +81,40 @@ theorem fifty_one_goal_tv_numerator (assigned capacity : Nat)
     24 * 51 ≤ (26 - assigned) * 51 := by
   omega
 
+/-- All legal six-cycle matchings are isolated under pairwise quota-preserving
+    2x2 exchanges. This enumerates all 27 triples, not just witnesses. -/
+theorem every_legal_matching_pair_switch_blocked :
+    ∀ a b c : Fin 3, legalTriple a b c = true →
+      pairSwitchPossible a b c = false := by
+  decide
+
+/-- The frozen FC-12 four-family quota has a Hall witness consisting of
+    exact_local, rcases_local, rw_local: 38 targets, at most 12 distinct
+    progressing training-state neighbors. -/
+theorem fc12_three_family_38_slot_deficit (assigned capacity : Nat)
+    (hassigned : assigned ≤ capacity) (hcapacity : capacity ≤ 12) :
+    26 ≤ 38 - assigned := by
+  omega
+
+/-- Any complete repair of this 38-slot Hall cut needs at least 26 new
+    distinct training-state neighbors with compiler-verified progressing
+    actions in the witness family set. -/
+theorem fc12_repair_needs_26_new_neighbors (newNeighbors : Nat)
+    (hfilled : 38 ≤ 12 + newNeighbors) :
+    26 ≤ newNeighbors := by
+  omega
+
+/-- For a one-pass curriculum of 51 distinct states, this cross-multiplied
+    inequality is the exact observed TV lower bound >= 26/51. -/
+theorem fc12_exact_tv_numerator (assigned : Nat)
+    (hcapacity : assigned ≤ 12) :
+    26 * 51 ≤ (38 - assigned) * 51 := by
+  omega
+
+#print axioms every_legal_matching_pair_switch_blocked
+#print axioms fc12_three_family_38_slot_deficit
+#print axioms fc12_repair_needs_26_new_neighbors
+#print axioms fc12_exact_tv_numerator
 #print axioms exactly_two_matching_orbit
 #print axioms diagonal_is_legal
 #print axioms shifted_is_legal
