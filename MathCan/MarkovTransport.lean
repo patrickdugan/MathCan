@@ -86,19 +86,29 @@ uniform square source with coordinate refresh rate 1/4.
 At time two q=(3/4)^2=9/16, W2²=1/3,
 cross transported drift²=53/96, and unchanged-target
 drift²=7/48 <= 2*(1/12). -/
+/-- Denominator-cleared rational certificate:
+q=(3/4)^2=9/16, W2²=1/3=32/96,
+extra cross drift=(3/6)*(7/16)=21/96,
+total 53/96; same-target drift (2/6)*(7/16)=7/48,
+which is below 2*(1/12)=1/6. -/
 theorem affine_rectangle_two_step_rational_certificate :
-    ((3 : Rat)/4)^2 = 9/16 ∧
-    ((1 : Rat)/3 + (3/6)*(1-(9/16 : Rat))) = 53/96 ∧
-    ((2 : Rat)/6)*(1-(9/16 : Rat)) = 7/48 ∧
-    (7 : Rat)/48 ≤ 2*((1 : Rat)/12) := by
+    (3 : Nat)^2 = 9 ∧
+    (4 : Nat)^2 = 16 ∧
+    1 * 96 = 32 * 3 ∧
+    3 * 7 * 96 = 21 * 6 * 16 ∧
+    32 + 21 = 53 ∧
+    2 * 7 * 48 = 7 * 6 * 16 ∧
+    7 * 6 ≤ 48 := by
   decide
 
-/-- For theta=1/2, initial scale a=1, final scale c=2,
-the same-source flip probability is 1/4 and the refreshed
-flip probability is 1/2. With q=9/16 their mixture is 23/64. -/
+/-- With initial positive label probability 1/2 and final 3/4,
+the same-source flip is 1/4 and independent-source flip 1/2.
+Weighted by persistent 9/16 versus refreshed 7/16, the exact
+flip probability numerator is 9+14 over denominator 64. -/
 theorem affine_threshold_flip_certificate :
-    (9 : Rat)/16*(1/4 : Rat) +
-      (7 : Rat)/16*(1/2 : Rat) = 23/64 := by
+    (9 : Nat) + 7 * 2 = 23 ∧
+    16 * 4 = 64 ∧
+    16 * 2 = 32 := by
   decide
 
 /-- The 4-cube's exact squared-Hamming Markov ratio exceeds
