@@ -80,12 +80,6 @@ theorem hilbert_four_cube_constant_one_suffices :
     hammingFirstMomentFour ≤ 4 * totalMassFour := by
   decide
 
-/-- Exact example: mu=[0,1]^2 and nu=[0,2]×[0,1],
-uniform square source with coordinate refresh rate 1/4.
-
-At time two q=(3/4)^2=9/16, W2²=1/3,
-cross transported drift²=53/96, and unchanged-target
-drift²=7/48 <= 2*(1/12). -/
 /-- Denominator-cleared rational certificate:
 q=(3/4)^2=9/16, W2²=1/3=32/96,
 extra cross drift=(3/6)*(7/16)=21/96,
