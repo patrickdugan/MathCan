@@ -111,6 +111,18 @@ theorem fc12_exact_tv_numerator (assigned : Nat)
     26 * 51 ≤ (38 - assigned) * 51 := by
   omega
 
+/-- One newly established eligible state can expand an individual
+    Hall-cut neighbor set by at most one. Its quota deficit is
+    nonincreasing and 1-Lipschitz under that single-edge update. -/
+theorem hall_one_edge_cut_lipschitz
+    (quota beforeNeighbors afterNeighbors : Nat)
+    (hsubset : beforeNeighbors ≤ afterNeighbors)
+    (honeEdge : afterNeighbors ≤ beforeNeighbors + 1) :
+    (quota - afterNeighbors ≤ quota - beforeNeighbors) ∧
+    (quota - beforeNeighbors ≤ quota - afterNeighbors + 1) := by
+  omega
+
+#print axioms hall_one_edge_cut_lipschitz
 #print axioms every_legal_matching_pair_switch_blocked
 #print axioms fc12_three_family_38_slot_deficit
 #print axioms fc12_repair_needs_26_new_neighbors
