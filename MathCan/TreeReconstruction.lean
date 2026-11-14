@@ -69,7 +69,7 @@ theorem moment_gap_identity (n : Nat) :
   | zero =>
       decide
   | succ n ih =>
-      simp only [momentNum, pow_succ]
+      simp only [momentNum, Nat.pow_succ]
       omega
 
 /-- This cross-multiplied inequality is V_L <= 16/7.
