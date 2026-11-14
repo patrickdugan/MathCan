@@ -19,6 +19,12 @@ MathCan/TreeReconstruction.lean. It checks:
 - The independent half-retention moment correction:
   7*(A_L+25^L)+2*25^L=16*32^L.
 - The critical b=4, lambda=1/2 variance numerator 4+3L.
+- At the depth-dependent sparse schedule r_L=(25/32)^L,
+  B_0=1, B_(L+1)=25 B_L+23*32^L and
+  7*B_L+16*25^L=23*32^L. This certifies
+  the normalized sparse-moment ceiling 23/7, used
+  by the q=3 Bayes count-monitor recovery floor 37/69
+  after applying the separate posterior Cauchy proof.
 
 The probability-theoretic step from bounded leaf-score
 variance to Bayes root accuracy is proved in the companion
