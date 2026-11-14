@@ -43,10 +43,14 @@ theorem three_sat_gadget_iff_proper :
       satisfiable mask = decide (mask.val ≠ 255) := by
   decide
 
-/-- Every seven-clause proper subset has an available local assignment. -/
+/-- The eight masks obtained by deleting exactly one of the
+eight clauses of the complete gadget. -/
+def sevenClauseMasks : List (Fin 256) :=
+  [254, 253, 251, 247, 239, 223, 191, 127]
+
+/-- Every immediate one-clause deletion has an available assignment. -/
 theorem all_one_clause_deletions_sat :
-    ∀ j : Fin 8,
-      satisfiable ⟨255 - 2 ^ j.val, by omega⟩ = true := by
+    ∀ mask ∈ sevenClauseMasks, satisfiable mask = true := by
   decide
 
 /-- A complete eight-clause gadget has no satisfying assignment. -/
