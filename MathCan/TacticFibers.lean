@@ -28,36 +28,36 @@ def allowed (row col : Fin 3) : Bool :=
   else col == 2 || col == 0
 
 /-- A legal 3x3 assignment uses each column exactly once. -/
-def legalTriple (a b c : Fin 3) : Prop :=
-  allowed 0 a = true ∧ allowed 1 b = true ∧ allowed 2 c = true ∧
-  a ≠ b ∧ b ≠ c ∧ a ≠ c
+def legalTriple (a b c : Fin 3) : Bool :=
+  allowed 0 a && allowed 1 b && allowed 2 c &&
+  (a != b) && (b != c) && (a != c)
 
 /-- There are exactly two feasible assignments. -/
 theorem exactly_two_matching_orbit :
-    ∀ a b c : Fin 3, legalTriple a b c ↔
+    ∀ a b c : Fin 3, legalTriple a b c = true ↔
       ((a = 0 ∧ b = 1 ∧ c = 2) ∨ (a = 1 ∧ b = 2 ∧ c = 0)) := by
   decide
 
 /-- The first perfect matching. -/
-theorem diagonal_is_legal : legalTriple 0 1 2 := by
+theorem diagonal_is_legal : legalTriple 0 1 2 = true := by
   decide
 
 /-- The other perfect matching, reached by a simultaneous 3-cycle. -/
-theorem shifted_is_legal : legalTriple 1 2 0 := by
+theorem shifted_is_legal : legalTriple 1 2 0 = true := by
   decide
 
 /-- A quota-preserving 2x2 switch swaps two assigned column choices. -/
-def pairSwitchPossible (a b c : Fin 3) : Prop :=
-  (allowed 0 b = true ∧ allowed 1 a = true) ∨
-  (allowed 0 c = true ∧ allowed 2 a = true) ∨
-  (allowed 1 c = true ∧ allowed 2 b = true)
+def pairSwitchPossible (a b c : Fin 3) : Bool :=
+  (allowed 0 b && allowed 1 a) ||
+  (allowed 0 c && allowed 2 a) ||
+  (allowed 1 c && allowed 2 b)
 
 /-- No 2x2 switch is legal at the diagonal matching. -/
-theorem diagonal_pair_switch_blocked : ¬ pairSwitchPossible 0 1 2 := by
+theorem diagonal_pair_switch_blocked : pairSwitchPossible 0 1 2 = false := by
   decide
 
 /-- No 2x2 switch is legal at the other matching. -/
-theorem shifted_pair_switch_blocked : ¬ pairSwitchPossible 1 2 0 := by
+theorem shifted_pair_switch_blocked : pairSwitchPossible 1 2 0 = false := by
   decide
 
 /-- An attained Hall cut bounds the minimum missing quota. -/
