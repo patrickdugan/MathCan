@@ -1,0 +1,13 @@
+Compared 3408 exported constants with unchanged source: all types and values match
+MathCan.SpatialClipped.safe_spatial_stream.{u} {R : Type u} [Grind.Field R] [LE R] [LT R] [Std.LawfulOrderLT R]
+  [Std.IsLinearOrder R] [Grind.OrderedRing R] [DecidableLT R] (n K J : Nat) (hK : 0 < K) (delta : R) (hd : 0 < delta)
+  (sites : List (MathCan.SpatialNormalized.Site R)) (valid : MathCan.SpatialNormalized.validSites n K delta sites)
+  (C : R) (hC : 0 ≤ C) (jets : Nat → Fin J → R)
+  (bounds : ∀ (j : Nat), j < K ^ sites.length → ∀ (beta : Fin J), -C ≤ jets j beta ∧ jets j beta ≤ C) :
+  (fun beta =>
+      MathCan.SpatialClipped.captureStream C
+        (↑(K ^ sites.length) *
+          MathCan.SpatialClipped.clippedCircuit K (MathCan.SpatialNormalized.decodedDigits n K delta sites))
+        (fun j => jets j beta) (K ^ sites.length)) =
+    jets (MathCan.SpatialRouting.snakeRank K (List.map MathCan.SpatialNormalized.Site.fine sites))
+'MathCan.SpatialClipped.safe_spatial_stream' depends on axioms: [propext, Classical.choice, Quot.sound]

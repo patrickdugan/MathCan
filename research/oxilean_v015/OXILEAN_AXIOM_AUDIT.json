@@ -15720,7 +15720,7 @@
               "A.mk",
               "C.base",
               "C.step",
-              "Â«A.recÂ»",
+              "\u00c2\u00abA.rec\u00c2\u00bb",
               "C.rec"
             ],
             "dependencies": [
@@ -16500,7 +16500,7 @@
             "display_names": [
               "T",
               "T.mk",
-              "Â«T.recÂ»"
+              "\u00c2\u00abT.rec\u00c2\u00bb"
             ],
             "dependencies": [
               0,
@@ -34079,5 +34079,211 @@
     },
     "graph": "pinned432_lemmas/axiom-graph.json",
     "source_comparison": "pinned432_lemmas/source_export_comparison.json"
-  }
+  },
+  "ordered_scalar_spatial_axioms": {
+    "MathCan.SpatialClipped.capture_stream_at_index": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialClipped.capture_stream_range": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialClipped.capture_stream_vector": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialClipped.clipped_circuit_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialClipped.clipped_circuit_range": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialClipped.normalized_rank_range": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialClipped.safe_spatial_stream": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialClipped.symmetric_clip_identity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialClipped.symmetric_clip_range": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialNormalized.decoded_digits_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialNormalized.normalized_circuit_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialNormalized.normalized_step_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialNormalized.safe_spatial_capture": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialRouting.lookup_at_index": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialRouting.routing_capture": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialRouting.snake_circuit_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialRouting.snake_rank_bound": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialRouting.snake_step_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialRouting.triangle_hinges": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.boundary_anchor": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.capture_sum": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.capture_vector": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.clip_identity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.clip_range": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.clip_step": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.coarse_address": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.fine_address": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.gate_binary": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.gate_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.gate_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.local_coordinate_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.ramp_high": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.ramp_low": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.relu_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.relu_of_nonneg": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.relu_of_nonpos": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.spatial_address": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.sum_congr": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.sum_prefix": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.sum_single": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SpatialScalar.sum_zero": [],
+    "MathCan.SpatialScalar.triangle_index": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "ordered_scalar_spatial_export_sha256": "40a100d7032d992d85b15ef7c393ecf6a4492be444fefe3d7d39f047b2614e2b"
 }

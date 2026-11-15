@@ -1,5 +1,12 @@
 # OxiLean v0.1.5 replay and quantized spatial-interface report
 
+Current Lean continuation: 42 additional ordered-field spatial lemmas are
+accepted, including exact safe-cell extraction into clipped jet registers.
+Read [LEAN_SPATIAL_FORMALIZATION.md](LEAN_SPATIAL_FORMALIZATION.md) in the output
+packet or `LEAN_SPATIAL_FORMALIZATION.md` alongside this repository report.
+The complete analytic/network theorem is still a Lean proof obligation.
+
+
 Continuation of 2026-11-15. **The exact Hodge replay is accepted. The spatial
 interface is supplied by an explicit construction with complete resource
 accounting.** The full analytic network theorem has a paper proof; its elementary

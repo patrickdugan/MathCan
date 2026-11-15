@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "source_sha256": {
+    "MathCan/SpatialScalar.lean": "c393225ad311b5a2401aea3e6fc1f0f45071158e85325cfe87b09206f369b2c4",
+    "MathCan/SpatialRouting.lean": "1aee535fc734e4305a9bf7e71a0818665b4c9539465abd54a59547506b0070ff",
+    "MathCan/SpatialNormalized.lean": "ce464be236ccd25cc221350d5462a306a1b81093f6e52a5873b70faa423e4c48",
+    "MathCan/SpatialClipped.lean": "ef4bbccfab3546837f1871c6cd85cce8aaecbafa83315068215e6d80dc9e0c45"
+  },
+  "native_lean": "4.32.0-rc1",
+  "leanchecker": "4.32.0-rc1",
+  "project_compatibility": "all four modules compiled and leanchecker accepted in preserved Lean 4.35.0",
+  "preserved_435_binary_hashes": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38  /home/duganist/.cache/ram04-runtime-4.35.0/lean-4.35.0-linux/bin/lean\n12c38901cdbfab178f1bf6145dd30012e9a3b2c11ca695292a5884fa3cbaddb6  /home/duganist/.cache/ram04-runtime-4.35.0/lean-4.35.0-linux/bin/leanchecker\n",
+  "exporter_source": "3de59f10bc4b4a0f2de698597aeb1246caa0df0a",
+  "oxilean_source": "3adb983d2aefc6a596bdc8b63438f54feecd1f55",
+  "olean_sha256_432": {
+    "MathCan.SpatialScalar": "b93b77dc5d1e47d8ec6fb3f5b38c26c97925e876be9a15cebab0d3d14cc50f27",
+    "MathCan.SpatialRouting": "8e84f36ef6147e05577d8935a90560f18be2df1b00405e015d571be306e8fea9",
+    "MathCan.SpatialNormalized": "0af6d4b04cbc0b7f3b6936be919c4a20850c6ed98f9a469a4ed0e5cb23656288",
+    "MathCan.SpatialClipped": "1b30fd071502c7ffdc3375b5ed6e535c2270f96095af381e2dc97ab2b3d15c4b"
+  },
+  "olean_sha256_435": {
+    "MathCan.SpatialScalar": "46c4c4fa76c7d4b664504a20225782b4ea76045e01a00a720f9d0cac1ba8ae7f",
+    "MathCan.SpatialRouting": "f6f31b9fece4ce2e6ad4df6971a676d96ac44379380767ef01004fd5c36a99ac",
+    "MathCan.SpatialNormalized": "fcbfabd0f2a9f5c0809d46870fce1a7998ba4940750d29ca8175c68226f77c80",
+    "MathCan.SpatialClipped": "a73f55af8c695bafb2daae398773e53c528b13f26f0a755153e7b8d2a19aaaeb"
+  },
+  "scope": "spatial scalar semantics and exact bounded streaming capture; analytic theorem and dense compiler correctness remain open"
+}

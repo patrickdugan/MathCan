@@ -38,3 +38,12 @@ For the mathematical construction, read SPATIAL_INTERFACE_THEOREM.md and run
 the companion Compactification-Theory research/quantization/test_spatial_circuit.py.
 The generated numeric matrices contain only rational affine/ReLU layers.
 The complete analytic theorem is proved on paper, not formalized in Lean.
+
+## Ordered-field spatial continuation
+
+Read LEAN_SPATIAL_FORMALIZATION.md and pinned432_spatial/ACCEPTANCE.json.
+The four additional standalone modules have 42 proved and replayed lemmas;
+native Lean 4.32 and preserved 4.35 kernel checks both pass. The full analytic
+theorem remains open. For the latest pipeline, copy the included spatial
+helpers into CAMPAIGN_WORK, then run replay_spatial_scalar432.sh and
+test_spatial_acceptance.py there. The old 14-lemma corpus is retained intact.

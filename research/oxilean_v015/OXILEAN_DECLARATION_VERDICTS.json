@@ -9588,7 +9588,7 @@
           "kind": "inductive",
           "verdict": "rejected",
           "micros": 0,
-          "detail": "recursor record '«A.rec»' of inductive bundle 'A' is not named as Lean's kernel names a recursor of this declaration: the recursor of 'A' is 'A.rec', the component 'rec' under 'A'"
+          "detail": "recursor record '\u00abA.rec\u00bb' of inductive bundle 'A' is not named as Lean's kernel names a recursor of this declaration: the recursor of 'A' is 'A.rec', the component 'rec' under 'A'"
         },
         {
           "name": "A.rec",
@@ -9705,7 +9705,7 @@
           "kind": "inductive",
           "verdict": "rejected",
           "micros": 0,
-          "detail": "recursor record '«T.rec»' of inductive bundle 'T' is not named as Lean's kernel names a recursor of this declaration: the recursor of 'T' is 'T.rec', the component 'rec' under 'T'"
+          "detail": "recursor record '\u00abT.rec\u00bb' of inductive bundle 'T' is not named as Lean's kernel names a recursor of this declaration: the recursor of 'T' is 'T.rec', the component 'rec' under 'T'"
         },
         {
           "name": "val",
@@ -37160,5 +37160,568 @@
         "detail": null
       }
     ]
-  }
+  },
+  "ordered_scalar_spatial_export": {
+    "status": "accepted",
+    "scope": "ordered-field spatial interface and finite routing; not the analytic approximation theorem",
+    "export_sha256": "40a100d7032d992d85b15ef7c393ecf6a4492be444fefe3d7d39f047b2614e2b",
+    "verdicts": {
+      "verified": 3091,
+      "unsupported": 0,
+      "rejected": 0
+    },
+    "constants_compared": 3408,
+    "source_sha256": {
+      "MathCan/SpatialScalar.lean": "c393225ad311b5a2401aea3e6fc1f0f45071158e85325cfe87b09206f369b2c4",
+      "MathCan/SpatialRouting.lean": "1aee535fc734e4305a9bf7e71a0818665b4c9539465abd54a59547506b0070ff",
+      "MathCan/SpatialNormalized.lean": "ce464be236ccd25cc221350d5462a306a1b81093f6e52a5873b70faa423e4c48",
+      "MathCan/SpatialClipped.lean": "ef4bbccfab3546837f1871c6cd85cce8aaecbafa83315068215e6d80dc9e0c45"
+    },
+    "standard_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "ordered_scalar_spatial_lemmas": [
+    {
+      "name": "MathCan.SpatialClipped.capture_stream_at_index",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2858,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialClipped.capture_stream_range",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2588,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialClipped.capture_stream_vector",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2859,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialClipped.clipped_circuit_exact",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2928,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialClipped.clipped_circuit_range",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2588,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialClipped.normalized_rank_range",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2278,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialClipped.safe_spatial_stream",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 3024,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialClipped.symmetric_clip_identity",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2259,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialClipped.symmetric_clip_range",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2580,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialNormalized.decoded_digits_exact",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2654,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialNormalized.normalized_circuit_exact",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2921,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialNormalized.normalized_step_exact",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2841,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialNormalized.safe_spatial_capture",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 3003,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialRouting.lookup_at_index",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2619,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialRouting.routing_capture",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2893,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialRouting.snake_circuit_exact",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2828,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialRouting.snake_rank_bound",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 1363,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialRouting.snake_step_exact",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2813,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialRouting.triangle_hinges",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2784,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.boundary_anchor",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2569,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.capture_sum",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2851,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.capture_vector",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2852,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.clip_identity",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2253,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.clip_range",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2573,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.clip_step",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2589,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.coarse_address",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2633,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.fine_address",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2623,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.gate_binary",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2469,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.gate_one",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2255,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.gate_zero",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2388,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.local_coordinate_exact",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2616,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.ramp_high",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2581,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.ramp_low",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2556,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.relu_nonneg",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2439,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.relu_of_nonneg",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2209,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.relu_of_nonpos",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2174,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.spatial_address",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2643,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.sum_congr",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 1358,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.sum_prefix",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 1408,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.sum_single",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 1446,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.sum_zero",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [],
+      "dependency_records": 372,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SpatialScalar.triangle_index",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2604,
+      "statement_and_proof_match": true
+    }
+  ]
 }

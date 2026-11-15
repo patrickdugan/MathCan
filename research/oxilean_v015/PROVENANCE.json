@@ -111,6 +111,14 @@
   "hodge_replay_status": "accepted",
   "hodge_export_sha256": "05013ce15f2a75b521a8f9b0911060b3b129042dc75c331fa161ca4693f70892",
   "research_lemma_export_sha256": "8342c55b9a827072c73d8a5110b767b34fe1fdc519d5a3c54430d8b0ea246e37",
-  "spatial_interface_status": "proved by the supplied real-domain construction and resource ledger; full theorem not Lean formalized",
-  "spatial_circuit_source_sha256": "bc006e0ec2a227eac72657367b5211a7b71c1adfb74a87cc66336e9ded8ad910"
+  "spatial_interface_status": "Paper construction and 42 ordered-field spatial semantics lemmas; dense compiler and analytic theorem not Lean formalized",
+  "spatial_circuit_source_sha256": "bc006e0ec2a227eac72657367b5211a7b71c1adfb74a87cc66336e9ded8ad910",
+  "ordered_scalar_spatial_status": "42 proved and independently replayed lemmas; full analytic theorem remains open",
+  "ordered_scalar_spatial_source_sha256": {
+    "MathCan/SpatialScalar.lean": "c393225ad311b5a2401aea3e6fc1f0f45071158e85325cfe87b09206f369b2c4",
+    "MathCan/SpatialRouting.lean": "1aee535fc734e4305a9bf7e71a0818665b4c9539465abd54a59547506b0070ff",
+    "MathCan/SpatialNormalized.lean": "ce464be236ccd25cc221350d5462a306a1b81093f6e52a5873b70faa423e4c48",
+    "MathCan/SpatialClipped.lean": "ef4bbccfab3546837f1871c6cd85cce8aaecbafa83315068215e6d80dc9e0c45"
+  },
+  "ordered_scalar_spatial_export_sha256": "40a100d7032d992d85b15ef7c393ecf6a4492be444fefe3d7d39f047b2614e2b"
 }
