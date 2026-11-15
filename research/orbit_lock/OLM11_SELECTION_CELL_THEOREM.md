@@ -107,3 +107,52 @@ Selection support stability does not imply that nonzero SAE activation **magnitu
 The source-pinned Sudoku 16-puzzle cohort has already been inspected in SMC-07–10. The continuation is an exact mathematical audit of known states and requires unseen puzzle families for confirmatory generalization. Changing trained normalization, encoder/decoder weights, top-k, or their stochastic training protocol changes the selection cells and requires new certificates.
 
 The exact-real binary-weight affine scoring model differs from rounded FP32 execution. The experiment cross-checks the nominal identity against Torch but makes no claim about every machine-rounded inference path. Verified pointwise or neighborhood downstream recurrent effects retain their own exact-real evaluation scope.
+
+## 6. OLM-11D: A sharp *directional* identity radius for the actual causal intervention
+
+The inscribed-ball radius in (2)–(3) protects against **every direction**. A causal experiment applies a fixed chosen decoder direction, so the identity can survive farther along its one-dimensional ray.
+
+Fix a nonzero rational physical direction \(d\in\mathbb Q^d\) and let
+
+\[
+h(r)=h+r\,d/\|d\|_2,\qquad r\ge0.
+\]
+
+For every strict top-\(k\) positivity or selected-versus-unselected inequality, write its affine gap at h as \(g>0\) and its slope along the *unnormalized* ray as \(c=\langle w,d\rangle\), where w is the corresponding affine normal. That gap evolves exactly as \(g+(r/\|d\|_2)c\).
+
+**Theorem OLM-11D (exact first directional support change).** For each constraint with \(c<0\), define
+
+\[
+r_{\rm cross}(g,c,d)=\frac{g\|d\|_2}{-c}.
+\]
+
+A constraint with \(c\ge0\) never reaches zero at forward radius. The sharp first boundary on the **positive** intervention ray is
+
+\[
+\boxed{
+\rho_{k,\mathrm{ray}}(h;d)=
+\min_{\text{relevant constraints }c<0}
+\frac{g\|d\|_2}{-c},
+\qquad
+\rho_{k,\mathrm{ray}}^2=
+\min_{c<0}\frac{g^2\|d\|_2^2}{c^2}\in\mathbb Q_{\ge0},
+}
+\tag{6}
+\]
+
+with infinity when every relevant gap is nondecreasing. Replace the top-\(k\) constraint family by the highest positive neuron's inequalities to obtain \(\rho_{1,\mathrm{ray}}\). For every \(0\le r<\rho_{\mathrm{ray}}\), the corresponding positive feature identities are unchanged at the intervened state. At a finite first boundary the selected/unselected score gap or selected positivity gap reaches zero; strict identity certification ends at that radius.
+
+**Proof.** Each affine constraint restricted to the ray is a scalar affine function with positive intercept g. Such a function stays positive for all forward r if its slope is nonnegative; otherwise its first zero is exactly \(g\|d\|_2/(-c)\). All selected indices remain stable precisely until the first constraint reaches its zero. Since rational g, c and \(\|d\|_2^2\) give rational squared crossing radii, exact arithmetic suffices. QED.
+
+The same result applies to the negative decoder direction by replacing d with \(-d\). Ray boundaries depend on orientation. Scaling d by a positive factor does not change any physical radius. The universal ball radius obeys
+
+\[
+\boxed{\rho_{k,\mathrm{ray}}\ge\rho_k,\qquad
+       \rho_{1,\mathrm{ray}}\ge\rho_1,}
+\]
+
+because a ray is a subset of the full neighborhood. The inequalities can be strict or arbitrarily large.
+
+**Experimental interpretation.** The original SMC-09/10 endpoint evaluator applies a **positive** selected decoder direction. To audit feature identity at that endpoint, use the signed physical direction actually supplied to the intervention code (including its stored FP32 elementwise decoder×scale product, interpreted as exact dyadic components). A successful ray guard at radius 0.2 proves the same top feature would be selected again *at the perturbed endpoint*, even where a universal radius-0.2 ball test abstains. It does **not** extend OLM-10's neighborhood theorem to every point of a radius-0.2 ball, nor claim decoder selection would remain invariant if the whole SAE were retrained.
+
+The [rational verifier](selection_cells.py) and tests check exact crossing times in both ray orientations, including a case where the universal top-one ball radius is 1/2 but the positive-ray radius is 2. This supplements the previously registered small shared-anchor uncertainty composition with an independent finite-intervention feature-identity diagnostic.
