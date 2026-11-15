@@ -1,0 +1,49 @@
+name: PEF-06 finite coalition and exact noise Lean certificates
+
+on:
+  push:
+    paths:
+      - 'MathCan/CoalitionNoise.lean'
+      - 'MathCan.lean'
+      - 'research/compactification/PEF06_COALITION_NOISE.md'
+      - 'tests/test_coalition_noise.py'
+      - '.github/workflows/pef06-coalition-noise.yml'
+  pull_request:
+    paths:
+      - 'MathCan/CoalitionNoise.lean'
+      - 'MathCan.lean'
+      - 'research/compactification/PEF06_COALITION_NOISE.md'
+      - 'tests/test_coalition_noise.py'
+      - '.github/workflows/pef06-coalition-noise.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  finite-oracle:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p 'test_coalition_noise.py' -v
+  lean-kernel:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Inspect new theorem axiom inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/CoalitionNoise.lean | tee pef06-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' pef06-axioms.txt; then
+            exit 1
+          fi
