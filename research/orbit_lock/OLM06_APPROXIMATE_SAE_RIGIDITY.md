@@ -73,3 +73,74 @@ The combined result separates three statistical obligations:
 * recover a gauge-compatible frame and test independent heldout states, including an explicit provision for one-swap aliasing.
 
 The finite codebook and margin theorems describe what these stages can certify. Empirical SAE optimization is measured separately.
+
+
+## 7. Independent heldout geometry test and alias lower bound
+
+**OLM-06C (computer-certified three-witness separation).** For every one of the
+180 one-swap aliases classified above, *each* of the three omitted true matching
+rows is incompatible with the alternate cover. The audit constructs the alternate
+unique six-star cover using only the twelve altered training rows, maps the fifteen
+feature channels to abstract edges, and checks that all three omitted true masks
+fail to cover the six abstract vertices in three disjoint edge pairs. Its exact
+regression test verifies **540 out-of-manifold checks across all 180 aliases**.
+A single independent, error-free omitted state therefore witnesses the altered
+geometry. These evaluation states do not enter fit or repair selection.
+
+The distinction is also minimax: give the observer twelve three-hot rows and
+allow a single adversarial active↔inactive channel substitution across the
+entire cohort. For any one of the 180 cases, the observed data have two
+explanations: a correctly planted K6 geometry followed by one substitution,
+or the alternate K6 geometry with zero substitutions. Both meet the declared
+"at most one" observation corruption budget and produce exactly the same
+observed rows. With equal prior on these two worlds, no training-only estimator
+can assign the correct **feature-to-edge channel geometry** with probability
+exceeding 1/2 in the worst case. The two induced matching-label maps can
+nevertheless agree up to vertex gauge on the observed training cohort.
+The impossibility concerns source-channel fidelity, which is a stronger
+object than the existence of a valid K6 representation.
+
+### OLM-06D. An out-of-model energy-gap certificate
+
+Given a frozen candidate matching codebook \(\mathcal C\) of 15 three-hot
+supports and score vector \(a\in\mathbb R^{15}\), define
+
+\[
+T(a)=\sum_{j\in\operatorname{top3}(a)}a_j,\qquad
+Q_{\mathcal C}(a)=\max_{M\in\mathcal C}\sum_{j\in M}a_j,\qquad
+\Delta_{\mathcal C}(a)=T(a)-Q_{\mathcal C}(a)\ge0.
+\]
+
+If the third and fourth scores are *strictly separated*, then
+\(\Delta_{\mathcal C}(a)=0\) exactly when the unconstrained top-three support
+is a member of \(\mathcal C\). A positive value is therefore a
+**rigorous post-fit falsification witness** of model-manifold support.
+To see this, under strict top-three separation every other three-element
+support has a strictly smaller score sum. The gap also supplies a stability
+radius \(\frac12(a_{(3)}-a_{(4)})\) for the top-three decision.
+
+A zero energy gap is a test of internal consistency, rather than proof
+of the planted channel assignment. In particular, the 180 altered training
+codebooks pass with arbitrarily high score margins by assigning a score
+\(M>0\) to every recorded active feature and zero elsewhere. All three
+original omitted matching rows then have strictly positive gaps to the
+alternate codebook, for every \(M>0\).
+
+**SMC-06 frozen activation evidence.** The already trained seed-101 SAE has
+one repaired training mask and a unique certified training geometry.
+All three unseen matching observations have strict top-three supports
+outside that fitted geometry; their positive energy gaps are approximately
+0.8791, 0.8643, and 0.9334. The seed-103 SAE has a direct, unique training
+geometry; all three heldout top-three supports belong to its recovered
+matching codebook, giving exact zero gaps. The source-bound
+[fidelity gate](https://github.com/MoralityLabAI/Compactification-Theory/blob/research/smc01-synchronized-mixing-20261115/research/synchronized_mixing_v1/fidelity_gate.py)
+checks these as exact decimal-rational consequences of archived frozen
+activations, without fitting on heldout states or accessing planted atom
+labels.
+
+This extra validation is a **conditional acceptance criterion** for the
+specified geometry prior. On real transformer SAEs, feature mixtures and
+nonidentifiable atom bases may trigger conservative abstentions; an
+independent causal intervention would still be needed to establish source
+fidelity. Training and evaluation cohorts must remain separated even if the
+heldout test rejects a previously accepted fit.
