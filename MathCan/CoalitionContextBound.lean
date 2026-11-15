@@ -102,7 +102,10 @@ theorem anyListOfThresholdContexts
 /-- At four-bit source zero every singleton flip is inactive
     for both teachers. -/
 theorem fourIndividualFlipsInactive :
-    (∀ i : Fin 4, coalition (⟨2^i.val, by decide⟩ : Fin 16) = false) := by
+    coalition (1 : Fin 16) = false ∧
+    coalition (2 : Fin 16) = false ∧
+    coalition (4 : Fin 16) = false ∧
+    coalition (8 : Fin 16) = false := by
   decide
 
 /-- The two disjoint complete AND pairs activate the coalition
