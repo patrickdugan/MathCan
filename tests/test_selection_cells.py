@@ -74,6 +74,40 @@ class SelectionCellTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             c.strict_guard(Q(1),-1)
 
+
+    def test_sharp_forward_ray_identity_and_support(self):
+        rows=((Q(1),),(Q(-1),),(Q(2),))
+        offs=(Q(2),Q(1),Q(0))
+        base=c.topk_selection_certificate(rows,offs,(0,),k=2)
+        forward=c.topk_ray_certificate(base,rows,(Q(1),))
+        self.assertEqual(forward['top1']['radius_squared'],Q(4))
+        self.assertEqual(forward['topk']['radius_squared'],Q(1,9))
+        self.assertEqual(forward['top1']['active_boundary'],('pair',0,2))
+        self.assertEqual(forward['topk']['active_boundary'],('pair',1,2))
+        self.assertGreaterEqual(forward['top1']['radius_squared'],
+                                base['top1']['radius_squared'])
+        self.assertEqual(forward['topk']['radius_squared'],
+                         base['topk']['radius_squared'])
+        # Exactly at the first top4 ray crossing (x = 1/3):
+        vals=c.scores_at(rows,offs,(Q(1,3),))
+        self.assertEqual(vals[1],vals[2])
+        scaled=c.topk_ray_certificate(base,rows,(Q(100),))
+        self.assertEqual(scaled['top1']['radius_squared'],Q(4))
+        self.assertEqual(scaled['topk']['radius_squared'],Q(1,9))
+        backward=c.topk_ray_certificate(base,rows,(Q(-1),))
+        self.assertEqual(backward['top1']['radius_squared'],Q(1,4))
+        self.assertEqual(backward['topk']['radius_squared'],Q(4))
+        self.assertTrue(c.strict_guard(forward['top1']['radius_squared'],Q(4,5)))
+        self.assertFalse(c.strict_guard(backward['top1']['radius_squared'],Q(4,5)))
+
+    def test_ray_without_declining_margin_has_infinite_radius(self):
+        rows=((Q(0),),(Q(0),))
+        out=c.ray_exact_cell((Q(2),Q(1)),rows,(0,),(Q(1),))
+        self.assertIsNone(out['radius_squared'])
+        self.assertTrue(c.strict_guard(out['radius_squared'],Q(1000000)))
+        with self.assertRaises(ValueError):
+            c.ray_exact_cell((Q(2),Q(1)),rows,(0,),(Q(0),))
+
     def test_synthetic_finite_boundary_witness(self):
         rows=((Q(2,3),Q(1,4)),(Q(1,3),Q(-1,3)),(Q(-1,5),Q(2,7)))
         offsets=(Q(3),Q(2),Q(0))
