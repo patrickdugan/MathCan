@@ -142,3 +142,34 @@ Its initial exact-rational audit over all 48 frozen goal-token/SAE cases finds:
 - The exact boundary witness in (6), and a slightly overshot rational witness, are checked for every limiting score constraint. These establish sharpness of each reported raw margin.
 
 These are exact-real feature-ID geometry results on the previously inspected Sudoku fixture set. No new pretrained teacher checkpoint, broader puzzle-family holdout, or semantic SAE interpretability claim is asserted. The [OLM-12 standalone Fraction tests](../../tests/test_conic_self_selection.py) check the mathematical identities without importing any pretrained model. The corresponding source-pinned experimental replay is independently recorded in Compactification-Theory.
+
+## 6. OLM-12E: Self-reinforcing atoms are columns of an internal encoder-decoder Gram
+
+A useful structural simplification follows by writing the *exact-real* unnormalized physical decoder atom as \(d_t=\sigma\odot D_{\cdot t}\) while the physical preactivation normal is \(v_i=W_{i\cdot}/\sigma\), with each scale \(\sigma_\ell>0\).
+
+Then the slope of the ith encoder score along the tth decoder ray is
+
+\[
+\langle v_i,d_t\rangle
+=\sum_{\ell}(W_{i\ell}/\sigma_\ell)(\sigma_\ell D_{\ell t})
+=\boxed{(WD)_{it}.}
+\]
+
+Call \(K=WD\in\mathbb R^{m\times m}\) the encoder-decoder **cross-talk matrix**, which is generally nonsymmetric and must not be confused with the downstream causal Gram operator of OLM-07.
+
+**Theorem OLM-12E (exact column-dominance characterization).** For the ideal exact-real raw decoder product \(d_t=\sigma\odot D_{\cdot t}\), the tth neuron has an all-radius self-reinforcing positive ray at every hidden state where t starts highest and positive if and only if
+
+\[
+\boxed{K_{tt}\ge0,\qquad K_{tt}\ge K_{jt}\quad(\forall j\ne t).}
+\tag{8}
+\]
+
+Strict positive inequalities make the selected raw decoder an angular **interior** ray. The property is independent of the frozen *positive* standardization scale \(\sigma\): it is determined by the W,D weights alone.
+
+**Proof.** Substitute the scale cancellation above into the positivity and competitor score-slope conditions (1). Those conditions become precisely (8). QED.
+
+The exact matrix \(K=WD\) is easily audited without test inputs. It characterizes the *possibility* of self-reinforcing ray selection conditional on t being a strictly highest positive neuron at the anchor. It does not guarantee the tth neuron is ever activated on the source data.
+
+The applied SMC-12B control measures (8) across **all 96 decoder atoms** in each of three source-frozen SAEs and their original random initializations, preserving the exact initial decoder SHA-256 from SMC-07. The actual causal direction in SMC-09 is computed by FP32 elementwise decoder×scale multiplication followed by FP64 normalization, so its stored binary components are not necessarily an exact scalar multiple of the *ideal* raw dyadic decoder product. The experiment checks both the ideal matrix condition and the actual frozen-dyadic cone condition independently and reports any discrepancy. No algebraic cancellation across individually rounded machine operations is assumed.
+
+This internal cross-talk result also clarifies the scientific boundary: diagonal dominance of WD can be favored by reconstruction training, while **downstream task sensitivity** is governed by the teacher Jacobian and its separate Gram \(D^\top H D\). Self-reinforcement of an SAE atom and semantic causal interpretability are different properties.
