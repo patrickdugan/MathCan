@@ -29,7 +29,7 @@ theorem pairs_add (a b : Nat) :
   | succ b ih =>
       calc
         pairs (a + (b + 1)) = pairs (a + b) + (a + b) := by
-          simp only [Nat.add_succ, pairs]
+          rfl
         _ = (pairs a + pairs b + a * b) + (a + b) := by
           rw [ih]
         _ = pairs a + pairs (b + 1) + a * (b + 1) := by
