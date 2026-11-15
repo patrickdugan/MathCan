@@ -1,0 +1,16 @@
+✓  B                                               1.9 ms
+✓  P                                               0.1 ms
+✗  T                                           rejected: InvalidRecursor("recursor 'T.rec' does not match the kernel-derived recursor for 'T'")
+✓  Eq                                              0.1 ms
+✓  False                                           0.0 ms
+✓  True                                            0.0 ms
+✓  get                                             0.0 ms
+✗  val                                         rejected: depends on rejected declaration 'T'
+✗  fst                                         rejected: depends on rejected declaration 'T'
+✓  get_eq                                          0.1 ms
+✗  val_eq                                      rejected: depends on rejected declaration 'T'
+✗  honest_val_is_t                             rejected: depends on rejected declaration 'val'
+✗  bad_val_is_f                                rejected: depends on rejected declaration 'val'
+✗  bad_f_eq_t                                  rejected: depends on rejected declaration 'val_eq'
+✗  boom                                        rejected: depends on rejected declaration 'bad_f_eq_t'
+7 verified · 0 unsupported · 8 rejected

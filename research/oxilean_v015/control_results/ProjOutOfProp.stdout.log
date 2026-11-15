@@ -1,0 +1,8 @@
+✓  Exists                                          1.9 ms
+✓  Nat                                             0.1 ms
+✓  True                                            0.0 ms
+✗  ProjOutOfProp.wit                           rejected: Other("invalid projection: Exists is a proposition and the type of its field 0, Nat, is not; data cannot be projected out of a proof")
+✓  False                                           0.0 ms
+✓  Eq                                              0.1 ms
+✗  ProjOutOfProp.false_of_proj                 rejected: Other("invalid projection: Exists is a proposition and the type of its field 0, Nat, is not; data cannot be projected out of a proof")
+5 verified · 0 unsupported · 2 rejected

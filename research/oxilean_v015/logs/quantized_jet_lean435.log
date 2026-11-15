@@ -1,0 +1,88 @@
+Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
+theorem MathCan.QuantizedJet.nearest_residual : ∀ (D a : Int),
+  0 < D → -D ≤ 2 * D * nearest D a - a ∧ 2 * D * nearest D a - a ≤ D :=
+fun D a hD =>
+  have hp := Decidable.byContradiction fun a => nearest_residual._proof_1_1 D hD a;
+  have h0 := Int.emod_nonneg (a + D) fun a => nearest_residual._proof_1_2 D hD a;
+  have h1 := Int.emod_lt_of_pos (a + D) hp;
+  have he := Int.emod_add_mul_ediv (a + D) (2 * D);
+  Eq.mpr
+    (id
+      (congr
+        (congrArg And
+          (congrArg (LE.le (-D))
+            (congrFun'
+              (congrArg HSub.hSub
+                (congr (congrArg HMul.hMul (Int.mul_comm 2 D)) (congrArg (HDiv.hDiv (a + D)) (Int.mul_comm 2 D))))
+              a)))
+        (congrFun'
+          (congrArg LE.le
+            (congrFun'
+              (congrArg HSub.hSub
+                (congr (congrArg HMul.hMul (Int.mul_comm 2 D)) (congrArg (HDiv.hDiv (a + D)) (Int.mul_comm 2 D))))
+              a))
+          D)))
+    (Decidable.byContradiction fun a_1 =>
+      nearest_residual._proof_1_4 D a (Eq.mp (congrArg (LE.le 0) (congrArg (HMod.hMod (a + D)) (Int.mul_comm 2 D))) h0)
+        (Eq.mp (congr (congrArg LT.lt (congrArg (HMod.hMod (a + D)) (Int.mul_comm 2 D))) (Int.mul_comm 2 D)) h1)
+        (Eq.mp
+          (congrFun'
+            (congrArg Eq
+              (congr (congrArg HAdd.hAdd (congrArg (HMod.hMod (a + D)) (Int.mul_comm 2 D)))
+                (congr (congrArg HMul.hMul (Int.mul_comm 2 D)) (congrArg (HDiv.hDiv (a + D)) (Int.mul_comm 2 D)))))
+            (a + D))
+          he)
+        a_1)
+theorem MathCan.QuantizedJet.corrected_error_identity : ∀ (D t u v r c : Int),
+  t * v + 2 * D * c - (t * u + r) = 2 * D * c - (r - t * (v - u)) :=
+fun D t u v r c =>
+  Eq.mpr
+    (id
+      (congrArg (Eq (t * v + 2 * D * c - (t * u + r)))
+        (congrArg (HSub.hSub (2 * D * c)) (congrArg (HSub.hSub r) (Int.mul_sub t v u)))))
+    (Decidable.byContradiction fun a => corrected_error_identity._proof_1_1 D t u v r c a)
+theorem MathCan.QuantizedJet.corrected_step_stable : ∀ (D t u v r : Int),
+  0 < D →
+    have c := nearest D (r - t * (v - u));
+    -D ≤ t * v + 2 * D * c - (t * u + r) ∧ t * v + 2 * D * c - (t * u + r) ≤ D :=
+fun D t u v r hD =>
+  id
+    (Eq.mpr
+      (id (congrArg (fun _a => -D ≤ _a ∧ _a ≤ D) (corrected_error_identity D t u v r (nearest D (r - t * (v - u))))))
+      (nearest_residual D (r - t * (v - u)) hD))
+theorem MathCan.QuantizedJet.correction_alphabet_bound : ∀ (D a r z R E : Int),
+  0 < D →
+    a = r - z →
+      -R ≤ r ∧ r ≤ R → -E ≤ z ∧ z ≤ E → -(R + E + D) ≤ 2 * D * nearest D a ∧ 2 * D * nearest D a ≤ R + E + D :=
+fun D a r z R E hD ha hr hz =>
+  have h := nearest_residual D a hD;
+  Decidable.byContradiction fun a_1 => correction_alphabet_bound._proof_1_1 D a r z R E ha hr hz h a_1
+theorem MathCan.QuantizedJet.corrected_stream_stable : ∀ (D : Int),
+  0 < D →
+    ∀ (t r u v : Nat → Int),
+      (∀ (i : Nat), u (i + 1) = t i * u i + r i) →
+        (∀ (i : Nat), v (i + 1) = t i * v i + 2 * D * nearest D (r i - t i * (v i - u i))) →
+          -D ≤ v 0 - u 0 ∧ v 0 - u 0 ≤ D → ∀ (i : Nat), -D ≤ v i - u i ∧ v i - u i ≤ D :=
+fun D hD t r u v hu hv h0 i =>
+  Nat.casesAuxOn (motive := fun a => i = a → -D ≤ v i - u i ∧ v i - u i ≤ D) i (fun h => Eq.symm h ▸ h0)
+    (fun i_1 h =>
+      Eq.symm h ▸
+        Eq.mpr (id (congrArg (fun _a => -D ≤ v (i_1 + 1) - _a ∧ v (i_1 + 1) - _a ≤ D) (hu i_1)))
+          (Eq.mpr
+            (id (congrArg (fun _a => -D ≤ _a - (t i_1 * u i_1 + r i_1) ∧ _a - (t i_1 * u i_1 + r i_1) ≤ D) (hv i_1)))
+            (corrected_step_stable D (t i_1) (u i_1) (v i_1) (r i_1) hD)))
+    (Eq.refl i)
+theorem MathCan.QuantizedJet.vector_predictor_stable : ∀ {n : Nat} (D : Int),
+  0 < D →
+    ∀ (target prediction : Fin n → Int) (j : Fin n),
+      -D ≤ prediction j + 2 * D * nearest D (target j - prediction j) - target j ∧
+        prediction j + 2 * D * nearest D (target j - prediction j) - target j ≤ D :=
+fun {n} D hD target prediction j =>
+  have h := nearest_residual D (target j - prediction j) hD;
+  Decidable.byContradiction fun a => vector_predictor_stable._proof_1_1 D target prediction j h a
+'MathCan.QuantizedJet.nearest_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.QuantizedJet.corrected_error_identity' depends on axioms: [propext, Quot.sound]
+'MathCan.QuantizedJet.corrected_step_stable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.QuantizedJet.correction_alphabet_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.QuantizedJet.corrected_stream_stable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.QuantizedJet.vector_predictor_stable' depends on axioms: [propext, Classical.choice, Quot.sound]

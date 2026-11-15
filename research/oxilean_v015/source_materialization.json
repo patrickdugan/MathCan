@@ -1,0 +1,17 @@
+{
+  "MathCan": {
+    "commit": "13151576dd83939f7850f7f3025a49fa98e370b8",
+    "files": 186,
+    "line_endings_restored": 179
+  },
+  "oxilean": {
+    "commit": "3adb983d2aefc6a596bdc8b63438f54feecd1f55",
+    "files": 6387,
+    "line_endings_restored": 6281
+  },
+  "lean4export": {
+    "commit": "3de59f10bc4b4a0f2de698597aeb1246caa0df0a",
+    "files": 13,
+    "line_endings_restored": 0
+  }
+}

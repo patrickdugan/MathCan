@@ -1,0 +1,168 @@
+{
+  "tool": {
+    "name": "oxilean-verify",
+    "version": "0.1.5"
+  },
+  "pins": {
+    "lean4export_commit": "3de59f10bc4b4a0f2de698597aeb1246caa0df0a",
+    "lean_toolchain": "v4.32.0-rc1",
+    "reader_format_version": "3.1.0",
+    "file_format_version": "3.1.0",
+    "file_lean_version": "4.32.0-rc1",
+    "file_lean_githash": "b4812ae53eea93439ad5dce5a5c26591c31cb697"
+  },
+  "input": {
+    "path": "/mnt/c/Users/patri/Documents/Codex/2026-11-15/files-pasted-by-the-user-oxilean/work/oxilean/tests/fixtures/lean4export/RecRuleJunk.ndjson",
+    "sha256": "9f88927a96df3c7b439b1d6441e199b0f9e1504a9d8d7a29dad468b0bd3cc8a9",
+    "size_bytes": 16818,
+    "format_version": "3.1.0"
+  },
+  "totals": {
+    "verified": 7,
+    "unsupported": 0,
+    "rejected": 8,
+    "wall_ms": 6
+  },
+  "unsupported_features": [],
+  "rejected": [
+    {
+      "name": "T",
+      "reason": "InvalidRecursor(\"recursor 'T.rec' does not match the kernel-derived recursor for 'T'\")"
+    },
+    {
+      "name": "val",
+      "reason": "depends on rejected declaration 'T'"
+    },
+    {
+      "name": "fst",
+      "reason": "depends on rejected declaration 'T'"
+    },
+    {
+      "name": "val_eq",
+      "reason": "depends on rejected declaration 'T'"
+    },
+    {
+      "name": "honest_val_is_t",
+      "reason": "depends on rejected declaration 'val'"
+    },
+    {
+      "name": "bad_val_is_f",
+      "reason": "depends on rejected declaration 'val'"
+    },
+    {
+      "name": "bad_f_eq_t",
+      "reason": "depends on rejected declaration 'val_eq'"
+    },
+    {
+      "name": "boom",
+      "reason": "depends on rejected declaration 'bad_f_eq_t'"
+    }
+  ],
+  "decls": [
+    {
+      "name": "B",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 1860,
+      "detail": null
+    },
+    {
+      "name": "P",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 75,
+      "detail": null
+    },
+    {
+      "name": "T",
+      "kind": "inductive",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "InvalidRecursor(\"recursor 'T.rec' does not match the kernel-derived recursor for 'T'\")"
+    },
+    {
+      "name": "Eq",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 115,
+      "detail": null
+    },
+    {
+      "name": "False",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 25,
+      "detail": null
+    },
+    {
+      "name": "True",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 37,
+      "detail": null
+    },
+    {
+      "name": "get",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 40,
+      "detail": null
+    },
+    {
+      "name": "val",
+      "kind": "def",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "depends on rejected declaration 'T'"
+    },
+    {
+      "name": "fst",
+      "kind": "def",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "depends on rejected declaration 'T'"
+    },
+    {
+      "name": "get_eq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 69,
+      "detail": null
+    },
+    {
+      "name": "val_eq",
+      "kind": "thm",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "depends on rejected declaration 'T'"
+    },
+    {
+      "name": "honest_val_is_t",
+      "kind": "thm",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "depends on rejected declaration 'val'"
+    },
+    {
+      "name": "bad_val_is_f",
+      "kind": "thm",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "depends on rejected declaration 'val'"
+    },
+    {
+      "name": "bad_f_eq_t",
+      "kind": "thm",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "depends on rejected declaration 'val_eq'"
+    },
+    {
+      "name": "boom",
+      "kind": "thm",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "depends on rejected declaration 'bad_f_eq_t'"
+    }
+  ]
+}

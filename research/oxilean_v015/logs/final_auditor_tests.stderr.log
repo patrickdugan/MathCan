@@ -1,0 +1,10 @@
+test_axioms_and_type_dependencies (test_audit_export.AuditTests.test_axioms_and_type_dependencies) ... ok
+test_distinguishes_flat_and_hierarchical_name (test_audit_export.AuditTests.test_distinguishes_flat_and_hierarchical_name) ... ok
+test_duplicate_name_is_not_overwritten (test_audit_export.AuditTests.test_duplicate_name_is_not_overwritten) ... ok
+test_positive_bundle_closure (test_audit_export.AuditTests.test_positive_bundle_closure) ... ok
+test_unknown_expression_is_fail_closed (test_audit_export.AuditTests.test_unknown_expression_is_fail_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.033s
+
+OK

@@ -1,0 +1,1478 @@
+{
+  "scope": "structural_graph_only_not_kernel_verification",
+  "sha256": "53905a2f589da6eccda8081eb04bd88794b2374e39fcb9c2d98a5f448c93b28b",
+  "metadata": {
+    "exporter": {
+      "name": "lean4export",
+      "version": "3.1.0"
+    },
+    "format": {
+      "version": "3.1.0"
+    },
+    "lean": {
+      "githash": "b4812ae53eea93439ad5dce5a5c26591c31cb697",
+      "version": "4.32.0-rc1"
+    }
+  },
+  "target": null,
+  "record_count": 22,
+  "closure_record_count": 22,
+  "structurally_closed": true,
+  "unambiguous_names": true,
+  "missing_constants": [],
+  "duplicate_names": [],
+  "axioms": [],
+  "unsafe_records": [],
+  "records": [
+    {
+      "id": 0,
+      "line": 51,
+      "kind": "inductive",
+      "names": [
+        [
+          [
+            "str",
+            "Nat"
+          ]
+        ],
+        [
+          [
+            "str",
+            "Nat"
+          ],
+          [
+            "str",
+            "zero"
+          ]
+        ],
+        [
+          [
+            "str",
+            "Nat"
+          ],
+          [
+            "str",
+            "succ"
+          ]
+        ],
+        [
+          [
+            "str",
+            "Nat"
+          ],
+          [
+            "str",
+            "rec"
+          ]
+        ]
+      ],
+      "display_names": [
+        "Nat",
+        "Nat.zero",
+        "Nat.succ",
+        "Nat.rec"
+      ],
+      "dependencies": [],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "Nat"
+            ]
+          ],
+          "sha256": "733e2514046449c42d66e7059d7c0a5fb207a617be198f02230a265f24f85a7c"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "Nat"
+            ],
+            [
+              "str",
+              "zero"
+            ]
+          ],
+          "sha256": "f34675315f67c845452a05bceaaa8d59b186c49a6dc26aa695bb3abce9ddaa7c"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "Nat"
+            ],
+            [
+              "str",
+              "succ"
+            ]
+          ],
+          "sha256": "a803478085f2c0efd977cddd60b108a958e4cb09967ddd55e0bfa6c69a31ba23"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "Nat"
+            ],
+            [
+              "str",
+              "rec"
+            ]
+          ],
+          "sha256": "d45fa662ecff938b3d2407def576dbc128923faaf0993390675117265cdd1852"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "line": 116,
+      "kind": "inductive",
+      "names": [
+        [
+          [
+            "str",
+            "List"
+          ]
+        ],
+        [
+          [
+            "str",
+            "List"
+          ],
+          [
+            "str",
+            "nil"
+          ]
+        ],
+        [
+          [
+            "str",
+            "List"
+          ],
+          [
+            "str",
+            "cons"
+          ]
+        ],
+        [
+          [
+            "str",
+            "List"
+          ],
+          [
+            "str",
+            "rec"
+          ]
+        ]
+      ],
+      "display_names": [
+        "List",
+        "List.nil",
+        "List.cons",
+        "List.rec"
+      ],
+      "dependencies": [],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "List"
+            ]
+          ],
+          "sha256": "53b23fe01e8b673bdf0e85379d84aab9c5e56dcc444db92a9786a0be040d10f9"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "List"
+            ],
+            [
+              "str",
+              "nil"
+            ]
+          ],
+          "sha256": "bf5338a1ddda186c757ee0b7c2fb844e4d96ba80e0dec3e28c09350194eb864f"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "List"
+            ],
+            [
+              "str",
+              "cons"
+            ]
+          ],
+          "sha256": "e5d45a2d97e8ca0941536ac1ea13aec17d30a675b5f106ee16a35d99abaf1e88"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "List"
+            ],
+            [
+              "str",
+              "rec"
+            ]
+          ],
+          "sha256": "03ce3628fa20315643e47de4b414159c9e94029538451e68b7a5afc4f7b67250"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "line": 209,
+      "kind": "inductive",
+      "names": [
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Tree"
+          ]
+        ],
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Tree"
+          ],
+          [
+            "str",
+            "mk"
+          ]
+        ],
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Tree"
+          ],
+          [
+            "str",
+            "rec"
+          ]
+        ],
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Tree"
+          ],
+          [
+            "str",
+            "rec_1"
+          ]
+        ]
+      ],
+      "display_names": [
+        "ProjRecIndexed.Tree",
+        "ProjRecIndexed.Tree.mk",
+        "ProjRecIndexed.Tree.rec",
+        "ProjRecIndexed.Tree.rec_1"
+      ],
+      "dependencies": [
+        0,
+        1
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Tree"
+            ]
+          ],
+          "sha256": "733e2514046449c42d66e7059d7c0a5fb207a617be198f02230a265f24f85a7c"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Tree"
+            ],
+            [
+              "str",
+              "mk"
+            ]
+          ],
+          "sha256": "938b7f9850a5d840076e6b517753e33ead0f735e120ba47be6392d5937662f1f"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Tree"
+            ],
+            [
+              "str",
+              "rec"
+            ]
+          ],
+          "sha256": "86a5ec49f3781183a8a40e19b64fc082deb998cd959b7463739ac7f51231a284"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Tree"
+            ],
+            [
+              "str",
+              "rec_1"
+            ]
+          ],
+          "sha256": "2281c53ed97700abf361c239c3696add5284b4f2a0498d08d1d66d84b28fe0b3"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "line": 223,
+      "kind": "inductive",
+      "names": [
+        [
+          [
+            "str",
+            "PUnit"
+          ]
+        ],
+        [
+          [
+            "str",
+            "PUnit"
+          ],
+          [
+            "str",
+            "unit"
+          ]
+        ],
+        [
+          [
+            "str",
+            "PUnit"
+          ],
+          [
+            "str",
+            "rec"
+          ]
+        ]
+      ],
+      "display_names": [
+        "PUnit",
+        "PUnit.unit",
+        "PUnit.rec"
+      ],
+      "dependencies": [],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "PUnit"
+            ]
+          ],
+          "sha256": "815111f550004359a0ba8f64465cf66f579eaa557b480ddfe25910152deb35b6"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "PUnit"
+            ],
+            [
+              "str",
+              "unit"
+            ]
+          ],
+          "sha256": "2b538b6f67de15309245fa27045cab0ebc12f3b05a0e1627cbcb30f5edff9ce5"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "PUnit"
+            ],
+            [
+              "str",
+              "rec"
+            ]
+          ],
+          "sha256": "c69530825b33f1ffd70411cc573edf82bdf87699705ab80649fcc8790faa0b8f"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "line": 226,
+      "kind": "def",
+      "names": [
+        [
+          [
+            "str",
+            "Unit"
+          ]
+        ]
+      ],
+      "display_names": [
+        "Unit"
+      ],
+      "dependencies": [
+        3
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "Unit"
+            ]
+          ],
+          "sha256": "733e2514046449c42d66e7059d7c0a5fb207a617be198f02230a265f24f85a7c"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "line": 263,
+      "kind": "inductive",
+      "names": [
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Stream"
+          ]
+        ],
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Stream"
+          ],
+          [
+            "str",
+            "mk"
+          ]
+        ],
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Stream"
+          ],
+          [
+            "str",
+            "rec"
+          ]
+        ]
+      ],
+      "display_names": [
+        "ProjRecIndexed.Stream",
+        "ProjRecIndexed.Stream.mk",
+        "ProjRecIndexed.Stream.rec"
+      ],
+      "dependencies": [
+        0,
+        4
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Stream"
+            ]
+          ],
+          "sha256": "733e2514046449c42d66e7059d7c0a5fb207a617be198f02230a265f24f85a7c"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Stream"
+            ],
+            [
+              "str",
+              "mk"
+            ]
+          ],
+          "sha256": "f8a7db3489d8672ac27891e5ef2f2109707f32f3c9c57d79b711a500f11ac720"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Stream"
+            ],
+            [
+              "str",
+              "rec"
+            ]
+          ],
+          "sha256": "b373cd4926afe1301eab0c247cd70f7ffe15461e0dded60820e4f02e8839e54a"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "line": 286,
+      "kind": "inductive",
+      "names": [
+        [
+          [
+            "str",
+            "Bool"
+          ]
+        ],
+        [
+          [
+            "str",
+            "Bool"
+          ],
+          [
+            "str",
+            "false"
+          ]
+        ],
+        [
+          [
+            "str",
+            "Bool"
+          ],
+          [
+            "str",
+            "true"
+          ]
+        ],
+        [
+          [
+            "str",
+            "Bool"
+          ],
+          [
+            "str",
+            "rec"
+          ]
+        ]
+      ],
+      "display_names": [
+        "Bool",
+        "Bool.false",
+        "Bool.true",
+        "Bool.rec"
+      ],
+      "dependencies": [],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "Bool"
+            ]
+          ],
+          "sha256": "733e2514046449c42d66e7059d7c0a5fb207a617be198f02230a265f24f85a7c"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "Bool"
+            ],
+            [
+              "str",
+              "false"
+            ]
+          ],
+          "sha256": "989e8246ef2b89512950349761a7c6be9400a1d8b483bf07530ee255c84ffd64"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "Bool"
+            ],
+            [
+              "str",
+              "true"
+            ]
+          ],
+          "sha256": "989e8246ef2b89512950349761a7c6be9400a1d8b483bf07530ee255c84ffd64"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "Bool"
+            ],
+            [
+              "str",
+              "rec"
+            ]
+          ],
+          "sha256": "428fc75870da9c9d2575e4fee764dc08071594e0b6f0d4b6ec8a9649bbe6cfc4"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "line": 325,
+      "kind": "inductive",
+      "names": [
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Tagged"
+          ]
+        ],
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Tagged"
+          ],
+          [
+            "str",
+            "mk"
+          ]
+        ],
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Tagged"
+          ],
+          [
+            "str",
+            "rec"
+          ]
+        ]
+      ],
+      "display_names": [
+        "ProjRecIndexed.Tagged",
+        "ProjRecIndexed.Tagged.mk",
+        "ProjRecIndexed.Tagged.rec"
+      ],
+      "dependencies": [
+        0
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Tagged"
+            ]
+          ],
+          "sha256": "2e02a5225e5e3c6220be1cb4c316d2a3648d80c360707cb243779795c4cc57be"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Tagged"
+            ],
+            [
+              "str",
+              "mk"
+            ]
+          ],
+          "sha256": "a8dee2d3cb6ca1fab8d106db2df5b468d6ec7b51428b8d11f8d7027399f32d8c"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Tagged"
+            ],
+            [
+              "str",
+              "rec"
+            ]
+          ],
+          "sha256": "5bc5a763ef9c175ad4a9e177a868329d233d4233c9a1acda2a54a6774a127bff"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "line": 365,
+      "kind": "inductive",
+      "names": [
+        [
+          [
+            "str",
+            "And"
+          ]
+        ],
+        [
+          [
+            "str",
+            "And"
+          ],
+          [
+            "str",
+            "intro"
+          ]
+        ],
+        [
+          [
+            "str",
+            "And"
+          ],
+          [
+            "str",
+            "rec"
+          ]
+        ]
+      ],
+      "display_names": [
+        "And",
+        "And.intro",
+        "And.rec"
+      ],
+      "dependencies": [],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "And"
+            ]
+          ],
+          "sha256": "d88b90bf7e27524bc791528de716178c195f8ac36346819c1e9e460a9dca4487"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "And"
+            ],
+            [
+              "str",
+              "intro"
+            ]
+          ],
+          "sha256": "bbe4d899f9ad2f0b1dcfdcc67eb7b7eb4a5a31bfabf2cceace7ca1c508f4e8ff"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "And"
+            ],
+            [
+              "str",
+              "rec"
+            ]
+          ],
+          "sha256": "edb16931e16f836f9b7c478d4d1d2fa2fee93f5674f1d904cefec5e59aca06bb"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "line": 402,
+      "kind": "inductive",
+      "names": [
+        [
+          [
+            "str",
+            "Eq"
+          ]
+        ],
+        [
+          [
+            "str",
+            "Eq"
+          ],
+          [
+            "str",
+            "refl"
+          ]
+        ],
+        [
+          [
+            "str",
+            "Eq"
+          ],
+          [
+            "str",
+            "rec"
+          ]
+        ]
+      ],
+      "display_names": [
+        "Eq",
+        "Eq.refl",
+        "Eq.rec"
+      ],
+      "dependencies": [],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "Eq"
+            ]
+          ],
+          "sha256": "243d13e6a0f6e6dc138bb309f8157f0f892859c2d27d391f5dc78af679ddf9d8"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "Eq"
+            ],
+            [
+              "str",
+              "refl"
+            ]
+          ],
+          "sha256": "402016275664d499311e6731dfee96914b19eb2f6acb104c50252191c70571a2"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "Eq"
+            ],
+            [
+              "str",
+              "rec"
+            ]
+          ],
+          "sha256": "17a2c262691b249c50ba7168cdb5be0df6d4ac35c6cc070f7538b4788d931377"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "line": 408,
+      "kind": "def",
+      "names": [
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Tree"
+          ],
+          [
+            "str",
+            "kids"
+          ]
+        ]
+      ],
+      "display_names": [
+        "ProjRecIndexed.Tree.kids"
+      ],
+      "dependencies": [
+        1,
+        2
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Tree"
+            ],
+            [
+              "str",
+              "kids"
+            ]
+          ],
+          "sha256": "f2cff5b65f6f56fd22687b7f933938964c7cf4730ce2e1ceeac8c4dac1725bc1"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "line": 438,
+      "kind": "def",
+      "names": [
+        [
+          [
+            "str",
+            "List"
+          ],
+          [
+            "str",
+            "casesOn"
+          ]
+        ]
+      ],
+      "display_names": [
+        "List.casesOn"
+      ],
+      "dependencies": [
+        1
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "List"
+            ],
+            [
+              "str",
+              "casesOn"
+            ]
+          ],
+          "sha256": "0be42e353761c736cd4d30b1d9e8be2eb0ac40b13cd12fc8614a2871ac979716"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "line": 441,
+      "kind": "def",
+      "names": [
+        [
+          [
+            "str",
+            "Unit"
+          ],
+          [
+            "str",
+            "unit"
+          ]
+        ]
+      ],
+      "display_names": [
+        "Unit.unit"
+      ],
+      "dependencies": [
+        3,
+        4
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "Unit"
+            ],
+            [
+              "str",
+              "unit"
+            ]
+          ],
+          "sha256": "1d4ed438cb361c5ea24fa71462a1d3a45696cf5f2047ef1a8d99b9b17f673fdd"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "line": 495,
+      "kind": "def",
+      "names": [
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Tree"
+          ],
+          [
+            "str",
+            "firstLabel"
+          ],
+          [
+            "str",
+            "match_1"
+          ]
+        ]
+      ],
+      "display_names": [
+        "ProjRecIndexed.Tree.firstLabel.match_1"
+      ],
+      "dependencies": [
+        1,
+        2,
+        4,
+        11,
+        12
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Tree"
+            ],
+            [
+              "str",
+              "firstLabel"
+            ],
+            [
+              "str",
+              "match_1"
+            ]
+          ],
+          "sha256": "7cdeb2d27d3695a93d7be583233f0cb81cf5cc0e4f1fff1d6c6a7a48e21857fb"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "line": 500,
+      "kind": "def",
+      "names": [
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Tree"
+          ],
+          [
+            "str",
+            "label"
+          ]
+        ]
+      ],
+      "display_names": [
+        "ProjRecIndexed.Tree.label"
+      ],
+      "dependencies": [
+        0,
+        2
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Tree"
+            ],
+            [
+              "str",
+              "label"
+            ]
+          ],
+          "sha256": "3b126caa3de23211dd82e37c1c07b9de889b8dfa355a55cf153512a24db7f471"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "line": 515,
+      "kind": "def",
+      "names": [
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Tree"
+          ],
+          [
+            "str",
+            "firstLabel"
+          ]
+        ]
+      ],
+      "display_names": [
+        "ProjRecIndexed.Tree.firstLabel"
+      ],
+      "dependencies": [
+        0,
+        1,
+        2,
+        4,
+        10,
+        13,
+        14
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Tree"
+            ],
+            [
+              "str",
+              "firstLabel"
+            ]
+          ],
+          "sha256": "3b126caa3de23211dd82e37c1c07b9de889b8dfa355a55cf153512a24db7f471"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "line": 520,
+      "kind": "def",
+      "names": [
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Stream"
+          ],
+          [
+            "str",
+            "head"
+          ]
+        ]
+      ],
+      "display_names": [
+        "ProjRecIndexed.Stream.head"
+      ],
+      "dependencies": [
+        0,
+        5
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Stream"
+            ],
+            [
+              "str",
+              "head"
+            ]
+          ],
+          "sha256": "8b844e6d76542812e24b673dc8d6807d682c8173ab052f147817f63fc62d25e8"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "line": 525,
+      "kind": "def",
+      "names": [
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Stream"
+          ],
+          [
+            "str",
+            "tail"
+          ]
+        ]
+      ],
+      "display_names": [
+        "ProjRecIndexed.Stream.tail"
+      ],
+      "dependencies": [
+        4,
+        5
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Stream"
+            ],
+            [
+              "str",
+              "tail"
+            ]
+          ],
+          "sha256": "06f8359b8e9d8c93c56e827e1926607d5a7c97e035adc75383105267412f6cfd"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "line": 534,
+      "kind": "def",
+      "names": [
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Tagged"
+          ],
+          [
+            "str",
+            "val"
+          ]
+        ]
+      ],
+      "display_names": [
+        "ProjRecIndexed.Tagged.val"
+      ],
+      "dependencies": [
+        0,
+        7
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Tagged"
+            ],
+            [
+              "str",
+              "val"
+            ]
+          ],
+          "sha256": "8f305a0586b66c1e2ae53fdfac845a3f78bfd7152c732bfa31fd0f3339a17b94"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "line": 543,
+      "kind": "def",
+      "names": [
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "Tagged"
+          ],
+          [
+            "str",
+            "tag"
+          ]
+        ]
+      ],
+      "display_names": [
+        "ProjRecIndexed.Tagged.tag"
+      ],
+      "dependencies": [
+        0,
+        7
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "Tagged"
+            ],
+            [
+              "str",
+              "tag"
+            ]
+          ],
+          "sha256": "b765d5f81f57812a0c63284f2dc5465d6b9930cc4b376ec2845a33c51968276f"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "line": 556,
+      "kind": "def",
+      "names": [
+        [
+          [
+            "str",
+            "rfl"
+          ]
+        ]
+      ],
+      "display_names": [
+        "rfl"
+      ],
+      "dependencies": [
+        9
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "rfl"
+            ]
+          ],
+          "sha256": "57a84092710faf266a7a2e40afe844f143b9f5e5880d1c90b7a28fab91347228"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "line": 666,
+      "kind": "thm",
+      "names": [
+        [
+          [
+            "str",
+            "ProjRecIndexed"
+          ],
+          [
+            "str",
+            "proj_mk"
+          ]
+        ]
+      ],
+      "display_names": [
+        "ProjRecIndexed.proj_mk"
+      ],
+      "dependencies": [
+        0,
+        1,
+        2,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        12,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "ProjRecIndexed"
+            ],
+            [
+              "str",
+              "proj_mk"
+            ]
+          ],
+          "sha256": "5eed425eed57b1cd2fdb0e8db2d8ea6a0ef4662c14e3d491a4618f4986ad8c12"
+        }
+      ]
+    }
+  ]
+}

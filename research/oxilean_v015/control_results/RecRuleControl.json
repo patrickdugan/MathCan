@@ -1,0 +1,74 @@
+{
+  "tool": {
+    "name": "oxilean-verify",
+    "version": "0.1.5"
+  },
+  "pins": {
+    "lean4export_commit": "3de59f10bc4b4a0f2de698597aeb1246caa0df0a",
+    "lean_toolchain": "v4.32.0-rc1",
+    "reader_format_version": "3.1.0",
+    "file_format_version": "3.1.0",
+    "file_lean_version": "4.32.0-rc1",
+    "file_lean_githash": "b4812ae53eea93439ad5dce5a5c26591c31cb697"
+  },
+  "input": {
+    "path": "/mnt/c/Users/patri/Documents/Codex/2026-11-15/files-pasted-by-the-user-oxilean/work/oxilean/tests/fixtures/lean4export/RecRuleControl.ndjson",
+    "sha256": "1ab47077e7aa6400eaf11bf02cd8800ef770392bbd846e04a5298f219aa1d919",
+    "size_bytes": 4817,
+    "format_version": "3.1.0"
+  },
+  "totals": {
+    "verified": 3,
+    "unsupported": 0,
+    "rejected": 2,
+    "wall_ms": 4
+  },
+  "unsupported_features": [],
+  "rejected": [
+    {
+      "name": "ctrl_thm_junk_is_proof",
+      "reason": "TypeMismatch { expected: App(Lam(Default, Name(Str(Name(Anonymous), \"x\")), Const(Name(Str(Name(Anonymous), \"B\")), []), App(Const(Name(Str(Name(Anonymous), \"P\")), []), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"t\")), []))), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"t\")), [])), got: App(Const(Name(Str(Name(Anonymous), \"P\")), []), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"f\")), [])), context: \"checking (P.mk B.f)\" }"
+    },
+    {
+      "name": "ctrl_def_junk",
+      "reason": "TypeMismatch { expected: App(Lam(Default, Name(Str(Name(Anonymous), \"x\")), Const(Name(Str(Name(Anonymous), \"B\")), []), App(Const(Name(Str(Name(Anonymous), \"P\")), []), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"t\")), []))), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"t\")), [])), got: App(Const(Name(Str(Name(Anonymous), \"P\")), []), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"f\")), [])), context: \"checking (P.mk B.f)\" }"
+    }
+  ],
+  "decls": [
+    {
+      "name": "B",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 1906,
+      "detail": null
+    },
+    {
+      "name": "P",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 66,
+      "detail": null
+    },
+    {
+      "name": "ctrl_thm_junk_is_proof",
+      "kind": "thm",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "TypeMismatch { expected: App(Lam(Default, Name(Str(Name(Anonymous), \"x\")), Const(Name(Str(Name(Anonymous), \"B\")), []), App(Const(Name(Str(Name(Anonymous), \"P\")), []), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"t\")), []))), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"t\")), [])), got: App(Const(Name(Str(Name(Anonymous), \"P\")), []), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"f\")), [])), context: \"checking (P.mk B.f)\" }"
+    },
+    {
+      "name": "ctrl_def_junk",
+      "kind": "def",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "TypeMismatch { expected: App(Lam(Default, Name(Str(Name(Anonymous), \"x\")), Const(Name(Str(Name(Anonymous), \"B\")), []), App(Const(Name(Str(Name(Anonymous), \"P\")), []), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"t\")), []))), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"t\")), [])), got: App(Const(Name(Str(Name(Anonymous), \"P\")), []), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"f\")), [])), context: \"checking (P.mk B.f)\" }"
+    },
+    {
+      "name": "ctrl_thm_real_proof",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 7,
+      "detail": null
+    }
+  ]
+}

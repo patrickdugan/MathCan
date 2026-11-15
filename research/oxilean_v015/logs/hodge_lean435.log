@@ -1,0 +1,12 @@
+Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
+bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38  /home/duganist/.cache/ram04-runtime-4.35.0/lean-4.35.0-linux/bin/lean
+12c38901cdbfab178f1bf6145dd30012e9a3b2c11ca695292a5884fa3cbaddb6  /home/duganist/.cache/ram04-runtime-4.35.0/lean-4.35.0-linux/bin/leanchecker
+6874f33895ead142e867b331ec16730e8f827d521f17aa260850207de68332f5  MathCan/MathCan/Hodge.lean
+MathCan/MathCan/Hodge.lean: OK
+'MathCan.Hodge.endpoint_append' depends on axioms: [propext]
+'MathCan.Hodge.pathSum_append' depends on axioms: [propext]
+'MathCan.Hodge.pathSum_gauge' depends on axioms: [propext, Quot.sound]
+'MathCan.Hodge.closed_path_gauge' depends on axioms: [propext, Quot.sound]
+'MathCan.Hodge.pathSum_zero' depends on axioms: [propext]
+'MathCan.Hodge.closed_potential_zero' depends on axioms: [propext, Quot.sound]
+'MathCan.Hodge.edge_residual_gauge' depends on axioms: [propext, Quot.sound]

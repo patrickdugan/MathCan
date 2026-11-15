@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-15",
+  "timezone": "Asia/Taipei",
+  "pins": {
+    "oxilean": "3adb983d2aefc6a596bdc8b63438f54feecd1f55",
+    "lean4export": "3de59f10bc4b4a0f2de698597aeb1246caa0df0a",
+    "mathcan": "13151576dd83939f7850f7f3025a49fa98e370b8",
+    "lean_export": "v4.32.0-rc1",
+    "lean_export_commit": "b4812ae53eea93439ad5dce5a5c26591c31cb697",
+    "compactification_base": "714c5ba87bb17a16f1ce4814c02abde2d1093e9d"
+  },
+  "branches": {
+    "mathcan": "research/quantized-jet-replay-20261115",
+    "compactification": "research/quantization-d-audit-20261115",
+    "oxilean": "research/v015-control-audit-20261115"
+  },
+  "installed": {
+    "lean": "4.35.0",
+    "lean_commit": "eb6cafb7290e8bd5f2937522d8d804f58f02bafc",
+    "rustc": "1.94.1",
+    "rustc_commit": "e408947bfd200af42db322daf0fadfe7e26d3bd1",
+    "lean_binary_sha256": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38",
+    "leanchecker_binary_sha256": "12c38901cdbfab178f1bf6145dd30012e9a3b2c11ca695292a5884fa3cbaddb6"
+  },
+  "checker": {
+    "version": "0.1.5",
+    "build": "direct rustc, edition 2021, opt-level=2, default features, no downloads",
+    "binary_sha256": "831e7ad751d69d7f27e8ee59ec40246a6256e971e11f418b0e92f9722771e9fa",
+    "source_manifest_sha256": "e23f18ca3e57e8f7c88b72067dd141c1a6aa97f1baa5373c122619f52e825e56"
+  },
+  "hodge": {
+    "git_blob": "1207f7604ab9e04188188764b80d655866a5fa71",
+    "sha256": "6874f33895ead142e867b331ec16730e8f827d521f17aa260850207de68332f5",
+    "source_unchanged": true
+  },
+  "new_lean_source_sha256": "157597f53bc6323e5cc6d120d131e863105cae7ba3f5727002e9a28240106672",
+  "missing": [
+    "oxilean_v015_eval_20261115_continued.tar.gz and its original test/proof/log files",
+    "installed Lean 4.32.0-rc1",
+    "built pinned lean4export binary",
+    "pinned target NDJSON"
+  ],
+  "recovered_context": {
+    "thread_id": "6af91bc0-8bd8-83ec-9576-c35c0e0f2b3d",
+    "title": "OxiLean technical evaluation",
+    "scope": "Written results only; sandbox artifact links were not available as local files"
+  }
+}

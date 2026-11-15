@@ -1,0 +1,16 @@
+✓  B                                               1.8 ms
+✓  P                                               0.1 ms
+✓  T                                               0.1 ms
+✓  Eq                                              0.2 ms
+✓  False                                           0.0 ms
+✓  True                                            0.0 ms
+✓  get                                             0.0 ms
+✓  val                                             0.0 ms
+✓  fst                                             0.0 ms
+✓  get_eq                                          0.1 ms
+✓  val_eq                                          0.0 ms
+✓  honest_val_is_t                                 0.0 ms
+✗  bad_val_is_f                                rejected: TypeMismatch { expected: App(App(App(Const(Name(Str(Name(Anonymous), "Eq")), [Level(Succ(Level(Zero)))]), Const(Name(Str(Name(Anonymous), "B")), [])), App(Const(Name(Str(Name(Anonymous), "val")), []), App(App(Const(Name(Str(Name(Str(Name(Anonymous), "T")), "mk")), []), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "t")), [])), App(Const(Name(Str(Name(Str(Name(Anonymous), "P")), "mk")), []), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "t")), []))))), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "f")), [])), got: App(App(App(Const(Name(Str(Name(Anonymous), "Eq")), [Level(Succ(Level(Zero)))]), Const(Name(Str(Name(Anonymous), "B")), [])), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "f")), [])), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "f")), [])), context: "checking ((Eq.refl.{1} B) B.f)" }
+✗  bad_f_eq_t                                  rejected: TypeMismatch { expected: App(App(App(Const(Name(Str(Name(Anonymous), "Eq")), [Level(Succ(Level(Zero)))]), Const(Name(Str(Name(Anonymous), "B")), [])), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "f")), [])), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "t")), [])), got: App(App(App(Const(Name(Str(Name(Anonymous), "Eq")), [Level(Succ(Level(Zero)))]), Const(Name(Str(Name(Anonymous), "B")), [])), App(Const(Name(Str(Name(Anonymous), "val")), []), App(App(Const(Name(Str(Name(Str(Name(Anonymous), "T")), "mk")), []), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "t")), [])), App(Const(Name(Str(Name(Str(Name(Anonymous), "P")), "mk")), []), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "t")), []))))), App(Const(Name(Str(Name(Anonymous), "fst")), []), App(App(Const(Name(Str(Name(Str(Name(Anonymous), "T")), "mk")), []), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "t")), [])), App(Const(Name(Str(Name(Str(Name(Anonymous), "P")), "mk")), []), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "t")), []))))), context: "checking (val_eq ((T.mk B.t) (P.mk B.t)))" }
+✗  boom                                        rejected: depends on rejected declaration 'bad_f_eq_t'
+12 verified · 0 unsupported · 3 rejected

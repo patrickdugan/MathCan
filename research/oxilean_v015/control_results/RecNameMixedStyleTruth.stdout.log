@@ -1,0 +1,14 @@
+✓  B                                               1.7 ms
+✓  P                                               0.1 ms
+✓  Eq                                              0.2 ms
+✓  False                                           0.0 ms
+✓  True                                            0.0 ms
+✓  get                                             0.0 ms
+✓  get_eq                                          0.1 ms
+✓  A                                               0.4 ms
+✗  A.rec                                       rejected: Other("duplicate declaration: A.rec")
+✓  X                                               0.1 ms
+✗  get_X_is_f                                  rejected: TypeMismatch { expected: App(App(App(Const(Name(Str(Name(Anonymous), "Eq")), [Level(Succ(Level(Zero)))]), Const(Name(Str(Name(Anonymous), "B")), [])), App(App(Const(Name(Str(Name(Anonymous), "get")), []), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "t")), [])), Const(Name(Str(Name(Anonymous), "X")), []))), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "f")), [])), got: App(App(App(Const(Name(Str(Name(Anonymous), "Eq")), [Level(Succ(Level(Zero)))]), Const(Name(Str(Name(Anonymous), "B")), [])), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "f")), [])), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "f")), [])), context: "checking ((Eq.refl.{1} B) B.f)" }
+✗  bad_f_eq_t                                  rejected: TypeMismatch { expected: App(App(App(Const(Name(Str(Name(Anonymous), "Eq")), [Level(Succ(Level(Zero)))]), Const(Name(Str(Name(Anonymous), "B")), [])), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "f")), [])), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "t")), [])), got: App(App(App(Const(Name(Str(Name(Anonymous), "Eq")), [Level(Succ(Level(Zero)))]), Const(Name(Str(Name(Anonymous), "B")), [])), App(App(Const(Name(Str(Name(Anonymous), "get")), []), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "t")), [])), Const(Name(Str(Name(Anonymous), "X")), []))), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "t")), [])), context: "checking ((get_eq B.t) X)" }
+✗  boom                                        rejected: depends on rejected declaration 'bad_f_eq_t'
+9 verified · 0 unsupported · 4 rejected

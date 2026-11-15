@@ -1,0 +1,88 @@
+{
+  "tool": {
+    "name": "oxilean-verify",
+    "version": "0.1.5"
+  },
+  "pins": {
+    "lean4export_commit": "3de59f10bc4b4a0f2de698597aeb1246caa0df0a",
+    "lean_toolchain": "v4.32.0-rc1",
+    "reader_format_version": "3.1.0",
+    "file_format_version": "3.1.0",
+    "file_lean_version": "4.32.0-rc1",
+    "file_lean_githash": "b4812ae53eea93439ad5dce5a5c26591c31cb697"
+  },
+  "input": {
+    "path": "/mnt/c/Users/patri/Documents/Codex/2026-11-15/files-pasted-by-the-user-oxilean/work/oxilean/tests/fixtures/lean4export/ProjOutOfProp.ndjson",
+    "sha256": "ed7c545acc77f3cff50be3377a4bbff971384122d7a7bc7898cbcb5ef4dd0a22",
+    "size_bytes": 14083,
+    "format_version": "3.1.0"
+  },
+  "totals": {
+    "verified": 5,
+    "unsupported": 0,
+    "rejected": 2,
+    "wall_ms": 5
+  },
+  "unsupported_features": [],
+  "rejected": [
+    {
+      "name": "ProjOutOfProp.wit",
+      "reason": "Other(\"invalid projection: Exists is a proposition and the type of its field 0, Nat, is not; data cannot be projected out of a proof\")"
+    },
+    {
+      "name": "ProjOutOfProp.false_of_proj",
+      "reason": "Other(\"invalid projection: Exists is a proposition and the type of its field 0, Nat, is not; data cannot be projected out of a proof\")"
+    }
+  ],
+  "decls": [
+    {
+      "name": "Exists",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 1863,
+      "detail": null
+    },
+    {
+      "name": "Nat",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 70,
+      "detail": null
+    },
+    {
+      "name": "True",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 35,
+      "detail": null
+    },
+    {
+      "name": "ProjOutOfProp.wit",
+      "kind": "def",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "Other(\"invalid projection: Exists is a proposition and the type of its field 0, Nat, is not; data cannot be projected out of a proof\")"
+    },
+    {
+      "name": "False",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 24,
+      "detail": null
+    },
+    {
+      "name": "Eq",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 116,
+      "detail": null
+    },
+    {
+      "name": "ProjOutOfProp.false_of_proj",
+      "kind": "thm",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "Other(\"invalid projection: Exists is a proposition and the type of its field 0, Nat, is not; data cannot be projected out of a proof\")"
+    }
+  ]
+}

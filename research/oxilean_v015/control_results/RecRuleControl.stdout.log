@@ -1,0 +1,6 @@
+✓  B                                               1.9 ms
+✓  P                                               0.1 ms
+✗  ctrl_thm_junk_is_proof                      rejected: TypeMismatch { expected: App(Lam(Default, Name(Str(Name(Anonymous), "x")), Const(Name(Str(Name(Anonymous), "B")), []), App(Const(Name(Str(Name(Anonymous), "P")), []), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "t")), []))), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "t")), [])), got: App(Const(Name(Str(Name(Anonymous), "P")), []), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "f")), [])), context: "checking (P.mk B.f)" }
+✗  ctrl_def_junk                               rejected: TypeMismatch { expected: App(Lam(Default, Name(Str(Name(Anonymous), "x")), Const(Name(Str(Name(Anonymous), "B")), []), App(Const(Name(Str(Name(Anonymous), "P")), []), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "t")), []))), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "t")), [])), got: App(Const(Name(Str(Name(Anonymous), "P")), []), Const(Name(Str(Name(Str(Name(Anonymous), "B")), "f")), [])), context: "checking (P.mk B.f)" }
+✓  ctrl_thm_real_proof                             0.0 ms
+3 verified · 0 unsupported · 2 rejected

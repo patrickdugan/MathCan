@@ -1,0 +1,812 @@
+{
+  "scope": "structural_graph_only_not_kernel_verification",
+  "sha256": "0df8e3d31665a47128aa6da412df065936637a8ae4cafe623e37a3fb06d908cf",
+  "metadata": {
+    "exporter": {
+      "name": "lean4export",
+      "version": "3.1.0"
+    },
+    "format": {
+      "version": "3.1.0"
+    },
+    "lean": {
+      "githash": "b4812ae53eea93439ad5dce5a5c26591c31cb697",
+      "version": "4.32.0-rc1"
+    }
+  },
+  "target": null,
+  "record_count": 13,
+  "closure_record_count": 13,
+  "structurally_closed": false,
+  "unambiguous_names": true,
+  "missing_constants": [
+    [
+      [
+        "str",
+        "C.rec"
+      ]
+    ]
+  ],
+  "duplicate_names": [],
+  "axioms": [],
+  "unsafe_records": [],
+  "records": [
+    {
+      "id": 0,
+      "line": 34,
+      "kind": "inductive",
+      "names": [
+        [
+          [
+            "str",
+            "B"
+          ]
+        ],
+        [
+          [
+            "str",
+            "B"
+          ],
+          [
+            "str",
+            "t"
+          ]
+        ],
+        [
+          [
+            "str",
+            "B"
+          ],
+          [
+            "str",
+            "f"
+          ]
+        ],
+        [
+          [
+            "str",
+            "B"
+          ],
+          [
+            "str",
+            "rec"
+          ]
+        ]
+      ],
+      "display_names": [
+        "B",
+        "B.t",
+        "B.f",
+        "B.rec"
+      ],
+      "dependencies": [],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "B"
+            ]
+          ],
+          "sha256": "733e2514046449c42d66e7059d7c0a5fb207a617be198f02230a265f24f85a7c"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "B"
+            ],
+            [
+              "str",
+              "t"
+            ]
+          ],
+          "sha256": "cf69e95a10c58a8d6f10df6eeaf4237dac5088107e7e6f4be76d9fc7f6a39134"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "B"
+            ],
+            [
+              "str",
+              "f"
+            ]
+          ],
+          "sha256": "cf69e95a10c58a8d6f10df6eeaf4237dac5088107e7e6f4be76d9fc7f6a39134"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "B"
+            ],
+            [
+              "str",
+              "rec"
+            ]
+          ],
+          "sha256": "7531768bbc13c16201b8ff2829539079d5951f4f52b1267b87723784de51c869"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "line": 61,
+      "kind": "inductive",
+      "names": [
+        [
+          [
+            "str",
+            "P"
+          ]
+        ],
+        [
+          [
+            "str",
+            "P"
+          ],
+          [
+            "str",
+            "mk"
+          ]
+        ],
+        [
+          [
+            "str",
+            "P"
+          ],
+          [
+            "str",
+            "rec"
+          ]
+        ]
+      ],
+      "display_names": [
+        "P",
+        "P.mk",
+        "P.rec"
+      ],
+      "dependencies": [
+        0
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "P"
+            ]
+          ],
+          "sha256": "73a0eefc9ed2acc5e7ab2b2a33761d6438076ccd25de3b5408ed46b3c54cd1ba"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "P"
+            ],
+            [
+              "str",
+              "mk"
+            ]
+          ],
+          "sha256": "7130508c282b44929bb6f9ef49a3a1885095aa86fa7c2b54bc2538d4028f38b4"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "P"
+            ],
+            [
+              "str",
+              "rec"
+            ]
+          ],
+          "sha256": "f2970ea56727a498411829757a5ff578eef8fa1c5be618755eae7cb6da63d561"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "line": 105,
+      "kind": "inductive",
+      "names": [
+        [
+          [
+            "str",
+            "Eq"
+          ]
+        ],
+        [
+          [
+            "str",
+            "Eq"
+          ],
+          [
+            "str",
+            "refl"
+          ]
+        ],
+        [
+          [
+            "str",
+            "Eq"
+          ],
+          [
+            "str",
+            "rec"
+          ]
+        ]
+      ],
+      "display_names": [
+        "Eq",
+        "Eq.refl",
+        "Eq.rec"
+      ],
+      "dependencies": [],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "Eq"
+            ]
+          ],
+          "sha256": "b293840fba7d6e57febdc4c3f8e4181715ea7dfabd68464587a4021aa0a059bf"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "Eq"
+            ],
+            [
+              "str",
+              "refl"
+            ]
+          ],
+          "sha256": "34409155d2daebca30faffb9bc789d69fd6021a1b9f51b904b2eb308f3b7829d"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "Eq"
+            ],
+            [
+              "str",
+              "rec"
+            ]
+          ],
+          "sha256": "c04b9c5ed460185364f53138d59932beed1933cb3f06c6ea5db059236f8c4deb"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "line": 112,
+      "kind": "inductive",
+      "names": [
+        [
+          [
+            "str",
+            "False"
+          ]
+        ],
+        [
+          [
+            "str",
+            "False"
+          ],
+          [
+            "str",
+            "rec"
+          ]
+        ]
+      ],
+      "display_names": [
+        "False",
+        "False.rec"
+      ],
+      "dependencies": [],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "False"
+            ]
+          ],
+          "sha256": "7bf53bb964513a19a4e22f5a8e59b56a8a08ae2622c06901db1041ba08a09949"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "False"
+            ],
+            [
+              "str",
+              "rec"
+            ]
+          ],
+          "sha256": "056c23516bfa25283a397c4be6b2b88f07eb119731eeac53551d85bace915d42"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "line": 127,
+      "kind": "inductive",
+      "names": [
+        [
+          [
+            "str",
+            "True"
+          ]
+        ],
+        [
+          [
+            "str",
+            "True"
+          ],
+          [
+            "str",
+            "intro"
+          ]
+        ],
+        [
+          [
+            "str",
+            "True"
+          ],
+          [
+            "str",
+            "rec"
+          ]
+        ]
+      ],
+      "display_names": [
+        "True",
+        "True.intro",
+        "True.rec"
+      ],
+      "dependencies": [],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "True"
+            ]
+          ],
+          "sha256": "7bf53bb964513a19a4e22f5a8e59b56a8a08ae2622c06901db1041ba08a09949"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "True"
+            ],
+            [
+              "str",
+              "intro"
+            ]
+          ],
+          "sha256": "3ad2d5e2a652759bc21274e9d86b747b7dcd98268997ca46bb3d4d4caa3989f2"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "True"
+            ],
+            [
+              "str",
+              "rec"
+            ]
+          ],
+          "sha256": "54e5a70adc57a3c4a3ba5cd979e12a6da8eab63bb983be79481b3a680de59dfe"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "line": 143,
+      "kind": "def",
+      "names": [
+        [
+          [
+            "str",
+            "get"
+          ]
+        ]
+      ],
+      "display_names": [
+        "get"
+      ],
+      "dependencies": [
+        0,
+        1
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "get"
+            ]
+          ],
+          "sha256": "9b3e0e5b3c1f6a7f5754ff37604d356f5f0369e50dfdc06a707d757ab5756ed7"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "line": 167,
+      "kind": "thm",
+      "names": [
+        [
+          [
+            "str",
+            "get_eq"
+          ]
+        ]
+      ],
+      "display_names": [
+        "get_eq"
+      ],
+      "dependencies": [
+        0,
+        1,
+        2,
+        5
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "get_eq"
+            ]
+          ],
+          "sha256": "4f9055d30935a2e920fde47f694ad4f08dc9d8968f2fc6c92765fb24d2c31a5a"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "line": 279,
+      "kind": "inductive",
+      "names": [
+        [
+          [
+            "str",
+            "A"
+          ]
+        ],
+        [
+          [
+            "str",
+            "C"
+          ]
+        ],
+        [
+          [
+            "str",
+            "A"
+          ],
+          [
+            "str",
+            "mk"
+          ]
+        ],
+        [
+          [
+            "str",
+            "C"
+          ],
+          [
+            "str",
+            "base"
+          ]
+        ],
+        [
+          [
+            "str",
+            "C"
+          ],
+          [
+            "str",
+            "step"
+          ]
+        ],
+        [
+          [
+            "str",
+            "A.rec"
+          ]
+        ],
+        [
+          [
+            "str",
+            "C"
+          ],
+          [
+            "str",
+            "rec"
+          ]
+        ]
+      ],
+      "display_names": [
+        "A",
+        "C",
+        "A.mk",
+        "C.base",
+        "C.step",
+        "«A.rec»",
+        "C.rec"
+      ],
+      "dependencies": [
+        0,
+        1,
+        8
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "A"
+            ]
+          ],
+          "sha256": "733e2514046449c42d66e7059d7c0a5fb207a617be198f02230a265f24f85a7c"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "C"
+            ]
+          ],
+          "sha256": "733e2514046449c42d66e7059d7c0a5fb207a617be198f02230a265f24f85a7c"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "A"
+            ],
+            [
+              "str",
+              "mk"
+            ]
+          ],
+          "sha256": "945e5de1a333dbce123cd979d18db0721e0297797b2615bea1a6741296ec8786"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "C"
+            ],
+            [
+              "str",
+              "base"
+            ]
+          ],
+          "sha256": "44db3d7415b97109ea361aa7b863c13510b27680ec8082e2d9c11ec37d82af8d"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "C"
+            ],
+            [
+              "str",
+              "step"
+            ]
+          ],
+          "sha256": "a7a767c3ff1e7639ab69e6d5d25d909d2c2a5b035e5af35c3175d993a783157e"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "A.rec"
+            ]
+          ],
+          "sha256": "b790b6e30f270a6caba8de5e0be1955f10115954c3a8b830ed16ff51967f886e"
+        },
+        {
+          "name": [
+            [
+              "str",
+              "C"
+            ],
+            [
+              "str",
+              "rec"
+            ]
+          ],
+          "sha256": "09f7b9c3a2abf2d407b01261bc83063738a69f929657ac73f7918b65443726ae"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "line": 300,
+      "kind": "def",
+      "names": [
+        [
+          [
+            "str",
+            "A"
+          ],
+          [
+            "str",
+            "rec"
+          ]
+        ]
+      ],
+      "display_names": [
+        "A.rec"
+      ],
+      "dependencies": [
+        0,
+        1
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "A"
+            ],
+            [
+              "str",
+              "rec"
+            ]
+          ],
+          "sha256": "5d58be0a5060d512aa707f276862a8dab5dedd5f1153aa22c8f45bfc58084852"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "line": 324,
+      "kind": "def",
+      "names": [
+        [
+          [
+            "str",
+            "X"
+          ]
+        ]
+      ],
+      "display_names": [
+        "X"
+      ],
+      "dependencies": [
+        0,
+        1,
+        7
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "X"
+            ]
+          ],
+          "sha256": "4d7ea75743ae8f97af6fa2bed5c28dcb213c2249dd1b41e7c6d77c10532648a8"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "line": 332,
+      "kind": "thm",
+      "names": [
+        [
+          [
+            "str",
+            "get_X_is_f"
+          ]
+        ]
+      ],
+      "display_names": [
+        "get_X_is_f"
+      ],
+      "dependencies": [
+        0,
+        2,
+        5,
+        9
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "get_X_is_f"
+            ]
+          ],
+          "sha256": "bb574ddabb4ed64cf3150cd0275ae86a4e7dde7eab727e220ec9d8b1758c8769"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "line": 339,
+      "kind": "thm",
+      "names": [
+        [
+          [
+            "str",
+            "bad_f_eq_t"
+          ]
+        ]
+      ],
+      "display_names": [
+        "bad_f_eq_t"
+      ],
+      "dependencies": [
+        0,
+        2,
+        6,
+        9
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "bad_f_eq_t"
+            ]
+          ],
+          "sha256": "17eb759611d66be86155273fdb1b5ae6359c403ae0b7860f17792de2d4c032de"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "line": 359,
+      "kind": "thm",
+      "names": [
+        [
+          [
+            "str",
+            "boom"
+          ]
+        ]
+      ],
+      "display_names": [
+        "boom"
+      ],
+      "dependencies": [
+        0,
+        2,
+        3,
+        4,
+        11
+      ],
+      "type_fingerprints": [
+        {
+          "name": [
+            [
+              "str",
+              "boom"
+            ]
+          ],
+          "sha256": "93dfa1677b1a8b9a3b475139bc1aeea276ac68724b802376bb4167d6e164eb2d"
+        }
+      ]
+    }
+  ]
+}

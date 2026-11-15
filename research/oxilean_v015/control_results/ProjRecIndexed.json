@@ -1,0 +1,184 @@
+{
+  "tool": {
+    "name": "oxilean-verify",
+    "version": "0.1.5"
+  },
+  "pins": {
+    "lean4export_commit": "3de59f10bc4b4a0f2de698597aeb1246caa0df0a",
+    "lean_toolchain": "v4.32.0-rc1",
+    "reader_format_version": "3.1.0",
+    "file_format_version": "3.1.0",
+    "file_lean_version": "4.32.0-rc1",
+    "file_lean_githash": "b4812ae53eea93439ad5dce5a5c26591c31cb697"
+  },
+  "input": {
+    "path": "/mnt/c/Users/patri/Documents/Codex/2026-11-15/files-pasted-by-the-user-oxilean/work/oxilean/tests/fixtures/lean4export/ProjRecIndexed.ndjson",
+    "sha256": "53905a2f589da6eccda8081eb04bd88794b2374e39fcb9c2d98a5f448c93b28b",
+    "size_bytes": 39606,
+    "format_version": "3.1.0"
+  },
+  "totals": {
+    "verified": 22,
+    "unsupported": 0,
+    "rejected": 0,
+    "wall_ms": 7
+  },
+  "unsupported_features": [],
+  "rejected": [],
+  "decls": [
+    {
+      "name": "Nat",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 1843,
+      "detail": null
+    },
+    {
+      "name": "List",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 161,
+      "detail": null
+    },
+    {
+      "name": "ProjRecIndexed.Tree",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 208,
+      "detail": null
+    },
+    {
+      "name": "PUnit",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 43,
+      "detail": null
+    },
+    {
+      "name": "Unit",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 3,
+      "detail": null
+    },
+    {
+      "name": "ProjRecIndexed.Stream",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 95,
+      "detail": null
+    },
+    {
+      "name": "Bool",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 57,
+      "detail": null
+    },
+    {
+      "name": "ProjRecIndexed.Tagged",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 101,
+      "detail": null
+    },
+    {
+      "name": "And",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 105,
+      "detail": null
+    },
+    {
+      "name": "Eq",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 114,
+      "detail": null
+    },
+    {
+      "name": "ProjRecIndexed.Tree.kids",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 29,
+      "detail": null
+    },
+    {
+      "name": "List.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 70,
+      "detail": null
+    },
+    {
+      "name": "Unit.unit",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 7,
+      "detail": null
+    },
+    {
+      "name": "ProjRecIndexed.Tree.firstLabel.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 88,
+      "detail": null
+    },
+    {
+      "name": "ProjRecIndexed.Tree.label",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 6,
+      "detail": null
+    },
+    {
+      "name": "ProjRecIndexed.Tree.firstLabel",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 33,
+      "detail": null
+    },
+    {
+      "name": "ProjRecIndexed.Stream.head",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 5,
+      "detail": null
+    },
+    {
+      "name": "ProjRecIndexed.Stream.tail",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 11,
+      "detail": null
+    },
+    {
+      "name": "ProjRecIndexed.Tagged.val",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 19,
+      "detail": null
+    },
+    {
+      "name": "ProjRecIndexed.Tagged.tag",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 16,
+      "detail": null
+    },
+    {
+      "name": "rfl",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 17,
+      "detail": null
+    },
+    {
+      "name": "ProjRecIndexed.proj_mk",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 188,
+      "detail": null
+    }
+  ]
+}

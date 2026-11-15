@@ -1,0 +1,8 @@
+Native graph: 1546 constants
+MathCan.Hodge.closed_path_gauge.{u} {V : Type u} (q : V → V → Int) (p : V → Int) (start : V) (xs : List V)
+  (closed : MathCan.Hodge.endpoint start xs = start) :
+  MathCan.Hodge.pathSum (fun u v => q u v + (p v - p u)) start xs = MathCan.Hodge.pathSum q start xs
+MathCan.QuantizedJet.corrected_stream_stable (D : Int) (hD : 0 < D) (t r u v : Nat → Int)
+  (hu : ∀ (i : Nat), u (i + 1) = t i * u i + r i)
+  (hv : ∀ (i : Nat), v (i + 1) = t i * v i + 2 * D * MathCan.QuantizedJet.nearest D (r i - t i * (v i - u i)))
+  (h0 : -D ≤ v 0 - u 0 ∧ v 0 - u 0 ≤ D) (i : Nat) : -D ≤ v i - u i ∧ v i - u i ≤ D

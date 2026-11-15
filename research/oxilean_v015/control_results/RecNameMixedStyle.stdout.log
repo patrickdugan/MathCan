@@ -1,0 +1,14 @@
+✓  B                                               1.8 ms
+✓  P                                               0.1 ms
+✓  Eq                                              0.1 ms
+✓  False                                           0.0 ms
+✓  True                                            0.1 ms
+✓  get                                             0.0 ms
+✓  get_eq                                          0.1 ms
+✗  A                                           rejected: recursor record '«A.rec»' of inductive bundle 'A' is not named as Lean's kernel names a recursor of this declaration: the recursor of 'A' is 'A.rec', the component 'rec' under 'A'
+✓  A.rec                                           0.0 ms
+✗  X                                           rejected: depends on rejected declaration 'C.rec'
+✗  get_X_is_f                                  rejected: depends on rejected declaration 'X'
+✗  bad_f_eq_t                                  rejected: depends on rejected declaration 'X'
+✗  boom                                        rejected: depends on rejected declaration 'bad_f_eq_t'
+8 verified · 0 unsupported · 5 rejected

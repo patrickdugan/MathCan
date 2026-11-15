@@ -1,0 +1,138 @@
+{
+  "tool": {
+    "name": "oxilean-verify",
+    "version": "0.1.5"
+  },
+  "pins": {
+    "lean4export_commit": "3de59f10bc4b4a0f2de698597aeb1246caa0df0a",
+    "lean_toolchain": "v4.32.0-rc1",
+    "reader_format_version": "3.1.0",
+    "file_format_version": "3.1.0",
+    "file_lean_version": "4.32.0-rc1",
+    "file_lean_githash": "b4812ae53eea93439ad5dce5a5c26591c31cb697"
+  },
+  "input": {
+    "path": "/mnt/c/Users/patri/Documents/Codex/2026-11-15/files-pasted-by-the-user-oxilean/work/oxilean/tests/fixtures/lean4export/RecNameMixedStyleTruth.ndjson",
+    "sha256": "1f36640514c59330a0f6bd7faab1f5c5fd078155bd809272555d9682a68a5af0",
+    "size_bytes": 20892,
+    "format_version": "3.1.0"
+  },
+  "totals": {
+    "verified": 9,
+    "unsupported": 0,
+    "rejected": 4,
+    "wall_ms": 6
+  },
+  "unsupported_features": [],
+  "rejected": [
+    {
+      "name": "A.rec",
+      "reason": "Other(\"duplicate declaration: A.rec\")"
+    },
+    {
+      "name": "get_X_is_f",
+      "reason": "TypeMismatch { expected: App(App(App(Const(Name(Str(Name(Anonymous), \"Eq\")), [Level(Succ(Level(Zero)))]), Const(Name(Str(Name(Anonymous), \"B\")), [])), App(App(Const(Name(Str(Name(Anonymous), \"get\")), []), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"t\")), [])), Const(Name(Str(Name(Anonymous), \"X\")), []))), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"f\")), [])), got: App(App(App(Const(Name(Str(Name(Anonymous), \"Eq\")), [Level(Succ(Level(Zero)))]), Const(Name(Str(Name(Anonymous), \"B\")), [])), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"f\")), [])), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"f\")), [])), context: \"checking ((Eq.refl.{1} B) B.f)\" }"
+    },
+    {
+      "name": "bad_f_eq_t",
+      "reason": "TypeMismatch { expected: App(App(App(Const(Name(Str(Name(Anonymous), \"Eq\")), [Level(Succ(Level(Zero)))]), Const(Name(Str(Name(Anonymous), \"B\")), [])), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"f\")), [])), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"t\")), [])), got: App(App(App(Const(Name(Str(Name(Anonymous), \"Eq\")), [Level(Succ(Level(Zero)))]), Const(Name(Str(Name(Anonymous), \"B\")), [])), App(App(Const(Name(Str(Name(Anonymous), \"get\")), []), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"t\")), [])), Const(Name(Str(Name(Anonymous), \"X\")), []))), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"t\")), [])), context: \"checking ((get_eq B.t) X)\" }"
+    },
+    {
+      "name": "boom",
+      "reason": "depends on rejected declaration 'bad_f_eq_t'"
+    }
+  ],
+  "decls": [
+    {
+      "name": "B",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 1738,
+      "detail": null
+    },
+    {
+      "name": "P",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 61,
+      "detail": null
+    },
+    {
+      "name": "Eq",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 155,
+      "detail": null
+    },
+    {
+      "name": "False",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 26,
+      "detail": null
+    },
+    {
+      "name": "True",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 44,
+      "detail": null
+    },
+    {
+      "name": "get",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 47,
+      "detail": null
+    },
+    {
+      "name": "get_eq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 63,
+      "detail": null
+    },
+    {
+      "name": "A",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 407,
+      "detail": null
+    },
+    {
+      "name": "A.rec",
+      "kind": "def",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "Other(\"duplicate declaration: A.rec\")"
+    },
+    {
+      "name": "X",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 50,
+      "detail": null
+    },
+    {
+      "name": "get_X_is_f",
+      "kind": "thm",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "TypeMismatch { expected: App(App(App(Const(Name(Str(Name(Anonymous), \"Eq\")), [Level(Succ(Level(Zero)))]), Const(Name(Str(Name(Anonymous), \"B\")), [])), App(App(Const(Name(Str(Name(Anonymous), \"get\")), []), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"t\")), [])), Const(Name(Str(Name(Anonymous), \"X\")), []))), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"f\")), [])), got: App(App(App(Const(Name(Str(Name(Anonymous), \"Eq\")), [Level(Succ(Level(Zero)))]), Const(Name(Str(Name(Anonymous), \"B\")), [])), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"f\")), [])), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"f\")), [])), context: \"checking ((Eq.refl.{1} B) B.f)\" }"
+    },
+    {
+      "name": "bad_f_eq_t",
+      "kind": "thm",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "TypeMismatch { expected: App(App(App(Const(Name(Str(Name(Anonymous), \"Eq\")), [Level(Succ(Level(Zero)))]), Const(Name(Str(Name(Anonymous), \"B\")), [])), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"f\")), [])), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"t\")), [])), got: App(App(App(Const(Name(Str(Name(Anonymous), \"Eq\")), [Level(Succ(Level(Zero)))]), Const(Name(Str(Name(Anonymous), \"B\")), [])), App(App(Const(Name(Str(Name(Anonymous), \"get\")), []), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"t\")), [])), Const(Name(Str(Name(Anonymous), \"X\")), []))), Const(Name(Str(Name(Str(Name(Anonymous), \"B\")), \"t\")), [])), context: \"checking ((get_eq B.t) X)\" }"
+    },
+    {
+      "name": "boom",
+      "kind": "thm",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "depends on rejected declaration 'bad_f_eq_t'"
+    }
+  ]
+}

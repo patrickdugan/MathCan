@@ -1,0 +1,142 @@
+{
+  "tool": {
+    "name": "oxilean-verify",
+    "version": "0.1.5"
+  },
+  "pins": {
+    "lean4export_commit": "3de59f10bc4b4a0f2de698597aeb1246caa0df0a",
+    "lean_toolchain": "v4.32.0-rc1",
+    "reader_format_version": "3.1.0",
+    "file_format_version": "3.1.0",
+    "file_lean_version": "4.32.0-rc1",
+    "file_lean_githash": "b4812ae53eea93439ad5dce5a5c26591c31cb697"
+  },
+  "input": {
+    "path": "/mnt/c/Users/patri/Documents/Codex/2026-11-15/files-pasted-by-the-user-oxilean/work/oxilean/tests/fixtures/lean4export/RecNameMixedStyle.ndjson",
+    "sha256": "0df8e3d31665a47128aa6da412df065936637a8ae4cafe623e37a3fb06d908cf",
+    "size_bytes": 21870,
+    "format_version": "3.1.0"
+  },
+  "totals": {
+    "verified": 8,
+    "unsupported": 0,
+    "rejected": 5,
+    "wall_ms": 6
+  },
+  "unsupported_features": [],
+  "rejected": [
+    {
+      "name": "A",
+      "reason": "recursor record '«A.rec»' of inductive bundle 'A' is not named as Lean's kernel names a recursor of this declaration: the recursor of 'A' is 'A.rec', the component 'rec' under 'A'"
+    },
+    {
+      "name": "X",
+      "reason": "depends on rejected declaration 'C.rec'"
+    },
+    {
+      "name": "get_X_is_f",
+      "reason": "depends on rejected declaration 'X'"
+    },
+    {
+      "name": "bad_f_eq_t",
+      "reason": "depends on rejected declaration 'X'"
+    },
+    {
+      "name": "boom",
+      "reason": "depends on rejected declaration 'bad_f_eq_t'"
+    }
+  ],
+  "decls": [
+    {
+      "name": "B",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 1835,
+      "detail": null
+    },
+    {
+      "name": "P",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 62,
+      "detail": null
+    },
+    {
+      "name": "Eq",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 113,
+      "detail": null
+    },
+    {
+      "name": "False",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 24,
+      "detail": null
+    },
+    {
+      "name": "True",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 80,
+      "detail": null
+    },
+    {
+      "name": "get",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 45,
+      "detail": null
+    },
+    {
+      "name": "get_eq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 61,
+      "detail": null
+    },
+    {
+      "name": "A",
+      "kind": "inductive",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "recursor record '«A.rec»' of inductive bundle 'A' is not named as Lean's kernel names a recursor of this declaration: the recursor of 'A' is 'A.rec', the component 'rec' under 'A'"
+    },
+    {
+      "name": "A.rec",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 26,
+      "detail": null
+    },
+    {
+      "name": "X",
+      "kind": "def",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "depends on rejected declaration 'C.rec'"
+    },
+    {
+      "name": "get_X_is_f",
+      "kind": "thm",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "depends on rejected declaration 'X'"
+    },
+    {
+      "name": "bad_f_eq_t",
+      "kind": "thm",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "depends on rejected declaration 'X'"
+    },
+    {
+      "name": "boom",
+      "kind": "thm",
+      "verdict": "rejected",
+      "micros": 0,
+      "detail": "depends on rejected declaration 'bad_f_eq_t'"
+    }
+  ]
+}

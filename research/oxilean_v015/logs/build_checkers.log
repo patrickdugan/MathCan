@@ -1,0 +1,12 @@
+rustc 1.94.1 (e408947bf 2026-03-25)
+binary: rustc
+commit-hash: e408947bfd200af42db322daf0fadfe7e26d3bd1
+commit-date: 2026-03-25
+host: x86_64-unknown-linux-gnu
+release: 1.94.1
+LLVM version: 21.1.8
+oxilean-verify 0.1.5
+lean4export commit: 3de59f10bc4b4a0f2de698597aeb1246caa0df0a
+Lean toolchain:     v4.32.0-rc1
+NDJSON format:      3.1.0
+831e7ad751d69d7f27e8ee59ec40246a6256e971e11f418b0e92f9722771e9fa  build/oxilean-verify
