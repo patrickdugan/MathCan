@@ -3,6 +3,7 @@
 **Morality Lab · 15 November 2026 · Working draft v0.3**
 
 - [Latest revised technical manuscript](NRF_Observable_Fibers_Revised_v03.md) (Markdown, easiest to paste into Carbon)
+- [Typeset review PDF](NRF_Observable_Fibers_Revised_v03.pdf)
 - [Web reading version](NRF_Observable_Fibers_Revised_v03.html)
 - [Revised v0.2 manuscript, frozen for review history](NRF_Observable_Fibers_Revised_v02.md)
 - [Full and skip-adjusted Jacobian diagnostics](NRF_skip_adjusted_metrics_v03.csv)
