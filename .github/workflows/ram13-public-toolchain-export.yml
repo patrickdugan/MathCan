@@ -1,0 +1,71 @@
+name: RAM13 export pinned public Lean 4.35 runtime and MathCan source
+
+on:
+  push:
+    paths:
+      - .github/workflows/ram13-public-toolchain-export.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  portable-public-lean:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - name: Checkout RAM13 public exporter
+        uses: actions/checkout@v4
+      - name: Checkout immutable public MathCan evaluation source separately
+        uses: actions/checkout@v4
+        with:
+          ref: f427e0ef4a61093304d12ca2c0dc943d8d2429e5
+          path: _mathcan_pinned
+          persist-credentials: false
+      - name: Set up Lean from pinned MathCan toolchain
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Verify source and compile original public Lean dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C _mathcan_pinned rev-parse HEAD)" = f427e0ef4a61093304d12ca2c0dc943d8d2429e5
+          test "$(cat _mathcan_pinned/lean-toolchain)" = 'leanprover/lean4:v4.35.0'
+          (cd _mathcan_pinned && lake build MathCan)
+          lean --version | tee "$RUNNER_TEMP/lean-version.txt"
+          lake --version | tee "$RUNNER_TEMP/lake-version.txt"
+          test "$(lean --version | awk '{print $3}')" = '4.35.0'
+      - name: Export portable public Lean toolchain and compiled source with checksums
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v zstd
+          LEAN_EXEC="$(elan which lean)"
+          test -x "$LEAN_EXEC"
+          TOOLCHAIN_DIR="$(dirname "$(dirname "$LEAN_EXEC")")"
+          echo "LEAN_EXEC=$LEAN_EXEC"
+          du -sh "$TOOLCHAIN_DIR" _mathcan_pinned/.lake || true
+          tar -I 'zstd -T2 -3' -cf "$RUNNER_TEMP/ram13-lean435-toolchain.tar.zst" -C "$TOOLCHAIN_DIR" .
+          tar -I 'zstd -T2 -3' -cf "$RUNNER_TEMP/ram13-mathcan-source-and-oleans.tar.zst" --exclude='./.git' -C _mathcan_pinned .
+          (
+            cd "$RUNNER_TEMP"
+            sha256sum ram13-lean435-toolchain.tar.zst ram13-mathcan-source-and-oleans.tar.zst > ram13-SHA256SUMS.txt
+          )
+          cat "$RUNNER_TEMP/ram13-SHA256SUMS.txt"
+      - name: Upload public portable evaluation toolchain and pinned source
+        uses: actions/upload-artifact@v4
+        with:
+          name: ram13-public-lean435-source-and-toolchain-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/ram13-lean435-toolchain.tar.zst
+            ${{ runner.temp }}/ram13-mathcan-source-and-oleans.tar.zst
+            ${{ runner.temp }}/ram13-SHA256SUMS.txt
+            ${{ runner.temp }}/lean-version.txt
+            ${{ runner.temp }}/lake-version.txt
+          retention-days: 3
+          if-no-files-found: error
