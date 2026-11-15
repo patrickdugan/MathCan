@@ -1,0 +1,38 @@
+name: OLM-06 sparse SAE alias and precision certificates
+
+on:
+  push:
+    paths:
+      - 'research/orbit_lock/alias_catalog.py'
+      - 'research/orbit_lock/sae_precision.py'
+      - 'tests/test_alias_catalog.py'
+      - 'tests/test_sae_precision.py'
+      - '.github/workflows/olm06-sae-alias.yml'
+  pull_request:
+    paths:
+      - 'research/orbit_lock/alias_catalog.py'
+      - 'research/orbit_lock/sae_precision.py'
+      - 'tests/test_alias_catalog.py'
+      - 'tests/test_sae_precision.py'
+      - '.github/workflows/olm06-sae-alias.yml'
+
+jobs:
+  finite-alias-certificate:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: research/orbit_lock
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exact one-swap alias and 13-state rigidity tests
+        run: |
+          python -m unittest discover -s tests -p 'test_alias_catalog.py' -v
+          python -m unittest discover -s tests -p 'test_sae_precision.py' -v
+      - name: Archive the complete 180-alias catalog
+        run: python research/orbit_lock/alias_catalog.py > olm06-alias-catalog.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: olm06-180-alias-exact-certificate
+          path: olm06-alias-catalog.json
