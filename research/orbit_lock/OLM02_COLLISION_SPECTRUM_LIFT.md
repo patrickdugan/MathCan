@@ -116,7 +116,7 @@ The mutual information is H(G_t) and approaches log((2k-1)!!).
 
 For a graph G=πM₀, every chosen τ∈T relabels to πτM₀. Hence its graph image depends on G alone. For each pair of matching edges there are four cross swaps, two realizing each reconnection. The projected transition probabilities stated above follow by counting. The graph switch chain is itself symmetric, lazy, and irreducible as a quotient of the irreducible permutation walk, proving its stationary claim. The defining equality gives the orbit lock. Applying Theorem A at every t gives (D). Because the graph kernel is doubly stochastic, convexity of z↦z² (or Jensen's inequality) gives \|p_{t+1}\|₂²≤\|p_t\|₂². Uniform mixing gives p_t→uniform and completes the limit. QED.
 
-Here both marginals are **genuine Markov processes** and are mixing. The joint coupling is singular with respect to the independent product in the asymptotic sense quantified by (D). Uniform marginals alone cannot certify their independence.
+Here both marginals are **genuine Markov processes** and are mixing. The joint coupling remains supported on the strict orbit-compatibility subset of the independent product state space, with the TV separation quantified by (D). Uniform marginals alone cannot certify their independence.
 
 For large k, using (2k-1)!!=(2k)!/(2^k k!) and Stirling,
 
@@ -162,6 +162,56 @@ Therefore
 \]
 
 The full orbit-locked joint distribution tends to the unique locked law J₀, which differs from the independent uniform product in TV by 2/3. The graph-marginal collision discriminant is already 5/8 after one step and reaches 2/3 in the limit. In the exact four-slot experiment the TV distance of the coupled joint to the *uniform* independent product equals 2/3 from sweep 6 onward (an exact finite-state coincidence checked by enumeration), while the permutation marginal continues converging.
+
+
+## OLM-02E: Gauge-equivariant interventions and one-sided destruction
+
+Let H act transitively on Ω, fix o, and sample S uniformly from H with X=So. The compatibility indicator C(x,s)=1_{x=so} obeys
+
+\[
+\boxed{C(\tau x,\tau s)=C(x,s)\quad\text{for every }\tau\in H.}
+\]
+
+This is an **exact joint gauge covariance** of the two-coordinate representation. Changing only one coordinate breaks the relation according to the stabilizer geometry:
+
+\[
+\Pr[C(\tau X,S)=1]=\frac{|\operatorname{Fix}_{\Omega}(\tau)|}{|\Omega|}.
+\tag{F}
+\]
+
+**Proof.** Since τ(so)=(τs)o, the compatibility predicate is unchanged when τ is applied simultaneously. Under graph-only intervention, compatibility requires τX=So=X. The orbit variable X is uniform, so the success rate is exactly the fraction of orbit points fixed by τ. QED.
+
+For Ω the perfect matchings on 2k vertices and τ a **single vertex transposition (a b)**, a matching is fixed precisely when (a,b) already belongs to it. A uniformly random matching pairs vertex a with b with probability 1/(2k-1). Hence
+
+\[
+\boxed{\Pr[C(\tau X,S)=1]=\frac1{2k-1}.}
+\tag{G}
+\]
+
+The simultaneously relabeled control passes with probability 1. A *uniform independent full group relabeling* of the graph makes it conditionally uniform for any given S, giving pass rate 1/(2k-1)!!.
+
+This is a direct mechanistic intervention protocol: a gauge-respecting operation preserves relational state, while a one-channel change exposes the hidden dependence. The formula is a pure finite permutation statement; it does not assume learned neural feature gauges.
+
+## OLM-02F: A permanent TV plateau after finitely many steps
+
+For the four-slot lift with k=2,h=1/2, let q_t be the permutation law and let U denote the fixed independent **uniform** law on three matchings × 24 permutations. On the 24 compatible atoms the joint measure J_t has mass q_t(s), while U has mass 1/72. Off the compatibility set J_t is zero.
+
+Thus, if min_s q_t(s) ≥ 1/72, the compatibility event is an optimal total-variation witness and TV(J_t,U)=2/3 exactly. Exhaustive rational evolution shows
+
+\[
+\min_s q_6(s)=65/4096 >1/72.
+\]
+
+The permutation transition R is doubly stochastic. For any probability vector q, each coordinate of qR is a convex combination of entries of q, so min(qR)≥min(q). Therefore the sufficient inequality holds for **every t≥6**, proving
+
+\[
+\boxed{\operatorname{TV}(J_t,U)=2/3\quad\text{for all integers }t\ge6.}
+\tag{H}
+\]
+
+The separate time-matched product distance D_t=(2/3)(1-16^{-t}) continues increasing toward 2/3. Its finite-time classifier uses the empirical marginals, while (H) compares with the fixed uniform product.
+
+The certificate consists of an exact enumeration at t=6 plus a universal monotonicity argument, establishing the infinite-time assertion from a finite checked seed.
 
 ## Verification boundaries
 
