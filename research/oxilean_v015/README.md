@@ -1,61 +1,40 @@
-# Reproduction and scope
+# Current reproduction entry points
 
-The report and JSON inventories distinguish native Lean 4.35 checks from the
-blocked pinned Lean 4.32/OxiLean target replay. The control files are already
-exported upstream fixtures, not freshly generated exports.
+The pinned Hodge replay is now accepted. Read OXILEAN_V015_REPLAY_REPORT.md and
+the two pinned432_*/ACCEPTANCE.json files. The previous blocked report is kept
+under its PRE_INSTALL name. Native 4.35 evidence remains separate historical
+and project-compatibility evidence.
 
-The original campaign workspace has this layout:
-
-```
-work/
-  MathCan/          # this isolated research worktree
-  oxilean/         # unmodified OxiLean 3adb983 source
-  lean4export/     # pinned 3de59f1 source; not built
-  build/           # locally built oxilean-verify and rlibs
-  checker_source_sha256.txt
-```
-
-When using the copies of scripts committed in this directory, set
-CAMPAIGN_WORK to that work directory (a Linux /mnt/c/... path under WSL).
-The installed binaries are not installed by these scripts. Native checks
-currently use the discovered existing runtime:
-
-```
-/home/duganist/.cache/ram04-runtime-4.35.0/lean-4.35.0-linux
-/home/duganist/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin
-```
-
-For an existing compatible environment:
+Set CAMPAIGN_WORK to the original work directory, using a /mnt/c/... path in
+WSL. All new shell scripts and acceptance validators honor it. The exact
+Lean 4.32 runtime is under $CAMPAIGN_WORK/toolchains/lean-4.32.0-rc1-linux;
+the pinned exporter source/build is under replay432/lean4export-source.
+The source-only Hodge checkout remains at the requested source commit.
 
 ```bash
 export CAMPAIGN_WORK=/absolute/path/to/work
-bash "$CAMPAIGN_WORK/MathCan/research/oxilean_v015/build_checkers.sh"
-python3 "$CAMPAIGN_WORK/MathCan/research/oxilean_v015/run_controls.py"
-bash "$CAMPAIGN_WORK/MathCan/research/oxilean_v015/check_hodge.sh"
-bash "$CAMPAIGN_WORK/MathCan/research/oxilean_v015/check_quantized_jet.sh"
-bash "$CAMPAIGN_WORK/MathCan/research/oxilean_v015/check_native_audit.sh"
-python3 -m unittest discover -s "$CAMPAIGN_WORK/MathCan/research/oxilean_v015" -p test_audit_export.py -v
+bash "$CAMPAIGN_WORK/MathCan/research/oxilean_v015/run_hodge432.sh"
+bash "$CAMPAIGN_WORK/MathCan/research/oxilean_v015/check_spatial_lean432.sh"
+bash "$CAMPAIGN_WORK/MathCan/research/oxilean_v015/export_research_lemmas432.sh"
+python3 "$CAMPAIGN_WORK/MathCan/research/oxilean_v015/accept_research_lemmas432.py"
+python3 -m unittest discover -s "$CAMPAIGN_WORK/MathCan/research/oxilean_v015" -p test_hodge_acceptance.py -v
 ```
 
-The build script verifies every included checker source file against the
-manifest generated from the pinned Git blobs. No Cargo dependencies are
-downloaded. normalize_sources.py was used only on fresh private worktrees to
-restore exact Git blobs after Windows checkout newline conversion; it is not
-an update command and refuses a different HEAD.
+When restoring the bundle elsewhere, first copy the included root-level shell and Python helpers into CAMPAIGN_WORK, and the two Compare*.lean files into CAMPAIGN_WORK/replay432. Provision the source checkouts and private toolchain paths described above before running the commands.
 
-To resume the blocked 4.32 replay, use the prerequisites and explicit environment
-variables in OXILEAN_V015_REPLAY_REPORT.md. Use a source-only MathCan worktree
-at the pinned source commit. replay.sh never installs anything and refuses
-missing prerequisites. Its final exit message is not an acceptance decision.
+The comparison Lean sources must be at $CAMPAIGN_WORK/replay432/CompareExport.lean
+and CompareLemmas.lean. Their exact copies are included here. Installation and
+build metadata are included; toolchain binaries are not in Git or the packet.
+The official archive URL/digest is in lean432_release.json, and the private
+installation receipt is LEAN432_INSTALLATION.json. Restoring the 12 relative
+symlinks uses finish_lean432_install.py after archive extraction. No default
+toolchain change is needed. build_exporter432.sh builds the exact pinned source.
 
-The native dependency graph is a 4.35 environment inspection. The NDJSON auditor
-is structural. Neither is an OxiLean verdict for the intended target. Only the
-eight control exports currently have OxiLean per-record verdicts.
+The standalone Init-only modules QuantizedJet and SpatialInterface are checked
+explicitly, without changing the existing MathCan umbrella imports. Exported
+types AND proof values are compared with their native source environment.
 
-MathCan/QuantizedJet.lean is a standalone Init-only module, checked explicitly
-by the script. Its exact statements and #print axioms are retained in the
-source and log. It is not imported by the existing MathCan umbrella file.
-
-The companion Compactification-Theory branch has the detailed mathematical
-audit, correction to the note, exact-rational controls and a conditional
-whole-network theorem with explicit outstanding spatial-interface premises.
+For the mathematical construction, read SPATIAL_INTERFACE_THEOREM.md and run
+the companion Compactification-Theory research/quantization/test_spatial_circuit.py.
+The generated numeric matrices contain only rational affine/ReLU layers.
+The complete analytic theorem is proved on paper, not formalized in Lean.

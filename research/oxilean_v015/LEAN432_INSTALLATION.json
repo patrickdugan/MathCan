@@ -1,0 +1,64 @@
+{
+  "release": "https://github.com/leanprover/lean4/releases/tag/v4.32.0-rc1",
+  "version": "4.32.0-rc1",
+  "lean_commit": "b4812ae53eea93439ad5dce5a5c26591c31cb697",
+  "archive_sha256": "ce6e79dd19ea03c0bc17f9d565c3bac20cd2884561e3b431e5b293c1fbb2b5b3",
+  "archive_size": 564056221,
+  "install_directory": "C:\\Users\\patri\\Documents\\Codex\\2026-11-15\\files-pasted-by-the-user-oxilean\\work\\toolchains\\lean-4.32.0-rc1-linux",
+  "binary_sha256": {
+    "lean": "e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550",
+    "leanchecker": "c7c51e296d28dd443ed60f9414feef41253ede89dea76dbb2adde29768c3ed5f",
+    "lake": "60330ab6f07dce20f3fa9ebb08e8b984ea9549eac172afeb15d9d2227060e2b3"
+  },
+  "symlinks": [
+    {
+      "path": "toolchains/lean-4.32.0-rc1-linux/lib/libatomic.so.1",
+      "target": "libatomic.so.1.2.0"
+    },
+    {
+      "path": "toolchains/lean-4.32.0-rc1-linux/lib/libc++abi.so",
+      "target": "libc++abi.so.1"
+    },
+    {
+      "path": "toolchains/lean-4.32.0-rc1-linux/lib/libLLVM.so",
+      "target": "libLLVM.so.22.1"
+    },
+    {
+      "path": "toolchains/lean-4.32.0-rc1-linux/lib/libunwind.so.1",
+      "target": "libunwind.so.1.0"
+    },
+    {
+      "path": "toolchains/lean-4.32.0-rc1-linux/lib/libc++.so.1",
+      "target": "libc++.so.1.0"
+    },
+    {
+      "path": "toolchains/lean-4.32.0-rc1-linux/lib/libLLVM-22.so",
+      "target": "libLLVM.so.22.1"
+    },
+    {
+      "path": "toolchains/lean-4.32.0-rc1-linux/lib/libatomic.so",
+      "target": "libatomic.so.1.2.0"
+    },
+    {
+      "path": "toolchains/lean-4.32.0-rc1-linux/lib/libunwind.so",
+      "target": "libunwind.so.1"
+    },
+    {
+      "path": "toolchains/lean-4.32.0-rc1-linux/lib/libz.so",
+      "target": "libz.so.1.2.11"
+    },
+    {
+      "path": "toolchains/lean-4.32.0-rc1-linux/lib/libc++abi.so.1",
+      "target": "libc++abi.so.1.0"
+    },
+    {
+      "path": "toolchains/lean-4.32.0-rc1-linux/lib/libz.so.1",
+      "target": "libz.so.1.2.11"
+    },
+    {
+      "path": "toolchains/lean-4.32.0-rc1-linux/lib/libclang-cpp.so",
+      "target": "libclang-cpp.so.22.1"
+    }
+  ],
+  "scope": "Private workspace installation; no default toolchain changed"
+}

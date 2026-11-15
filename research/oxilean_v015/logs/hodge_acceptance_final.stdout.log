@@ -1,0 +1,27 @@
+{
+  "status": "accepted",
+  "target": "MathCan.Hodge.closed_path_gauge",
+  "export_sha256": "05013ce15f2a75b521a8f9b0911060b3b129042dc75c331fa161ca4693f70892",
+  "verdicts": {
+    "verified": 1256,
+    "unsupported": 0,
+    "rejected": 0
+  },
+  "dependency_closed": true,
+  "source_statement_and_proof_match": true,
+  "exported_constants_compared": 1415,
+  "axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "target_dependency_records": 1255,
+  "extra_export_records": [
+    [
+      "Quot.ind"
+    ]
+  ],
+  "axiom_interpretation": "Conditional on Lean propext and quotient soundness, neither treated as a proved axiom",
+  "native_lean": "4.32.0-rc1 accepted unchanged source",
+  "leanchecker": "4.32.0-rc1 accepted",
+  "normalization": "Only expression metadata and let nondep hints; no changed assumptions, reduction or substituted proof"
+}

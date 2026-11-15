@@ -1,0 +1,26 @@
+MathCan/SpatialInterface.lean:46:30: warning: Variable name `hC` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hC
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+MathCan.SpatialInterface.clamp_range (cap x : Int) (hcap : 0 ≤ cap) : 0 ≤ clamp cap x ∧ clamp cap x ≤ cap
+MathCan.SpatialInterface.clamp_step (cap x D : Int) (hcap : 0 ≤ cap) (hD : 0 ≤ D) :
+  0 ≤ clamp cap (x + D) - clamp cap x ∧ clamp cap (x + D) - clamp cap x ≤ D
+MathCan.SpatialInterface.anchor_step (cap D t r : Int) (hcap : 0 ≤ cap) (hD : 0 ≤ D) :
+  0 ≤ anchor cap D t (r + 1) - anchor cap D t r ∧ anchor cap D t (r + 1) - anchor cap D t r ≤ D
+MathCan.SpatialInterface.gate_zero (C z : Int) : gate C 0 z = 0
+MathCan.SpatialInterface.gate_one (C z : Int) (hC : 0 ≤ C) (hz : -C ≤ z ∧ z ≤ C) : gate C 1 z = z
+MathCan.SpatialInterface.triangle_self (t : Int) : triangle t t = 1
+MathCan.SpatialInterface.triangle_other (u t : Int) (h : u ≠ t) : triangle u t = 0
+MathCan.SpatialInterface.capture_at_index {n : Nat} (C : Int) (hC : 0 ≤ C) (values : Fin n → Int)
+  (bounds : ∀ (i : Fin n), -C ≤ values i ∧ values i ≤ C) (target i : Fin n) :
+  gate C (triangle (Int.ofNat ↑i) (Int.ofNat ↑target)) (values i) = if i = target then values i else 0
+'MathCan.SpatialInterface.clamp_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SpatialInterface.clamp_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SpatialInterface.anchor_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SpatialInterface.gate_zero' depends on axioms: [propext]
+'MathCan.SpatialInterface.gate_one' depends on axioms: [propext, Quot.sound]
+'MathCan.SpatialInterface.triangle_self' depends on axioms: [propext]
+'MathCan.SpatialInterface.triangle_other' depends on axioms: [propext, Quot.sound]
+'MathCan.SpatialInterface.capture_at_index' depends on axioms: [propext, Quot.sound]

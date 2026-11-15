@@ -1,0 +1,48 @@
+Lean (version 4.32.0-rc1, x86_64-unknown-linux-gnu, commit b4812ae53eea93439ad5dce5a5c26591c31cb697, Release)
+Lean (version 4.32.0-rc1, x86_64-unknown-linux-gnu, commit b4812ae53eea93439ad5dce5a5c26591c31cb697, Release)
+Lean (version 4.32.0-rc1, x86_64-unknown-linux-gnu, commit b4812ae53eea93439ad5dce5a5c26591c31cb697, Release)
+/mnt/c/Users/patri/Documents/Codex/2026-11-15/files-pasted-by-the-user-oxilean/work/replay432/MathCan-source/MathCan/Hodge.lean: OK
+oxilean-verify 0.1.5
+{
+  "scope": "structural_graph_only_not_kernel_verification",
+  "sha256": "05013ce15f2a75b521a8f9b0911060b3b129042dc75c331fa161ca4693f70892",
+  "target": "MathCan.Hodge.closed_path_gauge",
+  "record_count": 1256,
+  "closure_record_count": 1255,
+  "structurally_closed": true,
+  "unambiguous_names": true,
+  "missing_constants": [],
+  "duplicate_names": [],
+  "axioms": [
+    {
+      "name": "propext",
+      "name_components": [
+        [
+          "str",
+          "propext"
+        ]
+      ],
+      "record": 85
+    },
+    {
+      "name": "Quot.sound",
+      "name_components": [
+        [
+          "str",
+          "Quot"
+        ],
+        [
+          "str",
+          "sound"
+        ]
+      ],
+      "record": 757
+    }
+  ],
+  "unsafe_records": []
+}
+Replay artifacts produced; statement and closure acceptance review still required.
+Traceback (most recent call last):
+  File "/mnt/c/Users/patri/Documents/Codex/2026-11-15/files-pasted-by-the-user-oxilean/work/accept_hodge432.py", line 21, in <module>
+    assert a["closure_record_count"]==a["record_count"]==len(v["decls"])
+AssertionError

@@ -1,0 +1,11 @@
+test_all_dyadic_gate_breakpoints (__main__.SpatialTests.test_all_dyadic_gate_breakpoints) ... ok
+test_decoder_capture_and_polynomial (__main__.SpatialTests.test_decoder_capture_and_polynomial) ... ok
+test_endpoint_microsteps (__main__.SpatialTests.test_endpoint_microsteps) ... ok
+test_materialized_full_network (__main__.SpatialTests.test_materialized_full_network) ... ok
+test_snake_hamiltonian_order (__main__.SpatialTests.test_snake_hamiltonian_order) ... ok
+test_spatial_interface (__main__.SpatialTests.test_spatial_interface) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 27.924s
+
+OK

@@ -1,0 +1,7 @@
+'MathCan.Hodge.endpoint_append' depends on axioms: [propext]
+'MathCan.Hodge.pathSum_append' depends on axioms: [propext]
+'MathCan.Hodge.pathSum_gauge' depends on axioms: [propext, Quot.sound]
+'MathCan.Hodge.closed_path_gauge' depends on axioms: [propext, Quot.sound]
+'MathCan.Hodge.pathSum_zero' depends on axioms: [propext]
+'MathCan.Hodge.closed_potential_zero' depends on axioms: [propext, Quot.sound]
+'MathCan.Hodge.edge_residual_gauge' depends on axioms: [propext, Quot.sound]

@@ -1,0 +1,11 @@
+{
+  "status": "accepted",
+  "export_sha256": "8342c55b9a827072c73d8a5110b767b34fe1fdc519d5a3c54430d8b0ea246e37",
+  "verdicts": {
+    "verified": 1449,
+    "unsupported": 0,
+    "rejected": 0
+  },
+  "constants_compared": 1616,
+  "theorems": 14
+}

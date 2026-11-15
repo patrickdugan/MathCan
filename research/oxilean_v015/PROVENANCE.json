@@ -35,14 +35,82 @@
   },
   "new_lean_source_sha256": "157597f53bc6323e5cc6d120d131e863105cae7ba3f5727002e9a28240106672",
   "missing": [
-    "oxilean_v015_eval_20261115_continued.tar.gz and its original test/proof/log files",
-    "installed Lean 4.32.0-rc1",
-    "built pinned lean4export binary",
-    "pinned target NDJSON"
+    "Original oxilean_v015_eval_20261115_continued.tar.gz and its historical evidence files"
   ],
   "recovered_context": {
     "thread_id": "6af91bc0-8bd8-83ec-9576-c35c0e0f2b3d",
     "title": "OxiLean technical evaluation",
     "scope": "Written results only; sandbox artifact links were not available as local files"
-  }
+  },
+  "continuation_authorization": "User authorized local Lean 4.32.0-rc1 installation and pinned exporter build; no pushes or messages",
+  "lean432_installation": {
+    "release": "https://github.com/leanprover/lean4/releases/tag/v4.32.0-rc1",
+    "version": "4.32.0-rc1",
+    "lean_commit": "b4812ae53eea93439ad5dce5a5c26591c31cb697",
+    "archive_sha256": "ce6e79dd19ea03c0bc17f9d565c3bac20cd2884561e3b431e5b293c1fbb2b5b3",
+    "archive_size": 564056221,
+    "install_directory": "C:\\Users\\patri\\Documents\\Codex\\2026-11-15\\files-pasted-by-the-user-oxilean\\work\\toolchains\\lean-4.32.0-rc1-linux",
+    "binary_sha256": {
+      "lean": "e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550",
+      "leanchecker": "c7c51e296d28dd443ed60f9414feef41253ede89dea76dbb2adde29768c3ed5f",
+      "lake": "60330ab6f07dce20f3fa9ebb08e8b984ea9549eac172afeb15d9d2227060e2b3"
+    },
+    "symlinks": [
+      {
+        "path": "toolchains/lean-4.32.0-rc1-linux/lib/libatomic.so.1",
+        "target": "libatomic.so.1.2.0"
+      },
+      {
+        "path": "toolchains/lean-4.32.0-rc1-linux/lib/libc++abi.so",
+        "target": "libc++abi.so.1"
+      },
+      {
+        "path": "toolchains/lean-4.32.0-rc1-linux/lib/libLLVM.so",
+        "target": "libLLVM.so.22.1"
+      },
+      {
+        "path": "toolchains/lean-4.32.0-rc1-linux/lib/libunwind.so.1",
+        "target": "libunwind.so.1.0"
+      },
+      {
+        "path": "toolchains/lean-4.32.0-rc1-linux/lib/libc++.so.1",
+        "target": "libc++.so.1.0"
+      },
+      {
+        "path": "toolchains/lean-4.32.0-rc1-linux/lib/libLLVM-22.so",
+        "target": "libLLVM.so.22.1"
+      },
+      {
+        "path": "toolchains/lean-4.32.0-rc1-linux/lib/libatomic.so",
+        "target": "libatomic.so.1.2.0"
+      },
+      {
+        "path": "toolchains/lean-4.32.0-rc1-linux/lib/libunwind.so",
+        "target": "libunwind.so.1"
+      },
+      {
+        "path": "toolchains/lean-4.32.0-rc1-linux/lib/libz.so",
+        "target": "libz.so.1.2.11"
+      },
+      {
+        "path": "toolchains/lean-4.32.0-rc1-linux/lib/libc++abi.so.1",
+        "target": "libc++abi.so.1.0"
+      },
+      {
+        "path": "toolchains/lean-4.32.0-rc1-linux/lib/libz.so.1",
+        "target": "libz.so.1.2.11"
+      },
+      {
+        "path": "toolchains/lean-4.32.0-rc1-linux/lib/libclang-cpp.so",
+        "target": "libclang-cpp.so.22.1"
+      }
+    ],
+    "scope": "Private workspace installation; no default toolchain changed"
+  },
+  "exporter_binary_sha256": "e6580597a1482740114b5a1a05add574334a5eeaed5f4f5c9cd670e146859009",
+  "hodge_replay_status": "accepted",
+  "hodge_export_sha256": "05013ce15f2a75b521a8f9b0911060b3b129042dc75c331fa161ca4693f70892",
+  "research_lemma_export_sha256": "8342c55b9a827072c73d8a5110b767b34fe1fdc519d5a3c54430d8b0ea246e37",
+  "spatial_interface_status": "proved by the supplied real-domain construction and resource ledger; full theorem not Lean formalized",
+  "spatial_circuit_source_sha256": "bc006e0ec2a227eac72657367b5211a7b71c1adfb74a87cc66336e9ded8ad910"
 }

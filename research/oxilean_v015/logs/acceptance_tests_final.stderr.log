@@ -1,0 +1,10 @@
+test_changed_export_hash_is_refused (test_hodge_acceptance.AcceptanceTests.test_changed_export_hash_is_refused) ... ok
+test_changed_proof_is_refused (test_hodge_acceptance.AcceptanceTests.test_changed_proof_is_refused) ... ok
+test_omitted_dependency_verdict_is_refused (test_hodge_acceptance.AcceptanceTests.test_omitted_dependency_verdict_is_refused) ... ok
+test_unexpected_axiom_is_refused (test_hodge_acceptance.AcceptanceTests.test_unexpected_axiom_is_refused) ... ok
+test_zero_exit_with_unsupported_target_is_refused (test_hodge_acceptance.AcceptanceTests.test_zero_exit_with_unsupported_target_is_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 3.057s
+
+OK

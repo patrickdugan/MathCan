@@ -1,0 +1,8822 @@
+{
+  "tool": {
+    "name": "oxilean-verify",
+    "version": "0.1.5"
+  },
+  "pins": {
+    "lean4export_commit": "3de59f10bc4b4a0f2de698597aeb1246caa0df0a",
+    "lean_toolchain": "v4.32.0-rc1",
+    "reader_format_version": "3.1.0",
+    "file_format_version": "3.1.0",
+    "file_lean_version": "4.32.0-rc1",
+    "file_lean_githash": "b4812ae53eea93439ad5dce5a5c26591c31cb697"
+  },
+  "input": {
+    "path": "/mnt/c/Users/patri/Documents/Codex/2026-11-15/files-pasted-by-the-user-oxilean/work/replay432/Hodge/Hodge.ndjson",
+    "sha256": "05013ce15f2a75b521a8f9b0911060b3b129042dc75c331fa161ca4693f70892",
+    "size_bytes": 3699187,
+    "format_version": "3.1.0"
+  },
+  "totals": {
+    "verified": 1256,
+    "unsupported": 0,
+    "rejected": 0,
+    "wall_ms": 853
+  },
+  "unsupported_features": [],
+  "rejected": [],
+  "decls": [
+    {
+      "name": "Nat",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 3337,
+      "detail": null
+    },
+    {
+      "name": "Int",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 76,
+      "detail": null
+    },
+    {
+      "name": "List",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 159,
+      "detail": null
+    },
+    {
+      "name": "Eq",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 118,
+      "detail": null
+    },
+    {
+      "name": "PUnit",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 55,
+      "detail": null
+    },
+    {
+      "name": "PProd",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 143,
+      "detail": null
+    },
+    {
+      "name": "List.below",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 82,
+      "detail": null
+    },
+    {
+      "name": "List.brecOn.go",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 233,
+      "detail": null
+    },
+    {
+      "name": "List.brecOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 52,
+      "detail": null
+    },
+    {
+      "name": "Unit",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 3,
+      "detail": null
+    },
+    {
+      "name": "List.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 65,
+      "detail": null
+    },
+    {
+      "name": "Unit.unit",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 8,
+      "detail": null
+    },
+    {
+      "name": "MathCan.Hodge.pathSum.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 111,
+      "detail": null
+    },
+    {
+      "name": "MathCan.Hodge.endpoint._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 150,
+      "detail": null
+    },
+    {
+      "name": "MathCan.Hodge.endpoint",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 56,
+      "detail": null
+    },
+    {
+      "name": "OfNat",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 122,
+      "detail": null
+    },
+    {
+      "name": "OfNat.ofNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 31,
+      "detail": null
+    },
+    {
+      "name": "instOfNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 13,
+      "detail": null
+    },
+    {
+      "name": "outParam",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 7,
+      "detail": null
+    },
+    {
+      "name": "HAdd",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 402,
+      "detail": null
+    },
+    {
+      "name": "HAdd.hAdd",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 80,
+      "detail": null
+    },
+    {
+      "name": "Add",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 113,
+      "detail": null
+    },
+    {
+      "name": "Add.add",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 45,
+      "detail": null
+    },
+    {
+      "name": "instHAdd",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 44,
+      "detail": null
+    },
+    {
+      "name": "Int.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 36,
+      "detail": null
+    },
+    {
+      "name": "Int.add.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 167,
+      "detail": null
+    },
+    {
+      "name": "Nat.below",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 55,
+      "detail": null
+    },
+    {
+      "name": "Nat.brecOn.go",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 138,
+      "detail": null
+    },
+    {
+      "name": "Nat.brecOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 40,
+      "detail": null
+    },
+    {
+      "name": "Nat.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 33,
+      "detail": null
+    },
+    {
+      "name": "Nat.add.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 80,
+      "detail": null
+    },
+    {
+      "name": "Nat.add._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 80,
+      "detail": null
+    },
+    {
+      "name": "Nat.add",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 34,
+      "detail": null
+    },
+    {
+      "name": "instAddNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 14,
+      "detail": null
+    },
+    {
+      "name": "instOfNatNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 13,
+      "detail": null
+    },
+    {
+      "name": "Int.negOfNat.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 82,
+      "detail": null
+    },
+    {
+      "name": "HSub",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 481,
+      "detail": null
+    },
+    {
+      "name": "HSub.hSub",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 78,
+      "detail": null
+    },
+    {
+      "name": "Sub",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 165,
+      "detail": null
+    },
+    {
+      "name": "Sub.sub",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 34,
+      "detail": null
+    },
+    {
+      "name": "instHSub",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 39,
+      "detail": null
+    },
+    {
+      "name": "Nat.mul.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 92,
+      "detail": null
+    },
+    {
+      "name": "Nat.pow.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 81,
+      "detail": null
+    },
+    {
+      "name": "Nat.pred",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 34,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 85,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 36,
+      "detail": null
+    },
+    {
+      "name": "instSubNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 14,
+      "detail": null
+    },
+    {
+      "name": "Int.subNatNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 51,
+      "detail": null
+    },
+    {
+      "name": "Int.add",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 78,
+      "detail": null
+    },
+    {
+      "name": "Int.instAdd",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 14,
+      "detail": null
+    },
+    {
+      "name": "MathCan.Hodge.pathSum._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 143,
+      "detail": null
+    },
+    {
+      "name": "MathCan.Hodge.pathSum",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 78,
+      "detail": null
+    },
+    {
+      "name": "Neg",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 114,
+      "detail": null
+    },
+    {
+      "name": "Neg.neg",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 31,
+      "detail": null
+    },
+    {
+      "name": "Int.neg.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 74,
+      "detail": null
+    },
+    {
+      "name": "Int.negOfNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 38,
+      "detail": null
+    },
+    {
+      "name": "NatCast",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 118,
+      "detail": null
+    },
+    {
+      "name": "NatCast.natCast",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 32,
+      "detail": null
+    },
+    {
+      "name": "Nat.cast",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 25,
+      "detail": null
+    },
+    {
+      "name": "instNatCastInt",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 12,
+      "detail": null
+    },
+    {
+      "name": "Int.neg",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 32,
+      "detail": null
+    },
+    {
+      "name": "Int.instNegInt",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 12,
+      "detail": null
+    },
+    {
+      "name": "Int.sub",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 29,
+      "detail": null
+    },
+    {
+      "name": "Int.instSub",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 13,
+      "detail": null
+    },
+    {
+      "name": "rfl",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 18,
+      "detail": null
+    },
+    {
+      "name": "Eq.symm",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 81,
+      "detail": null
+    },
+    {
+      "name": "Eq.mpr",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 79,
+      "detail": null
+    },
+    {
+      "name": "id",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 15,
+      "detail": null
+    },
+    {
+      "name": "congrArg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 115,
+      "detail": null
+    },
+    {
+      "name": "True",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 125,
+      "detail": null
+    },
+    {
+      "name": "trivial",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 4,
+      "detail": null
+    },
+    {
+      "name": "of_eq_true",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 64,
+      "detail": null
+    },
+    {
+      "name": "Eq.trans",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 103,
+      "detail": null
+    },
+    {
+      "name": "Int.sub_eq_add_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 121,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.add_comm.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 181,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.add_comm.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 98,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.zero_add.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 80,
+      "detail": null
+    },
+    {
+      "name": "Nat.zero_add._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 206,
+      "detail": null
+    },
+    {
+      "name": "Nat.zero_add",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 67,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.succ_add.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 91,
+      "detail": null
+    },
+    {
+      "name": "Nat.succ_add._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 373,
+      "detail": null
+    },
+    {
+      "name": "Nat.succ_add",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 93,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_comm._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 351,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_comm",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 76,
+      "detail": null
+    },
+    {
+      "name": "Iff",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 174,
+      "detail": null
+    },
+    {
+      "name": "propext",
+      "kind": "axiom",
+      "verdict": "verified",
+      "micros": 16,
+      "detail": null
+    },
+    {
+      "name": "eq_true",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 27,
+      "detail": null
+    },
+    {
+      "name": "eq_self",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 28,
+      "detail": null
+    },
+    {
+      "name": "Int.add_comm",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 486,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.add_left_neg.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 129,
+      "detail": null
+    },
+    {
+      "name": "Or",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 181,
+      "detail": null
+    },
+    {
+      "name": "Or.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 66,
+      "detail": null
+    },
+    {
+      "name": "LT",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 131,
+      "detail": null
+    },
+    {
+      "name": "LT.lt",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 34,
+      "detail": null
+    },
+    {
+      "name": "Nat.le",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 212,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 16,
+      "detail": null
+    },
+    {
+      "name": "instLTNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 17,
+      "detail": null
+    },
+    {
+      "name": "LE",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 147,
+      "detail": null
+    },
+    {
+      "name": "LE.le",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 32,
+      "detail": null
+    },
+    {
+      "name": "GE.ge",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 35,
+      "detail": null
+    },
+    {
+      "name": "instLENat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 14,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.lt_or_ge.match_1_5",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 66,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.zero_le.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 61,
+      "detail": null
+    },
+    {
+      "name": "Nat.zero_le._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 99,
+      "detail": null
+    },
+    {
+      "name": "Nat.zero_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 56,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.lt_or_ge.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 152,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_succ_of_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 54,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.lt_or_ge.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 144,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.eq_or_lt_of_le.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 161,
+      "detail": null
+    },
+    {
+      "name": "Nat.le.below",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 502,
+      "detail": null
+    },
+    {
+      "name": "Nat.le.brecOn",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 116,
+      "detail": null
+    },
+    {
+      "name": "Nat.le.below.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 256,
+      "detail": null
+    },
+    {
+      "name": "HEq",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 228,
+      "detail": null
+    },
+    {
+      "name": "Eq.ndrec",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 106,
+      "detail": null
+    },
+    {
+      "name": "cast",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 67,
+      "detail": null
+    },
+    {
+      "name": "eq_of_heq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 219,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.succ_le_succ.match_1_7",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 861,
+      "detail": null
+    },
+    {
+      "name": "Nat.succ_le_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 328,
+      "detail": null
+    },
+    {
+      "name": "False",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 111,
+      "detail": null
+    },
+    {
+      "name": "Not",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 15,
+      "detail": null
+    },
+    {
+      "name": "absurd",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 50,
+      "detail": null
+    },
+    {
+      "name": "Nat.le.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 97,
+      "detail": null
+    },
+    {
+      "name": "Nat.noConfusionType",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 60,
+      "detail": null
+    },
+    {
+      "name": "Nat.noConfusion",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 131,
+      "detail": null
+    },
+    {
+      "name": "Nat.not_succ_le_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 153,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.pred_le_pred.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 467,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.le_trans.match_1_10",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 926,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_trans",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 272,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 57,
+      "detail": null
+    },
+    {
+      "name": "Nat.pred_le_pred",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 164,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_of_succ_le_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 71,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.eq_or_lt_of_le.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 146,
+      "detail": null
+    },
+    {
+      "name": "Nat.eq_or_lt_of_le._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 379,
+      "detail": null
+    },
+    {
+      "name": "Nat.eq_or_lt_of_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 91,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_refl",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 28,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_or_ge._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 236,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_or_ge",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 65,
+      "detail": null
+    },
+    {
+      "name": "Int.subNatNat.eq_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 115,
+      "detail": null
+    },
+    {
+      "name": "Int.subNatNat_of_sub_eq_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 142,
+      "detail": null
+    },
+    {
+      "name": "False.elim",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 31,
+      "detail": null
+    },
+    {
+      "name": "Bool",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 172,
+      "detail": null
+    },
+    {
+      "name": "Nat.beq.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 139,
+      "detail": null
+    },
+    {
+      "name": "Nat.beq._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 104,
+      "detail": null
+    },
+    {
+      "name": "Nat.beq",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 32,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.noConfusion_of_Nat.aux.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 64,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.noConfusion_of_Nat.aux._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 152,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.noConfusion_of_Nat.aux",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 83,
+      "detail": null
+    },
+    {
+      "name": "noConfusion_of_Nat",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 163,
+      "detail": null
+    },
+    {
+      "name": "Nat.ctorIdx",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 37,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.succ_pred_eq_of_pos.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 314,
+      "detail": null
+    },
+    {
+      "name": "Nat.succ_pred_eq_of_pos",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 206,
+      "detail": null
+    },
+    {
+      "name": "Iff.mpr",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 40,
+      "detail": null
+    },
+    {
+      "name": "Ne",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 26,
+      "detail": null
+    },
+    {
+      "name": "Ne.symm",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 62,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.not_succ_le_self.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 78,
+      "detail": null
+    },
+    {
+      "name": "Nat.not_succ_le_self._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 188,
+      "detail": null
+    },
+    {
+      "name": "Nat.not_succ_le_self",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 45,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_irrefl",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 33,
+      "detail": null
+    },
+    {
+      "name": "Nat.ne_of_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 110,
+      "detail": null
+    },
+    {
+      "name": "Nat.ne_of_gt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 36,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Or.elim.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 112,
+      "detail": null
+    },
+    {
+      "name": "Or.elim",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 83,
+      "detail": null
+    },
+    {
+      "name": "Or.resolve_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 49,
+      "detail": null
+    },
+    {
+      "name": "GT.gt",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 38,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.eq_zero_or_pos.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 74,
+      "detail": null
+    },
+    {
+      "name": "Nat.zero_lt_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 41,
+      "detail": null
+    },
+    {
+      "name": "Nat.succ_pos",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 20,
+      "detail": null
+    },
+    {
+      "name": "Nat.eq_zero_or_pos",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 175,
+      "detail": null
+    },
+    {
+      "name": "Nat.pos_of_ne_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 64,
+      "detail": null
+    },
+    {
+      "name": "Nat.pos_iff_ne_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 40,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.sub_ne_zero_of_lt.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 261,
+      "detail": null
+    },
+    {
+      "name": "eq_false",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 59,
+      "detail": null
+    },
+    {
+      "name": "eq_false'",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 74,
+      "detail": null
+    },
+    {
+      "name": "not_false_eq_true",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 19,
+      "detail": null
+    },
+    {
+      "name": "Nat.succ_ne_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 204,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.sub_ne_zero_of_lt._simp_1_3",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 42,
+      "detail": null
+    },
+    {
+      "name": "Nat.not_lt_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 47,
+      "detail": null
+    },
+    {
+      "name": "Nat.succ_sub_succ_eq_sub",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 414,
+      "detail": null
+    },
+    {
+      "name": "Nat.succ_sub_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 57,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_of_succ_lt_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 137,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_ne_zero_of_lt._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 281,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_ne_zero_of_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 93,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_pos_of_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 54,
+      "detail": null
+    },
+    {
+      "name": "Int.subNatNat_of_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 61,
+      "detail": null
+    },
+    {
+      "name": "congrFun'",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 127,
+      "detail": null
+    },
+    {
+      "name": "Eq.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 73,
+      "detail": null
+    },
+    {
+      "name": "Int.ctorIdx",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 38,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.negSucc_ne_zero.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 123,
+      "detail": null
+    },
+    {
+      "name": "Int.negSucc_ne_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 53,
+      "detail": null
+    },
+    {
+      "name": "Int.negSucc_ne_zero._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 33,
+      "detail": null
+    },
+    {
+      "name": "false_iff",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 44,
+      "detail": null
+    },
+    {
+      "name": "Int.ofNat_eq_natCast",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 39,
+      "detail": null
+    },
+    {
+      "name": "Int.subNatNat_of_sub_eq_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 217,
+      "detail": null
+    },
+    {
+      "name": "Exists",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 274,
+      "detail": null
+    },
+    {
+      "name": "Exists.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 70,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.sub_eq_zero_of_le.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 162,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.le.dest.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 180,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.le.dest.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 168,
+      "detail": null
+    },
+    {
+      "name": "Nat.le.dest._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 410,
+      "detail": null
+    },
+    {
+      "name": "Nat.le.dest",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 117,
+      "detail": null
+    },
+    {
+      "name": "Nat.recAux",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 191,
+      "detail": null
+    },
+    {
+      "name": "congr",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 174,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.add_assoc.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 129,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_assoc._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 378,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_assoc",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 97,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.add_sub_add_right._simp_1_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 47,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_sub_add_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 443,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_sub_add_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 154,
+      "detail": null
+    },
+    {
+      "name": "Decidable",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 277,
+      "detail": null
+    },
+    {
+      "name": "Decidable.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 62,
+      "detail": null
+    },
+    {
+      "name": "Decidable.decide",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 48,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.of_decide_eq_true.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 91,
+      "detail": null
+    },
+    {
+      "name": "Bool.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 29,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.ne_true_of_eq_false.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 61,
+      "detail": null
+    },
+    {
+      "name": "Bool.noConfusionType",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 41,
+      "detail": null
+    },
+    {
+      "name": "Bool.noConfusion",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 107,
+      "detail": null
+    },
+    {
+      "name": "ne_true_of_eq_false",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 86,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.decide_eq_false.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 122,
+      "detail": null
+    },
+    {
+      "name": "decide_eq_false",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 107,
+      "detail": null
+    },
+    {
+      "name": "of_decide_eq_true",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 76,
+      "detail": null
+    },
+    {
+      "name": "DecidableEq",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 26,
+      "detail": null
+    },
+    {
+      "name": "Nat.decEq.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 84,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.eq_of_beq_eq_true.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 218,
+      "detail": null
+    },
+    {
+      "name": "Nat.eq_of_beq_eq_true._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 376,
+      "detail": null
+    },
+    {
+      "name": "Nat.eq_of_beq_eq_true",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 74,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.ne_of_beq_eq_false.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 266,
+      "detail": null
+    },
+    {
+      "name": "Nat.ne_of_beq_eq_false._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 345,
+      "detail": null
+    },
+    {
+      "name": "Nat.ne_of_beq_eq_false",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 81,
+      "detail": null
+    },
+    {
+      "name": "Nat.decEq",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 64,
+      "detail": null
+    },
+    {
+      "name": "instDecidableEqNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 19,
+      "detail": null
+    },
+    {
+      "name": "Nat.zero_sub",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 318,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_self_add",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 172,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_eq_zero_of_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 186,
+      "detail": null
+    },
+    {
+      "name": "Int.subNatNat_of_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 73,
+      "detail": null
+    },
+    {
+      "name": "Int.noConfusionType",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 69,
+      "detail": null
+    },
+    {
+      "name": "Int.noConfusion",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 152,
+      "detail": null
+    },
+    {
+      "name": "Int.ofNat.noConfusion",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 69,
+      "detail": null
+    },
+    {
+      "name": "Int.ofNat.inj",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 35,
+      "detail": null
+    },
+    {
+      "name": "Int.ofNat_inj",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 68,
+      "detail": null
+    },
+    {
+      "name": "Int.ofNat_inj._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 34,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.sub_eq_iff_eq_add.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 196,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_of_succ_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 49,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 172,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 119,
+      "detail": null
+    },
+    {
+      "name": "Nat.succ_pred",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 173,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_sub_of_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 468,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_add_cancel",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 111,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 100,
+      "detail": null
+    },
+    {
+      "name": "Eq.mp",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 74,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_sub_cancel",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 122,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_eq_iff_eq_add",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 168,
+      "detail": null
+    },
+    {
+      "name": "Iff.refl",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 32,
+      "detail": null
+    },
+    {
+      "name": "Iff.rfl",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 16,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_eq_iff_eq_add'",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 133,
+      "detail": null
+    },
+    {
+      "name": "iff_self",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 25,
+      "detail": null
+    },
+    {
+      "name": "Int.subNat_eq_zero_iff",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 443,
+      "detail": null
+    },
+    {
+      "name": "Int.subNat_eq_zero_iff._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 33,
+      "detail": null
+    },
+    {
+      "name": "Int.add_left_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 404,
+      "detail": null
+    },
+    {
+      "name": "Int.add_right_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 103,
+      "detail": null
+    },
+    {
+      "name": "Int.sub_self",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 96,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.add_zero.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 69,
+      "detail": null
+    },
+    {
+      "name": "Int.add_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 176,
+      "detail": null
+    },
+    {
+      "name": "Decidable.byCases.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 106,
+      "detail": null
+    },
+    {
+      "name": "Decidable.byCases",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 80,
+      "detail": null
+    },
+    {
+      "name": "Decidable.byContradiction",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 54,
+      "detail": null
+    },
+    {
+      "name": "Int.decEq.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 129,
+      "detail": null
+    },
+    {
+      "name": "decEq",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 40,
+      "detail": null
+    },
+    {
+      "name": "Int.decEq._proof_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 71,
+      "detail": null
+    },
+    {
+      "name": "Int.decEq._proof_2",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 64,
+      "detail": null
+    },
+    {
+      "name": "Int.decEq._proof_3",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 30,
+      "detail": null
+    },
+    {
+      "name": "Int.decEq._proof_4",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 30,
+      "detail": null
+    },
+    {
+      "name": "Int.decEq._proof_5",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 69,
+      "detail": null
+    },
+    {
+      "name": "Int.decEq._proof_6",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 60,
+      "detail": null
+    },
+    {
+      "name": "Int.decEq",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 252,
+      "detail": null
+    },
+    {
+      "name": "Int.instDecidableEq",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 13,
+      "detail": null
+    },
+    {
+      "name": "Int.NonNeg",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 247,
+      "detail": null
+    },
+    {
+      "name": "Int.le",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 33,
+      "detail": null
+    },
+    {
+      "name": "Int.instLEInt",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 15,
+      "detail": null
+    },
+    {
+      "name": "Int.lt",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 44,
+      "detail": null
+    },
+    {
+      "name": "Int.instLTInt",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 14,
+      "detail": null
+    },
+    {
+      "name": "Iff.mp",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 32,
+      "detail": null
+    },
+    {
+      "name": "dite",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 71,
+      "detail": null
+    },
+    {
+      "name": "Int.NonNeg.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 47,
+      "detail": null
+    },
+    {
+      "name": "Int.decNonneg._proof_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 99,
+      "detail": null
+    },
+    {
+      "name": "Int.decNonneg",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 52,
+      "detail": null
+    },
+    {
+      "name": "Int.decLe",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 51,
+      "detail": null
+    },
+    {
+      "name": "And",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 234,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.le_of_lt.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 165,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.lt.dest.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 184,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.le.dest.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 180,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.nonneg_def.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 172,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.nonneg_def.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 245,
+      "detail": null
+    },
+    {
+      "name": "Int.nonneg_def",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 126,
+      "detail": null
+    },
+    {
+      "name": "Int.le.dest_sub",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 70,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.add_assoc.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 286,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.add_assoc.aux1.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 87,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.sub_one_add_one_eq_of_pos.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 357,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_one_add_one_eq_of_pos",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 264,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_of_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 56,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.subNatNat_elim.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 85,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.subNatNat_elim.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 166,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.le_of_sub_eq_zero.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 491,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_of_sub_eq_zero._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 305,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_of_sub_eq_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 99,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_sub_cancel_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 158,
+      "detail": null
+    },
+    {
+      "name": "Or.resolve_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 46,
+      "detail": null
+    },
+    {
+      "name": "Nat.gt_of_not_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 77,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.not_le_of_gt.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 155,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_trans",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 83,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.le_antisymm.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 413,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_of_le_of_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 112,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_antisymm",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 139,
+      "detail": null
+    },
+    {
+      "name": "Eq.subst",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 57,
+      "detail": null
+    },
+    {
+      "name": "Nat.not_le_of_gt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 141,
+      "detail": null
+    },
+    {
+      "name": "Nat.not_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 57,
+      "detail": null
+    },
+    {
+      "name": "mt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 40,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_of_sub_ne_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 76,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_of_sub_pos",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 58,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_of_sub_eq_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 94,
+      "detail": null
+    },
+    {
+      "name": "Int.subNatNat_elim",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 567,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.le_add_right.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 141,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_add_right._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 210,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_add_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 79,
+      "detail": null
+    },
+    {
+      "name": "Int.subNatNat_add_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 262,
+      "detail": null
+    },
+    {
+      "name": "Int.subNatNat_add_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 286,
+      "detail": null
+    },
+    {
+      "name": "Int.subNatNat_add_add",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 444,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_add_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 117,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_sub_assoc",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 257,
+      "detail": null
+    },
+    {
+      "name": "Int.subNatNat_add",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 701,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.add_assoc.aux1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 461,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_of_lt_of_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 92,
+      "detail": null
+    },
+    {
+      "name": "Eq.propIntro",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 39,
+      "detail": null
+    },
+    {
+      "name": "Int.negSucc.noConfusion",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 70,
+      "detail": null
+    },
+    {
+      "name": "Int.negSucc.inj",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 34,
+      "detail": null
+    },
+    {
+      "name": "Int.negSucc.injEq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 60,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_right_comm",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 144,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_sub",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 355,
+      "detail": null
+    },
+    {
+      "name": "Int.subNatNat_sub",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 153,
+      "detail": null
+    },
+    {
+      "name": "Int.subNatNat_add_negSucc",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 939,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_left_comm",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 122,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.add_assoc.aux2",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 513,
+      "detail": null
+    },
+    {
+      "name": "Int.add_assoc",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 1355,
+      "detail": null
+    },
+    {
+      "name": "Int.le.dest",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 322,
+      "detail": null
+    },
+    {
+      "name": "Int.add_left_comm",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 168,
+      "detail": null
+    },
+    {
+      "name": "Int.lt.dest",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 292,
+      "detail": null
+    },
+    {
+      "name": "Int.le_def",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 70,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.le.intro_sub._simp_1_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 48,
+      "detail": null
+    },
+    {
+      "name": "Int.le.intro_sub",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 89,
+      "detail": null
+    },
+    {
+      "name": "Int.le.intro",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 271,
+      "detail": null
+    },
+    {
+      "name": "Int.le_of_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 145,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.lt_irrefl.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 151,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.add_left_cancel._simp_1_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 57,
+      "detail": null
+    },
+    {
+      "name": "Int.zero_add",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 69,
+      "detail": null
+    },
+    {
+      "name": "Int.add_left_cancel",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 184,
+      "detail": null
+    },
+    {
+      "name": "Int.lt_irrefl",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 199,
+      "detail": null
+    },
+    {
+      "name": "Int.ne_of_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 141,
+      "detail": null
+    },
+    {
+      "name": "And.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 67,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.lt_iff_le_and_ne.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 135,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.lt_iff_le_and_ne.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 169,
+      "detail": null
+    },
+    {
+      "name": "Not.imp",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 38,
+      "detail": null
+    },
+    {
+      "name": "Int.ofNat_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 49,
+      "detail": null
+    },
+    {
+      "name": "Int.lt_add_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 135,
+      "detail": null
+    },
+    {
+      "name": "Int.lt.intro",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 136,
+      "detail": null
+    },
+    {
+      "name": "Int.lt_iff_le_and_ne",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 439,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.lt_iff_le_and_not_ge.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 158,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.le_antisymm.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 183,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.le_antisymm.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 175,
+      "detail": null
+    },
+    {
+      "name": "Int.natCast_add",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 114,
+      "detail": null
+    },
+    {
+      "name": "And.right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 44,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.eq_zero_of_add_eq_zero.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 527,
+      "detail": null
+    },
+    {
+      "name": "Nat.eq_zero_of_add_eq_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 274,
+      "detail": null
+    },
+    {
+      "name": "Nat.eq_zero_of_add_eq_zero_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 66,
+      "detail": null
+    },
+    {
+      "name": "Int.le_antisymm",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 398,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.lt_iff_le_and_not_ge.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 139,
+      "detail": null
+    },
+    {
+      "name": "Int.le_refl",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 59,
+      "detail": null
+    },
+    {
+      "name": "Int.lt_iff_le_and_not_ge",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 210,
+      "detail": null
+    },
+    {
+      "name": "Function.comp",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 61,
+      "detail": null
+    },
+    {
+      "name": "Or.imp",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 64,
+      "detail": null
+    },
+    {
+      "name": "Or.imp_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 50,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_add",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 198,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.neg_neg.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 126,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 183,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.nonneg_or_nonneg_neg.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 71,
+      "detail": null
+    },
+    {
+      "name": "Int.nonneg_or_nonneg_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 105,
+      "detail": null
+    },
+    {
+      "name": "Int.le_total",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 247,
+      "detail": null
+    },
+    {
+      "name": "Int.lt_of_not_ge",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 67,
+      "detail": null
+    },
+    {
+      "name": "Int.not_le_of_gt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 40,
+      "detail": null
+    },
+    {
+      "name": "Int.not_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 142,
+      "detail": null
+    },
+    {
+      "name": "Int.lt_trichotomy",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 101,
+      "detail": null
+    },
+    {
+      "name": "instDecidableEqOfIff.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 131,
+      "detail": null
+    },
+    {
+      "name": "instDecidableEqOfIff._proof_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 63,
+      "detail": null
+    },
+    {
+      "name": "instDecidableEqOfIff",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 80,
+      "detail": null
+    },
+    {
+      "name": "instDecidableIff._proof_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 31,
+      "detail": null
+    },
+    {
+      "name": "instDecidableIff._proof_2",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 30,
+      "detail": null
+    },
+    {
+      "name": "instDecidableIff._proof_3",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 26,
+      "detail": null
+    },
+    {
+      "name": "instDecidableIff._proof_4",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 43,
+      "detail": null
+    },
+    {
+      "name": "instDecidableIff",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 81,
+      "detail": null
+    },
+    {
+      "name": "instDecidableAnd.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 105,
+      "detail": null
+    },
+    {
+      "name": "instDecidableNot",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 74,
+      "detail": null
+    },
+    {
+      "name": "instDecidableTrue",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 7,
+      "detail": null
+    },
+    {
+      "name": "not_false",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 10,
+      "detail": null
+    },
+    {
+      "name": "instDecidableFalse",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 6,
+      "detail": null
+    },
+    {
+      "name": "not_true_eq_false",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 101,
+      "detail": null
+    },
+    {
+      "name": "Int.ne_of_gt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 42,
+      "detail": null
+    },
+    {
+      "name": "Int.ne_iff_lt_or_gt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 300,
+      "detail": null
+    },
+    {
+      "name": "Int.lt_or_gt_of_ne",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 62,
+      "detail": null
+    },
+    {
+      "name": "Option",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 437,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LowerBound",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 5,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.UpperBound",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 5,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 237,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 37,
+      "detail": null
+    },
+    {
+      "name": "PSigma",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 483,
+      "detail": null
+    },
+    {
+      "name": "InvImage",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 56,
+      "detail": null
+    },
+    {
+      "name": "WellFounded.Nat.fix.go._proof_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 58,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_of_lt_add_one",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 142,
+      "detail": null
+    },
+    {
+      "name": "WellFounded.Nat.fix._proof_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 164,
+      "detail": null
+    },
+    {
+      "name": "WellFounded.Nat.fix.go",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 212,
+      "detail": null
+    },
+    {
+      "name": "ite",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 78,
+      "detail": null
+    },
+    {
+      "name": "Bool.decEq.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 127,
+      "detail": null
+    },
+    {
+      "name": "Bool.decEq",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 117,
+      "detail": null
+    },
+    {
+      "name": "instDecidableEqBool",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 13,
+      "detail": null
+    },
+    {
+      "name": "WellFounded.Nat.eager",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 24,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_add_one",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 110,
+      "detail": null
+    },
+    {
+      "name": "ite_self",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 168,
+      "detail": null
+    },
+    {
+      "name": "WellFounded.Nat.eager_eq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 105,
+      "detail": null
+    },
+    {
+      "name": "WellFounded.Nat.fix._proof_2",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 126,
+      "detail": null
+    },
+    {
+      "name": "WellFounded.Nat.fix",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 106,
+      "detail": null
+    },
+    {
+      "name": "PSigma.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 84,
+      "detail": null
+    },
+    {
+      "name": "HDiv",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 694,
+      "detail": null
+    },
+    {
+      "name": "HDiv.hDiv",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 57,
+      "detail": null
+    },
+    {
+      "name": "Div",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 266,
+      "detail": null
+    },
+    {
+      "name": "Div.div",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 52,
+      "detail": null
+    },
+    {
+      "name": "instHDiv",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 46,
+      "detail": null
+    },
+    {
+      "name": "Nat.ble.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 112,
+      "detail": null
+    },
+    {
+      "name": "Nat.ble._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 105,
+      "detail": null
+    },
+    {
+      "name": "Nat.ble",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 55,
+      "detail": null
+    },
+    {
+      "name": "Bool.ctorIdx",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 29,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.le_of_ble_eq_true.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 310,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_of_ble_eq_true._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 197,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_of_ble_eq_true",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 75,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.ble_eq_true_of_le.match_1_7",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 872,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.ble_self_eq_true.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 91,
+      "detail": null
+    },
+    {
+      "name": "Nat.ble_self_eq_true._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 159,
+      "detail": null
+    },
+    {
+      "name": "Nat.ble_self_eq_true",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 52,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.ble_succ_eq_true.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 316,
+      "detail": null
+    },
+    {
+      "name": "Nat.ble_succ_eq_true._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 283,
+      "detail": null
+    },
+    {
+      "name": "Nat.ble_succ_eq_true",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 80,
+      "detail": null
+    },
+    {
+      "name": "Nat.ble_eq_true_of_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 238,
+      "detail": null
+    },
+    {
+      "name": "Nat.not_le_of_not_ble_eq_true",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 79,
+      "detail": null
+    },
+    {
+      "name": "Nat.decLe",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 68,
+      "detail": null
+    },
+    {
+      "name": "Nat.decLt",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 44,
+      "detail": null
+    },
+    {
+      "name": "Nat.div.go.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 217,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.div_rec_lemma.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 238,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.sub_lt.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 190,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_succ_of_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 64,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.pred_le.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 66,
+      "detail": null
+    },
+    {
+      "name": "Nat.pred_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 94,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 288,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 242,
+      "detail": null
+    },
+    {
+      "name": "Nat.div_rec_lemma",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 148,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_of_lt_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 59,
+      "detail": null
+    },
+    {
+      "name": "Nat.div_rec_fuel_lemma",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 165,
+      "detail": null
+    },
+    {
+      "name": "Nat.div.go._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 232,
+      "detail": null
+    },
+    {
+      "name": "Nat.div.go",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 81,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_succ_self",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 95,
+      "detail": null
+    },
+    {
+      "name": "Nat.div",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 49,
+      "detail": null
+    },
+    {
+      "name": "Nat.instDiv",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 16,
+      "detail": null
+    },
+    {
+      "name": "HMod",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 726,
+      "detail": null
+    },
+    {
+      "name": "HMod.hMod",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 74,
+      "detail": null
+    },
+    {
+      "name": "Mod",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 362,
+      "detail": null
+    },
+    {
+      "name": "Mod.mod",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 73,
+      "detail": null
+    },
+    {
+      "name": "instHMod",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 48,
+      "detail": null
+    },
+    {
+      "name": "namedPattern",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 26,
+      "detail": null
+    },
+    {
+      "name": "Nat.mod.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 132,
+      "detail": null
+    },
+    {
+      "name": "Nat.modCore.go._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 237,
+      "detail": null
+    },
+    {
+      "name": "Nat.modCore.go",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 78,
+      "detail": null
+    },
+    {
+      "name": "Nat.modCore",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 50,
+      "detail": null
+    },
+    {
+      "name": "Nat.mod",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 85,
+      "detail": null
+    },
+    {
+      "name": "Nat.instMod",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 15,
+      "detail": null
+    },
+    {
+      "name": "instDecidableAnd._proof_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 39,
+      "detail": null
+    },
+    {
+      "name": "And.left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 29,
+      "detail": null
+    },
+    {
+      "name": "instDecidableAnd._proof_2",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 28,
+      "detail": null
+    },
+    {
+      "name": "instDecidableAnd",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 158,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Core.0.dif_neg.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 112,
+      "detail": null
+    },
+    {
+      "name": "dif_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 186,
+      "detail": null
+    },
+    {
+      "name": "Decidable.em",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 45,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Core.0.if_pos.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 97,
+      "detail": null
+    },
+    {
+      "name": "if_pos",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 146,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Core.0.if_neg.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 104,
+      "detail": null
+    },
+    {
+      "name": "if_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 137,
+      "detail": null
+    },
+    {
+      "name": "ite_congr",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 356,
+      "detail": null
+    },
+    {
+      "name": "ite_cond_eq_false",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 211,
+      "detail": null
+    },
+    {
+      "name": "false_and",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 37,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Core.0.dif_pos.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 98,
+      "detail": null
+    },
+    {
+      "name": "dif_pos",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 212,
+      "detail": null
+    },
+    {
+      "name": "Nat.div.go.eq_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 412,
+      "detail": null
+    },
+    {
+      "name": "and_false",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 54,
+      "detail": null
+    },
+    {
+      "name": "ite_cond_eq_true",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 160,
+      "detail": null
+    },
+    {
+      "name": "and_self",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 47,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Div.Basic.0.Nat.div.go.fuel_congr.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 234,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Div.Basic.0.Nat.div.go.fuel_congr._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 1335,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Div.Basic.0.Nat.div.go.fuel_congr",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 129,
+      "detail": null
+    },
+    {
+      "name": "Nat.div_eq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 1372,
+      "detail": null
+    },
+    {
+      "name": "inferInstance",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 17,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Div.Basic.0.Nat.div_lt_self.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 137,
+      "detail": null
+    },
+    {
+      "name": "Acc",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 563,
+      "detail": null
+    },
+    {
+      "name": "WellFounded",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 376,
+      "detail": null
+    },
+    {
+      "name": "WellFounded.fixF",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 176,
+      "detail": null
+    },
+    {
+      "name": "WellFounded.apply",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 75,
+      "detail": null
+    },
+    {
+      "name": "WellFounded.fix",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 75,
+      "detail": null
+    },
+    {
+      "name": "WellFoundedRelation",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 427,
+      "detail": null
+    },
+    {
+      "name": "WellFoundedRelation.rel",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 62,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.WF.0.Nat.lt_wfRel.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 162,
+      "detail": null
+    },
+    {
+      "name": "Acc.recOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 152,
+      "detail": null
+    },
+    {
+      "name": "Acc.inv",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 125,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_wfRel._proof_3",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 281,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_wfRel",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 40,
+      "detail": null
+    },
+    {
+      "name": "WellFoundedRelation.wf",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 44,
+      "detail": null
+    },
+    {
+      "name": "Nat.strongRecOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 82,
+      "detail": null
+    },
+    {
+      "name": "Nat.zero_le._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 32,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Div.Basic.0.Nat.div_le_self.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 137,
+      "detail": null
+    },
+    {
+      "name": "Nat.succ_le_of_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 57,
+      "detail": null
+    },
+    {
+      "name": "Nat.div_le_self",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 701,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.add_le_of_le_sub.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 263,
+      "detail": null
+    },
+    {
+      "name": "Nat.le.intro",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 122,
+      "detail": null
+    },
+    {
+      "name": "Nat.eq_add_of_sub_eq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 131,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_le_of_le_sub",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 284,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_of_succ_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 76,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.add_le_add_left.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 165,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_le_add_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 156,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_lt_add_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 102,
+      "detail": null
+    },
+    {
+      "name": "Nat.div_lt_self",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 448,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.zero_lt_of_ne_zero.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 273,
+      "detail": null
+    },
+    {
+      "name": "Nat.zero_lt_of_ne_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 109,
+      "detail": null
+    },
+    {
+      "name": "Nat.bitwise_rec_lemma",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 57,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Bitwise.Basic.0.Nat.bitwise._unary._proof_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 369,
+      "detail": null
+    },
+    {
+      "name": "Nat.bitwise._unary",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 280,
+      "detail": null
+    },
+    {
+      "name": "Nat.bitwise",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 49,
+      "detail": null
+    },
+    {
+      "name": "Bool.and.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 64,
+      "detail": null
+    },
+    {
+      "name": "Bool.and",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 36,
+      "detail": null
+    },
+    {
+      "name": "Nat.land",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 7,
+      "detail": null
+    },
+    {
+      "name": "Nat.shiftLeft.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 102,
+      "detail": null
+    },
+    {
+      "name": "Nat.shiftRight._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 110,
+      "detail": null
+    },
+    {
+      "name": "Nat.shiftRight",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 35,
+      "detail": null
+    },
+    {
+      "name": "Nat.hasNotBit",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 29,
+      "detail": null
+    },
+    {
+      "name": "Option.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 68,
+      "detail": null
+    },
+    {
+      "name": "Option.ctorIdx",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 54,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.isImpossible._sparseCasesOn_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 194,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.isImpossible.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 147,
+      "detail": null
+    },
+    {
+      "name": "Int.decLt",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 88,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.isImpossible",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 46,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 5,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Coeffs",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 4,
+      "detail": null
+    },
+    {
+      "name": "Option.isSome.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 104,
+      "detail": null
+    },
+    {
+      "name": "Option.all",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 66,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LowerBound.sat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 33,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.lowerBound",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 10,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.UpperBound.sat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 34,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.upperBound",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 8,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.sat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 42,
+      "detail": null
+    },
+    {
+      "name": "List.getLast?.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 122,
+      "detail": null
+    },
+    {
+      "name": "List.foldr._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 164,
+      "detail": null
+    },
+    {
+      "name": "List.foldr",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 98,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.sum",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 53,
+      "detail": null
+    },
+    {
+      "name": "HMul",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 810,
+      "detail": null
+    },
+    {
+      "name": "HMul.hMul",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 67,
+      "detail": null
+    },
+    {
+      "name": "Mul",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 352,
+      "detail": null
+    },
+    {
+      "name": "Mul.mul",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 58,
+      "detail": null
+    },
+    {
+      "name": "instHMul",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 42,
+      "detail": null
+    },
+    {
+      "name": "List.zipWith.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 210,
+      "detail": null
+    },
+    {
+      "name": "List.zipWith._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 195,
+      "detail": null
+    },
+    {
+      "name": "List.zipWith",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 120,
+      "detail": null
+    },
+    {
+      "name": "Nat.mul._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 128,
+      "detail": null
+    },
+    {
+      "name": "Nat.mul",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 54,
+      "detail": null
+    },
+    {
+      "name": "instMulNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 18,
+      "detail": null
+    },
+    {
+      "name": "Int.mul",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 87,
+      "detail": null
+    },
+    {
+      "name": "Int.instMul",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 15,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.mul",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 55,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.instMul",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 14,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.dot",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 36,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Coeffs.dot",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 18,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.sat'",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 14,
+      "detail": null
+    },
+    {
+      "name": "Subsingleton",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 414,
+      "detail": null
+    },
+    {
+      "name": "Subsingleton.allEq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 46,
+      "detail": null
+    },
+    {
+      "name": "Subsingleton.elim",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 37,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Core.0.instSubsingletonDecidable.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 103,
+      "detail": null
+    },
+    {
+      "name": "instSubsingletonDecidable",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 162,
+      "detail": null
+    },
+    {
+      "name": "Decidable.decide.congr_simp",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 137,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.decide_eq_true.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 136,
+      "detail": null
+    },
+    {
+      "name": "decide_eq_true",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 123,
+      "detail": null
+    },
+    {
+      "name": "decide_eq_true_eq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 49,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.SimpLemmas.0.and_imp.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 106,
+      "detail": null
+    },
+    {
+      "name": "and_imp",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 83,
+      "detail": null
+    },
+    {
+      "name": "not_and",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 41,
+      "detail": null
+    },
+    {
+      "name": "not_and._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 27,
+      "detail": null
+    },
+    {
+      "name": "implies_congr",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 131,
+      "detail": null
+    },
+    {
+      "name": "Int.not_le._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 44,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.le_trans.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 175,
+      "detail": null
+    },
+    {
+      "name": "Int.le_trans",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 290,
+      "detail": null
+    },
+    {
+      "name": "Int.lt_of_lt_of_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 111,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.not_sat_of_isImpossible",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 823,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.not_sat'_of_isImpossible",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 167,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Coeffs.ofList",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 17,
+      "detail": null
+    },
+    {
+      "name": "Prod",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 531,
+      "detail": null
+    },
+    {
+      "name": "Prod.fst",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 38,
+      "detail": null
+    },
+    {
+      "name": "Option.getD.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 102,
+      "detail": null
+    },
+    {
+      "name": "Option.getD",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 62,
+      "detail": null
+    },
+    {
+      "name": "Prod.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 75,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.normalize?.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 77,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.tidy?.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 129,
+      "detail": null
+    },
+    {
+      "name": "List.filter.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 76,
+      "detail": null
+    },
+    {
+      "name": "List.find?._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 160,
+      "detail": null
+    },
+    {
+      "name": "List.find?",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 76,
+      "detail": null
+    },
+    {
+      "name": "cond.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 67,
+      "detail": null
+    },
+    {
+      "name": "Bool.not",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 32,
+      "detail": null
+    },
+    {
+      "name": "BEq",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 451,
+      "detail": null
+    },
+    {
+      "name": "BEq.beq",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 33,
+      "detail": null
+    },
+    {
+      "name": "instBEqOfDecidableEq",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 42,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.leading",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 41,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Coeffs.leading",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 15,
+      "detail": null
+    },
+    {
+      "name": "Option.map",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 79,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.map",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 34,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.flip",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 15,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.neg",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 28,
+      "detail": null
+    },
+    {
+      "name": "instDecidableEqList.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 124,
+      "detail": null
+    },
+    {
+      "name": "List.map._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 147,
+      "detail": null
+    },
+    {
+      "name": "List.map",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 77,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.smul",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 47,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Coeffs.smul",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 19,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.positivize?",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 81,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.mod_lt.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 294,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.mod_lt.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 150,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.modCore_lt.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 117,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.modCoreGo_lt.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 133,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_of_not_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 73,
+      "detail": null
+    },
+    {
+      "name": "Nat.modCoreGo_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 475,
+      "detail": null
+    },
+    {
+      "name": "Nat.modCore_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 538,
+      "detail": null
+    },
+    {
+      "name": "Nat.mod_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 418,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Gcd.0.Nat.gcd._unary._proof_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 217,
+      "detail": null
+    },
+    {
+      "name": "Nat.gcd._unary",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 203,
+      "detail": null
+    },
+    {
+      "name": "Nat.gcd",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 39,
+      "detail": null
+    },
+    {
+      "name": "Int.natAbs",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 32,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.gcd",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 33,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Coeffs.gcd",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 11,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.trivial",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 15,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.impossible",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 25,
+      "detail": null
+    },
+    {
+      "name": "Int.ediv.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 205,
+      "detail": null
+    },
+    {
+      "name": "Int.ediv",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 90,
+      "detail": null
+    },
+    {
+      "name": "Int.instDiv",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 14,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.div",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 74,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.sdiv",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 50,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Coeffs.sdiv",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 21,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.normalize?",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 100,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.normalize",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 38,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.tidy?",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 89,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.tidy",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 20,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.tidyConstraint",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 23,
+      "detail": null
+    },
+    {
+      "name": "Prod.snd",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 39,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.tidyCoeffs",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 19,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Omega.Constraint.0.Lean.Omega.tidy?.match_1.splitter",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 40,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.normalizeConstraint",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 22,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.normalizeCoeffs",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 22,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.normalize?_eq_some",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 388,
+      "detail": null
+    },
+    {
+      "name": "Dvd",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 828,
+      "detail": null
+    },
+    {
+      "name": "Dvd.dvd",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 70,
+      "detail": null
+    },
+    {
+      "name": "Int.instDvd",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 47,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.zero_ediv.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 70,
+      "detail": null
+    },
+    {
+      "name": "Nat.zero_div",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 160,
+      "detail": null
+    },
+    {
+      "name": "Int.zero_ediv",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 571,
+      "detail": null
+    },
+    {
+      "name": "List.brecOn.eq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 273,
+      "detail": null
+    },
+    {
+      "name": "List.ctorIdx",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 66,
+      "detail": null
+    },
+    {
+      "name": "List.noConfusionType",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 103,
+      "detail": null
+    },
+    {
+      "name": "List.noConfusion",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 246,
+      "detail": null
+    },
+    {
+      "name": "heq_of_eq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 56,
+      "detail": null
+    },
+    {
+      "name": "List.cons.noConfusion",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 188,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.List.Basic.0.List.zipWith.match_1.splitter",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 496,
+      "detail": null
+    },
+    {
+      "name": "congrFun",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 144,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.List.Basic.0.List.zipWith.match_1.eq_2",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 940,
+      "detail": null
+    },
+    {
+      "name": "List.zipWith.eq_def",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 1824,
+      "detail": null
+    },
+    {
+      "name": "List.zipWith.eq_2",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 373,
+      "detail": null
+    },
+    {
+      "name": "List.zipWith_nil_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 264,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.mul_nil_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 148,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.dot_nil_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 258,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.dvd_trans.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 648,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.mul_assoc.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 176,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.zero_mul.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 80,
+      "detail": null
+    },
+    {
+      "name": "Nat.mul_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 165,
+      "detail": null
+    },
+    {
+      "name": "Nat.zero_mul._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 209,
+      "detail": null
+    },
+    {
+      "name": "Nat.zero_mul",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 77,
+      "detail": null
+    },
+    {
+      "name": "Nat.succ_mul",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 351,
+      "detail": null
+    },
+    {
+      "name": "Nat.left_distrib",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 418,
+      "detail": null
+    },
+    {
+      "name": "Nat.mul_assoc._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 461,
+      "detail": null
+    },
+    {
+      "name": "Nat.mul_assoc",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 104,
+      "detail": null
+    },
+    {
+      "name": "Nat.casesAuxOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 146,
+      "detail": null
+    },
+    {
+      "name": "Int.ofNat_mul_negOfNat",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 360,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.mul_comm.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 115,
+      "detail": null
+    },
+    {
+      "name": "Nat.mul_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 101,
+      "detail": null
+    },
+    {
+      "name": "Nat.mul_comm._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 259,
+      "detail": null
+    },
+    {
+      "name": "Nat.mul_comm",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 85,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_comm",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 728,
+      "detail": null
+    },
+    {
+      "name": "Int.negOfNat_mul_ofNat",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 195,
+      "detail": null
+    },
+    {
+      "name": "Int.negSucc_mul_negOfNat",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 296,
+      "detail": null
+    },
+    {
+      "name": "Int.negOfNat_mul_negSucc",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 138,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_assoc",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 2288,
+      "detail": null
+    },
+    {
+      "name": "Int.dvd_trans",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 214,
+      "detail": null
+    },
+    {
+      "name": "Nat.instDvd",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 68,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.natAbs_dvd_natAbs.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 164,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.natAbs_eq.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 80,
+      "detail": null
+    },
+    {
+      "name": "Int.natAbs_eq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 134,
+      "detail": null
+    },
+    {
+      "name": "true_or",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 24,
+      "detail": null
+    },
+    {
+      "name": "or_true",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 17,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.natAbs_neg.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 117,
+      "detail": null
+    },
+    {
+      "name": "Int.natAbs_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 170,
+      "detail": null
+    },
+    {
+      "name": "Int.natAbs_eq_natAbs_iff",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 563,
+      "detail": null
+    },
+    {
+      "name": "Int.natAbs_negOfNat",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 217,
+      "detail": null
+    },
+    {
+      "name": "Int.natAbs_mul",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 631,
+      "detail": null
+    },
+    {
+      "name": "Int.natAbs_natCast",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 95,
+      "detail": null
+    },
+    {
+      "name": "Int.dvd_mul_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 72,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_eq_of_add_eq_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 158,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.mul_add.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 355,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 248,
+      "detail": null
+    },
+    {
+      "name": "Int.zero_mul",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 90,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.subNatNat_self.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 84,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.sub_self.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 75,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_self._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 166,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_self",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 70,
+      "detail": null
+    },
+    {
+      "name": "Int.subNatNat_self",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 185,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.mul_le_mul_left.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 179,
+      "detail": null
+    },
+    {
+      "name": "Nat.mul_le_mul_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 213,
+      "detail": null
+    },
+    {
+      "name": "Nat.mul_lt_mul_of_pos_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 234,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_ofNat_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 96,
+      "detail": null
+    },
+    {
+      "name": "Nat.pred_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 43,
+      "detail": null
+    },
+    {
+      "name": "Nat.pred_mul",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 437,
+      "detail": null
+    },
+    {
+      "name": "Nat.mul_sub_right_distrib",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 424,
+      "detail": null
+    },
+    {
+      "name": "Nat.mul_sub_left_distrib",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 184,
+      "detail": null
+    },
+    {
+      "name": "Int.ofNat_mul_subNatNat",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 1138,
+      "detail": null
+    },
+    {
+      "name": "Int.negOfNat_eq_subNatNat_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 229,
+      "detail": null
+    },
+    {
+      "name": "Int.negOfNat_add",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 595,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.mul_add._simp_1_3",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 153,
+      "detail": null
+    },
+    {
+      "name": "Nat.right_distrib",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 192,
+      "detail": null
+    },
+    {
+      "name": "Int.negSucc_mul_ofNat",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 193,
+      "detail": null
+    },
+    {
+      "name": "Int.negSucc_mul_subNatNat",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 939,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_add",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 3089,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_mul_eq_mul_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 275,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 54,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.natAbs_dvd_natAbs.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 166,
+      "detail": null
+    },
+    {
+      "name": "Int.natAbs_dvd_natAbs",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 396,
+      "detail": null
+    },
+    {
+      "name": "Int.ofNat_dvd_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 125,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Omega.IntList.0.Lean.Omega.IntList.gcd_cons_div_left._simp_1_2",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 42,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Gcd.0.Nat.gcd.induction.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 311,
+      "detail": null
+    },
+    {
+      "name": "Nat.gcd.induction",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 303,
+      "detail": null
+    },
+    {
+      "name": "WellFounded.Nat.fix.go.congr_simp",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 499,
+      "detail": null
+    },
+    {
+      "name": "Quot",
+      "kind": "quot",
+      "verdict": "verified",
+      "micros": 41,
+      "detail": null
+    },
+    {
+      "name": "Quot.mk",
+      "kind": "quot",
+      "verdict": "verified",
+      "micros": 7,
+      "detail": null
+    },
+    {
+      "name": "Quot.lift",
+      "kind": "quot",
+      "verdict": "verified",
+      "micros": 13,
+      "detail": null
+    },
+    {
+      "name": "Quot.ind",
+      "kind": "quot",
+      "verdict": "verified",
+      "micros": 12,
+      "detail": null
+    },
+    {
+      "name": "Quot.liftOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 180,
+      "detail": null
+    },
+    {
+      "name": "Quot.sound",
+      "kind": "axiom",
+      "verdict": "verified",
+      "micros": 48,
+      "detail": null
+    },
+    {
+      "name": "funext",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 215,
+      "detail": null
+    },
+    {
+      "name": "WellFounded.Nat.fix.go_congr",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 1115,
+      "detail": null
+    },
+    {
+      "name": "WellFounded.Nat.fix_eq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 1175,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Gcd.0.PSigma.casesOn._arg_pusher",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 452,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Gcd.0.Nat.gcd._unary.eq_def",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 1096,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Gcd.0.Nat.gcd.eq_def",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 467,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Gcd.0.Nat.gcd.eq_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 81,
+      "detail": null
+    },
+    {
+      "name": "Nat.gcd_zero_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 105,
+      "detail": null
+    },
+    {
+      "name": "Nat.dvd_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 117,
+      "detail": null
+    },
+    {
+      "name": "Nat.mul_one",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 136,
+      "detail": null
+    },
+    {
+      "name": "Nat.dvd_refl",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 103,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Gcd.0.Nat.gcd_rec.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 80,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Div.Basic.0.Nat.mod_zero.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 109,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Div.Basic.0.Nat.modCore_eq_mod.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 100,
+      "detail": null
+    },
+    {
+      "name": "Nat.modCore.go.eq_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 338,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Div.Basic.0.Nat.modCore.go.fuel_congr.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 232,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Div.Basic.0.Nat.modCore.go.fuel_congr._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 1034,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Div.Basic.0.Nat.modCore.go.fuel_congr",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 105,
+      "detail": null
+    },
+    {
+      "name": "Nat.modCore_eq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 991,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Div.Basic.0.Nat.modCore_eq_mod.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 128,
+      "detail": null
+    },
+    {
+      "name": "Nat.mod.eq_2",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 130,
+      "detail": null
+    },
+    {
+      "name": "iteInduction",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 169,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Div.Basic.0.Nat.modCore_eq_mod.match_1_8",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 167,
+      "detail": null
+    },
+    {
+      "name": "Nat.modCore_eq_mod",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 510,
+      "detail": null
+    },
+    {
+      "name": "Nat.mod_eq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 168,
+      "detail": null
+    },
+    {
+      "name": "Nat.mod_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 203,
+      "detail": null
+    },
+    {
+      "name": "Nat.gcd_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 388,
+      "detail": null
+    },
+    {
+      "name": "Nat.gcd_zero_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 306,
+      "detail": null
+    },
+    {
+      "name": "Nat.gcd_rec",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 336,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Dvd.0.Nat.dvd_add.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 190,
+      "detail": null
+    },
+    {
+      "name": "Nat.dvd_add",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 257,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Dvd.0.Nat.dvd_add_iff_right.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 337,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Dvd.0.Nat.dvd_add_iff_right.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 224,
+      "detail": null
+    },
+    {
+      "name": "Nat.dvd_add_iff_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 252,
+      "detail": null
+    },
+    {
+      "name": "Nat.dvd_add_iff_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 108,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Dvd.0.Nat.dvd_trans.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 281,
+      "detail": null
+    },
+    {
+      "name": "Nat.dvd_trans",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 230,
+      "detail": null
+    },
+    {
+      "name": "Nat.dvd_mul_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 89,
+      "detail": null
+    },
+    {
+      "name": "Nat.div.inductionOn._unary._proof_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 138,
+      "detail": null
+    },
+    {
+      "name": "Nat.div.inductionOn._unary",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 201,
+      "detail": null
+    },
+    {
+      "name": "Nat.div.inductionOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 104,
+      "detail": null
+    },
+    {
+      "name": "Nat.mod.inductionOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 91,
+      "detail": null
+    },
+    {
+      "name": "Nat.mod_add_div",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 882,
+      "detail": null
+    },
+    {
+      "name": "Nat.dvd_mod_iff",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 130,
+      "detail": null
+    },
+    {
+      "name": "Nat.gcd_dvd",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 518,
+      "detail": null
+    },
+    {
+      "name": "Nat.gcd_dvd_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 29,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.gcd_cons_div_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 536,
+      "detail": null
+    },
+    {
+      "name": "Nat.gcd_dvd_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 65,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.gcd_cons_div_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 513,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.gcd_cons_div_right'",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 145,
+      "detail": null
+    },
+    {
+      "name": "forall_congr",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 155,
+      "detail": null
+    },
+    {
+      "name": "Nonempty",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 688,
+      "detail": null
+    },
+    {
+      "name": "Nonempty.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 47,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nonempty.elim.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 73,
+      "detail": null
+    },
+    {
+      "name": "Nonempty.elim",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 85,
+      "detail": null
+    },
+    {
+      "name": "forall_const",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 42,
+      "detail": null
+    },
+    {
+      "name": "forall_const._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 28,
+      "detail": null
+    },
+    {
+      "name": "Inhabited",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 472,
+      "detail": null
+    },
+    {
+      "name": "Inhabited.default",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 33,
+      "detail": null
+    },
+    {
+      "name": "instNonemptyOfInhabited",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 25,
+      "detail": null
+    },
+    {
+      "name": "instInhabitedTrue.default",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 4,
+      "detail": null
+    },
+    {
+      "name": "instInhabitedTrue",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 8,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.ediv_zero.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 76,
+      "detail": null
+    },
+    {
+      "name": "Nat.lt_irrefl._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 27,
+      "detail": null
+    },
+    {
+      "name": "and_true",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 42,
+      "detail": null
+    },
+    {
+      "name": "Nat.div_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 222,
+      "detail": null
+    },
+    {
+      "name": "Int.ediv_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 240,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.add_ediv_of_dvd_right.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 177,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.add_mul_ediv_right.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 80,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 96,
+      "detail": null
+    },
+    {
+      "name": "Nat.div_eq_sub_div",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 159,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_div_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 151,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_mul_div_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 570,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_mul_div_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 169,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.ofNat_sub.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 121,
+      "detail": null
+    },
+    {
+      "name": "Int.ofNat_sub",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 389,
+      "detail": null
+    },
+    {
+      "name": "not_congr",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 66,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_add_left._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 44,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.le_of_add_le_add_left.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 196,
+      "detail": null
+    },
+    {
+      "name": "iff_of_true",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 47,
+      "detail": null
+    },
+    {
+      "name": "iff_true_intro",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 18,
+      "detail": null
+    },
+    {
+      "name": "imp_self",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 16,
+      "detail": null
+    },
+    {
+      "name": "imp_self._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 18,
+      "detail": null
+    },
+    {
+      "name": "Nat.succ.inj",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 72,
+      "detail": null
+    },
+    {
+      "name": "Nat.succ.injEq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 49,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_left_cancel",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 376,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_of_add_le_add_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 205,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_of_add_le_add_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 128,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_le_add_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 135,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_le_add_iff_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 67,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.le_of_sub_le_sub_right.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 869,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_of_sub_le_sub_right._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 477,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_of_sub_le_sub_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 123,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.sub_le_sub_right.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 123,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_le_sub_right._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 295,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_le_sub_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 118,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_le_sub_iff_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 81,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_zero_eq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 167,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Div.Basic.0.Nat.le_div_iff_mul_le._simp_1_3",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 46,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Div.Basic.0.Nat.le_div_iff_mul_le._simp_1_2",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 37,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_div_iff_mul_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 1207,
+      "detail": null
+    },
+    {
+      "name": "Nat.div_lt_iff_lt_mul",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 158,
+      "detail": null
+    },
+    {
+      "name": "Nat.div_eq_of_lt_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 306,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Basic.0.Nat.sub_le_sub_left.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 388,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_le_sub_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 237,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Div.Basic.0.Nat.div_mul_le_self.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 111,
+      "detail": null
+    },
+    {
+      "name": "Nat.div_mul_le_self",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 321,
+      "detail": null
+    },
+    {
+      "name": "Nat.mul_sub_div",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 763,
+      "detail": null
+    },
+    {
+      "name": "Nat.ge_of_not_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 108,
+      "detail": null
+    },
+    {
+      "name": "flip",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 51,
+      "detail": null
+    },
+    {
+      "name": "Nat.not_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 88,
+      "detail": null
+    },
+    {
+      "name": "Int.negSucc_eq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 181,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Div.Basic.0.Nat.sub_mul_div_of_le.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 141,
+      "detail": null
+    },
+    {
+      "name": "Nat.sub_mul_div_of_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 961,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.add_mul_ediv_right.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 468,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.eq_succ_of_zero_lt.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 276,
+      "detail": null
+    },
+    {
+      "name": "Int.eq_succ_of_zero_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 213,
+      "detail": null
+    },
+    {
+      "name": "Int.add_neg_cancel_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 134,
+      "detail": null
+    },
+    {
+      "name": "Int.add_sub_cancel",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 116,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_add_cancel_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 135,
+      "detail": null
+    },
+    {
+      "name": "Int.sub_add_cancel",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 108,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.add_mul_ediv_right.match_1_5",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 201,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_inj",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 131,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.ediv_neg.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 227,
+      "detail": null
+    },
+    {
+      "name": "Int.ediv_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 924,
+      "detail": null
+    },
+    {
+      "name": "Int.add_mul",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 220,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_mul_eq_neg_mul",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 147,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_mul",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 56,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_mul_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 117,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.add_le_add_left.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 189,
+      "detail": null
+    },
+    {
+      "name": "Int.add_le_add_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 200,
+      "detail": null
+    },
+    {
+      "name": "Int.add_lt_add_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 191,
+      "detail": null
+    },
+    {
+      "name": "Int.add_lt_add_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 154,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_lt_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 170,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 68,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_pos_of_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 72,
+      "detail": null
+    },
+    {
+      "name": "Int.add_mul_ediv_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 2987,
+      "detail": null
+    },
+    {
+      "name": "Int.add_ediv_of_dvd_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 463,
+      "detail": null
+    },
+    {
+      "name": "Int.add_ediv_of_dvd_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 148,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.mul_ediv_assoc.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 330,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_left_comm",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 161,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_ediv_cancel",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 148,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_ediv_cancel_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 130,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_ediv_assoc",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 397,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_ediv_assoc'",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 141,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.dot_sdiv_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 1881,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Coeffs.dot_sdiv_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 277,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.one_mul.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 121,
+      "detail": null
+    },
+    {
+      "name": "Nat.one_mul",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 84,
+      "detail": null
+    },
+    {
+      "name": "Int.one_mul",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 302,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_one",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 97,
+      "detail": null
+    },
+    {
+      "name": "Int.dvd_refl",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 74,
+      "detail": null
+    },
+    {
+      "name": "Int.lt_iff_add_one_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 68,
+      "detail": null
+    },
+    {
+      "name": "Int.natCast_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 159,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.ofNat_le.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 178,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.ofNat_le.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 173,
+      "detail": null
+    },
+    {
+      "name": "Int.ofNat_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 289,
+      "detail": null
+    },
+    {
+      "name": "Int.ofNat_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 173,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Core.0.decide_true.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 79,
+      "detail": null
+    },
+    {
+      "name": "decide_true",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 68,
+      "detail": null
+    },
+    {
+      "name": "true_and",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 37,
+      "detail": null
+    },
+    {
+      "name": "ge_iff_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 68,
+      "detail": null
+    },
+    {
+      "name": "ge_iff_le._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 60,
+      "detail": null
+    },
+    {
+      "name": "Int.add_le_add_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 146,
+      "detail": null
+    },
+    {
+      "name": "Int.le_of_sub_nonneg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 150,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.dvd_neg.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 369,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.dvd_neg.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 215,
+      "detail": null
+    },
+    {
+      "name": "Int.dvd_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 250,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.neg_ediv_of_dvd.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 426,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_ediv_of_dvd",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 430,
+      "detail": null
+    },
+    {
+      "name": "Int.sub_ediv_of_dvd",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 343,
+      "detail": null
+    },
+    {
+      "name": "Int.div_def",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 122,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.ediv_nonneg_iff_of_pos.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 541,
+      "detail": null
+    },
+    {
+      "name": "Int.natCast_nonneg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 266,
+      "detail": null
+    },
+    {
+      "name": "Int.natCast_nonneg._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 59,
+      "detail": null
+    },
+    {
+      "name": "iff_false",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 60,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.negSucc_lt_zero.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 139,
+      "detail": null
+    },
+    {
+      "name": "Int.sub_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 283,
+      "detail": null
+    },
+    {
+      "name": "Int.eq_ofNat_of_zero_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 99,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.negSucc_lt_zero.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 149,
+      "detail": null
+    },
+    {
+      "name": "Int.negSucc_lt_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 114,
+      "detail": null
+    },
+    {
+      "name": "Int.negSucc_not_nonneg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 50,
+      "detail": null
+    },
+    {
+      "name": "Int.negSucc_not_nonneg._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 25,
+      "detail": null
+    },
+    {
+      "name": "Int.ediv_nonneg_iff_of_pos",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 444,
+      "detail": null
+    },
+    {
+      "name": "Int.sub_nonneg_of_le",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 227,
+      "detail": null
+    },
+    {
+      "name": "Int.sub_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 166,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.div_sat",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 2266,
+      "detail": null
+    },
+    {
+      "name": "Int.emod.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 99,
+      "detail": null
+    },
+    {
+      "name": "Int.emod",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 73,
+      "detail": null
+    },
+    {
+      "name": "Int.instMod",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 15,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.emod_add_mul_ediv.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 195,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.emod_zero.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 70,
+      "detail": null
+    },
+    {
+      "name": "Int.emod_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 217,
+      "detail": null
+    },
+    {
+      "name": "Int.natCast_emod",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 104,
+      "detail": null
+    },
+    {
+      "name": "Int.natCast_ediv",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 99,
+      "detail": null
+    },
+    {
+      "name": "Int.sub_sub",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 245,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_sub",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 217,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.sub_sub_self._simp_1_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 63,
+      "detail": null
+    },
+    {
+      "name": "Int.sub_sub_self",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 282,
+      "detail": null
+    },
+    {
+      "name": "Int.add_right_comm",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 215,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.emod_add_mul_ediv.aux",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 796,
+      "detail": null
+    },
+    {
+      "name": "Int.emod_add_mul_ediv",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 2979,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_ediv_cancel_of_emod_eq_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 176,
+      "detail": null
+    },
+    {
+      "name": "Int.dvd_of_emod_eq_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 129,
+      "detail": null
+    },
+    {
+      "name": "Int.emod_def",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 155,
+      "detail": null
+    },
+    {
+      "name": "Int.add_mul_emod_self_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 394,
+      "detail": null
+    },
+    {
+      "name": "Int.zero_emod",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 130,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_emod_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 141,
+      "detail": null
+    },
+    {
+      "name": "Int.emod_self",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 86,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.dot_cons_cons",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 425,
+      "detail": null
+    },
+    {
+      "name": "Int.add_mul_emod_self_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 149,
+      "detail": null
+    },
+    {
+      "name": "Int.emod_add_emod",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 141,
+      "detail": null
+    },
+    {
+      "name": "Int.add_emod_emod",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 134,
+      "detail": null
+    },
+    {
+      "name": "Int.add_emod",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 119,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.emod_emod_of_dvd.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 327,
+      "detail": null
+    },
+    {
+      "name": "Int.emod_emod_of_dvd",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 367,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.ofNat_dvd.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 182,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.ofNat_dvd.match_1_5",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 137,
+      "detail": null
+    },
+    {
+      "name": "Int.le_refl._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 32,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Order.0.Int.mul_pos.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 154,
+      "detail": null
+    },
+    {
+      "name": "Int.ofNat_succ_pos",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 70,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_pos",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 504,
+      "detail": null
+    },
+    {
+      "name": "Int.sub_pos_of_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 200,
+      "detail": null
+    },
+    {
+      "name": "Int.lt_of_sub_pos",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 157,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_sub",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 245,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_lt_mul_of_pos_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 128,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_le_mul_of_nonneg_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 271,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_nonpos_of_nonneg_of_nonpos",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 88,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.ofNat_dvd.match_1_7",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 427,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.ofNat_dvd.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 189,
+      "detail": null
+    },
+    {
+      "name": "Int.natCast_mul",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 114,
+      "detail": null
+    },
+    {
+      "name": "Int.ofNat_dvd",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 455,
+      "detail": null
+    },
+    {
+      "name": "Int.mul_emod_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 129,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.dot_mod_gcd_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 1214,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.gcd_dvd_dot_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 36,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Coeffs.gcd_dvd_dot_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 139,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.div_sat'",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 264,
+      "detail": null
+    },
+    {
+      "name": "Membership",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 968,
+      "detail": null
+    },
+    {
+      "name": "Membership.mem",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 48,
+      "detail": null
+    },
+    {
+      "name": "List.Mem",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 756,
+      "detail": null
+    },
+    {
+      "name": "List.instMembership",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 42,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Omega.IntList.0.List.mem_cons_self",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 73,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Omega.IntList.0.List.mem_cons_of_mem",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 92,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.dot_eq_zero_of_left_eq_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 658,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.gcd_dvd",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 813,
+      "detail": null
+    },
+    {
+      "name": "Nat.dvd_zero._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 80,
+      "detail": null
+    },
+    {
+      "name": "Nat.dvd_gcd",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 223,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Omega.IntList.0.Lean.Omega.IntList.dvd_gcd._simp_1_2",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 64,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Omega.IntList.0.Lean.Omega.IntList.dvd_gcd._simp_1_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 44,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.dvd_gcd",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 678,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Dvd.0.Nat.dvd_antisymm.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 421,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Dvd.0.Nat.eq_zero_of_zero_dvd.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 173,
+      "detail": null
+    },
+    {
+      "name": "Nat.eq_zero_of_zero_dvd",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 80,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Dvd.0.Nat.le_of_dvd.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 157,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Nat.Dvd.0.Nat.le_of_dvd.match_1_3",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 296,
+      "detail": null
+    },
+    {
+      "name": "Nat.le_of_dvd",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 367,
+      "detail": null
+    },
+    {
+      "name": "Nat.dvd_antisymm",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 301,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.gcd_eq_iff",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 227,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Omega.IntList.0.Lean.Omega.IntList.gcd_eq_zero._simp_1_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 90,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.DivMod.Bootstrap.0.Int.zero_dvd.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 155,
+      "detail": null
+    },
+    {
+      "name": "Int.zero_dvd",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 216,
+      "detail": null
+    },
+    {
+      "name": "Int.zero_dvd._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 37,
+      "detail": null
+    },
+    {
+      "name": "implies_true",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 27,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.gcd_eq_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 357,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Omega.Constraint.0.Lean.Omega.normalize_sat._simp_1_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 75,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.trivial_say",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 277,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.normalize_sat",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 1310,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.positivize",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 21,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.positivizeConstraint",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 23,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.positivizeCoeffs",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 23,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.positivize?_eq_some",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 420,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.instHMulInt",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 65,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.mul_smul_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 989,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.sum_smul",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 646,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.dot_smul_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 313,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Coeffs.dot_smul_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 241,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Int.Lemmas.0.Int.neg_eq_neg_one_mul.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 121,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_eq_neg_one_mul",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 381,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_le_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 231,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_le_neg_iff",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 103,
+      "detail": null
+    },
+    {
+      "name": "Int.neg_le_neg_iff._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 31,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.neg_sat",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 2036,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.positivize_sat",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 789,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.tidy_sat",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 1180,
+      "detail": null
+    },
+    {
+      "name": "Int.zero_sub",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 158,
+      "detail": null
+    },
+    {
+      "name": "Int.sub_left_le_of_le_add",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 183,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Constraint.addInequality_sat",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 457,
+      "detail": null
+    },
+    {
+      "name": "le_of_le_of_eq",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 157,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 759,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.const",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 8,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.coeffs",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 9,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.eval",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 78,
+      "detail": null
+    },
+    {
+      "name": "List.zipWithAll.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 239,
+      "detail": null
+    },
+    {
+      "name": "List.zipWithAll._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 282,
+      "detail": null
+    },
+    {
+      "name": "List.zipWithAll",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 126,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.sub",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 104,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.instSub",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 16,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.sub",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 47,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.instSub",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 16,
+      "detail": null
+    },
+    {
+      "name": "Int.add_one_le_of_lt",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 78,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.add",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 61,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.instAdd",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 15,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.add",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 43,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.instAdd",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 15,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Int.sub_congr",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 111,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Int.add_congr",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 132,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.set.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 205,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.set._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 176,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.set",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 42,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Coeffs.set",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 24,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.coordinate",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 24,
+      "detail": null
+    },
+    {
+      "name": "GetElem",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 1398,
+      "detail": null
+    },
+    {
+      "name": "GetElem?",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 1468,
+      "detail": null
+    },
+    {
+      "name": "GetElem?.getElem?",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 138,
+      "detail": null
+    },
+    {
+      "name": "List.length._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 160,
+      "detail": null
+    },
+    {
+      "name": "List.length",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 68,
+      "detail": null
+    },
+    {
+      "name": "Fin",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 686,
+      "detail": null
+    },
+    {
+      "name": "Fin.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 98,
+      "detail": null
+    },
+    {
+      "name": "List.get.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 531,
+      "detail": null
+    },
+    {
+      "name": "List.get._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 381,
+      "detail": null
+    },
+    {
+      "name": "List.get",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 98,
+      "detail": null
+    },
+    {
+      "name": "List.instGetElemNatLtLength",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 97,
+      "detail": null
+    },
+    {
+      "name": "List.get?Internal._sparseCasesOn_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 212,
+      "detail": null
+    },
+    {
+      "name": "List.get?Internal.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 220,
+      "detail": null
+    },
+    {
+      "name": "List.get?Internal._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 171,
+      "detail": null
+    },
+    {
+      "name": "List.get?Internal",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 66,
+      "detail": null
+    },
+    {
+      "name": "Array",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 661,
+      "detail": null
+    },
+    {
+      "name": "HPow",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 886,
+      "detail": null
+    },
+    {
+      "name": "HPow.hPow",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 77,
+      "detail": null
+    },
+    {
+      "name": "Pow",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 483,
+      "detail": null
+    },
+    {
+      "name": "Pow.pow",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 45,
+      "detail": null
+    },
+    {
+      "name": "instHPow",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 53,
+      "detail": null
+    },
+    {
+      "name": "NatPow",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 432,
+      "detail": null
+    },
+    {
+      "name": "NatPow.pow",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 75,
+      "detail": null
+    },
+    {
+      "name": "instPowNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 38,
+      "detail": null
+    },
+    {
+      "name": "Nat.pow._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 83,
+      "detail": null
+    },
+    {
+      "name": "Nat.pow",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 33,
+      "detail": null
+    },
+    {
+      "name": "instNatPowNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 15,
+      "detail": null
+    },
+    {
+      "name": "BitVec",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 659,
+      "detail": null
+    },
+    {
+      "name": "UInt8",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 440,
+      "detail": null
+    },
+    {
+      "name": "ByteArray",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 433,
+      "detail": null
+    },
+    {
+      "name": "UInt32",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 372,
+      "detail": null
+    },
+    {
+      "name": "Nat.isValidChar",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 28,
+      "detail": null
+    },
+    {
+      "name": "Fin.val",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 18,
+      "detail": null
+    },
+    {
+      "name": "BitVec.toFin",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 42,
+      "detail": null
+    },
+    {
+      "name": "BitVec.toNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 38,
+      "detail": null
+    },
+    {
+      "name": "UInt32.toBitVec",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 22,
+      "detail": null
+    },
+    {
+      "name": "UInt32.toNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 17,
+      "detail": null
+    },
+    {
+      "name": "UInt32.isValidChar",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 10,
+      "detail": null
+    },
+    {
+      "name": "Char",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 688,
+      "detail": null
+    },
+    {
+      "name": "List.toByteArray.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 113,
+      "detail": null
+    },
+    {
+      "name": "ByteArray.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 40,
+      "detail": null
+    },
+    {
+      "name": "ByteArray.push.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 74,
+      "detail": null
+    },
+    {
+      "name": "List.concat.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 169,
+      "detail": null
+    },
+    {
+      "name": "List.concat._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 133,
+      "detail": null
+    },
+    {
+      "name": "List.concat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 55,
+      "detail": null
+    },
+    {
+      "name": "Array.toList",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 29,
+      "detail": null
+    },
+    {
+      "name": "Array.push",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 27,
+      "detail": null
+    },
+    {
+      "name": "ByteArray.push",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 42,
+      "detail": null
+    },
+    {
+      "name": "List.toByteArray.loop._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 102,
+      "detail": null
+    },
+    {
+      "name": "List.toByteArray.loop",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 45,
+      "detail": null
+    },
+    {
+      "name": "Array.emptyWithCapacity",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 22,
+      "detail": null
+    },
+    {
+      "name": "Array.empty",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 29,
+      "detail": null
+    },
+    {
+      "name": "ByteArray.emptyWithCapacity",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 12,
+      "detail": null
+    },
+    {
+      "name": "ByteArray.empty",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 15,
+      "detail": null
+    },
+    {
+      "name": "List.toByteArray",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 11,
+      "detail": null
+    },
+    {
+      "name": "List.flatten.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 133,
+      "detail": null
+    },
+    {
+      "name": "List.append.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 156,
+      "detail": null
+    },
+    {
+      "name": "List.append._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 134,
+      "detail": null
+    },
+    {
+      "name": "List.append",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 61,
+      "detail": null
+    },
+    {
+      "name": "List.flatten._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 125,
+      "detail": null
+    },
+    {
+      "name": "List.flatten",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 56,
+      "detail": null
+    },
+    {
+      "name": "List.flatMap",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 42,
+      "detail": null
+    },
+    {
+      "name": "Char.val",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 9,
+      "detail": null
+    },
+    {
+      "name": "Fin.Internal.ofNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 60,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.pow_pos.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 135,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.mul_pos.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 126,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.Nat.add_pos_right.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 111,
+      "detail": null
+    },
+    {
+      "name": "Nat.add_pos_right",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 214,
+      "detail": null
+    },
+    {
+      "name": "Nat.mul_pos",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 273,
+      "detail": null
+    },
+    {
+      "name": "Nat.pow_pos._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 286,
+      "detail": null
+    },
+    {
+      "name": "Nat.pow_pos",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 92,
+      "detail": null
+    },
+    {
+      "name": "BitVec.ofNat._proof_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 55,
+      "detail": null
+    },
+    {
+      "name": "BitVec.ofNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 43,
+      "detail": null
+    },
+    {
+      "name": "UInt8.ofNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 20,
+      "detail": null
+    },
+    {
+      "name": "String.utf8EncodeChar",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 113,
+      "detail": null
+    },
+    {
+      "name": "List.utf8Encode",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 23,
+      "detail": null
+    },
+    {
+      "name": "ByteArray.IsValidUTF8",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 886,
+      "detail": null
+    },
+    {
+      "name": "String",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 526,
+      "detail": null
+    },
+    {
+      "name": "panicCore",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 25,
+      "detail": null
+    },
+    {
+      "name": "panic",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 31,
+      "detail": null
+    },
+    {
+      "name": "Pi.instInhabited",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 44,
+      "detail": null
+    },
+    {
+      "name": "instDecidableOr.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 116,
+      "detail": null
+    },
+    {
+      "name": "instDecidableOr._proof_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 72,
+      "detail": null
+    },
+    {
+      "name": "instDecidableOr",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 107,
+      "detail": null
+    },
+    {
+      "name": "BitVec.ofNatLT",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 58,
+      "detail": null
+    },
+    {
+      "name": "UInt32.size",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 10,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.isValidChar_UInt32.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 190,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Prelude.0.isValidChar_UInt32",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 195,
+      "detail": null
+    },
+    {
+      "name": "Char.ofNatAux._private_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 25,
+      "detail": null
+    },
+    {
+      "name": "Char.ofNatAux",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 90,
+      "detail": null
+    },
+    {
+      "name": "Char.ofNat._proof_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 175,
+      "detail": null
+    },
+    {
+      "name": "Char.ofNat._proof_2",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 221,
+      "detail": null
+    },
+    {
+      "name": "Char.ofNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 70,
+      "detail": null
+    },
+    {
+      "name": "String.ofList._proof_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 21,
+      "detail": null
+    },
+    {
+      "name": "String.ofList",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 15,
+      "detail": null
+    },
+    {
+      "name": "String.instInhabited",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 10,
+      "detail": null
+    },
+    {
+      "name": "String.Internal.append",
+      "kind": "opaque",
+      "verdict": "verified",
+      "micros": 53,
+      "detail": null
+    },
+    {
+      "name": "ToString",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 654,
+      "detail": null
+    },
+    {
+      "name": "ToString.toString",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 51,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Data.Repr.0.Nat.toDigitsCore.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 123,
+      "detail": null
+    },
+    {
+      "name": "Nat.digitChar",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 83,
+      "detail": null
+    },
+    {
+      "name": "Nat.toDigitsCore._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 144,
+      "detail": null
+    },
+    {
+      "name": "Nat.toDigitsCore",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 45,
+      "detail": null
+    },
+    {
+      "name": "Nat.toDigits",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 38,
+      "detail": null
+    },
+    {
+      "name": "Nat.repr",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 23,
+      "detail": null
+    },
+    {
+      "name": "instToStringNat",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 17,
+      "detail": null
+    },
+    {
+      "name": "mkPanicMessageWithDecl",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 44,
+      "detail": null
+    },
+    {
+      "name": "panicWithPosWithDecl",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 42,
+      "detail": null
+    },
+    {
+      "name": "List.get!Internal._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 208,
+      "detail": null
+    },
+    {
+      "name": "List.get!Internal",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 85,
+      "detail": null
+    },
+    {
+      "name": "List.instGetElem?NatLtLength",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 107,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.get",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 69,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Coeffs.get",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 22,
+      "detail": null
+    },
+    {
+      "name": "String.Pos.Raw",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 652,
+      "detail": null
+    },
+    {
+      "name": "Substring.Raw",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 508,
+      "detail": null
+    },
+    {
+      "name": "optParam",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 10,
+      "detail": null
+    },
+    {
+      "name": "Lean.SourceInfo",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 1312,
+      "detail": null
+    },
+    {
+      "name": "Lean.Name",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 733,
+      "detail": null
+    },
+    {
+      "name": "Lean.SyntaxNodeKind",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 4,
+      "detail": null
+    },
+    {
+      "name": "Lean.Syntax.Preresolved",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 624,
+      "detail": null
+    },
+    {
+      "name": "Lean.Syntax",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 1083,
+      "detail": null
+    },
+    {
+      "name": "autoParam",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 46,
+      "detail": null
+    },
+    {
+      "name": "GetElem.getElem",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 243,
+      "detail": null
+    },
+    {
+      "name": "GetElem?.toGetElem",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 109,
+      "detail": null
+    },
+    {
+      "name": "Lean.Name.mkStr4",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 35,
+      "detail": null
+    },
+    {
+      "name": "Lean.Name.mkStr1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 13,
+      "detail": null
+    },
+    {
+      "name": "Lean.mkAtom",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 8,
+      "detail": null
+    },
+    {
+      "name": "ByteArray.size.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 71,
+      "detail": null
+    },
+    {
+      "name": "Array.size",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 28,
+      "detail": null
+    },
+    {
+      "name": "ByteArray.size",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 34,
+      "detail": null
+    },
+    {
+      "name": "String.toByteArray",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 9,
+      "detail": null
+    },
+    {
+      "name": "String.utf8ByteSize",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 10,
+      "detail": null
+    },
+    {
+      "name": "String.rawEndPos",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 9,
+      "detail": null
+    },
+    {
+      "name": "String.toRawSubstring",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 23,
+      "detail": null
+    },
+    {
+      "name": "LawfulGetElem.getElem?_def._autoParam",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 48,
+      "detail": null
+    },
+    {
+      "name": "GetElem?.getElem!",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 102,
+      "detail": null
+    },
+    {
+      "name": "GetElem?.match_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 124,
+      "detail": null
+    },
+    {
+      "name": "LawfulGetElem.getElem!_def._autoParam",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 46,
+      "detail": null
+    },
+    {
+      "name": "LawfulGetElem",
+      "kind": "inductive",
+      "verdict": "verified",
+      "micros": 4297,
+      "detail": null
+    },
+    {
+      "name": "LawfulGetElem.getElem?_def",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 301,
+      "detail": null
+    },
+    {
+      "name": "getElem?_pos",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 325,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.GetElem.0.List.getElem?_eq_none_iff.match_1_1",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 150,
+      "detail": null
+    },
+    {
+      "name": "iff_true",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 54,
+      "detail": null
+    },
+    {
+      "name": "List.get._proof_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 227,
+      "detail": null
+    },
+    {
+      "name": "List.getElem?_eq_getElem",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 1089,
+      "detail": null
+    },
+    {
+      "name": "Nat.zero_lt_succ._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 67,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.GetElem.0.List.getElem?_eq_none_iff._simp_1_3",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 54,
+      "detail": null
+    },
+    {
+      "name": "List.getElem?_eq_none_iff._f",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 1095,
+      "detail": null
+    },
+    {
+      "name": "List.getElem?_eq_none_iff",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 242,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.GetElem.0.List.getElem?_eq_none_iff._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 116,
+      "detail": null
+    },
+    {
+      "name": "Nat.not_lt._simp_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 42,
+      "detail": null
+    },
+    {
+      "name": "List.instLawfulGetElemNatLtLength",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 1231,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.get_cons_zero",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 633,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.get_cons_succ",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 453,
+      "detail": null
+    },
+    {
+      "name": "Int.sub_mul",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 276,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.dot_set_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 3437,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.coordinate_eval",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 609,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.coordinate_eval_0",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 407,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.coordinate_eval_1",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 433,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.casesOn",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 73,
+      "detail": null
+    },
+    {
+      "name": "List.zipWithAll_nil",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 499,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Omega.IntList.0.List.map_id",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 318,
+      "detail": null
+    },
+    {
+      "name": "_private.Init.Omega.IntList.0.List.map_id'",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 76,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.mul_distrib_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 3322,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.sum_add",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 1876,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.dot_distrib_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 359,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Coeffs.dot_distrib_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 268,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.add_eval",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 897,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.coordinate_eval_2",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 595,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.coordinate_eval_3",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 608,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.neg",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 68,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.instNeg",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 13,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.neg",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 29,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.instNeg",
+      "kind": "def",
+      "verdict": "verified",
+      "micros": 14,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.ext",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 218,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.sub_eq_add_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 2221,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.Coeffs.sub_eq_add_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 97,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.sub_eq_add_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 575,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.mul_neg_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 971,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.sum_neg",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 691,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.IntList.dot_neg_left",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 319,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.neg_eval",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 599,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.sub_eval",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 255,
+      "detail": null
+    },
+    {
+      "name": "Lean.Omega.LinearCombo.coordinate_eval_4",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 636,
+      "detail": null
+    },
+    {
+      "name": "MathCan.Hodge.pathSum_gauge._proof_1_7",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 7067,
+      "detail": null
+    },
+    {
+      "name": "MathCan.Hodge.pathSum_gauge",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 768,
+      "detail": null
+    },
+    {
+      "name": "MathCan.Hodge.closed_path_gauge",
+      "kind": "thm",
+      "verdict": "verified",
+      "micros": 310,
+      "detail": null
+    }
+  ]
+}

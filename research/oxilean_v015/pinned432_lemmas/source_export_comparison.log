@@ -1,0 +1,6 @@
+Compared 1616 exported constants with unchanged source: all types and values match
+MathCan.SpatialInterface.capture_at_index {n : Nat} (C : Int) (hC : 0 ≤ C) (values : Fin n → Int)
+  (bounds : ∀ (i : Fin n), -C ≤ values i ∧ values i ≤ C) (target i : Fin n) :
+  MathCan.SpatialInterface.gate C (MathCan.SpatialInterface.triangle (Int.ofNat ↑i) (Int.ofNat ↑target)) (values i) =
+    if i = target then values i else 0
+'MathCan.SpatialInterface.capture_at_index' depends on axioms: [propext, Quot.sound]

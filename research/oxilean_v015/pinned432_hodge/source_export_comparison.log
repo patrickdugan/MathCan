@@ -1,0 +1,5 @@
+Compared 1415 exported constants with unchanged source: all types and values match
+MathCan.Hodge.closed_path_gauge.{u} {V : Type u} (q : V → V → Int) (p : V → Int) (start : V) (xs : List V)
+  (closed : MathCan.Hodge.endpoint start xs = start) :
+  MathCan.Hodge.pathSum (fun u v => q u v + (p v - p u)) start xs = MathCan.Hodge.pathSum q start xs
+'MathCan.Hodge.closed_path_gauge' depends on axioms: [propext, Quot.sound]

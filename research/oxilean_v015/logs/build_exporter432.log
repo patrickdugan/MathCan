@@ -1,0 +1,13 @@
+Verified archive symlinks: 12
+Lean (version 4.32.0-rc1, x86_64-unknown-linux-gnu, commit b4812ae53eea93439ad5dce5a5c26591c31cb697, Release)
+e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550  /mnt/c/Users/patri/Documents/Codex/2026-11-15/files-pasted-by-the-user-oxilean/work/toolchains/lean-4.32.0-rc1-linux/bin/lean
+c7c51e296d28dd443ed60f9414feef41253ede89dea76dbb2adde29768c3ed5f  /mnt/c/Users/patri/Documents/Codex/2026-11-15/files-pasted-by-the-user-oxilean/work/toolchains/lean-4.32.0-rc1-linux/bin/leanchecker
+60330ab6f07dce20f3fa9ebb08e8b984ea9549eac172afeb15d9d2227060e2b3  /mnt/c/Users/patri/Documents/Codex/2026-11-15/files-pasted-by-the-user-oxilean/work/toolchains/lean-4.32.0-rc1-linux/bin/lake
+✔ [2/7] Built Export.Parse (37s)
+✔ [3/7] Built Export (104s)
+✔ [4/7] Built Export:c.o (4.8s)
+✔ [5/7] Built Main (27s)
+✔ [6/7] Built Main:c.o (855ms)
+✔ [7/7] Built lean4export:exe (6.6s)
+Build completed successfully (7 jobs).
+e6580597a1482740114b5a1a05add574334a5eeaed5f4f5c9cd670e146859009  .lake/build/bin/lean4export
