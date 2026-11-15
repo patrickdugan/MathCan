@@ -1,0 +1,30 @@
+name: OLM-05 anonymous sparse matching geometry
+
+on:
+  push:
+    paths:
+      - 'research/orbit_lock/latent_stars.py'
+      - 'tests/test_latent_stars.py'
+      - '.github/workflows/olm05-latent-stars.yml'
+  pull_request:
+    paths:
+      - 'research/orbit_lock/latent_stars.py'
+      - 'tests/test_latent_stars.py'
+      - '.github/workflows/olm05-latent-stars.yml'
+
+jobs:
+  finite-combinatorial-certificate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify K6 455/1365 holdouts and binomial-noise bounds
+        run: python -m unittest discover -s tests -p 'test_latent_stars.py' -v
+      - name: Export exact finite rigidity classification
+        run: python research/orbit_lock/latent_stars.py > olm05-exact.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: olm05-exact-finite-geometry
+          path: olm05-exact.json
