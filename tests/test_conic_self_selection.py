@@ -75,6 +75,27 @@ class SelfSelectionConeTests(unittest.TestCase):
         self.assertNotEqual(ordinary['minimal_normalized_slope_squared'],
                             physical['minimal_normalized_slope_squared'])
 
+
+    def test_encoder_decoder_feedback_diagonal_dominance_and_scale_cancellation(self):
+        # W is 3x2; D is 2x3. The internal K=W D columns characterize
+        # self-selection under every positive score normalization scale.
+        W=((1,0),(0,1),(-1,0))
+        D=((2,0,-1),(1,1,0))
+        feedback=c.feedback_matrix_self_selection(W,D)
+        self.assertEqual(len(feedback),3)
+        self.assertTrue(feedback[0]['positive_ray_self_selection'])
+        self.assertTrue(feedback[0]['strict_interior'])
+        self.assertEqual(feedback[0]['diagonal_score_exact'],2)
+        self.assertEqual(feedback[0]['minimum_column_score_margin_exact'],1)
+        for scale in ((1,1),(2,3),(Q(1,7),Q(3,2))):
+            normals=c.physical_encoder_normals(W,scale)
+            raw=tuple(Q(D[j][0])*Q(scale[j]) for j in range(2))
+            cone=c.cone_certificate(normals,(0,),raw)
+            self.assertTrue(cone['all_positive_ray_amplitudes_preserve_selected_set'])
+            self.assertTrue(cone['strict_angular_interior'])
+        with self.assertRaises(ValueError):
+            c.feedback_matrix_self_selection(((1,2),),((3,),))
+
     def test_invalid_input_abstains(self):
         with self.assertRaises(ValueError):c.physical_encoder_normals((),(1,))
         with self.assertRaises(ValueError):c.physical_encoder_normals(((1,2),),(1,0))
