@@ -1,0 +1,52 @@
+name: PEF-07 context-closed source and coalition Lean proofs
+
+on:
+  push:
+    paths:
+      - 'MathCan/CoalitionContextBound.lean'
+      - 'MathCan.lean'
+      - 'research/compactification/PEF07_CONTEXT_BOUNDS.md'
+      - 'tests/test_pef07_context_bounds.py'
+      - '.github/workflows/pef07-context-bounds.yml'
+  pull_request:
+    paths:
+      - 'MathCan/CoalitionContextBound.lean'
+      - 'MathCan.lean'
+      - 'research/compactification/PEF07_CONTEXT_BOUNDS.md'
+      - 'tests/test_pef07_context_bounds.py'
+      - '.github/workflows/pef07-context-bounds.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  independent-integer:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p 'test_pef07_context_bounds.py' -v
+  lean-kernel:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Print all new theorem axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/CoalitionContextBound.lean | tee pef07-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' pef07-axioms.txt; then
+            echo 'PEF-07 admitted or unsupported proof'
+            exit 1
+          fi
