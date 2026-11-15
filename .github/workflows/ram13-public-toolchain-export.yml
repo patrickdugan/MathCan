@@ -49,8 +49,9 @@ jobs:
           test -x "$LEAN_EXEC"
           TOOLCHAIN_DIR="$(dirname "$(dirname "$LEAN_EXEC")")"
           echo "LEAN_EXEC=$LEAN_EXEC"
-          du -sh "$TOOLCHAIN_DIR" _mathcan_pinned/.lake || true
-          tar -I 'zstd -T2 -3' -cf "$RUNNER_TEMP/ram13-lean435-toolchain.tar.zst" -C "$TOOLCHAIN_DIR" .
+          du -sh "$TOOLCHAIN_DIR" "$TOOLCHAIN_DIR"/src "$TOOLCHAIN_DIR"/bin "$TOOLCHAIN_DIR"/lib "$TOOLCHAIN_DIR"/share _mathcan_pinned/.lake || true
+          find "$TOOLCHAIN_DIR"/lib -maxdepth 2 -type f -printf '%s %p\n' | sort -nr | head -12 || true
+          tar --exclude='./src' --exclude='./share' --exclude='./include' --exclude='*.a' --exclude='*.o' --exclude='*.ilean' --exclude='*.trace' --exclude='*.c' --exclude='*.cpp' --exclude='*.h' -I 'zstd -T2 -12' -cf "$RUNNER_TEMP/ram13-lean435-toolchain.tar.zst" -C "$TOOLCHAIN_DIR" .
           tar -I 'zstd -T2 -3' -cf "$RUNNER_TEMP/ram13-mathcan-source-and-oleans.tar.zst" --exclude='./.git' -C _mathcan_pinned .
           (
             cd "$RUNNER_TEMP"
