@@ -136,6 +136,38 @@ def containment_witness(center,active,control,r,da,du,dv,actual_h,actual_u,actua
     return True
 
 
+
+
+def lipschitz_effect_enclosure(nominal_effect, clean_lipschitz,
+                               endpoint_lipschitz, radius,
+                               anchor_uncertainty,direction_uncertainty):
+    """Exact endpoint effect bounds from two independently certified local L.
+
+    nominal_effect=(known lower,known upper) for ||F(h+r*u)-F(h)||.
+    L0 valid on radius dh ball about h, L1 valid on radius dh+r*du
+    about h+r*u. Both perturbed and clean have common unknown anchor.
+    """
+    lo,hi=map(rat,nominal_effect)
+    L0,L1,r,da,du=map(rat,(clean_lipschitz,endpoint_lipschitz,radius,
+                            anchor_uncertainty,direction_uncertainty))
+    if min(lo,L0,L1,da,du)<0 or hi<lo or r<=0:
+        raise ValueError('invalid norm, Lipschitz or uncertainty values')
+    eps=L0*da+L1*(da+r*du)
+    return (max(Q(0),lo-eps),hi+eps)
+
+
+def lipschitz_ordering(active_effect,control_effect,
+                       clean_lipschitz,active_endpoint_lipschitz,
+                       control_endpoint_lipschitz,r,da,du,dv):
+    """Uniform effect ordering over every admitted Euclidean neighborhood."""
+    A=lipschitz_effect_enclosure(active_effect,clean_lipschitz,
+                                 active_endpoint_lipschitz,r,da,du)
+    B=lipschitz_effect_enclosure(control_effect,clean_lipschitz,
+                                 control_endpoint_lipschitz,r,da,dv)
+    return {'active_effect_interval':A,'control_effect_interval':B,
+            'status':'active_greater' if A[0]>B[1] else
+               'control_greater' if B[0]>A[1] else 'inconclusive'}
+
 if __name__ == '__main__':
     import json
     W=((Q(2),Q(0)),(Q(0),Q(1)))
