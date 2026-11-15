@@ -127,3 +127,73 @@ The ten-logit Jacobian has rank at most 10, so at least 38 directions of the 48-
 - Numerical Hessian point estimates and finite-grid maxima remain labeled **empirical**; certified bounds refer to exact-real functions with the stored weight values. FP64 hardware roundoff, learned SAE optimization and generalization outside the source-pinned roster are separately outside the analytic certificate.
 
 The new mathematical contribution is the task-specific combination of these established derivative identities into an auditable certificate interface for a learned decoder's intervention directions. Literature priority beyond this synthesis is not claimed.
+
+
+## 6. Monotone local Taylor sign-radius frontier
+
+A checkpoint-specific validated local Taylor engine can assign clean
+downstream adjoint norm upper bounds \(q_i\ge0\), together with
+radius-dependent local layer bounds \(a_i(R)\ge0\) and \(b_i(R)\ge0\).
+Assume both functions are nondecreasing in \(R\), as is the case for
+the current residual-GELU constants and the LayerNorm lower-denominator
+tube bound with an epsilon floor.
+
+Start with input radius \(R_0(r)=r\) and propagate
+
+\[
+R_{i+1}(r)=a_i(R_i(r))R_i(r),\qquad
+E(r)=\frac12\sum_iq_i\,b_i(R_i(r))R_i(r)^2.
+\]
+
+**Theorem OLM-08C (downward-closed sufficient sign certificates).**
+For \(r>0\), the normalized outer Taylor remainder \(E(r)/r\) is
+nondecreasing. Therefore, if a frozen directional linear margin slope
+\(\ell\ne0\) satisfies
+
+\[
+\boxed{|\ell|>E(r)/r,}
+\tag{10}
+\]
+
+then the exact-real finite margin displacement along the direction has
+the same sign as \(\ell\) at radius \(r\), and the same sufficient
+condition holds for every smaller positive radius.
+
+**Proof.** Inductively, \(R_i(r)\) and \(R_i(r)/r\) are nondecreasing in
+\(r\). The induction starts at \(R_0=r\) and \(R_0/r=1\). Since
+\(a_i\) is nonnegative and nondecreasing, both
+\(R_{i+1}=a_i(R_i)R_i\) and
+\(R_{i+1}/r=a_i(R_i)(R_i/r)\) inherit monotonicity.
+Each summand of
+
+\[
+E(r)/r=\frac12\sum_i q_i\, b_i(R_i(r))
+                     \big(R_i(r)/r\big)^2 r
+\]
+
+is a product of nonnegative nondecreasing functions, giving the first
+claim. The validated linear-remainder interval is
+\([\ell r-E(r),\ell r+E(r)]\); it excludes zero if (10) holds.
+The downward-closed claim follows. QED.
+
+This is a theorem about *the sufficient proof condition*; it does not
+assert that the actual model's output margin is monotone with radius.
+The [SMC-08B Arb experiment](https://github.com/MoralityLabAI/Compactification-Theory/blob/research/smc08-curvature-20261115/research/real_recurrence_sae_v1/SMC08_RESULTS.md)
+searches the monotone certificate frontier with 26 rational bisection
+steps for each of sixteen heldout puzzle states, SAE seed 71, and
+an upper search limit of \(10^{-6}\).
+
+The hosted proof replay certifies nonzero radius lower bounds for all
+16 puzzles. The observed range of certified lower radii is
+\(4.9174\times10^{-11}\) to \(1.2328\times10^{-8}\), with median
+\(3.3440\times10^{-9}\). These are **radii guaranteed by the present
+Arb proof mechanism**, not empirical model instability thresholds.
+They also do not transfer the winner-minus-runner sign guarantee to
+the Euclidean norm ranking of active SAE versus control directions.
+
+The result quantifies a concrete gap: FP64 stage-one Jacobians are
+predictive of output changes at radius \(0.02\), while the validated
+local Taylor engine remains informative for signed margins only at
+much smaller radii. Tightening the derivative tube, especially its
+transport through token mixing and LayerNorm, is the next mathematical
+task.
