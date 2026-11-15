@@ -49,6 +49,23 @@ class FamilyGaugeTests(unittest.TestCase):
         C=f.centered_covariance(X,Y)
         self.assertEqual(C,((Q(1),Q(-1)),(Q(-1),Q(1))))
 
+
+    def test_conditional_clue_groups_remove_spurious_feature_alignment(self):
+        groups=(0,0,1,1,2,2)
+        X=((1,0),(1,0),(0,1),(0,1),(1,0),(1,0))
+        Y=((1,0),(1,0),(0,1),(0,1),(1,0),(1,0))
+        # Raw data share a strong group-dependent marginal association,
+        # while both feature sets are constant WITHIN each group.
+        self.assertNotEqual(f.centered_covariance(X,Y),((0,0),(0,0)))
+        self.assertEqual(f.conditioned_covariance(X,Y,groups),((0,0),(0,0)))
+        X=((1,0),(0,1),(1,0),(0,1))
+        Y=((1,0),(0,1),(0,1),(1,0))
+        groups=(0,0,1,1)
+        self.assertEqual(f.conditioned_covariance(X,Y,groups),
+                         ((Q(0),Q(0)),(Q(0),Q(0))))
+        with self.assertRaises(ValueError):
+            f.conditioned_covariance(X,Y,(1,))
+
     def test_invalid_input_guards(self):
         with self.assertRaises(ValueError):f.intercalates((1,2))
         with self.assertRaises(ValueError):f.matmul(((1,2),),((3,),))
