@@ -1,15 +1,17 @@
-# NRF-01–11: Task-Conditioned Observable Fibers (Working Draft v0.2)
+# Task-Conditioned Observable Fibers: public manuscript
 
-**Morality Lab · 15 November 2026 · Technical review draft**
+**Morality Lab · 15 November 2026 · Working draft v0.3**
 
-The manuscript is the revised post-review synthesis of the Numerical Range Fixed-Point (NRF) research campaign. Its main empirical comparison uses equally optimized task-only and leakage-aware observation subspaces on short-trained 128-dimensional tied residual networks.
+- [Latest revised technical manuscript](NRF_Observable_Fibers_Revised_v03.md) (Markdown, easiest to paste into Carbon)
+- [Web reading version](NRF_Observable_Fibers_Revised_v03.html)
+- [Revised v0.2 manuscript, frozen for review history](NRF_Observable_Fibers_Revised_v02.md)
+- [Full and skip-adjusted Jacobian diagnostics](NRF_skip_adjusted_metrics_v03.csv)
+- [Penalty frontier and skip-adjusted diagnostics](NRF_skip_adjusted_frontier_v03.csv)
+- [Original post-review gain measurements](NRF_postreview_metrics.csv)
+- [Original post-review penalty-frontier measurements](NRF_postreview_gamma_frontier.csv)
 
-- [Read the paper (Markdown)](NRF_Observable_Fibers_Revised_v02.md)
-- [Post-review normalized metrics](NRF_postreview_metrics.csv)
-- [Post-review gamma frontier](NRF_postreview_gamma_frontier.csv)
-- [Applied research source](https://github.com/MoralityLabAI/LoopedTransformers/tree/main/experiments/numerical_range_fixed_point_v1)
-- [Mathematical research source](https://github.com/patrickdugan/MathCan/tree/main/research/compactification)
+The paper separates archived preregistered NRF-01–11 synthetic experiments from **retrospective** post-review controls. It foregrounds the equal-budget task-only comparator and the cost of leakage-aware regularization in task MSE. Version v0.3 corrects the identity-skip normalization, adds matched random-observer controls, and reports per-model squared-leakage break-even penalty weights. Sources and full proof scopes are in the manuscript.
 
-**Evidence caveat:** 16/32 network optimizer updates, one synthetic Gaussian signed-permutation family, exploratory post-review controls, original λ selected after NRF-04. The one-step global linear quotient obstruction does not preclude quotients of iterates or nonlinear/data-restricted observations. The complete analytic theorems are written proofs; the Lean modules formalize narrower algebraic fragments.
+**Source repos:** [LoopedTransformers applied data](https://github.com/MoralityLabAI/LoopedTransformers/tree/main/experiments/numerical_range_fixed_point_v1) and [MathCan analytic results](https://github.com/patrickdugan/MathCan/tree/main/research/compactification).
 
-This public copy is for reading and review by collaborators. It is not a journal publication or a claim of independent replication.
+This is a research working draft for technical review, not a published peer-reviewed article. Synthetic model weights received 16 or 32 optimizer updates. Its readout changes do not imply model capability or safety improvements.

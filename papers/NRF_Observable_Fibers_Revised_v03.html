@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Morality Lab draft NRF observable fibers: leakage-aware readout penalties, skip-adjusted Jacobian gains and accuracy tradeoffs.">
+<title>Task-Conditioned Observable Fibers in Short-Trained Tied Residual Networks | Morality Lab</title>
+<style>
+    :root{--paper:#fff;--page:#eff3f7;--ink:#17314c;--muted:#4d6479;--teal:#068e87;--border:#dbe5ef;--gold:#be8a20}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;background:var(--page);font:16px/1.73 Georgia,'Times New Roman',serif;color:#182d3e}
+    .nav{font:600 14px/1.4 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--ink);color:white;padding:15px 24px;display:flex;gap:22px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+    .nav a{color:#def7f4;text-decoration:none}.nav small{font-weight:400;color:#e6f0f6}
+    main{max-width:940px;background:var(--paper);margin:40px auto 70px;padding:68px 76px 80px;border:1px solid var(--border);box-shadow:0 14px 52px rgba(21,45,70,.06)}
+    .kicker{font:600 12px/1.4 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--teal);text-transform:uppercase;letter-spacing:.14em;margin-bottom:20px}
+    h1,h2,h3{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--ink);line-height:1.23}
+    header h1{font-size:2.4rem;letter-spacing:-.045em;margin:0 0 10px}
+    .subtitle{font:500 1.12rem/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--muted);margin:0 0 24px}
+    .byline{font:13px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--muted);padding-bottom:22px;border-bottom:2px solid var(--border)}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+    .actions a{display:inline-block;border:1px solid var(--border);padding:7px 14px;border-radius:7px;font:600 13px/1.4 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;text-decoration:none}
+    .actions a.primary{background:var(--ink);color:white}
+    .abstract{margin:30px 0 40px;padding:18px 24px;border-left:4px solid var(--teal);background:#f5fafb}
+    .abstract h2{font-size:1rem;margin:0 0 8px}.abstract p{margin:0;font-size:.96rem}
+    .paper-body>h1{font-size:1.5rem;margin:44px 0 16px;border-top:1px solid var(--border);padding-top:28px}
+    .paper-body>h2{font-size:1.14rem;margin:30px 0 12px}
+    .paper-body p{margin:0 0 15px}
+    .paper-body ul,.paper-body ol{padding-left:24px}.paper-body li{margin:5px 0}
+    a{color:#08756f}a:hover{text-decoration-thickness:2px}
+    table{width:100%;border-collapse:collapse;margin:20px 0 9px;font:13px/1.45 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;display:block;overflow-x:auto}
+    th{background:#eaf2f7;color:var(--ink);text-align:left}td,th{border-bottom:1px solid var(--border);padding:11px 10px;white-space:normal;min-width:85px;vertical-align:top}
+    tr:nth-child(even) td{background:#fbfcfd}td:last-child{white-space:normal}
+    code{font:12px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;background:#eef4f7;padding:1px 3px;word-break:break-word}
+    pre{padding:15px;overflow:auto;background:#eef4f7;border-radius:6px}pre code{background:none}
+    blockquote{margin:1rem 0;padding-left:17px;border-left:3px solid var(--border);color:var(--muted)}
+    .math.display{overflow-x:auto;overflow-y:hidden;padding:4px 0}
+    .mathjax{overflow-x:auto}
+    @media(max-width:800px){main{padding:29px 19px;margin:0;border:0;box-shadow:none}header h1{font-size:1.9rem}.nav{padding:13px 18px}table{font-size:12px}}
+    @media print{body{background:white;color:black}main{max-width:none;padding:0;border:0;box-shadow:none;margin:0}.nav,.actions{display:none}.paper-body>h1{break-after:avoid}table{break-inside:avoid}}
+  </style>
+<script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]],displayMath:[["\\[","\\]"]]},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head><body>
+<nav class="nav"><a href="https://github.com/patrickdugan/MathCan">MORALITY LAB / RESEARCH</a><small>Working draft v0.3 · 15 November 2026</small></nav>
+<main><header><div class="kicker">Observable fibers / Technical manuscript</div>
+<h1>Task-Conditioned Observable Fibers in Short-Trained Tied Residual Networks</h1>
+<p class="subtitle">Readout regularization, dark-state Jacobian coupling, and exact quotient limits (NRF-01–11 with post-review diagnostics)</p>
+<div class="byline">Morality Lab — research working draft · 15 November 2026 · Revised working draft v0.3</div>
+<div class="actions"><a class="primary" href="https://github.com/patrickdugan/MathCan/blob/paper/nrf-observable-fibers-v02-20261115/papers/NRF_Observable_Fibers_Revised_v03.md">View Markdown source</a>
+<a href="NRF_Observable_Fibers_Revised_v03.pdf">Typeset PDF</a>
+<a href="https://github.com/MoralityLabAI/LoopedTransformers/tree/main/experiments/numerical_range_fixed_point_v1">Experiment receipts</a></div>
+</header>
+<section class="abstract"><h2>Abstract</h2><p>We study observable-fiber readouts of 128-dimensional tied residual MLP loopers trained for only 16 or 32 AdamW steps on one synthetic signed-permutation task. The principal experiment freezes recurrent weights and compares rank-eight task-only and leakage-aware readouts after 80 equal-budget optimization steps. At depth 32, task-only optimization gives held-out task MSE 0.1493 and dark-to-observed Jacobian leakage 0.5122; the leakage-aware readout gives MSE 0.2476 and leakage 0.3184. The latter lowers leakage 37.8% while raising MSE 65.8%. Its 14.4% gain in the selected joint objective occurs at lambda=1, with an empirical break-even lambda of 0.624 when complete per-seed scores are aggregated. A post-review gamma=0.05 arm raises task error by 6.4% for 15.2% lower leakage and breaks even at lambda=0.136. Because the residual Jacobian contains the identity, we also report coupling of computed change T-I: at depth 32 the observed dark-to-change fraction averages 0.667 for task-only, 0.620 for leakage-aware, and 0.913 for random rank-eight controls. A task-free minimum-leakage readout has a near-identity within-subspace tangent and a skip-adjusted dark fraction of 0.676, despite its original ratio of 0.112. The frozen observers retain the preregistered task/leakage gate on fresh samples from the same teacher family. We give a written full-domain one-step no-go theorem and a positive differential leakage floor for proper exact linear quotients, distinct from the iterated finite-sample Jacobian metric. The mathematical identities have narrower Lean formalizations; all post-review controls and penalty-frontier analyses are exploratory.
+</p></section>
+<div class="paper-body"><p><strong>Working manuscript, v0.3 after two substantive technical reviews.</strong> Empirical source: MoralityLabAI/LoopedTransformers; mathematical source: patrickdugan/MathCan. The experiment archive contains the merged NRF-01–11 campaign as of 15 November 2026. Post-review measurements are explicitly exploratory, were calculated after inspecting earlier outcomes, and have separate local CSV and source-code receipts. Formalization claims apply to the listed Lean lemmas rather than the complete real-analytic theorems. This draft is intended for technical review.</p>
+<h1 id="introduction">1. Introduction</h1>
+<p>A recurrent computation can encode a useful task answer in a small set of directions while continuing to exchange information with much larger hidden coordinates. A decoder that predicts the correct target can therefore conceal a dynamic dependence on unobserved state. This matters for compact-model design and mechanistic interpretation, because the same low-rank representation may perform well on a task and respond strongly to perturbations outside the representation.</p>
+<p>The model’s readout can ignore directions that remain active in its recurrent transition. Sharma and Vu describe a related blind spot for hidden-state scale under normalized outputs in looped language models [15]. Our question concerns task-prediction quality and the Jacobian mapping of discarded coordinates into the rank-eight observed subspace. Because these residual loopers include an identity skip path, we measure both the full tangent and the <em>computed change</em> after subtracting the identity. Classical dynamical lumpability and invariant-subspace theory provide antecedents [16,17].</p>
+<p>We primarily report an <em>observer-training</em> intervention. Across six frozen depth-32 models, 80 optimizer updates without a leakage penalty already improve the task and reduce absolute leakage substantially. Adding an explicit leakage term reduces leakage further and improves a chosen combined score, while sacrificing task accuracy relative to that equal-budget control. The numerical-range and fixed-point constructions that began this project are retained as historical context. The later full-domain obstruction and low-rank observer experiments do not rely on either of the two OpenAI preprints as proof inputs.</p>
+<p>The mathematical contribution is a precisely scoped full-domain <strong>one-step</strong> linear-quotient obstruction with a positive global differential leakage floor, alongside tractable tangent-transport and projector identities. The experimental contribution is an equal-budget readout comparison with a documented accuracy/leakage exchange rate. Post-review exploratory controls reveal how initialization, skip connections, random observers, and penalty choice influence the numerical interpretation. These are project-specific specializations of established invariance and model-reduction mathematics.</p>
+<h1 id="model-and-observable-fiber-measurements">2. Model and observable-fiber measurements</h1>
+<h2 id="tied-residual-recurrence">2.1 Tied residual recurrence</h2>
+<p>The trained toy architecture has state dimension <span class="math inline">\(d=128\)</span> and a shared residual block</p>
+<p><span class="math display">\[
+F(h)=\alpha h+\beta\bigl[W_2\tanh(W_1h+b_1)+b_2\bigr],
+\qquad \alpha=1,\quad\beta=0.25.
+\]</span></p>
+<p>The same map is applied <span class="math inline">\(R\in\{16,32\}\)</span> times. Each <span class="math inline">\(W_i\)</span> is <span class="math inline">\(128\times128\)</span>. Training uses AdamW (learning rate <span class="math inline">\(10^{-3}\)</span>, zero weight decay) and batch size eight, with only <strong>16 or 32 optimizer updates</strong> in the matched-step cohort. The models therefore see <strong>128 or 256 stochastic training examples</strong>, with a signed-permutation teacher of Gaussian input features. State-visit exposure counts multiply optimizer steps by batch size and recurrent depth; they are not distinct training examples. The task evaluation asks for the first eight signed, tanh-transformed teacher features. This is a tied residual multilayer-perceptron looper, <strong>not a full attention-based transformer</strong>.</p>
+<p>For each model, we inspect the midpoint state <span class="math inline">\(h_{R/2}\)</span> and the tangent of the remaining <span class="math inline">\(R/2\)</span> visits, <span class="math inline">\(T_R(h)=D(F^{R/2})(h)\)</span>. A rank-eight observation is represented by an orthonormal <span class="math inline">\(U\in\mathbb R^{128\times8}\)</span> and its orthogonal projector <span class="math inline">\(P=UU^\top\)</span>; the discarded subspace has projector <span class="math inline">\(Q=I-P\)</span>. A linear ridge head predicts the task from <span class="math inline">\(U^\top h_{R/2}\)</span>, with ridge coefficient one and training labels restricted to the designated training fold.</p>
+<h2 id="error-and-leakage">2.2 Error and leakage</h2>
+<p>For held-out task labels <span class="math inline">\(y_i\)</span> and predictions <span class="math inline">\(\hat y_i(U)\)</span>, define</p>
+<p><span class="math display">\[
+E(U)=\frac1{8n}\sum_{i=1}^n\|\hat y_i(U)-y_i\|_2^2.
+\]</span></p>
+<p>The local dark-to-observed Jacobian coupling at a midpoint state <span class="math inline">\(h\)</span> is</p>
+<p><span class="math display">\[
+\ell_R(U;h)=\frac1{\sqrt8}\|U^\top T_R(h)(I-UU^\top)\|_F.
+\]</span></p>
+<p>The reported leakage is the <strong>mean local norm</strong> <span class="math inline">\(L(U)=m^{-1}\sum_{j=1}^{m}\ell_R(U;\tilde h_j)\)</span> over <span class="math inline">\(m=12\)</span> independently generated shadow states. The combined score is</p>
+<p><span class="math display">\[
+\mathcal J_\lambda(U)=E(U)+\lambda L(U)^2,
+\qquad \lambda=1.
+\]</span></p>
+<p>A scale-normalized diagnostic decomposes the observer’s total write gain at each shadow state:</p>
+<p><span class="math display">\[
+W_R(U;h)=\frac{\|U^\top T_R(h)\|_F}{\sqrt8},\quad
+G_R(U;h)=\frac{\|U^\top T_R(h)U\|_F}{\sqrt8},\quad
+\rho_R(U;h)=\frac{\ell_R(U;h)}{W_R(U;h)}.
+\]</span></p>
+<p>For nonzero <span class="math inline">\(W_R\)</span>, <span class="math inline">\(\rho_R\in[0,1]\)</span> is invariant under global rescaling of the Jacobian and measures the fraction of <em>observed write energy</em> entering from discarded directions. We report means of per-state ratios, alongside mean <span class="math inline">\(W_R\)</span> and <span class="math inline">\(G_R\)</span>. A small <span class="math inline">\(W_R\)</span> can still make the ratio unstable, so these accompanying gains matter. The identity <span class="math inline">\(W_R^2=G_R^2+\ell_R^2\)</span> holds per state.</p>
+<p>For a residual map with <span class="math inline">\(\alpha=1\)</span>, let <span class="math inline">\(D_R(h)=T_R(h)-I\)</span> denote the <strong>computed-change tangent</strong>. Its dark-to-observed block is exactly the original leakage block, since <span class="math inline">\(U^\top I(I-UU^\top)=0\)</span>:</p>
+<p><span class="math display">\[
+\ell_{\Delta}(U;h)=\frac{\|U^\top D_R(h)Q\|_F}{\sqrt8}=\ell_R(U;h).
+\]</span></p>
+<p>The normalizing gain and within-subspace gain change:</p>
+<p><span class="math display">\[
+W_{\Delta}=\frac{\|U^\top (T_R-I)\|_F}{\sqrt8},\qquad
+G_{\Delta}=\frac{\|U^\top (T_R-I)U\|_F}{\sqrt8},\qquad
+\rho_{\Delta}=\frac{\ell_R}{W_{\Delta}}.
+\]</span></p>
+<p>The corresponding per-state Pythagorean identity is <span class="math inline">\(W_{\Delta}^2=G_{\Delta}^2+\ell_R^2\)</span>. This ratio estimates the fraction of the observer’s <strong>computed change</strong> entering from discarded coordinates. If <span class="math inline">\(W_{\Delta}\)</span> is near zero, it must be read alongside the absolute gain. The v0.3 post-review computations report means of per-state ratios and gains, with random observers and a task-free baseline.</p>
+<p>The value <span class="math inline">\(\lambda=1\)</span> was chosen after inspecting NRF-04. Later preregistrations hold it fixed but remain <strong>exploratory with respect to the penalty choice</strong>. All held-out statements use their registered fold and model cohort.</p>
+<h2 id="controls-and-independent-units">2.3 Controls and independent units</h2>
+<p>The initial task-supervised basis is obtained from train-only state/teacher cross-covariance followed by orthonormalization. Each checkpoint also receives eight independently sampled equal-rank random bases, a shifted-label null, and a first-eight-coordinate observation. The random comparator is</p>
+<p><span class="math display">\[
+\operatorname{median}_{i=1}^{8}\bigl[E(U_i)+\lambda L(U_i)^2\bigr].
+\]</span></p>
+<p>We take the median <strong>after</strong> forming each complete random-arm objective. Computing separate medians of <span class="math inline">\(E\)</span> and <span class="math inline">\(L\)</span> would change the comparison. The signed margin is <span class="math inline">\(m=\mathcal J_\lambda(U_{\rm sup})-\operatorname{median}_i\mathcal J_\lambda(U_i)\)</span>; a negative margin favors the supervised readout. The independent empirical units are training seeds, rather than the individual shadow states or reused input folds.</p>
+<h1 id="exact-mathematics-and-its-scope">3. Exact mathematics and its scope</h1>
+<h2 id="historical-numerical-range-and-fixed-point-motivation">3.1 Historical numerical-range and fixed-point motivation</h2>
+<p>NRF initially meant Numerical Range Fixed-Point. Its NRF-01/02 exercises used Jordan-block numerical ranges and finite-dimensional contraction cycles. The archive cites OpenAI’s September 2026 preprints on the <em>complete</em> Crouzeix inequality [1] and nonexpansive maps in reflexive Banach spaces [2]. Both documents are present in OpenAI’s official Math release list as families 325 and 328. Their global claims belong to the original authors and require independent mathematical review. For the classical scalar Crouzeix conjecture, Jin’s July 27 manuscript preceded those documents, and Lorist and Schwenninger posted an independent argument on August 4 [13,14]. The chronology and scalar-versus-complete distinction are explicit here.</p>
+<p>The only fixed-point claim used in NRF-01’s toy certificate is the standard finite-dimensional contraction principle: if a periodic composition has phasewise Lipschitz bounds <span class="math inline">\(r_i\)</span> satisfying <span class="math inline">\(\prod_i r_i&lt;1\)</span>, it has a unique attracting orbit. Its proof and associated disturbance bounds are self-contained [5,6]. Neither this claim nor the following exact-quotient result depends on the correctness of the general OpenAI preprints. The <strong>NRF label is historical</strong>, and the remainder of this manuscript is about observable fibers and trained low-rank readouts.</p>
+<h2 id="factorization-and-the-full-domain-obstruction">3.2 Factorization and the full-domain obstruction</h2>
+<p>A linear observation <span class="math inline">\(C\)</span> gives an exact deterministic quotient if there is a map <span class="math inline">\(f\)</span> with <span class="math inline">\(CF(x)=f(Cx)\)</span> throughout the state space. This is equivalent to preserving the fibers of <span class="math inline">\(C\)</span>: whenever <span class="math inline">\(Cx=Cy\)</span>, one has <span class="math inline">\(CF(x)=CF(y)\)</span>. For smooth <span class="math inline">\(F\)</span>, exact factorization requires the observation rowspace <span class="math inline">\(S=\operatorname{row}(C)\)</span> to remain invariant under every Jacobian of <span class="math inline">\(F\)</span>.</p>
+<p><strong>Proposition 1 (full-domain linear quotient obstruction; written proof).</strong> Assume <span class="math inline">\(W_1,W_2\)</span> are invertible, <span class="math inline">\(\beta\ne0\)</span>, and every entry of <span class="math inline">\(W_1W_2\)</span> is nonzero. For the tanh residual map in Section 2 on all of <span class="math inline">\(\mathbb R^{128}\)</span>, an exact deterministic quotient through any nonzero linear <span class="math inline">\(C\)</span> must have full rank 128.</p>
+<p><em>Argument.</em> Write</p>
+<p><span class="math display">\[
+DF(x)=\alpha I+\beta W_2D(x)W_1,
+\quad D(x)=\operatorname{diag}\bigl(\operatorname{sech}^2(W_1x+b_1)\bigr).
+\]</span></p>
+<p>Invertibility of <span class="math inline">\(W_1\)</span> and the full real domain let the diagonal gates vary independently. Invariance under their differences therefore forces rowspace invariance under every rank-one matrix <span class="math inline">\((W_2e_j)(e_j^\top W_1)\)</span>. If <span class="math inline">\(S\)</span> contains a nonzero row <span class="math inline">\(s\)</span>, invertibility of <span class="math inline">\(W_2\)</span> supplies some <span class="math inline">\(j\)</span> with <span class="math inline">\(sW_2e_j\ne0\)</span>, forcing row <span class="math inline">\(e_j^\top W_1\)</span> into <span class="math inline">\(S\)</span>. Full nonzero support of <span class="math inline">\(W_1W_2\)</span> propagates this inclusion to all rows <span class="math inline">\(e_\ell^\top W_1\)</span>. Those rows span the full state space. The complete proof and a positive global differential leakage floor are in the paired MathCan analysis [7]. The assumptions are generic for independently and continuously sampled square weight matrices: invertibility and nonzero entries of the matrix product each fail on proper polynomial zero sets, hence on a set of Lebesgue measure zero. The finite-field witnesses show that these exact stored checkpoint matrices satisfy the hypotheses; they do not establish an unusual architecture property.</p>
+<p>For a proper rank-<span class="math inline">\(k\)</span> orthogonal projector <span class="math inline">\(P\)</span>, write <span class="math inline">\(a_j=W_2e_j\)</span>, <span class="math inline">\(b_j=W_1^\top e_j\)</span>, <span class="math inline">\(h_*=\min_{j,\ell}|(W_1W_2)_{j\ell}|&gt;0\)</span>, <span class="math inline">\(A=\max_j\|a_j\|_2\)</span>, <span class="math inline">\(B=\max_j\|b_j\|_2\)</span>, <span class="math inline">\(\sigma_i=\sigma_{\min}(W_i)\)</span>, and <span class="math inline">\(n=128\)</span>. The written global bound states</p>
+<p><span class="math display">\[
+\max_j \|Pa_j\|_2\,\|(I-P)b_j\|_2
+\;\ge\; \frac{h_*}{2\sqrt n}\min\!\left(\frac{\sigma_2}{A},\frac{\sigma_1}{B}\right)&gt;0,
+\qquad
+\sup_{x\in\mathbb R^n}\|P\,DF(x)(I-P)\|_{op}\;\ge\;|\beta|\max_j\|Pa_j\|_2\,\|(I-P)b_j\|_2.
+\]</span></p>
+<p>This is a <strong>uniform one-step, all-states lower bound</strong>. Its numerical value can be very small, and it is not a bound on the finite-sample, <span class="math inline">\(R/2\)</span>-step leakage used in the experiments. The lack of a one-step factorization through <span class="math inline">\(C\)</span> also does not rule out a factorization of <span class="math inline">\(F^m\)</span> through <span class="math inline">\(C\)</span>: a planar quarter-turn has no real invariant rank-one observation, while its square <span class="math inline">\(-I\)</span> factors through every linear observation. Accordingly the full-domain theorem supplies no impossibility statement for the measured iterated tangents. The exact-quotient formulation is a specialization of classical nonlinear lumpability and invariant-subspace criteria [16,17].</p>
+<p>The premise was checked on twelve original binary32 checkpoints (three seeds <span class="math inline">\(101,103,107\)</span>, depths 16/32, two exposures). Exact integer scalings of the stored weights yield nonzero modular determinants for both matrices and <strong>16,384 nonzero product residues per checkpoint</strong>, or 196,608 supported matrix-product entries across all twelve. A nonzero modular determinant certifies nonsingularity of the original rational matrix. The Lean files prove selected family-closure and support-propagation lemmas; the full real-matrix analytic theorem remains a written proof with arithmetic checks.</p>
+<p>This is an obstruction to <em>global, exact, proper, linear</em> quotients. It permits approximate low-rank observations on a restricted data distribution, a finite time horizon, or a nonlinear observation map. The empirical intervention below addresses precisely such a restricted objective.</p>
+<h2 id="jordan-shear-depth-crossover">3.3 Jordan shear depth crossover</h2>
+<p>For <span class="math inline">\(N=E_{12}\)</span> with <span class="math inline">\(N^2=0\)</span> and <span class="math inline">\(J=aI+bN\)</span>,</p>
+<p><span class="math display">\[
+J^R=a^RI+Ra^{R-1}bN.
+\]</span></p>
+<p>For a rank-one projection at angle <span class="math inline">\(\theta\)</span> to the first coordinate, an isotropic target with projection error <span class="math inline">\(E=\sin^2\theta\)</span> has coupling magnitude <span class="math inline">\(L_R=R|a|^{R-1}|b|(1-E)\)</span>. Comparing two fixed projections with <span class="math inline">\(E_A&lt;E_B\)</span> gives the crossover</p>
+<p><span class="math display">\[
+\lambda_*(R)=\frac{1}{R^2|a|^{2R-2}b^2(2-E_A-E_B)}.
+\]</span></p>
+<p>At <span class="math inline">\(a=1\)</span>, doubling depth quarters the crossover penalty. The formula isolates a simple nonnormal mechanism; the learned projections and nonlinear tangent products in the experiments change with depth, so the Jordan law is an explanatory baseline rather than a fitted model of the empirical curves [7].</p>
+<h2 id="transport-of-hidden-to-visible-sensitivity">3.4 Transport of hidden-to-visible sensitivity</h2>
+<p>For the first <span class="math inline">\(s\)</span> tangent steps <span class="math inline">\(T_s\)</span> and the following <span class="math inline">\(u\)</span> steps <span class="math inline">\(S_u\)</span>, the full tangent is <span class="math inline">\(S_uT_s\)</span>. The cross-fiber block decomposes exactly as</p>
+<p><span class="math display">\[
+PS_uT_sQ=(PS_uP)(PT_sQ)+(PS_uQ)(QT_sQ).
+\]</span></p>
+<p>Its squared Frobenius norm contains the two component energies and twice their inner product. The first component transports preexisting leakage; the second injects influence arriving from the discarded sector during the added suffix. The interference term may be positive or negative, so increased recurrence depth alone does <strong>not</strong> imply monotonically increasing leakage. A planar rotation supplies an elementary cancellation example. This identity was used for an exploratory frozen-midpoint diagnostic in NRF-08X [5,7].</p>
+<h2 id="geometry-of-a-trainable-observation-subspace">3.5 Geometry of a trainable observation subspace</h2>
+<p>For <span class="math inline">\(U^\top U=I_8\)</span>, <span class="math inline">\(P=UU^\top\)</span> and any Jacobian <span class="math inline">\(T\)</span>, orthogonal decomposition gives</p>
+<p><span class="math display">\[
+8\ell_T(U)^2=\|U^\top T\|_F^2-\|U^\top TU\|_F^2.
+\]</span></p>
+<p>It avoids constructing an explicit basis for the 120-dimensional complement. For two rank-eight orthogonal projectors <span class="math inline">\(P,P&#39;\)</span>, the finite-dimensional motion bound is</p>
+<p><span class="math display">\[
+|\ell_T(P&#39;)-\ell_T(P)|\le
+\frac{2\|T\|_{\rm op}}{\sqrt8}\|P&#39;-P\|_F.
+\]</span></p>
+<p>NRF-10 optimizes the smooth calibration penalty <span class="math inline">\(m^{-1}\sum_j\ell_T(U;h_j)^2\)</span>, while evaluation uses <span class="math inline">\(\bigl(m^{-1}\sum_j\ell_T(U;h_j)\bigr)^2\)</span>. Their difference is the sample variance of the local leakage values and is nonnegative. The Gram and projector-motion identities have written proofs and exact-rational oracles; the corresponding Lean module formalizes smaller semiring interference fragments, <strong>not the full real-analytic bounds</strong> [8].</p>
+<h1 id="pre-optimization-context-nrf-0409">4. Pre-optimization context: NRF-04–09</h1>
+<p>The earlier experiment series established the effect that motivated the readout intervention. NRF-04 found that task-supervised rank-eight projections improved task MSE against equal-rank random controls in all twelve archived checkpoints, while their local dark-to-observed leakage increased in all twelve. With the previously selected <span class="math inline">\(\lambda=1\)</span>, NRF-06’s fresh-input evaluation and NRF-07’s three new-seed models retained a depth-dependent objective reversal: at 4,096 <em>state visits</em>, mean supervised/random objectives were 0.4064/0.5712 at 16 visits and 1.2962/1.0595 at 32 visits in NRF-07. At that budget the 16-loop networks had undergone 32 optimizer updates, while the 32-loop networks had undergone only 16.</p>
+<p>NRF-08X held a trained model’s weights, midpoint representation, observer, and task prediction fixed while changing the Jacobian suffix from eight to sixteen visits. The decoder ranking reversed in all three depth-32 source-compatible reconstructions. Their full-tangent interference terms were positive on all 72 sampled shadow states. The originally preregistered checkpoint <strong>byte-identity gate failed</strong>, so these data remain explicitly exploratory [5]. NRF-09 then compared six new paired seeds at 16 and 32 equal optimizer updates. At 32 updates, the supervised observer won 6/6 depth-16 comparisons and 1/6 depth-32 comparisons against the median of complete random-control objectives. The path-specific signed-margin decomposition was</p>
+<p><span class="math display">\[
+m(32,16)-m(16,32)=0.395476=0.215683+0.179793,
+\]</span></p>
+<p>where 0.215683 is the matched-32-update depth contrast and 0.179793 is the improvement in the depth-32 margin from sixteen additional optimizer updates. That second term represents 45.46% of the original equal-visit contrast <strong>along this accounting path</strong>; it is not a training-independent causal estimate [9,10]. Post-review initialization controls in Section 7 show that substantial coupling was already present before any model optimizer step.</p>
+<h1 id="leakage-aware-rank-eight-observers-nrf-10">5. Leakage-aware rank-eight observers (NRF-10)</h1>
+<p>NRF-10 keeps all recurrent weights frozen at their NRF-09 32-update values. It optimizes a rank-eight observation basis using QR retraction and 80 Adam steps (<span class="math inline">\(\mathrm{lr}=0.02\)</span>). The task-only control receives the same optimizer budget and initial supervised basis. The joint arm minimizes train-fold task loss plus <span class="math inline">\(\gamma\)</span> times mean <em>squared local leakage</em> over twelve calibration states. Candidate <span class="math inline">\(\gamma\in\{0.05,0.2,1\}\)</span> is chosen on calibration fold 9, requiring calibration MSE no greater than <span class="math inline">\(1.10\)</span> times the original supervised baseline. Task MSE on fold 10 and shadow leakage on fold 11 are evaluated once following selection.</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Depth</th>
+<th style="text-align: left;">Observer</th>
+<th style="text-align: right;">Held-out MSE</th>
+<th style="text-align: right;">Mean local leakage</th>
+<th style="text-align: right;">Mean <span class="math inline">\(\mathcal J\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">Supervised baseline</td>
+<td style="text-align: right;">0.2379</td>
+<td style="text-align: right;">0.4169</td>
+<td style="text-align: right;">0.4118</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">Task-only, 80 updates</td>
+<td style="text-align: right;">0.1262</td>
+<td style="text-align: right;">0.3759</td>
+<td style="text-align: right;">0.2676</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">Joint leakage-aware, 80 updates</td>
+<td style="text-align: right;">0.1540</td>
+<td style="text-align: right;">0.3158</td>
+<td style="text-align: right;"><strong>0.2544</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">32</td>
+<td style="text-align: left;">Supervised baseline</td>
+<td style="text-align: right;">0.2761</td>
+<td style="text-align: right;">0.8381</td>
+<td style="text-align: right;">0.9788</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">32</td>
+<td style="text-align: left;">Task-only, 80 updates</td>
+<td style="text-align: right;">0.1493</td>
+<td style="text-align: right;">0.5122</td>
+<td style="text-align: right;">0.4117</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">32</td>
+<td style="text-align: left;">Joint leakage-aware, 80 updates</td>
+<td style="text-align: right;">0.2476</td>
+<td style="text-align: right;">0.3184</td>
+<td style="text-align: right;"><strong>0.3526</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 1.</strong> Frozen-weight NRF-10 readout results. Each cell aggregates six model seeds. The group mean of <span class="math inline">\(\mathcal J\)</span> is not obtained by squaring the group mean leakage [11].</p>
+<p>The <strong>equal-budget task-only arm is the principal comparator</strong>. At depth 32, its task MSE of <span class="math inline">\(0.1493\)</span>, leakage <span class="math inline">\(0.5122\)</span>, and joint score <span class="math inline">\(0.4117\)</span> become MSE <span class="math inline">\(0.2476\)</span>, leakage <span class="math inline">\(0.3184\)</span>, and score <span class="math inline">\(0.3526\)</span> after leakage-aware optimization. The explicit penalty reduces leakage by <strong>37.8% relative to task-only</strong>, while task MSE increases by <strong>65.8%</strong>. The combined score improves by <strong>14.4% at the previously chosen <span class="math inline">\(\lambda=1\)</span></strong>. Define the mean-over-seeds objective <span class="math inline">\(\overline{\mathcal J}_\lambda=\overline{E}+\lambda\overline{L^2}\)</span>, where the bar applies to complete <em>per-seed</em> scores. The chosen observer wins over task-only only when</p>
+<p><span class="math display">\[
+\lambda&gt;\lambda^*_{\mathrm{NRF10}}=\frac{\overline{E}_{\mathrm{joint}}-\overline{E}_{\mathrm{task}}}{\overline{L_{\mathrm{task}}^2}-\overline{L_{\mathrm{joint}}^2}}=\boxed{0.6242}.
+\]</span></p>
+<p>This exact aggregation differs slightly from the approximately <span class="math inline">\(0.61\)</span> obtained by squaring the <strong>group-mean</strong> leakage. On NRF-11’s reused model cohort with fresh input draws, the corresponding break-even is 0.5667. The combined-score advantage over task-only occurs in all six depth-32 NRF-10 seed-level comparisons and all six depth-16 comparisons at <span class="math inline">\(\lambda=1\)</span>. These empirical thresholds depend on the unit convention of task MSE and leakage, and <span class="math inline">\(\lambda\)</span> was chosen after inspecting NRF-04.</p>
+<p>The weaker, unoptimized supervised baseline has leakage <span class="math inline">\(0.8381\)</span>. Task-only optimization already explains roughly <strong>62.7% of the absolute leakage reduction</strong> from this baseline to the joint arm; the explicit penalty explains the remaining 37.3% on that additive accounting path. The preregistered task budget was anchored to <strong>1.10 times this unoptimized baseline</strong>, so it permits substantial regression from the much better task-only readout. The gamma penalty remains selected from a fixed post-NRF-04 objective with <span class="math inline">\(\lambda=1\)</span>. The depth-32 preregistered compound gate passes <strong>5/6</strong> models against the required threshold of at least 4/6, but that compound gate compares task error with the weak supervised baseline. Seed 149 is a counted failure: its held-out task-error ratio was <span class="math inline">\(1.1011\)</span> against the maximum <span class="math inline">\(1.10\)</span>. Depth 16 passes 6/6. The optimized observer retains strictly positive measured leakage, consistent with the distinction between a useful local readout and an exact global quotient.</p>
+<h1 id="unchanged-observer-transfer-nrf-11">6. Unchanged-observer transfer (NRF-11)</h1>
+<p>NRF-11 reconstructs the selected NRF-10 bases using the original training and calibration data and checks their selected <span class="math inline">\(\gamma\)</span> and scores against sealed receipts. It then freezes their bases and ridge heads <em>before</em> opening fresh task fold 12 and shadow fold 13. Twelve saved adapter files retain basis coefficients, heads, selected penalties, and source checkpoint hashes. The transfer tests only <strong>sampling stability within an unchanged synthetic teacher family</strong>, using the same models, learned projectors, and task seeds. It provides no new model/task cohort and should not be described as cross-distribution generalization.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Depth</th>
+<th style="text-align: left;">Observer</th>
+<th style="text-align: right;">Mean held-out <span class="math inline">\(\mathcal J\)</span> on folds 12/13</th>
+<th style="text-align: right;">Mean leakage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">Supervised baseline</td>
+<td style="text-align: right;">0.4192</td>
+<td style="text-align: right;">0.4165</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">Task-only</td>
+<td style="text-align: right;">0.2698</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">Frozen leakage-aware</td>
+<td style="text-align: right;"><strong>0.2540</strong></td>
+<td style="text-align: right;">0.3154</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">32</td>
+<td style="text-align: left;">Supervised baseline</td>
+<td style="text-align: right;">0.9841</td>
+<td style="text-align: right;">0.8364</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">32</td>
+<td style="text-align: left;">Task-only</td>
+<td style="text-align: right;">0.4202</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">32</td>
+<td style="text-align: left;">Frozen leakage-aware</td>
+<td style="text-align: right;"><strong>0.3515</strong></td>
+<td style="text-align: right;">0.3176</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 2.</strong> Fresh-fold NRF-11 scores, with no readout refit after the original NRF-10 selection. A dash indicates an omitted table statistic, not a zero measurement [12].</p>
+<p>The depth-32 compound gate again passes 5/6, with seed 149 missing the task-error budget (ratio <span class="math inline">\(1.1139\)</span>). The depth-16 cohort passes 6/6. For all twelve frozen observers, the joint score beats the original supervised readout, the equal-budget task-only control, and the median of eight random controls. Mean depth-32 joint <span class="math inline">\(\mathcal J\)</span> changes from <span class="math inline">\(0.3526\)</span> (NRF-10) to <span class="math inline">\(0.3515\)</span> (NRF-11), consistent with stable sampling from the same synthetic Gaussian distribution. The change is descriptive rather than evidence of generalization to another task family.</p>
+<p>A repository-native replay bug discovered during publication review is also documented: NRF-10 initially imported the NRF-09 generator that intentionally rejected folds outside 1/7/8. The NRF-11 integration repaired the fold contract for 9–13 using the identical registered Gaussian stream and teacher, with parity tests and an independent saved-adapter replay. The fix changes admitted fold indices and leaves the generated data formula and selection settings intact [12].</p>
+<h1 id="post-review-exploratory-controls-computed-change-random-observers-and-the-penalty-frontier">7. Post-review exploratory controls: computed change, random observers, and the penalty frontier</h1>
+<p>These measurements were designed after inspecting NRF-10/11 outcomes. They reuse the <strong>same six trained model seeds</strong> and the already exposed NRF-11 fold-13 shadow inputs. A second audit recomputed the 128×128 Jacobians from the archived, SHA-verified NRF-09 checkpoints and checked the frozen NRF-11 observer-adapter hashes. Each dark-block leakage agrees with its saved receipt, and the equality <span class="math inline">\(U^\top(T-I)Q=U^\top TQ\)</span> holds within <span class="math inline">\(1.2\times 10^{-16}\)</span> in the reconstructed experiment. They are retrospective <strong>mechanism diagnostics</strong>.</p>
+<h2 id="subtracting-the-identity-skip-path">7.1 Subtracting the identity skip path</h2>
+<p>Table 3 includes a random-observer reference, the step-zero initialization control, and the task-free local optimum. For a fixed recurrent depth of 32, the trained models are evaluated after 32 AdamW updates; each step-zero model has the same initialization seed but zero updates, with its supervised readout still fitted from labeled examples. All entries are six-seed mean values. The random reference averages eight independent rank-eight bases within each seed (48 arm measurements); those arms do not constitute 48 independent trained models.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Depth-32 observer</th>
+<th style="text-align: right;">Dark leakage <span class="math inline">\(L\)</span></th>
+<th style="text-align: right;">Full-tangent <span class="math inline">\(\bar\rho\)</span></th>
+<th style="text-align: right;">Change-only <span class="math inline">\(\bar\rho_\Delta\)</span></th>
+<th style="text-align: right;">Change write <span class="math inline">\(\bar W_\Delta\)</span></th>
+<th style="text-align: right;">Change within <span class="math inline">\(\bar G_\Delta\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Supervised at step zero</td>
+<td style="text-align: right;">1.2678</td>
+<td style="text-align: right;">0.6322</td>
+<td style="text-align: right;">0.8978</td>
+<td style="text-align: right;">1.4128</td>
+<td style="text-align: right;">0.6225</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Supervised after 32 updates</td>
+<td style="text-align: right;">0.8364</td>
+<td style="text-align: right;">0.6383</td>
+<td style="text-align: right;">0.9785</td>
+<td style="text-align: right;">0.8548</td>
+<td style="text-align: right;">0.1759</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Eight matched random controls, mean</td>
+<td style="text-align: right;">0.7178</td>
+<td style="text-align: right;">0.6861</td>
+<td style="text-align: right;">0.9126</td>
+<td style="text-align: right;">0.7866</td>
+<td style="text-align: right;">0.3211</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Task-only, 80 readout updates</td>
+<td style="text-align: right;">0.5128</td>
+<td style="text-align: right;">0.7328</td>
+<td style="text-align: right;">0.6665</td>
+<td style="text-align: right;">0.7697</td>
+<td style="text-align: right;">0.5737</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Leakage-aware, 80 readout updates</td>
+<td style="text-align: right;">0.3176</td>
+<td style="text-align: right;">0.4390</td>
+<td style="text-align: right;">0.6201</td>
+<td style="text-align: right;">0.5250</td>
+<td style="text-align: right;">0.4163</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Task-free leakage-only, supervised start</td>
+<td style="text-align: right;">0.1099</td>
+<td style="text-align: right;">0.1119</td>
+<td style="text-align: right;">0.6756</td>
+<td style="text-align: right;">0.1635</td>
+<td style="text-align: right;">0.1204</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Task-free leakage-only, random start</td>
+<td style="text-align: right;">0.1135</td>
+<td style="text-align: right;">0.1278</td>
+<td style="text-align: right;">0.4964</td>
+<td style="text-align: right;">0.2322</td>
+<td style="text-align: right;">0.2018</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 3.</strong> Post-review means of per-state ratios and normalized Frobenius gains, reusing NRF-11 fold 13. The shadow-state identity <span class="math inline">\(W_\Delta^2=G_\Delta^2+\ell^2\)</span> holds <em>before</em> averaging. Absolute dark leakage remains unchanged after subtracting the identity; the reported <span class="math inline">\(\rho\)</span> and <span class="math inline">\(\rho_\Delta\)</span> are averages of per-state ratios, not ratios of column means.</p>
+<p>The raw ratio moves only from 0.6322 at initialization to 0.6383 after short model training, even while absolute leakage falls from 1.2678 to 0.8364. On the computed-change scale the corresponding ratios are 0.8978 and 0.9785. Hence the <strong>large initialized coupling remains</strong> and the short training mostly reduces its absolute size for this protocol; training also changes its directional composition. The empirical depth comparison cannot be presented as a leakage pattern learned only during training.</p>
+<p>Task-only observer optimization lowers absolute leakage and the change-only dark fraction relative to the unoptimized supervised observer. The leakage-aware arm reduces its change-only fraction further, 0.6665 to 0.6201, although the improvement is smaller than suggested by the full-tangent ratios, 0.7328 to 0.4390. The random-observer baseline of 0.9126 helps interpret the scale of these numbers. The task-free supervised-start observer has full-tangent within gain 0.9755 but <strong>change-only within gain 0.1204</strong>; its full-tangent dark ratio 0.1119 is therefore strongly affected by the identity skip path. Its change-only dark fraction is 0.6756, with low absolute change write gain 0.1635. Choosing the smallest full-tangent coupling can select a nearly inert observed subspace.</p>
+<p>For the depth-16 control cohort, the corresponding change-only dark fractions are 0.9142 at step zero, 0.9736 for the supervised observer after training, 0.9283 for random observations, 0.7865 for task-only, and 0.7565 for leakage-aware. These secondary values were computed in the same retrospective audit.</p>
+<h2 id="penalty-frontier-as-an-exchange-rate">7.2 Penalty frontier as an exchange rate</h2>
+<p>All <span class="math inline">\(\gamma\)</span> candidates below receive <strong>80</strong> QR-retracted Adam readout updates from a common supervised initialization on depth-32 weights. We calculate their score from NRF-11’s already exposed task fold 12 and shadow fold 13, with no fresh model cohort. The penalty <span class="math inline">\(\gamma\)</span> controls the training objective, while <span class="math inline">\(\lambda\)</span> represents the <em>evaluation exchange rate</em> between task error and squared mean leakage. To compare arms, define</p>
+<p><span class="math display">\[
+\lambda^*(\gamma)=\frac{\overline E_\gamma-\overline E_{0}}{\overline{L_0^2}-\overline{L_\gamma^2}},\qquad
+\overline{\mathcal J}_\lambda(\gamma)=\overline E_\gamma+\lambda\overline{L_\gamma^2}.
+\]</span></p>
+<p>The bar means six-model averaging. We report finite positive thresholds only when the candidate has larger task MSE and lower squared leakage than the task-only candidate. An evaluation weight above the threshold favors the candidate in this pairwise comparison, and weights below it favor task-only.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Depth-32 observation</th>
+<th style="text-align: right;">Task MSE</th>
+<th style="text-align: right;">Leakage</th>
+<th style="text-align: right;">Change-only <span class="math inline">\(\bar\rho_\Delta\)</span></th>
+<th style="text-align: right;">Mean <span class="math inline">\(\mathcal J_{1}\)</span></th>
+<th style="text-align: right;">Break-even <span class="math inline">\(\lambda^*\)</span> vs task-only</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Task-only, <span class="math inline">\(\gamma=0\)</span></td>
+<td style="text-align: right;">0.1571</td>
+<td style="text-align: right;">0.5128</td>
+<td style="text-align: right;">0.6665</td>
+<td style="text-align: right;">0.4202</td>
+<td style="text-align: right;">reference</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\gamma=0.05\)</span></td>
+<td style="text-align: right;">0.1672</td>
+<td style="text-align: right;">0.4348</td>
+<td style="text-align: right;">0.6111</td>
+<td style="text-align: right;">0.3564</td>
+<td style="text-align: right;"><strong>0.136</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\gamma=0.2\)</span></td>
+<td style="text-align: right;">0.2208</td>
+<td style="text-align: right;">0.3577</td>
+<td style="text-align: right;">0.5851</td>
+<td style="text-align: right;"><strong>0.3488</strong></td>
+<td style="text-align: right;">0.471</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\gamma=1\)</span></td>
+<td style="text-align: right;">0.3121</td>
+<td style="text-align: right;">0.2334</td>
+<td style="text-align: right;">0.6722</td>
+<td style="text-align: right;">0.3666</td>
+<td style="text-align: right;">0.743</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Task-free leakage-only, supervised start</td>
+<td style="text-align: right;">0.3711</td>
+<td style="text-align: right;">0.1099</td>
+<td style="text-align: right;">0.6756</td>
+<td style="text-align: right;">0.3832</td>
+<td style="text-align: right;">0.853</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Task-free leakage-only, random start</td>
+<td style="text-align: right;">0.3959</td>
+<td style="text-align: right;">0.1135</td>
+<td style="text-align: right;">0.4964</td>
+<td style="text-align: right;">0.4088</td>
+<td style="text-align: right;">0.954</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 4.</strong> Post-hoc penalty sweep, six depth-32 models, independent archived input folds within the same task family. The task-free candidates are <strong>locally optimized minima</strong> from two starting points, not global solutions. Thresholds use averages of <em>per-seed leakage squares</em>, so numerical results need not match a calculation from the square of column-mean leakage.</p>
+<p>The least expensive point in task accuracy for a meaningful reduction in coupling is <span class="math inline">\(\gamma=0.05\)</span>: compared with task-only it raises task MSE by about <strong>6.4%</strong> and lowers absolute leakage by <strong>15.2%</strong>, winning whenever the evaluation weight exceeds <span class="math inline">\(0.136\)</span>. The selected <span class="math inline">\(\gamma\)</span>-mixture from NRF-10 and NRF-11 has different task/leakage values from any fixed-<span class="math inline">\(\gamma\)</span> row and crosses task-only at <span class="math inline">\(\lambda=0.624\)</span> on NRF-10 and <span class="math inline">\(0.567\)</span> on NRF-11. For the fixed <span class="math inline">\(\gamma=1\)</span> arm, the raw dark fraction is 0.2660, but its computed-change fraction is 0.6722, slightly <strong>above</strong> the task-only 0.6665. This demonstrates the importance of subtracting the identity when interpreting a very low raw ratio.</p>
+<p>An observable-fiber paper should report this frontier and its implied exchange rates. A future preregistration should bound task MSE relative to the fully optimized <strong>task-only</strong> readout and fix <span class="math inline">\(\lambda\)</span> from an independently justified scale or end-user utility. A new model family and a fresh task distribution are needed to test transfer of the measured tradeoff.</p>
+<h2 id="mathematical-and-empirical-scope-of-the-controls">7.3 Mathematical and empirical scope of the controls</h2>
+<p>These diagnostics reuse the archived model weights and seed/task family, and the <span class="math inline">\(\gamma\)</span> frontier was reconstructed <strong>after</strong> inspecting NRF-11’s evaluation folds. The skip-adjusted block identity is exact; the numerical ratios, initialization effects and break-even penalties are descriptive measurements at finite shadow states. The cross-study NRF-11 result remains a fresh-input stability check within an unchanged synthetic family. The original two OpenAI mathematics preprints are part of the research history rather than assumptions used in any learned-observer theorem.</p>
+<h1 id="interpretation-related-work-and-limits">8. Interpretation, related work, and limits</h1>
+<p>The experimental and mathematical results operate at different quantifiers and distinct computational depths. Proposition 1 asserts that every proper nonzero <strong>global exact linear</strong> quotient fails under the specified full-support hypotheses. NRF-10 and NRF-11 measure finite-sample, <strong>distribution-conditioned local coupling</strong> over <span class="math inline">\(R/2\)</span> recurrent visits after optimizing the readout itself. A one-step obstruction does not preclude an iterate-level quotient. A low average shadow-state leakage can coexist with a positive global floor. The former concerns a task-useful observer on sampled states; the latter concerns all real states and all proper linear projections.</p>
+<p>The Jordan and suffix identities explain why finite recurrent depth can amplify or cancel dark-to-visible influence depending on the ordered tangent products and observation geometry. They motivate the penalty used in NRF-10. They do not prove that the learned decoder has recovered a stable semantic mechanism, nor that the same penalty will generalize across architectures. Training with task-only refinement already produces a strong improvement, making its equal-budget control essential when interpreting the additional value from leakage regularization.</p>
+<p>Nonlinear observability via variational dynamics, Lyapunov exponents, and empirical Gramians [3] is a natural comparison for the present finite-sample Jacobian metric. Dynamics-aware oblique reduction [4] points to extensions beyond the orthogonal rank-eight subspaces considered here. The numerical-range and fixed-point papers that launched NRF [1,2] appear as historical motivation. Earlier scalar Crouzeix proofs [13,14], the looped-model readout blind spot [15], and classical lumpability [16,17] supply crucial related context. The later exact quotient theorem and numerical observer optimization have independent derivations.</p>
+<p>The following limitations materially bound the claims:</p>
+<ul>
+<li>All measured models are 128-dimensional tied residual MLP loopers trained for only 16 or 32 optimizer steps on 128 or 256 stochastic input examples from one Gaussian signed-permutation family. They are not attention transformers or language models. There is no Lean proof-search or downstream reasoning evaluation here.</li>
+<li>The observation is low rank, and its decoding quality is task-specific. A reduction in local Jacobian leakage is <strong>not evidence of improved model safety</strong>, consciousness, or causal interpretability without additional interventions and checks.</li>
+<li>The original absolute leakage metric depends on observation rank and observed write gain; full-tangent ratios can be strongly affected by identity skip pathways. The change-only ratio, its write/within gain components, and random-observer baseline are retrospective controls. Two task-free local solutions are measured; a global projector minimum is not certified. The reported combined score depends on the chosen task label, shadow distribution, and <span class="math inline">\(\lambda\)</span>. The shared <span class="math inline">\(\lambda=1\)</span> was chosen after earlier outcomes. Registration of later folds and seeds limits new opportunities for tuning, but does not restore a completely independent confirmatory design.</li>
+<li>The original comparison budget of 1.10 times the <em>unoptimized baseline</em> permits larger task regression than a task-only-normalized budget. Sample sizes of three or six independent model seeds per depth are small. Reused cohorts and multiple follow-up studies are correlated. We emphasize descriptive effects and gate counts rather than treating nominal binomial probabilities as confirmatory significance.</li>
+<li>NRF-08’s original binary checkpoint identity gate failed. Its suffix experiment is <strong>NRF-08X exploratory</strong>, and must not be pooled into a strict preregistered success count.</li>
+<li>The exact global nonlinear quotient proof relies on invertibility, independent full-domain tanh gates, and full nonzero support of <span class="math inline">\(W_1W_2\)</span>. Its finite-field certificates establish those hypotheses for twelve particular stored checkpoints. The theorem is written and tested with rational examples; only smaller algebraic pieces have Lean proofs.</li>
+<li>MathCan’s Lean status is module-specific. Its NRF exact-arithmetic and fragment checks do not certify the entire real matrix analysis. Private LoopedTransformers GitHub Actions had repeated runner/log failures; locally validated receipts and independent exact arithmetic checks have separate evidential status.</li>
+</ul>
+<p>The next experiment should register a distinct task family or architecture before any data are generated, and measure coupling relative to computed change <span class="math inline">\(T-I\)</span>. A stronger task ceiling should be anchored to the fully optimized task-only observer, and the candidate set should include a task-free leakage local optimum, scale-normalized gain diagnostics, and a full penalty frontier. Compare orthogonal and oblique projections only after this measurement protocol is fixed. A meaningful capability-and-safety claim would require measurements on tasks and behavior well beyond this toy data distribution.</p>
+<h1 id="conclusion">9. Conclusion</h1>
+<p>The NRF campaign reveals a useful division of labor. Exact global observability can be obstructed even when a small task-oriented readout is effective. Across a staged series of experiments, deeper tied recurrence increased the cost of hidden-to-observed coupling in ordinary supervised projections, with part of the apparent contrast explained by unequal optimizer-update budgets. Training a rank-eight observer against a local Jacobian-leakage surrogate improved the chosen held-out joint objective over an equal-update task-only readout, at a substantial cost in task MSE. Post-review skip-adjusted analysis finds a smaller reduction in the computed-change dark fraction than the original full-tangent ratios imply, and the penalty frontier makes the task/accuracy exchange explicit. The selected observers retained the same within-family ranking on newly generated input samples. This provides a tractable target for compact-model mechanistic interpretation while leaving cross-task, cross-architecture, and real-language-model validation open.</p>
+<h1 id="reproducibility-appendix">Reproducibility appendix</h1>
+<p>Every empirical result is backed by merged experiment receipts and a separately identified source protocol. The mathematical statements and the experiment campaigns are linked in the numbered references. The source collection includes:</p>
+<ul>
+<li><strong>NRF-01–05:</strong> finite-dimensional numerical-range certificates, exact observation closure, and finite-field full-support witnesses.</li>
+<li><strong>NRF-06–08X:</strong> input and model-seed transfer receipts, plus the blocked original byte-identity gate for the exploratory suffix intervention.</li>
+<li><strong>NRF-09:</strong> six paired seeds with matched optimizer-update budgets and complete random-control score comparisons.</li>
+<li><strong>NRF-10–11:</strong> calibration choices, frozen observer parameters, twelve saved adapter hashes, and independent fresh-input measurements.</li>
+<li><strong>Post-review controls:</strong> zero-step model reconstructions, gain-normalized leakage diagnostics, the full four-penalty sweep, eight random controls per model, skip-adjusted gains, and two task-free local optimizations. These are retrospective and reproducible from the accompanying CSV and Python scripts.</li>
+</ul>
+<p>The applied receipts are available in the <a href="https://github.com/MoralityLabAI/LoopedTransformers/tree/main/experiments/numerical_range_fixed_point_v1">LoopedTransformers experiment collection</a>. Written proofs and exact-rational oracles are available in <a href="https://github.com/patrickdugan/MathCan/tree/main/research/compactification">MathCan</a>. Source campaign PRs are <a href="https://github.com/MoralityLabAI/LoopedTransformers/pull/56">LoopedTransformers #56</a>, <a href="https://github.com/MoralityLabAI/LoopedTransformers/pull/88">#88</a>, <a href="https://github.com/MoralityLabAI/LoopedTransformers/pull/95">#95</a>, <a href="https://github.com/MoralityLabAI/LoopedTransformers/pull/98">#98</a> and <a href="https://github.com/patrickdugan/MathCan/pull/46">MathCan #46</a>, <a href="https://github.com/patrickdugan/MathCan/pull/75">#75</a>, <a href="https://github.com/patrickdugan/MathCan/pull/81">#81</a>. Experimental checkpoint binaries and full eleven-arm receipts for certain campaigns were distributed as conversation reproduction archives, rather than committed binary assets; the public receipts alone are not a full model-weight archive.</p>
+<h1 id="references">References</h1>
+<p>[1] OpenAI (2026). <em>A direct proof of the complete Crouzeix inequality</em>. OpenAI Math release #325, 26 September 2026. <a href="https://github.com/openai/math/tree/main/preprints/A-direct-proof-of-the-complete-Crouzeix-inequality-September-26-2026">Preprint</a>.</p>
+<p>[2] OpenAI (2026). <em>Fixed Points of Nonexpansive Maps in Reflexive Banach Spaces</em>. OpenAI Math release #328, 24 September 2026. <a href="https://github.com/openai/math/tree/main/preprints/Fixed-Points-of-Nonexpansive-Maps-in-Reflexive-Banach-Spaces-September-24-2026">Preprint</a>.</p>
+<p>[3] Kazma, M. H., and Taha, A. F. (2024, revised 2026). <em>Observability for Nonlinear Systems: Connecting Variational Dynamics, Lyapunov Exponents, and Empirical Gramians</em>. First submitted 22 February 2024, <a href="https://arxiv.org/abs/2402.14711">arXiv:2402.14711</a>; later published as IEEE Transactions on Control of Network Systems (2026), early access, <a href="https://doi.org/10.1109/TCNS.2026.3721959">doi:10.1109/TCNS.2026.3721959</a>.</p>
+<p>[4] Padovan, A. (2026). <em>Non-Intrusive Balancing for Data-Driven Model Reduction with Oblique Projections</em>. <a href="https://arxiv.org/abs/2610.15219">arXiv:2610.15219</a>.</p>
+<p>[5] Morality Lab (2026). <em>NRF-01–08X: Numerical Range Fixed-Point experiment collection</em>, LoopedTransformers, merged <a href="https://github.com/MoralityLabAI/LoopedTransformers/pull/56">PR #56</a>.</p>
+<p>[6] Morality Lab (2026). <em>Crouzeix fixed-point switching and graph certificates</em>, MathCan, merged <a href="https://github.com/patrickdugan/MathCan/pull/46">PR #46</a>.</p>
+<p>[7] Morality Lab (2026). <em>Full Linear Gate Collapse, Jordan Depth Leakage Scaling, and Suffix Dark Transport</em>, MathCan, in <a href="https://github.com/patrickdugan/MathCan/pull/46">PR #46</a>, especially <a href="https://github.com/patrickdugan/MathCan/blob/main/research/compactification/FULL_LINEAR_GATE_COLLAPSE.md"><code>FULL_LINEAR_GATE_COLLAPSE.md</code></a>.</p>
+<p>[8] Morality Lab (2026). <em>Projector Leakage Geometry</em>, MathCan, merged <a href="https://github.com/patrickdugan/MathCan/pull/81">PR #81</a>.</p>
+<p>[9] Morality Lab (2026). <em>NRF-09: Matched Optimizer Steps</em>, LoopedTransformers, merged <a href="https://github.com/MoralityLabAI/LoopedTransformers/pull/88">PR #88</a>.</p>
+<p>[10] Morality Lab (2026). <em>Matched-Step Margin Stability</em>, MathCan, merged <a href="https://github.com/patrickdugan/MathCan/pull/75">PR #75</a>.</p>
+<p>[11] Morality Lab (2026). <em>NRF-10: Leakage-Aware Frozen-Weight Observers</em>, LoopedTransformers, merged <a href="https://github.com/MoralityLabAI/LoopedTransformers/pull/95">PR #95</a>.</p>
+<p>[12] Morality Lab (2026). <em>NRF-11: Frozen-Observer Fresh-Fold Transfer</em>, LoopedTransformers, merged <a href="https://github.com/MoralityLabAI/LoopedTransformers/pull/98">PR #98</a>.</p>
+<p>[13] Jin, S. (2026). <em>The Numerical Range Is a 2-Spectral Set</em>. First posted 27 July 2026. <a href="https://www.preprints.org/manuscript/202607.1919">Preprint</a>.</p>
+<p>[14] Lorist, E., and Schwenninger, F. (2026). <em>A solution to Crouzeix’s conjecture</em>. <a href="https://arxiv.org/abs/2608.03841">arXiv:2608.03841</a>.</p>
+<p>[15] Sharma, R., and Vu, T. (2026). <em>Dense Supervision Is Not Enough: The Readout Blind Spot in Looped Language Models</em>. <a href="https://arxiv.org/abs/2606.24898">arXiv:2606.24898</a>.</p>
+<p>[16] Horstmeyer, L., and Atay, F. M. (2016). <em>Characterization of exact lumpability for vector fields on smooth manifolds</em>. Differential Geometry and its Applications 48, 46–60. <a href="https://doi.org/10.1016/j.difgeo.2016.06.001">doi:10.1016/j.difgeo.2016.06.001</a>; <a href="https://arxiv.org/abs/1607.01237">arXiv:1607.01237</a>.</p>
+<p>[17] Atay, F. M., and Roncoroni, L. (2017). <em>Lumpability of linear evolution equations in Banach spaces</em>. Evolution Equations and Control Theory 6(1), 15–34. <a href="https://www.aimsciences.org/article/doi/10.3934/eect.2017002">doi:10.3934/eect.2017002</a>.</p>
+</div>
+</main></body></html>
