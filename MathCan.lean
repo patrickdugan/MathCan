@@ -77,3 +77,6 @@ import MathCan.ObservablePareto
 import MathCan.GateFamilyNoGo
 import MathCan.JordanDepth
 import MathCan.SuffixTransport
+
+import MathCan.CausalSubspaceCompression
+

@@ -1,0 +1,35 @@
+name: SPC-09 exact compression witnesses
+on:
+  push:
+    paths: ['MathCan/CausalSubspaceCompression.lean', 'tests/test_causal_subspace_compression.py', 'research/spectral_aliasing/SPC-09.md', '.github/workflows/spc09-causal-compression.yml']
+  pull_request:
+    paths: ['MathCan/CausalSubspaceCompression.lean', 'tests/test_causal_subspace_compression.py', 'research/spectral_aliasing/SPC-09.md', '.github/workflows/spc09-causal-compression.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-oracles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p 'test_causal_subspace_compression.py' -v
+  lean-kernel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Kernel check and audit axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/CausalSubspaceCompression.lean | tee spc09-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' spc09-axioms.txt; then exit 1; fi
