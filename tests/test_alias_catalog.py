@@ -3,7 +3,9 @@ import json
 import hashlib
 from itertools import combinations
 from pathlib import Path
+import sys
 import unittest
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'research' / 'orbit_lock'))
 from alias_catalog import enumerate_single_swap_aliases
 from latent_stars import matchings, star_covers
 
