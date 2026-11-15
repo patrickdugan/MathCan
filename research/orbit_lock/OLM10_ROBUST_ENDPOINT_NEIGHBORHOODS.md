@@ -92,3 +92,67 @@ The [SMC-10 exact-real Arb endpoint evaluator](https://github.com/MoralityLabAI/
 The certificate concerns the exact-real function on the selected input box. It excludes FP64 kernel rounding and model-weight perturbations unless independently supplied budget bounds are mapped to the input/direction balls. These are repeat analyses on the same previously examined 16 puzzle IDs, and are not an independent model-generalization claim.
 
 [Exact rational finite verification](robust_endpoint.py) and [five local tests](../../tests/test_robust_endpoint.py) establish the inclusion and strict-order contracts without relying on a neural checkpoint, Arb library or GPU. The scientific question is how much of the SMC-09 ordering survives bounded perturbations of the hidden patch and selected feature directions.
+
+
+## 7. OLM-10D: Endpoint-local Lipschitz transfer, without interval-box repropagation
+
+The direct coordinate-box evaluator can become inconclusive because independent interval variables lose correlations through recurrent LayerNorm. An alternative **rigorous sufficient certificate** transports only local Lipschitz bounds around each nominal endpoint.
+
+Let \(x_0=h\), \(x_u=h+ru\), \(x_v=h+rv\). Suppose that the exact-real map \(F\) has certified Euclidean Lipschitz constants \(L_0,L_u,L_v\) on, respectively, the L2 balls of radii
+
+\[
+R_0=\delta_h,\quad R_u=\delta_h+r\delta_u,\quad
+R_v=\delta_h+r\delta_v
+\]
+
+around these three nominal states, with all other tokens fixed. Assume validated pointwise endpoint evaluations give norm-effect enclosures \(a_u\in[\ell_u,b_u]\) and \(a_v\in[\ell_v,b_v]\) for the nominal changes \(F(x_u)-F(x_0)\) and \(F(x_v)-F(x_0)\).
+
+**Theorem OLM-10D (robust endpoint Lipschitz dominance).** Define
+
+\[
+E_u=L_0\delta_h+L_u(\delta_h+r\delta_u),\quad
+E_v=L_0\delta_h+L_v(\delta_h+r\delta_v).
+\]
+
+Every admissible uncertain triple from (1) satisfies
+
+\[
+\boxed{
+\max(0,\ell_u-E_u)\le\|F(h'+ru')-F(h')\|_2
+\le b_u+E_u
+}
+\tag{6}
+\]
+
+and the corresponding bounds with \(v\). In particular,
+
+\[
+\boxed{\ell_u-E_u>b_v+E_v}
+\tag{7}
+\]
+
+certifies strict active-over-control ranking for the whole shared-anchor/direction uncertainty family.
+
+**Proof.** By the triangle inequality and Lipschitz bounds,
+
+\[
+\|[F(h'+ru')-F(h')]-[F(h+ru)-F(h)]\|_2
+\le L_u\|h'+ru'-(h+ru)\|_2 + L_0\|h'-h\|_2
+\le E_u.
+\]
+
+The reverse and forward triangle inequalities give (6), then (7). QED.
+
+The constants may be *independently validated on only three small Euclidean endpoint balls*. Unlike a global \(10^{53}\) Hessian ceiling, this local approach can exploit the clean LayerNorm denominators at the selected endpoints. It also avoids introducing correlated uncertain variables into an entire nonlinear interval-forward computation. Its output is an effect-norm **tube**, so it bounds every admissible uncertain endpoint pair while leaving intermediate intervention radii unrestricted.
+
+### Certified layerwise Lipschitz transport
+
+For an exact compositional recurrent model \(F=W\circ f_n\circ\cdots\circ f_1\), suppose a validated center-forward tape and known upper operator norms guarantee \(\|Df_i\|\le a_i\) throughout propagated Euclidean input-radius \(R_{i-1}\), and the centers' local balls are enclosed inductively using \(R_i=a_iR_{i-1}\). Then
+
+\[
+\boxed{L_F(R_0)\le\|W\|_{\mathrm{verified}}\prod_{i=1}^n a_i.}
+\]
+
+The fixed pretrained recurrence already has an Arb-LDL verified source-weight spectral norm checker and a source-locked LayerNorm radius transport in its LSV-17 Taylor engine. SMC-10C reuses those ingredients, storing the actual local denominator fallback status, upper Lipschitz coefficient and finite-radius effect interval. Failure to prove (7) remains an abstention rather than evidence that a physical SAE feature changes its effect ranking.
+
+The standard-library [OLM-10 oracle](robust_endpoint.py) and its local Lipschitz regression test check (6)–(7) on exact linear examples. The abstract inequalities have classical mathematical prior art; the source-locked certificate synthesis is the new research-specific contribution.
