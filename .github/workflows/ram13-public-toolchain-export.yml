@@ -39,7 +39,7 @@ jobs:
           (cd _mathcan_pinned && lake build MathCan)
           lean --version | tee "$RUNNER_TEMP/lean-version.txt"
           lake --version | tee "$RUNNER_TEMP/lake-version.txt"
-          test "$(lean --version | awk '{print $3}')" = '4.35.0'
+          lean --version | grep -q 'Lean (version 4.35.0,'
       - name: Export portable public Lean toolchain and compiled source with checksums
         shell: bash
         run: |
