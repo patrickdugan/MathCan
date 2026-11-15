@@ -1,4 +1,7 @@
 import unittest
+from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'research' / 'orbit_lock'))
 from fractions import Fraction
 from itertools import combinations
 import importlib.util
