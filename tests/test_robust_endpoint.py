@@ -44,6 +44,24 @@ class RobustEndpointTests(unittest.TestCase):
         with self.assertRaises(ValueError): m.raw_to_unit_direction_error(1)
         with self.assertRaises(ValueError): m.raw_to_unit_direction_error(-1)
 
+
+    def test_exact_lipschitz_endpoint_transfer(self):
+        # Linear F(x,y)=(2x,y). Nominal input radius 1/5.
+        active=(Q(2,5),Q(2,5))
+        control=(Q(1,5),Q(1,5))
+        for delta in (Q(0),Q(1,100),Q(1,50)):
+            result=m.lipschitz_ordering(active,control,
+                                       2,2,2,Q(1,5),delta,delta,delta)
+            self.assertEqual(result['status'],'active_greater')
+            self.assertLess(result['control_effect_interval'][1],
+                            result['active_effect_interval'][0])
+        large=m.lipschitz_ordering(active,control,2,2,2,Q(1,5),
+                                  Q(1,5),Q(1,5),Q(1,5))
+        self.assertEqual(large['status'],'inconclusive')
+        with self.assertRaises(ValueError):
+            m.lipschitz_effect_enclosure((1,2),-1,2,Q(1,5),0,0)
+
+
     def test_exact_square_interval_and_ordering_ties(self):
         self.assertEqual(m.square((Q(-2),Q(3))),(Q(0),Q(9)))
         self.assertEqual(m.square((Q(-3),Q(-2))),(Q(4),Q(9)))
