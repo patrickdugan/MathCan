@@ -197,6 +197,8 @@ Compare the **uncompressed** time-matched relation
 | 3 | 231/512 | 743/1024 | 1365/2048 |
 | infinity | 4/9 | 13/18 | 2/3 |
 
+A single fixed encoder isolates the original matching at every t; the comparison above proves it remains optimal throughout the trajectory. The capacity inversion therefore persists even without changing the encoder between depths.
+
 At t=1 the one-bit code can split the graph law into masses 1/2 and 1/2. Later mixing makes three states equiprobable, and no deterministic two-bin partition can achieve that balance. The *information available to a one-bit relational detector* decreases as the underlying graph continues mixing, despite growth in the uncompressed dependence.
 
 The same exact subset-sum computation at six vertices gives one-bit TV = 1/2 at t=1, because the graph occupies the initial matching with probability 1/2 and six alternative matchings with probability 1/12 each. Its stationary one-bit optimum is 112/225. Further time steps are finite-rational optimization questions and are evaluated separately in SMC-03.
