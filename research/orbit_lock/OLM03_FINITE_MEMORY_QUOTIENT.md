@@ -203,3 +203,42 @@ The same exact subset-sum computation at six vertices gives one-bit TV = 1/2 at 
 
 This identifies a concrete recurrent-training failure mode: comparing latent probes at unequal loop depths without controlling code capacity can invert the apparent direction of retained relational information. These are finite Markov statements; no general claim about transformer training is inferred.
 
+
+
+## OLM-03H: Why a shared-edge neural readout is a complete orbit detector
+
+Let E be the set of all \(N=\binom{2k}{2}\) unordered vertex pairs. For perfect matchings \(G,H\) on 2k vertices, fix **any** local edge score \(\phi:\{0,1\}^2\to\mathbb R\), and define the permutation-pooled readout
+
+\[
+S_\phi(G,H)=b+\sum_{e\in E}\phi(\mathbf1_{e\in G},\mathbf1_{e\in H}).
+\]
+
+**Theorem H (exact two-parameter reduction and gauge covariance).** Put \(c=|G\cap H|\) and \(\phi_{ab}=\phi(a,b)\). Then
+
+\[
+\boxed{S_\phi(G,H)=A+\Delta c,\quad
+A=b+k(\phi_{10}+\phi_{01})+(N-2k)\phi_{00},\quad
+\Delta=\phi_{11}-\phi_{10}-\phi_{01}+\phi_{00}.}
+\tag{J}
+\]
+
+For every simultaneous vertex relabeling \(\tau\in S_{2k}\),
+
+\[
+\boxed{S_\phi(\tau G,\tau H)=S_\phi(G,H).}
+\tag{K}
+\]
+
+If \(G\ne H\) then \(c\le k-2\). Therefore whenever \(\Delta>0\), a threshold strictly between \(A+\Delta(k-2)\) and \(A+\Delta k\) recognizes \(G=H\) perfectly. The compatibility and nearest-incompatible scores are separated by **\(2\Delta\)**.
+
+**Proof.** Because each perfect matching has exactly k edges, the four local edge-type counts are
+
+\[
+n_{11}=c,\quad n_{10}=k-c,\quad n_{01}=k-c,\quad
+n_{00}=N-2k+c.
+\]
+
+Substitute them into the edge sum and collect constants and terms in c to obtain (J). A vertex permutation bijects the edge set E and simultaneously preserves both membership indicators, so reindexing the sum proves (K). Finally, if two perfect matchings shared k-1 edges, their only remaining two vertices would have to be paired to each other in both matchings; hence they would share the last edge too. Distinct matchings share at most k-2, giving the gap. QED.
+
+**Consequence for SMC-03c.** The 34-parameter shared-edge model learns \(\phi\) through a nonlinear eight-unit local MLP, but restricted to the matching-pair data manifold its entire output depends on only **two effective real quantities**, A and \(\Delta\). Its excellent unseen-matching accuracy is consistent with this exact structural reduction. The 34 parameters measure the implemented training degrees of freedom, while the orbit-restricted function class is two-dimensional. The transport of the reference matching remains an architectural input. This result makes the trained control interpretable without crediting the model with discovering a hidden group action.
+
