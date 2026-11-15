@@ -92,3 +92,28 @@ SMC-13 preregisters independent teacher training seeds, unique novel Sudoku solu
 The key falsification is whether trained self-selection is also common in a matched iid Gaussian top-four SAE. Preliminary two-seed local prototypes produced 84/96 and 82/96 strict cones for SAEs on random recurrent hidden states and 96/96 and 92/96 on Gaussian activations. These are exploratory pre-registration observations; new CI receipts must replace them for final comparative claims.
 
 All cone counts remain conditional on a neuron being strictly selected at an anchor. The new puzzle family and checkpoint do not automatically grant semantic feature labels, causal necessity, or transferable Sudoku reasoning. No Lean kernel proof or general priority over known combinatorial invariants/representation identifiability arguments is claimed.
+
+## 6. OLM-13F: Token- and clue-conditioned transfer test
+
+Matching two SAE feature dictionaries on paired puzzle tokens can produce high heldout overlap from **shared visible input structure**. Both teachers observe the same token position p and input symbol s (zero for a blank or digit 1–9). A feature activated solely by p or s will align even if no relation to hidden Sudoku reasoning transfers.
+
+For every public metadata group \(g=(p,s)\), let \(G_g\) be the calibration-token indices with that position and observed input digit. Define the fully conditioned coactivation matrix
+
+\[
+\boxed{
+C^{\rm cond}_{ij}
+=\sum_g\sum_{n\in G_g}
+ (X_{ni}-\bar X_{i,g})(Y_{nj}-\bar Y_{j,g}).
+}
+\tag{6}
+\]
+
+Groups of size zero or one contribute zero. The group definition is frozen using **observable inputs alone** and does not include the target Sudoku solution or the heldout outcomes.
+
+**OLM-13F (conditional nuisance cancellation).** Every pair of features that depends only on the public group has identically zero \(C^{\rm cond}_{ij}\). Conditional on the group sizes, iid paired observations with \(X_i\perp Y_j\mid g\) have \(\mathbb E[C^{\rm cond}_{ij}]=0\), even if the marginal feature frequencies vary arbitrarily across the position/clue groups.
+
+**Proof.** A feature constant within a group has every centered residual equal to zero. For general random features within a fixed g, the same expansion as OLM-13E gives \((|G_g|-1)\operatorname{Cov}(X_i,Y_j\mid g)\). Sum over g and apply conditional independence. QED.
+
+SMC-13C obtains a one-to-one Hungarian feature matching on \(C^{\rm cond}\) from its **calibration puzzles only**. It tests that frozen assignment on distinct Sudoku solution families and compares it with a *within-group shuffled-pair null*, which preserves position and visible input-digit marginals. Its outcome tests cross-teacher associations beyond such public input features, while remaining an observational measurement: other correlated puzzle properties, teacher accuracy differences, feature polysemanticity and SAE factorization gauges still require separate causal controls.
+
+This conditional null is more discriminating than the original unconditioned random feature permutation, because it measures how many associations survive after conditioning on information directly available to both models at each token.
