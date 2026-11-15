@@ -74,6 +74,38 @@ def centered_covariance(X,Y):
     return tuple(tuple(sum((Q(X[i][u])*Q(Y[i][v]) for i in range(n)),Q(0))-sx[u]*sy[v]/n for v in range(b)) for u in range(a))
 
 
+
+
+def conditioned_covariance(X,Y,groups):
+    """Exactly center within supplied token position/symbol categories.
+
+    The data are paired observations, with group labels FIXED from public
+    observed input metadata. Conditional independence implies expected
+    covariance zero in every group, even with feature frequency imbalances.
+    """
+    n=len(X)
+    if n==0 or len(Y)!=n or len(groups)!=n:
+        raise ValueError('paired observations and matching group roster required')
+    if any(len(row)!=len(X[0]) for row in X) or any(
+        len(row)!=len(Y[0]) for row in Y):
+        raise ValueError('rectangular features required')
+    d1=len(X[0]);d2=len(Y[0])
+    if not d1 or not d2:
+        raise ValueError('empty feature dimension')
+    bins={}
+    for j,label in enumerate(groups):
+        bins.setdefault(label,[]).append(j)
+    out=[[Q(0) for _ in range(d2)] for _ in range(d1)]
+    for _,indices in sorted(bins.items(),key=lambda x:str(x[0])):
+        if len(indices)<2:continue
+        k=len(indices)
+        sa=[sum((Q(X[i][a]) for i in indices),Q(0)) for a in range(d1)]
+        sb=[sum((Q(Y[i][b]) for i in indices),Q(0)) for b in range(d2)]
+        for a in range(d1):
+            for b in range(d2):
+                out[a][b]+=sum((Q(X[i][a])*Q(Y[i][b]) for i in indices),Q(0))-sa[a]*sb[b]/k
+    return tuple(tuple(row) for row in out)
+
 if __name__=='__main__':
     import json
     print(json.dumps({'canonical_intercalates':intercalates(canonical_grid()),
