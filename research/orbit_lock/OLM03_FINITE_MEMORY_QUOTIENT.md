@@ -137,3 +137,69 @@ The statement applies to **population-optimal logistic training within an additi
 * [SMC-03](https://github.com/MoralityLabAI/Compactification-Theory/tree/research/smc01-synchronized-mixing-20261115/research/synchronized_mixing_v1) compares a raw 51-input MLP with a structured relational feature under a permutation-fiber-disjoint train/test split. The learned experiment is a synthetic CPU test and makes no pretrained-model claim.
 
 The sharp finite-memory and reconstruction bounds require a **finite output alphabet or explicit quantization**, so a continuous vector representation cannot be treated as an r-symbol code merely because it has r coordinates.
+
+
+## OLM-03G: Nonuniform finite-horizon frontier and a one-bit overshoot
+
+The uniform theorem admits an exact nonuniform extension that is especially relevant for Markov states *before mixing*.
+
+Let X have any finite law \(p=(p_1,\ldots,p_m)\), and permit a row-stochastic encoder \(K: X\to[r]\). The same argument used in Theorem B makes TV of the joint relative to its product marginals a convex function of K. Its maximum is therefore achieved at some deterministic partition \(h\). By the deterministic-factor collision identity,
+
+\[
+\boxed{D_{\max}(p,r)=
+1-\min_{h:\{1,\dots,m\}\to[r]}
+\sum_{z=1}^{r}\left(\sum_{x:h(x)=z}p_x\right)^2.}
+\tag{G}
+\]
+
+**Proof.** For fixed p, both the joint law \(p_x K(z\mid x)\) and product law \(p_x \sum_y p_y K(z\mid y)\) depend linearly on K. Their TV is a convex function of K. Decomposing K as a mixture of deterministic row assignments shows some deterministic h attains at least its value. For each h, X determines Z=h(X), so OLM-02A gives TV \(1-\sum_zP(Z=z)^2\). Minimizing the indicated collision sum over partitions proves (G). QED.
+
+For r=2, write \(q=\sum_{x\in A}p_x\). Then
+
+\[
+D_{\max}(p,2)=\max_{A\subseteq[m]}2q(1-q)
+=\frac12-2\min_{A\subseteq[m]}(q-\tfrac12)^2.
+\tag{H}
+\]
+
+Thus the exact optimal one-bit code is a **closest-to-half weighted subset-sum**. This shows where the finite-horizon oracle becomes combinatorial even though its dependence certificate is elementary. It is implemented in the bounded exact-rational [weighted_frontier.py](weighted_frontier.py) for at most 20 input states.
+
+### Application to the actual four-vertex matching-switch chain
+
+For the SMC-02 projected graph chain, start from one fixed matching and let \(c=4^{-t}\). The three matching probabilities at step t are
+
+\[
+p_t=(a,b,b),\quad a=\frac{1+2c}{3},\quad b=\frac{1-c}{3}.
+\]
+
+A two-code partition has one singleton and one pair. Comparing their collision sums shows that isolating the most likely state a is optimal, because
+
+\[
+[a^2+(2b)^2]-[b^2+(a+b)^2]=2b(b-a)\le0.
+\]
+
+Consequently
+
+\[
+\boxed{D_{\max}(p_t,2)=
+\frac49\left(1+4^{-t}-2\cdot16^{-t}\right).}
+\tag{I}
+\]
+
+Compare the **uncompressed** time-matched relation
+\(D_{\mathrm{full}}(t)=\frac23(1-16^{-t})\), which increases strictly in t. The one-bit optimum is nonmonotone. As a function of \(c\in[0,1]\), the derivative of \(\frac49(1+c-2c^2)\) is \(\frac49(1-4c)\), so its maximum is precisely at \(c=1/4\), namely **after one switch**:
+
+| Time | Optimal one-bit joint TV | Optimal detector balanced accuracy | Full relational TV |
+|---:|---:|---:|---:|
+| 0 | 0 | 1/2 | 0 |
+| 1 | 1/2 | 3/4 | 5/8 |
+| 2 | 15/32 | 47/64 | 85/128 |
+| 3 | 231/512 | 743/1024 | 1365/2048 |
+| infinity | 4/9 | 13/18 | 2/3 |
+
+At t=1 the one-bit code can split the graph law into masses 1/2 and 1/2. Later mixing makes three states equiprobable, and no deterministic two-bin partition can achieve that balance. The *information available to a one-bit relational detector* decreases as the underlying graph continues mixing, despite growth in the uncompressed dependence.
+
+The same exact subset-sum computation at six vertices gives one-bit TV = 1/2 at t=1, because the graph occupies the initial matching with probability 1/2 and six alternative matchings with probability 1/12 each. Its stationary one-bit optimum is 112/225. Further time steps are finite-rational optimization questions and are evaluated separately in SMC-03.
+
+This identifies a concrete recurrent-training failure mode: comparing latent probes at unequal loop depths without controlling code capacity can invert the apparent direction of retained relational information. These are finite Markov statements; no general claim about transformer training is inferred.
+
