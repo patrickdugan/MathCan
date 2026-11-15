@@ -41,3 +41,4 @@ import MathCan.PairedHistory
 import MathCan.MemoryProjection
 import MathCan.GradientStability
 import MathCan.CoalitionNoise
+import MathCan.CoalitionThreshold
