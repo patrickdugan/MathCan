@@ -58,14 +58,48 @@ jobs:
             sha256sum ram13-lean435-toolchain.tar.zst ram13-mathcan-source-and-oleans.tar.zst > ram13-SHA256SUMS.txt
           )
           cat "$RUNNER_TEMP/ram13-SHA256SUMS.txt"
-      - name: Upload public portable evaluation toolchain and pinned source
+      - name: Split portable Lean runtime into independently transferable parts
+        shell: bash
+        run: |
+          set -euo pipefail
+          split -b 250M -d -a 2 "$RUNNER_TEMP/ram13-lean435-toolchain.tar.zst" "$RUNNER_TEMP/ram13-runtime-part-"
+          test -s "$RUNNER_TEMP/ram13-runtime-part-00"
+          test -s "$RUNNER_TEMP/ram13-runtime-part-01"
+          test -s "$RUNNER_TEMP/ram13-runtime-part-02"
+          test ! -f "$RUNNER_TEMP/ram13-runtime-part-03"
+          (cd "$RUNNER_TEMP" && sha256sum ram13-runtime-part-0* > ram13-parts-SHA256SUMS.txt)
+      - name: Upload portable Lean runtime part 00
         uses: actions/upload-artifact@v4
         with:
-          name: ram13-public-lean435-source-and-toolchain-${{ github.run_id }}
+          name: ram13-lean435-runtime-p00-${{ github.run_id }}
+          path: ${{ runner.temp }}/ram13-runtime-part-00
+          retention-days: 3
+          if-no-files-found: error
+          compression-level: 0
+      - name: Upload portable Lean runtime part 01
+        uses: actions/upload-artifact@v4
+        with:
+          name: ram13-lean435-runtime-p01-${{ github.run_id }}
+          path: ${{ runner.temp }}/ram13-runtime-part-01
+          retention-days: 3
+          if-no-files-found: error
+          compression-level: 0
+      - name: Upload portable Lean runtime part 02
+        uses: actions/upload-artifact@v4
+        with:
+          name: ram13-lean435-runtime-p02-${{ github.run_id }}
+          path: ${{ runner.temp }}/ram13-runtime-part-02
+          retention-days: 3
+          if-no-files-found: error
+          compression-level: 0
+      - name: Upload public immutable MathCan source and runtime checksum ledger
+        uses: actions/upload-artifact@v4
+        with:
+          name: ram13-public-mathcan-oleans-and-checksums-${{ github.run_id }}
           path: |
-            ${{ runner.temp }}/ram13-lean435-toolchain.tar.zst
             ${{ runner.temp }}/ram13-mathcan-source-and-oleans.tar.zst
             ${{ runner.temp }}/ram13-SHA256SUMS.txt
+            ${{ runner.temp }}/ram13-parts-SHA256SUMS.txt
             ${{ runner.temp }}/lean-version.txt
             ${{ runner.temp }}/lake-version.txt
           retention-days: 3
