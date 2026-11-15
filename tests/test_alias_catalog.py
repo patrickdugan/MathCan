@@ -1,5 +1,6 @@
 """OLM-06 computer-assisted single-swap alias and 13-state detection audit."""
 import json
+import hashlib
 from itertools import combinations
 from pathlib import Path
 import unittest
@@ -13,13 +14,14 @@ class AliasCatalogTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.report = enumerate_single_swap_aliases()
-        cls.reference = json.loads((HERE/'alias_catalog_results.json').read_text())
+        cls.reference_digest = '085d61d44e72bbbe3c381bd48198a9ea34cb8fceb55df9c8a41d8e578b96b190'
         cls.edges = tuple(combinations(range(6),2))
         cls.states = tuple(matchings(tuple(range(6))))
         cls.masks = tuple(tuple(int(e in m) for e in cls.edges) for m in cls.states)
 
     def test_fresh_replay_matches_frozen_exact_catalog(self):
-        self.assertEqual(self.report, self.reference)
+        digest = hashlib.sha256(json.dumps(self.report,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+        self.assertEqual(digest, self.reference_digest)
         self.assertEqual(self.report['one_swap_alias_events'],180)
         self.assertEqual(self.report['gauge_incompatible_aliases'],0)
         self.assertEqual(self.report['heldouts_with_no_alias'],275)
