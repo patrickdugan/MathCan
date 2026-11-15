@@ -19,6 +19,8 @@ on:
 jobs:
   finite-alias-certificate:
     runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: research/orbit_lock
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
