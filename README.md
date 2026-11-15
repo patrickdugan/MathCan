@@ -146,3 +146,7 @@ The [source-level 2-form spectral note](research/toe/TOE09_LORENTZ_BIVECTOR_SPEC
 ## OLM-01: Orbit-locked dual mixing (November 15, 2026)
 
 [Pure-math proofs](research/orbit_lock/ORBIT_LOCK_DUAL_MIXING.md) and [exact-rational oracle](research/orbit_lock/oracle.py) establish a sharp hidden-joint-information formula for transitive finite group actions, including perfect-matchings, and a Dobrushin bound for shared-randomness coupled Markov chains. The [regression tests](tests/test_orbit_lock.py) enumerate four- and six-vertex instances. Companion applied gym: [Compactification-Theory SMC-01](https://github.com/MoralityLabAI/Compactification-Theory/tree/research/smc01-synchronized-mixing-20261115/research/synchronized_mixing_v1).
+
+## OLM-02: Collision entropy and flat relational spectra (November 15, 2026)
+
+[Pure theorems](research/orbit_lock/OLM02_COLLISION_SPECTRUM_LIFT.md) prove the exact collision-probability formula for deterministic joint factors, a flat (m−1)-mode canonical-correlation spectrum under independent-noise contamination, a genuine Markov perfect-matching switch lift, gauge-equivariant intervention laws and a permanent finite-time TV plateau. The independent [rational Gram oracle](research/orbit_lock/collision_spectrum.py) and [four regression tests](tests/test_collision_spectrum.py) verify finite cases. Applied companion: [SMC-02](https://github.com/MoralityLabAI/Compactification-Theory/blob/research/smc01-synchronized-mixing-20261115/research/synchronized_mixing_v1/TRANSPORT_LIFT_RESULTS.md).
