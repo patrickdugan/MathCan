@@ -17,6 +17,12 @@ class ExactTheoryTests(unittest.TestCase):
         self.assertTrue(c["all_B2_eq_one"])
         self.assertEqual([r["B2"] for r in c["rank2_witnesses"]],[F(1)]*4)
 
+    def test_five_dimensional_parity_witness_is_interior(self):
+        r=t.rotation5_interior_parity()
+        self.assertTrue(r["interior_nonmonotone"])
+        self.assertEqual(r["B2_for_canonical_witnesses"],
+                         {2:F(1),3:F(0),4:F(1)})
+
     def test_minimal_observability_span_full_rank(self):
         T=t.rat([[0,1,0],[0,0,1],[0,0,0]])
         G=t.rat([[1,0,0]])
@@ -47,7 +53,11 @@ class ExactTheoryTests(unittest.TestCase):
 
     def test_bpd_minimum_cover_three_types_of_intervention(self):
         arms=t.min_separating_arm_set(t.IDEAL_SIGNATURES)
-        self.assertEqual(arms,("dark_to_observed","observed_to_dark","freeze_U"))
+        self.assertEqual(arms,("dark_to_observed","observed_to_dark","observed_to_observed"))
+        self.assertEqual(len(t.all_min_separating_arm_sets(t.IDEAL_SIGNATURES)),3)
+        self.assertIsNone(t.min_separating_arm_set(t.CORRECTED_FREEZE_SIGNATURES))
+        self.assertEqual(t.CORRECTED_FREEZE_SIGNATURES["invariant_subspace"],
+                         t.CORRECTED_FREEZE_SIGNATURES["output_register"])
 
     def test_synthetic_chernoff_allocation_is_probability_simplex(self):
         means={s:{k:F(v) for k,v in m.items()} for s,m in t.IDEAL_SIGNATURES.items()}
@@ -69,7 +79,7 @@ class ExactTheoryTests(unittest.TestCase):
         self.assertEqual(r["worst_pair_KL"],F(1,5))
         self.assertEqual(r["analytic_upper_bound_KL"],F(1,5))
         self.assertEqual(r["allocation"]["ablate_readout"],F(1,5))
-        self.assertEqual(r["allocation"]["freeze_U"],F(2,5))
+        self.assertEqual(r["allocation"]["observed_to_observed"],F(2,5))
 
 if __name__=="__main__":
     unittest.main()
