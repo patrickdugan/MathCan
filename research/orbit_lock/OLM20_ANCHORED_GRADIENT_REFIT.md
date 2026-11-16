@@ -73,6 +73,51 @@ Transport the hidden-state row-coordinate basis by an orthogonal matrix \(Q\), a
 \]
 Both the discrepancy and the difference-sensitive bound (2) are invariant under orthogonal transport. This physical estimate is robust to the exact basis rewrite that SMC-19 used as a software control, although independently refitted SAE dictionaries need not transform as such.
 
+## OLM-20F. Exact criterion for when the reference causal anchor helps more than a clean gradient
+
+**November 16, 2026, post-result mathematical extension.** The registered SMC-20 scientific gate compared the reference-anchored predictor against the original SAE response and a different native-decoder-direction surrogate. The protocol also preserved the **direct clean-gradient estimate** \(L_b=g^\top b\) as a descriptive control. In the archived SMC-20 numerical results, that direct control had lower pooled MAE than the anchored predictor on the fixed eligible subset. The identity below gives an exact explanation for when this can occur, independent of the empirical outcome.
+
+Define the signed finite-nonlinearity residual for any decoder edit \(v\):
+\[
+R(v)=E(v)-g^\top v.
+\]
+
+**Theorem (exact anchor-additivity decomposition).** For any task margin functional differentiable at \(h\), with no global Hessian assumptions,
+\[
+\boxed{\widehat E_b^{\rm anchor}=g^\top b+R(a),\quad
+       E_b=g^\top b+R(b).}\tag{5}
+\]
+Thus the anchored and direct clean-gradient predictors have absolute errors
+\[
+\boxed{\ell_{\rm anchor}=|R(b)-R(a)|,\qquad
+       \ell_{\rm direct}=|R(b)|.}\tag{6}
+\]
+**The anchored predictor strictly improves absolute error over the direct clean-gradient prediction if and only if**
+\[
+\boxed{R(a)\big(R(a)-2R(b)\big)<0.}\tag{7}
+\]
+Equivalently, the source and target finite residuals have the same nonzero sign and the magnitude of the source residual is strictly less than twice the target residual magnitude. The direct predictor strictly wins when the left-hand side in (7) is positive. Equality means equal absolute error.
+
+**Proof.** From the definition \(E_a=g^\top a+R(a)\). Substitute into equation (1):
+\(E_a+g^\top(b-a)=g^\top b+R(a)\). The target identity follows by the definition of \(R(b)\). For the MAE comparison, both nonnegative absolute losses can be squared:
+\[
+(R(b)-R(a))^2<R(b)^2
+\iff R(a)^2-2R(a)R(b)<0,
+\]
+which is (7). QED.
+
+**Exact counterexample where the source anchor hurts.** Let \(h=0\), \(m(x)=10+x+2x^2\), \(a=1\), \(b=1/2\), and \(g=1\). Both erasure edit doses are positive and the task margin at the clean and both erased states remains positive. We get
+\[
+E_a=-1,\quad E_b=0,\quad
+L_b=1/2,\quad \widehat E_b^{\rm anchor}=-3/2,
+\quad \ell_{\rm direct}=1/2,\quad \ell_{\rm anchor}=3/2.
+\]
+The clean gradient gives a better prediction, even though both interventions use the same teacher and the reference erasure was observed exactly.
+
+**Exact example where the source anchor helps.** With the same \(m,h,g\), choose \(a=1/2\), \(b=3/4\). Then \(E_a=0\), \(E_b=-3/8\), \(L_b=3/4\), and \(\widehat E_b^{\rm anchor}=1/4\). The anchored MAE is \(5/8\), smaller than the direct MAE \(9/8\). The residual criterion has \(R(a)=-1/2\), \(R(b)=-9/8\), both negative and with \(0<|R(a)|<2|R(b)|\).
+
+The criterion is *per instance*. A heldout average can favor direct gradient estimation even when the anchored formula reliably improves over **transferring the old SAE response unchanged**. A calibration-only estimate of reference/target residual transfer could inform a future prediction rule, but fitting that rule after reading SMC-20 test labels would be a new retrospective analysis and cannot alter its prospective pass/fail gate.
+
 ## Experimental falsifiability
 
 SMC-20 reuses four exactly frozen SMC-19 refitted SAE checkpoints and the unchanged B501/B701 teachers. On two new 64-puzzle noncanonical Sudoku families it predicts each refit native decoder-erasure margin loss from the same original reference SAE71 erasure plus the clean task-gradient difference in physical edits. The control predictions use the original source erasure alone and the same-dose gradient projection along a different naturally active target SAE decoder. A preregistered two-family pass requires paired puzzle-cluster confidence bounds for both improvements, a predeclared relative absolute error reduction, and sign accuracy no lower than the reference-only predictor.
