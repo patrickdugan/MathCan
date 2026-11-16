@@ -88,7 +88,7 @@ def produce(state, risks, envelope):
                   A_task=_float(a,"within_change"),A_joint=_float(b,"within_change"),
                   C_task=_float(a,"outgoing"),C_joint=_float(b,"outgoing")))
             v={k:mean(item[k] for item in vals) for k in vals[0]}
-            gamma=risk[("NRF11",depth,seed)]["selected_gamma"]
+            gamma=float(risk[("NRF11",depth,seed)]["selected_gamma"])
             seedrows.append({
               "study":"NRF11","depth":depth,"seed":seed,"states":len(vals),
               "gamma":gamma,**v,
