@@ -1,0 +1,25 @@
+name: OLM-16 exact selective projection and rank obstructions
+on:
+  push:
+    paths:
+      - 'research/orbit_lock/OLM16_SELECTIVE_ENCODER_PROJECTION.md'
+      - 'research/orbit_lock/selective_projection.py'
+      - 'tests/test_selective_projection.py'
+      - '.github/workflows/olm16-selective-projection.yml'
+  pull_request:
+    paths:
+      - 'research/orbit_lock/OLM16_SELECTIVE_ENCODER_PROJECTION.md'
+      - 'research/orbit_lock/selective_projection.py'
+      - 'tests/test_selective_projection.py'
+      - '.github/workflows/olm16-selective-projection.yml'
+  workflow_dispatch:
+jobs:
+  fraction-oracle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p 'test_selective_projection.py' -v
+      - run: python research/orbit_lock/selective_projection.py
