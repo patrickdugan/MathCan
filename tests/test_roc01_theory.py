@@ -60,5 +60,16 @@ class ExactTheoryTests(unittest.TestCase):
             t.gaussian_pair_kl(0,1,0)
 
 
+    def test_exact_ideal_chernoff_optimum_uses_readout_control(self):
+        """A 3-arm separating cover may need 4 arms at optimal KL allocation."""
+        from research.observer_calculus.theory import ideal_four_arm_chernoff_exact
+        r=ideal_four_arm_chernoff_exact()
+        self.assertEqual(r["minimum_separating_arm_count"],3)
+        self.assertTrue(r["allocation_uses_all_four_arms"])
+        self.assertEqual(r["worst_pair_KL"],F(1,5))
+        self.assertEqual(r["analytic_upper_bound_KL"],F(1,5))
+        self.assertEqual(r["allocation"]["ablate_readout"],F(1,5))
+        self.assertEqual(r["allocation"]["freeze_U"],F(2,5))
+
 if __name__=="__main__":
     unittest.main()
