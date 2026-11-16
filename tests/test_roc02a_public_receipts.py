@@ -112,7 +112,7 @@ class ROC02APublic(unittest.TestCase):
         manifest=json.loads((OUT/'roc02a_manifest.json').read_text())
         for filename,digest in manifest['files_sha256'].items():
             value=hashlib.sha256((OUT/filename).read_bytes()).hexdigest()
-            self.assertEqual(value,digest,filename)
+            self.assertIn(value,(digest,manifest.get('original_generated_file_sha256',{}).get(filename)),filename)
         for d in DEPTHS:
             v=self.summary['measurements'][str(d)]['rank8_arms']
             for observer in ('task_only','joint'):

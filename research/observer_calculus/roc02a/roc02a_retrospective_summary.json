@@ -283,10 +283,11 @@
   "n_rank_seed_nondominated": 86,
   "n_rank_seed_observer_records": 240,
   "public_receipt_hashes": {
-    "roc02a_3d_pareto_by_seed.csv": "532594ab628f8f0f000bb027bf50fce213f3dd7b707bedb9827530167a0d87a6",
-    "roc02a_rank_by_seed.csv": "bd5a29026c9dc190298ad069a4bfeb8e039f1551656cbeae1120538fbaef1858",
-    "roc02a_rank_null_medians.csv": "fa4c512f171d4ed301f8c119587199ebd3c599a22d6f5b34eb046f4144e5c8a2"
+    "roc02a_3d_pareto_by_seed.csv": "5e902744c53297d19354b3ad51c529dac40af581d9b87e6259e62869558c1abe",
+    "roc02a_rank_by_seed.csv": "89de3b182c3e5f409fe4a8e53b76e38fa3954c22970c945e629b0dca15764e8c",
+    "roc02a_rank_null_medians.csv": "4a8d3b74f620b470e5f8774a8dc895525d39d100790a773c5140f0d332812310"
   },
+  "public_transport_note": "Public CSV text is normalized to LF without final newline by repo connector; SHA fields here bind public checked-in bytes.",
   "rank_grid": [
     1,
     2,
