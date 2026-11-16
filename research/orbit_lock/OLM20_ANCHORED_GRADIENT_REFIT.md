@@ -1,0 +1,125 @@
+# OLM-20: Difference-sensitive task-gradient transport between SAE refit erasures
+
+**November 16, 2026.** Pure-mathematics companion to the prospective [SMC-20 anchored-gradient refit protocol](https://github.com/MoralityLabAI/Compactification-Theory/blob/research/smc20-anchored-gradient-refit-20261116/research/real_recurrence_sae_v1/SMC20_PROTOCOL.md). Extends the OLM-14–19 native erasure and representation-gauge line. Statements are written finite-dimensional theorems with exact Fraction witnesses, **not Lean-kernel certified** and with no priority claim for standard multivariable Taylor calculus.
+
+## Setup
+
+Fix a recurrent teacher, a single clean hidden state \(h\in\mathbb R^d\), and a scalar clean task-margin functional \(m:\mathbb R^d\to\mathbb R\) obtained by fixing the correct Sudoku digit and its highest *clean* competing digit and continuing the teacher for the registered number of recurrent steps. Different SAE refits on the **same frozen teacher** yield native physical decoder-erasure edits \(a,b\in\mathbb R^d\). Define the observed source/reference erasure \(E_a=m(h)-m(h-a)\), the unknown new refit target \(E_b=m(h)-m(h-b)\), and the clean task gradient \(g=\nabla m(h)\).
+
+SMC-20's parameter-free anchored prediction uses the *observed* reference erasure and the *clean* first-order correction:
+\[
+\boxed{\widehat E_b=E_a+g^\top(b-a).}\tag{1}
+\]
+Every term in the prediction can be evaluated before the target refit erasure \(E_b\) is observed. The source anchor is a legitimate first-party intervention measurement and cannot be interpreted as an intervention-free causal claim.
+
+## OLM-20A. Difference-sensitive anchored-gradient remainder
+
+Let \(m\in C^2\) on a convex region containing the triangle with vertices \(h,h-a,h-b\). Suppose \(\|D^2m(x)\|_{\rm op}\le M\) on that region, for some \(M\ge0\).
+
+**Theorem.** The anchored prediction obeys
+\[
+\boxed{\big|E_b-\widehat E_b\big|
+ \le M\,\|b-a\|_2\int_0^1\|(1-t)a+tb\|_2\,dt
+ \le \frac{M}{2}(\|a\|_2+\|b\|_2)\|b-a\|_2.}\tag{2}
+\]
+For equal-norm edits \(\|a\|=\|b\|=r\), the final upper bound becomes \(Mr\|b-a\|\). The bound is a **difference-sensitive** estimate, vanishing when the physical contributions coincide even if each individual erasure dose is large.
+
+**Proof.** The source/target erasure difference is
+\[
+E_b-E_a=m(h-a)-m(h-b)
+       =\int_0^1\nabla m(h-a-t(b-a))^\top(b-a)\,dt.
+\]
+Subtract \(g^\top(b-a)\). A Hessian operator-norm bound on the line from \(h\) to each point in the triangle gives
+\(\|\nabla m(h-a-t(b-a))-g\|\le M\|(1-t)a+tb\|\).
+Integrate, apply Cauchy–Schwarz, then use convexity of Euclidean norm
+\(\|(1-t)a+tb\|\le(1-t)\|a\|+t\|b\|\).
+Integrating \(t\) from zero to one gives (2). QED.
+
+**Sharpness.** In one physical dimension let \(h=0,a=0,b=r\) with \(r>0\), \(m(x)=M x^2/2\). Then \(g=0,\widehat E_b=0\), \(E_b=-Mr^2/2\), attaining equality in **both** inequalities of (2). More generally, the exact integral geometry factor in (2) can be sharper than its simple endpoint norm bound.
+
+## OLM-20B. Conditional finite-erasure sign certificate
+
+Write \(\varepsilon=M(\|a\|+\|b\|)\|b-a\|/2\).
+
+**Corollary.** If \(|\widehat E_b|>\varepsilon\), then the true finite target erasure \(E_b\) is nonzero and
+\[
+\boxed{\operatorname{sgn}(E_b)=\operatorname{sgn}(\widehat E_b).}\tag{3}
+\]
+
+**Proof.** By (2), \(|E_b-\widehat E_b|\le\varepsilon\). To have \(E_b=0\) or the opposite sign would require \(|E_b-\widehat E_b|\ge|\widehat E_b|\), contradicting the strict premise. QED.
+
+The claim **requires a genuine, independently verified bound \(M\) over the full convex triangle**, including all recurrent nonlinear regions encountered. A small local finite-difference curvature estimate is not a certified bound. SMC-20 therefore uses the gradient prediction as a numerical test and does not label its neural cases as theorem-certified.
+
+## OLM-20C. Identical native decoder directions can still have different causal magnitudes
+
+**Proposition.** Cosine similarity \(1\) between two physical decoder contribution vectors, even for a linear task margin and a perfectly stable SAE feature label, need not imply equal erasure effects.
+
+Take \(h=0\), \(a=(1,0)\), \(b=(2,0)\), and \(m(x,y)=10+3x\). Then
+\[
+\cos(a,b)=1,\quad E_a=3,\quad E_b=6,\quad
+\widehat E_b=E_a+(3,0)^\top(b-a)=6.
+\]
+Thus full physical **dose** and clean task gradient matter in addition to decoder direction. A measured cosine or matched coactivation alone cannot predict the signed magnitude. The anchored linear formula happens to be exact in this linear case.
+
+## OLM-20D. Same clean gradient and source erasure can mask a reversed finite target sign
+
+Set \(h=0\), \(a=0\), \(b=1\), \(m(x)=10+x+2x^2\). The clean task margin and gradient are \(m(0)=10\) and \(g=1\). The source effect is \(E_a=0\), so (1) predicts \(\widehat E_b=1\). Yet \(m(-1)=11\) and the true target effect is \(E_b=-1\), opposite in sign. The Hessian norm is \(M=4\); the bound in (2) equals \(2\), exactly the observed absolute prediction error. The strict sign premise (3) correctly fails: \(1>2\) is false. This counterexample uses one unchanged smooth task and retains positive margins at clean and edited states.
+
+## OLM-20E. Orthogonal hidden-state gauge covariance of anchored prediction
+
+Transport the hidden-state row-coordinate basis by an orthogonal matrix \(Q\), as in OLM-19: \(h_Q=hQ\), \(a_Q=aQ\), \(b_Q=bQ\), \(m_Q(v)=m(vQ^\top)\). Then \(E_{a,Q}=E_a\), \(E_{b,Q}=E_b\), and the transported row gradient satisfies \(g_Q=gQ\). Consequently
+\[
+\boxed{\widehat E_{b,Q}=E_a+(gQ)^\top((b-a)Q)=\widehat E_b.}\tag{4}
+\]
+Both the discrepancy and the difference-sensitive bound (2) are invariant under orthogonal transport. This physical estimate is robust to the exact basis rewrite that SMC-19 used as a software control, although independently refitted SAE dictionaries need not transform as such.
+
+## OLM-20F. Exact criterion for when the reference causal anchor helps more than a clean gradient
+
+**November 16, 2026, post-result mathematical extension.** The registered SMC-20 scientific gate compared the reference-anchored predictor against the original SAE response and a different native-decoder-direction surrogate. The protocol also preserved the **direct clean-gradient estimate** \(L_b=g^\top b\) as a descriptive control. In the archived SMC-20 numerical results, that direct control had lower pooled MAE than the anchored predictor on the fixed eligible subset. The identity below gives an exact explanation for when this can occur, independent of the empirical outcome.
+
+Define the signed finite-nonlinearity residual for any decoder edit \(v\):
+\[
+R(v)=E(v)-g^\top v.
+\]
+
+**Theorem (exact anchor-additivity decomposition).** For any task margin functional differentiable at \(h\), with no global Hessian assumptions,
+\[
+\boxed{\widehat E_b^{\rm anchor}=g^\top b+R(a),\quad
+       E_b=g^\top b+R(b).}\tag{5}
+\]
+Thus the anchored and direct clean-gradient predictors have absolute errors
+\[
+\boxed{\ell_{\rm anchor}=|R(b)-R(a)|,\qquad
+       \ell_{\rm direct}=|R(b)|.}\tag{6}
+\]
+**The anchored predictor strictly improves absolute error over the direct clean-gradient prediction if and only if**
+\[
+\boxed{R(a)\big(R(a)-2R(b)\big)<0.}\tag{7}
+\]
+Equivalently, the source and target finite residuals have the same nonzero sign and the magnitude of the source residual is strictly less than twice the target residual magnitude. The direct predictor strictly wins when the left-hand side in (7) is positive. Equality means equal absolute error.
+
+**Proof.** From the definition \(E_a=g^\top a+R(a)\). Substitute into equation (1):
+\(E_a+g^\top(b-a)=g^\top b+R(a)\). The target identity follows by the definition of \(R(b)\). For the MAE comparison, both nonnegative absolute losses can be squared:
+\[
+(R(b)-R(a))^2<R(b)^2
+\iff R(a)^2-2R(a)R(b)<0,
+\]
+which is (7). QED.
+
+**Exact counterexample where the source anchor hurts.** Let \(h=0\), \(m(x)=10+x+2x^2\), \(a=1\), \(b=1/2\), and \(g=1\). Both erasure edit doses are positive and the task margin at the clean and both erased states remains positive. We get
+\[
+E_a=-1,\quad E_b=0,\quad
+L_b=1/2,\quad \widehat E_b^{\rm anchor}=-3/2,
+\quad \ell_{\rm direct}=1/2,\quad \ell_{\rm anchor}=3/2.
+\]
+The clean gradient gives a better prediction, even though both interventions use the same teacher and the reference erasure was observed exactly.
+
+**Exact example where the source anchor helps.** With the same \(m,h,g\), choose \(a=1/2\), \(b=3/4\). Then \(E_a=0\), \(E_b=-3/8\), \(L_b=3/4\), and \(\widehat E_b^{\rm anchor}=1/4\). The anchored MAE is \(5/8\), smaller than the direct MAE \(9/8\). The residual criterion has \(R(a)=-1/2\), \(R(b)=-9/8\), both negative and with \(0<|R(a)|<2|R(b)|\).
+
+The criterion is *per instance*. A heldout average can favor direct gradient estimation even when the anchored formula reliably improves over **transferring the old SAE response unchanged**. A calibration-only estimate of reference/target residual transfer could inform a future prediction rule, but fitting that rule after reading SMC-20 test labels would be a new retrospective analysis and cannot alter its prospective pass/fail gate.
+
+## Experimental falsifiability
+
+SMC-20 reuses four exactly frozen SMC-19 refitted SAE checkpoints and the unchanged B501/B701 teachers. On two new 64-puzzle noncanonical Sudoku families it predicts each refit native decoder-erasure margin loss from the same original reference SAE71 erasure plus the clean task-gradient difference in physical edits. The control predictions use the original source erasure alone and the same-dose gradient projection along a different naturally active target SAE decoder. A preregistered two-family pass requires paired puzzle-cluster confidence bounds for both improvements, a predeclared relative absolute error reduction, and sign accuracy no lower than the reference-only predictor.
+
+This is an **outcome-predictive operational comparison between two learned SAE decompositions**. Even a positive result cannot identify an intrinsic feature semantic basis. The explicit OLM-19 reconstruction/coactivation alias and OLM-18 full-rank inactive-feature dual remain relevant, independently of physical-gradient predictor quality.

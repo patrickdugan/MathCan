@@ -1,0 +1,30 @@
+name: OLM-20 sharp anchored SAE refit task-gradient bound
+
+on:
+  push:
+    paths:
+      - 'research/orbit_lock/OLM20_ANCHORED_GRADIENT_REFIT.md'
+      - 'research/orbit_lock/anchored_gradient_refit.py'
+      - 'tests/test_anchored_gradient_refit.py'
+      - '.github/workflows/olm20-anchored-gradient.yml'
+  pull_request:
+    paths:
+      - 'research/orbit_lock/OLM20_ANCHORED_GRADIENT_REFIT.md'
+      - 'research/orbit_lock/anchored_gradient_refit.py'
+      - 'tests/test_anchored_gradient_refit.py'
+      - '.github/workflows/olm20-anchored-gradient.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-fraction-witnesses:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify sharp bounded anchored gradient, finite sign obstruction and orthogonal gauge
+        run: python -m unittest discover -s tests -p 'test_anchored_gradient_refit.py' -v
+      - name: Archive exact rational witnesses in job log
+        run: python research/orbit_lock/anchored_gradient_refit.py
