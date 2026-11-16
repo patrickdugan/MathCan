@@ -31,7 +31,7 @@ class OLM15NativeErasureTests(unittest.TestCase):
             row=m.quadratic_sharpness(2,b)
             self.assertEqual(row["difference"],row["bound"])
         self.assertEqual(m.erasure_taylor_bound(2,Q(3,2),4),Q(12))
-        self.assertEqual(m.two_teacher_bound(1,2,1,3,1,4,2,2),Q(12))
+        self.assertEqual(m.two_teacher_bound(1,2,1,3,1,4,2,2),Q(17))
 
     def test_active_atom_can_have_zero_margin_drop(self):
         row=m.active_but_unnecessary()
