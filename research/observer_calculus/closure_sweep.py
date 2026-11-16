@@ -21,7 +21,7 @@ import argparse
 import json
 from math import isfinite
 
-RANK_GRID=(2,4,8,12,16,32)
+RANK_GRID=(1,2,3,4,7,8,12,16,32)
 NULL_SEEDS=tuple(range(941001,941129))
 
 
@@ -54,8 +54,8 @@ def sweep(T,G,*,state_id,checkpoint_sha256,output_name,horizon=None):
         powT=powT@T
     O=np.concatenate(blocks,axis=0)
     sig=np.linalg.svd(O,compute_uv=False)
-    # Frobenius bound from the written proof (M uses ||T||F).
-    M2=float(np.linalg.norm(T,ord="fro")**2)
+    # Stronger operator-norm version of the same finite-horizon proof.
+    M2=float(np.linalg.norm(T,ord=2)**2)
     fact=float(np.linalg.norm(G,ord="fro")**2 *
                sum(j*j*M2**(j-1) for j in range(1,N)))
     factor=fact**.5 if isfinite(fact) and fact>0 else float("inf")
@@ -112,6 +112,8 @@ def sweep(T,G,*,state_id,checkpoint_sha256,output_name,horizon=None):
           "L_svd_candidate":deterministic,
           "normalized_B_upper":best/normD if normD>0 else 0.,
           "random_count":len(random),
+          "T_operator_norm":M2**0.5,
+          "lower_bound_norm":"operator_2",
           "random_min":min(random),"random_median":float(np.median(random)),
           "random_max":max(random),
           "one_sided_rank_p_for_svd_candidate":
@@ -121,7 +123,7 @@ def sweep(T,G,*,state_id,checkpoint_sha256,output_name,horizon=None):
           "sweep_is_global_optimum":False,
           "squared_cost_units":"Frobenius norm on physical state"
         })
-    return {"schema":"roc01.closure_sweep.sampled_bounds.v1",
+    return {"schema":"roc01.closure_sweep.sampled_bounds.v2",
             "state_id":state_id,"checkpoint_sha256":checkpoint_sha256,
             "output_name":output_name,"state_dimension":d,
             "readout_rank":int(r),"horizon":N,
