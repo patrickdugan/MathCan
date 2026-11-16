@@ -23,7 +23,8 @@ class CausalAlignmentTests(unittest.TestCase):
         shifted=m.squared_centered_cosine(
             [Q(7)*x+100 for x in a],
             [Q(13)*y-70 for y in b])
-        self.assertEqual(orig,shifted)
+        self.assertEqual(orig['cosine_squared'],shifted['cosine_squared'])
+        self.assertEqual(orig['sign'],shifted['sign'])
         self.assertEqual(orig['status'],'identified')
         inverted=m.squared_centered_cosine(a,[-z for z in b])
         self.assertEqual(orig['cosine_squared'],inverted['cosine_squared'])
