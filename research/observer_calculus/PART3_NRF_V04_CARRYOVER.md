@@ -48,8 +48,8 @@ and proportional claims must be separate: B falls even as rho rises.
 The **historical** pooled J(lambda) lines use mean-over-six *per-seed
 squared raw leakage*, the original task MSE convention and already
 examined folds. The pairwise break-even points against task-only are:
-gamma 0.05 at 0.136474, gamma 0.2 at 0.471086, gamma 1 at 0.742934,
-task-free supervised start at 0.852508, random start at 0.954164.
+gamma 0.05 at 0.136474, gamma 0.2 at 0.471086, gamma 1 at 0.742933,
+task-free supervised start at 0.852507, random start at 0.954164.
 
 The **actual lower envelope** switches at lambda 0.136474, 0.875804,
 1.242665, 1.391717. The winning arms are respectively task-only,
