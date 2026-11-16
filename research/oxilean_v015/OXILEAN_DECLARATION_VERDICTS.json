@@ -37723,5 +37723,527 @@
       "dependency_records": 2604,
       "statement_and_proof_match": true
     }
+  ],
+  "sentinel_decoder_export": {
+    "status": "accepted",
+    "scope": "base-4 sentinel exact/robust decoding and clipped jet capture; not the full analytic approximation theorem",
+    "export_sha256": "3c3db534bde131f43b75903408cd66a8a4cddd94fa78d789bac4fb351843519b",
+    "verdicts": {
+      "verified": 3243,
+      "unsupported": 0,
+      "rejected": 0
+    },
+    "constants_compared": 3560,
+    "source_sha256": {
+      "MathCan/SentinelDecoder.lean": "bc512b338fdb13f91ae93f0c219bfbd97e999bd214b60735152c5f73aa7c2709",
+      "MathCan/DecodedJetCapture.lean": "e2b42822992e0ac05068d15b76d23054ded53603cf4545e9290a29933f283afa"
+    },
+    "standard_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "sentinel_decoder_lemmas": [
+    {
+      "name": "MathCan.DecodedJetCapture.bounded_update_identity",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2261,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.DecodedJetCapture.bounded_update_range",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2582,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.DecodedJetCapture.decoded_jet_at_exact",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2875,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.DecodedJetCapture.decoded_jet_at_robust",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2921,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.DecodedJetCapture.decoded_jet_range",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2908,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.DecodedJetCapture.decoded_signed_exact",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2874,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.DecodedJetCapture.decoded_spatial_capture",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 3144,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.DecodedJetCapture.decoded_unsigned_exact",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2873,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.DecodedJetCapture.reference_jet_range",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2590,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.DecodedJetCapture.robust_decoded_spatial_capture",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 3191,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.DecodedJetCapture.unsigned_bits_exact",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2154,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.advance_prefix",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2861,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.advance_prefix_robust",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2893,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.advance_word",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2861,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.advance_word_robust",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2893,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.bit_binary",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "propext"
+      ],
+      "dependency_records": 378,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.decode_prefix",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2861,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.decode_prefix_robust",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2901,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.decode_take",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [],
+      "dependency_records": 385,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.decode_word",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2861,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.decode_word_robust",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2890,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.four_pow_binary",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2145,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.next_word_cons",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2856,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.next_word_perturbed",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2869,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.next_word_range",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2579,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.noise_advance_eq",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2147,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.noise_budget_range",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2752,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.noise_budget_step",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2738,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.noise_budget_transport",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2743,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.payload_numerator_bound",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 1407,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.read_bit_one",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2741,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.read_bit_range",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2759,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.read_bit_zero",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2756,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.read_word_cons",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2791,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.read_word_perturbed",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2800,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.word_binary_precision",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2418,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.word_nonnegative",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2754,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.word_range",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2752,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.SentinelDecoder.word_scaled_integer",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2410,
+      "statement_and_proof_match": true
+    }
   ]
 }

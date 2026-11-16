@@ -1,0 +1,73 @@
+MathCan/SentinelDecoder.lean:26:0: warning: automatically included section variable(s) unused in theorem `MathCan.SentinelDecoder.bit_binary`:
+  [LE R]
+  [LT R]
+  [LawfulOrderLT R]
+  [IsLinearOrder R]
+  [OrderedRing R]
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LE R] [LT R] [LawfulOrderLT R] [IsLinearOrder R] [OrderedRing R] [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/SentinelDecoder.lean:30:0: warning: automatically included section variable(s) unused in theorem `MathCan.SentinelDecoder.word_range`:
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/SentinelDecoder.lean:141:0: warning: automatically included section variable(s) unused in theorem `MathCan.SentinelDecoder.noise_budget_range`:
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/SentinelDecoder.lean:147:0: warning: automatically included section variable(s) unused in theorem `MathCan.SentinelDecoder.noise_budget_step`:
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/SentinelDecoder.lean:170:0: warning: automatically included section variable(s) unused in theorem `MathCan.SentinelDecoder.noise_advance_eq`:
+  [LE R]
+  [LT R]
+  [LawfulOrderLT R]
+  [IsLinearOrder R]
+  [OrderedRing R]
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LE R] [LT R] [LawfulOrderLT R] [IsLinearOrder R] [OrderedRing R] [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/SentinelDecoder.lean:192:0: warning: automatically included section variable(s) unused in theorem `MathCan.SentinelDecoder.word_scaled_integer`:
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/SentinelDecoder.lean:195:43: warning: This simp argument is unused:
+  Semiring.pow_one
+
+Hint: Omit it from the simp argument list.
+  simp only [̵w̵o̵r̵d̵,̵L̵i̵s̵t̵.̵l̵e̵n̵g̵t̵h̵_̵n̵i̵l̵,̵S̵e̵m̵i̵r̵i̵n̵g̵.̵p̵o̵w̵_̵o̵n̵e̵,̵p̵a̵y̵l̵o̵a̵d̵N̵u̵m̵e̵r̵a̵t̵o̵r̵,̵S̵e̵m̵i̵r̵i̵n̵g̵.̵n̵a̵t̵C̵a̵s̵t̵_̵o̵n̵e̵]̵[̲w̲o̲r̲d̲,̲ ̲L̲i̲s̲t̲.̲l̲e̲n̲g̲t̲h̲_̲n̲i̲l̲,̲ ̲p̲a̲y̲l̲o̲a̲d̲N̲u̲m̲e̲r̲a̲t̲o̲r̲,̲ ̲S̲e̲m̲i̲r̲i̲n̲g̲.̲n̲a̲t̲C̲a̲s̲t̲_̲o̲n̲e̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+MathCan/SentinelDecoder.lean:202:0: warning: automatically included section variable(s) unused in theorem `MathCan.SentinelDecoder.four_pow_binary`:
+  [LE R]
+  [LT R]
+  [LawfulOrderLT R]
+  [IsLinearOrder R]
+  [OrderedRing R]
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LE R] [LT R] [LawfulOrderLT R] [IsLinearOrder R] [OrderedRing R] [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/SentinelDecoder.lean:223:0: warning: automatically included section variable(s) unused in theorem `MathCan.SentinelDecoder.decode_take`:
+  [LE R]
+  [LawfulOrderLT R]
+  [IsLinearOrder R]
+  [OrderedRing R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LE R] [LawfulOrderLT R] [IsLinearOrder R] [OrderedRing R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`

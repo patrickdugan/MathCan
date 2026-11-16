@@ -1,0 +1,19 @@
+MathCan/DecodedJetCapture.lean:25:0: warning: automatically included section variable(s) unused in theorem `MathCan.DecodedJetCapture.unsigned_bits_exact`:
+  [LE R]
+  [LT R]
+  [LawfulOrderLT R]
+  [IsLinearOrder R]
+  [OrderedRing R]
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LE R] [LT R] [LawfulOrderLT R] [IsLinearOrder R] [OrderedRing R] [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/DecodedJetCapture.lean:31:48: warning: This simp argument is unused:
+  Semiring.natCast_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [List.map_cons, unsignedLE, unsignedNat, bit, ih, Semiring.natCast_add, Semiring.natCast_mul,
+    Semiring.natCast_one, Semiring.natCast_eq_ofNat (α := R) 2]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

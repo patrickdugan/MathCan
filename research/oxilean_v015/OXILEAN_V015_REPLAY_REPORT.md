@@ -1,5 +1,12 @@
 # OxiLean v0.1.5 replay and quantized spatial-interface report
 
+Decoder continuation (2026-11-16): 39 additional lemmas prove exact/robust
+sentinel decoding and its composition with clipped spatial jet capture.
+See DECODER_FORMALIZATION_REPORT.md for the current 95-root research status,
+trace fixtures and remaining obligations. Publication of the research branches
+is now authorized; the earlier local-only statements below describe the prior run.
+
+
 Current Lean continuation: 42 additional ordered-field spatial lemmas are
 accepted, including exact safe-cell extraction into clipped jet registers.
 Read [LEAN_SPATIAL_FORMALIZATION.md](LEAN_SPATIAL_FORMALIZATION.md) in the output

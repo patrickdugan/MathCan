@@ -1,0 +1,17 @@
+{
+  "status": "accepted",
+  "scope": "base-4 sentinel exact/robust decoding and clipped jet capture; not the full analytic approximation theorem",
+  "export_sha256": "3c3db534bde131f43b75903408cd66a8a4cddd94fa78d789bac4fb351843519b",
+  "verdicts": {
+    "verified": 3243,
+    "unsupported": 0,
+    "rejected": 0
+  },
+  "constants_compared": 3560,
+  "theorems": 39,
+  "standard_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ]
+}

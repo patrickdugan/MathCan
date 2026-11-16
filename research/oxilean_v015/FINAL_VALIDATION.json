@@ -10,7 +10,7 @@
     "unsupported": 0,
     "rejected": 0
   },
-  "formal_theorems": 56,
+  "formal_theorems": 95,
   "spatial_test_suites": 6,
   "spatial_assertions": 8299,
   "previous_component_assertions": 83362,
@@ -20,7 +20,7 @@
     "4.32.0-rc1",
     "preserved 4.35.0"
   ],
-  "full_theorem_scope": "Paper proof and explicit compiler; Lean now proves ordered-field safe spatial extraction and bounded capture. Analytic, decoder and dense compiler obligations remain open.",
+  "full_theorem_scope": "Ordered-field spatial and exact/robust sentinel decoder semantics proved; full analytic approximation theorem and dense compiler/resource proof remain open.",
   "spatial_source_sha256": "bc006e0ec2a227eac72657367b5211a7b71c1adfb74a87cc66336e9ded8ad910",
   "spatial_tests_sha256": "e14bb4cd2296a445582453c0a7e41d957b5594b5b66214f63bb1dc1730943ba8",
   "materialized_circuit_certificate": {
@@ -111,6 +111,38 @@
         "C:\\Users\\patri\\Documents\\Codex\\2026-11-15\\files-pasted-by-the-user-oxilean\\work\\accept_research_lemmas432.py"
       ],
       "exit_code": 0
+    },
+    {
+      "name": "decoder_acceptance",
+      "command": [
+        "C:\\Python312\\python.exe",
+        "C:\\Users\\patri\\Documents\\Codex\\2026-11-15\\files-pasted-by-the-user-oxilean\\work\\accept_decoder432.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "decoder_acceptance_controls",
+      "command": [
+        "C:\\Python312\\python.exe",
+        "C:\\Users\\patri\\Documents\\Codex\\2026-11-15\\files-pasted-by-the-user-oxilean\\work\\test_decoder_acceptance.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "retained_spatial_acceptance",
+      "command": [
+        "C:\\Python312\\python.exe",
+        "C:\\Users\\patri\\Documents\\Codex\\2026-11-15\\files-pasted-by-the-user-oxilean\\work\\accept_spatial432.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "decoder_trace_fixture",
+      "command": [
+        "C:\\Python312\\python.exe",
+        "C:\\Users\\patri\\Documents\\Codex\\2026-11-15\\files-pasted-by-the-user-oxilean\\work\\Compactification-Theory\\research\\quantization\\decoder_trace_fixture.py"
+      ],
+      "exit_code": 0
     }
   ],
   "shell_syntax_checks": 15,
@@ -132,6 +164,44 @@
       "MathCan/SpatialRouting.lean": "1aee535fc734e4305a9bf7e71a0818665b4c9539465abd54a59547506b0070ff",
       "MathCan/SpatialNormalized.lean": "ce464be236ccd25cc221350d5462a306a1b81093f6e52a5873b70faa423e4c48",
       "MathCan/SpatialClipped.lean": "ef4bbccfab3546837f1871c6cd85cce8aaecbafa83315068215e6d80dc9e0c45"
+    }
+  },
+  "decoder_continuation": {
+    "date": "2026-11-16",
+    "new_theorems": 39,
+    "native_versions": [
+      "4.32.0-rc1",
+      "preserved 4.35.0"
+    ],
+    "native_and_leanchecker": "accepted in both environments",
+    "verdicts": {
+      "verified": 3243,
+      "unsupported": 0,
+      "rejected": 0
+    },
+    "constants_compared": 3560,
+    "export_sha256": "3c3db534bde131f43b75903408cd66a8a4cddd94fa78d789bac4fb351843519b",
+    "source_sha256": {
+      "MathCan/SentinelDecoder.lean": "bc512b338fdb13f91ae93f0c219bfbd97e999bd214b60735152c5f73aa7c2709",
+      "MathCan/DecodedJetCapture.lean": "e2b42822992e0ac05068d15b76d23054ded53603cf4545e9290a29933f283afa"
+    },
+    "acceptance_tamper_controls": 8,
+    "trace_fixtures": {
+      "status": "passed",
+      "positive_examples": 144,
+      "negative_controls": 1,
+      "decoded_steps": 1896,
+      "maximum_payload_length": 64,
+      "split_counts": {
+        "calibration_fixture": 24,
+        "heldout_length_fixture": 36,
+        "train_fixture": 84
+      },
+      "circuit_evaluators": "Fraction register and signed-pair ReLU evaluators agree at every step",
+      "fixture_sha256": "8a03b79225e2fde023320ee9a0ed4704674f54bf47c40a918d001add97e5a1e3",
+      "uncompressed_jsonl_sha256": "7480cfe954c034eaffeb1b8cf41d3418996c23bad75be8ee1495ca2a0ea68e5a",
+      "source_sha256": "8448bc8385bc7f44ac7f59a4fe92c9fcf7e46fe815ca26a3c02a3e8f3f04552a",
+      "scope": "Proof-linked exact reference fixtures only; no transformer training or causal mechanism result."
     }
   }
 }

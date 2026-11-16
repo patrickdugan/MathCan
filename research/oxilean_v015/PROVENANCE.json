@@ -120,5 +120,16 @@
     "MathCan/SpatialNormalized.lean": "ce464be236ccd25cc221350d5462a306a1b81093f6e52a5873b70faa423e4c48",
     "MathCan/SpatialClipped.lean": "ef4bbccfab3546837f1871c6cd85cce8aaecbafa83315068215e6d80dc9e0c45"
   },
-  "ordered_scalar_spatial_export_sha256": "40a100d7032d992d85b15ef7c393ecf6a4492be444fefe3d7d39f047b2614e2b"
+  "ordered_scalar_spatial_export_sha256": "40a100d7032d992d85b15ef7c393ecf6a4492be444fefe3d7d39f047b2614e2b",
+  "decoder_continuation": {
+    "date": "2026-11-16",
+    "new_roots": 39,
+    "research_roots_total": 95,
+    "export_sha256": "3c3db534bde131f43b75903408cd66a8a4cddd94fa78d789bac4fb351843519b",
+    "source_sha256": {
+      "MathCan/SentinelDecoder.lean": "bc512b338fdb13f91ae93f0c219bfbd97e999bd214b60735152c5f73aa7c2709",
+      "MathCan/DecodedJetCapture.lean": "e2b42822992e0ac05068d15b76d23054ded53603cf4545e9290a29933f283afa"
+    },
+    "publication_authorization": "User explicitly requested pushes of the research work; follow-up prepared only, not sent."
+  }
 }

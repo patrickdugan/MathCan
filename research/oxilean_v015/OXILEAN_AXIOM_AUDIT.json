@@ -34285,5 +34285,196 @@
       "propext"
     ]
   },
-  "ordered_scalar_spatial_export_sha256": "40a100d7032d992d85b15ef7c393ecf6a4492be444fefe3d7d39f047b2614e2b"
+  "ordered_scalar_spatial_export_sha256": "40a100d7032d992d85b15ef7c393ecf6a4492be444fefe3d7d39f047b2614e2b",
+  "sentinel_decoder_axioms": {
+    "MathCan.DecodedJetCapture.bounded_update_identity": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.DecodedJetCapture.bounded_update_range": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.DecodedJetCapture.decoded_jet_at_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.DecodedJetCapture.decoded_jet_at_robust": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.DecodedJetCapture.decoded_jet_range": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.DecodedJetCapture.decoded_signed_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.DecodedJetCapture.decoded_spatial_capture": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.DecodedJetCapture.decoded_unsigned_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.DecodedJetCapture.reference_jet_range": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.DecodedJetCapture.robust_decoded_spatial_capture": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.DecodedJetCapture.unsigned_bits_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.advance_prefix": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.advance_prefix_robust": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.advance_word": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.advance_word_robust": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.bit_binary": [
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.decode_prefix": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.decode_prefix_robust": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.decode_take": [],
+    "MathCan.SentinelDecoder.decode_word": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.decode_word_robust": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.four_pow_binary": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.next_word_cons": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.next_word_perturbed": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.next_word_range": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.noise_advance_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.noise_budget_range": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.noise_budget_step": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.noise_budget_transport": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.payload_numerator_bound": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.read_bit_one": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.read_bit_range": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.read_bit_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.read_word_cons": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.read_word_perturbed": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.word_binary_precision": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.word_nonnegative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.word_range": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.SentinelDecoder.word_scaled_integer": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "sentinel_decoder_export_sha256": "3c3db534bde131f43b75903408cd66a8a4cddd94fa78d789bac4fb351843519b"
 }

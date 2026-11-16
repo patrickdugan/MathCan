@@ -1,5 +1,12 @@
 # Current reproduction entry points
 
+Decoder continuation (2026-11-16): 39 additional lemmas prove exact/robust
+sentinel decoding and its composition with clipped spatial jet capture.
+See DECODER_FORMALIZATION_REPORT.md for the current 95-root research status,
+trace fixtures and remaining obligations. Publication of the research branches
+is now authorized; the earlier local-only statements below describe the prior run.
+
+
 The pinned Hodge replay is now accepted. Read OXILEAN_V015_REPLAY_REPORT.md and
 the two pinned432_*/ACCEPTANCE.json files. The previous blocked report is kept
 under its PRE_INSTALL name. Native 4.35 evidence remains separate historical

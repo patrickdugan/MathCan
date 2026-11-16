@@ -1,0 +1,2 @@
+bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38  /home/duganist/.cache/ram04-runtime-4.35.0/lean-4.35.0-linux/bin/lean
+12c38901cdbfab178f1bf6145dd30012e9a3b2c11ca695292a5884fa3cbaddb6  /home/duganist/.cache/ram04-runtime-4.35.0/lean-4.35.0-linux/bin/leanchecker
