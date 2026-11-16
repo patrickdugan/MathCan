@@ -1,0 +1,80 @@
+{
+  "lines": {
+    "gamma=0": {
+      "mean_per_seed_leakage_squared": 0.26308473467061183,
+      "mean_task_MSE": 0.15714077550560557
+    },
+    "gamma=0.05": {
+      "mean_per_seed_leakage_squared": 0.18912440804479472,
+      "mean_task_MSE": 0.1672344728996765
+    },
+    "gamma=0.2": {
+      "mean_per_seed_leakage_squared": 0.12797567231755647,
+      "mean_task_MSE": 0.2207887710398684
+    },
+    "gamma=1": {
+      "mean_per_seed_leakage_squared": 0.054478168971517464,
+      "mean_task_MSE": 0.31212153647587887
+    },
+    "task_free_random_start": {
+      "mean_per_seed_leakage_squared": 0.012882976725394252,
+      "mean_task_MSE": 0.3958742126457519
+    },
+    "task_free_supervised_start": {
+      "mean_per_seed_leakage_squared": 0.012086636408726235,
+      "mean_task_MSE": 0.3711185506677782
+    }
+  },
+  "lower_envelope": [
+    {
+      "start": 0.0,
+      "winner": "gamma=0"
+    },
+    {
+      "exact_start": "25234243485177325000000000000000/184900816564542783884954460955041",
+      "start": 0.13647448374771715,
+      "winner": "gamma=0.05"
+    },
+    {
+      "exact_start": "200828618025719712500000000000000/229307758977143386532348102498109",
+      "start": 0.875803849470866,
+      "winner": "gamma=0.2"
+    },
+    {
+      "exact_start": "5479965926160625400000000000000000/4409850200762340845581793949308683",
+      "start": 1.2426648699344234,
+      "winner": "gamma=1"
+    },
+    {
+      "exact_start": "294985070959496775000000000000000/211957662813956148584391845936203",
+      "start": 1.39171694499395,
+      "winner": "task_free_supervised_start"
+    }
+  ],
+  "note": "Lower envelope uses complete seed-level means; cuts are exact rationals from decimal-source measurements.",
+  "pairwise_vs_gamma0": {
+    "gamma=0.05": 0.13647448374771715,
+    "gamma=0.2": 0.471086057632044,
+    "gamma=1": 0.7429332842467964,
+    "task_free_random_start": 0.9541637081239762,
+    "task_free_supervised_start": 0.8525075554114884
+  },
+  "selected_thresholds": {
+    "NRF10": {
+      "lambda": 0.6242151730789396,
+      "mean_joint_L_squared": 0.10494816399690181,
+      "mean_joint_MSE": 0.24760780046176656,
+      "mean_task_L_squared": 0.26244093046710487,
+      "mean_task_MSE": 0.14929842598088774
+    },
+    "NRF11": {
+      "lambda": 0.5666626070929325,
+      "mean_joint_L_squared": 0.10442260945553444,
+      "mean_joint_MSE": 0.24704866902688666,
+      "mean_task_L_squared": 0.2630847346706119,
+      "mean_task_MSE": 0.15714077550560557
+    }
+  },
+  "status": "retrospective, folds and model seeds previously examined",
+  "study": "NRF-01-11 v0.4 post-review objective envelope"
+}

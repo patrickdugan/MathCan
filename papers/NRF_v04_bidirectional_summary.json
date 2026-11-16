@@ -1,0 +1,78 @@
+{
+  "group_means": [
+    {
+      "depth": 16,
+      "arm": "supervised",
+      "incoming": 0.41646410619981983,
+      "outgoing": 0.3569772379591288,
+      "within_change": 0.09723103519798902,
+      "write_change": 0.4277527352582447,
+      "origin_change": 0.3700366396103176,
+      "incoming_fraction": 0.9736000900469316,
+      "outgoing_fraction": 0.9648063465223621,
+      "reverse_asymmetry": 0.07697743055586344
+    },
+    {
+      "depth": 16,
+      "arm": "task_only",
+      "incoming": 0.37593197621637153,
+      "outgoing": 0.4455543230195959,
+      "within_change": 0.29518354263596774,
+      "write_change": 0.4781662198301854,
+      "origin_change": 0.53454475610979,
+      "incoming_fraction": 0.7865334103610903,
+      "outgoing_fraction": 0.8337708242601282,
+      "reverse_asymmetry": -0.0845777501909824
+    },
+    {
+      "depth": 16,
+      "arm": "joint",
+      "incoming": 0.31540128918122007,
+      "outgoing": 0.44275183467264995,
+      "within_change": 0.2726273798473091,
+      "write_change": 0.41703381817306173,
+      "origin_change": 0.5201911558810614,
+      "incoming_fraction": 0.756498537812471,
+      "outgoing_fraction": 0.8517732280879501,
+      "reverse_asymmetry": -0.1693274197715848
+    },
+    {
+      "depth": 32,
+      "arm": "supervised",
+      "incoming": 0.8363543095576885,
+      "outgoing": 0.5964230789950657,
+      "within_change": 0.17592808600597853,
+      "write_change": 0.8547849597614027,
+      "origin_change": 0.6219852485325164,
+      "incoming_fraction": 0.9784815404346858,
+      "outgoing_fraction": 0.958998458305743,
+      "reverse_asymmetry": 0.16754555311837835
+    },
+    {
+      "depth": 32,
+      "arm": "task_only",
+      "incoming": 0.5128364212787287,
+      "outgoing": 0.7761755559332357,
+      "within_change": 0.5736837700286576,
+      "write_change": 0.7697326668585283,
+      "origin_change": 0.9653156809346711,
+      "incoming_fraction": 0.6665040262596432,
+      "outgoing_fraction": 0.8041872885534019,
+      "reverse_asymmetry": -0.20430663605511193
+    },
+    {
+      "depth": 32,
+      "arm": "joint",
+      "incoming": 0.31758982468367514,
+      "outgoing": 0.7648938177812009,
+      "within_change": 0.41630948082406166,
+      "write_change": 0.5249789848623946,
+      "origin_change": 0.8771936436820272,
+      "incoming_fraction": 0.6201087183037094,
+      "outgoing_fraction": 0.8763452477443937,
+      "reverse_asymmetry": -0.41835386346221654
+    }
+  ],
+  "units": "Frobenius /sqrt(8); per-state ratios averaged within seed, then across six seeds",
+  "scope": "post-hoc same-model NRF11 fold13; no intervention"
+}
