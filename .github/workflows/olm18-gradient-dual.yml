@@ -1,0 +1,30 @@
+name: OLM-18 rational gradient dual and curvature
+
+on:
+  push:
+    paths:
+      - 'research/orbit_lock/OLM18_GRADIENT_DUAL_LEAKAGE.md'
+      - 'research/orbit_lock/gradient_dual.py'
+      - 'tests/test_gradient_dual.py'
+      - '.github/workflows/olm18-gradient-dual.yml'
+  pull_request:
+    paths:
+      - 'research/orbit_lock/OLM18_GRADIENT_DUAL_LEAKAGE.md'
+      - 'research/orbit_lock/gradient_dual.py'
+      - 'tests/test_gradient_dual.py'
+      - '.github/workflows/olm18-gradient-dual.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-fraction-witnesses:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test exact rational inactive gradient dual, sharp Taylor bounds and rank obstructions
+        run: python -m unittest discover -s tests -p 'test_gradient_dual.py' -v
+      - name: Print exact witness receipts
+        run: python research/orbit_lock/gradient_dual.py
