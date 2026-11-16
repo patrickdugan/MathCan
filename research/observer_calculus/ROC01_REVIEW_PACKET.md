@@ -12,6 +12,9 @@ Public source base: MathCan NRF v0.4 branch
 The paired observer calculus lives in `research/observer_calculus/`.
 Registration was committed first, before derived CSV generation.
 
+
+**Prospective override (2026-11-16):** [Amendment C](ROC01_AMENDMENT_2026-11-16C.md) supersedes the frozen raw thresholds, freeze-U arm and even-only rank grid before ROC-02 generation. The original registration and Part 4 remain unaltered historical records. Raw cards now abstain from tags pending rank-matched null calibration. The amended T-C arm is observed→observed; its hypothetical three-arm cover and (1,1,2,1)/5 allocation remain mathematical, not neural measurements.
+
 ## Part 0: inventory
 
 | Evidence | Completed | Still missing |
@@ -54,7 +57,7 @@ training or held-out model cohort ran here.
 | Field | Frozen prospective choice | Executed? |
 |---|---|---|
 | New task | Delayed-rule binding/release with distractor overwrites and exact verifier; recurrent tied width-128 model, six new seeds | **No new samples or training** |
-| Rank / observer selection | k={2,4,8,12,16,32}; fixed task-only comparison, PCA, Gramian and leakage-aware candidates; 80 equal-budget optimizer steps | Registered only |
+| Rank / observer selection | k={1,2,3,4,7,8,12,16,32}; fixed task-only comparison, PCA, Gramian and leakage-aware candidates; 80 equal-budget optimizer steps | Registered only |
 | Card / random and intervention endpoints | A/B/C normalized, s, task MSE; 128 rank-matched random bases seeds 941001..941128, matched causal random arm per intervention; registered three-arm T-C set plus readout-ablation control | Registered only |
 | Source/confirmation | Train/calibration/sealed split seeds 2026111621/23/27, five-family Holm p gates, per-seed paired k/6 outcomes and exact symbolic baseline | Registered, test sealed |
 
