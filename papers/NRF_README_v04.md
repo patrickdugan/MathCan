@@ -1,4 +1,19 @@
-# NRF observable-fibers paper, technical review v0.4
+# NRF observable-fibers paper, technical review v0.5
+
+**Public technical draft, 16 November 2026.** This fourth-review revision restores the eight-random-observer reference for both directional Jacobian blocks and separates the two high-penalty seeds.
+
+## Current manuscript and checks
+
+- [NRF paper v0.5](NRF_Observable_Fibers_Revised_v05.md), the canonical Carbon-readable manuscript.
+- [Per-seed random-relative ratios](NRF_v05_random_relative_by_seed.csv): 36 observer-seed records across depths 16 and 32, with comparisons against all eight random arms.
+- [Random-reference summary and four exact pooled pairwise crossings](NRF_v05_random_relative_summary.json): NRF-10 depth16 0.677621 / depth32 0.624215, NRF-11 depth16 0.614798 / depth32 0.566663.
+- [Independent standard-library audit](reproduction_v04/nrf_v05_relative_random.py) and [its tests](reproduction_v04/test_nrf_v05_relative_random.py). Run `python papers/reproduction_v04/test_nrf_v05_relative_random.py` from the repo root. These reconstruct the per-seed random controls and compare all 1,584 per-state records to the public per-seed means.
+- The [v0.4 manuscript](NRF_Observable_Fibers_Revised_v04.md) and its earlier full per-state, objective, and replay receipts remain retained for comparison.
+
+The draft specifies which claims are exact projector identities and which are retrospective finite-sample measurements. The model seed and task family are unchanged; a global model-weight rerun still requires the archived checkpoint/observer binaries.
+
+## Earlier v0.4 audit instructions
+
 
 **Read-only working draft, 16 November 2026.** The model/training runs were completed in November 2026. The v0.4 diagnostics were added after the third review and use the same model seeds and previously exposed input folds.
 
