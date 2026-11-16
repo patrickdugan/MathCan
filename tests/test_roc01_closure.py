@@ -35,11 +35,13 @@ class TestSyntheticClosureSweep(unittest.TestCase):
         self.assertEqual(receipt["readout_rank"],2)
         self.assertEqual(receipt["horizon"],4)
         self.assertEqual(receipt["source_claim"],"measured T and G required; no refitting")
-        rows={r["k"]:r for r in receipt["rows"] if r["status"] != "rank_exceeds_dimension"}
-        self.assertEqual(set(rows),{2,4,8})
+        rows={r["k"]:r for r in receipt["rows"] if r["status"] == "sampled_upper_and_certified_theoretical_lower"}
+        self.assertEqual(set(rows),{2,3,4,7,8})
+        self.assertEqual({r["k"]:r["status"] for r in receipt["rows"]}[1],
+                         "rank_below_declared_readout")
         self.assertEqual(rows[2]["observability_rank_at_N"],3)
         self.assertGreater(rows[2]["L_lower_svd"],0.)
-        for k in (2,4,8):
+        for k in (2,3,4,7,8):
             r=rows[k]
             self.assertLessEqual(r["L_lower_svd"],r["L_upper_sampled"]+1e-9)
             self.assertFalse(r["sweep_is_global_optimum"])
@@ -67,10 +69,12 @@ class TestSyntheticClosureSweep(unittest.TestCase):
         # k=2 equals rank(G), so there is no free random subspace and its
         # exact B is source-key independent. At k=4 the random extension is
         # genuinely randomized and the seeded medians must differ.
-        self.assertTrue(a["rows"][0]["conditional_null_degenerate"])
-        self.assertIsNone(a["rows"][0]["one_sided_rank_p_for_svd_candidate"])
-        self.assertFalse(a["rows"][1]["conditional_null_degenerate"])
-        self.assertNotEqual(a["rows"][1]["random_median"],c["rows"][1]["random_median"])
+        aa={r["k"]:r for r in a["rows"]}
+        cc={r["k"]:r for r in c["rows"]}
+        self.assertTrue(aa[2]["conditional_null_degenerate"])
+        self.assertIsNone(aa[2]["one_sided_rank_p_for_svd_candidate"])
+        self.assertFalse(aa[4]["conditional_null_degenerate"])
+        self.assertNotEqual(aa[4]["random_median"],cc[4]["random_median"])
 
     def test_invalid_g_and_horizon(self):
         with self.assertRaises(ValueError):
