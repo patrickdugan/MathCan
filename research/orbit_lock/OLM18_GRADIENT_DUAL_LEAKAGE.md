@@ -80,6 +80,26 @@ D_B=m_B(-e_2)-m_B(-e_1)=-2.
 
 Their margins remain positive on all edit segments \([-e_1,0]\) and \([-e_2,0]\). Thus exact clean first- and second-order task jets, clean classification and unchanged active/inactive encoder geometry do not identify the *sign* of the full finite intervention. The third-order remainder matters at these amplitudes. This strengthens OLM-14's injection-versus-erasure obstruction in the specific SMC-18 gradient-attribution setting.
 
+
+## OLM-18E: Inactive-gradient coefficient bounds are representation-gauge dependent
+
+Suppose the physical encoder rows are reparameterized by an invertible \(p\times p\) matrix \(S\), so \(B'=SB\). The physical hidden state and task functional are unchanged. If \(B^\top\lambda=g\), the transformed vector \(\lambda'=S^{-\top}\lambda\) satisfies \(B'^\top\lambda'=g\). When \(p>d\), this transformed coefficient need not be the new minimum-norm solution. The Euclidean coefficient norm, and therefore the Cauchy–Schwarz ceiling in (1), can change with a nonorthogonal row gauge.
+
+**Theorem OLM-18E.** For an *orthogonal* row reparameterization \(S\), the minimum-norm dual obeys \(\lambda_*'=S\lambda_*\) and the ceiling \(\|\lambda_*\|\|Bu\|\) is invariant. For general invertible row rescalings, this ceiling can become arbitrarily loose while the physical directional derivative \(g^\top u\) stays fixed.
+
+**Proof.** If \(S^\top S=I\), then \(B'^\top B'=B^\top B\), so direct substitution gives \(\lambda_*'=SB(B^\top B)^{-1}g=S\lambda_*\). The two norms are preserved by \(S\).
+
+For a sharp counterexample under a nonorthogonal gauge, take \(d=p=2\), \(B_t=\operatorname{diag}(t,1)\), \(g=(1,1)\), \(u=(1,0)\), with any \(t>0\). The exact minimum-norm dual is \(\lambda_t=(1/t,1)\), and \(B_tu=(t,0)\), giving
+
+\[
+g^\top u=1,\qquad
+\|\lambda_t\|^2\|B_tu\|^2=1+t^2.
+\]
+
+As \(t\to\infty\), the bound diverges despite the unchanged physical task derivative \(1\), whereas as \(t\to0^+\) it approaches that derivative. QED.
+
+The result strengthens the experimental interpretation: the **exact equality** \(g^\top u=\lambda_*^\top Bu\) is stable under any invertible coordinate rewrite with appropriately transformed coefficients, while the reported numeric dual coefficient norm and its Cauchy–Schwarz ceiling carry the SAE row normalization convention. SMC-18 uses the original fixed source-normalized SAE rows and reports the bound as a *descriptive diagnostic*, rather than a basis-independent causal mediation quantity.
+
 ## Registered applied contract
 
 SMC-18 retains the original SMC-16 selective matched-feature kill and SMC-17 outcome-blind inactive-matched sham at equal physical dose. On fresh, source-disjoint noncanonical Sudoku cohorts (202618030000 and 202618040000, 64 puzzles each), it obtains the exact FP64 autograd gradient of the correct-digit-minus-frozen-clean-rival margin with respect to the clean stage-one goal-token hidden state. It records the measured finite effect D, first-order prediction L, local directional second-order diagnostic Q, full-rank inactive gradient dual λ*, inactive shift and task-gradient reconstruction, and puzzle-clustered acceptance gates. An independent stdlib auditor verifies the scalar recomputations and source hashes.
