@@ -30,11 +30,11 @@ theorem ideal_kl_distance_upper
 
 /-- Allocation (1,1,2,1) at total 5 reaches distance 2. -/
 theorem ideal_optimal_allocation_attains :
-    (1 + 1 + 2 + 1 = 5 : Nat) ∧
-    (2 ≤ 2 : Nat) ∧
-    (2 ≤ 1 + 1 : Nat) ∧
-    (2 ≤ 1 + 1 : Nat) ∧
-    (2 ≤ 1 + 1 : Nat) := by
+    ((1 + 1 + 2 + 1 : Nat) = 5) ∧
+    ((2 : Nat) ≤ 2) ∧
+    ((2 : Nat) ≤ 1 + 1) ∧
+    ((2 : Nat) ≤ 1 + 1) ∧
+    ((2 : Nat) ≤ 1 + 1) := by
   decide
 
 /-- The ablation/readout-control arm receives a strictly positive share. -/
