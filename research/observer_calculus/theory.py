@@ -136,16 +136,59 @@ def min_separating_arm_set(signatures):
 # canonical five-row signature is a hypothesis table, not a neural receipt.
 IDEAL_SIGNATURES={
  "closed_quotient":{"dark_to_observed":0,"observed_to_dark":1,
-                    "freeze_U":1,"ablate_readout":1},
- "invariant_driver":{"dark_to_observed":1,"observed_to_dark":0,
-                     "freeze_U":1,"ablate_readout":1},
+                    "observed_to_observed":1,"ablate_readout":1},
+ "invariant_subspace":{"dark_to_observed":1,"observed_to_dark":0,
+                     "observed_to_observed":1,"ablate_readout":1},
  "latched_memory":{"dark_to_observed":0,"observed_to_dark":1,
-                   "freeze_U":0,"ablate_readout":1},
+                   "observed_to_observed":0,"ablate_readout":1},
  "output_register":{"dark_to_observed":1,"observed_to_dark":0,
-                    "freeze_U":0,"ablate_readout":1},
+                    "observed_to_observed":0,"ablate_readout":1},
  "irrelevant":{"dark_to_observed":0,"observed_to_dark":0,
-               "freeze_U":0,"ablate_readout":0},
+               "observed_to_observed":0,"ablate_readout":0},
 }
+
+
+def all_min_separating_arm_sets(signatures):
+    """Every minimum-cardinality nonadaptive separating set."""
+    names=list(signatures)
+    arms=list(next(iter(signatures.values())))
+    for k in range(len(arms)+1):
+        covers=[ids for ids in combinations(arms,k)
+                if all(any(signatures[a][e]!=signatures[b][e] for e in ids)
+                       for a,b in combinations(names,2))]
+        if covers:
+            return covers
+    return []
+
+
+# The originally registered freeze was mistaken for a selective A intervention.
+# Physical freezing cancels both A and B, leaving invariant/register coincident.
+CORRECTED_FREEZE_SIGNATURES={
+    typ:{("freeze_U" if arm=="observed_to_observed" else arm):
+         (1 if typ=="output_register" and arm=="observed_to_observed" else value)
+         for arm,value in row.items()}
+    for typ,row in IDEAL_SIGNATURES.items()
+}
+
+
+def rotation5_interior_parity():
+    """Exact canonical witnesses for T=1 ⊕ R90 ⊕ R90, G=e1^T.
+
+    Orthogonal quarter-turn dynamics on R^4 have even-dimensional real
+    invariant subspaces. Thus global exact-rank closure fails at k=2,4.
+    """
+    T=rat([[1,0,0,0,0],
+           [0,0,-1,0,0],[0,1,0,0,0],
+           [0,0,0,0,-1],[0,0,0,1,0]])
+    G=rat([[1,0,0,0,0]])
+    values={}
+    for k in (2,3,4):
+        U=rat([[int(i==j) for j in range(k)] for i in range(5)])
+        Q=rat([[int(i==j+k) for j in range(5-k)] for i in range(5)])
+        B=mul(mul(transpose(U),minus(T,eye(5))),Q)
+        values[k]=fnorm2(B)
+    return {"T":T,"G":G,"B2_for_canonical_witnesses":values,
+            "interior_nonmonotone":values=={2:F(1),3:F(0),4:F(1)}}
 
 
 def gaussian_pair_kl(mu1,mu2,variance):
@@ -190,7 +233,7 @@ def ideal_four_arm_chernoff_exact():
     Unit-variance Gaussian responses with means in {0,1} have pairwise KL
     of (mean difference)^2/2. The four arm allocation is:
       dark_to_observed = 1/5; observed_to_dark = 1/5;
-      freeze_U = 2/5; ablate_readout = 1/5.
+      observed_to_observed = 2/5; ablate_readout = 1/5.
     Its worst-pair weighted KL is 1/5.
 
     Proof: let arm shares x,y,z,w sum to one. The 10 pairs include
@@ -203,7 +246,7 @@ def ideal_four_arm_chernoff_exact():
     arms=list(next(iter(IDEAL_SIGNATURES.values())))
     expected={"dark_to_observed":F(1,5),
               "observed_to_dark":F(1,5),
-              "freeze_U":F(2,5),
+              "observed_to_observed":F(2,5),
               "ablate_readout":F(1,5)}
     if set(arms)!=set(expected):
         raise AssertionError("Canonical ideal table's arm labels changed")
