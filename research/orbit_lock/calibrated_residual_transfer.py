@@ -9,8 +9,9 @@ def ridge(x,y):
     return min(F(2),max(F(-2),F(20,21)*cross/xx))
 def risk(x,y,beta,absolute=False):
     if not x or len(x)!=len(y):raise ValueError("paired residuals required")
-    return sum((abs(q(b)-q(beta)*q(a)) if absolute else (q(b)-q(beta)*q(a))**2
-                for a,b in zip(x,y))/len(x)
+    return sum((abs(q(b)-q(beta)*q(a)) if absolute
+                else (q(b)-q(beta)*q(a))**2)
+               for a,b in zip(x,y))/len(x)
 def moments(x,y):
     if not x or len(x)!=len(y):raise ValueError("paired residuals required")
     return (sum(q(v)**2 for v in y)/len(y),sum(q(a)*q(b) for a,b in zip(x,y))/len(x),
