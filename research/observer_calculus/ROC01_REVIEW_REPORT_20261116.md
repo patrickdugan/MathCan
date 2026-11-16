@@ -2,6 +2,8 @@
 
 **Dated 2026-11-16.** Repository: patrickdugan/MathCan, branch research/roc01-unified-observer-card-20261116, extending public NRF v0.4 parent commit 2c70886071be263d00976f0cd82f1e44e7b210ec. Parts 0–2 were publicly committed before the later NRF retrofit and ROC-02 registration. This is a source review report; neural checkpoints not present in public Git are **not** assumed to exist.
 
+> **Dated prospective amendment 2026-11-16C:** [ROC01_AMENDMENT_2026-11-16C.md](ROC01_AMENDMENT_2026-11-16C.md) replaces the old diagnostic thresholds with rank-conditioned null scores, replaces the physically confounded freeze arm by observed→observed, and adds ranks 1, 3 and SPC 7. Sections below retain their original historical review context; they are not the amended ROC-02 protocol. The corrected original freeze design cannot identify the invariant/register pair.
+
 ### Open counterexamples placed before proofs
 
 - Finite separation cannot force k>1 without a decoder/precision/closure contract: four distinct rational 2D points have unique scalar codes x+2y.
