@@ -16,7 +16,7 @@ class ClosureSweepTest(unittest.TestCase):
         G=[[1,0,0]]
         d=sweep(T,G,state_id="rotation_toy",checkpoint_sha256="synthetic",
                 output_name="first",horizon=3)
-        r=d["rows"][0]
+        r=next(row for row in d["rows"] if row["k"]==2)
         self.assertEqual(r["k"],2)
         self.assertEqual(r["status"],"sampled_upper_and_certified_theoretical_lower")
         self.assertEqual(r["observability_rank_at_N"],1)
@@ -24,6 +24,18 @@ class ClosureSweepTest(unittest.TestCase):
         self.assertAlmostEqual(r["L_upper_sampled"],1.,places=10)
         self.assertEqual(r["random_count"],128)
         self.assertFalse(r["sweep_is_global_optimum"])
+        self.assertEqual(r["lower_bound_norm"],"operator_2")
+
+    def test_five_dimensional_interior_parity_k2_k3_k4(self):
+        T=[[1,0,0,0,0],[0,0,-1,0,0],[0,1,0,0,0],
+           [0,0,0,0,-1],[0,0,0,1,0]]
+        r=sweep(T,[[1,0,0,0,0]],state_id="parity5",
+                checkpoint_sha256="synthetic",output_name="first",horizon=5)
+        by_k={row["k"]:row for row in r["rows"]}
+        for k in (2,4):
+            self.assertAlmostEqual(by_k[k]["L_upper_sampled"],1,places=8)
+        self.assertAlmostEqual(by_k[3]["L_upper_sampled"],0,places=8)
+        self.assertIn(7,r["rank_grid"])
 
     def test_full_rank_identity(self):
         T=[[1 if i==j else 0 for j in range(4)] for i in range(4)]
