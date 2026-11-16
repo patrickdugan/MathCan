@@ -1,0 +1,185 @@
+{
+  "schema": "roc01.nrf11.partial.retrospective.v1",
+  "source_public_branch": "paper/nrf-observable-fibers-v02-20261115",
+  "source_rows": 1584,
+  "paired_seeds": 12,
+  "full_card_complete": false,
+  "missing_card_fields": [
+    "full_D_frob",
+    "OLM07_H",
+    "per_state_task_MSE",
+    "128_rank_matched_nulls",
+    "matched_norm_interventions"
+  ],
+  "by_depth": {
+    "16": {
+      "model_seeds": [
+        131,
+        137,
+        139,
+        149,
+        151,
+        157
+      ],
+      "counts": {
+        "B_decreases": 6,
+        "write_magnitude_contribution_negative": 6,
+        "dark_fraction_contribution_negative": 6,
+        "C_decreases": 4
+      },
+      "means": {
+        "B_task": 0.3759319762163715,
+        "B_joint": 0.3154012891812201,
+        "delta_B": -0.060530687035151416,
+        "magnitude_contribution": -0.04731063298842047,
+        "fraction_contribution": -0.013220054046730956,
+        "W_task": 0.4781662198301854,
+        "W_joint": 0.4170338181730617,
+        "rho_task": 0.7865334103610904,
+        "rho_joint": 0.756498537812471,
+        "C_task": 0.4455543230195959,
+        "C_joint": 0.44275183467264995
+      },
+      "paired_seed_records": [
+        {
+          "seed": 131,
+          "gamma": 0.2,
+          "delta_B": -0.08918331884317471,
+          "magnitude_contribution": -0.07930245202715845,
+          "fraction_contribution": -0.00988086681601627
+        },
+        {
+          "seed": 137,
+          "gamma": 0.05,
+          "delta_B": -0.02904106881122721,
+          "magnitude_contribution": -0.025294363331248574,
+          "fraction_contribution": -0.0037467054799786305
+        },
+        {
+          "seed": 139,
+          "gamma": 0.2,
+          "delta_B": -0.09232402365171692,
+          "magnitude_contribution": -0.06296816768665925,
+          "fraction_contribution": -0.029355855965057655
+        },
+        {
+          "seed": 149,
+          "gamma": 0.05,
+          "delta_B": -0.044035276743074,
+          "magnitude_contribution": -0.029830860586773755,
+          "fraction_contribution": -0.014204416156300248
+        },
+        {
+          "seed": 151,
+          "gamma": 0.2,
+          "delta_B": -0.07221951079507936,
+          "magnitude_contribution": -0.05878802774555553,
+          "fraction_contribution": -0.013431483049523857
+        },
+        {
+          "seed": 157,
+          "gamma": 0.05,
+          "delta_B": -0.03638092336663631,
+          "magnitude_contribution": -0.027679926553127215,
+          "fraction_contribution": -0.008700996813509084
+        }
+      ]
+    },
+    "32": {
+      "model_seeds": [
+        131,
+        137,
+        139,
+        149,
+        151,
+        157
+      ],
+      "counts": {
+        "B_decreases": 6,
+        "write_magnitude_contribution_negative": 6,
+        "dark_fraction_contribution_negative": 5,
+        "C_decreases": 4
+      },
+      "means": {
+        "B_task": 0.5128364212787287,
+        "B_joint": 0.3175898246836751,
+        "delta_B": -0.19524659659505364,
+        "magnitude_contribution": -0.16173706031812532,
+        "fraction_contribution": -0.03350953627692834,
+        "W_task": 0.7697326668585283,
+        "W_joint": 0.5249789848623946,
+        "rho_task": 0.6665040262596432,
+        "rho_joint": 0.6201087183037094,
+        "C_task": 0.7761755559332357,
+        "C_joint": 0.7648938177812009
+      },
+      "paired_seed_records": [
+        {
+          "seed": 131,
+          "gamma": 1,
+          "delta_B": -0.27999168213543824,
+          "magnitude_contribution": -0.31733724167385363,
+          "fraction_contribution": 0.03734555953841536
+        },
+        {
+          "seed": 137,
+          "gamma": 0.2,
+          "delta_B": -0.13658583168115657,
+          "magnitude_contribution": -0.0878003898360201,
+          "fraction_contribution": -0.048785441845136425
+        },
+        {
+          "seed": 139,
+          "gamma": 0.2,
+          "delta_B": -0.1644181866251494,
+          "magnitude_contribution": -0.0958284976274727,
+          "fraction_contribution": -0.06858968899767676
+        },
+        {
+          "seed": 149,
+          "gamma": 1,
+          "delta_B": -0.28804569546193304,
+          "magnitude_contribution": -0.2690545762671768,
+          "fraction_contribution": -0.018991119194756278
+        },
+        {
+          "seed": 151,
+          "gamma": 0.2,
+          "delta_B": -0.13772226496039466,
+          "magnitude_contribution": -0.09831246075212173,
+          "fraction_contribution": -0.03940980420827295
+        },
+        {
+          "seed": 157,
+          "gamma": 0.2,
+          "delta_B": -0.16471591870624994,
+          "magnitude_contribution": -0.10208919575210701,
+          "fraction_contribution": -0.06262672295414297
+        }
+      ]
+    }
+  },
+  "historical_raw_lambda_envelope": [
+    {
+      "start": "0",
+      "winner": "gamma=0"
+    },
+    {
+      "start": "0.13647448374771715",
+      "winner": "gamma=0.05"
+    },
+    {
+      "start": "0.875803849470866",
+      "winner": "gamma=0.2"
+    },
+    {
+      "start": "1.2426648699344234",
+      "winner": "gamma=1"
+    },
+    {
+      "start": "1.39171694499395",
+      "winner": "task_free_supervised_start"
+    }
+  ],
+  "envelope_metric": "raw mean_per_seed_squared_leakage; NOT new normalized ROC B²"
+}
