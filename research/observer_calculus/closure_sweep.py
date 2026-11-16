@@ -90,6 +90,14 @@ def sweep(T,G,*,state_id,checkpoint_sha256,output_name,horizon=None):
                 W=np.empty((d-r,0))
             random.append(get_B(complete(W)))
         best=min([deterministic]+random)
+        # A G-containing rank-k basis has no free orientation when k=rank(G)
+        # (nor when k=d). More generally an invariant T can give a constant
+        # null distribution. In any such case a Monte Carlo rank has no
+        # inferential meaning: the repeated samples are not distinct probes.
+        conditional_null_degenerate=(
+            k==r or k==d or
+            max(random)-min(random) <= 1e-12*max(1.,max(random))
+        )
         tail=float(np.sqrt(np.sum(sig[k:]**2)))
         lower=tail/factor if isfinite(factor) and factor>0 else 0.
         # Numerical bound can be slightly violated at roundoff.
@@ -107,7 +115,9 @@ def sweep(T,G,*,state_id,checkpoint_sha256,output_name,horizon=None):
           "random_min":min(random),"random_median":float(np.median(random)),
           "random_max":max(random),
           "one_sided_rank_p_for_svd_candidate":
+            None if conditional_null_degenerate else
             (1+sum(v<=deterministic for v in random))/(len(random)+1),
+          "conditional_null_degenerate":conditional_null_degenerate,
           "sweep_is_global_optimum":False,
           "squared_cost_units":"Frobenius norm on physical state"
         })
