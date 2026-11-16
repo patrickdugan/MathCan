@@ -112,6 +112,38 @@ def second_jet_obstruction():
             "finite_B":finite_effect(b,(0,0),(1,0),(0,1))}
 
 
+
+
+def gauge_rescaling_witness(t=3):
+    """Exact squared inactive dual ceiling under a nonorthogonal row gauge.
+
+    Task directional derivative remains 1 for every positive scaling t.
+    """
+    t=Q(t)
+    if t<=0:raise ValueError("positive invertible row scaling required")
+    B=((t,Q(0)),(Q(0),Q(1)))
+    grad=v((1,1));u=v((1,0))
+    lam=inactive_dual(B,grad)
+    shift=matvec(B,u)
+    task=dot(grad,u)
+    through_rows=dot(lam,shift)
+    return {"row_scale":t,"minimum_dual":lam,
+            "physical_task_derivative":task,
+            "inactive_dual_derivative":through_rows,
+            "squared_cauchy_ceiling":norm_sq(lam)*norm_sq(shift)}
+
+
+def orthogonal_row_gauge_witness():
+    """A full-rank overcomplete encoder with a row-permutation gauge."""
+    B=((1,0),(0,1),(1,1))
+    perm=(B[2],B[0],B[1])
+    g=v((2,3));u=v((2,-1))
+    lam=inactive_dual(B,g)
+    lam2=inactive_dual(perm,g)
+    return {"original_lambda":lam,"permuted_lambda":lam2,
+            "original_squared_ceiling":norm_sq(lam)*norm_sq(matvec(B,u)),
+            "permuted_squared_ceiling":norm_sq(lam2)*norm_sq(matvec(perm,u))}
+
 if __name__=="__main__":
     import json
     def show(x):
@@ -121,5 +153,7 @@ if __name__=="__main__":
     print(json.dumps({"inactive_dual":test_dual_witness(),
                       "quadratic":quadratic_sharpness(),
                       "cubic":cubic_sharpness(),
-                      "second_jet_obstruction":second_jet_obstruction()},
+                      "second_jet_obstruction":second_jet_obstruction(),
+                      "gauge_scaling":gauge_rescaling_witness(),
+                      "gauge_orthogonal":orthogonal_row_gauge_witness()},
                      default=show,indent=2))
