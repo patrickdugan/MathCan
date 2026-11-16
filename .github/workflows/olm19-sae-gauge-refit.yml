@@ -1,0 +1,30 @@
+name: OLM-19 exact SAE gauge and reconstruction alias math
+
+on:
+  push:
+    paths:
+      - 'research/orbit_lock/OLM19_SAE_GAUGE_AND_REFIT.md'
+      - 'research/orbit_lock/sae_gauge_refit.py'
+      - 'tests/test_sae_gauge_refit.py'
+      - '.github/workflows/olm19-sae-gauge-refit.yml'
+  pull_request:
+    paths:
+      - 'research/orbit_lock/OLM19_SAE_GAUGE_AND_REFIT.md'
+      - 'research/orbit_lock/sae_gauge_refit.py'
+      - 'tests/test_sae_gauge_refit.py'
+      - '.github/workflows/olm19-sae-gauge-refit.yml'
+  workflow_dispatch:
+
+jobs:
+  rational-orthogonal-gauge-and-refit-obstructions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Independently verify exact rational nonlinear gauge, opposite causal sign and Lipschitz bounds
+        run: python -m unittest discover -s tests -p 'test_sae_gauge_refit.py' -v
+      - name: Print exact reproducible theorem witnesses
+        run: python research/orbit_lock/sae_gauge_refit.py
