@@ -1,0 +1,20 @@
+name: OLM-21 exact residual calibration transfer
+on:
+  push:
+    paths: ['research/orbit_lock/OLM21_CALIBRATED_RESIDUAL_TRANSFER.md', 'research/orbit_lock/calibrated_residual_transfer.py', 'tests/test_calibrated_residual_transfer.py', '.github/workflows/olm21-residual-calibration.yml']
+  pull_request:
+    paths: ['research/orbit_lock/OLM21_CALIBRATED_RESIDUAL_TRANSFER.md', 'research/orbit_lock/calibrated_residual_transfer.py', 'tests/test_calibrated_residual_transfer.py', '.github/workflows/olm21-residual-calibration.yml']
+  workflow_dispatch:
+jobs:
+  exact-fraction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run ten exact rational source residual transfer tests
+        run: python -m unittest discover -s tests -p 'test_calibrated_residual_transfer.py' -v
+      - name: Print exact rational evidence
+        run: python research/orbit_lock/calibrated_residual_transfer.py
