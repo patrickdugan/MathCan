@@ -57,6 +57,7 @@ theorem each_public_prefix_has_bounded_misses
           MathCan.NOR23CoordinateAudit.binomial (N-r) reserve
       rw [fixed_attack_undetected_challenge_count rest reserve]
       rw [hsize, hcount rfl]
+      exact le_rfl
   | true =>
       simp [missedReserveCount]
 
