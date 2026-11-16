@@ -26,7 +26,7 @@ class ExactSelectiveProjection(unittest.TestCase):
         o=(e(0),e(1),e(2))
         a=tuple(e(3)[i]+e(0)[i]/2 for i in range(5))
         kill=p.selective_kill(o,a,1,Q(1,4))
-        self.assertEqual(kill,Q(5,4)*e(3)[0:0]+(Q(0),Q(0),Q(0),Q(5,4),Q(0)))
+        self.assertEqual(kill,(Q(0),Q(0),Q(0),Q(5,4),Q(0)))
         self.assertEqual(p.sqnorm(kill),Q(25,16))
         self.assertTrue(all(p.dot(kill,r)==0 for r in o))
         self.assertEqual(p.dot(kill,a),Q(5,4))
