@@ -61,7 +61,10 @@ class TestSyntheticClosureSweep(unittest.TestCase):
         c=sweep(self.T,self.G,state_id="synth_8_source_1",
                 checkpoint_sha256="source_only_no_nn_checkpoint",
                 output_name="two_immediate_linear_outputs",horizon=4)
-        self.assertNotEqual(a["rows"][0]["random_median"],c["rows"][0]["random_median"])
+        # k=2 equals rank(G), so there is no free random subspace and its
+        # exact B is source-key independent. At k=4 the random extension is
+        # genuinely randomized and the seeded medians must differ.
+        self.assertNotEqual(a["rows"][1]["random_median"],c["rows"][1]["random_median"])
 
     def test_invalid_g_and_horizon(self):
         with self.assertRaises(ValueError):
