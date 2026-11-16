@@ -1,0 +1,90 @@
+MathCan/TaylorTransport.lean:28:0: warning: automatically included section variable(s) unused in theorem `MathCan.TaylorTransport.entry_integer`:
+  [LE R]
+  [LT R]
+  [LawfulOrderLT R]
+  [IsLinearOrder R]
+  [OrderedRing R]
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LE R] [LT R] [LawfulOrderLT R] [IsLinearOrder R] [OrderedRing R] [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/TaylorTransport.lean:33:0: warning: automatically included section variable(s) unused in theorem `MathCan.TaylorTransport.entry_self`:
+  [LE R]
+  [LT R]
+  [LawfulOrderLT R]
+  [IsLinearOrder R]
+  [OrderedRing R]
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LE R] [LT R] [LawfulOrderLT R] [IsLinearOrder R] [OrderedRing R] [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/TaylorTransport.lean:38:0: warning: automatically included section variable(s) unused in theorem `MathCan.TaylorTransport.entry_other_axis_zero`:
+  [LE R]
+  [LT R]
+  [LawfulOrderLT R]
+  [IsLinearOrder R]
+  [OrderedRing R]
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LE R] [LT R] [LawfulOrderLT R] [IsLinearOrder R] [OrderedRing R] [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/TaylorTransport.lean:43:0: warning: automatically included section variable(s) unused in theorem `MathCan.TaylorTransport.entry_lower_zero`:
+  [LE R]
+  [LT R]
+  [LawfulOrderLT R]
+  [IsLinearOrder R]
+  [OrderedRing R]
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LE R] [LT R] [LawfulOrderLT R] [IsLinearOrder R] [OrderedRing R] [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/TaylorTransport.lean:81:0: warning: automatically included section variable(s) unused in theorem `MathCan.TaylorTransport.total_nonnegative`:
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/TaylorTransport.lean:90:0: warning: automatically included section variable(s) unused in theorem `MathCan.TaylorTransport.power_nonnegative`:
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/TaylorTransport.lean:95:0: warning: automatically included section variable(s) unused in theorem `MathCan.TaylorTransport.interval_mul`:
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/TaylorTransport.lean:95:45: warning: Variable name `hB` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+MathCan/TaylorTransport.lean:117:0: warning: automatically included section variable(s) unused in theorem `MathCan.TaylorTransport.interval_total`:
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/TaylorTransport.lean:139:0: warning: automatically included section variable(s) unused in theorem `MathCan.TaylorTransport.total_scale`:
+  [LE R]
+  [LT R]
+  [LawfulOrderLT R]
+  [IsLinearOrder R]
+  [OrderedRing R]
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LE R] [LT R] [LawfulOrderLT R] [IsLinearOrder R] [OrderedRing R] [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/TaylorTransport.lean:205:0: warning: automatically included section variable(s) unused in theorem `MathCan.TaylorTransport.signed_step_bound`:
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`

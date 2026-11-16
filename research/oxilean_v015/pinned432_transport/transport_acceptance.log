@@ -1,0 +1,17 @@
+{
+  "status": "accepted",
+  "scope": "Hamming amplitude selector, finite polynomial Taylor transport and concrete scheduled spatial capture; analytic remainder and dense compiler remain open",
+  "export_sha256": "9c4f4270978238015613cdde938247549c35bbb4099c2be0b319e6fde85fed15",
+  "verdicts": {
+    "verified": 3580,
+    "unsupported": 0,
+    "rejected": 0
+  },
+  "constants_compared": 3901,
+  "theorems": 63,
+  "standard_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ]
+}

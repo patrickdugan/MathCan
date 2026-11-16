@@ -1,0 +1,24 @@
+Compared 3901 exported constants with unchanged source: all types and values match
+MathCan.ConcreteJetCapture.robust_concrete_spatial_capture.{u} {R : Type u} [Grind.Field R] [LE R] [LT R]
+  [Std.LawfulOrderLT R] [Std.IsLinearOrder R] [Grind.OrderedRing R] [DecidableLT R] (n K d J : Nat) (hK : 0 < K)
+  (delta : R) (hd : 0 < delta) (sites : List (MathCan.SpatialNormalized.Site R)) (dimension : sites.length = d)
+  (safe : MathCan.SpatialNormalized.validSites n K delta sites) (indices : Fin J → Fin d → Nat) (D p a : Nat)
+  (hwidth : D < 2 ^ p) (C centre tau : R) (hC : 0 ≤ C) (frames : List (MathCan.TaylorFrame.Frame d J))
+  (valid : ∀ (f : MathCan.TaylorFrame.Frame d J), f ∈ frames → MathCan.TaylorFrame.validFrame D a f)
+  (alignment : frames.length + 1 = K ^ d) (initial : Fin J → R)
+  (hinit : ∀ (beta : Fin J), -C ≤ initial beta ∧ initial beta ≤ C) (e : R)
+  (he :
+    -MathCan.SentinelDecoder.noiseBudget (MathCan.ConcreteJetCapture.codePayload p a frames).length ≤ e ∧
+      e ≤ MathCan.SentinelDecoder.noiseBudget (MathCan.ConcreteJetCapture.codePayload p a frames).length) :
+  MathCan.SpatialRouting.snakeRank K (List.map MathCan.SpatialNormalized.Site.fine sites) ≤ frames.length ∧
+    (fun beta =>
+        MathCan.SpatialClipped.captureStream C
+          (↑(K ^ d) * MathCan.SpatialClipped.clippedCircuit K (MathCan.SpatialNormalized.decodedDigits n K delta sites))
+          (fun j =>
+            MathCan.ConcreteJetCapture.scheduledAt indices D p a C centre tau
+              (MathCan.ConcreteJetCapture.schedule frames)
+              (MathCan.SentinelDecoder.word (MathCan.ConcreteJetCapture.codePayload p a frames) + e) initial j beta)
+          (K ^ d)) =
+      MathCan.ConcreteJetCapture.referenceAt indices C centre tau frames initial
+        (MathCan.SpatialRouting.snakeRank K (List.map MathCan.SpatialNormalized.Site.fine sites))
+'MathCan.ConcreteJetCapture.robust_concrete_spatial_capture' depends on axioms: [propext, Classical.choice, Quot.sound]

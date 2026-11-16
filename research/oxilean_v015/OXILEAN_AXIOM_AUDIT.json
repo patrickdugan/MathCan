@@ -34476,5 +34476,280 @@
       "propext"
     ]
   },
-  "sentinel_decoder_export_sha256": "3c3db534bde131f43b75903408cd66a8a4cddd94fa78d789bac4fb351843519b"
+  "sentinel_decoder_export_sha256": "3c3db534bde131f43b75903408cd66a8a4cddd94fa78d789bac4fb351843519b",
+  "hamming_taylor_axioms": {
+    "MathCan.ConcreteJetCapture.concrete_spatial_capture": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.ConcreteJetCapture.reference_at_range": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.ConcreteJetCapture.robust_concrete_spatial_capture": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.ConcreteJetCapture.scheduled_at_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.ConcreteJetCapture.scheduled_at_robust": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.HammingSelector.amplitude_one_hot": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.HammingSelector.choose_scalar_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.HammingSelector.choose_vector_exact": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.HammingSelector.digits_injective": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.HammingSelector.digits_length": [
+      "propext"
+    ],
+    "MathCan.HammingSelector.digits_value": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.HammingSelector.distance_bits": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.HammingSelector.hamming_self": [
+      "propext"
+    ],
+    "MathCan.HammingSelector.hamming_zero_iff": [
+      "propext"
+    ],
+    "MathCan.HammingSelector.power_two_width": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.HammingSelector.selector_bits": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorFrame.block_at_map": [
+      "propext"
+    ],
+    "MathCan.TaylorFrame.block_at_ofFn": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorFrame.block_at_window": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorFrame.blocks_length": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorFrame.bounded_selected_update_frame": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorFrame.direct_update_range": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorFrame.frame_amplitude_prefix": [
+      "propext"
+    ],
+    "MathCan.TaylorFrame.frame_correction_value": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorFrame.frame_correction_window": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorFrame.frame_payload_length": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorFrame.selected_update_frame": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorPolynomial.choose_above": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorPolynomial.choose_diagonal": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorPolynomial.choose_zero": [],
+    "MathCan.TaylorPolynomial.coefficient_add": [
+      "propext"
+    ],
+    "MathCan.TaylorPolynomial.coefficient_addConstant_succ": [],
+    "MathCan.TaylorPolynomial.coefficient_addConstant_zero": [
+      "propext"
+    ],
+    "MathCan.TaylorPolynomial.coefficient_affineMul_succ": [
+      "propext"
+    ],
+    "MathCan.TaylorPolynomial.coefficient_affineMul_zero": [
+      "propext"
+    ],
+    "MathCan.TaylorPolynomial.coefficient_scale": [
+      "propext"
+    ],
+    "MathCan.TaylorPolynomial.evaluate_add": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorPolynomial.evaluate_addConstant": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorPolynomial.evaluate_affineMul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorPolynomial.evaluate_scale": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorPolynomial.monomial_shift_coefficient": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorPolynomial.monomial_shift_evaluate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorPolynomial.shift_terms_coefficient": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorPolynomial.shift_terms_evaluate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.entry_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.entry_budget_nonnegative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.entry_integer": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.entry_lower_zero": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.entry_other_axis_zero": [
+      "propext"
+    ],
+    "MathCan.TaylorTransport.entry_self": [
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.interval_mul": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.interval_power": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.interval_total": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.interval_total_ofFn": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.power_nonnegative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.row_budget_nonnegative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.signed_step_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.total_nonnegative": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.total_ofFn_scale": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.total_scale": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.transport_bound": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.transport_polynomial_coefficient": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "MathCan.TaylorTransport.transport_polynomial_evaluate": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "hamming_taylor_export_sha256": "9c4f4270978238015613cdde938247549c35bbb4099c2be0b319e6fde85fed15"
 }

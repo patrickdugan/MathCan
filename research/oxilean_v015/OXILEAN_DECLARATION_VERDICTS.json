@@ -38245,5 +38245,806 @@
       "dependency_records": 2410,
       "statement_and_proof_match": true
     }
+  ],
+  "hamming_taylor_export": {
+    "status": "accepted",
+    "scope": "Hamming amplitude selector, finite polynomial Taylor transport and concrete scheduled spatial capture; analytic remainder and dense compiler remain open",
+    "export_sha256": "9c4f4270978238015613cdde938247549c35bbb4099c2be0b319e6fde85fed15",
+    "verdicts": {
+      "verified": 3580,
+      "unsupported": 0,
+      "rejected": 0
+    },
+    "constants_compared": 3901,
+    "source_sha256": {
+      "MathCan/HammingSelector.lean": "26fbbba457af8e63e75334f25d58cfb9a3ad18496f74e0f258aa3bb67b928e75",
+      "MathCan/TaylorPolynomial.lean": "b1f2b8b81124c49c8a38485e0f27fbecdedfe0a590f84acb94957ddd8aaea819",
+      "MathCan/TaylorTransport.lean": "c4a663547d3746d75b112be9cd9d0cde9c88330af74c0043de03a4a1b1a85e35",
+      "MathCan/TaylorFrame.lean": "92e4f7916b380e6402c104a6767f3a7234bc1ef089e2873f720dd15d6f7ad2ba",
+      "MathCan/ConcreteJetCapture.lean": "8cc906f7b4177ed060012f11fe9dfe825863bcbd3f90dd7b8e98688da7bdd196"
+    },
+    "standard_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "hamming_taylor_lemmas": [
+    {
+      "name": "MathCan.ConcreteJetCapture.concrete_spatial_capture",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 3444,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.ConcreteJetCapture.reference_at_range",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2635,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.ConcreteJetCapture.robust_concrete_spatial_capture",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 3484,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.ConcreteJetCapture.scheduled_at_exact",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 3265,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.ConcreteJetCapture.scheduled_at_robust",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 3296,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.HammingSelector.amplitude_one_hot",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2321,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.HammingSelector.choose_scalar_exact",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2563,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.HammingSelector.choose_vector_exact",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2564,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.HammingSelector.digits_injective",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 1400,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.HammingSelector.digits_length",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "propext"
+      ],
+      "dependency_records": 206,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.HammingSelector.digits_value",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 1399,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.HammingSelector.distance_bits",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2162,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.HammingSelector.hamming_self",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "propext"
+      ],
+      "dependency_records": 77,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.HammingSelector.hamming_zero_iff",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "propext"
+      ],
+      "dependency_records": 167,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.HammingSelector.power_two_width",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 1308,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.HammingSelector.selector_bits",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2270,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorFrame.block_at_map",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "propext"
+      ],
+      "dependency_records": 67,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorFrame.block_at_ofFn",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 658,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorFrame.block_at_window",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 1264,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorFrame.blocks_length",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 1325,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorFrame.bounded_selected_update_frame",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 3113,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorFrame.direct_update_range",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2629,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorFrame.frame_amplitude_prefix",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "propext"
+      ],
+      "dependency_records": 437,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorFrame.frame_correction_value",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2303,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorFrame.frame_correction_window",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 760,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorFrame.frame_payload_length",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 1332,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorFrame.selected_update_frame",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 3101,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorPolynomial.choose_above",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 1292,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorPolynomial.choose_diagonal",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 1294,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorPolynomial.choose_zero",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [],
+      "dependency_records": 31,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorPolynomial.coefficient_add",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "propext"
+      ],
+      "dependency_records": 387,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorPolynomial.coefficient_addConstant_succ",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [],
+      "dependency_records": 372,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorPolynomial.coefficient_addConstant_zero",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "propext"
+      ],
+      "dependency_records": 382,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorPolynomial.coefficient_affineMul_succ",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "propext"
+      ],
+      "dependency_records": 390,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorPolynomial.coefficient_affineMul_zero",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "propext"
+      ],
+      "dependency_records": 385,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorPolynomial.coefficient_scale",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "propext"
+      ],
+      "dependency_records": 381,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorPolynomial.evaluate_add",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2151,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorPolynomial.evaluate_addConstant",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2152,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorPolynomial.evaluate_affineMul",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2158,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorPolynomial.evaluate_scale",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2149,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorPolynomial.monomial_shift_coefficient",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2183,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorPolynomial.monomial_shift_evaluate",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2165,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorPolynomial.shift_terms_coefficient",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2199,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorPolynomial.shift_terms_evaluate",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2182,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.entry_bound",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2601,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.entry_budget_nonnegative",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2205,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.entry_integer",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 1590,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.entry_lower_zero",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 1389,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.entry_other_axis_zero",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "propext"
+      ],
+      "dependency_records": 453,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.entry_self",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 1444,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.interval_mul",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2544,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.interval_power",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2553,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.interval_total",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2517,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.interval_total_ofFn",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2587,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.power_nonnegative",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2192,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.row_budget_nonnegative",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2599,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.signed_step_bound",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2537,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.total_nonnegative",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2511,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.total_ofFn_scale",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2207,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.total_scale",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2148,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.transport_bound",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2700,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.transport_polynomial_coefficient",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2291,
+      "statement_and_proof_match": true
+    },
+    {
+      "name": "MathCan.TaylorTransport.transport_polynomial_evaluate",
+      "verdict": "verified",
+      "native_lean": "accepted",
+      "leanchecker": "accepted",
+      "axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "dependency_records": 2218,
+      "statement_and_proof_match": true
+    }
   ]
 }

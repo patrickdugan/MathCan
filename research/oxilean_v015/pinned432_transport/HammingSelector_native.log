@@ -1,0 +1,19 @@
+MathCan/HammingSelector.lean:36:0: warning: automatically included section variable(s) unused in theorem `MathCan.HammingSelector.distance_bits`:
+  [LE R]
+  [LT R]
+  [LawfulOrderLT R]
+  [IsLinearOrder R]
+  [OrderedRing R]
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LE R] [LT R] [LawfulOrderLT R] [IsLinearOrder R] [OrderedRing R] [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/HammingSelector.lean:46:29: warning: This simp argument is unused:
+  Semiring.natCast_zero
+
+Hint: Omit it from the simp argument list.
+  simp [̵d̵i̵s̵t̵a̵n̵c̵e̵,̵h̵a̵m̵m̵i̵n̵g̵,̵b̵i̵t̵,̵i̵h̵[̲d̲i̲s̲t̲a̲n̲c̲e̲,̲ ̲h̲a̲m̲m̲i̲n̲g̲,̲ ̲b̲i̲t̲,̲ ̲i̲h̲ cs ht, S̵e̵m̵i̵r̵i̵n̵g̵.̵n̵a̵t̵C̵a̵s̵t̵_̵a̵d̵d̵,̵S̵e̵m̵i̵r̵i̵n̵g̵.̵n̵a̵t̵C̵a̵s̵t̵_̵z̵e̵r̵o̵,̵S̵e̵m̵i̵r̵i̵n̵g̵.̵n̵a̵t̵C̵a̵s̵t̵_̵o̵n̵e̵]̵S̲e̲m̲i̲r̲i̲n̲g̲.̲n̲a̲t̲C̲a̲s̲t̲_̲a̲d̲d̲,̲
+  ̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲S̲e̲m̲i̲r̲i̲n̲g̲.̲n̲a̲t̲C̲a̲s̲t̲_̲o̲n̲e̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

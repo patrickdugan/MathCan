@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "native_and_leanchecker_432": "all five modules accepted",
+  "native_and_leanchecker_435": "all five modules accepted",
+  "source_sha256": {
+    "MathCan/HammingSelector.lean": "26fbbba457af8e63e75334f25d58cfb9a3ad18496f74e0f258aa3bb67b928e75",
+    "MathCan/TaylorPolynomial.lean": "b1f2b8b81124c49c8a38485e0f27fbecdedfe0a590f84acb94957ddd8aaea819",
+    "MathCan/TaylorTransport.lean": "c4a663547d3746d75b112be9cd9d0cde9c88330af74c0043de03a4a1b1a85e35",
+    "MathCan/TaylorFrame.lean": "92e4f7916b380e6402c104a6767f3a7234bc1ef089e2873f720dd15d6f7ad2ba",
+    "MathCan/ConcreteJetCapture.lean": "8cc906f7b4177ed060012f11fe9dfe825863bcbd3f90dd7b8e98688da7bdd196"
+  },
+  "imported_source_sha256": {
+    "Decoder": {
+      "MathCan/SentinelDecoder.lean": "bc512b338fdb13f91ae93f0c219bfbd97e999bd214b60735152c5f73aa7c2709",
+      "MathCan/DecodedJetCapture.lean": "e2b42822992e0ac05068d15b76d23054ded53603cf4545e9290a29933f283afa"
+    },
+    "SpatialScalar": {
+      "MathCan/SpatialScalar.lean": "c393225ad311b5a2401aea3e6fc1f0f45071158e85325cfe87b09206f369b2c4",
+      "MathCan/SpatialRouting.lean": "1aee535fc734e4305a9bf7e71a0818665b4c9539465abd54a59547506b0070ff",
+      "MathCan/SpatialNormalized.lean": "ce464be236ccd25cc221350d5462a306a1b81093f6e52a5873b70faa423e4c48",
+      "MathCan/SpatialClipped.lean": "ef4bbccfab3546837f1871c6cd85cce8aaecbafa83315068215e6d80dc9e0c45"
+    }
+  },
+  "preserved_435_binary_hashes": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38  /home/duganist/.cache/ram04-runtime-4.35.0/lean-4.35.0-linux/bin/lean\n12c38901cdbfab178f1bf6145dd30012e9a3b2c11ca695292a5884fa3cbaddb6  /home/duganist/.cache/ram04-runtime-4.35.0/lean-4.35.0-linux/bin/leanchecker\n",
+  "olean_sha256_432": {
+    "HammingSelector": "b2e298ca52d91422a5208ea174075cf4eeaa695552b1359a3f9bb4371fd4624e",
+    "TaylorPolynomial": "1d26b837224b854b2e475cbea2f3d0191a5b4c1c91dda1cdb72ef76c9568a76e",
+    "TaylorTransport": "024d05468c07df8f72375c87d38a64b64502042a0e635c3da76e95a4e01242df",
+    "TaylorFrame": "23575cd4ea6151e90b2f344efc2afaadca403b1f0b527895495cbf310c8155ad",
+    "ConcreteJetCapture": "9ded0e6062b6c9f8139c221ad3f15ce02e98e744471f1615309017a80e4d3124"
+  },
+  "olean_sha256_435": {
+    "HammingSelector": "810ddd1afdcd8e9d4783cca2b91f9bd3a47419bba9e912a1857cb339188e243a",
+    "TaylorPolynomial": "6fa5c976a2dc313c6d35aa505cb239929096d7b692deff4086d0a6f89410b6cd",
+    "TaylorTransport": "dbd2abef39f3f0e1f1e567a05d6e663d6298bb91b8ede339481e7352a4451585",
+    "TaylorFrame": "944036b71e19b582ae79cb94f0039803e2159c6c9aa61ae651d78421a286972a",
+    "ConcreteJetCapture": "3ba21b9b51f4517518c2ba2939ef7e667bb3f96f89358f73e9b4177cd364d341"
+  },
+  "exporter_binary_sha256": "e6580597a1482740114b5a1a05add574334a5eeaed5f4f5c9cd670e146859009",
+  "oxilean_binary_sha256": "831e7ad751d69d7f27e8ee59ec40246a6256e971e11f418b0e92f9722771e9fa"
+}

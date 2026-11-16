@@ -131,5 +131,19 @@
       "MathCan/DecodedJetCapture.lean": "e2b42822992e0ac05068d15b76d23054ded53603cf4545e9290a29933f283afa"
     },
     "publication_authorization": "User explicitly requested pushes of the research work; follow-up prepared only, not sent."
+  },
+  "hamming_taylor_continuation": {
+    "date": "2026-11-16",
+    "new_roots": 63,
+    "research_roots_total": 158,
+    "export_sha256": "9c4f4270978238015613cdde938247549c35bbb4099c2be0b319e6fde85fed15",
+    "source_sha256": {
+      "MathCan/HammingSelector.lean": "26fbbba457af8e63e75334f25d58cfb9a3ad18496f74e0f258aa3bb67b928e75",
+      "MathCan/TaylorPolynomial.lean": "b1f2b8b81124c49c8a38485e0f27fbecdedfe0a590f84acb94957ddd8aaea819",
+      "MathCan/TaylorTransport.lean": "c4a663547d3746d75b112be9cd9d0cde9c88330af74c0043de03a4a1b1a85e35",
+      "MathCan/TaylorFrame.lean": "92e4f7916b380e6402c104a6767f3a7234bc1ef089e2873f720dd15d6f7ad2ba",
+      "MathCan/ConcreteJetCapture.lean": "8cc906f7b4177ed060012f11fe9dfe825863bcbd3f90dd7b8e98688da7bdd196"
+    },
+    "publication_authorization": "User explicitly requested pushing the verified work."
   }
 }
