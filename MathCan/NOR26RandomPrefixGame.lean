@@ -47,14 +47,14 @@ theorem each_public_prefix_has_bounded_misses
     (world : ResidualWorld) (N r reserve : Nat)
     (h : validResidual N r world) :
     missedReserveCount world.1 world.2 reserve ≤
-      binomial (N-r) reserve := by
+      MathCan.NOR23CoordinateAudit.binomial (N-r) reserve := by
   rcases world with ⟨hit, rest⟩
   rcases h with ⟨hsize, hcount⟩
   cases hit with
   | false =>
       change
         (kSubsets (rest.filter (fun b => !b)) reserve).length ≤
-          binomial (N-r) reserve
+          MathCan.NOR23CoordinateAudit.binomial (N-r) reserve
       rw [fixed_attack_undetected_challenge_count rest reserve]
       rw [hsize, hcount rfl]
   | true =>
@@ -73,7 +73,7 @@ theorem random_prefix_mixture_miss_bound
     (worlds : List ResidualWorld) (N r reserve : Nat)
     (h : ∀ w ∈ worlds, validResidual N r w) :
     totalMissedReserves worlds reserve ≤
-      worlds.length * binomial (N-r) reserve := by
+      worlds.length * MathCan.NOR23CoordinateAudit.binomial (N-r) reserve := by
   induction worlds with
   | nil =>
       simp [totalMissedReserves]
@@ -87,7 +87,7 @@ theorem random_prefix_mixture_miss_bound
       change
         missedReserveCount w.1 w.2 reserve +
           totalMissedReserves rest reserve ≤
-        (rest.length+1) * binomial (N-r) reserve
+        (rest.length+1) * MathCan.NOR23CoordinateAudit.binomial (N-r) reserve
       simpa [Nat.add_mul, Nat.add_comm, Nat.add_left_comm, Nat.add_assoc]
         using Nat.add_le_add hb ht
 
@@ -102,7 +102,7 @@ theorem calibrated_policy_mixture_bound
     (N r reserve : Nat)
     (h : ∀ w ∈ policy calibration, validResidual N r w) :
     totalMissedReserves (policy calibration) reserve ≤
-      (policy calibration).length * binomial (N-r) reserve := by
+      (policy calibration).length * MathCan.NOR23CoordinateAudit.binomial (N-r) reserve := by
   exact random_prefix_mixture_miss_bound
     (policy calibration) N r reserve h
 
@@ -113,7 +113,7 @@ theorem full_mixture_schedule_count
     (worlds : List ResidualWorld) (N reserve : Nat)
     (h : ∀ w ∈ worlds, w.2.length = N) :
     ((worlds.map (fun w => allReserveCount w.2 reserve)).sum) =
-      worlds.length * binomial N reserve := by
+      worlds.length * MathCan.NOR23CoordinateAudit.binomial N reserve := by
   induction worlds with
   | nil =>
       simp
@@ -124,7 +124,7 @@ theorem full_mixture_schedule_count
         exact h x (List.mem_cons_of_mem w hx)
       have hsub := ih ht
       simp only [List.map_cons, List.sum_cons, List.length_cons]
-      rw [show allReserveCount w.2 reserve = binomial N reserve by
+      rw [show allReserveCount w.2 reserve = MathCan.NOR23CoordinateAudit.binomial N reserve by
         simpa [allReserveCount, hw] using
           (total_k_coordinate_challenges w.2 reserve)]
       rw [hsub]
