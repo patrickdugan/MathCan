@@ -114,6 +114,36 @@ def equal_dose_norm_witness():
             'angle_dot':dot(a,b)}
 
 
+
+
+def anchor_direct_competition(a,b):
+    """Exact residual criterion for a single smooth scalar quadratic task."""
+    a,b=q(a),q(b)
+    if a<=0 or b<=0:
+        raise ValueError('strictly positive physical decoder edits expected')
+    h=vec((0,))
+    m=lambda v:F(10)+v[0]+2*v[0]*v[0]
+    g=vec((1,))
+    ea=finite_erase(m,h,vec((a,)))
+    eb=finite_erase(m,h,vec((b,)))
+    direct=dot(g,vec((b,)))
+    anchored=anchored_predict(ea,g,vec((a,)),vec((b,)))
+    Ra=ea-dot(g,vec((a,)))
+    Rb=eb-direct
+    return {
+      'a':a,'b':b,'E_source':ea,'E_target':eb,
+      'direct_clean_gradient_prediction':direct,
+      'anchored_prediction':anchored,
+      'source_finite_residual':Ra,'target_finite_residual':Rb,
+      'direct_absolute_error':abs(eb-direct),
+      'anchored_absolute_error':abs(eb-anchored),
+      'criterion_polynomial':Ra*(Ra-2*Rb),
+      'anchor_better':abs(eb-anchored)<abs(eb-direct),
+      'same_clean_margin':m(h),
+      'source_erased_margin':m(vec((-a,))),
+      'target_erased_margin':m(vec((-b,))),
+    }
+
 if __name__=='__main__':
     import json
     def encode(v):
@@ -126,4 +156,6 @@ if __name__=='__main__':
         'opposite_finite_sign':reversed_sign_witness(),
         'orthogonal_gauge':orthogonal_witness(),
         'equal_dose_example':equal_dose_norm_witness(),
+        'anchor_worse_than_direct':anchor_direct_competition(1,F(1,2)),
+        'anchor_better_than_direct':anchor_direct_competition(F(1,2),F(3,4)),
     },indent=2,default=encode))
