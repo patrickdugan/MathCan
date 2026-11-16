@@ -1,0 +1,7 @@
+{
+  "stage": "initial stock leanchecker CLI run",
+  "outcome": "interrupted; not counted as accepted",
+  "observation": "WSL restarted while the stock CLI was recursively scanning its olean search paths. Cause of restart not established.",
+  "recovery": "All frozen proof sources and tool hashes rechecked; declarations replayed using the unmodified replayFromImports function from the pinned LeanChecker module. Only the CLI path scan was omitted.",
+  "native_result": "All three modules accepted; see DirectKernel.lean, direct_kernel.log and per-module checked source hashes."
+}

@@ -1,0 +1,6 @@
+Checking ApproximationMathlib.TaylorFoundation with pinned LeanChecker.replayFromImports
+Accepted ApproximationMathlib.TaylorFoundation
+Checking ApproximationMathlib.SmoothTaylor with pinned LeanChecker.replayFromImports
+Accepted ApproximationMathlib.SmoothTaylor
+Checking ApproximationMathlib.CapturedApproximation with pinned LeanChecker.replayFromImports
+Accepted ApproximationMathlib.CapturedApproximation

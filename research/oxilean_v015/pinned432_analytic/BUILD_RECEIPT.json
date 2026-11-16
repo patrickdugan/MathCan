@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "lean": "4.32.0-rc1",
+  "mathlib_revision": "360da6fa66c1273b76b6b2d8c5666fd5ac2e3b56",
+  "new_authored_roots": 17,
+  "attributed_upstream_roots": 12,
+  "native_kernel_replay": "all three analytic modules accepted through the unmodified pinned replayFromImports API from the pinned LeanChecker module",
+  "leanchecker_api_olean_sha256": "7ba4f458fef64a5c75f2eef1760d2c21690bd8a41210d298330c7554cf2e5c50",
+  "source_sha256": {
+    "research/approximation_mathlib432/ApproximationMathlib/TaylorFoundation.lean": "e0809bcf53f64d36768a2458ca994d1baff5880133e89769dec8e08a54412ee3",
+    "research/approximation_mathlib432/ApproximationMathlib/SmoothTaylor.lean": "f8270960c01786a386183bdc76d53ed4d8c39ab5af9e8cd09fbf0117ed831bee",
+    "research/approximation_mathlib432/ApproximationMathlib/CapturedApproximation.lean": "01aa135fe9c46b6eab42ffcb029f1939f2912c30a3afbe4fe3c2af1bbc76cb89"
+  },
+  "olean_sha256": {
+    "CapturedApproximation.olean": "343124072aeec4b10d2e6303043d5de267b44517b6a3095333443d5d1ec14972",
+    "SmoothTaylor.olean": "a0bda91658dde3c523f538d0dc5fd8c5b0cda246005eb10b54d38e5576356cdc",
+    "TaylorFoundation.ir": "b2a7cc64f50c371de49cea68fc108adf967854e30ed7cc04626b317448cbd24b",
+    "TaylorFoundation.olean": "365b9165da7791492dc963accb0e489dbdee4e53f900a7d32e61cbcd5e6f1898",
+    "TaylorFoundation.olean.private": "56cfb2d93c68638aa43f7950acfcebc5b70498f98e2eedd3dad229668dcb6d80",
+    "TaylorFoundation.olean.server": "80cbe534f625a683ff640d80ee781b412c81dfc9c61c0c373eab82870d2dc030"
+  },
+  "compiler_binary_sha256": "e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550",
+  "leanchecker_binary_sha256": "c7c51e296d28dd443ed60f9414feef41253ede89dea76dbb2adde29768c3ed5f",
+  "exporter_binary_sha256": "e6580597a1482740114b5a1a05add574334a5eeaed5f4f5c9cd670e146859009",
+  "oxilean_binary_sha256": "831e7ad751d69d7f27e8ee59ec40246a6256e971e11f418b0e92f9722771e9fa",
+  "mathlib_source_receipt_sha256": "184d9256766d65cd6316cc17b47d44eff47163ecbe23cda3d00350317716b7f4",
+  "mathlib_package_receipt_sha256": "0355ea1f11757997198110aa2a4c9ea3ddb2520d8aa75ac7bfb18987711311f1",
+  "mathlib_artifact_receipt_sha256": "dc44142c268471a35508d473e30811bd54347a916468bda70976fe1f5b8efa32"
+}

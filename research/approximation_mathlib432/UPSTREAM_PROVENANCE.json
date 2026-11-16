@@ -1,0 +1,12 @@
+{
+  "repository": "https://github.com/leanprover-community/mathlib4",
+  "revision": "360da6fa66c1273b76b6b2d8c5666fd5ac2e3b56",
+  "path": "Mathlib/Analysis/Calculus/Taylor.lean",
+  "git_blob": "0a6d490a2fc651b5a83cc5edb69d5fd14da7e57e",
+  "upstream_sha256": "b33de9daaab45ae70980fe68b435099d54179adbc2baf7591ed834d9e047a556",
+  "license": "Apache-2.0",
+  "authors": [
+    "Moritz Doll"
+  ],
+  "selection": "Definitions and derivative lemmas through taylorWithinEval_hasDerivAt_Ioo; general mean remainder and Lagrange remainder. Removed interval-integral imports, added direct FieldSimp/FunProp/Ring tactic imports, wrapped in MathCan.TaylorFoundation. Proof bodies unchanged."
+}

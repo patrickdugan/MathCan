@@ -10,7 +10,7 @@
     "unsupported": 0,
     "rejected": 0
   },
-  "formal_theorems": 158,
+  "formal_theorems": 210,
   "spatial_test_suites": 6,
   "spatial_assertions": 8299,
   "previous_component_assertions": 83362,
@@ -20,7 +20,7 @@
     "4.32.0-rc1",
     "preserved 4.35.0"
   ],
-  "full_theorem_scope": "Concrete Hamming-selected finite Taylor transport, fixed frame parsing, scheduled sentinel decoding and spatial capture proved. Smooth-function remainder, geometric schedule derivation and dense compiler/resource proofs remain open.",
+  "full_theorem_scope": "Common transport gate bound, exact/robust decoded spatial capture, genuine scalar Taylor/Hoelder remainders and coefficient-error approximation bounds proved. Fixed-domain/multivariate jet synthesis, geometric schedule and dense arithmetic/resource compiler remain open.",
   "spatial_source_sha256": "bc006e0ec2a227eac72657367b5211a7b71c1adfb74a87cc66336e9ded8ad910",
   "spatial_tests_sha256": "e14bb4cd2296a445582453c0a7e41d957b5594b5b66214f63bb1dc1730943ba8",
   "materialized_circuit_certificate": {
@@ -278,6 +278,37 @@
       "maximum_test_gate_weight": "34",
       "source_sha256": "e9d28b3ccbb28f0a04f676f1450c4a3208c8f75db7fc9cf09c39c9cafc439e30",
       "scope": "Exact finite implementation controls; general Lean proofs remain the mathematical evidence. No analytic remainder or dense-resource theorem asserted."
+    }
+  },
+  "native_coverage": {
+    "4.32.0-rc1": "all 210 research roots",
+    "preserved 4.35.0": "181 core roots, including the two new common-bound modules; excludes the isolated Mathlib analysis"
+  },
+  "common_taylor_continuation": {
+    "status": "passed",
+    "new_authored_roots": 40,
+    "attributed_upstream_roots": 12,
+    "common_verdicts": {
+      "verified": 3537,
+      "unsupported": 0,
+      "rejected": 0
+    },
+    "analytic_verdicts": {
+      "verified": 22410,
+      "unsupported": 0,
+      "rejected": 0
+    },
+    "common_export_sha256": "afd5dee654f3a6dbd99050f6ce3efbd2f247a2f9189872834c4dc0c19257365b",
+    "analytic_export_sha256": "e6023490bcaffb9112c4ebb6d258c678107eb6c8b1d1686f933103787850041e",
+    "acceptance_tamper_controls": {
+      "common": 8,
+      "analytic": 10
+    },
+    "mathlib_revision": "360da6fa66c1273b76b6b2d8c5666fd5ac2e3b56",
+    "analytic_native_version": "4.32.0-rc1",
+    "format_review": {
+      "git_diff_check": "whitespace findings",
+      "disposition": "Retained frozen proof/evidence bytes; no mathematical or acceptance check failure."
     }
   }
 }

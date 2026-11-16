@@ -1,0 +1,96 @@
+from collections import Counter
+from pathlib import Path
+import hashlib
+import json
+import re
+import os
+
+W = Path(os.environ.get('CAMPAIGN_WORK', Path(__file__).resolve().parent)).resolve()
+R = W/'replay432/Analytic'
+manifest = json.loads((R/'manifest.json').read_text(encoding='utf-8'))
+assert manifest['mathlib_revision'] == '360da6fa66c1273b76b6b2d8c5666fd5ac2e3b56'
+for phase in ['before','after']:
+    binding=json.loads((R/f'mathlib_{phase}.json').read_text(encoding='utf-8'))
+    assert binding['status']=='matched' and binding['mathlib_revision']==manifest['mathlib_revision']
+    assert binding['artifact_modules']==2145 and binding['packages']==8
+    assert binding['artifact_receipt_sha256']==hashlib.sha256((W/'MATHLIB_ARTIFACT_RECEIPT.json').read_bytes()).hexdigest()
+v = json.loads((R/'verdicts.json').read_text(encoding='utf-8'))
+a = json.loads((R/'axiom-graph.json').read_text(encoding='utf-8'))
+c = json.loads((R/'source_export_comparison.json').read_text(encoding='utf-8'))
+sha = lambda p: hashlib.sha256(p.read_bytes()).hexdigest()
+assert v['input']['sha256'] == a['sha256'] == sha(R/'Lemmas.ndjson')
+assert v['pins']['file_lean_version'] == '4.32.0-rc1'
+assert v['pins']['file_lean_githash'] == 'b4812ae53eea93439ad5dce5a5c26591c31cb697'
+assert a['structurally_closed'] and a['unambiguous_names'] and not a['unsafe_records']
+assert len(v['decls']) == a['record_count'] == a['closure_record_count']
+assert all(x['verdict'] == 'verified' for x in v['decls'])
+assert v['totals']['verified'] == len(v['decls'])
+assert v['totals']['unsupported'] == v['totals']['rejected'] == 0
+assert c['status'] == 'matched'
+assert c['constants_compared'] == sum(len(x['names']) for x in a['records'])
+assert all(x['type_equal'] and x['value_equal_after_metadata_normalization']
+           and x['level_parameters_equal'] for x in c['records'])
+native = {}
+log = (R/'axioms.log').read_text(encoding='utf-8')
+assert 'error:' not in log and 'sorryAx' not in log
+for name, axes in re.findall(r"^'([^']+)' depends on axioms: \[([^\]]*)\]", log, re.M):
+    native[name] = sorted(x.strip() for x in axes.split(',') if x.strip())
+for name in re.findall(r"^'([^']+)' does not depend on any axioms", log, re.M):
+    native[name] = []
+assert set(native) == set(manifest['theorems'])
+nodes = {r['id']:r for r in a['records']}
+owners = {name:r['id'] for r in a['records'] for name in r['display_names']}
+byname = {r['name']:r for r in v['decls']}
+roots = []
+for name, axes in sorted(native.items()):
+    assert byname[name]['verdict'] == 'verified'
+    assert nodes[owners[name]]['kind'] == 'thm'
+    todo = [owners[name]]
+    seen = set()
+    while todo:
+        i = todo.pop()
+        if i in seen: continue
+        seen.add(i)
+        todo.extend(nodes[i]['dependencies'])
+    exported = sorted(n for i in seen if nodes[i]['kind']=='axiom' for n in nodes[i]['display_names'])
+    assert exported == axes, (name, exported, axes)
+    assert set(axes) <= {'propext', 'Quot.sound', 'Classical.choice'}
+    roots.append({'name':name, 'verdict':'verified', 'native_lean':'accepted',
+        'leanchecker':'accepted', 'axioms':axes, 'dependency_record_ids':sorted(seen),
+        'dependency_records':len(seen), 'statement_and_proof_match':True})
+source_hashes = {}
+for module in manifest['modules']:
+    name=module.rsplit('.',1)[-1]
+    rel=manifest['sources'][name]
+    p=W/'MathCan'/rel
+    source=p.read_text(encoding='utf-8')
+    assert not re.search(r'\b(sorry|admit|axiom|unsafe)\b',source)
+    declared={'MathCan.'+name+'.'+n for n in re.findall(r'^(?:theorem|lemma) (\w+)',source,re.M)}
+    assert declared=={n for n in native if n.startswith('MathCan.'+name+'.')}
+    assert (R/(name+'.checked.sha256')).read_text(encoding='ascii').strip()==sha(p)
+    source_hashes[rel]=sha(p)
+    for suffix in ['native.log','leanchecker.log']:
+        assert 'error:' not in (R/(name+'_'+suffix)).read_text(encoding='utf-8')
+    assert (R/(name+'_leanchecker.log')).read_text(encoding='utf-8').strip() == 'Accepted ApproximationMathlib.'+name
+    assert ('Accepted ApproximationMathlib.'+name) in (R/'direct_kernel.log').read_text(encoding='utf-8')
+for previous in ['Lemmas','Decoder','SpatialScalar','Transport','Common']:
+    prior=json.loads((W/'replay432'/previous/'ACCEPTANCE.json').read_text(encoding='utf-8'))
+    assert prior['status']=='accepted'
+    for rel,digest in prior['source_sha256'].items():
+        source = W/'MathCan'/rel
+        if not source.exists(): source = W/'MathCan/MathCan'/rel
+        assert sha(source)==digest
+
+result = {'status':'accepted', 'scope':'Analytic scalar Taylor remainders and decoded spatial coefficient approximation; multivariate jet synthesis and dense resource theorem remain open',
+    'export_sha256':sha(R/'Lemmas.ndjson'),
+    'verdicts':{k:v['totals'][k] for k in ['verified','unsupported','rejected']},
+    'constants_compared':c['constants_compared'], 'theorems':roots,
+    'source_sha256':source_hashes,
+    'mathlib_revision':manifest['mathlib_revision'],
+    'native_kernel_method':'Unmodified pinned LeanChecker.replayFromImports API; stock CLI path scan omitted',
+    'vendor_roots':[r['name'] for r in roots if r['name'].startswith('MathCan.TaylorFoundation.')],
+    'standard_axioms':sorted({ax for axes in native.values() for ax in axes})}
+(R/'ACCEPTANCE.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8',newline='\n')
+for rel, digest in source_hashes.items():
+    (R/(Path(rel).stem+'.checked.sha256')).write_text(digest+'\n',encoding='ascii',newline='\n')
+print(json.dumps({k:len(x) if k=='theorems' else x for k,x in result.items() if k!='source_sha256'},indent=2))

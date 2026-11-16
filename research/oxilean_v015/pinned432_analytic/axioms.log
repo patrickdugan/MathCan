@@ -1,0 +1,61 @@
+Compared 23783 exported constants with unchanged source: all types and values match
+MathCan.CapturedApproximation.decoded_smooth_approximation (spatialN K d n k D p width : ℕ) (hK : 0 < K) (delta : ℝ)
+  (hdelta : 0 < delta) (sites : List (MathCan.SpatialNormalized.Site ℝ)) (dimension : sites.length = d)
+  (safe : MathCan.SpatialNormalized.validSites spatialN K delta sites) (indices : Fin (n + 1) → Fin d → ℕ) (hD : 1 ≤ D)
+  (injective : ∀ (j l : Fin (n + 1)), indices j = indices l → j = l)
+  (degree : ∀ (gamma : Fin (n + 1)) (j : Fin d), indices gamma j ≤ k) (hwidth : D < 2 ^ p) (C centre tau : ℝ)
+  (hC : 0 ≤ C) (frames : List (MathCan.TaylorFrame.Frame d (n + 1)))
+  (valid : ∀ f ∈ frames, MathCan.TaylorFrame.validFrame D width f) (alignment : frames.length + 1 = K ^ d)
+  (initial : Fin (n + 1) → ℝ) (hinit : ∀ (beta : Fin (n + 1)), -C ≤ initial beta ∧ initial beta ≤ C) (f : ℝ → ℝ)
+  (anchor : ℕ → ℝ) (x M : ℝ) (hM : 0 ≤ M) (eta : Fin (n + 1) → ℝ)
+  (smooth : ∀ j ≤ frames.length, ContDiffOn ℝ (↑n + 1) f (Set.uIcc (anchor j) x))
+  (derivative :
+    ∀ j ≤ frames.length, ∀ c ∈ Set.uIcc (anchor j) x, |iteratedDerivWithin (n + 1) f (Set.uIcc (anchor j) x) c| ≤ M)
+  (accuracy :
+    ∀ j ≤ frames.length,
+      ∀ (i : Fin (n + 1)),
+        |MathCan.ConcreteJetCapture.referenceAt indices C centre tau frames initial j i -
+              MathCan.CapturedApproximation.coefficients f n (Set.uIcc (anchor j) x) (anchor j) i| ≤
+          eta i) :
+  have r := MathCan.SpatialRouting.snakeRank K (List.map MathCan.SpatialNormalized.Site.fine sites);
+  |f x -
+        MathCan.TaylorPolynomial.evaluate
+          (List.ofFn
+            (MathCan.CapturedApproximation.capturedCoefficients spatialN K k D p width delta sites indices C centre tau
+              frames initial))
+          (x - anchor r)| ≤
+    M * |x - anchor r| ^ (n + 1) / ↑(n + 1).factorial + ∑ i, eta i * |x - anchor r| ^ ↑i
+'MathCan.CapturedApproximation.decoded_smooth_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.TaylorFoundation.taylorWithin_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.TaylorFoundation.taylorWithinEval_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.TaylorFoundation.taylor_within_zero_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.TaylorFoundation.taylorWithinEval_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.TaylorFoundation.taylor_within_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.TaylorFoundation.continuousOn_taylorWithinEval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.TaylorFoundation.monomial_has_deriv_aux' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.TaylorFoundation.hasDerivWithinAt_taylor_coeff_within' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'MathCan.TaylorFoundation.hasDerivWithinAt_taylorWithinEval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.TaylorFoundation.taylorWithinEval_hasDerivAt_Ioo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.TaylorFoundation.taylor_mean_remainder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.TaylorFoundation.taylor_mean_remainder_lagrange' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SmoothTaylor.holder_zero_remainder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SmoothTaylor.remainder_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SmoothTaylor.smooth_remainder_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SmoothTaylor.remainder_top_oscillation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SmoothTaylor.holder_remainder_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SmoothTaylor.scaled_holder_remainder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CapturedApproximation.evaluate_ofFn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CapturedApproximation.evaluate_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CapturedApproximation.coefficient_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CapturedApproximation.unit_cell_coefficient_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CapturedApproximation.smooth_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CapturedApproximation.holder_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CapturedApproximation.smooth_uniform_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CapturedApproximation.holder_uniform_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CapturedApproximation.decoded_smooth_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CapturedApproximation.decoded_holder_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CapturedApproximation.decoded_holder_uniform_approximation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
