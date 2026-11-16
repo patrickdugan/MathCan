@@ -1,0 +1,45 @@
+name: NRF v0.4 public numerical receipts
+
+on:
+  push:
+    paths:
+      - 'papers/NRF_v04_*'
+      - 'papers/NRF_skip_adjusted_frontier_v03.csv'
+      - 'papers/reproduction_v04/**'
+      - '.github/workflows/nrf-paper-v04-contents.yml'
+  pull_request:
+    paths:
+      - 'papers/NRF_v04_*'
+      - 'papers/NRF_skip_adjusted_frontier_v03.csv'
+      - 'papers/reproduction_v04/**'
+      - '.github/workflows/nrf-paper-v04-contents.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-exact-receipts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check per-state block energies and source accounting
+        run: |
+          python -m compileall -q papers/reproduction_v04
+          python papers/reproduction_v04/test_nrf_v04_public_receipts.py
+      - name: Recompute all fixed-arm lower-envelope intersections
+        run: |
+          python papers/reproduction_v04/nrf_frontier_envelope_v04.py --output /tmp/NRF_v04_envelope_checked.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          expected=json.loads(Path('papers/NRF_v04_envelope_summary.json').read_text())
+          actual=json.loads(Path('/tmp/NRF_v04_envelope_checked.json').read_text())
+          for arm in expected['lines']:
+              assert expected['lines'][arm] == actual['lines'][arm]
+          assert expected['lower_envelope'] == actual['lower_envelope']
+          assert expected['selected_thresholds'] == actual['selected_thresholds']
+          PY
