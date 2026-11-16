@@ -99,6 +99,14 @@ Every intervention must have its own norm-matched random arm. When repeated effe
 \sum_e\lambda_e(\mu_{h,e}-\mu_{h',e})^2/(2\sigma_e^2).
 \]
 
+**Exact optimal allocation in the synthetic table.** Write the four intervention weights in table order as \(x,y,z,w\), respectively dark→observed, observed→dark, freeze U and readout ablation, with nonnegative sum one. Under unit-variance independent Gaussian effects with binary means from the *idealized* table, the minimum pairwise squared-effect distance is
+
+\[
+\min\{z,\ x+y,\ x+w,\ y+w\}.
+\]
+
+If this minimum is \(t\), then \(5t\le 2z+(x+y)+(x+w)+(y+w)=2\); hence \(t\le2/5\). The allocation \((x,y,z,w)=(1/5,1/5,2/5,1/5)\) attains all four constraints, giving exact max-min Gaussian KL \(t/2=1/5\). Therefore the minimum separating cover uses **three types**, while the max-min effect allocation puts positive weight on **all four**. The fourth arm can improve the worst-case information rate even when it is redundant for noiseless identification. This is an elementary linear-program result conditional on the stipulated table and noise model, with a checked Fraction solution in theory.py and an integer-scaled upper-bound certificate in MathCan/ObserverChernoff.lean. It is **not** a measured neural Chernoff optimum.
+
 theory.py implements a deterministic 1/20-resolution four-arm grid with exact rational arithmetic. It supplies **no neural estimates**: the necessary measured effect sizes, variances, and route-conditional probabilities are not in the public receipts. KL allocation is conditional on the Gaussian/equal-variance assumptions; categorical/non-Gaussian outcomes require their measured distributions.
 
 ## T-D: tradeoff envelopes and rank surfaces
