@@ -5,12 +5,14 @@ on:
       - 'research/observer_calculus/**'
       - 'tests/test_roc01_*.py'
       - 'MathCan/ObserverReportCard.lean'
+      - 'papers/NRF_v04_*'
       - '.github/workflows/roc01-observer-calculus.yml'
   pull_request:
     paths:
       - 'research/observer_calculus/**'
       - 'tests/test_roc01_*.py'
       - 'MathCan/ObserverReportCard.lean'
+      - 'papers/NRF_v04_*'
       - '.github/workflows/roc01-observer-calculus.yml'
   workflow_dispatch:
 permissions:
@@ -27,7 +29,9 @@ jobs:
       - name: Run observer card and exact Fraction theorem tests
         run: |
           python -m compileall -q research/observer_calculus
-          python -m unittest tests.test_roc01_observer_card tests.test_roc01_theory -v
+          python -m unittest tests.test_roc01_observer_card tests.test_roc01_theory tests.test_roc01_retrofit -v
+          python research/observer_calculus/nrf_retrofit.py --out-dir /tmp/roc01-retrofit
+          python research/observer_calculus/frontier.py > /tmp/roc01-inherited-envelope.json
       - name: Replay inherited NRF v0.4 source-level public receipts
         run: python papers/reproduction_v04/test_nrf_v04_public_receipts.py
   lean-scope:
