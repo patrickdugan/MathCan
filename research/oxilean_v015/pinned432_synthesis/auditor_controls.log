@@ -1,0 +1,12 @@
+test_axioms_and_type_dependencies (__main__.AuditTests.test_axioms_and_type_dependencies) ... ok
+test_distinguishes_flat_and_hierarchical_name (__main__.AuditTests.test_distinguishes_flat_and_hierarchical_name) ... ok
+test_duplicate_name_is_not_overwritten (__main__.AuditTests.test_duplicate_name_is_not_overwritten) ... ok
+test_exact_equivalence_on_existing_fixtures (__main__.AuditTests.test_exact_equivalence_on_existing_fixtures) ... ok
+test_positive_bundle_closure (__main__.AuditTests.test_positive_bundle_closure) ... ok
+test_target_scope_excludes_unrelated_missing_reference (__main__.AuditTests.test_target_scope_excludes_unrelated_missing_reference) ... ok
+test_unknown_expression_is_fail_closed (__main__.AuditTests.test_unknown_expression_is_fail_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 3.264s
+
+OK

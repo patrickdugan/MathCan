@@ -1,0 +1,7 @@
+ApproximationMathlib/MultivariateTaylor.lean:23:34: warning: This simp argument is unused:
+  Pi.single_apply
+
+Hint: Omit it from the simp argument list.
+  simp [̵b̵a̵s̵i̵s̵,̵P̵i̵.̵s̵i̵n̵g̵l̵e̵_̵a̵p̵p̵l̵y̵,̵h̵i̵]̵[̲b̲a̲s̲i̲s̲,̲ ̲h̲i̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

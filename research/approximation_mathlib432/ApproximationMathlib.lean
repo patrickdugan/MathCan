@@ -1,1 +1,1 @@
-import ApproximationMathlib.CapturedApproximation
+import ApproximationMathlib.MultivariateCapture

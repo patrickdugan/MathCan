@@ -1,0 +1,94 @@
+Compared 30423 exported constants with unchanged source: all types and values match
+MathCan.MultivariateCapture.holder_decoded_approximation {d n : ℕ} {f : MathCan.MultivariateTaylor.Space d → ℝ}
+  (hf : ContDiff ℝ (↑n + 1) f) (anchors : ℕ → MathCan.MultivariateTaylor.Space d) (spatialN K D N p a : ℕ) (hK : 0 < K)
+  (hD : 1 ≤ D) (delta : ℝ) (hdelta : 0 < delta) (sites : List (MathCan.SpatialNormalized.Site ℝ))
+  (dimension : sites.length = d) (safe : MathCan.SpatialNormalized.validSites spatialN K delta sites)
+  (steps : List (MathCan.JetSynthesis.Step d)) (valid : ∀ s ∈ steps, s.magnitude ≤ D)
+  (alignment : steps.length + 1 = K ^ d) (M H alpha tau rho : ℝ) (hM : 0 ≤ M) (hH : 0 ≤ H) (ha : 0 ≤ alpha)
+  (htau : 0 < tau) (hrho : rho ≤ 1) (x : MathCan.MultivariateTaylor.Space d)
+  (jetBound : ∀ i ≤ steps.length, ∀ j ≤ n + 1, ‖iteratedFDeriv ℝ j f (anchors i)‖ ≤ M) (hamp : D < 2 ^ p)
+  (hN :
+    (MathCan.MultivariateBounds.budget d (n + 1) * M +
+            MathCan.MultivariateBounds.budget d (n + 1) * M * MathCan.CommonGateBound.commonBudget (n + 1) D) /
+          tau +
+        1 / 2 ≤
+      ↑N)
+  (hwidth : 2 * N < 2 ^ a)
+  (hdist :
+    ‖x - anchors (MathCan.SpatialRouting.snakeRank K (List.map MathCan.SpatialNormalized.Site.fine sites))‖ ≤ rho)
+  (holder :
+    ∀ t ∈ Set.uIcc 0 1,
+      ‖iteratedFDeriv ℝ (n + 1) f
+              (anchors (MathCan.SpatialRouting.snakeRank K (List.map MathCan.SpatialNormalized.Site.fine sites)) +
+                t •
+                  (x -
+                    anchors
+                      (MathCan.SpatialRouting.snakeRank K (List.map MathCan.SpatialNormalized.Site.fine sites)))) -
+            iteratedFDeriv ℝ (n + 1) f
+              (anchors (MathCan.SpatialRouting.snakeRank K (List.map MathCan.SpatialNormalized.Site.fine sites)))‖ ≤
+        H *
+          ‖anchors (MathCan.SpatialRouting.snakeRank K (List.map MathCan.SpatialNormalized.Site.fine sites)) +
+                  t •
+                    (x -
+                      anchors
+                        (MathCan.SpatialRouting.snakeRank K (List.map MathCan.SpatialNormalized.Site.fine sites))) -
+                anchors (MathCan.SpatialRouting.snakeRank K (List.map MathCan.SpatialNormalized.Site.fine sites))‖ ^
+            alpha) :
+  |f x -
+        MathCan.MultivariateTaylor.evaluate
+          (MathCan.MultivariateCapture.capturedJet f (n + 1) anchors spatialN K D N p a delta
+            (MathCan.MultivariateBounds.budget d (n + 1) * M) tau sites steps)
+          (x - anchors (MathCan.SpatialRouting.snakeRank K (List.map MathCan.SpatialNormalized.Site.fine sites)))| ≤
+    H * rho ^ (↑(n + 1) + alpha) / ↑(n + 1).factorial + ↑(MathCan.MultivariateTaylor.size d (n + 1)) * (tau / 2)
+'MathCan.MultivariateCapture.holder_decoded_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.JetSynthesis.rounded_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.JetSynthesis.clip_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.JetSynthesis.clipped_round_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.JetSynthesis.code_decode' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.JetSynthesis.code_bound' depends on axioms: [propext, Quot.sound]
+'MathCan.JetSynthesis.correction_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.JetSynthesis.total_ofFn_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.JetSynthesis.transport_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.JetSynthesis.update_accuracy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.JetSynthesis.frame_update' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.FrameSynthesis.update_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.FrameSynthesis.prediction_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.FrameSynthesis.frame_correct_and_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.FrameSynthesis.frames_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.FrameSynthesis.states_accuracy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.FrameSynthesis.frames_valid_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.FrameSynthesis.initial_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.FrameSynthesis.initial_accuracy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateTaylor.sum_basis' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateTaylor.basis_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateTaylor.along_contDiff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateTaylor.along_iteratedDeriv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateTaylor.line_taylor_eq_tensor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateTaylor.tensor_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateTaylor.counts_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateTaylor.word_monomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateTaylor.labels_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateTaylor.labels_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateTaylor.wordIndex_labels' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateTaylor.evaluate_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateBounds.diagonal_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateBounds.component_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateBounds.normalized_component_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateBounds.budget_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateBounds.coefficients_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateBounds.monomial_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateBounds.coefficient_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateBounds.smooth_tensor_remainder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateBounds.smooth_multivariate_approximation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'MathCan.MultivariateHolder.holder_tensor_remainder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateHolder.holder_multivariate_approximation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'MathCan.SynthesisCapture.reference_accuracy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SynthesisCapture.decoded_coefficient_accuracy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateCapture.jet_accuracy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateCapture.smooth_decoded_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateCapture.holder_decoded_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.MultivariateCapture.finite_frame_parameters' depends on axioms: [propext, Classical.choice, Quot.sound]

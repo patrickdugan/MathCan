@@ -1,0 +1,52 @@
+{
+  "scope": "structural_graph_only_not_kernel_verification",
+  "sha256": "435ed39aa9be01548ecafc84c236f7a03bc0e635982f2ca25dd3adbf3e3679af",
+  "target": null,
+  "record_count": 28931,
+  "closure_record_count": 28931,
+  "structurally_closed": true,
+  "unambiguous_names": true,
+  "missing_constants": [],
+  "duplicate_names": [],
+  "axioms": [
+    {
+      "name": "propext",
+      "name_components": [
+        [
+          "str",
+          "propext"
+        ]
+      ],
+      "record": 454
+    },
+    {
+      "name": "Quot.sound",
+      "name_components": [
+        [
+          "str",
+          "Quot"
+        ],
+        [
+          "str",
+          "sound"
+        ]
+      ],
+      "record": 513
+    },
+    {
+      "name": "Classical.choice",
+      "name_components": [
+        [
+          "str",
+          "Classical"
+        ],
+        [
+          "str",
+          "choice"
+        ]
+      ],
+      "record": 1027
+    }
+  ],
+  "unsafe_records": []
+}

@@ -1,0 +1,17 @@
+test_changed_dependency_artifact_binding (__main__.SynthesisAcceptanceControls.test_changed_dependency_artifact_binding) ... ok
+test_changed_exported_proof (__main__.SynthesisAcceptanceControls.test_changed_exported_proof) ... ok
+test_changed_exported_statement (__main__.SynthesisAcceptanceControls.test_changed_exported_statement) ... ok
+test_changed_mathlib_pin (__main__.SynthesisAcceptanceControls.test_changed_mathlib_pin) ... ok
+test_changed_mirror_artifact_checksum (__main__.SynthesisAcceptanceControls.test_changed_mirror_artifact_checksum) ... ok
+test_changed_mirror_receipt_binding (__main__.SynthesisAcceptanceControls.test_changed_mirror_receipt_binding) ... ok
+test_missing_new_lemma_in_manifest (__main__.SynthesisAcceptanceControls.test_missing_new_lemma_in_manifest) ... ok
+test_missing_per_declaration_verdict (__main__.SynthesisAcceptanceControls.test_missing_per_declaration_verdict) ... ok
+test_open_dependency_graph (__main__.SynthesisAcceptanceControls.test_open_dependency_graph) ... ok
+test_unsupported_dependency_despite_successful_exit (__main__.SynthesisAcceptanceControls.test_unsupported_dependency_despite_successful_exit) ... ok
+test_wrong_input_hash (__main__.SynthesisAcceptanceControls.test_wrong_input_hash) ... ok
+test_wrong_toolchain_pin (__main__.SynthesisAcceptanceControls.test_wrong_toolchain_pin) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 16.398s
+
+OK

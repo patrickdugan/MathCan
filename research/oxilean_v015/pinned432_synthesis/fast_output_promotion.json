@@ -1,0 +1,25 @@
+{
+  "status": "matched",
+  "method": "Linux-local output, then byte-checked bulk copy",
+  "export_sha256": "435ed39aa9be01548ecafc84c236f7a03bc0e635982f2ca25dd3adbf3e3679af",
+  "verdicts": {
+    "verified": 28931,
+    "unsupported": 0,
+    "rejected": 0,
+    "wall_ms": 114110
+  },
+  "constants_compared": 30423,
+  "partial_export_counted": false,
+  "partial_file": "/mnt/c/Users/patri/Documents/Codex/2026-11-15/files-pasted-by-the-user-oxilean/work/replay432/Synthesis/Lemmas.ntfs-interrupted.partial",
+  "files_sha256": {
+    "Lemmas.ndjson": "435ed39aa9be01548ecafc84c236f7a03bc0e635982f2ca25dd3adbf3e3679af",
+    "verdicts.json": "3d836b69b1075bf0c284775a7f63cce9e160f9b07c5d2c180e2babce075cde61",
+    "axiom-graph.json": "c509a629cd46895f85e38628f9d92e6ab9e185b6934bd5259423a79e78583ec6",
+    "source_export_comparison.json": "a048ebd72e4b094806f33353a8cddb4479c937138577de4d5eeb59748aadf811",
+    "source_export_comparison.log": "ed85eeabbba88bcc108f0a9af17056c0e3de558be4dd14cde915b720442b4e09",
+    "axioms.log": "ed85eeabbba88bcc108f0a9af17056c0e3de558be4dd14cde915b720442b4e09",
+    "oxilean.stdout.log": "0d06ee5020797a5bf76166129b61a0ca68760c955adb0ca95966009cbac41fc7",
+    "oxilean.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "audit_status.log": "b0f2afdc74cb28e83e4853b80f7961781e3b4f2f7e5ac76c79d2e02462ed886a"
+  }
+}

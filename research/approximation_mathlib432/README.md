@@ -19,12 +19,22 @@ Taylor polynomial, proves coefficient perturbation estimates, and connects them
 to the common-bound Hamming/sentinel/spatial capture circuit. Its uniform scalar
 bound is H*rho^s/k! + J*epsilon on cells with radius rho<=1.
 
-Coefficient accuracy of the concrete reference recurrence is an explicit
-hypothesis of the capture-to-approximation results. The analytic identities
-between multivariate derivative jets and the transport matrices, the synthesis
-of all correction words from those jets, and the dense ReLU arithmetic/resource
-compiler are separate remaining obligations. These files do not claim the full
-multivariate approximation rate in network parameter count.
+The multivariate continuation constructs fixed-anchor coefficients directly from
+Frechet derivative tensors (`MultivariateTaylor`), proves their norm and
+perturbation bounds (`MultivariateBounds`) and integer/Holder remainders
+(`MultivariateBounds`, `MultivariateHolder`). `JetSynthesis` and `FrameSynthesis`
+construct rounded/clipped correction frames and prove uniform tau/2 accuracy.
+`SynthesisCapture` connects these frames to the existing decoded spatial capture.
+`MultivariateCapture` proves the resulting coefficient accuracy and the final
+smooth/Holder approximation bounds without an assumed accuracy contract.
+
+These results cover arbitrary dimension and degree with global ContDiff
+regularity, segment derivative estimates, and explicit site/schedule and bit
+width premises. The correction alphabet is finite but uses a general O(1/tau)
+predictor bound. The sharp small-alphabet transport estimate, closed-cube/domain
+and geometric specialization, and dense ReLU arithmetic/resource compiler remain
+open. Exact polynomial evaluation is not yet realized as the desired bounded,
+quantized ReLU network. See ../oxilean_v015/MULTIVARIATE_SYNTHESIS_REPORT.md.
 
 The standard Lake project pins Mathlib by exact Git revision and requires the
 parent MathCan package by path. For the space-constrained local replay, use the

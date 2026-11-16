@@ -1,0 +1,12 @@
+{
+  "status": "interrupted_export_not_counted",
+  "pids": [
+    2755
+  ],
+  "time_utc": "2026-11-16T13:43:39.228221+00:00",
+  "reason": "Replaced slow Windows-mounted output with Linux-local candidate output",
+  "partial_file": "/mnt/c/Users/patri/Documents/Codex/2026-11-15/files-pasted-by-the-user-oxilean/work/replay432/Synthesis/Lemmas.ntfs-interrupted.partial",
+  "partial_bytes": 40500736,
+  "verification_result": null,
+  "partial_sha256": "ead8e389fba3bb46275f47f03c6869efb6e0dbcec6ecf27211b2c8e851760e4e"
+}
