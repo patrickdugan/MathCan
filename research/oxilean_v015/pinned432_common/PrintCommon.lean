@@ -1,0 +1,24 @@
+import MathCan.CommonGateCapture
+#print axioms MathCan.CommonGateBound.choose_le_power
+#print axioms MathCan.CommonGateBound.choose_prefix_eq
+#print axioms MathCan.CommonGateBound.choose_prefix_bound
+#print axioms MathCan.CommonGateBound.sum_choose_cast
+#print axioms MathCan.CommonGateBound.sum_le
+#print axioms MathCan.CommonGateBound.sum_scale
+#print axioms MathCan.CommonGateBound.totalFn_zero
+#print axioms MathCan.CommonGateBound.totalFn_add
+#print axioms MathCan.CommonGateBound.totalFn_sum
+#print axioms MathCan.CommonGateBound.totalFn_le
+#print axioms MathCan.CommonGateBound.singleton_total_le
+#print axioms MathCan.CommonGateBound.tagged_sum_le
+#print axioms MathCan.CommonGateBound.power_mono_exponent
+#print axioms MathCan.CommonGateBound.fibre_unique
+#print axioms MathCan.CommonGateBound.fibre_budget_common
+#print axioms MathCan.CommonGateBound.common_budget_nonnegative
+#print axioms MathCan.CommonGateBound.transport_common_bound
+#print axioms MathCan.CommonGateCapture.common_update_frame
+#print axioms MathCan.CommonGateCapture.bounded_common_update_frame
+#print axioms MathCan.CommonGateCapture.common_scheduled_at_exact
+#print axioms MathCan.CommonGateCapture.common_scheduled_at_robust
+#print axioms MathCan.CommonGateCapture.common_spatial_capture
+#print axioms MathCan.CommonGateCapture.robust_common_spatial_capture

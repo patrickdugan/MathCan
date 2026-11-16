@@ -1,0 +1,69 @@
+MathCan/CommonGateBound.lean:37:0: warning: automatically included section variable(s) unused in theorem `MathCan.CommonGateBound.sum_choose_cast`:
+  [LE R]
+  [LT R]
+  [LawfulOrderLT R]
+  [IsLinearOrder R]
+  [OrderedRing R]
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LE R] [LT R] [LawfulOrderLT R] [IsLinearOrder R] [OrderedRing R] [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/CommonGateBound.lean:43:0: warning: automatically included section variable(s) unused in theorem `MathCan.CommonGateBound.sum_le`:
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/CommonGateBound.lean:52:0: warning: automatically included section variable(s) unused in theorem `MathCan.CommonGateBound.sum_scale`:
+  [LE R]
+  [LT R]
+  [LawfulOrderLT R]
+  [IsLinearOrder R]
+  [OrderedRing R]
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LE R] [LT R] [LawfulOrderLT R] [IsLinearOrder R] [OrderedRing R] [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/CommonGateBound.lean:58:0: warning: automatically included section variable(s) unused in theorem `MathCan.CommonGateBound.totalFn_zero`:
+  [LE R]
+  [LT R]
+  [LawfulOrderLT R]
+  [IsLinearOrder R]
+  [OrderedRing R]
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LE R] [LT R] [LawfulOrderLT R] [IsLinearOrder R] [OrderedRing R] [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/CommonGateBound.lean:63:0: warning: automatically included section variable(s) unused in theorem `MathCan.CommonGateBound.totalFn_add`:
+  [LE R]
+  [LT R]
+  [LawfulOrderLT R]
+  [IsLinearOrder R]
+  [OrderedRing R]
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LE R] [LT R] [LawfulOrderLT R] [IsLinearOrder R] [OrderedRing R] [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/CommonGateBound.lean:75:0: warning: automatically included section variable(s) unused in theorem `MathCan.CommonGateBound.totalFn_le`:
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/CommonGateBound.lean:214:0: warning: automatically included section variable(s) unused in theorem `MathCan.CommonGateBound.common_budget_nonnegative`:
+  [DecidableLT R]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableLT R] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+MathCan/CommonGateBound.lean:240:14: warning: This simp argument is unused:
+  ha
+
+Hint: Omit it from the simp argument list.
+  simp ̵[̵h̵a̵]̵
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

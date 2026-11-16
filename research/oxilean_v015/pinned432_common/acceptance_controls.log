@@ -1,0 +1,13 @@
+test_changed_exported_proof (__main__.CommonAcceptanceControls.test_changed_exported_proof) ... ok
+test_changed_exported_statement (__main__.CommonAcceptanceControls.test_changed_exported_statement) ... ok
+test_missing_new_lemma_in_manifest (__main__.CommonAcceptanceControls.test_missing_new_lemma_in_manifest) ... ok
+test_missing_per_declaration_verdict (__main__.CommonAcceptanceControls.test_missing_per_declaration_verdict) ... ok
+test_open_dependency_graph (__main__.CommonAcceptanceControls.test_open_dependency_graph) ... ok
+test_unsupported_dependency_despite_successful_exit (__main__.CommonAcceptanceControls.test_unsupported_dependency_despite_successful_exit) ... ok
+test_wrong_input_hash (__main__.CommonAcceptanceControls.test_wrong_input_hash) ... ok
+test_wrong_toolchain_pin (__main__.CommonAcceptanceControls.test_wrong_toolchain_pin) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 2.216s
+
+OK

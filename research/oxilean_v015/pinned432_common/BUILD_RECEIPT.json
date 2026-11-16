@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "native_and_leanchecker_432": "both modules accepted",
+  "native_and_leanchecker_435": "both modules accepted",
+  "source_sha256": {
+    "MathCan/CommonGateBound.lean": "6a1a84eda6c6465df0c49004d9f9570a917aa1e020c948040e8fc3ad33688301",
+    "MathCan/CommonGateCapture.lean": "d987a2a52055e60c6cf0a7efc4310b191967f472226992743eb5e9d20e18713f"
+  },
+  "preserved_435_binary_hashes": "bf8d54e4714cc4b03d3f6bb34c83b7202b87e49c8bfcbff6895c085bb90ceb38  /home/duganist/.cache/ram04-runtime-4.35.0/lean-4.35.0-linux/bin/lean\n12c38901cdbfab178f1bf6145dd30012e9a3b2c11ca695292a5884fa3cbaddb6  /home/duganist/.cache/ram04-runtime-4.35.0/lean-4.35.0-linux/bin/leanchecker\n",
+  "olean_sha256_432": {
+    "CommonGateBound": "2af4f286299cb1d966524483d17e086c9bcf4e470d5fc35fee557fabec27bd34",
+    "CommonGateCapture": "751f3a8552cdbc110158e4ba4cd0629f97cb2a34d0d596fb9b251837569d0ae2"
+  },
+  "olean_sha256_435": {
+    "CommonGateBound": "03a782480f90627314a4f20fcee983edd3db0a9d0eb8c5ef8e962f9a334044ed",
+    "CommonGateCapture": "ba99a86944ae7f9f484c1f2afd8a305d6773fd5d7a89603f1453b82c0c130602"
+  },
+  "exporter_sha256": "e6580597a1482740114b5a1a05add574334a5eeaed5f4f5c9cd670e146859009",
+  "oxilean_sha256": "831e7ad751d69d7f27e8ee59ec40246a6256e971e11f418b0e92f9722771e9fa"
+}
