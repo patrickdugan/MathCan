@@ -1,0 +1,310 @@
+{
+  "conclusion_scope": "retrospective frozen NRF, separately fitted train-only reference output head, two shadow states, previously exposed task fold 12",
+  "measurements": {
+    "16": {
+      "paired_deltas": {
+        "finite_dark_effect": {
+          "joint_minus_task_only_by_seed": [
+            0.0050505113082325165,
+            -0.0002436880502043031,
+            0.003658604024295943,
+            0.002671946699376303,
+            0.007195916265462433,
+            -0.001487572960020998
+          ],
+          "negative_count": 2,
+          "positive_count": 4
+        },
+        "finite_observed_effect": {
+          "joint_minus_task_only_by_seed": [
+            -0.003624477140917015,
+            0.0017511370438433593,
+            -0.0073524652804188295,
+            -0.003207233569155754,
+            -0.004023430579051301,
+            -0.0016302076829504686
+          ],
+          "negative_count": 5,
+          "positive_count": 1
+        },
+        "ratio_b": {
+          "joint_minus_task_only_by_seed": [
+            -0.21352154056874595,
+            -0.069710431636687,
+            -0.22935121470464837,
+            -0.11035921877013821,
+            -0.17760436540614422,
+            -0.08737725958887022
+          ],
+          "negative_count": 6,
+          "positive_count": 0
+        },
+        "ratio_s": {
+          "joint_minus_task_only_by_seed": [
+            -0.8522005611905854,
+            0.10891279110325947,
+            -1.7617880881646304,
+            -0.17278287960703054,
+            -1.2675660243672233,
+            -0.07076603963330186
+          ],
+          "negative_count": 5,
+          "positive_count": 1
+        },
+        "readout_ablation_risk_delta": {
+          "joint_minus_task_only_by_seed": [
+            -0.06505428933284033,
+            0.015070870439192974,
+            -0.041596944853032,
+            -0.03926060388107321,
+            -0.18255455902840378,
+            -0.024138920042873435
+          ],
+          "negative_count": 5,
+          "positive_count": 1
+        },
+        "s": {
+          "joint_minus_task_only_by_seed": [
+            -0.05295089896550986,
+            0.006845043594249978,
+            -0.10915154098445978,
+            -0.010713783973607893,
+            -0.07800605559084317,
+            -0.004396581324291549
+          ],
+          "negative_count": 5,
+          "positive_count": 1
+        },
+        "task_mse": {
+          "joint_minus_task_only_by_seed": [
+            0.04016760073259129,
+            0.006865694797054678,
+            0.047064495746399065,
+            0.013442799157224045,
+            0.035738088158466325,
+            0.00848566852155029
+          ],
+          "negative_count": 0,
+          "positive_count": 6
+        }
+      },
+      "rank8_arms": {
+        "joint": {
+          "b_below_ranknull_significant_seed_states": 12,
+          "finite_dark_effect": 0.014653412302225163,
+          "finite_observed_effect": 0.13737717913290395,
+          "ratio_b": 0.7741926054336141,
+          "ratio_s": 14.007674857453784,
+          "readout_ablation_risk_delta": 0.23256163269714816,
+          "s": 0.8701214370553152,
+          "s_above_ranknull_significant_seed_states": 12,
+          "task_mse": 0.15375905291158157
+        },
+        "pca": {
+          "b_below_ranknull_significant_seed_states": 0,
+          "finite_dark_effect": 0.03809292293324883,
+          "finite_observed_effect": 0.028939933244157154,
+          "ratio_b": 1.106921773386527,
+          "ratio_s": 0.6336596256951138,
+          "readout_ablation_risk_delta": 0.036565292503627465,
+          "s": 0.03936382435119872,
+          "s_above_ranknull_significant_seed_states": 0,
+          "task_mse": 0.38389496027135017
+        },
+        "supervised": {
+          "b_below_ranknull_significant_seed_states": 0,
+          "finite_dark_effect": 0.03150732424346131,
+          "finite_observed_effect": 0.09437524696008502,
+          "ratio_b": 1.0203368362682879,
+          "ratio_s": 6.96360457055082,
+          "readout_ablation_risk_delta": 0.1546232096438348,
+          "s": 0.4324279158262737,
+          "s_above_ranknull_significant_seed_states": 12,
+          "task_mse": 0.24573072583080338
+        },
+        "task_only": {
+          "b_below_ranknull_significant_seed_states": 7,
+          "finite_dark_effect": 0.01184579275436818,
+          "finite_observed_effect": 0.14039162533434563,
+          "ratio_b": 0.9221799438794864,
+          "ratio_s": 14.677039991097036,
+          "readout_ablation_risk_delta": 0.28881737381365313,
+          "s": 0.9115170732627256,
+          "s_above_ranknull_significant_seed_states": 12,
+          "task_mse": 0.1284649950593673
+        }
+      }
+    },
+    "32": {
+      "paired_deltas": {
+        "finite_dark_effect": {
+          "joint_minus_task_only_by_seed": [
+            0.0015926926998044294,
+            0.008028597369060267,
+            0.014154272323060126,
+            0.0031534057241332444,
+            -0.0019760671635496545,
+            0.013337527161940851
+          ],
+          "negative_count": 1,
+          "positive_count": 5
+        },
+        "finite_observed_effect": {
+          "joint_minus_task_only_by_seed": [
+            -0.03673762255572818,
+            0.009475661928203025,
+            -0.003483650619458739,
+            -0.026683444394403233,
+            -0.0009730702303001049,
+            -0.016727132033806352
+          ],
+          "negative_count": 5,
+          "positive_count": 1
+        },
+        "ratio_b": {
+          "joint_minus_task_only_by_seed": [
+            -0.38003630873974087,
+            -0.1967002008979457,
+            -0.23097510345856387,
+            -0.4086214530380964,
+            -0.1952620706320527,
+            -0.2299009008320122
+          ],
+          "negative_count": 6,
+          "positive_count": 0
+        },
+        "ratio_s": {
+          "joint_minus_task_only_by_seed": [
+            -3.599254306495216,
+            -0.9981540378743592,
+            -2.6494118911029183,
+            -3.9589296684994117,
+            -0.7448892375054506,
+            -1.3514074187398908
+          ],
+          "negative_count": 6,
+          "positive_count": 0
+        },
+        "readout_ablation_risk_delta": {
+          "joint_minus_task_only_by_seed": [
+            -0.05392595719978133,
+            0.005783257043779633,
+            -0.08418311127011496,
+            -0.30781139171733457,
+            -0.10537966582427252,
+            -0.045630185229504266
+          ],
+          "negative_count": 5,
+          "positive_count": 1
+        },
+        "s": {
+          "joint_minus_task_only_by_seed": [
+            -0.2236953501810789,
+            -0.062381013389954054,
+            -0.16081774503622748,
+            -0.24482884517674197,
+            -0.04614787860766156,
+            -0.08410067015592282
+          ],
+          "negative_count": 6,
+          "positive_count": 0
+        },
+        "task_mse": {
+          "joint_minus_task_only_by_seed": [
+            0.13372209141918875,
+            0.08821443452538376,
+            0.06701658034802285,
+            0.13996889556415296,
+            0.04502759372765844,
+            0.06549776554327968
+          ],
+          "negative_count": 0,
+          "positive_count": 6
+        }
+      },
+      "rank8_arms": {
+        "joint": {
+          "b_below_ranknull_significant_seed_states": 12,
+          "finite_dark_effect": 0.02564033837600327,
+          "finite_observed_effect": 0.11217429658005804,
+          "ratio_b": 0.4422557179800106,
+          "ratio_s": 8.66745442978946,
+          "readout_ablation_risk_delta": 0.1639139712889243,
+          "s": 0.5365786946631477,
+          "s_above_ranknull_significant_seed_states": 12,
+          "task_mse": 0.24704866902688663
+        },
+        "pca": {
+          "b_below_ranknull_significant_seed_states": 0,
+          "finite_dark_effect": 0.03635285049961204,
+          "finite_observed_effect": 0.024361421817008132,
+          "ratio_b": 1.3882466652961014,
+          "ratio_s": 0.38882806407283393,
+          "readout_ablation_risk_delta": 0.02308338600404352,
+          "s": 0.0240465280560188,
+          "s_above_ranknull_significant_seed_states": 0,
+          "task_mse": 0.3869345916682
+        },
+        "supervised": {
+          "b_below_ranknull_significant_seed_states": 0,
+          "finite_dark_effect": 0.032306731415252726,
+          "finite_observed_effect": 0.0880348422582111,
+          "ratio_b": 1.1687559154898721,
+          "ratio_s": 5.018445711871988,
+          "readout_ablation_risk_delta": 0.1201587478036801,
+          "s": 0.31047098984941,
+          "s_above_ranknull_significant_seed_states": 12,
+          "task_mse": 0.28445357234279883
+        },
+        "task_only": {
+          "b_below_ranknull_significant_seed_states": 12,
+          "finite_dark_effect": 0.01925860035692839,
+          "finite_observed_effect": 0.12469583956430697,
+          "ratio_b": 0.7158383909130792,
+          "ratio_s": 10.884462189825669,
+          "readout_ablation_risk_delta": 0.2624384803217956,
+          "s": 0.6735739450877455,
+          "s_above_ranknull_significant_seed_states": 12,
+          "task_mse": 0.15714077550560557
+        }
+      }
+    }
+  },
+  "model_seeds": [
+    131,
+    137,
+    139,
+    149,
+    151,
+    157
+  ],
+  "n_null_records": 27648,
+  "n_observer_records": 480,
+  "n_rank_seed_nondominated": 86,
+  "n_rank_seed_observer_records": 240,
+  "public_receipt_hashes": {
+    "roc02a_3d_pareto_by_seed.csv": "532594ab628f8f0f000bb027bf50fce213f3dd7b707bedb9827530167a0d87a6",
+    "roc02a_rank_by_seed.csv": "bd5a29026c9dc190298ad069a4bfeb8e039f1551656cbeae1120538fbaef1858",
+    "roc02a_rank_null_medians.csv": "fa4c512f171d4ed301f8c119587199ebd3c599a22d6f5b34eb046f4144e5c8a2"
+  },
+  "rank_grid": [
+    1,
+    2,
+    3,
+    4,
+    7,
+    8,
+    12,
+    16,
+    32
+  ],
+  "selected_shadow_indices": [
+    0,
+    1
+  ],
+  "study_id": "ROC-02A-RETRO-frozen-NRF-rank-causal-pilot-v1",
+  "trained_depths": [
+    16,
+    32
+  ]
+}

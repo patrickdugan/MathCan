@@ -1,0 +1,59 @@
+{
+  "checkpoint_binary_files": 12,
+  "depths": [
+    16,
+    32
+  ],
+  "files_sha256": {
+    "roc02a_3d_pareto_by_seed.csv": "532594ab628f8f0f000bb027bf50fce213f3dd7b707bedb9827530167a0d87a6",
+    "roc02a_rank_by_seed.csv": "bd5a29026c9dc190298ad069a4bfeb8e039f1551656cbeae1120538fbaef1858",
+    "roc02a_rank_null_medians.csv": "fa4c512f171d4ed301f8c119587199ebd3c599a22d6f5b34eb046f4144e5c8a2",
+    "roc02a_rank_nulls_compact.csv.gz": "8c964d1ab8303309246de8922037fd2c119cc6da3969deab7598c2a59f1fc333",
+    "roc02a_rank_observers.csv": "4740d692e2f2a1a9571cfe7fd1b6f415132a7e3c24c9dc7ddfe2852a53ef5501",
+    "roc02a_rank_summary.csv": "71f3293c607e7e8061a29e9e3006d17adeef9a7679407b164239ac94c7552130",
+    "roc02a_retrospective_summary.json": "f415210e2a6b5cc989641c26bdbe76b3ecf6b674112b1c68c9288ec1ddcd1367"
+  },
+  "full_null_archive_only": "roc02a_rank_nulls.csv",
+  "label": "Retrospective NRF synthetic task only; not prospective ROC-02 delayed-rule task",
+  "model_seeds": [
+    131,
+    137,
+    139,
+    149,
+    151,
+    157
+  ],
+  "n_null_rows": 27648,
+  "n_observer_rows": 480,
+  "null_basis": "SHA256-keyed torch Gaussian QR; projector 16x16 principal submatrix float32 SHA256",
+  "null_seeds": [
+    941001,
+    941128
+  ],
+  "observer_adapter_files": 12,
+  "provenance_files": {
+    "roc02a_rank_nulls.csv": "9c245048a6a9bb508f881cf9d38efc6657112ee12abc0141865f523e151414cf",
+    "roc02a_rank_observers.csv": "4740d692e2f2a1a9571cfe7fd1b6f415132a7e3c24c9dc7ddfe2852a53ef5501",
+    "roc02a_rank_summary.csv": "71f3293c607e7e8061a29e9e3006d17adeef9a7679407b164239ac94c7552130"
+  },
+  "public_compressed_null": "roc02a_rank_nulls_compact.csv.gz",
+  "ranks": [
+    1,
+    2,
+    3,
+    4,
+    7,
+    8,
+    12,
+    16,
+    32
+  ],
+  "registered_shadows": [
+    0,
+    1
+  ],
+  "source": "Exact NRF-09 checkpoints and NRF-11 frozen adapters, SHA gated",
+  "status": "Retrospective NRF pilot, not prospective ROC02 delayed-rule",
+  "study": "ROC-02A-RETRO-frozen-NRF-rank-causal-pilot-v1",
+  "task_head": "Separate train-fold-1 ridge final-state head, 8 signed-permutation targets"
+}
