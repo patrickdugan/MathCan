@@ -182,3 +182,44 @@ def chernoff_grid(means,variances,step=F(1,20)):
     return {"arms":arms,"worst_pair_KL":best[0],
             "allocation":best[1],"step":step,
             "status":"synthetic_or_empirical_depending_on_means_source"}
+
+
+def ideal_four_arm_chernoff_exact():
+    """Exact optimum for the *hypothetical* five-type binary signature table.
+
+    Unit-variance Gaussian responses with means in {0,1} have pairwise KL
+    of (mean difference)^2/2. The four arm allocation is:
+      dark_to_observed = 1/5; observed_to_dark = 1/5;
+      freeze_U = 2/5; ablate_readout = 1/5.
+    Its worst-pair weighted KL is 1/5.
+
+    Proof: let arm shares x,y,z,w sum to one. The 10 pairs include
+    distances z, x+y, x+w, y+w. If their minimum is t, then
+      5t <= 2z+(x+y)+(x+w)+(y+w) = 2(x+y+z+w)=2.
+    Hence t<=2/5, i.e. KL<=1/5. The displayed assignment attains
+    all four inequalities. This is an elementary linear program, not
+    a claim of novel Chernoff theory or an empirical mechanism model.
+    """
+    arms=list(next(iter(IDEAL_SIGNATURES.values())))
+    expected={"dark_to_observed":F(1,5),
+              "observed_to_dark":F(1,5),
+              "freeze_U":F(2,5),
+              "ablate_readout":F(1,5)}
+    if set(arms)!=set(expected):
+        raise AssertionError("Canonical ideal table's arm labels changed")
+    per_pair={}
+    for a,b in combinations(IDEAL_SIGNATURES,2):
+        val=sum((expected[e]*gaussian_pair_kl(
+            F(IDEAL_SIGNATURES[a][e]),F(IDEAL_SIGNATURES[b][e]),F(1))
+                 for e in arms),F(0))
+        per_pair[a+"__"+b]=val
+    if min(per_pair.values())!=F(1,5):
+        raise AssertionError("Exact ideal optimum construction changed")
+    return {"schema":"roc01.synthetic_ideal_chernoff_exact.v1",
+            "allocation":expected,
+            "worst_pair_KL":min(per_pair.values()),
+            "analytic_upper_bound_KL":F(1,5),
+            "per_pair_KL":per_pair,
+            "interpretation":"hypothetical five-row signature; not measured neural effects",
+            "minimum_separating_arm_count":len(min_separating_arm_set(IDEAL_SIGNATURES)),
+            "allocation_uses_all_four_arms":all(v>0 for v in expected.values())}
