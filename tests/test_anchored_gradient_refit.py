@@ -73,4 +73,35 @@ class OLM20WitnessTests(unittest.TestCase):
         with self.assertRaises(ValueError):m.rowmat((1,2,3),m.Q)
 
 
+    def test_reference_causal_anchor_can_hurt_vs_direct_gradient(self):
+        r=m.anchor_direct_competition(F(1),F(1,2))
+        self.assertEqual(r['E_source'],-1)
+        self.assertEqual(r['E_target'],0)
+        self.assertEqual(r['direct_absolute_error'],F(1,2))
+        self.assertEqual(r['anchored_absolute_error'],F(3,2))
+        self.assertGreater(r['criterion_polynomial'],0)
+        self.assertFalse(r['anchor_better'])
+        self.assertGreater(r['target_erased_margin'],0)
+
+    def test_matching_finite_residuals_support_anchored_improvement(self):
+        r=m.anchor_direct_competition(F(1,2),F(3,4))
+        self.assertEqual(r['E_target'],F(-3,8))
+        self.assertEqual(r['anchored_prediction'],F(1,4))
+        self.assertEqual(r['anchored_absolute_error'],F(5,8))
+        self.assertEqual(r['direct_absolute_error'],F(9,8))
+        self.assertLess(r['criterion_polynomial'],0)
+        self.assertTrue(r['anchor_better'])
+
+    def test_exact_anchored_minus_direct_is_source_finite_residual(self):
+        for a,b in ((F(1),F(1,2)),(F(1,2),F(3,4)),(F(1,3),F(2,3))):
+            r=m.anchor_direct_competition(a,b)
+            self.assertEqual(r['anchored_prediction']-r['direct_clean_gradient_prediction'],
+                             r['source_finite_residual'])
+            self.assertEqual(r['E_target']-r['direct_clean_gradient_prediction'],
+                             r['target_finite_residual'])
+            self.assertEqual(r['anchored_absolute_error']**2-r['direct_absolute_error']**2,
+                             r['criterion_polynomial'])
+
+
+
 if __name__=='__main__':unittest.main()
