@@ -44,8 +44,11 @@ class TestSyntheticClosureSweep(unittest.TestCase):
             self.assertLessEqual(r["L_lower_svd"],r["L_upper_sampled"]+1e-9)
             self.assertFalse(r["sweep_is_global_optimum"])
             self.assertEqual(r["random_count"],128)
-            self.assertGreaterEqual(r["one_sided_rank_p_for_svd_candidate"],1/129)
-            self.assertLessEqual(r["one_sided_rank_p_for_svd_candidate"],1)
+            if r["conditional_null_degenerate"]:
+                self.assertIsNone(r["one_sided_rank_p_for_svd_candidate"])
+            else:
+                self.assertGreaterEqual(r["one_sided_rank_p_for_svd_candidate"],1/129)
+                self.assertLessEqual(r["one_sided_rank_p_for_svd_candidate"],1)
         self.assertAlmostEqual(rows[8]["L_upper_sampled"],0.,places=10)
         self.assertLess(rows[4]["L_upper_sampled"],1e-8)
 
@@ -64,6 +67,9 @@ class TestSyntheticClosureSweep(unittest.TestCase):
         # k=2 equals rank(G), so there is no free random subspace and its
         # exact B is source-key independent. At k=4 the random extension is
         # genuinely randomized and the seeded medians must differ.
+        self.assertTrue(a["rows"][0]["conditional_null_degenerate"])
+        self.assertIsNone(a["rows"][0]["one_sided_rank_p_for_svd_candidate"])
+        self.assertFalse(a["rows"][1]["conditional_null_degenerate"])
         self.assertNotEqual(a["rows"][1]["random_median"],c["rows"][1]["random_median"])
 
     def test_invalid_g_and_horizon(self):
