@@ -62,4 +62,22 @@ class GradientDualTests(unittest.TestCase):
         with self.assertRaises(ValueError):g.cubic_sharpness(0,1)
 
 
+    def test_nonorthogonal_inactive_row_gauge_loosens_cauchy_ceiling(self):
+        for t in (Q(1,100),Q(1),Q(3),Q(100)):
+            row=g.gauge_rescaling_witness(t)
+            self.assertEqual(row['physical_task_derivative'],Q(1))
+            self.assertEqual(row['inactive_dual_derivative'],Q(1))
+            self.assertEqual(row['squared_cauchy_ceiling'],1+t*t)
+        self.assertLess(g.gauge_rescaling_witness(Q(1,100))['squared_cauchy_ceiling'],
+                        g.gauge_rescaling_witness(100)['squared_cauchy_ceiling'])
+        with self.assertRaises(ValueError):g.gauge_rescaling_witness(0)
+
+    def test_orthogonal_row_gauge_preserves_minimum_norm_bound(self):
+        row=g.orthogonal_row_gauge_witness()
+        lam=row['original_lambda']
+        self.assertEqual(row['permuted_lambda'],(lam[2],lam[0],lam[1]))
+        self.assertEqual(row['original_squared_ceiling'],row['permuted_squared_ceiling'])
+
+
+
 if __name__=="__main__":unittest.main()
