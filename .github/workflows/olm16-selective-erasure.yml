@@ -1,0 +1,30 @@
+name: OLM-16 exact selective SAE erasure geometry
+
+on:
+  push:
+    paths:
+      - 'research/orbit_lock/OLM16_SELECTIVE_ERASURE_GEOMETRY.md'
+      - 'research/orbit_lock/selective_erasure.py'
+      - 'tests/test_selective_erasure.py'
+      - '.github/workflows/olm16-selective-erasure.yml'
+  pull_request:
+    paths:
+      - 'research/orbit_lock/OLM16_SELECTIVE_ERASURE_GEOMETRY.md'
+      - 'research/orbit_lock/selective_erasure.py'
+      - 'tests/test_selective_erasure.py'
+      - '.github/workflows/olm16-selective-erasure.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-rational-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify minimum-norm selective kill, tangent sham and curvature witnesses
+        run: python -m unittest discover -s tests -p 'test_selective_erasure.py' -v
+      - name: Recompute exact rational examples
+        run: python research/orbit_lock/selective_erasure.py
