@@ -1,0 +1,20 @@
+name: OLM-22 exact weighted-median SAE calibration math
+on:
+  push:
+    paths: ['research/orbit_lock/OLM22_WEIGHTED_MEDIAN_TRANSFER.md', 'research/orbit_lock/weighted_median_transfer.py', 'tests/test_weighted_median_transfer.py', '.github/workflows/olm22-weighted-median.yml']
+  pull_request:
+    paths: ['research/orbit_lock/OLM22_WEIGHTED_MEDIAN_TRANSFER.md', 'research/orbit_lock/weighted_median_transfer.py', 'tests/test_weighted_median_transfer.py', '.github/workflows/olm22-weighted-median.yml']
+  workflow_dispatch:
+jobs:
+  exact-fraction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check exact weighted LAD and coupled risk transfer rational witnesses
+        run: python -m unittest discover -s tests -p 'test_weighted_median_transfer.py' -v
+      - name: Print exact original counterexamples
+        run: python research/orbit_lock/weighted_median_transfer.py
