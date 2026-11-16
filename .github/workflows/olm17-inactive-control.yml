@@ -1,0 +1,25 @@
+name: OLM-17 exact inactive-SAE sham feasibility
+on:
+  push:
+    paths:
+      - 'research/orbit_lock/OLM17_INACTIVE_ENCODER_CONTROL.md'
+      - 'research/orbit_lock/inactive_control.py'
+      - 'tests/test_inactive_control.py'
+      - '.github/workflows/olm17-inactive-control.yml'
+  pull_request:
+    paths:
+      - 'research/orbit_lock/OLM17_INACTIVE_ENCODER_CONTROL.md'
+      - 'research/orbit_lock/inactive_control.py'
+      - 'tests/test_inactive_control.py'
+      - '.github/workflows/olm17-inactive-control.yml'
+  workflow_dispatch:
+jobs:
+  independent-fraction-oracle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s tests -p 'test_inactive_control.py' -v
+      - run: python research/orbit_lock/inactive_control.py
