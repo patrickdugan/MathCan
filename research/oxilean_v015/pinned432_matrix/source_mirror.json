@@ -1,0 +1,7 @@
+{
+  "status": "matched",
+  "source_sha256": {
+    "research/approximation_mathlib432/ApproximationMathlib/WordTransport.lean": "c9de50676106ae6112e343384ef93274b6a68f4255eff2cc98fffb7bf92ce350"
+  },
+  "frozen_linux": "/dev/shm/oxilean-sharp432-20261117/matrix-source/ApproximationMathlib/WordTransport.lean"
+}

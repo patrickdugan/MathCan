@@ -1,0 +1,13 @@
+/dev/shm/oxilean-sharp432-20261117/matrix-source/ApproximationMathlib/WordTransport.lean: OK
+/tmp/oxilean-sharp432-exec-20261117/bin/lean: OK
+/tmp/oxilean-sharp432-exec-20261117/bin/leanchecker: OK
+/dev/shm/oxilean-sharp432-20261117/toolchain-lib/LeanChecker.olean: OK
+/tmp/oxilean-sharp432-exec-20261117/bin/lean4export: OK
+/tmp/oxilean-sharp432-exec-20261117/bin/oxilean-verify: OK
+/dev/shm/oxilean-sharp432-20261117/matrix-source/ApproximationMathlib/WordTransport.lean: OK
+/tmp/oxilean-sharp432-exec-20261117/bin/lean: OK
+/tmp/oxilean-sharp432-exec-20261117/bin/leanchecker: OK
+/dev/shm/oxilean-sharp432-20261117/toolchain-lib/LeanChecker.olean: OK
+/tmp/oxilean-sharp432-exec-20261117/bin/lean4export: OK
+/tmp/oxilean-sharp432-exec-20261117/bin/oxilean-verify: OK
+Frozen ordered-matrix compilation, native replay, OxiLean and complete term comparison passed.

@@ -1,0 +1,64 @@
+Compared 30560 exported constants with unchanged source: all types and values match
+MathCan.WordCapture.decoded_approximation {d n D : ℕ} {f : MathCan.MultivariateTaylor.Space d → ℝ}
+  (hf : ContDiff ℝ (↑n + 1) f) (hD : 1 ≤ D) (spatialN K p a N : ℕ) (hK : 0 < K)
+  (hTags : MathCan.WordCapture.tagCount d D < 2 ^ p) (hwidth : 2 * N < 2 ^ a) (delta mu M H alpha tau rho : ℝ)
+  (hdelta : 0 < delta) (hmu : 0 < mu) (hmu1 : mu ≤ 1) (hM : 0 ≤ M) (hH : 0 ≤ H) (ha : 0 ≤ alpha) (htau : 0 < tau)
+  (scale : mu ^ (↑(n + 1) + alpha) ≤ 2 * tau)
+  (hN : 2 * H * ↑D ^ (↑(n + 1) + alpha) + MathCan.CommonGateBound.commonBudget (n + 1) D / 2 + 1 / 2 ≤ ↑N)
+  (holder :
+    ∀ (y z : MathCan.MultivariateTaylor.Space d),
+      ‖iteratedFDeriv ℝ (n + 1) f z - iteratedFDeriv ℝ (n + 1) f y‖ ≤ H * ‖z - y‖ ^ alpha)
+  (sites : List (MathCan.SpatialNormalized.Site ℝ)) (safe : MathCan.SpatialNormalized.validSites spatialN K delta sites)
+  (tags : List (MathCan.WordCapture.Tag d D)) (alignment : tags.length + 1 = K ^ sites.length)
+  (a0 x : MathCan.MultivariateTaylor.Space d)
+  (bound : ∀ i ≤ tags.length, ∀ r ≤ n + 1, ‖iteratedFDeriv ℝ r f (MathCan.WordCapture.anchors mu tags a0 i)‖ ≤ M)
+  (hdist :
+    ‖x -
+          MathCan.WordCapture.anchors mu tags a0
+            (MathCan.SpatialRouting.snakeRank K (List.map MathCan.SpatialNormalized.Site.fine sites))‖ ≤
+      rho)
+  (hrho : rho ≤ mu) :
+  |f x -
+        MathCan.WordTransport.evaluate
+          (MathCan.WordCapture.captured spatialN K p a N delta M tau sites tags
+            (MathCan.WordCapture.targets mu f tags a0))
+          (mu⁻¹ •
+            (x -
+              MathCan.WordCapture.anchors mu tags a0
+                (MathCan.SpatialRouting.snakeRank K (List.map MathCan.SpatialNormalized.Site.fine sites))))| ≤
+    H * rho ^ (↑(n + 1) + alpha) / ↑(n + 1).factorial + ↑(MathCan.WordTransport.size d (n + 1)) * (tau / 2)
+'MathCan.WordCapture.decoded_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.directional_append' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.basis_cons' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.directional_component' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.directional_contDiff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.directional_ofFn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.repeated_component' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.tensor_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.factorial_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.row_compatibility' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.size_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.word_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.word_pack' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.matrix_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.matrix_application' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.matrix_compatibility' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.row_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.row_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.step_norm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.matrix_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.value_label' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.values_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.evaluation_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordTransport.evaluation_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordCapture.finite_parameters' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordCapture.amount_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordCapture.predict_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordCapture.innovation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordCapture.packet_update' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordCapture.frames_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordCapture.reference_accuracy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordCapture.captured_accuracy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordCapture.targets_residuals' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordCapture.normalized_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.WordCapture.decoded_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]

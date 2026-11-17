@@ -1,0 +1,15 @@
+{
+  "status": "matched",
+  "files": [
+    {
+      "source": "replay432/lean4export-source/.lake/build/bin/lean4export",
+      "target_linux": "/tmp/oxilean-sharp432-exec-20261117/bin/lean4export",
+      "sha256": "e6580597a1482740114b5a1a05add574334a5eeaed5f4f5c9cd670e146859009"
+    },
+    {
+      "source": "build/oxilean-verify",
+      "target_linux": "/tmp/oxilean-sharp432-exec-20261117/bin/oxilean-verify",
+      "sha256": "831e7ad751d69d7f27e8ee59ec40246a6256e971e11f418b0e92f9722771e9fa"
+    }
+  ]
+}

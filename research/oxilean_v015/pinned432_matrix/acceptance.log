@@ -1,0 +1,21 @@
+{
+  "status": "accepted",
+  "scope": "General ordered tensor-word matrix compatibility, sharp normalized residuals, bounded correction alphabets and decoded higher-order approximation proved without a compatibility or coefficient-accuracy premise. Legacy grouped coordinates and dense ReLU resource realization are separate.",
+  "export_sha256": "8a219dee6229187be4f641651369ea94036dc9c9847679e17fc3e99f998eb5fb",
+  "verdicts": {
+    "verified": 29072,
+    "unsupported": 0,
+    "rejected": 0
+  },
+  "constants_compared": 30560,
+  "theorems": 34,
+  "mathlib_revision": "360da6fa66c1273b76b6b2d8c5666fd5ac2e3b56",
+  "runtime_artifact_source": "Hash-checked Linux-local mirror of the pinned cache",
+  "native_kernel_method": "Unmodified pinned LeanChecker.replayFromImports API; stock CLI path scan omitted",
+  "vendor_roots": [],
+  "standard_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "modules": [
+    "ApproximationMathlib.WordTransport"
+  ],
+  "sources": {
+    "WordTransport": "research/approximation_mathlib432/ApproximationMathlib/WordTransport.lean"
+  },
+  "theorems": [
+    "MathCan.WordTransport.directional_append",
+    "MathCan.WordTransport.basis_cons",
+    "MathCan.WordTransport.directional_component",
+    "MathCan.WordTransport.directional_contDiff",
+    "MathCan.WordTransport.directional_ofFn",
+    "MathCan.WordTransport.repeated_component",
+    "MathCan.WordTransport.tensor_scale",
+    "MathCan.WordTransport.factorial_transport",
+    "MathCan.WordTransport.row_compatibility",
+    "MathCan.WordTransport.size_formula",
+    "MathCan.WordTransport.word_length",
+    "MathCan.WordTransport.word_pack",
+    "MathCan.WordTransport.matrix_integral",
+    "MathCan.WordTransport.matrix_application",
+    "MathCan.WordTransport.matrix_compatibility",
+    "MathCan.WordTransport.row_sub",
+    "MathCan.WordTransport.row_bound",
+    "MathCan.WordTransport.step_norm",
+    "MathCan.WordTransport.matrix_residual",
+    "MathCan.WordTransport.value_label",
+    "MathCan.WordTransport.values_bound",
+    "MathCan.WordTransport.evaluation_error",
+    "MathCan.WordTransport.evaluation_values",
+    "MathCan.WordCapture.finite_parameters",
+    "MathCan.WordCapture.amount_bound",
+    "MathCan.WordCapture.predict_bound",
+    "MathCan.WordCapture.innovation",
+    "MathCan.WordCapture.packet_update",
+    "MathCan.WordCapture.frames_length",
+    "MathCan.WordCapture.reference_accuracy",
+    "MathCan.WordCapture.captured_accuracy",
+    "MathCan.WordCapture.targets_residuals",
+    "MathCan.WordCapture.normalized_approximation",
+    "MathCan.WordCapture.decoded_approximation"
+  ],
+  "mathlib_revision": "360da6fa66c1273b76b6b2d8c5666fd5ac2e3b56",
+  "vendor_roots": []
+}
