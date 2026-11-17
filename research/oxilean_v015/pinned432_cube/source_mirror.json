@@ -1,0 +1,7 @@
+{
+  "status": "matched",
+  "source_sha256": {
+    "research/approximation_mathlib432/ApproximationMathlib/CubeApproximation.lean": "ac12e290700873a1cd1d62dbcaebc77b9ee6d3596aee0fac75cef727db4541f1"
+  },
+  "frozen_linux": "/dev/shm/oxilean-sharp432-20261117/cube-source/ApproximationMathlib/CubeApproximation.lean"
+}

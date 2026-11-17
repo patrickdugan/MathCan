@@ -1,0 +1,10 @@
+{
+  "status": "byte_identical",
+  "source": "MathCan/SpatialInterface.lean",
+  "source_sha256": "6d54a5798812e7d88dbbfb2c262f763f3094b1d321f866b81f331e70a14feb91",
+  "reference_olean": "replay432/Lemmas/lib/MathCan/SpatialInterface.olean",
+  "rebuilt_olean_sha256": "175442ccd1b28d986a21642d398df06149d1d453a4b3b9f7788152e68bb5ba8b",
+  "reference_olean_sha256": "175442ccd1b28d986a21642d398df06149d1d453a4b3b9f7788152e68bb5ba8b",
+  "lean": "4.32.0-rc1",
+  "method": "Frozen unchanged original source rebuilt with pinned Lean; entire olean byte-identical to the imported artifact."
+}

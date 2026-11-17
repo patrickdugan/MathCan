@@ -1,0 +1,84 @@
+Compared 30436 exported constants with unchanged source: all types and values match
+MathCan.CubeSpatial.approximation {d n D : ℕ} {f : MathCan.MultivariateTaylor.Space d → ℝ}
+  (hf : ContDiffOn ℝ (↑n + 1) f (MathCan.CubeTaylor.cube d)) (hD : 1 ≤ D) (spatialN K p a N cap : ℕ) (hK : 0 < K)
+  (hTags : MathCan.WordCapture.tagCount d D < 2 ^ p) (hwidth : 2 * N < 2 ^ a) (delta mu M H alpha tau : ℝ)
+  (hdelta : 0 < delta) (hmu : 0 < mu) (hcap : mu * ↑cap = 1) (hM : 0 ≤ M) (hH : 0 ≤ H) (ha : 0 ≤ alpha) (htau : 0 < tau)
+  (scale : mu ^ (↑(n + 1) + alpha) ≤ 2 * tau)
+  (hN : 2 * H * ↑D ^ (↑(n + 1) + alpha) + MathCan.CommonGateBound.commonBudget (n + 1) D / 2 + 1 / 2 ≤ ↑N)
+  (holder :
+    ∀ y ∈ MathCan.CubeTaylor.cube d,
+      ∀ z ∈ MathCan.CubeTaylor.cube d,
+        ‖iteratedFDerivWithin ℝ (n + 1) f (MathCan.CubeTaylor.cube d) z -
+              iteratedFDerivWithin ℝ (n + 1) f (MathCan.CubeTaylor.cube d) y‖ ≤
+          H * ‖z - y‖ ^ alpha)
+  (bound : ∀ y ∈ MathCan.CubeTaylor.cube d, ∀ r ≤ n + 1, ‖iteratedFDerivWithin ℝ r f (MathCan.CubeTaylor.cube d) y‖ ≤ M)
+  (shift : Fin d → ℤ) (coarse fine : Fin d → ℕ) (hc : ∀ (j : Fin d), coarse j ≤ spatialN)
+  (hFine : ∀ (j : Fin d), fine j < K) (x : MathCan.MultivariateTaylor.Space d) (hx : x ∈ MathCan.CubeTaylor.cube d)
+  (safe :
+    ∀ (j : Fin d),
+      MathCan.SpatialScalar.safeCell delta ((mu * ↑D)⁻¹ * x j + 1 - ↑(shift j) / ↑D) (coarse j * K + fine j)) :
+  |f x -
+        MathCan.WordTransport.evaluate
+          (MathCan.CubeSpatial.decoded spatialN K p a N cap hK delta mu M tau f shift coarse fine x)
+          (mu⁻¹ • (x - MathCan.CubeWalk.point cap D mu shift coarse K fine))| ≤
+    H * (mu * ↑D) ^ (↑(n + 1) + alpha) / ↑(n + 1).factorial +
+      ↑(MathCan.WordTransport.size d (n + 1)) * ↑D ^ (n + 1) * (tau / 2)
+'MathCan.CubeSpatial.approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.cube_convex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.cube_uniqueDiff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.cube_segment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.dir_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.dir_tensor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.line_smooth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.line_derivatives' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.dir_ofFn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.line_polynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.line_tensor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.holder_remainder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.value_label' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.evaluation_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.axes_tensor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.axes_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.values_axes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.row_compatibility' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.row_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.axis_line_polynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.axis_line_holder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.axis_remainder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.values_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.matrix_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeTaylor.evaluation_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeAnchors.digit_div' depends on axioms: [propext, Quot.sound]
+'MathCan.CubeAnchors.digit_mod' depends on axioms: [propext]
+'MathCan.CubeAnchors.unrank_bound' depends on axioms: [propext]
+'MathCan.CubeAnchors.unrank_rank' depends on axioms: [propext, Quot.sound]
+'MathCan.CubeAnchors.anchor_in_cube' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeAnchors.clip_rescale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeAnchors.safe_coverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeAnchors.selected_anchor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeAnchors.selected_coverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeCapture.axis_segment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeCapture.targets_residuals' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeCapture.normalized_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeCapture.decoded_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeWalk.adjacent_symm' does not depend on any axioms
+'MathCan.CubeWalk.adjacent_cons' depends on axioms: [propext]
+'MathCan.CubeWalk.adjacent_head' depends on axioms: [propext]
+'MathCan.CubeWalk.unrank_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeWalk.point_in_cube' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeWalk.lattice_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeWalk.delta_motion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeWalk.adjacent_motion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeWalk.clamp_cast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeWalk.point_anchor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeWalk.edge_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeWalk.schedule_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeWalk.anchors_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeWalk.anchors_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeWalk.schedule_anchors' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeSpatial.query_fine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeSpatial.query_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeSpatial.schedule_inside' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeSpatial.schedule_selected' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeSpatial.micro_scale_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.CubeSpatial.approximation' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,40 @@
+ApproximationMathlib/CubeApproximation.lean:35:20: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ApproximationMathlib/CubeApproximation.lean:35:30: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ApproximationMathlib/CubeApproximation.lean:35:39: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ApproximationMathlib/CubeApproximation.lean:81:18: warning: This simp argument is unused:
+  dir
+
+Hint: Omit it from the simp argument list.
+  simp [d̵i̵r̵,̵along]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ApproximationMathlib/CubeApproximation.lean:304:6: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+ApproximationMathlib/CubeApproximation.lean:304:6: warning: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ApproximationMathlib/CubeApproximation.lean:607:5: warning: Variable name `htau` is not explicitly referenced.
+
+The binding can be removed (if unused) or named `_` (if used implicitly).
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+ApproximationMathlib/CubeApproximation.lean:812:22: warning: This simp argument is unused:
+  Pi.single_apply
+
+Hint: Omit it from the simp argument list.
+  simp [̵p̵o̵i̵n̵t̵,̵b̵a̵s̵i̵s̵,̵P̵i̵.̵s̵i̵n̵g̵l̵e̵_̵a̵p̵p̵l̵y̵,̵h̵j̵,̵h̵l̵]̵[̲p̲o̲i̲n̲t̲,̲ ̲b̲a̲s̲i̲s̲,̲ ̲h̲j̲,̲ ̲h̲l̲]̲
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ApproximationMathlib/CubeApproximation.lean:845:6: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+ApproximationMathlib/CubeApproximation.lean:845:6: warning: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`

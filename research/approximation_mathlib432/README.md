@@ -1,4 +1,4 @@
-# Scalar analytic approximation bridge
+# Analytic approximation bridge
 
 This isolated Lean 4.32.0-rc1 project adds the pinned Mathlib dependency at
 360da6fa66c1273b76b6b2d8c5666fd5ac2e3b56. The main MathCan toolchain remains
@@ -28,13 +28,18 @@ construct rounded/clipped correction frames and prove uniform tau/2 accuracy.
 `MultivariateCapture` proves the resulting coefficient accuracy and the final
 smooth/Holder approximation bounds without an assumed accuracy contract.
 
-These results cover arbitrary dimension and degree with global ContDiff
-regularity, segment derivative estimates, and explicit site/schedule and bit
-width premises. The correction alphabet is finite but uses a general O(1/tau)
-predictor bound. The sharp small-alphabet transport estimate, closed-cube/domain
-and geometric specialization, and dense ReLU arithmetic/resource compiler remain
-open. Exact polynomial evaluation is not yet realized as the desired bounded,
-quantized ReLU network. See ../oxilean_v015/MULTIVARIATE_SYNTHESIS_REPORT.md.
+The subsequent `SharpTransport` and `WordTransport` modules prove a uniform
+correction alphabet and general ordered-word matrix compatibility. The current
+`CubeApproximation` module proves intrinsic closed-cube Taylor regularity,
+clipped-anchor serpentine coverage and the actual decoded spatial approximation.
+Its 58 new roots bring the verified campaign to 374 research roots. For k>=1
+the safe-phase error is H*(D*mu)^(k+alpha)/k! + J*D^k*tau/2. A global smooth
+extension, a compatibility oracle and an assumed anchor-distance bound are not
+premises. Safe-phase aggregation, approximate multiplication and the dense
+quantized ReLU resource compiler remain open. See
+[CUBE_APPROXIMATION_REPORT.md](../oxilean_v015/CUBE_APPROXIMATION_REPORT.md).
+For the current frozen replay, restore the cube helpers into CAMPAIGN_WORK and
+follow that report; the analytic helpers below describe the earlier scalar run.
 
 The standard Lake project pins Mathlib by exact Git revision and requires the
 parent MathCan package by path. For the space-constrained local replay, use the

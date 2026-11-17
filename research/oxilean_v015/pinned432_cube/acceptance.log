@@ -1,0 +1,21 @@
+{
+  "status": "accepted",
+  "scope": "Intrinsic closed-cube Taylor jets, exact clipped-anchor serpentine schedule, bounded motion tags and decoded spatial approximation. Safe-phase aggregation and dense ReLU resource realization remain separate.",
+  "export_sha256": "285242bb16a5260d1b7bb0721530c1de0c6ff2db20e8e9b5f79673a889ee6fa9",
+  "verdicts": {
+    "verified": 28954,
+    "unsupported": 0,
+    "rejected": 0
+  },
+  "constants_compared": 30436,
+  "theorems": 58,
+  "mathlib_revision": "360da6fa66c1273b76b6b2d8c5666fd5ac2e3b56",
+  "runtime_artifact_source": "Hash-checked Linux-local mirror of the pinned cache",
+  "native_kernel_method": "Unmodified pinned LeanChecker.replayFromImports API; stock CLI path scan omitted",
+  "vendor_roots": [],
+  "standard_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ]
+}

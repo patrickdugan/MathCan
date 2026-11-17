@@ -1,3 +1,4 @@
 import ApproximationMathlib.MultivariateCapture
 import ApproximationMathlib.SharpTransport
 import ApproximationMathlib.WordTransport
+import ApproximationMathlib.CubeApproximation
