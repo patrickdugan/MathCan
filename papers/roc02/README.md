@@ -1,27 +1,33 @@
-# Recurrent observer and source-rule transfer papers
+# Recurrent observer and source-rule transfer research
 
-**Current empirical manuscript:** [ROC-02–04 v0.3](ROC02_Observer_Causal_Update_v03_20261117.md), dated 17 November 2026.
+**Current empirical manuscript:** [ROC-02–05 v0.4](ROC02_Observer_Causal_Update_v04_20261117.md), dated 17 November 2026.
 
-The v0.3 revision incorporates the prospectively registered **ROC-04B independent rule-identity holdout** after the ROC-04A exposed-development result. Twelve frozen original models were evaluated with zero training updates on 384 previously reserved new table permutations. Across six matched model seeds, four-rule training attains 21.09% test answer accuracy and 512-rule training attains 73.05%, a +51.95 percentage-point mean paired gain (6/6 seeds positive; one-sided exact sign-flip p=1/64). The ROC-04B primary gate passes. Its separate complete eight-row reconstruction competence gate fails (11.89% mean; zero of six seeds meet 50% table exactness).
+Version 0.4 reports the registered **ROC-05A new-seed/new-permutation-pool training comparison** and **ROC-05B physically matched source-versus-hidden intervention** alongside the prior ROC-02–04 results. Both experiments use the original frozen ROC-05A first-run weights. All original training/checkpoint SHA-256 identities and source hashes are published.
 
-The published ROC-04B protocol documents the first halted source-access attempt and its pre-result checkpoint SHA transcription repair. The original ROC-02 family-6/7 procedural holdout remains unopened. The ROC-04 384-table reserved identities **have now been evaluated** on these fixed checkpoints and are no longer an unused test set for this model cohort.
+ROC-05A replicates the transfer gain on independent training initializations and new source rules: four-rule accuracy **20.51%**, 512-rule accuracy **74.67%**, mean gain **+54.17 percentage points**, **6/6** positive model-seed directions, exact one-sided sign-flip **p=0.015625**. Complete eight-row table recovery averages **13.41%**, so the separate competence gate still fails.
 
-**Earlier versions:** [v0.2 ROC-02–04A](ROC02_Observer_Causal_Update_v02_20261117.md), with exposed-development transfer, and [v0.1 ROC-02/03](ROC02_Observer_Causal_Update_v01_20261117.md), preserving the earlier observer causal null and training diagnostics.
+ROC-05B's physical radius-0.20 intervention uses a train-only supervised rank-seven observer, legal early source-A table-row swaps, original model future logits and a hidden-L2-matched continuous input comparator. The mean observed minus softened-input target-margin gain is **−0.06805338**, with **0/6** positive seeds and exact p=1.0. Its primary causal gate fails despite 75.33% correctness on full legal changed-rule inputs. The 48 local ROC-01 observer cards are unclassified, with large incoming computed-change coupling.
+
+The original ROC-02 source family-6/7 test remains unopened. ROC-04's previously reserved 384-table set was consumed in ROC-04B. ROC-05 has a separate new 384-table reserve consisting only of allocated identities, with **no input examples or labels generated or scored**.
+
+**Earlier manuscripts:** [v0.3](ROC02_Observer_Causal_Update_v03_20261117.md), [v0.2](ROC02_Observer_Causal_Update_v02_20261117.md), [v0.1](ROC02_Observer_Causal_Update_v01_20261117.md). These versions are preserved unchanged.
 
 ## Independent arithmetic checks
 
-- [ROC-02E six-seed source CSV](ROC02_primary_six_seed_v01.csv) and [sign-flip checker](roc02_primary_signflip_v01.py), descriptive calibration-family causal test p=0.375.
-- [ROC-04A six-seed development CSV](ROC04A_primary_six_seed_v01.csv) and [sign-flip checker](roc04a_primary_signflip_v01.py), registered development rule-transfer result p=0.015625.
-- [ROC-04B six-seed reserved-test CSV](ROC04B_reserved_test_by_seed_v01.csv) and [source-blob/sign-flip checker](roc04b_reserved_signflip_v01.py), independent test rule-identity gain p=0.015625.
+- [ROC-02E](ROC02_primary_six_seed_v01.csv) and [exact sign-flip](roc02_primary_signflip_v01.py): negative calibration-family causal result p=0.375.
+- [ROC-04A](ROC04A_primary_six_seed_v01.csv) and [verification](roc04a_primary_signflip_v01.py): exposed-dev gain p=0.015625.
+- [ROC-04B](ROC04B_reserved_test_by_seed_v01.csv) and [verification](roc04b_reserved_signflip_v01.py): independent reserved-rule test p=0.015625.
+- [ROC-05A original-run table](ROC05A_fresh_replication_by_seed_v01.csv) and [ROC-05B paired causal table](ROC05B_causal_primary_by_seed_v01.csv), checked together by [ROC-05 arithmetic verifier](roc05_fresh_and_causal_signflip_v01.py).
 
-Run from the MathCan repository root:
+Run all checks with the Python standard library from the repository root:
 
 ```bash
 python papers/roc02/roc02_primary_signflip_v01.py
 python papers/roc02/roc04a_primary_signflip_v01.py
 python papers/roc02/roc04b_reserved_signflip_v01.py
+python papers/roc02/roc05_fresh_and_causal_signflip_v01.py
 ```
 
-The checks use Python's standard library. For full test reproduction, see [ROC-04B merged PR #157](https://github.com/MoralityLabAI/LoopedTransformers/pull/157) and [GitHub Actions run #44087829448](https://github.com/MoralityLabAI/LoopedTransformers/actions/runs/44087829448), which verify the 384 generated exact-oracle cases, all twelve original checkpoint hashes and 4,608 prediction/control records.
+The [ROC-05B complete raw-null hosted replay](https://github.com/MoralityLabAI/LoopedTransformers/actions/runs/44107680072) provides all 73,728 intervention records and 3,072 rank-matched null observations on the original twelve first-run weights. An additional independent null/empirical-tail/Holm [audit workflow](https://github.com/MoralityLabAI/LoopedTransformers/pull/165) checks the full geometry without new neural training.
 
-Successful rule-identity transfer under a supplied table-to-query route establishes neither complete rule-table reconstruction nor a low-rank mechanistic quotient. A next independent model-seed cohort and ROC-01 Amendment C-compliant physical interventions remain scientifically distinct follow-ups.
+Inference boundaries: ROC-05A evaluates a new exposed development pool, while ROC-05B selects its mechanism comparison after ROC-05A dev results were available. ROC-05B's softened input control is off the legal source manifold. Its negative physical-margin result concerns one frozen rank-7 projection and output horizon. A new independent rule-identity set and the complete ROC-01 intervention family remain distinct future gates.
