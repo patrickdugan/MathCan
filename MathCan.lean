@@ -141,3 +141,4 @@ import MathCan.NOR37RandomizedCurvature
 import MathCan.NOR38UniformAuditMaximin
 
 import MathCan.NOR40SingletonBracket
+import MathCan.NOR42HiddenSuffix
