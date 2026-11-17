@@ -80,13 +80,13 @@ theorem finite_attack_has_response_below_average
     (nonempty : coverage ≠ [])
     (averaged : coverage.sum ≤ coverage.length * benchmark) :
     ∃ attackHits, attackHits ∈ coverage ∧ attackHits ≤ benchmark := by
-  classical
-  by_contra noAttack
+  apply Classical.byContradiction
+  intro noAttack
   have hall : ∀ x ∈ coverage, benchmark + 1 ≤ x := by
     intro x hx
-    by_contra less
-    have bound : x ≤ benchmark := by omega
-    exact noAttack ⟨x, hx, bound⟩
+    by_cases le : x ≤ benchmark
+    · exact False.elim (noAttack ⟨x,hx,le⟩)
+    · omega
   have lower := sum_lower_bound_of_pointwise_lower
     coverage (benchmark + 1) hall
   have positiveLength : 0 < coverage.length := by
