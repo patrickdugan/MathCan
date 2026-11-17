@@ -32,6 +32,29 @@ abbrev choose := MathCan.NOR23CoordinateAudit.binomial
 def uniformAttackHitCount (m k r : Nat) : Nat :=
   choose m r - choose (m-k) r
 
+/-- Concrete row regularity: for a fixed public Boolean checked-position
+    mask, uniformly enumerating every radius-r altered support detects
+    C(m,r)-C(m-k,r) supports, where m is mask length and k is the
+    number of checked positions. This supplies the finite incidence
+    row count used in the minimax double-count, directly from NOR23's
+    exact subset enumeration and the mask partition identity. -/
+theorem fixed_audit_has_exact_uniform_attack_hit_count
+    (auditMask : List Bool) (r : Nat) :
+    (MathCan.NOR23CoordinateAudit.kSubsets auditMask r).length -
+      (MathCan.NOR23CoordinateAudit.kSubsets
+        (auditMask.filter (fun checked => !checked)) r).length =
+      uniformAttackHitCount auditMask.length
+        (auditMask.filter (fun checked => checked)).length r := by
+  have part :=
+    MathCan.NOR23CoordinateAudit.changed_unchanged_partition_counts auditMask
+  have complementLength :
+      (auditMask.filter (fun checked => !checked)).length =
+      auditMask.length - (auditMask.filter (fun checked => checked)).length := by
+    omega
+  rw [MathCan.NOR23CoordinateAudit.k_subset_count_is_binomial,
+      MathCan.NOR23CoordinateAudit.k_subset_count_is_binomial]
+  simp [uniformAttackHitCount, complementLength]
+
 /-- An all-output uniform k-audit misses precisely the uniform
     unchanged-position subsets for a fixed altered Boolean mask. -/
 theorem full_output_uniform_blind_miss_pair
@@ -172,6 +195,7 @@ theorem revealed_global_schedule_remains_evadable
   exact MathCan.NOR25UniformReserve.schedule_visible_attacker_has_identical_transcript
     inspected target hasUnchecked
 
+#print axioms fixed_audit_has_exact_uniform_attack_hit_count
 #print axioms full_output_uniform_blind_miss_pair
 #print axioms regular_rows_weighted_double_count
 #print axioms finite_attack_has_response_below_average
