@@ -28,6 +28,7 @@ jobs:
           python papers/roc02/roc02_primary_signflip_v01.py
           python papers/roc02/roc04a_primary_signflip_v01.py
           python papers/roc02/roc04b_reserved_signflip_v01.py
+          python papers/roc02/roc05_fresh_and_causal_signflip_v01.py
           python - <<'PY'
           from pathlib import Path
           import csv
@@ -52,4 +53,14 @@ jobs:
           idx=Path("papers/roc02/README.md").read_text()
           assert "ROC02_Observer_Causal_Update_v03_20261117.md" in idx
           assert "have now been evaluated" in idx
+          latest=Path("papers/roc02/ROC02_Observer_Causal_Update_v04_20261117.md").read_text()
+          assert "version 0.4" in latest
+          assert "0.5416666667" in latest and "0.015625" in latest
+          assert "−0.06805338" in latest and "p=1.0" in latest
+          assert "ROC-05B" in latest and "384" in latest
+          assert len(list(csv.DictReader(open("papers/roc02/ROC05A_fresh_replication_by_seed_v01.csv"))))==6
+          assert len(list(csv.DictReader(open("papers/roc02/ROC05B_causal_primary_by_seed_v01.csv"))))==6
+          toc=Path("papers/roc02/README.md").read_text()
+          assert "ROC02_Observer_Causal_Update_v04_20261117.md" in toc
+          assert "no input examples or labels" in toc.lower()
           PY
