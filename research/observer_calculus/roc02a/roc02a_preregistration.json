@@ -1,0 +1,101 @@
+{
+  "study": "ROC-02A-RETRO-frozen-NRF-rank-causal-pilot-v1",
+  "registered_on": "2026-11-16",
+  "registration_status": "Committed before new rank-grid causal capture or random-null measurements",
+  "scope": "Retrospective pilot on existing NRF-09/11 synthetic signed-permutation models, NOT the prospectively registered ROC-02 delayed-rule task; no ROC-02 validation claims",
+  "superseding_protocol": "MathCan research/observer_calculus/ROC01_AMENDMENT_2026-11-16C.md; original ROC-01 registration unchanged",
+  "model_sources": {
+    "checkpoint_archive": "NRF_Revised_v02_Site_Draft_and_Reproduction.zip",
+    "checkpoint_style": "nrf09_tied_R{depth}_S{seed}_steps32.pt",
+    "observer_adapter_style": "nrf11_observer_R{depth}_S{seed}.pt",
+    "hash_gate": "verify SHA-256 of each exact binary against companion NRF-11 JSON receipt before any measurement"
+  },
+  "seeds": [
+    131,
+    137,
+    139,
+    149,
+    151,
+    157
+  ],
+  "trained_depths": [
+    16,
+    32
+  ],
+  "trained_optimizer_steps": 32,
+  "rank_grid": [
+    1,
+    2,
+    3,
+    4,
+    7,
+    8,
+    12,
+    16,
+    32
+  ],
+  "observers": [
+    "supervised_crosscov_svd_rank_k",
+    "train_only_pca_rank_k",
+    "NRF11_frozen_joint_k8",
+    "NRF11_frozen_task_only_k8"
+  ],
+  "supervised_basis": "left singular vectors of fold1 centered H_mid^T centered signed-permutation label Y; for k>8 fill with residual train-only PCA then QR; no calibration or evaluation data used to build basis",
+  "pca_basis": "top-k SVD of fold1 centered H_mid (160 examples)",
+  "model_output": "train-only linear ridge head with regularization 1 on final recurrent state h_R to predict eight original signed-permutation label channels; output Y(h_mid) = mean_y + (F_suffix(h_mid)-mean_final_state) @ W_output; freeze head before shadow tests",
+  "observation_time": "h_(R/2), suffix length R/2",
+  "train_fold": 1,
+  "train_n": 160,
+  "heldout_task_fold": 12,
+  "heldout_task_n": 96,
+  "shadow_fold": 13,
+  "selected_shadow_indices": [
+    0,
+    1
+  ],
+  "full_shadow_count": 12,
+  "random_nulls": {
+    "n": 128,
+    "seeds": "941001..941128",
+    "method": "SHA256(checkpoint_sha|shadow_state_index|rank|seed) into torch CPU gaussian QR",
+    "distinctness": "SHA256 of 16x16 leading principal submatrix of projector UU^T, quantized float32, plus distinct 128 seeds",
+    "per_state_rows": true
+  },
+  "card": {
+    "D": "T-I for true suffix Jacobian",
+    "A": "U^T D U",
+    "B": "U^T D Q",
+    "C": "Q^T D U",
+    "normalization": "Frobenius norm of full D; also store per sqrt(k)",
+    "H": "(C_output T)^T(C_output T), from fixed train-only linear head C_output",
+    "capture": "trace(U^T H U)/trace(H)",
+    "null_p": "(1+#as_or_more_extreme)/129",
+    "family": "a_lower,b_lower,c_lower,b_upper,s_upper,s_lower",
+    "holm_alpha": 0.05,
+    "tag_source": "null-calibrated ROC01 Amendment C; abstain on degenerate metrics"
+  },
+  "causal_pilot": {
+    "radius": 0.2,
+    "physical_norm_matched": true,
+    "arms": [
+      "observed_perturbation",
+      "dark_perturbation",
+      "matched_isotropic_random",
+      "readout_ablation"
+    ],
+    "output": "finite change in frozen eight-output future readout from the original h_mid with fixed suffix",
+    "shadow_states": "same two preregistered shadow states",
+    "linear_tangent_control": "compare measured nonlinear output displacement to frozen J_output delta",
+    "exclude": "freeze-U as an active T-C arm"
+  },
+  "measurement": "all nine registered ranks on six paired original model seeds at R16 and R32; both selected states; 128 rank-matched nulls each state; k8 frozen NRF11 comparators",
+  "decision": "Exploratory only. Report per-seed means/counts, all rank-matched null empirical one-sided p and six-test Holm, task MSE and source accuracy. Do not use raw test performance for lambda or rank selection.",
+  "stop_conditions": [
+    "missing/mismatched checkpoint or adapter SHA",
+    "fewer than 100 distinct null fingerprints or invalid null family",
+    "unavailable train-only reference head",
+    "any unverified split or rank irregularity"
+  ],
+  "next_prospective": "ROC-02 delayed-rule task requires its own six fresh model seeds, source-distinct splits, native exact symbolic baseline, norm-matched perturbations, full 128-subspace nulls and amendment-C protocol",
+  "computational_budget": "CPU only, no paid compute. Predeclare 2 of 12 shadow states for full null sweep; remaining ten are unmeasured in this pilot."
+}
