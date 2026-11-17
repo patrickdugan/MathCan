@@ -75,3 +75,16 @@ native Lean 4.32 and preserved 4.35 kernel checks both pass. The full analytic
 theorem remains open. For the latest pipeline, copy the included spatial
 helpers into CAMPAIGN_WORK, then run replay_spatial_scalar432.sh and
 test_spatial_acceptance.py there. The old 14-lemma corpus is retained intact.
+
+## Sharp transport continuation, 2026-11-17
+
+The frozen research module `ApproximationMathlib.SharpTransport` adds 25
+authored roots, bringing the campaign to 282 roots (Hodge separate).
+Native Lean and OxiLean accept every new root; 29110 dependency declarations
+are verified with zero unsupported/rejected, and 30602 native/export
+constants match. See [SHARP_TRANSPORT_REPORT.md](SHARP_TRANSPORT_REPORT.md).
+The analytic component residual is proved from the original highest-derivative
+Holder hypothesis. The general matrix-layout identification remains explicit;
+the degree-zero Holder decoder is completely instantiated. These current results
+supersede the earlier local-only status and general inverse-tau alphabet bound.
+No email, direct message or repository comment accompanies this continuation.

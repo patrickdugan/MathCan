@@ -1,0 +1,21 @@
+{
+  "status": "accepted",
+  "scope": "Sharp normalized derivative-component Taylor residuals; bounded correction alphabets and decoded approximation under an explicit matrix-transport residual contract; fully instantiated degree-zero Holder capture. General high-order matrix identification and dense resource theorem remain open",
+  "export_sha256": "6bfd90183165feaf27bb3afe122abddd2786bf4b44ba972b3e3c7eb9975ca321",
+  "verdicts": {
+    "verified": 29110,
+    "unsupported": 0,
+    "rejected": 0
+  },
+  "constants_compared": 30602,
+  "theorems": 25,
+  "mathlib_revision": "360da6fa66c1273b76b6b2d8c5666fd5ac2e3b56",
+  "runtime_artifact_source": "Hash-checked Linux-local mirror of the pinned cache",
+  "native_kernel_method": "Unmodified pinned LeanChecker.replayFromImports API; stock CLI path scan omitted",
+  "vendor_roots": [],
+  "standard_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ]
+}

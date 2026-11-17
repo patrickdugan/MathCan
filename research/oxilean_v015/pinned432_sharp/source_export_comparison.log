@@ -1,0 +1,41 @@
+Compared 30602 exported constants with unchanged source: all types and values match
+MathCan.HolderCapture.holder_decoded_approximation {d : ℕ} {f : MathCan.MultivariateTaylor.Space d → ℝ}
+  (anchors : ℕ → MathCan.MultivariateTaylor.Space d) (spatialN K D N p a : ℕ) (hK : 0 < K) (hD : 1 ≤ D) (delta : ℝ)
+  (hdelta : 0 < delta) (sites : List (MathCan.SpatialNormalized.Site ℝ)) (dimension : sites.length = d)
+  (safe : MathCan.SpatialNormalized.validSites spatialN K delta sites) (steps : List (MathCan.JetSynthesis.Step d))
+  (valid : ∀ s ∈ steps, s.magnitude ≤ D) (alignment : steps.length + 1 = K ^ d) (C mu H alpha tau rho : ℝ) (hC : 0 ≤ C)
+  (hmu : 0 ≤ mu) (hH : 0 ≤ H) (ha : 0 ≤ alpha) (htau : 0 < tau) (x : MathCan.MultivariateTaylor.Space d)
+  (holder : ∀ (a b : MathCan.MultivariateTaylor.Space d), |f b - f a| ≤ H * ‖b - a‖ ^ alpha)
+  (bounded : ∀ i ≤ steps.length, |f (anchors i)| ≤ C) (scale : mu ^ alpha ≤ 2 * tau)
+  (distances : ∀ i < steps.length, ‖anchors (i + 1) - anchors i‖ ≤ mu * ↑D) (hamp : D < 2 ^ p)
+  (hN : 2 * H * ↑D ^ alpha + MathCan.CommonGateBound.commonBudget 0 D / 2 + 1 / 2 ≤ ↑N) (hwidth : 2 * N < 2 ^ a)
+  (hdist :
+    ‖x - anchors (MathCan.SpatialRouting.snakeRank K (List.map MathCan.SpatialNormalized.Site.fine sites))‖ ≤ rho) :
+  |f x - MathCan.HolderCapture.capturedValue f anchors spatialN K D N p a delta C tau sites steps| ≤
+    H * rho ^ alpha + tau / 2
+'MathCan.HolderCapture.holder_decoded_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpResidual.component_contDiff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpResidual.scaled_tensor_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpResidual.normalized_tensor_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpResidual.top_component_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpJet.isometry_derivative_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpJet.fderiv_derivative_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpJet.iterated_derivative_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpJet.component_derivative_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpJet.sharp_component_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpJet.uniform_component_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpJet.sharp_jet_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpAlphabet.prediction_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpAlphabet.innovation_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpAlphabet.sharp_frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpAlphabet.analytic_sharp_frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpAlphabet.component_sharp_frame' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpAlphabet.sharp_frames' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpAlphabet.sharp_decoded_accuracy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpCapture.jet_accuracy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpCapture.smooth_decoded_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.SharpCapture.holder_decoded_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.HolderCapture.constant_prediction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.HolderCapture.holder_step_residual' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.HolderCapture.holder_residuals' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.HolderCapture.holder_decoded_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]

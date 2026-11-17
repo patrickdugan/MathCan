@@ -1,0 +1,27 @@
+{
+  "status": "matched",
+  "source_linux": "/dev/shm/oxilean-sharp432-20261117/results",
+  "files": {
+    "axioms.log": "475393ab3509850213ac2584bcdd05660f887efaa08392892cb8f5397dac56f2",
+    "source_export_comparison.json": "32e782d3ce1737d093b9f223cc0d0e0261f569caccd1d448ed56c7b5deb4e954",
+    "source_export_comparison.log": "475393ab3509850213ac2584bcdd05660f887efaa08392892cb8f5397dac56f2",
+    "axiom-graph.json": "9d644ad04a3352b5661b1610feb5a8cd1fefdde28ac5602ee2dba088d2a83f4c",
+    "verdicts.json": "2d7b41a796b18cea33b4c6d78458892d8f2ea8e622e0084eefaa24975ab7f6db",
+    "oxilean.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "oxilean.stdout.log": "9ef3553270348b6a99305368149bbfc2941c11d47fa97546eeae5d32b2a7a907",
+    "Lemmas.ndjson": "6bfd90183165feaf27bb3afe122abddd2786bf4b44ba972b3e3c7eb9975ca321",
+    "SharpTransport.checked.sha256": "6b9bef20e08db5b2a0e4d75caa1f3f83adb78df5b1ce684943b94d7acb81f6f0",
+    "SharpTransport_leanchecker.log": "58e52389af663328f046df3e7e4755b7cb26f368f1b26a2054120bc5afa9d7af",
+    "direct_kernel.log": "d4f8134e0eb4c548fd1f4e88fd253c73748e403663ac2181268a8d974bd058a3",
+    "SharpTransport.compiled.sha256": "6b9bef20e08db5b2a0e4d75caa1f3f83adb78df5b1ce684943b94d7acb81f6f0",
+    "SharpTransport_native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "binary_before.sha256": "49dc8dfcaeb40d38842e6becc98877f3f1f9dd976a9306f543629bb970791a93",
+    "source_before.sha256": "55159806d786a8654932807b1267ba70ceb5579dd4d33ed3638d59f94f547277",
+    "CompareSharp.lean": "3b81e04dd7574769f42c09f363b96f6d5d08b4224b971a34a89fa0e619b779f7",
+    "DirectKernel.lean": "ef0ebf499553b0f38f89a5d4796d94dbd3bc6e22c8aa1a04cc1a79d3f993478b",
+    "modules.txt": "66b3f6a586a0424adb802862d2f0ed32016dfaba41cc06fc3dd5ae1e577a3763",
+    "roots.txt": "63da8e1ac8ba5768c3b1b757a219d68b62057ce184e472bbad3c015bf495209c",
+    "manifest.json": "5a4e59e4f8daf5f2c0103298b3b5e711d26a02437c9e509de42de4973225a262",
+    "lib/ApproximationMathlib/SharpTransport.olean": "52dfef540bdca073c672d253fdeeeefc0075706c352200b1a5be96a27f320559"
+  }
+}
