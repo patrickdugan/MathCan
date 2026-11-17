@@ -52,7 +52,7 @@ jobs:
           assert len(list(csv.DictReader(open("papers/roc02/ROC04B_reserved_test_by_seed_v01.csv"))))==6
           idx=Path("papers/roc02/README.md").read_text()
           assert "ROC02_Observer_Causal_Update_v03_20261117.md" in idx
-          assert "have now been evaluated" in idx
+          assert "was consumed" in idx
           latest=Path("papers/roc02/ROC02_Observer_Causal_Update_v04_20261117.md").read_text()
           assert "version 0.4" in latest
           assert "0.5416666667" in latest and "0.015625" in latest
