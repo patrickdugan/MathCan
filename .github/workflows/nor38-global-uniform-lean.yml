@@ -1,0 +1,46 @@
+name: NOR-38 finite regular-game maximin and global reserve Lean proofs
+
+on:
+  push:
+    branches:
+      - research/nor38-unrestricted-uniform-maximin-20261117
+    paths:
+      - 'MathCan/NOR38UniformAuditMaximin.lean'
+      - 'MathCan.lean'
+      - '.github/workflows/nor38-global-uniform-lean.yml'
+  pull_request:
+    paths:
+      - 'MathCan/NOR38UniformAuditMaximin.lean'
+      - 'MathCan.lean'
+      - '.github/workflows/nor38-global-uniform-lean.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  kernel-proof-and-axiom-inventory:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Verify NOR38 exact combinatorial and regular-game proofs
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/NOR38UniformAuditMaximin.lean | tee nor38-proof-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:|admit' nor38-proof-axioms.txt; then
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nor38-finite-game-proof-axiom-inventory
+          path: nor38-proof-axioms.txt
