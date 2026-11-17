@@ -48,10 +48,10 @@ theorem fourth_singleton_bounds_every_four_support
   rcases four_distinct_ranks_have_one_at_least_three
       i j k l hij hik hil hjk hjl hkl with
     h | h | h | h
-  · exact (hordered 3 i h).trans hi
-  · exact (hordered 3 j h).trans hj
-  · exact (hordered 3 k h).trans hk
-  · exact (hordered 3 l h).trans hl
+  · exact le_trans (hordered 3 i h) hi
+  · exact le_trans (hordered 3 j h) hj
+  · exact le_trans (hordered 3 k h) hk
+  · exact le_trans (hordered 3 l h) hl
 
 /-- Multiplying component detection counts by a nonnegative integer
     policy weight preserves the inclusion-induced singleton bound. -/
