@@ -139,3 +139,5 @@ import MathCan.NOR36PolicyAwareCurvature
 import MathCan.NOR37RandomizedCurvature
 
 import MathCan.NOR38UniformAuditMaximin
+
+import MathCan.NOR40SingletonBracket
