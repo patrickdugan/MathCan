@@ -142,7 +142,7 @@ theorem authenticated_session_rejects_iff_original_true_support_hit
   have trueAtReturned :
       NOR43AuthenticatedRoot.rejectsOn returnedIndices original opened ↔
       NOR43AuthenticatedRoot.rejectsOn returnedIndices original trueFuture :=
-    NOR43AuthenticatedRoot.authenticated_sample_rejects_iff_true_support
+    NOR43AuthenticatedRoot.authenticated_sample_rejects_iff_true_support_hit
       rootDigest validOpening original trueFuture opened
       authorizedRoot returnedIndices honestAuthorizedRoot
       referenceBinding openingSound allReturnedOpeningsVerified
