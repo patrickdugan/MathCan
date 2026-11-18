@@ -23,9 +23,10 @@ namespace MathCan.NOR46ExactIntegerTrace
 def CausalIntegerStep
     (source : Nat → Int)
     (update : (Nat → Int) → Nat → Int) : Prop :=
-  ∀ left right n,
-    (∀ k, k ≤ n → left k = right k) →
-    update left n = update right n
+  source 0 = 1 ∧
+    ∀ left right n,
+      (∀ k, k ≤ n → left k = right k) →
+      update left n = update right n
 
 /-- Any normalized source, fixed initial coefficient and deterministic
     strictly causal EXACT integer recurrence determine a UNIQUE infinite
@@ -35,7 +36,6 @@ def CausalIntegerStep
 theorem unique_normalized_inverse_from_causal_integer_recurrence
     (source left right : Nat → Int)
     (update : (Nat → Int) → Nat → Int)
-    (sourceUnit : source 0 = 1)
     (stepCausal : CausalIntegerStep source update)
     (leftZero : left 0 = 1)
     (rightZero : right 0 = 1)
@@ -55,7 +55,7 @@ theorem unique_normalized_inverse_from_causal_integer_recurrence
       · exact ih k hsmall
       · have hnext : k = n + 1 := by omega
         rw [hnext, leftStep, rightStep]
-        exact stepCausal left right n ih
+        exact stepCausal.2 left right n ih
   funext n
   exact hprefix n n (Nat.le_refl n)
 
