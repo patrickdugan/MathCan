@@ -143,3 +143,4 @@ import MathCan.NOR38UniformAuditMaximin
 
 import MathCan.NOR40SingletonBracket
 import MathCan.NOR42HiddenSuffix
+import MathCan.NOR43AuthenticatedRoot
