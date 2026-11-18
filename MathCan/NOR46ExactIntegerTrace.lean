@@ -6,9 +6,9 @@ execution-root soundness.
 
 The Python prototype supplies full transform/output arrays and checks all
 coefficients. A reciprocal transform R is certified by the complete
-truncated convolution identity F*R=1 in Int, with F₀=1. We prove that
-such an inverse witness is UNIQUE, without relying on finite-field
-arithmetic or an unproved cryptographic soundness proposition.
+truncated convolution identity F*R=1 in Int, with F₀=1. We prove that a strictly causal exact integer recurrence has a UNIQUE
+solution. The separate equivalence between the concrete Python packed
+convolution checker and the recurrence is tested in Python, not kernel-proved.
 
 A signed program authority and an authenticated provider root are EXTERNAL
 premises. The program authority might authorize a semantically wrong
@@ -18,39 +18,46 @@ zero-knowledge. This file does not prove SHA-256 or Ed25519 security.
 
 namespace MathCan.NOR46ExactIntegerTrace
 
-/-- Exact truncated convolution over integral coefficients. -/
-def prefixConvolution (source candidate : Nat → Int) (n : Nat) : Int :=
-  (Finset.range (n + 1)).sum fun k => source (n - k) * candidate k
+/-- A strictly causal exact-integer coefficient recurrence depends only on
+    coefficients of its output at indices ≤ n when generating n+1. -/
+def CausalIntegerStep
+    (source : Nat → Int)
+    (update : (Nat → Int) → Nat → Int) : Prop :=
+  ∀ left right n,
+    (∀ k, k ≤ n → left k = right k) →
+    update left n = update right n
 
-/-- Normalized series admit at most one exact integer right-inverse
-    through EVERY finite prefix coefficient. The result uses whole
-    integer identities, avoiding any finite-field wraparound premise. -/
-theorem unique_normalized_inverse_from_all_prefixes
+/-- Any normalized source, fixed initial coefficient and deterministic
+    strictly causal EXACT integer recurrence determine a UNIQUE infinite
+    output sequence. The concrete Python convolution proof checker must
+    separately establish that its all-prefix arithmetic identities imply
+    this recurrence. No finite-field arithmetic or overflow is assumed. -/
+theorem unique_normalized_inverse_from_causal_integer_recurrence
     (source left right : Nat → Int)
+    (update : (Nat → Int) → Nat → Int)
     (sourceUnit : source 0 = 1)
-    (leftInverse : ∀ n, prefixConvolution source left n =
-      if n = 0 then 1 else 0)
-    (rightInverse : ∀ n, prefixConvolution source right n =
-      if n = 0 then 1 else 0) :
+    (stepCausal : CausalIntegerStep source update)
+    (leftZero : left 0 = 1)
+    (rightZero : right 0 = 1)
+    (leftStep : ∀ n, left (n + 1) = update left n)
+    (rightStep : ∀ n, right (n + 1) = update right n) :
     left = right := by
-  funext n
-  induction n using Nat.strong_induction_on with
-  | h n ih =>
-    have hprefix :
-        (Finset.range n).sum (fun k => source (n - k) * left k) =
-        (Finset.range n).sum (fun k => source (n - k) * right k) := by
-      apply Finset.sum_congr rfl
+  have hprefix : ∀ n, ∀ k, k ≤ n → left k = right k := by
+    intro n
+    induction n with
+    | zero =>
       intro k hk
-      rw [ih k (Finset.mem_range.mp hk)]
-    have hl := leftInverse n
-    have hr := rightInverse n
-    dsimp [prefixConvolution] at hl hr
-    rw [Finset.sum_range_succ] at hl hr
-    have hzero : source (n - n) = 1 := by
-      simpa using sourceUnit
-    rw [hzero, one_mul] at hl hr
-    rw [hprefix] at hl
-    omega
+      have h0 : k = 0 := by omega
+      rw [h0, leftZero, rightZero]
+    | succ n ih =>
+      intro k hk
+      by_cases hsmall : k ≤ n
+      · exact ih k hsmall
+      · have hnext : k = n + 1 := by omega
+        rw [hnext, leftStep, rightStep]
+        exact stepCausal left right n ih
+  funext n
+  exact hprefix n n (Nat.le_refl n)
 
 /-- If a FULL exact-integer trace satisfies a fixed authorized
     program's deterministic execution relation, a signed root committing
@@ -142,7 +149,7 @@ theorem source_bound_trace_sparse_rejection_equivalence
     openingSound returned requested returnedOpeningsValid
     exactVerifierIndices
 
-#print axioms unique_normalized_inverse_from_all_prefixes
+#print axioms unique_normalized_inverse_from_causal_integer_recurrence
 #print axioms verified_trace_root_is_authorized_execution_root
 #print axioms verified_trace_opening_matches_authorized_program
 #print axioms source_bound_trace_sparse_rejection_equivalence
