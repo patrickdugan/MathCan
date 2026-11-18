@@ -139,7 +139,6 @@ theorem model_self_committed_opening_can_be_wrong
 theorem wrong_model_opening_cannot_be_opening_of_honest_reference
     {m : Nat} {Root : Type u}
     (digest : (Fin m → Int) → Root)
-    (validOpening : Root → Fin m → Int → Prop)
     (proposal trueFuture : Fin m → Int)
     (index : Fin m)
     (modelWrong : proposal index ≠ trueFuture index)
