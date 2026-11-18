@@ -146,3 +146,4 @@ import MathCan.NOR42HiddenSuffix
 import MathCan.NOR43AuthenticatedRoot
 import MathCan.NOR44SessionOrdering
 import MathCan.NOR45AuthorizedProgram
+import MathCan.NOR46ExactIntegerTrace
