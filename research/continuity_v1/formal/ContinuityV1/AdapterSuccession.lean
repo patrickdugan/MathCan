@@ -19,7 +19,7 @@ inductive MarginPath : Int → Int → Int → Prop where
   | root (margin : Int) : MarginPath margin margin 0
   | extend {origin middle final priorBudget stepBudget : Int}
       (prior : MarginPath origin middle priorBudget)
-      (local : middle ≤ final + stepBudget) :
+      (hstep : middle ≤ final + stepBudget) :
       MarginPath origin final (priorBudget + stepBudget)
 
 /-- Any finite succession has total loss at most the sum of its edge caps. -/
@@ -27,11 +27,11 @@ theorem marginPath_sound {origin final budget : Int}
     (path : MarginPath origin final budget) : origin ≤ final + budget := by
   induction path with
   | root margin => simp
-  | @extend origin middle final priorBudget stepBudget prior local ih =>
+  | @extend origin middle final priorBudget stepBudget prior hstep ih =>
     calc
       origin ≤ middle + priorBudget := ih
       _ ≤ (final + stepBudget) + priorBudget :=
-        add_le_add_right local priorBudget
+        add_le_add_right hstep priorBudget
       _ = final + (priorBudget + stepBudget) := by
         simp [add_assoc, add_comm, add_left_comm]
 
