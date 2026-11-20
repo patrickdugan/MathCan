@@ -26,27 +26,16 @@ inductive MarginPath : Int → Int → Int → Prop where
 theorem marginPath_sound {origin final budget : Int}
     (path : MarginPath origin final budget) : origin ≤ final + budget := by
   induction path with
-  | root margin => simp
-  | @extend origin middle final priorBudget stepBudget prior hstep ih =>
-    calc
-      origin ≤ middle + priorBudget := ih
-      _ ≤ (final + stepBudget) + priorBudget :=
-        add_le_add_right hstep priorBudget
-      _ = final + (priorBudget + stepBudget) := by
-        simp [add_assoc, add_comm, add_left_comm]
+  | root => omega
+  | extend => omega
 
 /-- If the initial positive margin exceeds the total certified loss budget,
     the final margin must remain strictly positive. -/
 theorem marginPath_preserves_positive {origin final budget : Int}
     (path : MarginPath origin final budget)
     (budgetBelowMargin : budget < origin) : 0 < final := by
-  by_contra hnonpos
-  have hfinal : final ≤ (0 : Int) := le_of_not_gt hnonpos
-  have hbudget : final + budget ≤ budget := by
-    simpa using add_le_add_right hfinal budget
-  have hcontradiction : origin ≤ budget :=
-    le_trans (marginPath_sound path) hbudget
-  exact (not_le_of_gt budgetBelowMargin) hcontradiction
+  have hbound := marginPath_sound path
+  omega
 
 /-- The cross term can dominate two individually harmless adapter changes. -/
 def interactionMargin (a b : Int) : Int := 1 - 4 * a * b
