@@ -60,3 +60,8 @@ This proof is a literal logical statement with Nat as the scale
 parameter; the upstream Real-valued `adm5`, `adm6`, `adm7`
 hypotheses remain explicit and unconstructed.
 
+## Coefficient scope across epsilon
+
+The original `TOPF Fm ε0 C` fixes `C` before its universal epsilon quantifier. The original `AllLargeC` chooses the `adm5`/`adm6` constants after epsilon but before x and the family index. `coefficient_fixed_across_epsilon` is an independent Lean 4.35/Init theorem for these nested quantifier scopes. It retains a single positive `C` across all epsilon values while allowing positive `c5` and `c6` to depend on epsilon. The dependent index type may vary with both epsilon and scale.
+
+This is a proof of logical synchronization, conditional on all the original-shaped premises. It supplies no analytic `adm5`/`adm6`, geometric `adm7`, or eventual family construction.

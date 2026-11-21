@@ -98,6 +98,40 @@ theorem uniform_character_constants_on_selected_index
     (fun n i => PTop C n i)
     ⟨b5, h5'⟩ ⟨b6, h6'⟩ ⟨bS, hS'⟩ ⟨bT, hT'⟩
 
+
+/-- A TOPF-like coefficient is chosen before epsilon. The universal
+character bounds may choose distinct constants *after* epsilon.
+This distinction survives eventual synchronization of the selected
+index and the uniform-for-indices hypotheses. -/
+theorem coefficient_fixed_across_epsilon
+    {Ix : Nat → Nat → Type u}
+    (P5 P6 PTop : Nat → (eps : Nat) → (n : Nat) → Ix eps n → Prop)
+    (PSize : (eps : Nat) → (n : Nat) → Ix eps n → Prop)
+    (h5 : ∀ eps : Nat, ∃ c5 : Nat, 0 < c5 ∧
+      EventuallyAll (fun n i => P5 c5 eps n i))
+    (h6 : ∀ eps : Nat, ∃ c6 : Nat, 0 < c6 ∧
+      EventuallyAll (fun n i => P6 c6 eps n i))
+    (hS : ∀ eps : Nat, EventuallyAll (PSize eps))
+    (hT : ∃ C : Nat, 0 < C ∧
+      ∀ eps : Nat, EventuallyExists (fun n i => PTop C eps n i)) :
+    ∃ C : Nat, 0 < C ∧
+      ∀ eps : Nat, ∃ c5 c6 : Nat, 0 < c5 ∧ 0 < c6 ∧
+        EventuallyExists (fun n i =>
+          P5 c5 eps n i ∧ P6 c6 eps n i ∧
+            PSize eps n i ∧ PTop C eps n i) := by
+  obtain ⟨C, hC, hT'⟩ := hT
+  refine ⟨C, hC, ?_⟩
+  intro eps
+  obtain ⟨c5, hc5, h5'⟩ := h5 eps
+  obtain ⟨c6, hc6, h6'⟩ := h6 eps
+  refine ⟨c5, c6, hc5, hc6, ?_⟩
+  exact synchronized_family_witnesses
+    (fun n i => P5 c5 eps n i)
+    (fun n i => P6 c6 eps n i)
+    (PSize eps)
+    (fun n i => PTop C eps n i)
+    h5' h6' (hS eps) (hT' eps)
+
 /-- At each sufficiently large scale, an adm7-like witness makes the
 family index type inhabited. This rules out a globally empty family
 whenever eventual existence has been established. -/
@@ -173,6 +207,7 @@ theorem character_subsets_inherit_quadratic_scale
   omega
 
 #print axioms uniform_character_constants_on_selected_index
+#print axioms coefficient_fixed_across_epsilon
 #print axioms synchronized_family_witnesses
 #print axioms eventual_selected_index_forces_nonempty
 #print axioms empty_index_family_satisfies_every_eventual_universal
