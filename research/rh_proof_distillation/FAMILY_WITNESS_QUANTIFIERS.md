@@ -47,3 +47,16 @@ These are independent, exact arithmetic consequences encoded in \`character_subs
 The Lean theorems concern logic and integer exponent inequalities under supplied premises. They do not construct \`FamP\`, \`D7\`, \`Scale\`, \`adm5\`, \`adm6\`, \`adm7\`, \`Gc\`, \`GivenAll\`, or \`TOPineq\`. Consequently, this work verifies conditional steps of the proposed architecture without independently establishing RH.
 
 The next mathematical target is the compatible joint production of \`adm5\`, \`adm6\`, \`SizesFe\`, and \`TOPF\` from the published geometry and arithmetic constructions. Their uniformity and existential quantifiers need careful source and proof-term tracking.
+
+## Constants quantified in the correct order
+
+The additional native Lean theorem `uniform_character_constants_on_selected_index`
+encodes the two `AllLargeC` constants directly. For a fixed epsilon, each
+positive coefficient is chosen **before** the eventual threshold, scale
+and family index. It then specializes both estimates to the index
+chosen by `AllLargeAt`, whose own positive coefficient is fixed.
+
+This proof is a literal logical statement with Nat as the scale
+parameter; the upstream Real-valued `adm5`, `adm6`, `adm7`
+hypotheses remain explicit and unconstructed.
+

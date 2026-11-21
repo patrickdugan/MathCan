@@ -57,6 +57,47 @@ theorem synchronized_family_witnesses
   obtain ⟨i, hTi⟩ := hT' n hnT
   exact ⟨i, h5' n hn5 i, h6' n hn6 i, hS' n hnS i, hTi⟩
 
+
+/-- An AllLargeC-style constant is chosen once (for a fixed epsilon),
+before universally quantifying over later scales and family indices. -/
+def EventuallyUniformConstant {Ix : Nat → Type u}
+    (P : Nat → (n : Nat) → Ix n → Prop) : Prop :=
+  ∃ c cutoff : Nat, 0 < c ∧
+    ∀ n : Nat, cutoff ≤ n → ∀ i : Ix n, P c n i
+
+/-- An AllLargeAt-style existential has a single fixed coefficient,
+while the suitable index itself may vary with scale. -/
+def EventuallySelectedWithConstant {Ix : Nat → Type u}
+    (P : Nat → (n : Nat) → Ix n → Prop) : Prop :=
+  ∃ C cutoff : Nat, 0 < C ∧
+    ∀ n : Nat, cutoff ≤ n → ∃ i : Ix n, P C n i
+
+/-- Source-faithful specialization of two uniform character-sum
+coefficients to the same eventually selected adm7 index. Both positive
+constants are fixed before n, as required by AllLargeC. -/
+theorem uniform_character_constants_on_selected_index
+    {Ix : Nat → Type u}
+    (P5 P6 PTop : Nat → (n : Nat) → Ix n → Prop)
+    (PSize : (n : Nat) → Ix n → Prop)
+    (h5 : EventuallyUniformConstant P5)
+    (h6 : EventuallyUniformConstant P6)
+    (hS : EventuallyAll PSize)
+    (hT : EventuallySelectedWithConstant PTop) :
+    ∃ c5 c6 C : Nat, 0 < c5 ∧ 0 < c6 ∧ 0 < C ∧
+      EventuallyExists (fun n i =>
+        P5 c5 n i ∧ P6 c6 n i ∧ PSize n i ∧ PTop C n i) := by
+  obtain ⟨c5, b5, hc5, h5'⟩ := h5
+  obtain ⟨c6, b6, hc6, h6'⟩ := h6
+  obtain ⟨bS, hS'⟩ := hS
+  obtain ⟨C, bT, hC, hT'⟩ := hT
+  refine ⟨c5, c6, C, hc5, hc6, hC, ?_⟩
+  exact synchronized_family_witnesses
+    (fun n i => P5 c5 n i)
+    (fun n i => P6 c6 n i)
+    PSize
+    (fun n i => PTop C n i)
+    ⟨b5, h5'⟩ ⟨b6, h6'⟩ ⟨bS, hS'⟩ ⟨bT, hT'⟩
+
 /-- At each sufficiently large scale, an adm7-like witness makes the
 family index type inhabited. This rules out a globally empty family
 whenever eventual existence has been established. -/
@@ -131,6 +172,7 @@ theorem character_subsets_inherit_quadratic_scale
     8 * L + 27 * q ≤ 4 * nT2Log := by
   omega
 
+#print axioms uniform_character_constants_on_selected_index
 #print axioms synchronized_family_witnesses
 #print axioms eventual_selected_index_forces_nonempty
 #print axioms empty_index_family_satisfies_every_eventual_universal
