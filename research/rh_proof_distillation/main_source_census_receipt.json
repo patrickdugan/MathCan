@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "kind": "source_lexical_wrapper_census",
+  "source_ref": "leanprover-community/riemann-hypothesis@f150e02623b1e2bbe1f1da8eab5ffee5e930a6a3",
+  "source_blob": "a13ba1f8c38d4dbf2ddd809fbf9610a007936c24",
+  "run": "https://github.com/patrickdugan/MathCan/actions/runs/44915161411",
+  "artifact": "https://github.com/patrickdugan/MathCan/actions/runs/44915161411/artifacts/14711581539",
+  "artifact_unzipped_json_sha256": "b00378b34fa738fd2eecd176dfb3fc9977ab02ad84e3eaacf56f8ada4804994f",
+  "pin_checked_source_files": 7,
+  "wrapper_nodes": 195,
+  "wrapper_edges": 311,
+  "wrappers_lexically_reachable_from_final_literature_theorem": 195,
+  "wrapper_proof_bodies_without_literal_O": 152,
+  "wrapper_proof_bodies_with_literal_O": 43,
+  "direct_parameter_field_access_nodes": {
+    "caraianiLocalGlobalDual": [
+      "carU_local_global_of_literature",
+      "literature_automorphy"
+    ],
+    "galoisRepOfPolarizedPairLit": [
+      "pair_u_of_literature"
+    ],
+    "localLanglandsExists": [
+      "local_langlands_recT_exists_of_literature"
+    ]
+  },
+  "provenance": "Git SHA-pinned source lexical analysis; no transitive Lean proof-term expansion",
+  "epistemic_limits": [
+    "O unused in displayed theorem value is not the same as an unnecessary theorem hypothesis",
+    "The 311 edges are source-lexical named wrapper calls, not elaborated kernel dependencies",
+    "The actual published compiled proof bodies remain unreviewed in this MathCan experiment"
+  ]
+}

@@ -68,3 +68,9 @@ the covolume bound that feeds the final every-character theorem.
 Preserve the distinction between independently established input
 lemmas, copied proof parameters, imported compiled artifacts, and
 unverified mathematical premises.
+
+## Reproduced source graph
+
+The [pinned CI run](https://github.com/patrickdugan/MathCan/actions/runs/44915161411) passed four source-audit mutation tests and four native Init Lean proofs. The uploaded [original JSON graph](https://github.com/patrickdugan/MathCan/actions/runs/44915161411/artifacts/14711581539) is SHA-256 `b00378b34fa738fd2eecd176dfb3fc9977ab02ad84e3eaacf56f8ada4804994f` (unzipped JSON bytes). The [compact receipt](main_source_census_receipt.json) retains the verified node/edge counts and four direct parameter-field consumers.
+
+Direct `O` projections are found only in `literature_automorphy`, `carU_local_global_of_literature`, `pair_u_of_literature`, and `local_langlands_recT_exists_of_literature`. This statement concerns the 195 wrapper theorem values within the exact archived source file. Indirect dependencies through other wrapper constants and external imported theorems require separate examination.
