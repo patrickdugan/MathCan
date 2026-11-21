@@ -16,6 +16,7 @@ class GaloisRowInputTests(unittest.TestCase):
         self.assertEqual(definition_body(source, "def TLiftK : Prop :="), "A")
         with self.assertRaises(ValueError):
             definition_body(source, "def DoesNotExist : Prop :=")
+        self.assertEqual(definition_body("def TLiftK : Prop := True\nend", "def TLiftK : Prop :="), "True")
 
     def test_namespace_and_whitespace_normalization(self):
         a = " W.GoodK \n  ∃ d₀ : ℕ, ∀ d, d₀ ≤ d   W.IsSkew IsHecke HasExp ∃ U' : Submodule"
