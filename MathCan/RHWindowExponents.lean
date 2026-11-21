@@ -68,10 +68,12 @@ def epsilon128 : DyadicLogPoint where
 
 theorem epsilon64_source_exponent_certificate :
     sourceExponentChecks epsilon64 := by
+  unfold sourceExponentChecks epsilon64
   decide
 
 theorem epsilon128_source_exponent_certificate :
     sourceExponentChecks epsilon128 := by
+  unfold sourceExponentChecks epsilon128
   decide
 
 /-- Logarithmic core of the necessary group-order bound from a
