@@ -47,10 +47,36 @@ As 29 is unramified in E, these are compatible with the relevant
 prime-ideal restrictions. The new Init-only Lean theorem independently
 certifies the exact modular roots and distinct/same coordinate pair.
 
-The statement about compatibility of reductions is the scope of this
-formal test. The audit has **not** yet constructed the associated
-height-one prime objects of `𝓞 E` inside Lean, proved `FieldOK E 29 1`,
-or supplied the automorphic antecedents `AutOffT`, `TyEll`,
+There is a paper-level ideal construction behind these reductions.
+Write phi = (1 + sqrt(5))/2. The quadratic discriminants -4 and 5 are
+coprime, giving the integral basis
+
+    O_E = Z[i, phi] = Z + Z*i + Z*phi + Z*i*phi,
+
+with relations i² = -1 and phi² = phi + 1. Modulo 29, the polynomial
+T² - T - 1 has roots 6 and 24. Therefore evaluation of i and phi
+at (12,6) and (12,24) defines two surjective ring maps O_E -> F_29,
+whose kernels are the distinct maximal ideals
+
+    P = (29, i - 12, phi - 6),
+    Q = (29, i - 12, phi - 24).
+
+They both lie above 29. Their contractions to O_K = Z[i] agree,
+while their contractions to O_F = Z[phi] differ. Thus this explicit
+number-field example meets the prime restrictions in the published
+OneK and Apart predicates, independently of the other GeoOne hypotheses.
+
+The Python receipt checks all 16 pairwise products of the four
+integral basis elements at each evaluation map, 32 multiplicativity
+identities in total. The Lean checker verifies the exact roots 6 and
+24 of the integral-basis polynomial. Establishing the known
+coprime-discriminant integral basis, and converting these two kernels
+to the published HeightOneSpectrum type, remains a separate Lean task.
+
+The finite calculations and written ideal construction leave the
+original theorem's other hypotheses open. The audit has **not** yet constructed the associated
+height-one prime objects of `𝓞 E` inside the upstream Lean system,
+proved `FieldOK E 29 1`, or supplied the automorphic antecedents `AutOffT`, `TyEll`,
 `SphOffU`, `SatU` and `LacWtAt`. It is consequently a necessary local
 witness, rather than a complete nonvacuity certificate for `GeoOne`.
 
