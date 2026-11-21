@@ -77,24 +77,72 @@ def source_contract(label: str, source: str) -> int:
     return len(REQUIRED[label])
 
 
+def _multiply_integral_basis(a: tuple[int, ...], b: tuple[int, ...]) -> tuple[int, ...]:
+    """Multiplication in Z[i,phi], i^2=-1 and phi^2=phi+1.
+
+    The basis index is (i exponent) + 2*(phi exponent).
+    """
+    out = [0, 0, 0, 0]
+    for ia, ca in enumerate(a):
+        for ib, cb in enumerate(b):
+            ipow = ia % 2 + ib % 2
+            ppow = ia // 2 + ib // 2
+            coefficient = ca * cb * (-1 if ipow == 2 else 1)
+            idx = ipow % 2
+            if ppow == 0:
+                out[idx] += coefficient
+            elif ppow == 1:
+                out[2 + idx] += coefficient
+            else:
+                out[idx] += coefficient
+                out[2 + idx] += coefficient
+    return tuple(out)
+
+
+def _eval_integral_basis(coeffs: tuple[int, ...], u: int, t: int, p: int) -> int:
+    """Evaluate a + b*i + c*phi + d*i*phi in the residue field."""
+    return (coeffs[0] + coeffs[1] * u + coeffs[2] * t + coeffs[3] * u * t) % p
+
+
 def residue_model(p: int = 29) -> dict:
     if p != 29:
         raise ValueError("only the documented p=29 witness is certified")
     roots_i = [u for u in range(p) if (u * u + 1) % p == 0]
     roots_f = [v for v in range(p) if (v * v - 5) % p == 0]
-    if roots_i != [12, 17] or roots_f != [11, 18]:
+    roots_phi = [v for v in range(p) if (v * v - v - 1) % p == 0]
+    if roots_i != [12, 17] or roots_f != [11, 18] or roots_phi != [6, 24]:
         raise ValueError("residue roots mismatch")
     a, b = (12, 11), (12, 18)
     assert a[0] == b[0] and a[1] != b[1]
     assert all((u * u + 1) % p == 0 and (v * v - 5) % p == 0 for u, v in [a, b])
+    basis = [tuple(int(j == i) for j in range(4)) for i in range(4)]
+    pairs = [(12, 6), (12, 24)]
+    for u, phi in pairs:
+        for left in basis:
+            for right in basis:
+                actual = _eval_integral_basis(_multiply_integral_basis(left, right), u, phi, p)
+                expected = (_eval_integral_basis(left, u, phi, p) *
+                            _eval_integral_basis(right, u, phi, p)) % p
+                if actual != expected:
+                    raise ValueError("integral basis evaluation is not multiplicative")
     return {
         "prime": p,
         "imaginary_roots": roots_i,
         "real_roots": roots_f,
+        "phi_roots": roots_phi,
         "pair": [list(a), list(b)],
         "same_imaginary_reduction": True,
         "distinct_real_reduction": True,
-        "scope": "modular polynomial witness; not constructed Lean NumberField prime ideals",
+        "integral_basis": ["1", "i", "phi", "i*phi"],
+        "basis_relation": "i^2=-1, phi^2=phi+1",
+        "evaluation_pairs_i_phi": [list(t) for t in pairs],
+        "basis_product_hom_checks": 32,
+        "prime_ideal_kernels": [
+            "(29, i-12, phi-6)", "(29, i-12, phi-24)"
+        ],
+        "scope": ("modular arithmetic and 32 basis-product checks; "
+                  "using the standard O_E = Z[i,phi] integral-basis fact; "
+                  "no original Lean HeightOneSpectrum objects constructed"),
     }
 
 
