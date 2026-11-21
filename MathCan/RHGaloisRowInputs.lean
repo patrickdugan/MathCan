@@ -5,7 +5,7 @@ import MathCan.RHMainLogic
 
 An Init-only logical model of the verified source theorem boundaries.
 This module does not recreate GeoOne, TLiftK, Row0b, the genuine
-local Langlands representation, or any arithmetic-geometric proof.
+datum Langlands representation, or any arithmetic-geometric proof.
 -/
 
 namespace MathCan.RHGaloisRowInputs
@@ -30,33 +30,33 @@ theorem literature_inputs_from_row_and_recT
   ⟨row, rec, row⟩
 
 /-- A fixed initial unitary problem may choose a lifting threshold
-before the target dimension and all subsequent local data are chosen. -/
+before the target dimension and all subsequent datum data are chosen. -/
 def UniformEventualLift {Local : Type u}
     (Admissible : (d : Nat) → Local → Prop) : Prop :=
-  ∃ d0 : Nat, ∀ d : Nat, d0 ≤ d → ∀ local : Local, Admissible d local
+  ∃ d0 : Nat, ∀ d : Nat, d0 ≤ d → ∀ datum : Local, Admissible d datum
 
 /-- The stronger source order of quantifiers implies eventual validity
-for each particular later local datum. -/
+for each particular later datum datum. -/
 theorem uniform_eventual_lift_implies_pointwise
     {Local : Type u}
     (Admissible : (d : Nat) → Local → Prop)
     (h : UniformEventualLift Admissible) :
-    ∀ local : Local, ∃ d0 : Nat,
-      ∀ d : Nat, d0 ≤ d → Admissible d local := by
+    ∀ datum : Local, ∃ d0 : Nat,
+      ∀ d : Nat, d0 ≤ d → Admissible d datum := by
   obtain ⟨d0, hd0⟩ := h
-  intro local
-  exact ⟨d0, fun d hd => hd0 d hd local⟩
+  intro datum
+  exact ⟨d0, fun d hd => hd0 d hd datum⟩
 
-/-- The inverse quantifier exchange is invalid in general. Each local
+/-- The inverse quantifier exchange is invalid in general. Each datum
 datum n may require d≥n, without one finite threshold for every n. -/
 theorem pointwise_lift_thresholds_need_not_be_uniform :
-    (∀ local : Nat, ∃ d0 : Nat,
-        ∀ d : Nat, d0 ≤ d → local ≤ d) ∧
+    (∀ datum : Nat, ∃ d0 : Nat,
+        ∀ d : Nat, d0 ≤ d → datum ≤ d) ∧
       ¬ (∃ d0 : Nat, ∀ d : Nat, d0 ≤ d →
-        ∀ local : Nat, local ≤ d) := by
+        ∀ datum : Nat, datum ≤ d) := by
   constructor
-  · intro local
-    exact ⟨local, fun d hd => hd⟩
+  · intro datum
+    exact ⟨datum, fun d hd => hd⟩
   · rintro ⟨d0, h⟩
     have hh := h d0 (Nat.le_refl d0) (d0 + 1)
     omega
