@@ -87,3 +87,7 @@ hypotheses, especially the interaction of high b and low theta with
 the upper-bound constraints on aE and Err. Formalize the exponent
 identities that propagate through windows and smallCosts in a Lean
 library with matching proof obligations. Keep original source pins.
+
+## Native Lean error-budget lemmas
+
+The `MathCan/RHWindowExponents.lean` module additionally proves two conditional Nat arithmetic lemmas: aggregation of four upper error coefficients 2+2+4+2=10, and the final correction coefficient 4+22=26 when the smaller term is bounded by the main term. Their inputs remain explicit, so these do not replace the original real-variable analytic hypotheses.

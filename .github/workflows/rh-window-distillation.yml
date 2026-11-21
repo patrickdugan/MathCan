@@ -50,6 +50,22 @@ jobs:
           print(source_pin(Path("upstream")))
           PY
 
+      - name: Export exact numerical mathematical receipts
+        run: |
+          mkdir -p rh-mathcan-receipts
+          python -m research.rh_proof_distillation.rh_window_feasibility \
+            --source-root upstream \
+            --output rh-mathcan-receipts/window-feasibility.json
+          python -m research.rh_proof_distillation.rh_joint_scalar_envelope \
+            --source-root upstream \
+            --output rh-mathcan-receipts/joint-scalar-envelope.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rh-mathcan-exact-receipts
+          path: rh-mathcan-receipts/
+          if-no-files-found: ignore
+
   native-lean-kernel:
     runs-on: ubuntu-latest
     timeout-minutes: 45

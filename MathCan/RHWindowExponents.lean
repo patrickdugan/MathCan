@@ -93,6 +93,26 @@ theorem quadratic_rank_of_source_family
     2 * L ≤ nLog := by
   omega
 
+/-- The four separate SZ error contributions combine to coefficient ten.
+Every bound remains an explicit premise in this independent proof. -/
+theorem four_window_error_terms
+    (Q a b c d : Nat)
+    (h1 : a ≤ 2 * Q) (h2 : b ≤ 2 * Q)
+    (h3 : c ≤ 4 * Q) (h4 : d ≤ 2 * Q) :
+    a + b + c + d ≤ 10 * Q := by
+  omega
+
+/-- The additive 4X correction and 22Z principal error can be
+absorbed into 26Z once X is bounded by Z. -/
+theorem normalized_character_error_26
+    (G X Z : Nat) (hX : X ≤ Z)
+    (hG : G ≤ 4 * X + 22 * Z) :
+    G ≤ 26 * Z := by
+  omega
+
+#print axioms four_window_error_terms
+#print axioms normalized_character_error_26
+
 #print axioms epsilon64_source_exponent_certificate
 #print axioms epsilon128_source_exponent_certificate
 #print axioms group_log_floor_of_depth_and_k_window
