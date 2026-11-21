@@ -150,3 +150,4 @@ import MathCan.NOR46ExactIntegerTrace
 import MathCan.RHWindowExponents
 import MathCan.RHFamilyWitnesses
 import MathCan.RHMainLogic
+import MathCan.RHGaloisRowInputs
