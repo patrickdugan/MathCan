@@ -40,6 +40,12 @@ class RHD06LocalGateTests(unittest.TestCase):
         self.assertEqual(r["imaginary_roots"], [12, 17])
         self.assertEqual(r["real_roots"], [11, 18])
         self.assertEqual(r["pair"], [[12, 11], [12, 18]])
+        self.assertEqual(r["phi_roots"], [6, 24])
+        self.assertEqual(r["evaluation_pairs_i_phi"], [[12, 6], [12, 24]])
+        self.assertEqual(r["basis_product_hom_checks"], 32)
+        self.assertEqual(r["prime_ideal_kernels"], [
+            "(29, i-12, phi-6)", "(29, i-12, phi-24)",
+        ])
         with self.assertRaises(ValueError):
             residue_model(11)
 
