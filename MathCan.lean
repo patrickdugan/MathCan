@@ -148,3 +148,4 @@ import MathCan.NOR44SessionOrdering
 import MathCan.NOR45AuthorizedProgram
 import MathCan.NOR46ExactIntegerTrace
 import MathCan.RHWindowExponents
+import MathCan.RHFamilyWitnesses
