@@ -65,3 +65,12 @@ hypotheses remain explicit and unconstructed.
 The original `TOPF Fm ε0 C` fixes `C` before its universal epsilon quantifier. The original `AllLargeC` chooses the `adm5`/`adm6` constants after epsilon but before x and the family index. `coefficient_fixed_across_epsilon` is an independent Lean 4.35/Init theorem for these nested quantifier scopes. It retains a single positive `C` across all epsilon values while allowing positive `c5` and `c6` to depend on epsilon. The dependent index type may vary with both epsilon and scale.
 
 This is a proof of logical synchronization, conditional on all the original-shaped premises. It supplies no analytic `adm5`/`adm6`, geometric `adm7`, or eventual family construction.
+
+## FamCore supplies cofinal availability; TOPF supplies eventual availability
+
+The source's [FamCore definition](https://github.com/leanprover-community/riemann-hypothesis/blob/f150e02623b1e2bbe1f1da8eab5ffee5e930a6a3/src/Formalism/SharpRestriction/FamCore.lean) (Git blob `44cd54c38881086724fdf7f10f32b7d8e80e35b3`) includes `Win_unb : ∀ y, ∃ x ∈ Win, y ≤ x` and `Ix_win : ∀ x ∈ Win, Nonempty (Ix x)`. Its `FamCore.exists_pt` theorem therefore provides *arbitrarily large* scales carrying an inhabited index family.
+
+The source's `TOPF = AllLargeAt ... adm7` premise is stronger. It requires an index at **every** sufficiently large x, which makes the eventual pointwise prime-sum theorem meaningful across a tail of the real line. `cofinal_stages_do_not_force_eventual_availability` gives a native Lean counterexample: the even natural scales are unbounded and inhabited, while infinitely many odd scales remain absent.
+
+The counterexample clarifies why TOPF's existential condition cannot be silently inferred from FamCore's unbounded windows. It does not allege that the original proof makes that inference; TOPF is explicitly supplied in its hypotheses.
+

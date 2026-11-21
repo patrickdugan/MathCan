@@ -160,6 +160,31 @@ theorem empty_index_family_fails_eventual_existence :
   obtain ⟨i, _⟩ := hcutoff cutoff (Nat.le_refl cutoff)
   exact Empty.elim i
 
+
+/-- Availability of a family index at even stages. The original FamCore
+only requires nonempty indices on an unbounded window set, so the
+distinction between cofinal and eventual existence is material. -/
+def intermittentAvailable (n : Nat) : Prop := n % 2 = 0
+
+/-- An unbounded collection of nonempty stages need not contain every
+sufficiently large stage. This is the exact logical gap between the
+FamCore.Win_unb/Ix_win shape and the stronger TOPF existence requirement. -/
+theorem cofinal_stages_do_not_force_eventual_availability :
+    (∀ cutoff : Nat, ∃ n : Nat,
+      cutoff ≤ n ∧ intermittentAvailable n) ∧
+    ¬ (∃ cutoff : Nat, ∀ n : Nat,
+      cutoff ≤ n → intermittentAvailable n) := by
+  constructor
+  · intro cutoff
+    refine ⟨2 * cutoff, ?_, ?_⟩
+    · omega
+    · unfold intermittentAvailable
+      omega
+  · rintro ⟨cutoff, h⟩
+    have hodd := h (2 * cutoff + 1) (by omega)
+    unfold intermittentAvailable at hodd
+    omega
+
 /-- There can be an appropriate family index for every scale while
 no single index remains appropriate at every scale. -/
 def alternatingIndexValid (n index : Nat) : Prop := index = n % 2
@@ -208,6 +233,7 @@ theorem character_subsets_inherit_quadratic_scale
 
 #print axioms uniform_character_constants_on_selected_index
 #print axioms coefficient_fixed_across_epsilon
+#print axioms cofinal_stages_do_not_force_eventual_availability
 #print axioms synchronized_family_witnesses
 #print axioms eventual_selected_index_forces_nonempty
 #print axioms empty_index_family_satisfies_every_eventual_universal
