@@ -1,5 +1,10 @@
 # MathCan
 
+## Riemann Hypothesis proof distillation
+
+The [RH-01 mathematical research program](research/rh_proof_distillation/RESEARCH.md) now lives in MathCan. It contains independent finite exponent certificates in [MathCan/RHWindowExponents.lean](MathCan/RHWindowExponents.lean), exact numeric witness and negative-control oracles, original-source dependency notes, and pinned verification receipts. The companion [EvalMath PR #60](https://github.com/MoralityLabAI/EvalMath/pull/60) owns the scored Lean reconstruction benchmark and the original compiled-module extraction runner.
+
+
 Computational and formal investigations of integer exponent notation, rare prime patterns, finite-field polynomial primes, infinite sequences, observable-state quotients, market mechanisms, and geometric invariants.
 
 ## Mathematics imported as research questions from the *verse* corpora
