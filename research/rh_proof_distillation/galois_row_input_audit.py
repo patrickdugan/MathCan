@@ -68,10 +68,9 @@ def definition_body(source: str, start: str) -> str:
     if i < 0:
         raise ValueError(f"missing Lean definition: {start}")
     rest = source[i + len(start):]
-    ends = [p for tag in ("\ndef ", "\ntheorem ", "\nend ", "\nsection ")
-            if (p := rest.find(tag)) >= 0]
-    return rest[:min(ends) if ends else len(rest)].strip()
-
+    # A namespace-free "end" at EOF is a valid terminator too.
+    boundary = re.search(r"(?m)^[ \t]*(?:def|theorem|end|section)\b", rest)
+    return rest[:boundary.start() if boundary else len(rest)].strip()
 
 def normalize_lift_statement(statement: str) -> str:
     return " ".join(
