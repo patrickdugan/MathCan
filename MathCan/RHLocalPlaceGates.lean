@@ -25,6 +25,15 @@ theorem real_roots_exact :
     ∀ v : Fin 29, RealRoot29 v ↔ (v.val = 11 ∨ v.val = 18) := by
   decide
 
+/-- phi = (1 + sqrt(5))/2 satisfies T^2 - T - 1 = 0.
+Its exact two roots in the residue field are 6 and 24. -/
+def PhiRoot29 (t : Fin 29) : Prop :=
+  (t.val * t.val) % 29 = (t.val + 1) % 29
+
+theorem phi_roots_exact :
+    ∀ t : Fin 29, PhiRoot29 t ↔ (t.val = 6 ∨ t.val = 24) := by
+  decide
+
 /-- Two residue branches agree on the imaginary coordinate and differ
 on the real sqrt(5) coordinate. This is a finite model only. -/
 theorem compatible_residue_pair :
@@ -55,6 +64,7 @@ theorem fixed_weight_twist_cannot_cover_all_dimensions
   have hb := h ((2 * weight - twist).toNat + 1)
   omega
 
+#print axioms phi_roots_exact
 #print axioms imaginary_roots_exact
 #print axioms real_roots_exact
 #print axioms compatible_residue_pair
