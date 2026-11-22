@@ -275,6 +275,122 @@ theorem productKahler_relation_map_baseChange
         (productPoint f u hu) t, Fintype.linearCombination_apply_single, one_smul]
   exact hl.trans ((productKahler_relation_at_point f u hu t i).trans hr.symm)
 
+/-- After the concrete coordinate change, the image of the
+base-changed true Kähler relation map is precisely the actual
+Jacobian-row span. -/
+theorem productKahler_relation_range_baseChange
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → K)
+    (hu : Deligne16.onEmbeddedProduct f u) :
+    letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) K :=
+      (productPoint f u hu).toRingHom.toAlgebra
+    (LinearMap.range
+        ((Deligne21E.productKahlerPresentation (k := k) f).toRelations.map.baseChange K)).map
+      (coordinateTensorEquiv (ι := Deligne16.Coord k s) (productPoint f u hu)).toLinearMap =
+      Deligne21D.conormalRelations f u := by
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) K :=
+    (productPoint f u hu).toRingHom.toAlgebra
+  classical
+  rw [← LinearMap.range_comp]
+  rw [productKahler_relation_map_baseChange f u hu]
+  rw [LinearEquiv.range_comp]
+  exact Fintype.range_linearCombination
+
+/-- Right-exactness identifies the K-linear kernel of the
+base-changed genuine Kähler presentation with the image of its
+base-changed relation map. -/
+theorem productKahler_fiber_kernel
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (point : Deligne21E.productCoordinateRing (k := k) f →ₐ[K] K) :
+    letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) K :=
+      point.toRingHom.toAlgebra
+    LinearMap.ker
+      ((Deligne21E.productKahlerPresentation (k := k) f).toSolution.π.baseChange K) =
+    LinearMap.range
+      ((Deligne21E.productKahlerPresentation (k := k) f).toRelations.map.baseChange K) := by
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) K :=
+    point.toRingHom.toAlgebra
+  have he : Function.Exact
+      ((Deligne21E.productKahlerPresentation (k := k) f).toRelations.map.baseChange K)
+      ((Deligne21E.productKahlerPresentation (k := k) f).toSolution.π.baseChange K) := by
+    simpa only [LinearMap.baseChange_eq_lTensor] using
+      (productKahler_fiber_right_exact f point)
+  exact (LinearMap.exact_iff.mp he).symm
+
+/-- Canonical K-linear cotangent-fiber equivalence for the genuine
+full-ideal coordinate algebra. All Kähler generators and relations
+come from the actual original lifted defining equations. -/
+noncomputable def productKahlerFiberEquiv
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → K)
+    (hu : Deligne16.onEmbeddedProduct f u) :
+    letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) K :=
+      (productPoint f u hu).toRingHom.toAlgebra
+    Deligne21D.presentedCotangentFiber f u ≃ₗ[K]
+      K ⊗[Deligne21E.productCoordinateRing (k := k) f]
+        Ω[Deligne21E.productCoordinateRing (k := k) f⁄K] := by
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) K :=
+    (productPoint f u hu).toRingHom.toAlgebra
+  let e := coordinateTensorEquiv (ι := Deligne16.Coord k s) (productPoint f u hu)
+  let rel := (Deligne21E.productKahlerPresentation (k := k) f).toRelations.map.baseChange K
+  let π := (Deligne21E.productKahlerPresentation (k := k) f).toSolution.π.baseChange K
+  let g : (Deligne16.Coord k s → K) →ₗ[K]
+      (K ⊗[Deligne21E.productCoordinateRing (k := k) f]
+        Ω[Deligne21E.productCoordinateRing (k := k) f⁄K]) :=
+    π.comp e.symm.toLinearMap
+  have hπ : Function.Surjective π :=
+    LinearMap.baseChange_surjective K
+      (Deligne21E.productKahlerPresentation (k := k) f).surjective_π
+  have hg : Function.Surjective g := hπ.comp e.symm.surjective
+  have hexact : LinearMap.ker π = LinearMap.range rel :=
+    productKahler_fiber_kernel f (productPoint f u hu)
+  have hrange : (LinearMap.range rel).map e.toLinearMap =
+      Deligne21D.conormalRelations f u :=
+    productKahler_relation_range_baseChange f u hu
+  have hker : LinearMap.ker g = Deligne21D.conormalRelations f u := by
+    ext v
+    change π (e.symm v) = 0 ↔ v ∈ Deligne21D.conormalRelations f u
+    rw [← LinearMap.mem_ker, hexact]
+    constructor
+    · intro hv
+      have hm : v ∈ (LinearMap.range rel).map e.toLinearMap :=
+        ⟨e.symm v, hv, e.apply_symm_apply v⟩
+      rwa [hrange] at hm
+    · intro hv
+      have hm : v ∈ (LinearMap.range rel).map e.toLinearMap := by
+        rw [hrange]
+        exact hv
+      obtain ⟨w, hw, heq⟩ := hm
+      have he : e.symm v = w := by
+        simpa only [e.symm_apply_apply] using congrArg e.symm heq.symm
+      rw [he]
+      exact hw
+  exact (Submodule.quotEquivOfEq
+      (Deligne21D.conormalRelations f u) (LinearMap.ker g) hker.symm).trans
+    (g.quotKerEquivOfSurjective hg)
+
+/-- The dual of the actual Kähler cotangent fiber is exactly the
+DEL-20 Jacobian tangent, in every characteristic, using the original
+scheme ideal and the canonical finite-coordinate identifications. -/
+noncomputable def productKahlerFiberDualEquivTangent
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → K)
+    (hu : Deligne16.onEmbeddedProduct f u) :
+    letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) K :=
+      (productPoint f u hu).toRingHom.toAlgebra
+    Module.Dual K
+        (K ⊗[Deligne21E.productCoordinateRing (k := k) f]
+          Ω[Deligne21E.productCoordinateRing (k := k) f⁄K]) ≃ₗ[K]
+      Deligne20.jacobianTangent f u := by
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) K :=
+    (productPoint f u hu).toRingHom.toAlgebra
+  exact (productKahlerFiberEquiv f u hu).dualMap.trans
+    (Deligne21D.presentedCotangentDualEquivTangent f u)
+
 #print axioms productPoint_mk
 #print axioms productKahler_fiber_right_exact
 #print axioms differential_relation_coefficient
@@ -285,5 +401,9 @@ theorem productKahler_relation_map_baseChange
 #print axioms coordinateTensorEquiv_single
 #print axioms productKahler_evaluated_relation_span
 #print axioms productKahler_relation_map_baseChange
+#print axioms productKahler_relation_range_baseChange
+#print axioms productKahler_fiber_kernel
+#print axioms productKahlerFiberEquiv
+#print axioms productKahlerFiberDualEquivTangent
 
 end Deligne21F
