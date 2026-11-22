@@ -19,6 +19,7 @@ namespace MathCan.BSARRatioWindow
 
 /-- The exact published BSA-R Step 7 local doubling argument. -/
 theorem local_doubling
+    {M I dprev dnext : Int}
     (hM : 0 < M)
     (hnn : 0 ≤ dnext)
     (hode : M * (dnext - dprev) ≤ I * dnext)
@@ -50,6 +51,7 @@ theorem local_doubling
 /-- One-step growth envelope with explicit dimensionless cost I/M.
     It retains much more information than the crude factor of two. -/
 theorem refined_cross_multiplied_envelope
+    {M I dprev dnext : Int}
     (hM : 0 < M)
     (hI : 0 ≤ I)
     (hnn : 0 ≤ dnext)
@@ -75,6 +77,7 @@ theorem refined_cross_multiplied_envelope
 /-- Simultaneous positive rescaling of M and I preserves both
     local window inequalities; their meaningful quantity is I/M. -/
 theorem scaled_window_constraints
+    {scale M I dprev dnext : Int}
     (hscale : 0 ≤ scale)
     (hode : M * (dnext - dprev) ≤ I * dnext)
     (hhalf : 2 * I ≤ M) :
