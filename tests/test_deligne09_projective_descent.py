@@ -74,7 +74,7 @@ class Deligne09ProjectiveDescentTests(unittest.TestCase):
             for x in range(min(field.q,6)):
                 self.assertFalse(affine_chart_contains((0,1,x)))
                 self.assertTrue(affine_chart_contains((1,0,x)))
-                self.assertTrue(affine_chart_contains((field.p,0,x)))
+                self.assertTrue(affine_chart_contains((field.q-1,0,x)))
                 with self.assertRaises(ValueError):
                     affine_chart_contains(())
 
