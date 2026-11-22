@@ -49,11 +49,8 @@ private theorem pow2_monotone (a b : Nat) (h : a ≤ b) :
   exact pow2_mono_add a (b - a)
 
 private theorem pow2_double_paid (n cost : Nat) (hpaid : 1 ≤ cost) :
-    2 * Pow2 n ≤ Pow2 (n + cost) := by
-  calc
-    2 * Pow2 n = Pow2 (n + 1) := rfl
-    _ ≤ Pow2 (n + cost) :=
-      pow2_monotone (n + 1) (n + cost) (Nat.add_le_add_left hpaid n)
+    Pow2 (n + 1) ≤ Pow2 (n + cost) :=
+  pow2_monotone (n + 1) (n + cost) (Nat.add_le_add_left hpaid n)
 
 /-- A finite sequence of local steps with cumulative charged growth. -/
 inductive MeteredChain : Nat → Int → Int → Nat → Prop
@@ -79,7 +76,7 @@ theorem endpoint_le_meter (h0 : 0 ≤ d0)
         exact Int.le_trans hflat (Int.le_trans (ih h0) hs)
       · have hgrowth : dm < dnext := by omega
         have hunit : 1 ≤ charge := hpaid hgrowth
-        have hmono : 2 * Pow2 used ≤ Pow2 (used + charge) :=
+        have hmono : Pow2 (used + 1) ≤ Pow2 (used + charge) :=
           pow2_double_paid used charge hunit
         have hs := Int.mul_le_mul_of_nonneg_right hmono h0
         have ht : 2 * dm ≤ (2 * Pow2 used) * d0 := by
@@ -118,5 +115,3 @@ end MathCan.BSARMeteredGrowth
 #print axioms MathCan.BSARMeteredGrowth.uniform_bound_from_global_budget
 #print axioms MathCan.BSARMeteredGrowth.free_steps_cannot_increase
 
-set_option pp.proofs true in
-#print MathCan.BSARMeteredGrowth.pow2_double_paid
