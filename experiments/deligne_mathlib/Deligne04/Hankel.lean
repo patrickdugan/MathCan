@@ -31,8 +31,9 @@ def hankel (lam weights : Fin s → R) : Matrix (Fin s) (Fin s) R :=
 /-- Every entry is the intended power sum t_(i+j+1). -/
 theorem hankel_entry (lam weights : Fin s → R) (i j : Fin s) :
     hankel lam weights i j = powerTrace lam weights (i.val + j.val + 1) := by
-  simp only [hankel, Matrix.mul_apply, Matrix.mul_diagonal,
-    Matrix.transpose_apply, Matrix.vandermonde_apply, powerTrace]
+  rw [hankel, Matrix.mul_apply]
+  simp only [Matrix.mul_diagonal, Matrix.transpose_apply,
+    Matrix.vandermonde_apply, powerTrace]
   apply Finset.sum_congr rfl
   intro k _
   simp only [pow_add, pow_one]
