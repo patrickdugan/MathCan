@@ -80,7 +80,7 @@ private theorem strict_growth_has_positive_cost
     (hgrowth : dm < dnext) : 1 ≤ Im := by
   by_cases hzero : Im = 0
   · subst Im
-    simp only [Nat.cast_zero, zero_mul] at hode
+    simp at hode
     have hpos : 0 < M * (dnext - dm) :=
       Int.mul_pos hM (by omega)
     omega
