@@ -175,6 +175,48 @@ theorem nonzero_discriminant_no_critical_point
   intro hcrit
   exact h ((critical_iff_badDiscriminant_zero u).mp hcrit)
 
+/-- DEL-10's two-principal-open witness, generalized from Fin n to
+any finite index type. This is required because the bilinear parameter
+index has a sum type rather than a Fin type. -/
+theorem exists_two_good_opens_general
+    {K : Type*} [Field K] [Fintype K]
+    {σ : Type*} [Finite σ]
+    (P Q : MvPolynomial σ K)
+    (hP : P ≠ 0) (hQ : Q ≠ 0)
+    (hdeg : ∀ i : σ,
+      P.degreeOf i + Q.degreeOf i < Fintype.card K) :
+    ∃ x : σ → K,
+      MvPolynomial.eval x P ≠ 0 ∧
+      MvPolynomial.eval x Q ≠ 0 := by
+  classical
+  have hPQ : P * Q ≠ 0 := mul_ne_zero hP hQ
+  have hdegree : ∀ i : σ,
+      (P * Q).degreeOf i < Fintype.card K := by
+    intro i
+    exact (MvPolynomial.degreeOf_mul_le i P Q).trans_lt (hdeg i)
+  have hsome : ∃ x : σ → K,
+      MvPolynomial.eval x (P * Q) ≠ 0 := by
+    by_contra h
+    apply hPQ
+    apply MvPolynomial.eq_zero_of_eval_zero_at_prod_finset
+      (P * Q) (fun _ : σ => Finset.univ)
+    · intro i
+      simpa using hdegree i
+    · intro x _
+      by_contra hx
+      exact h ⟨x, hx⟩
+  obtain ⟨x, hx⟩ := hsome
+  have hmul :
+      MvPolynomial.eval x P * MvPolynomial.eval x Q ≠ 0 := by
+    simpa only [map_mul] using hx
+  constructor
+  · intro hp
+    exact hmul (by rw [hp, zero_mul])
+  · intro hq
+    exact hmul (by rw [hq, mul_zero])
+
+#print axioms exists_two_good_opens_general
+
 /-- If another nonzero polynomial cuts out the Katz good locus,
 DEL-10's effective theorem selects a single rational point outside
 the exact singular locus and inside that Katz principal open.
@@ -190,7 +232,7 @@ theorem exists_regular_and_katz_good_parameter
       u ∉ criticalParameterSet K n ∧
       MvPolynomial.eval u L ≠ 0 := by
   obtain ⟨u, hP, hLval⟩ :=
-    Deligne10.exists_point_in_two_good_opens
+    exists_two_good_opens_general
       (badDiscriminant K n) L
       (badDiscriminant_ne_zero n) hL hbudget
   exact ⟨u, nonzero_discriminant_no_critical_point u hP, hLval⟩
