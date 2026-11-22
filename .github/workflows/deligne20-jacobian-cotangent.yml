@@ -1,0 +1,64 @@
+name: DEL-20 polynomial Jacobian cotangent spanning
+
+on:
+  push:
+    branches: [proof/deligne20-jacobian-tangent-cotangent-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/JacobianTangentCotangent.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL20_*'
+      - 'research/deligne_sign_audit/del20_*'
+      - 'tests/test_deligne20_cotangent_span.py'
+      - '.github/workflows/deligne20-jacobian-cotangent.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne20-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check actual Jacobian tangent and coordinate cotangent
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/JacobianTangentCotangent.lean | tee deligne20-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne20-axioms.txt; then
+            echo 'DEL-20 admitted proof or unexpected reduction axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate 96 exact polynomial Jacobian tangent cases
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne20_cotangent_span
