@@ -1,0 +1,63 @@
+name: DEL-21E actual quotient Kaehler
+
+on:
+  push:
+    branches: [proof/deligne21e-actual-kahler-presentation-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/ActualQuotientKahler.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL21E_*'
+      - 'tests/test_deligne21e_actual_kahler.py'
+      - '.github/workflows/deligne21e-actual-kahler.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne21e-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check actual U^k quotient Kähler presentation
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/ActualQuotientKahler.lean | tee deligne21e-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne21e-axioms.txt; then
+            echo 'DEL-21E admitted proof or unexpected axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify true original-ideal Kähler relation cases
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne21e_actual_kahler
