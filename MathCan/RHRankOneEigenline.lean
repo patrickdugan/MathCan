@@ -90,13 +90,13 @@ theorem other_place_included (w₀ w : Fin 4) (h : w ≠ w₀) :
 
 /-- An explicit, decidable finite count of the three other indices. -/
 def exceptionalCount (w₀ : Fin 4) : Nat :=
-  ((List.finRange 4).filter (fun w => decide (otherRamified w₀ w))).length
+  (([0, 1, 2, 3] : List Nat).filter (fun n => n != w₀.val)).length
 
 theorem three_exceptional_places (w₀ : Fin 4) :
     exceptionalCount w₀ = 3 := by
   rcases w₀ with ⟨n, hn⟩
   have h : n = 0 ∨ n = 1 ∨ n = 2 ∨ n = 3 := by omega
-  rcases h with h | h | h | h <;> subst n <;> decide
+  rcases h with h | h | h | h <;> subst n <;> simp [exceptionalCount]
 
 #print axioms character_mem_eigenfamily
 #print axioms character_nonzero
