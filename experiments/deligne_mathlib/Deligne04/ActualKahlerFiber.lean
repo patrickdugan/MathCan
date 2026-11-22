@@ -168,18 +168,18 @@ theorem coordinateTensorEquiv_one_tmul
   simp only [coordinateTensorEquiv, LinearEquiv.trans_apply,
     Finsupp.linearEquivFunOnFinite_apply, Basis.baseChange_repr_tmul]
   change (v i) • (1 : K) = point (v i)
-  simp [Algebra.smul_def]
+  simp only [Algebra.smul_def, mul_one, RingHom.algebraMap_toAlgebra]
 
 /-- Basis vectors of the specialized free module are the actual
 coordinate unit vectors at the chosen K-valued point. -/
 theorem coordinateTensorEquiv_single
     {K : Type*} [Field K] {A : Type*} [CommRing A] [Algebra K A]
-    {ι : Type*} [Fintype ι] (point : A →ₐ[K] K)
+    {ι : Type*} [Fintype ι] [DecidableEq ι] (point : A →ₐ[K] K)
     (t : ι) :
     letI : Algebra A K := point.toRingHom.toAlgebra
     coordinateTensorEquiv (ι := ι) point
       (1 ⊗ₜ[A] (Finsupp.single t (1 : A))) =
-        Pi.single t (1 : K) := by
+        (Pi.single t (1 : K) : ι → K) := by
   letI : Algebra A K := point.toRingHom.toAlgebra
   classical
   ext i
