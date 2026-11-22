@@ -289,7 +289,7 @@ theorem geometricCotangentTowerEquiv_single
   rw [geometricKahlerCancelBaseChange_tmul]
   rw [geometricKahlerFiberEquiv_single f (fun j => φ (u j))
     (Deligne21G.onGeometricProduct_map f u hu φ) i]
-  simp
+  exact eM.apply_symm_apply _
 
 #print axioms geometricKahlerFiberEquiv_single
 #print axioms geometricCotangentTowerEquiv_single
