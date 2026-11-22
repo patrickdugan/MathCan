@@ -139,7 +139,7 @@ class Deligne21HFieldTowerOracle(unittest.TestCase):
             m_rows = original_jacobian(mode, *m_u)
             self.assertTrue(all(z == F4_ZERO for z in scheme_equations(mode, *u)))
             self.assertTrue(all(z == GF16(0) for z in scheme_equations(mode, *m_u)))
-            self.assertEqual([[embed(x) for x in row] for row in l_rows, m_rows)
+            self.assertEqual([[embed(x) for x in row] for row in l_rows], m_rows)
             self.assertEqual(rank(l_rows), rank(m_rows), mode)
 
     def test_relations_and_tensor_quotient_basis_extend_correctly(self):
