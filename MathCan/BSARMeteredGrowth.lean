@@ -81,18 +81,18 @@ theorem endpoint_le_meter (h0 : 0 ≤ d0)
       · have hmono : Pow2 used ≤ Pow2 (used + charge) :=
           pow2_mono_add used charge
         have hs := Int.mul_le_mul_of_nonneg_right hmono h0
-        exact le_trans hflat (le_trans ih hs)
+        exact Int.le_trans hflat (Int.le_trans (ih h0) hs)
       · have hgrowth : dm < dnext := by omega
         have hunit : 1 ≤ charge := hpaid hgrowth
         have hmono : 2 * Pow2 used ≤ Pow2 (used + charge) :=
           pow2_double_paid used charge hunit
         have hs := Int.mul_le_mul_of_nonneg_right hmono h0
         have ht : 2 * dm ≤ (2 * Pow2 used) * d0 := by
-          have ha := Int.mul_le_mul_of_nonneg_left ih (by omega : (0 : Int) ≤ 2)
+          have ha := Int.mul_le_mul_of_nonneg_left (ih h0) (by omega : (0 : Int) ≤ 2)
           calc
             2 * dm ≤ 2 * (Pow2 used * d0) := ha
             _ = (2 * Pow2 used) * d0 := by rw [Int.mul_assoc]
-        exact le_trans hstep (le_trans ht hs)
+        exact Int.le_trans hstep (Int.le_trans ht hs)
 
 /-- One global budget cap covers all K, conditional on a charged chain. -/
 theorem uniform_bound_from_global_budget
@@ -103,7 +103,7 @@ theorem uniform_bound_from_global_budget
   have hstep := endpoint_le_meter (h0 := h0) hchain
   have hmono := pow2_monotone used B hbudget
   have hs := Int.mul_le_mul_of_nonneg_right hmono h0
-  exact le_trans hstep hs
+  exact Int.le_trans hstep hs
 
 /-- No cost implies that every allowed chain is nonincreasing. -/
 theorem free_steps_cannot_increase
@@ -114,6 +114,8 @@ theorem free_steps_cannot_increase
 
 end MathCan.BSARMeteredGrowth
 
+#print axioms MathCan.BSARMeteredGrowth.pow2_nonneg
+#print axioms MathCan.BSARMeteredGrowth.pow2_mono_add
 #print axioms MathCan.BSARMeteredGrowth.pow2_double_paid
 #print axioms MathCan.BSARMeteredGrowth.endpoint_le_meter
 #print axioms MathCan.BSARMeteredGrowth.uniform_bound_from_global_budget
