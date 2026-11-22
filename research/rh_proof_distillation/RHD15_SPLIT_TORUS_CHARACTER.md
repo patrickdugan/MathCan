@@ -47,6 +47,33 @@ The finite factor pairing is:
 
 Each has **two** F-prime orbits, with the partner in the same orbit.
 
+## Transverse local fibers: the OneK geometry stays usable
+
+The existing [RHD-12 prime-fiber proof](https://github.com/patrickdugan/MathCan/pull/174) computes `ζ20^5=i` in the four residue quotients modulo 29. The new RHD-15 finite calculation also computes `ζ24^6=i` modulo 5. Each gives a **different partition** from complex conjugation:
+
+| Field | Factor | Conjugate F-place orbit | `i` residue / Q(i) contraction tag |
+| --- | ---: | --- | ---: |
+| Q(ζ20), p=29 | 0 | A: {0,3} | 17 |
+| | 1 | B: {1,2} | 12 |
+| | 2 | B: {1,2} | 17 |
+| | 3 | A: {0,3} | 12 |
+| Q(ζ24), p=5 | 0 | A: {0,2} | 2 |
+| | 1 | B: {1,3} | 3 |
+| | 2 | A: {0,2} | 3 |
+| | 3 | B: {1,3} | 2 |
+
+The `OneK`-compatible finite pairs are `(0,2)` and `(1,3)` at 29, and `(0,3)` and `(1,2)` at 5. Each pair has matching Q(i) reduction and distinct maximal-real contraction, the arithmetic shape demanded by `OneK ∧ Apart`. If selected `w0=0` in Q(ζ20), a candidate ramified only at its F-place A can leave the geometric witness `v'=2` at F-place B unramified and suitable for a future `SatU` theorem.
+
+The Python generator independently computes all eight tags using quotient-ring exponentiation; `RHSplitTorusCharacter.lean` proves four Q(ζ24) sixth-power residues and both transverse partitions, importing the merged RHD-12 finite result. These are **residue-index certificates**, with actual `HeightOneSpectrum` construction outstanding.
+
+## A concrete global character extension lemma to import
+
+The remaining globalization can be organized around a standard fact: for an abelian topological group G and an **open** subgroup H, every continuous character `H → S¹` has a continuous extension to G. Algebraically, S¹ is divisible, so characters extend across abelian supergroups. Their extension is continuous because H is open and the restriction is continuous.
+
+Apply this with `G=T(A_F)/T(F)` for the rank-one norm-one torus `T=Res^1_{E/F} G_m`. Let `K` be the product of full compact local groups away from the chosen split F-place, the selected maximal compact local subgroup at that place, and the compact archimedean torus. The selected p-primary character extends to `K` and is trivial on `K∩T(F)` because this intersection is the finite norm-one integral unit group, which consists of roots of unity. It therefore descends to the open subgroup `K T(F)/T(F)` and extends as a continuous global unitary character.
+
+Making these steps into the **original Lean source types** needs explicit restricted products, discreteness of `T(F)`, openness of `K T(F)/T(F)`, the intersection/unit theorem, and the character-extension lemma. It also requires checking the archimedean type and the original `RU` convention. Once established, this can supply a genuine nonzero character eigenline, subject to the remaining `IsAutRepU`, `TyEll` and `SatU` obligations.
+
 ## Global compatibility: a different unit group
 
 At the level of integral norm-one units, `u bar(u)=1` means every complex conjugate of u has complex norm one; Kronecker's theorem implies u is a root of unity. The two fields contain μ20 and μ24 respectively, both of order prime to p=29 or 5. The local p-power characters above vanish on each cyclotomic root; the Python implementation checks all powers directly in the quadratic residue ring modulo p².
