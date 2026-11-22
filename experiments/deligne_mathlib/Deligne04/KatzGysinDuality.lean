@@ -162,7 +162,9 @@ theorem gysin_frobenius_equivariant_tate
           rw [map_smul]
     _ = t • FXinv.dualMap
         (P.restriction.dualMap (P.pdY y)) := by
-          rw [LinearMap.congr_fun hdual (P.pdY y)]
+          have hfun := LinearMap.congr_fun hdual (P.pdY y)
+          simpa only [LinearMap.comp_apply] using
+            congrArg (fun v : Module.Dual ℂ HX => t • v) hfun
     _ = t • FXinv.dualMap (P.pdX (P.gysin y)) := by
           rw [hg y]
     _ = P.pdX (FCX (P.gysin y)) := (hpdX _).symm
