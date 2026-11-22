@@ -1,0 +1,77 @@
+name: RHD-14 norm-one descent and local conjugation checks
+
+on:
+  push:
+    paths:
+      - 'MathCan/RHNormOneCollapse.lean'
+      - 'MathCan.lean'
+      - 'research/rh_proof_distillation/rhd14_norm_one_collapse.py'
+      - 'research/rh_proof_distillation/RHD14_NORM_ONE_DESCENT.md'
+      - 'tests/test_rhd14_norm_one_collapse.py'
+      - '.github/workflows/rhd14-norm-one.yml'
+  pull_request:
+    paths:
+      - 'MathCan/RHNormOneCollapse.lean'
+      - 'MathCan.lean'
+      - 'research/rh_proof_distillation/rhd14_norm_one_collapse.py'
+      - 'research/rh_proof_distillation/RHD14_NORM_ONE_DESCENT.md'
+      - 'tests/test_rhd14_norm_one_collapse.py'
+      - '.github/workflows/rhd14-norm-one.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  two-field-conjugation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify first layer conjugation, norm and ratio cancellation
+        run: python -m unittest tests.test_rhd14_norm_one_collapse -v
+      - name: Generate deterministic witnesses and SHA receipts
+        run: |
+          mkdir -p rhd14
+          python -m research.rh_proof_distillation.rhd14_norm_one_collapse --output rhd14/norm_collapse.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rhd14-norm-one-witnesses
+          path: rhd14/
+          if-no-files-found: ignore
+
+  finite-lean-conjugation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Audit norm-kernel, conjugation and coprime torsion theorems
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/RHNormOneCollapse.lean | tee rhd14-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:|admit' rhd14-axioms.txt; then
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rhd14-finite-axioms
+          path: rhd14-axioms.txt
+          if-no-files-found: ignore
