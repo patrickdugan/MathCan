@@ -39,32 +39,33 @@ theorem zeta20_factor2_to1 (a b : Nat) :
     (2*a + 14*b) % 29 =
       (2*(a + 14*b) + 15*b) % 29 := by omega
 
-/-- The same phenomenon at Q(zeta_24), p=5. -/
-theorem zeta24_factor0_to3 (a b : Nat) :
+/-- For Q(zeta_24), p=5 the reciprocal-factor involution is
+(0 2)(1 3), with a nontrivial alpha coefficient under inversion. -/
+theorem zeta24_factor0_to2 (a b : Nat) :
     (2*a + 4*b) % 5 =
-      (2*(a + 4*b) + b) % 5 := by omega
+      (2*(a + 4*b) + 2*(3*b)) % 5 := by omega
 
-theorem zeta24_factor3_to0 (a b : Nat) :
-    (2*a + b) % 5 =
-      (2*(a + b) + 4*b) % 5 := by omega
+theorem zeta24_factor2_to0 (a b : Nat) :
+    (2*a + 2*b) % 5 =
+      (2*(a + 2*b) + 4*(2*b)) % 5 := by omega
 
-theorem zeta24_factor1_to2 (a b : Nat) :
+theorem zeta24_factor1_to3 (a b : Nat) :
     (2*a + 3*b) % 5 =
       (2*(a + 3*b) + 2*b) % 5 := by omega
 
-theorem zeta24_factor2_to1 (a b : Nat) :
-    (2*a + 2*b) % 5 =
-      (2*(a + 2*b) + 3*b) % 5 := by omega
+theorem zeta24_factor3_to1 (a b : Nat) :
+    (2*a + b) % 5 =
+      (2*(a + b) + 3*(3*b)) % 5 := by omega
 
 #print axioms norm_pullback_trivial_on_kernel
 #print axioms zeta20_factor0_to3
 #print axioms zeta20_factor3_to0
 #print axioms zeta20_factor1_to2
 #print axioms zeta20_factor2_to1
-#print axioms zeta24_factor0_to3
-#print axioms zeta24_factor3_to0
-#print axioms zeta24_factor1_to2
-#print axioms zeta24_factor2_to1
+#print axioms zeta24_factor0_to2
+#print axioms zeta24_factor2_to0
+#print axioms zeta24_factor1_to3
+#print axioms zeta24_factor3_to1
 
 /-- A 29-torsion exponent that annihilates every 20th root is zero.
 This finite relation models compatibility with μ20, not actual U(1) units. -/
