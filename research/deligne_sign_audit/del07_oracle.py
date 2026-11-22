@@ -63,6 +63,22 @@ def compact_frob(Ainv,P):
     return multiply(multiply(inverse(P),transpose(Ainv)),P)
 
 
+
+def compact_frob_tate(Ainv,P,scalar):
+    """Poincare dual inverse Frobenius with its required Tate scalar."""
+    B=compact_frob(Ainv,P)
+    t=F(scalar)
+    return tuple(tuple(t*v for v in row) for row in B)
+
+
+def tate_equivariance_certificate(R,PX,PY,AXinv,AYinv,tX,tY):
+    """Compare G B_Y = B_X G with possibly mismatched Tate scalars."""
+    G=gysin(R,PX,PY)
+    BX=compact_frob_tate(AXinv,PX,tX)
+    BY=compact_frob_tate(AYinv,PY,tY)
+    return multiply(G,BY)==multiply(BX,G)
+
+
 def compose_certificate(R,PX,PY,AXinv,AYinv,n=3):
     ry,rx=shape(R)
     if shape(AXinv)!=(rx,rx) or shape(AYinv)!=(ry,ry):
