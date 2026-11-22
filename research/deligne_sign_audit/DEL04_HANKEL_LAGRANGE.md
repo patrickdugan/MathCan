@@ -106,22 +106,42 @@ and nonzero aggregated coefficients. Positivity is a natural
 sufficient condition for the algebraic weights of a genuine
 Frobenius module.
 
-## 4. What remains for full Lemma 2
+## 4. Kernel-checked spectral statement
 
-The formal dependencies are:
+The independent [DEL-04 Mathlib CI](https://github.com/patrickdugan/MathCan/actions/runs/44974160982)
+passed on 2026-11-22. Four modules now prove the following
+general statements in Lean 4.35 with no admitted proofs:
 
-- Generic Hankel factorization and nonvanishing in Mathlib.
-- Generic polynomial isolator existence and its finite trace identity.
-- A bound on the finite linear combination of trace windows, via
-  triangle inequality and \(\lvert t_{n+r}\rvert\le CB^{n+r}\).
-- Real geometric growth, followed by the \(k\)-th-root limit with
-  the actual varying \(e_k,c_k\) quantified as in Lemma 2.
+- `Hankel.lean`: all moment entries, the determinant factorization,
+  Vandermonde product, and nonvanishing over integral domains
+  with distinct nonzero eigenvalues and nonzero weights.
+- `Isolation.lean`: exact convolution of consecutive moment windows,
+  existence of complex isolating coefficients from matrix
+  invertibility, and extraction of each weighted power.
+- `ScalarGrowth.lean`: real geometric growth and complex
+  weighted-power bounds.
+- `AllPowers.lean`: `finite_spectral_power_bound_pos`,
+  whose premise is a uniform trace bound for **every n≥1** and
+  whose conclusion is `∀ i, ‖λᵢ‖ ≤ B` for finite spectra with
+  injective eigenvalue indexing, nonzero weights, and B>0.
 
-The test suite checks isolation on 112 seeded rational spectra
-with 1-8 distinct eigenvalues, plus duplicates and adversarial
-virtual cancellation. These are exact examples and do not
-themselves certify the general complex norm inequality.
+The axiom report lists only `propext`, `Classical.choice`,
+and `Quot.sound` for these theorems. The rational isolation test
+suite also passes across 112 seeded spectra of 1-8 eigenvalues,
+in addition to duplicates and rejected virtual multiplicities.
 
-Separate geometric obligations still include weak Lefschetz,
-Poincaré duality, Gysin exactness, Frobenius equivariance,
-and the trace-identification of the hypersurface remainder.
+## 5. Remaining obligations for the paper's Lemma 2
+
+The fixed-spectrum analytic/power-sum bound is now formalized.
+The rest of Lemma 2 requires a separate Lean argument that handles
+the `k`-indexed family of finite-extension Frobenius modules and
+their positive integer extension degrees `e_k`. In that argument,
+the `e_k` factors cancel when comparing normalized eigenvalues,
+and the remaining loss vanishes as `c_k/k → 0`.
+One must preserve the paper's precise quantifiers, including the
+possibility that `K_k` and `e_k` change with `k`.
+
+Independent geometric obligations for the overall theorem
+still include weak Lefschetz, Poincaré duality, Gysin exactness,
+Frobenius equivariance, and the trace identity for the
+hypersurface remainder.
