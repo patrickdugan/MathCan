@@ -33,3 +33,4 @@ import Deligne04.KahlerSquareZeroBridge
 import Deligne04.KahlerCoordinateNaturality
 import Deligne04.PresentedCotangentFiber
 import Deligne04.ActualQuotientKahler
+import Deligne04.ActualKahlerFiber
