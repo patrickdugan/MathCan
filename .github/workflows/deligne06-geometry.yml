@@ -6,6 +6,7 @@ on:
   pull_request:
     paths:
       - 'experiments/deligne_mathlib/Deligne04/TensorSpectrum.lean'
+      - 'experiments/deligne_mathlib/Deligne04/MatrixTensorEigen.lean'
       - 'experiments/deligne_mathlib/Deligne04/GysinTrace.lean'
       - 'experiments/deligne_mathlib/Deligne04/GysinPowers.lean'
       - 'experiments/deligne_mathlib/Deligne04.lean'
@@ -50,6 +51,7 @@ jobs:
           lake build Deligne04
           lake env lean Deligne04/TensorSpectrum.lean | tee deligne06-axioms.txt
           lake env lean Deligne04/GysinTrace.lean | tee -a deligne06-axioms.txt
+          lake env lean Deligne04/MatrixTensorEigen.lean | tee -a deligne06-axioms.txt
           if test -f Deligne04/GysinPowers.lean; then
             lake env lean Deligne04/GysinPowers.lean | tee -a deligne06-axioms.txt
           fi
