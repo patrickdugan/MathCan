@@ -8,6 +8,7 @@ on:
       - 'experiments/deligne_mathlib/Deligne04/GeometricKahlerFiber.lean'
       - 'experiments/deligne_mathlib/Deligne04.lean'
       - 'tests/test_deligne21g_geometric_fiber.py'
+      - 'research/deligne_sign_audit/DEL21G_*'
       - '.github/workflows/deligne21g-geometric-fiber.yml'
   workflow_dispatch:
 
@@ -41,7 +42,7 @@ jobs:
         working-directory: experiments/deligne_mathlib
         run: |
           set -euo pipefail
-          lake build Deligne04.GeometricKahlerFiber
+          lake build Deligne04
           lake env lean Deligne04/GeometricKahlerFiber.lean | tee deligne21g-axioms.txt
           if grep -Eq 'sorryAx|ofReduceBool' deligne21g-axioms.txt; then
             echo 'DEL-21G admitted proof or unexpected axiom'
@@ -59,4 +60,4 @@ jobs:
       - name: Check genuine quadratic extension geometric points and Jacobians
         run: |
           set -euo pipefail
-          python -m unittest -v tests.test_deligne21g_geometric_fiber
+          python -m unittest -v tests.test_deligne21g_geometric_fiber tests.test_deligne21f_actual_fiber
