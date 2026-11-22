@@ -42,24 +42,19 @@ private theorem pow2_mono_add (n cost : Nat) :
       have hn := pow2_nonneg (n + cost)
       omega
 
-private theorem pow2_double_paid (n cost : Nat) (hpaid : 1 ≤ cost) :
-    2 * Pow2 n ≤ Pow2 (n + cost) := by
-  cases cost with
-  | zero => omega
-  | succ cost =>
-      have hrec : Pow2 (n + 1) ≤ Pow2 ((n + 1) + cost) :=
-        pow2_mono_add (n + 1) cost
-      have heq : n + (cost + 1) = (n + 1) + cost := by omega
-      rw [heq]
-      have hstep : Pow2 (n + 1) = 2 * Pow2 n := rfl
-      rw [hstep] at hrec
-      exact hrec
-
 private theorem pow2_monotone (a b : Nat) (h : a ≤ b) :
     Pow2 a ≤ Pow2 b := by
   have heq : a + (b - a) = b := by omega
   rw [← heq]
   exact pow2_mono_add a (b - a)
+
+private theorem pow2_double_paid (n cost : Nat) (hpaid : 1 ≤ cost) :
+    2 * Pow2 n ≤ Pow2 (n + cost) := by
+  have hle : n + 1 ≤ n + cost := by omega
+  have hmon := pow2_monotone (n + 1) (n + cost) hle
+  have hstep : Pow2 (n + 1) = 2 * Pow2 n := rfl
+  rw [hstep] at hmon
+  exact hmon
 
 /-- A finite sequence of local steps with cumulative charged growth. -/
 inductive MeteredChain : Nat → Int → Int → Nat → Prop
@@ -117,6 +112,7 @@ end MathCan.BSARMeteredGrowth
 
 #print axioms MathCan.BSARMeteredGrowth.pow2_nonneg
 #print axioms MathCan.BSARMeteredGrowth.pow2_mono_add
+#print axioms MathCan.BSARMeteredGrowth.pow2_monotone
 #print axioms MathCan.BSARMeteredGrowth.pow2_double_paid
 #print axioms MathCan.BSARMeteredGrowth.endpoint_le_meter
 #print axioms MathCan.BSARMeteredGrowth.uniform_bound_from_global_budget
