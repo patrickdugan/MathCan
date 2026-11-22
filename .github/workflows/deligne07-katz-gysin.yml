@@ -1,0 +1,67 @@
+name: DEL-07 Katz Poincare duality Gysin interface
+
+on:
+  push:
+    branches: [proof/deligne07-katz-gysin-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/KatzGysinDuality.lean'
+      - 'experiments/deligne_mathlib/Deligne04/KatzDegreeShift.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL07_*'
+      - 'research/deligne_sign_audit/del07_*'
+      - 'tests/test_deligne07_katz_gysin.py'
+      - '.github/workflows/deligne07-katz-gysin.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne07-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel check duality transposition and degrees
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/KatzGysinDuality.lean | tee deligne07-axioms.txt
+          lake env lean Deligne04/KatzDegreeShift.lean | tee -a deligne07-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne07-axioms.txt; then
+            echo 'DEL-07 admitted proof or unexpected reduction axiom'
+            exit 1
+          fi
+
+  exact-oracle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exact rational Katz/Gysin oracle
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne07_katz_gysin
+          python -m research.deligne_sign_audit.del07_verify_tasks
