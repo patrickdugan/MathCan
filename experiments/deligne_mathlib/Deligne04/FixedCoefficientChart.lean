@@ -23,6 +23,8 @@ open Finset
 
 namespace Deligne08
 
+universe u
+
 /-- Graphing an arbitrary extra regular function preserves a
 surjective affine coordinate-ring map. -/
 theorem graph_coordinate_surjective
@@ -38,7 +40,7 @@ theorem graph_coordinate_surjective
 coordinate remains a closed immersion. This is the affine-scheme
 translation of the preceding ring-surjectivity theorem. -/
 theorem graph_closed_immersion
-    {A B : Type*} [CommRing A] [CommRing B]
+    {A B : Type u} [CommRing A] [CommRing B]
     (f : A →+* B) (hf : Function.Surjective f) (b : B) :
     AlgebraicGeometry.IsClosedImmersion
       (AlgebraicGeometry.Spec.map
