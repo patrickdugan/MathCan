@@ -27,13 +27,13 @@ class TestBSAR11SobolevScaling(unittest.TestCase):
                 n, a, s = family_parameters(m, q)
                 self.assertEqual(receipt["initial_homogeneous_Hs_seminorm_squared"], "1/1")
                 self.assertEqual(receipt["regularity_s"], f"{s.numerator}/{s.denominator}")
-                self.assertEqual(receipt["initial_L2_norm_squared"], f"{a*a}")
-                self.assertEqual(receipt["initial_enstrophy_density"], f"{a*a*n*n}")
+                self.assertEqual(Q(receipt["initial_L2_norm_squared"]), a*a)
+                self.assertEqual(Q(receipt["initial_enstrophy_density"]), a*a*n*n)
                 self.assertTrue(receipt["mean_zero"])
                 self.assertTrue(receipt["divergence_zero"])
                 self.assertTrue(receipt["nonlinear_advection_zero"])
                 self.assertTrue(receipt["S2_harmonic_map_tension_zero"])
-                self.assertEqual(receipt["direction_gradient_norm_squared"], f"{n}/1" if False else f"{n*n}/1")
+                self.assertEqual(Q(receipt["direction_gradient_norm_squared"]), Q(n*n))
                 self.assertEqual(receipt["pointwise_velocity_norm_squared"],
                                  f"{a.numerator*a.numerator}/{a.denominator*a.denominator}")
 
