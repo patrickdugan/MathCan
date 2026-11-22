@@ -131,11 +131,11 @@ def isLagrangeCritical
     (u : Coord k s → K) : Prop :=
   onEmbeddedProduct f u ∧
     MvPolynomial.eval u (fixedSection B a c) = 0 ∧
-    ∃ λ : EqCoord k r → K,
+    ∃ lam : EqCoord k r → K,
       ∀ i : Coord k s,
         MvPolynomial.eval u
           (MvPolynomial.pderiv i (fixedSection B a c)) =
-          ∑ t : EqCoord k r, λ t *
+          ∑ t : EqCoord k r, lam t *
             MvPolynomial.eval u
               (MvPolynomial.pderiv i (copyEquation f t))
 
@@ -143,22 +143,22 @@ def isLagrangeCritical
 theorem weighted_jacobian_tangent_zero
     {K : Type*} [CommRing K]
     {α β : Type*} [Fintype α] [Fintype β]
-    (J : β → α → K) (g v : α → K) (λ : β → K)
-    (hgradient : ∀ i, g i = ∑ t : β, λ t * J t i)
+    (J : β → α → K) (g v : α → K) (lam : β → K)
+    (hgradient : ∀ i, g i = ∑ t : β, lam t * J t i)
     (htangent : ∀ t, ∑ i : α, J t i * v i = 0) :
     (∑ i : α, g i * v i) = 0 := by
   classical
   calc
     (∑ i : α, g i * v i) =
-        ∑ i : α, (∑ t : β, λ t * J t i) * v i := by
+        ∑ i : α, (∑ t : β, lam t * J t i) * v i := by
           apply Finset.sum_congr rfl
           intro i _
           rw [hgradient i]
-    _ = ∑ t : β, ∑ i : α, λ t * (J t i * v i) := by
+    _ = ∑ t : β, ∑ i : α, lam t * (J t i * v i) := by
           simp_rw [Finset.sum_mul]
           rw [Finset.sum_comm]
           simp_rw [mul_assoc]
-    _ = ∑ t : β, λ t * (∑ i : α, J t i * v i) := by
+    _ = ∑ t : β, lam t * (∑ i : α, J t i * v i) := by
           simp_rw [Finset.mul_sum]
     _ = 0 := by simp [htangent]
 
@@ -177,13 +177,13 @@ theorem lagrange_critical_annihilates_product_tangent
     (∑ i : Coord k s,
        MvPolynomial.eval u
          (MvPolynomial.pderiv i (fixedSection B a c)) * v i) = 0 := by
-  obtain ⟨_, _, λ, hλ⟩ := hcrit
+  obtain ⟨_, _, lam, hlam⟩ := hcrit
   exact weighted_jacobian_tangent_zero
     (fun t i => MvPolynomial.eval u
       (MvPolynomial.pderiv i (copyEquation f t)))
     (fun i => MvPolynomial.eval u
       (MvPolynomial.pderiv i (fixedSection B a c)))
-    v λ hλ htangent
+    v lam hlam htangent
 
 /-- Project a joint incidence ideal in K[parameters, witness]
 back to the genuine parameter polynomial ring using a ring-hom
@@ -210,7 +210,11 @@ theorem elimination_sound_at_joint_zero
     MvPolynomial.eval (fun i : σ => u (.inl i)) P = 0 := by
   have hm : MvPolynomial.rename (Sum.inl : σ → Sum σ τ) P ∈ I := hP
   have hv := hzero _ hm
-  simpa only [MvPolynomial.eval_rename, Function.comp_apply] using hv
+  have heq : (u ∘ (Sum.inl : σ → Sum σ τ)) =
+      (fun i : σ => u (.inl i)) := by
+    funext i
+    rfl
+  simpa only [MvPolynomial.eval_rename, heq] using hv
 
 #print axioms eval_copyEquation
 #print axioms onEmbeddedProduct_iff
