@@ -1,0 +1,73 @@
+name: BSAR-12 two-frequency helical exact and nonzero tension audit
+
+on:
+  pull_request:
+    paths:
+      - "scripts/bsar12_two_mode_helical.py"
+      - "tests/test_bsar12_two_mode_helical.py"
+      - "research/bsar_audit/BSAR12_TWO_MODE_HELICAL.md"
+      - ".github/workflows/bsar12-two-mode.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/bsar12_two_mode_helical.py"
+      - "tests/test_bsar12_two_mode_helical.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-fourier-and-direction:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify BSAR-10 and BSAR-11 source blob identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/bsar10_beltrami_energy_audit.py)" = "87045b392a43477e524e3f844b312324db08c7bf"
+          test "$(git hash-object scripts/bsar11_sobolev_critical_audit.py)" = "07d76458b8d27aba893136a5b07a04e3ed2c460e"
+          python -m py_compile scripts/bsar12_two_mode_helical.py
+      - name: Audit exact Fourier, Sobolev, and nonzero direction-tension witness
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p 'test_bsar12_two_mode_helical.py' -v
+      - name: Freeze and verify 360 exact source-pinned parameter cases
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar12
+          python scripts/bsar12_two_mode_helical.py generate --out artifacts/bsar12
+          python scripts/bsar12_two_mode_helical.py audit --out artifacts/bsar12
+          sha256sum scripts/bsar12_two_mode_helical.py > artifacts/bsar12/source.sha256
+          python - <<'PY'
+          import json
+          from collections import Counter
+          from fractions import Fraction
+          from pathlib import Path
+          root = Path("artifacts/bsar12")
+          m = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+          rows = [json.loads(line) for line in (root / "cases.jsonl").read_text().splitlines() if line]
+          assert m["cases"] == 360 and len(rows) == 360
+          assert m["exact_nonzero_tension_ratio"] == "60/289"
+          assert m["source_commits"]["bsar11"] == "90ba30920bc6d6e36dfae94cc1bab7b6eab85ff2"
+          assert Counter(x["q"] for x in rows) == dict.fromkeys(range(5), 72)
+          assert all(x["all_points_above_half_peak"] for x in rows)
+          assert all(x["tension_at_z_pi_over_2n"]["positive_tension"] for x in rows)
+          assert all(Fraction(x["integrated_cone_lower_rational"]) <=
+                     Fraction(x["integrated_cone_upper_rational"]) for x in rows)
+          print("Exact two-mode Fourier, critical scaling and tension receipts passed")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bsar12-two-mode-rational-tension-evidence
+          path: artifacts/bsar12/
+          retention-days: 14
