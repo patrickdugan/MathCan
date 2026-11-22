@@ -27,6 +27,24 @@ def onGeometricProduct
   ∀ t : Deligne16.EqCoord k r,
     MvPolynomial.aeval u (Deligne16.copyEquation f t) = 0
 
+/-- Every polynomial in the original full ideal vanishes at a
+geometric point, including polynomial multiples and nilpotent relations. -/
+private theorem geometricPoint_vanishes
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (hu : onGeometricProduct f u) :
+    ∀ P : MvPolynomial (Deligne16.Coord k s) K,
+      P ∈ Deligne16.productIdeal f → MvPolynomial.aeval u P = 0 := by
+  intro P hP
+  have hI : Deligne16.productIdeal f ≤
+      RingHom.ker (MvPolynomial.aeval u).toRingHom := by
+    rw [Deligne16.productIdeal, Ideal.span_le]
+    rintro _ ⟨t, rfl⟩
+    exact RingHom.mem_ker.mpr (hu t)
+  exact RingHom.mem_ker.mp (hI hP)
+
 /-- The original quotient A=K[z]/I evaluated at an L-valued point.
 This uses the complete ideal, including nonreduced equations. -/
 noncomputable def productGeometricPoint
@@ -35,15 +53,9 @@ noncomputable def productGeometricPoint
     (f : Fin r → MvPolynomial (Fin s) K)
     (u : Deligne16.Coord k s → L)
     (hu : onGeometricProduct f u) :
-    Deligne21E.productCoordinateRing (k := k) f →ₐ[K] L := by
-  apply Ideal.Quotient.liftₐ (Deligne16.productIdeal f) (MvPolynomial.aeval u)
-  intro P hP
-  have hI : Deligne16.productIdeal f ≤
-      RingHom.ker (MvPolynomial.aeval u).toRingHom := by
-    rw [Deligne16.productIdeal, Ideal.span_le]
-    rintro _ ⟨t, rfl⟩
-    exact RingHom.mem_ker.mpr (hu t)
-  exact RingHom.mem_ker.mp (hI hP)
+    Deligne21E.productCoordinateRing (k := k) f →ₐ[K] L :=
+  Ideal.Quotient.liftₐ (Deligne16.productIdeal f) (MvPolynomial.aeval u)
+    (geometricPoint_vanishes f u hu)
 
 /-- Every class of an original polynomial evaluates by aeval at
 the geometric point, retaining all scheme relations. -/
@@ -57,8 +69,12 @@ theorem productGeometricPoint_mk
     productGeometricPoint f u hu
       (Ideal.Quotient.mk (Deligne16.productIdeal f) P) =
         MvPolynomial.aeval u P := by
-  unfold productGeometricPoint
-  rw [Ideal.Quotient.liftₐ_apply, Ideal.Quotient.lift_mk]
+  have hc := Ideal.Quotient.liftₐ_comp (Deligne16.productIdeal f)
+    (MvPolynomial.aeval u) (geometricPoint_vanishes f u hu)
+  have hp := congrArg
+    (fun φ : MvPolynomial (Deligne16.Coord k s) K →ₐ[K] L => φ P) hc
+  simpa only [AlgHom.comp_apply, Ideal.Quotient.mkₐ_eq_mk,
+    productGeometricPoint] using hp
 
 /-- The actual coordinate residues specialize to their assigned
 L-values at a geometric point. -/
