@@ -60,8 +60,7 @@ theorem derivative_graphSection
     Polynomial.derivative (graphSection K a b c d) =
       Polynomial.C (2 : K) * Polynomial.X +
         Polynomial.C (d + a + b) := by
-  simp [graphSection, Polynomial.derivative_X_sq,
-    Polynomial.derivative_C_mul_X]
+  simp [graphSection, Polynomial.derivative_X_sq]
 
 /-- Evaluation of the actual derivative, in every characteristic. -/
 theorem eval_derivative_graphSection
@@ -96,7 +95,7 @@ theorem relative_bezout_identity
         Polynomial.C (graphDelta a b c d) := by
   rw [derivative_graphSection]
   simp only [graphSection, graphDelta, map_sub, map_add,
-    map_mul, map_pow, map_natCast]
+    map_mul, map_pow, Polynomial.C_ofNat]
   ring
 
 /-- The relative hypersurface Jacobian ideal (G,G') in K[X]. -/
