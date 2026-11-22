@@ -217,6 +217,81 @@ noncomputable def geometricCotangentTowerEquiv
 #print axioms fieldTowerCoordinateEquiv_one_tmul
 #print axioms fieldTowerCoordinateEquiv_single
 #print axioms geometricCotangentTowerEquiv
+/-- The DEL-21G Kähler-fiber quotient map sends the class of a
+coordinate basis vector to the true Kähler presentation's differential
+of that original coordinate generator. -/
+theorem geometricKahlerFiberEquiv_single
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r : ℕ} (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (hu : Deligne21G.onGeometricProduct f u)
+    (i : Deligne16.Coord k s) :
+    letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) L :=
+      (Deligne21G.productGeometricPoint f u hu).toRingHom.toAlgebra
+    (Deligne21G.geometricKahlerFiberEquiv f u hu)
+        (Submodule.Quotient.mk (Pi.single i (1 : L))) =
+    (1 : L) ⊗ₜ[Deligne21E.productCoordinateRing (k := k) f]
+      ((Deligne21E.productKahlerPresentation (k := k) f).toSolution.π)
+        (Finsupp.single i (1 : Deligne21E.productCoordinateRing (k := k) f)) := by
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) L :=
+    (Deligne21G.productGeometricPoint f u hu).toRingHom.toAlgebra
+  classical
+  rw [geometricKahlerFiberEquiv_mk]
+  let e := Deligne21G.geometricCoordinateTensorEquiv
+    (ι := Deligne16.Coord k s) (Deligne21G.productGeometricPoint f u hu)
+  have hi : e.symm (Pi.single i (1 : L)) =
+      (1 : L) ⊗ₜ[Deligne21E.productCoordinateRing (k := k) f]
+        (Finsupp.single i (1 : Deligne21E.productCoordinateRing (k := k) f)) := by
+    apply e.injective
+    rw [e.apply_symm_apply]
+    exact (Deligne21G.geometricCoordinateTensorEquiv_single
+      (ι := Deligne16.Coord k s)
+      (Deligne21G.productGeometricPoint f u hu) i).symm
+  change ((Deligne21E.productKahlerPresentation (k := k) f).toSolution.π.baseChange L)
+      (e.symm (Pi.single i (1 : L))) = _
+  rw [hi, LinearMap.baseChange_tmul]
+
+/-- Generator-level agreement of the full Kähler-tower composite
+with transport of the original cotangent-coordinate classes.
+This determines the base-change square on every finite coordinate
+generator, rather than merely declaring a composite equivalence. -/
+theorem geometricCotangentTowerEquiv_single
+    {K L M : Type*} [Field K] [Field L] [Field M]
+    [Algebra K L] [Algebra K M]
+    {k s r : ℕ} (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (hu : Deligne21G.onGeometricProduct f u)
+    (φ : L →ₐ[K] M)
+    (i : Deligne16.Coord k s) :
+    letI : Algebra L M := φ.toRingHom.toAlgebra
+    geometricCotangentTowerEquiv f u hu φ
+      ((1 : M) ⊗ₜ[L] (Submodule.Quotient.mk (Pi.single i (1 : L)))) =
+    Submodule.Quotient.mk (Pi.single i (1 : M)) := by
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) L :=
+    (Deligne21G.productGeometricPoint f u hu).toRingHom.toAlgebra
+  letI : Algebra L M := φ.toRingHom.toAlgebra
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) M :=
+    (Deligne21G.productGeometricPoint f (fun j => φ (u j))
+      (Deligne21G.onGeometricProduct_map f u hu φ)).toRingHom.toAlgebra
+  letI : IsScalarTower (Deligne21E.productCoordinateRing (k := k) f) L M :=
+    geometricPoint_tower f u hu φ
+  let eL := Deligne21G.geometricKahlerFiberEquiv f u hu
+  let eM := Deligne21G.geometricKahlerFiberEquiv f
+    (fun j => φ (u j)) (Deligne21G.onGeometricProduct_map f u hu φ)
+  apply eM.injective
+  change geometricKahlerCancelBaseChange f u hu φ
+      ((eL.baseChange L M _ _)
+        ((1 : M) ⊗ₜ[L] (Submodule.Quotient.mk (Pi.single i (1 : L))))) =
+    eM (Submodule.Quotient.mk (Pi.single i (1 : M)))
+  rw [LinearEquiv.baseChange_tmul]
+  rw [geometricKahlerFiberEquiv_single f u hu i]
+  rw [geometricKahlerCancelBaseChange_tmul]
+  rw [geometricKahlerFiberEquiv_single f (fun j => φ (u j))
+    (Deligne21G.onGeometricProduct_map f u hu φ) i]
+  simp
+
+#print axioms geometricKahlerFiberEquiv_single
+#print axioms geometricCotangentTowerEquiv_single
 #print axioms geometricPoint_tower
 #print axioms geometricKahlerCancelBaseChange_tmul
 
