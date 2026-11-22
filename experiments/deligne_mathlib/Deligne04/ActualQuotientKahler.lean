@@ -41,14 +41,14 @@ noncomputable def productAlgebraPresentation
     {K : Type*} [Field K] {k s r : ℕ}
     (f : Fin r → MvPolynomial (Fin s) K) :
     Algebra.Presentation K
-      (productCoordinateRing f) (Deligne16.Coord k s)
+      (productCoordinateRing (k := k) f) (Deligne16.Coord k s)
         (Deligne16.EqCoord k r) := by
   classical
-  let I := Deligne16.productIdeal f
+  let I : Ideal (MvPolynomial (Deligne16.Coord k s) K) := Deligne16.productIdeal f
   let Q : MvPolynomial (Deligne16.Coord k s) K →ₐ[K]
-      productCoordinateRing f := Ideal.Quotient.mkₐ K I
+      productCoordinateRing (k := k) f := Ideal.Quotient.mkₐ K I
   have hQ : Function.Surjective Q := Ideal.Quotient.mk_surjective I
-  let G : Algebra.Generators K (productCoordinateRing f)
+  let G : Algebra.Generators K (productCoordinateRing (k := k) f)
       (Deligne16.Coord k s) := Algebra.Generators.ofAlgHom Q hQ
   refine {
     toGenerators := G
@@ -66,17 +66,17 @@ exact-sequence theorem rather than a symbolic stand-in. -/
 noncomputable def productKahlerPresentation
     {K : Type*} [Field K] {k s r : ℕ}
     (f : Fin r → MvPolynomial (Fin s) K) :
-    Module.Presentation (productCoordinateRing f)
-      Ω[productCoordinateRing f⁄K] :=
-  (productAlgebraPresentation f).differentials
+    Module.Presentation (productCoordinateRing (k := k) f)
+      Ω[productCoordinateRing (k := k) f⁄K] :=
+  (productAlgebraPresentation (k := k) f).differentials
 
 /-- The quotient-ring presentation has exactly the original
 number of ambient variables and relation indices. -/
 theorem product_presentation_indices
     {K : Type*} [Field K] {k s r : ℕ}
     (f : Fin r → MvPolynomial (Fin s) K) :
-    (productKahlerPresentation f).G = Deligne16.Coord k s ∧
-      (productKahlerPresentation f).R = Deligne16.EqCoord k r := by
+    (productKahlerPresentation (k := k) f).G = Deligne16.Coord k s ∧
+      (productKahlerPresentation (k := k) f).R = Deligne16.EqCoord k r := by
   exact ⟨rfl, rfl⟩
 
 #print axioms product_presentation_indices
