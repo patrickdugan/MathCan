@@ -114,6 +114,109 @@ theorem geometricKahlerCancelBaseChange_tmul
   rw [Algebra.smul_def]
   rfl
 
+/-- The actual geometric Kähler-fiber equivalence acts on a class
+of coordinates by the original differential-presentation surjection.
+This records the representative-level construction of DEL-21G. -/
+theorem geometricKahlerFiberEquiv_mk
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r : ℕ} (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (hu : Deligne21G.onGeometricProduct f u)
+    (v : Deligne16.Coord k s → L) :
+    letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) L :=
+      (Deligne21G.productGeometricPoint f u hu).toRingHom.toAlgebra
+    (Deligne21G.geometricKahlerFiberEquiv f u hu)
+      (Submodule.Quotient.mk v) =
+    ((Deligne21E.productKahlerPresentation (k := k) f).toSolution.π.baseChange L)
+      ((Deligne21G.geometricCoordinateTensorEquiv
+        (ι := Deligne16.Coord k s)
+        (Deligne21G.productGeometricPoint f u hu)).symm v) := by
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) L :=
+    (Deligne21G.productGeometricPoint f u hu).toRingHom.toAlgebra
+  rfl
+
+/-- Over an arbitrary field tower, finite coordinate functions
+base-change canonically via the usual coordinatewise map. -/
+noncomputable def fieldTowerCoordinateEquiv
+    {K L M : Type*} [Field K] [Field L] [Field M]
+    [Algebra K L] [Algebra K M]
+    {ι : Type*} [Fintype ι]
+    (φ : L →ₐ[K] M) :
+    letI : Algebra L M := φ.toRingHom.toAlgebra
+    (M ⊗[L] (ι → L)) ≃ₗ[M] (ι → M) := by
+  letI : Algebra L M := φ.toRingHom.toAlgebra
+  classical
+  exact ((Pi.basisFun L ι).baseChange M).repr.trans
+    (Finsupp.linearEquivFunOnFinite M M ι)
+
+/-- A coordinate in the base-changed function module is the
+field-homomorphic evaluation of its original scalar coefficient. -/
+theorem fieldTowerCoordinateEquiv_one_tmul
+    {K L M : Type*} [Field K] [Field L] [Field M]
+    [Algebra K L] [Algebra K M]
+    {ι : Type*} [Fintype ι]
+    (φ : L →ₐ[K] M) (v : ι → L) (i : ι) :
+    letI : Algebra L M := φ.toRingHom.toAlgebra
+    fieldTowerCoordinateEquiv (ι := ι) φ (1 ⊗ₜ[L] v) i = φ (v i) := by
+  letI : Algebra L M := φ.toRingHom.toAlgebra
+  classical
+  simp only [fieldTowerCoordinateEquiv, LinearEquiv.trans_apply,
+    Finsupp.linearEquivFunOnFinite_apply, Basis.baseChange_repr_tmul]
+  change (v i) • (1 : M) = φ (v i)
+  simp only [Algebra.smul_def, mul_one, RingHom.algebraMap_toAlgebra]
+  rfl
+
+/-- The original coordinate basis becomes the same coordinate
+basis over the extension field. -/
+theorem fieldTowerCoordinateEquiv_single
+    {K L M : Type*} [Field K] [Field L] [Field M]
+    [Algebra K L] [Algebra K M]
+    {ι : Type*} [Fintype ι] [DecidableEq ι]
+    (φ : L →ₐ[K] M) (i : ι) :
+    letI : Algebra L M := φ.toRingHom.toAlgebra
+    fieldTowerCoordinateEquiv (ι := ι) φ
+      (1 ⊗ₜ[L] (Pi.single i (1 : L))) = (Pi.single i (1 : M) : ι → M) := by
+  letI : Algebra L M := φ.toRingHom.toAlgebra
+  classical
+  ext j
+  rw [fieldTowerCoordinateEquiv_one_tmul]
+  by_cases hij : j = i
+  · subst j
+    simp
+  · simp [Pi.single_apply, hij, Ne.symm hij]
+
+/-- Actual original-ideal geometric cotangent quotients form a
+canonical field-tower base-change equivalence, obtained by
+transporting DEL-21G's genuine Kähler equivalence through the
+Kähler tensor associator. The diagram commutes by construction;
+a separate generator equation identifies the coordinate formula. -/
+noncomputable def geometricCotangentTowerEquiv
+    {K L M : Type*} [Field K] [Field L] [Field M]
+    [Algebra K L] [Algebra K M]
+    {k s r : ℕ} (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (hu : Deligne21G.onGeometricProduct f u)
+    (φ : L →ₐ[K] M) :
+    letI : Algebra L M := φ.toRingHom.toAlgebra
+    M ⊗[L] Deligne21G.geometricCotangentFiber f u ≃ₗ[M]
+      Deligne21G.geometricCotangentFiber f (fun i => φ (u i)) := by
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) L :=
+    (Deligne21G.productGeometricPoint f u hu).toRingHom.toAlgebra
+  letI : Algebra L M := φ.toRingHom.toAlgebra
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) M :=
+    (Deligne21G.productGeometricPoint f (fun i => φ (u i))
+      (Deligne21G.onGeometricProduct_map f u hu φ)).toRingHom.toAlgebra
+  letI : IsScalarTower (Deligne21E.productCoordinateRing (k := k) f) L M :=
+    geometricPoint_tower f u hu φ
+  exact ((Deligne21G.geometricKahlerFiberEquiv f u hu).baseChange L M _ _).trans
+    ((geometricKahlerCancelBaseChange f u hu φ).trans
+      (Deligne21G.geometricKahlerFiberEquiv f (fun i => φ (u i))
+        (Deligne21G.onGeometricProduct_map f u hu φ)).symm)
+
+#print axioms geometricKahlerFiberEquiv_mk
+#print axioms fieldTowerCoordinateEquiv_one_tmul
+#print axioms fieldTowerCoordinateEquiv_single
+#print axioms geometricCotangentTowerEquiv
 #print axioms geometricPoint_tower
 #print axioms geometricKahlerCancelBaseChange_tmul
 
