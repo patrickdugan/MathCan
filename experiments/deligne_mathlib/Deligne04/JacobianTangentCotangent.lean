@@ -43,28 +43,28 @@ noncomputable def jacobianTangent
       (∑ i : Deligne16.Coord k s,
         MvPolynomial.eval u
           (MvPolynomial.pderiv i (Deligne16.copyEquation f t)) * v i) = 0}
-    zero_mem' := ?_
-    add_mem' := ?_
-    smul_mem' := ?_ }
-  · intro t
-    simp
-  · intro v w hv hw t
-    simp only [Pi.add_apply, mul_add, Finset.sum_add_distrib]
-    rw [hv t, hw t, zero_add]
-  · intro a v hv t
-    simp only [Pi.smul_apply, smul_eq_mul]
-    calc
-      (∑ i : Deligne16.Coord k s,
-        MvPolynomial.eval u
-          (MvPolynomial.pderiv i (Deligne16.copyEquation f t)) * (a * v i)) =
-          a * (∑ i : Deligne16.Coord k s,
-            MvPolynomial.eval u
-              (MvPolynomial.pderiv i (Deligne16.copyEquation f t)) * v i) := by
-              rw [Finset.mul_sum]
-              apply Finset.sum_congr rfl
-              intro i _
-              ring
-      _ = 0 := by rw [hv t, mul_zero]
+    zero_mem' := by
+      intro t
+      simp
+    add_mem' := by
+      intro v w hv hw t
+      simp only [Pi.add_apply, mul_add, Finset.sum_add_distrib]
+      rw [hv t, hw t, zero_add]
+    smul_mem' := by
+      intro a v hv t
+      simp only [Pi.smul_apply, smul_eq_mul]
+      calc
+        (∑ i : Deligne16.Coord k s,
+          MvPolynomial.eval u
+            (MvPolynomial.pderiv i (Deligne16.copyEquation f t)) * (a * v i)) =
+            a * (∑ i : Deligne16.Coord k s,
+              MvPolynomial.eval u
+                (MvPolynomial.pderiv i (Deligne16.copyEquation f t)) * v i) := by
+                rw [Finset.mul_sum]
+                apply Finset.sum_congr rfl
+                intro i _
+                ring
+        _ = 0 := by rw [hv t, mul_zero] }
 
 /-- The subspace's membership predicate is precisely DEL-16's
 real, polynomial-gradient tangent condition. -/
@@ -81,7 +81,7 @@ cotangent restriction needed in the Bertini parameter map. -/
 noncomputable def coordinateCotangent
     {K : Type*} [Field K] {σ : Type*} [Fintype σ]
     (W : Subspace K (σ → K)) (a : σ → K) : Module.Dual K W :=
-  W.dualRestrict ((LinearMap.piRing K K σ K).symm a)
+  W.dualRestrict ((LinearEquiv.piRing K K σ K).symm a)
 
 /-- The actual coordinate covectors span the entire cotangent of
 every subspace of a finite ambient coordinate vector space.
@@ -93,7 +93,7 @@ theorem coordinateCotangent_surjective
   classical
   intro phi
   obtain ⟨F, hF⟩ := W.dualRestrict_surjective phi
-  refine ⟨(LinearMap.piRing K K σ K) F, ?_⟩
+  refine ⟨(LinearEquiv.piRing K K σ K) F, ?_⟩
   simpa only [coordinateCotangent, LinearEquiv.symm_apply_apply] using hF
 
 /-- An explicit finite sum formula for the cotangent spanning result,
@@ -112,10 +112,10 @@ theorem cotangent_eq_coordinate_sum
   have hval := congrArg (fun z : Module.Dual K W => z v) ha
   calc
     phi v = coordinateCotangent W a v := hval.symm
-    _ = ((LinearMap.piRing K K σ K).symm a) (v : σ → K) := by
+    _ = ((LinearEquiv.piRing K K σ K).symm a) (v : σ → K) := by
       simp only [coordinateCotangent, Submodule.dualRestrict_apply]
     _ = ∑ i : σ, (v.1 i) * a i := by
-      simp only [LinearMap.piRing_symm_apply, smul_eq_mul]
+      simp only [LinearEquiv.piRing_symm_apply, smul_eq_mul]
     _ = ∑ i : σ, a i * v.1 i := by
       apply Finset.sum_congr rfl
       intro i _
@@ -134,6 +134,13 @@ theorem polynomial_product_cotangent_span
           ∑ i : Deligne16.Coord k s, a i * (v.1 i) := by
   exact cotangent_eq_coordinate_sum (jacobianTangent f u) phi
 
+/-- Value component for a hyperplane with coordinates indexed by
+an arbitrary finite type, including the product indices of U^k. -/
+def finiteParameterValue
+    {K : Type*} [CommRing K] {σ : Type*} [Fintype σ]
+    (z a : σ → K) (c : K) : K :=
+  (∑ i : σ, a i * z i) + c
+
 /-- The affine Bertini parameter map is surjective for the genuine
 Jacobian-kernel cotangent: the freely variable constant c handles
 the section value after the coordinate coefficients have set
@@ -146,11 +153,11 @@ theorem exists_parameter_for_jacobian_cotangent_and_value
     (level : K) :
     ∃ a : Deligne16.Coord k s → K, ∃ c : K,
       coordinateCotangent (jacobianTangent f u) a = target ∧
-      Deligne19.parameterValue z a c = level := by
+      finiteParameterValue z a c = level := by
   obtain ⟨a, ha⟩ :=
     coordinateCotangent_surjective (jacobianTangent f u) target
   refine ⟨a, level - ∑ i : Deligne16.Coord k s, a i * z i, ha, ?_⟩
-  dsimp [Deligne19.parameterValue]
+  dsimp [finiteParameterValue]
   ring
 
 /-- The fixed path-phase B can have any tangent differential dB:
@@ -163,7 +170,7 @@ theorem exists_fixed_phase_critical_on_jacobian_tangent
     (B : K) (dB : Module.Dual K (jacobianTangent f u)) :
     ∃ a : Deligne16.Coord k s → K, ∃ c : K,
       coordinateCotangent (jacobianTangent f u) a = -dB ∧
-      B + Deligne19.parameterValue z a c = 0 := by
+      B + finiteParameterValue z a c = 0 := by
   obtain ⟨a, c, ha, hv⟩ :=
     exists_parameter_for_jacobian_cotangent_and_value f u z (-dB) (-B)
   refine ⟨a, c, ha, ?_⟩
