@@ -92,8 +92,7 @@ retained for subsequent rational-domain interpretation. -/
 theorem budgeted_cross_multiplied
     (hchain : RatioProductChain M k d0 dfinal denom numer)
     (h0 : 0 ≤ d0)
-    (hbudget : numer ≤ budget * denom)
-    (hbudget_nonneg : 0 ≤ budget) :
+    (hbudget : numer ≤ budget * denom) :
     denom * dfinal ≤ (budget * denom) * d0 := by
   have hbase := endpoint_cross_multiplied hchain
   have hscaled := Int.mul_le_mul_of_nonneg_right hbudget h0
