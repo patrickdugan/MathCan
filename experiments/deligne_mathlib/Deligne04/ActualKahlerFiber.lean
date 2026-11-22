@@ -214,6 +214,37 @@ theorem productKahler_evaluated_relation_span
     Submodule.span K (Set.range (Deligne21D.conormalRow f u))
   rw [hrows]
 
+/-- Base-changing the genuine Kähler presentation's relation
+map and expressing it in the finite coordinate bases gives precisely
+the K-linear map with DEL-21D's evaluated Jacobian rows. -/
+theorem productKahler_relation_map_baseChange
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → K)
+    (hu : Deligne16.onEmbeddedProduct f u) :
+    letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) K :=
+      (productPoint f u hu).toRingHom.toAlgebra
+    (coordinateTensorEquiv (ι := Deligne16.Coord k s)
+        (productPoint f u hu)).toLinearMap.comp
+      ((Deligne21E.productKahlerPresentation (k := k) f).toRelations.map.baseChange K) =
+    (Fintype.linearCombination K (Deligne21D.conormalRow f u)).comp
+      (coordinateTensorEquiv (ι := Deligne16.EqCoord k r)
+        (productPoint f u hu)).toLinearMap := by
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) K :=
+    (productPoint f u hu).toRingHom.toAlgebra
+  classical
+  apply ((Finsupp.basisSingleOne :
+      Basis (Deligne16.EqCoord k r) (Deligne21E.productCoordinateRing (k := k) f)
+        (Deligne16.EqCoord k r →₀ Deligne21E.productCoordinateRing (k := k) f)
+      ).baseChange K).ext
+  intro t
+  ext i
+  simp only [LinearMap.comp_apply, Basis.baseChange_apply,
+    LinearMap.baseChange_tmul, Module.Relations.map_single]
+  rw [coordinateTensorEquiv_one_tmul, coordinateTensorEquiv_single,
+    Fintype.linearCombination_apply_single, one_smul]
+  exact productKahler_relation_at_point f u hu t i
+
 #print axioms productPoint_mk
 #print axioms productKahler_fiber_right_exact
 #print axioms differential_relation_coefficient
@@ -223,5 +254,6 @@ theorem productKahler_evaluated_relation_span
 #print axioms coordinateTensorEquiv_one_tmul
 #print axioms coordinateTensorEquiv_single
 #print axioms productKahler_evaluated_relation_span
+#print axioms productKahler_relation_map_baseChange
 
 end Deligne21F
