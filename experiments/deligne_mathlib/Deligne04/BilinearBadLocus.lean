@@ -94,7 +94,7 @@ def parameterC {K : Type*} {n : ℕ}
   u (.inr ())
 
 /-- A nonzero defining polynomial for the bad parameter hypersurface. -/
-def badDiscriminant (K : Type*) [CommRing K] (n : ℕ) :
+noncomputable def badDiscriminant (K : Type*) [CommRing K] (n : ℕ) :
     MvPolynomial (ParameterIndex n) K :=
   MvPolynomial.X (.inr ()) -
     ∑ i : Fin n, MvPolynomial.X (.inl (.inl i)) *
@@ -142,8 +142,12 @@ theorem criticalSet_eq_zeroLocus
   ext u
   rw [MvPolynomial.zeroLocus_span]
   simp only [Set.mem_setOf_eq, Set.mem_singleton_iff, forall_eq]
-  simpa only [MvPolynomial.coe_aeval_eq_eval] using
-    (critical_iff_badDiscriminant_zero u)
+  have hEval :
+      MvPolynomial.aeval u (badDiscriminant K n) =
+        MvPolynomial.eval u (badDiscriminant K n) := by
+    simp [badDiscriminant]
+  rw [hEval]
+  exact critical_iff_badDiscriminant_zero u
 
 /-- A particular point whose c-coordinate is 1 and others are zero. -/
 def witnessParameter {K : Type*} [Zero K] [One K] (n : ℕ) :
