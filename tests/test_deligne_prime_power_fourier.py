@@ -103,7 +103,9 @@ class PrimePowerFourierTests(unittest.TestCase):
         h,c=f.q-1,f.q//2
         for k in ks:
             weights=tuple({x:one(f.p) for x in space} for _ in range(k))
-            matrices=tuple(identity_matrix(d) for _ in range(k-1))
+            alternate=((0,1),(1,f.q-1)) if d==2 else ((f.q-1,),)
+            matrices=tuple(identity_matrix(d) if i%2==0 else alternate
+                           for i in range(k-1))
             got=path_sum_contract(f,d,weights,matrices,h,c)
             expect=shift_poly(scalar(N**((k+1)//2),f.p),
                               f.trace(f.mul(h,c)))
