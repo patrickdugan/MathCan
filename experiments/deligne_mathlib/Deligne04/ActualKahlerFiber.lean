@@ -239,11 +239,14 @@ theorem productKahler_relation_map_baseChange
       ).baseChange K).ext
   intro t
   ext i
-  simp only [LinearMap.coe_comp, Function.comp_apply, LinearEquiv.coe_coe,
-    Basis.baseChange_apply, Finsupp.coe_basisSingleOne,
-    LinearMap.baseChange_tmul, Module.Relations.map_single,
-    coordinateTensorEquiv_one_tmul, coordinateTensorEquiv_single,
-    Fintype.linearCombination_apply_single, one_smul]
+  simp only [Basis.baseChange_apply, Finsupp.coe_basisSingleOne,
+    coordinateTensorEquiv_single, Fintype.linearCombination_apply_single, one_smul]
+  change coordinateTensorEquiv (ι := Deligne16.Coord k s) (productPoint f u hu)
+    (((Deligne21E.productKahlerPresentation (k := k) f).toRelations.map.baseChange K)
+      (1 ⊗ₜ[Deligne21E.productCoordinateRing (k := k) f]
+        (Finsupp.single t 1))) i = Deligne21D.conormalRow f u t i
+  rw [LinearMap.baseChange_tmul, Module.Relations.map_single,
+    coordinateTensorEquiv_one_tmul]
   exact productKahler_relation_at_point f u hu t i
 
 #print axioms productPoint_mk
