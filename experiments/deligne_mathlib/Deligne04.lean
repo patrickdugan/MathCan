@@ -31,3 +31,4 @@ import Deligne04.JacobianTangentCotangent
 import Deligne04.DualNumberSchemeTangent
 import Deligne04.KahlerSquareZeroBridge
 import Deligne04.KahlerCoordinateNaturality
+import Deligne04.PresentedCotangentFiber
