@@ -249,7 +249,10 @@ theorem geometricKahlerFiberEquiv_single
       (Deligne21G.productGeometricPoint f u hu) i).symm
   change ((Deligne21E.productKahlerPresentation (k := k) f).toSolution.π.baseChange L)
       (e.symm (Pi.single i (1 : L))) = _
-  rw [hi, LinearMap.baseChange_tmul]
+  rw [hi]
+  exact LinearMap.baseChange_tmul
+    (f := (Deligne21E.productKahlerPresentation (k := k) f).toSolution.π)
+    (1 : L) (Finsupp.single i (1 : Deligne21E.productCoordinateRing (k := k) f))
 
 /-- Generator-level agreement of the full Kähler-tower composite
 with transport of the original cotangent-coordinate classes.
@@ -279,10 +282,8 @@ theorem geometricCotangentTowerEquiv_single
   let eM := Deligne21G.geometricKahlerFiberEquiv f
     (fun j => φ (u j)) (Deligne21G.onGeometricProduct_map f u hu φ)
   apply eM.injective
-  change geometricKahlerCancelBaseChange f u hu φ
-      ((eL.baseChange L M _ _)
-        ((1 : M) ⊗ₜ[L] (Submodule.Quotient.mk (Pi.single i (1 : L))))) =
-    eM (Submodule.Quotient.mk (Pi.single i (1 : M)))
+  simp only [geometricCotangentTowerEquiv, LinearEquiv.trans_apply,
+    LinearEquiv.apply_symm_apply]
   rw [LinearEquiv.baseChange_tmul]
   rw [geometricKahlerFiberEquiv_single f u hu i]
   rw [geometricKahlerCancelBaseChange_tmul]
