@@ -1,0 +1,64 @@
+name: DEL-17 embedded parabola bad-locus polynomial
+
+on:
+  push:
+    branches: [proof/deligne17-parabola-bad-locus-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/ParabolaProductBadLocus.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL17_*'
+      - 'research/deligne_sign_audit/del17_*'
+      - 'tests/test_deligne17_parabola_bad_locus.py'
+      - '.github/workflows/deligne17-parabola.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne17-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check parabola-product bad-locus polynomial
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/ParabolaProductBadLocus.lean | tee deligne17-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne17-axioms.txt; then
+            echo 'DEL-17 admitted proof or unexpected reduction axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify 96 exact finite-field and closure cases
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne17_parabola_bad_locus
