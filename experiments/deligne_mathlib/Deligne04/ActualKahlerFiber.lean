@@ -298,7 +298,8 @@ theorem productKahler_relation_range_baseChange
   rw [← LinearMap.range_comp]
   rw [productKahler_relation_map_baseChange f u hu]
   rw [LinearEquiv.range_comp]
-  exact Fintype.range_linearCombination
+  simpa only [Deligne21D.conormalRelations] using
+    (Fintype.range_linearCombination K (Deligne21D.conormalRow f u))
 
 /-- Right-exactness identifies the K-linear kernel of the
 base-changed genuine Kähler presentation with the image of its
@@ -368,7 +369,9 @@ noncomputable def productKahlerFiberEquiv
         exact hv
       obtain ⟨w, hw, heq⟩ := hm
       have he : e.symm v = w := by
-        simpa only [e.symm_apply_apply] using congrArg e.symm heq.symm
+        calc
+          e.symm v = e.symm (e w) := congrArg e.symm heq.symm
+          _ = w := e.symm_apply_apply w
       rw [he]
       exact hw
   exact (Submodule.quotEquivOfEq
