@@ -45,13 +45,18 @@ class Deligne12PolynomialJacobianTests(unittest.TestCase):
             for a,b,c in product(range(f.q),repeat=3):
                 P=conic_polynomial(f,a,b,c)
                 px,py=pderiv(f,P,0),pderiv(f,P,1)
+                critical_count=0
                 for x,y in product(range(f.q),repeat=2):
                     if evaluate(f,P,x,y)!=0:
                         continue
                     both_zero=(evaluate(f,px,x,y)==0 and
                                evaluate(f,py,x,y)==0)
-                    self.assertEqual(both_zero,c==f.mul(a,b),
-                                     (name,a,b,c,x,y))
+                    if both_zero:
+                        critical_count+=1
+                        self.assertEqual(c,f.mul(a,b),
+                                         (name,a,b,c,x,y))
+                self.assertEqual(critical_count,int(c==f.mul(a,b)),
+                                 (name,a,b,c))
 
     def test_inseparable_frobenius_square_in_characteristic_two(self):
         for name in ("F2","F4","F8","F16"):
