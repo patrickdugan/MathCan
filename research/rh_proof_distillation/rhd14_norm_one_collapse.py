@@ -47,20 +47,29 @@ FAMILIES = (
 
 
 def conjugate_factor_indices(family: Family) -> tuple[int, ...]:
-    """Complex conjugation sends a degree-two factor c to -c mod p²."""
+    """Reciprocal factors: f*(X)=X²+(c/d)X+1/d, since zeta maps to zeta^-1."""
     modulus = family.p**2
-    return tuple(next(
-        j for j, f2 in enumerate(family.factors)
-        if (f2[1]+f[1]) % modulus == 0
-    ) for f in family.factors)
+    pairs = []
+    for d, c, _ in family.factors:
+        options = [
+            j for j, (d2, c2, _) in enumerate(family.factors)
+            if (d*d2) % modulus == 1 and (c2*d) % modulus == c % modulus
+        ]
+        if len(options) != 1:
+            raise AssertionError("complex conjugation has ambiguous reciprocal factor")
+        pairs.append(options[0])
+    return tuple(pairs)
 
 
 def conjugate_coordinates(family: Family, index: int, a: int, b: int,
                           modulus: int | None = None) -> tuple[int, int]:
-    """In the paired quotient, zeta maps to alpha_conj^{-1} = alpha_conj - c."""
+    """Under conjugation, zeta_j maps to alpha_k^-1=-(alpha_k+c_k)/d_k."""
     m = family.p**2 if modulus is None else modulus
-    c = family.factors[index][1]
-    return ((a-c*b) % m, b % m)
+    k = conjugate_factor_indices(family)[index]
+    d_source = family.factors[index][0]
+    c_target = family.factors[k][1]
+    # Since d_source*d_target=1 mod p², -d_source is -1/d_target.
+    return ((a-d_source*c_target*b) % m, (-d_source*b) % m)
 
 
 def norm_in_quotient(f: tuple[int, int, int], a: int, b: int, m: int) -> int:
@@ -107,9 +116,10 @@ def check_ring_conjugation(family: Family, samples: int = 2048) -> dict:
     modulus = family.p**2
     idx = conjugate_factor_indices(family)
     for j in range(4):
-        c = family.factors[j][1]
-        if (c+family.factors[idx[j]][1]) % modulus:
-            raise AssertionError("bad Hensel-conjugate coefficient")
+        d, c, _ = family.factors[j]
+        d2, c2, _ = family.factors[idx[j]]
+        if (d*d2) % modulus != 1 or (c2*d) % modulus != c % modulus:
+            raise AssertionError("bad reciprocal Hensel-conjugate factor")
         for t in range(samples):
             digest = hashlib.sha256(
                 f"RHD14/{family.label}/{j}/{t}".encode()
