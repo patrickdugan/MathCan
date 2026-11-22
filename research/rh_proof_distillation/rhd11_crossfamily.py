@@ -131,6 +131,88 @@ def exact_oracle_check() -> None:
         raise ArithmeticError("character generator/global-unit check failed")
 
 
+def ring_mul(f: tuple[int, int, int], u: tuple[int, int],
+             v: tuple[int, int]) -> tuple[int, int]:
+    """Quadratic local-ring multiplication modulo 25."""
+    a, b = u
+    c, d = v
+    return ((a*c - f[0]*b*d) % P2,
+            (a*d + b*c - f[1]*b*d) % P2)
+
+
+def ring_pow(f: tuple[int, int, int], u: tuple[int, int],
+             exponent: int) -> tuple[int, int]:
+    if exponent < 0:
+        raise ValueError("negative exponent")
+    out = (1, 0)
+    while exponent:
+        if exponent & 1:
+            out = ring_mul(f, out, u)
+        u = ring_mul(f, u, u)
+        exponent >>= 1
+    return out
+
+
+def cyclotomic_unit(f: tuple[int, int, int], k: int) -> tuple[int, int]:
+    """Local residue of the global algebraic unit 1-zeta_24^k."""
+    a, b = ring_pow(f, (0, 1), k)
+    return ((1-a) % P2, (-b) % P2)
+
+
+def first_layer_log(f: tuple[int, int, int],
+                    u: tuple[int, int]) -> tuple[int, int]:
+    """Canonical F_5^2 logarithm: (1-u^24)/5 in the residue basis."""
+    a, b = ring_pow(f, u, P*P-1)
+    if a % P != 1 or b % P != 0:
+        raise ValueError("not a local unit")
+    return (((1-a)//P) % P, ((-b)//P) % P)
+
+
+def unit_obstruction() -> dict:
+    """Independent 1-zeta and 1-zeta^7 spanning witnesses at every p=5 place.
+
+    Conditional global deduction: a finite-order character of exact order
+    five, trivial at infinity and unramified away from one such p-adic
+    place cannot be nontrivial at that place while killing both global
+    units. This function only certifies the finite ring calculations.
+    """
+    unit_exponents = (1, 7)
+    frozen_determinants = (2, 4, 1, 3)
+    norms_product = [1, 1]
+    q_sum = [0, 0]
+    witnesses = []
+    for j, f in enumerate(FACTORS):
+        units = [cyclotomic_unit(f, k) for k in unit_exponents]
+        logs = [first_layer_log(f, u) for u in units]
+        det = (logs[0][0]*logs[1][1] -
+               logs[0][1]*logs[1][0]) % P
+        if det != frozen_determinants[j]:
+            raise ArithmeticError("unexpected global-unit logarithm span")
+        norms = [local_norm(f, *unit) for unit in units]
+        if any(n % P == 0 for n in norms):
+            raise ArithmeticError("global unit became a local nonunit")
+        for k in range(2):
+            norms_product[k] = norms_product[k]*norms[k] % P2
+            q_sum[k] = (q_sum[k] + q(norms[k])) % P
+        witnesses.append({
+            "factor_index": j,
+            "unit_log_vectors": [list(v) for v in logs],
+            "determinant_mod_5": det,
+            "local_norms": norms,
+            "local_norm_character_exponents": [q(n) for n in norms],
+        })
+    if norms_product != [1, 1] or q_sum != [0, 0]:
+        raise ArithmeticError("global unit product compatibility failed")
+    return {
+        "global_unit_exponents": list(unit_exponents),
+        "determinants_mod_5": list(frozen_determinants),
+        "global_norm_products_mod_25": norms_product,
+        "character_exponent_sums_mod_5": q_sum,
+        "places": witnesses,
+        "scope": "exact finite first-layer arithmetic, not a Lean global proof",
+    }
+
+
 @dataclass(frozen=True)
 class Candidate:
     selected_factor: int
@@ -450,6 +532,7 @@ def report() -> dict:
         "trained_policy": "RHD-10 frequency table, frozen",
         "heldout_family_used_for_training": False,
         "factor_lifts_mod_25": [list(f) for f in FACTORS],
+        "global_unit_obstruction": unit_obstruction(),
         "unseen_heldout_factors": True,
         "results": {
             policy_name: {
