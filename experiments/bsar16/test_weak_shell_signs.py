@@ -4,13 +4,12 @@ from __future__ import annotations
 
 import json
 import unittest
-from fractions import Fraction
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
 from experiments.bsar16.exact_residual import (
-    GRID_SIZES, ROOTS, Q, source_modes, VISCOSITY,
+    GRID_SIZES, ROOTS, Q, source_modes,
 )
 from experiments.bsar16.conditional_nse_shells import generate as source_generate
 from experiments.bsar16.rational_enclosure import exp_upper
