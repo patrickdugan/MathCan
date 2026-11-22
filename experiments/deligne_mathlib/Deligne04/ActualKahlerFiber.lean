@@ -166,9 +166,49 @@ theorem coordinateTensorEquiv_one_tmul
   letI : Algebra A K := point.toRingHom.toAlgebra
   classical
   simp only [coordinateTensorEquiv, LinearEquiv.trans_apply,
-    Finsupp.linearEquivFunOnFinite_apply, Basis.baseChange_repr_tmul,
-    one_smul, Finsupp.mapRange_apply]
-  rfl
+    Finsupp.linearEquivFunOnFinite_apply, Basis.baseChange_repr_tmul]
+  change (v i) • (1 : K) = point (v i)
+  simp [Algebra.smul_def]
+
+/-- Basis vectors of the specialized free module are the actual
+coordinate unit vectors at the chosen K-valued point. -/
+theorem coordinateTensorEquiv_single
+    {K : Type*} [Field K] {A : Type*} [CommRing A] [Algebra K A]
+    {ι : Type*} [Fintype ι] (point : A →ₐ[K] K)
+    (t : ι) :
+    letI : Algebra A K := point.toRingHom.toAlgebra
+    coordinateTensorEquiv (ι := ι) point
+      (1 ⊗ₜ[A] (Finsupp.single t (1 : A))) =
+        Pi.single t (1 : K) := by
+  letI : Algebra A K := point.toRingHom.toAlgebra
+  classical
+  ext i
+  rw [coordinateTensorEquiv_one_tmul]
+  simp
+
+/-- The span of Mathlib's genuine Kähler module-presentation
+relations, evaluated at the actual quotient point, is exactly
+DEL-21D's polynomial Jacobian-row conormal span. -/
+theorem productKahler_evaluated_relation_span
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → K)
+    (hu : Deligne16.onEmbeddedProduct f u) :
+    Submodule.span K
+      (Set.range (fun t : Deligne16.EqCoord k r =>
+        (fun i : Deligne16.Coord k s =>
+          productPoint f u hu
+            ((Deligne21E.productKahlerPresentation (k := k) f).relation t i)))) =
+      Deligne21D.conormalRelations f u := by
+  let rows : Deligne16.EqCoord k r → Deligne16.Coord k s → K :=
+    fun t i => productPoint f u hu
+      ((Deligne21E.productKahlerPresentation (k := k) f).relation t i)
+  have hrows : rows = Deligne21D.conormalRow f u := by
+    funext t i
+    exact productKahler_relation_at_point f u hu t i
+  change Submodule.span K (Set.range rows) =
+    Submodule.span K (Set.range (Deligne21D.conormalRow f u))
+  rw [hrows]
 
 #print axioms productPoint_mk
 #print axioms productKahler_fiber_right_exact
@@ -177,5 +217,7 @@ theorem coordinateTensorEquiv_one_tmul
 #print axioms productPoint_val
 #print axioms productKahler_relation_at_point
 #print axioms coordinateTensorEquiv_one_tmul
+#print axioms coordinateTensorEquiv_single
+#print axioms productKahler_evaluated_relation_span
 
 end Deligne21F
