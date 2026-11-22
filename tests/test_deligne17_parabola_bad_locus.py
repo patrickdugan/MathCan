@@ -192,5 +192,57 @@ class ParabolaEliminationOracle(unittest.TestCase):
             self.assertNotEqual({f:1, 1:-1},{})
 
 
+    def test_exact_density_of_principal_open(self) -> None:
+        """The degree-three polynomial E has exactly Q^4 zeros in F_Q^5.
+
+        For each (alpha,beta), if 4alpha beta != 1 the c-fiber has one
+        zero per (p,q). If 4alpha beta=1, the numerator is a square
+        and there are Q choices of (p,q) and all Q values of c.
+        """
+        for f in FIELDS:
+            zeros = 0
+            for a in range(f):
+                for b in range(f):
+                    count = 0
+                    for p in range(f):
+                        for q in range(f):
+                            for c in range(f):
+                                e = ((4*a*b-1)*c-a*q*q-b*p*p+p*q)%f
+                                count += (e == 0)
+                    self.assertEqual(count, f*f, (f,a,b))
+                    zeros += count
+            self.assertEqual(zeros, f**4)
+            self.assertEqual(f**5-zeros, f**4*(f-1))
+
+    def test_sparse_formal_bezout_as_integer_polynomial(self) -> None:
+        """Check coefficients in Z[X,Y], independently of finite-field eval."""
+        def add(*terms: dict[tuple[int,int],int]) -> dict[tuple[int,int],int]:
+            out = {}
+            for t in terms:
+                for k,v in t.items():
+                    out[k] = out.get(k,0)+v
+            return {k:v for k,v in out.items() if v}
+        def mul(A: dict[tuple[int,int],int],
+                B: dict[tuple[int,int],int]) -> dict[tuple[int,int],int]:
+            out = {}
+            for (i,j),a in A.items():
+                for (u,v),b in B.items():
+                    key=(i+u,j+v)
+                    out[key]=out.get(key,0)+a*b
+            return {k:v for k,v in out.items() if v}
+        def scale(a: int,A: dict[tuple[int,int],int]) -> dict[tuple[int,int],int]:
+            return {k:a*v for k,v in A.items() if a*v}
+        for r in freeze():
+            a,b,p,q,c = (r[z] for z in ("alpha","beta","p","q","c"))
+            G={(2,0):a,(1,1):1,(0,2):b,(1,0):p,(0,1):q,(0,0):c}
+            Gx={(1,0):2*a,(0,1):1,(0,0):p}
+            Gy={(0,1):2*b,(1,0):1,(0,0):q}
+            d=4*a*b-1
+            lhs=add(scale(d,G),scale(-a,mul(Gy,Gy)),
+                    scale(-b,mul(Gx,Gx)),mul(Gx,Gy))
+            E=d*c-a*q*q-b*p*p+p*q
+            self.assertEqual(lhs,({(0,0):E} if E else {}),r)
+
+
 if __name__ == "__main__":
     unittest.main()
