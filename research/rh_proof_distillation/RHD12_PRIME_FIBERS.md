@@ -36,6 +36,8 @@ The original riemann-hypothesis source uses genuine HeightOneSpectrum (O E), not
 3. Prove IsSplitAt p_j at the relevant places and the place-specific local degree. Use the already verified norm and character arithmetic as a target for a local p-adic bridge, retaining the original type of TyEll.
 4. Resolve the exceptional-set requirements of SphOffU and GenTy at the original theorem applications; the norm-pullback character ramifies at all four primes over 29, and a single-prime order-29 character is obstructed by the global-unit logarithms of RHD-10C.
 
+**Toolchain boundary:** the pinned upstream riemann-hypothesis repository uses Lean v4.33.1 with Mathlib commit `0df444a360eaa60ab8c11dca51a86af692955474`, while MathCan uses Lean v4.35.0 and imports only Init. Porting the real ideal construction must use a separate upstream-compatible workspace or an explicit Mathlib migration. A MathCan Lean kernel pass alone cannot certify the original source interface.
+
 The project-wide MathCan Lean configuration imports Init without Mathlib. Consequently this PR compiles an actual finite quotient calculation inside the existing kernel rather than disguising the missing number-field and automorphic infrastructure behind arbitrary Prop assumptions.
 
 ## Reproduction
