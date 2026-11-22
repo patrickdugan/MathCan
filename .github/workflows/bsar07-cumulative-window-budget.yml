@@ -52,11 +52,16 @@ jobs:
           records = dict(
               re.findall(r"'([^']+)' depends on axioms:\s*\[([^\]]*)\]", log, flags=re.S)
           )
-          assert all(key in records for key in targets), "Expected theorem axiom records missing"
+          no_axioms = set(re.findall(
+              r"'([^']+)' does not depend on any axioms", log
+          ))
+          assert all(key in records or key in no_axioms for key in targets), (
+              "Expected theorem axiom records missing"
+          )
           assert "sorryAx" not in log, "Unproven Lean placeholder encountered"
           allowed = {"propext", "Quot.sound", "Classical.choice"}
           for key in targets:
-              names = {x.strip() for x in records[key].split(",") if x.strip()}
+              names = {x.strip() for x in records.get(key, "").split(",") if x.strip()}
               assert names <= allowed, f"Unexpected axiom for {key}: {names - allowed}"
           print("All BSAR-07 theorems kernel-checked, with permitted Lean axioms")
           PY
