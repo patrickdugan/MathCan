@@ -26,3 +26,4 @@ import Deligne04.EmbeddedLineBadLocus
 import Deligne04.EmbeddedProductIncidence
 import Deligne04.ParabolaProductBadLocus
 import Deligne04.ParabolaGlobalJacobian
+import Deligne04.AffineBertiniFiber
