@@ -496,7 +496,9 @@ noncomputable def geometricCotangentDualEquivTangent
     ext phi
     change phi ∈ (geometricConormalRelations f u).dualAnnihilator ↔
       E phi ∈ (geometricConormalRelations f u).dualAnnihilator.comap E.symm.toLinearMap
-    simp only [Submodule.mem_comap, LinearEquiv.symm_apply_apply]
+    change phi ∈ (geometricConormalRelations f u).dualAnnihilator ↔
+      E.symm (E phi) ∈ (geometricConormalRelations f u).dualAnnihilator
+    rw [E.symm_apply_apply]
   exact ((geometricConormalRelations f u).dualQuotEquivDualAnnihilator).trans
     ((LinearEquiv.ofEq _ _ he).trans
       (E.ofSubmodule' (geometricJacobianTangent f u)))
