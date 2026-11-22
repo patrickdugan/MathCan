@@ -1,0 +1,65 @@
+name: DEL-10 effective finite-field open witness
+
+on:
+  push:
+    branches: [proof/deligne10-effective-open-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/EffectiveFiniteOpen.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL10_*'
+      - 'research/deligne_sign_audit/del10_*'
+      - 'tests/test_deligne10_finite_open.py'
+      - '.github/workflows/deligne10-effective-open.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne10-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Retrieve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check nonzero evaluations and common principal opens
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/EffectiveFiniteOpen.lean | tee deligne10-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne10-axioms.txt; then
+            echo 'DEL-10 admitted proof or unexpected reduction axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run DEL-10 finite-field regression and corpus
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne10_finite_open
+          python -m research.deligne_sign_audit.del10_verify_tasks
