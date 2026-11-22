@@ -117,3 +117,6 @@ end MathCan.BSARMeteredGrowth
 #print axioms MathCan.BSARMeteredGrowth.endpoint_le_meter
 #print axioms MathCan.BSARMeteredGrowth.uniform_bound_from_global_budget
 #print axioms MathCan.BSARMeteredGrowth.free_steps_cannot_increase
+
+set_option pp.proofs true in
+#print MathCan.BSARMeteredGrowth.pow2_double_paid
