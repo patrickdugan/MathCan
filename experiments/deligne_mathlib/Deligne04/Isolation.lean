@@ -53,7 +53,7 @@ theorem exists_isolating_coefficients
   have hu : IsUnit ((Matrix.vandermonde lam).det) :=
     isUnit_iff_ne_zero.mpr hv
   have hmu : IsUnit (Matrix.vandermonde lam) :=
-    (Matrix.isUnit_iff_isUnit_det).mpr hu
+    (Matrix.isUnit_iff_isUnit_det (Matrix.vandermonde lam)).mpr hu
   obtain ⟨coeff, hcoeff⟩ :=
     (Matrix.mulVec_surjective_iff_isUnit).mpr hmu
       (fun j : Fin s => if j = i then (1 : ℂ) else 0)
@@ -61,7 +61,7 @@ theorem exists_isolating_coefficients
   intro j
   have hj := congrArg (fun v : Fin s → ℂ => v j) hcoeff
   simpa [Matrix.mulVec_apply, Matrix.vandermonde_apply,
-    Matrix.dotProduct, mul_comm] using hj
+    dotProduct, mul_comm] using hj
 
 /-- A chosen interpolating vector extracts the i-th weighted power
 of the spectrum using s consecutive traces, for every n. -/
