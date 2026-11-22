@@ -95,7 +95,7 @@ def source_geometry_tangency_mutant(field):
     y = field.sub(one, two)
     equation = field.add(field.mul(one, y), one)
     gradient = (y, one)
-    tangent_line = field.add(y, field.sub(one, two))
+    tangent_line = field.sub(y, field.sub(one, two))
     # derivative of x*(x-2)+1 at x=1 is 2*(1-1)=0
     derivative = field.sub(field.add(one, one), two)
     return equation == 0, any(gradient), tangent_line == 0, derivative == 0
