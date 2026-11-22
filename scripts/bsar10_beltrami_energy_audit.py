@@ -101,6 +101,24 @@ def curl(k: Wavevector, v: Vec) -> Vec:
     return vecscale(IMAGINARY, cross)
 
 
+def norm_squared_modes(field: dict[Wavevector, Vec]) -> dict[Wavevector, G]:
+    """Fourier coefficients of the pointwise squared norm.
+
+    The field coefficients satisfy the usual reality condition,
+    so Fourier multiplication is bilinear, without a conjugate.
+    This checks *pointwise* constant speed and gradient norm.
+    """
+    result: dict[Wavevector, G] = {}
+    for p, a in field.items():
+        for q, b in field.items():
+            k = tuple(x + y for x, y in zip(p, q))
+            coefficient = ZERO
+            for x, y in zip(a, b):
+                coefficient += x * y
+            result[k] = result.get(k, ZERO) + coefficient
+    return result
+
+
 def check_fourier(n: int) -> dict[str, Any]:
     """Exact Fourier check of mean, divergence, curl, Laplacian, and advection."""
     coefficients = modes(n)
@@ -121,6 +139,19 @@ def check_fourier(n: int) -> dict[str, Any]:
             nonlinear[k] = vecadd(nonlinear.get(k, zero), coefficient)
     assert all(value == zero for value in nonlinear.values()), "Nonlinear term nonzero"
 
+    profile_sq = norm_squared_modes(coefficients)
+    vertical_derivative = {
+        k: vecscale(IMAGINARY * k[2], v) for k, v in coefficients.items()
+    }
+    derivative_sq = norm_squared_modes(vertical_derivative)
+    zero_frequency = (0, 0, 0)
+    assert profile_sq.get(zero_frequency) == G(Q(1))
+    assert derivative_sq.get(zero_frequency) == G(Q(n * n))
+    assert all(k == zero_frequency or value == ZERO for k, value in profile_sq.items())
+    assert all(k == zero_frequency or value == ZERO for k, value in derivative_sq.items())
+    # For xi=-u_profile, Delta xi=-n^2 xi and |grad xi|^2=n^2,
+    # hence the covariant S^2 harmonic-map tension is identically zero.
+
     avg_u_squared = sum(
         (sum((component.magnitude_squared() for component in v), Q(0))
          for v in coefficients.values()),
@@ -136,6 +167,9 @@ def check_fourier(n: int) -> dict[str, Any]:
         "curl_eigenvalue": -n,
         "laplacian_eigenvalue": -(n * n),
         "nonlinear_advection_zero": True,
+        "profile_pointwise_norm_squared": "1/1",
+        "profile_pointwise_gradient_squared": str(n * n),
+        "direction_harmonic_map_tension_zero": True,
         "pressure": "0",
         "velocity_norm_sq_spatial_average_t0": "1/1",
         "vorticity_norm_sq_spatial_average_t0": str(avg_omega_squared),
