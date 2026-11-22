@@ -37,6 +37,8 @@ jobs:
           set -euo pipefail
           lake build Deligne04
           lake env lean Deligne04/Hankel.lean | tee deligne04-axioms.txt
+          lake env lean Deligne04/ScalarGrowth.lean | tee -a deligne04-axioms.txt
+          lake env lean Deligne04/Isolation.lean | tee -a deligne04-axioms.txt
           if grep -Eq 'sorryAx|ofReduceBool' deligne04-axioms.txt; then
             echo 'DEL-04 admitted proof or reduction axiom detected'
             exit 1
