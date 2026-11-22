@@ -1,0 +1,65 @@
+import Deligne04.ActualQuotientKahler
+import Mathlib.LinearAlgebra.TensorProduct.RightExactness
+import Mathlib.RingTheory.TensorProduct.Free
+import Mathlib.Tactic
+
+/-!
+# DEL-21F: the pointwise fiber of the genuine Kaehler module
+
+Work on the actual coordinate algebra A = K[z]/I introduced in DEL-21E.
+First construct the K-valued quotient-algebra point from the original
+lifted polynomial equations, then tensor the genuine Kaehler presentation
+along that point. Tensoring is right-exact, including when K is not flat
+as an A-module. The remaining coordinate computation identifies the image
+of the tensorized relation map with DEL-21D's Jacobian-row span.
+-/
+
+namespace Deligne21F
+
+/-- An on-scheme K-point produces a K-algebra homomorphism from the
+true full-ideal coordinate ring to K. -/
+noncomputable def productPoint
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → K)
+    (hu : Deligne16.onEmbeddedProduct f u) :
+    Deligne21E.productCoordinateRing f →ₐ[K] K := by
+  apply Ideal.Quotient.liftₐ (Deligne16.productIdeal f) (MvPolynomial.aeval u)
+  apply Ideal.span_le.mpr
+  rintro _ ⟨t, rfl⟩
+  simpa only [RingHom.mem_ker, MvPolynomial.aeval_eq_eval] using hu t
+
+/-- The quotient point agrees with evaluation on every polynomial,
+not only on the chosen generators. -/
+theorem productPoint_mk
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → K)
+    (hu : Deligne16.onEmbeddedProduct f u)
+    (P : MvPolynomial (Deligne16.Coord k s) K) :
+    productPoint f u hu (Ideal.Quotient.mk (Deligne16.productIdeal f) P) =
+      MvPolynomial.eval u P := by
+  simp [productPoint, MvPolynomial.aeval_eq_eval]
+
+/-- The actual Kaehler presentation remains exact after
+specializing along any K-rational point of A. This uses right exactness,
+not flatness of the point's residue field over A. -/
+theorem productKahler_fiber_right_exact
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (point : Deligne21E.productCoordinateRing f →ₐ[K] K) :
+    letI : Algebra (Deligne21E.productCoordinateRing f) K :=
+      point.toRingHom.toAlgebra
+    Function.Exact
+      ((Deligne21E.productKahlerPresentation f).toRelations.map.lTensor K)
+      ((Deligne21E.productKahlerPresentation f).toSolution.π.lTensor K) := by
+  letI : Algebra (Deligne21E.productCoordinateRing f) K :=
+    point.toRingHom.toAlgebra
+  exact lTensor_exact K
+    (Deligne21E.productKahlerPresentation f).exact
+    (Deligne21E.productKahlerPresentation f).surjective_π
+
+#print axioms productPoint_mk
+#print axioms productKahler_fiber_right_exact
+
+end Deligne21F
