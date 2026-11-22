@@ -7,6 +7,7 @@ from research.rh_proof_distillation.rhd15_split_torus_character import (
     FAMILIES, all_faults, apply_action, check_nontrivial_character,
     clean_candidate, episodes, generate, inject_fault, orbit, pair_witness,
     real_orbits, root_of_unity_controls, same_real_place, suggested_action,
+    quadratic_subfield_tag, oneK_apart_candidate, residue_pow,
     verify, write_data,
 )
 
@@ -26,6 +27,23 @@ class SplitTorusCharacterTests(unittest.TestCase):
                 self.assertTrue(same_real_place(fam, j, mate))
                 for k in range(4):
                     self.assertEqual(same_real_place(fam,j,k), k in selected)
+
+    def test_transverse_quadratic_and_real_subfield_contractions(self):
+        tags = {29: (17,12,17,12), 5: (2,3,3,2)}
+        partner = {29: (2,3,0,1), 5: (3,2,1,0)}
+        for fam in FAMILIES:
+            values = tuple(quadratic_subfield_tag(fam,j) for j in range(4))
+            self.assertEqual(values,tags[fam.p])
+            for j in range(4):
+                k = oneK_apart_candidate(fam,j)
+                self.assertEqual(k,partner[fam.p][j])
+                self.assertNotEqual(j,k)
+                self.assertEqual(quadratic_subfield_tag(fam,j),
+                                 quadratic_subfield_tag(fam,k))
+                self.assertFalse(same_real_place(fam,j,k))
+                exponent = 5 if fam.p==29 else 6
+                power = residue_pow(fam.factors[j], exponent, fam.p)
+                self.assertEqual(power,(values[j],0))
 
     def test_exhaustive_norm_one_pair_and_nontriviality(self):
         cases = 0
