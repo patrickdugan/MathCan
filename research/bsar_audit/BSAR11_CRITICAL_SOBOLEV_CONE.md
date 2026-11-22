@@ -73,6 +73,12 @@ In particular, a uniform bound on the proposed cone integral based only on the h
 
 For s=1/2 the cone integral is bounded for these helical modes. This is **not** a global H^(1/2) regularity criterion for arbitrary 3D Navier–Stokes solutions.
 
+## Literature context and interpretation
+
+The index s=1/2 is already familiar as the scale-critical homogeneous Sobolev exponent in the three-dimensional Navier–Stokes theory. The [Fujita–Kato small-data result and its later formulations](https://link.springer.com/article/10.1007/s00205-026-02171-x) use this critical initial-velocity space. The direction-of-vorticity regularity literature, beginning with [Constantin–Fefferman (1993)](https://iumj.org/article/3627/) and including [Beirão da Veiga's 2019 discussion](https://www.aimsciences.org/article/doi/10.3934/dcdss.2019014), also emphasizes a half-Hölder direction threshold. The H^(1/2) velocity norm and the C^(1/2) direction-coherence condition are distinct objects with different assumptions.
+
+BSAR-11 establishes the s=1/2 threshold only for the explicitly constructed one-frequency shear/Beltrami family and for the specific cone-energy integral in BSA-R. It does not establish a novel universal critical regularity criterion or improve the Fujita–Kato theorem.
+
 ## The positive-time cutoff
 
 Fix 0<τ<T. The integral from τ to T satisfies
