@@ -102,10 +102,18 @@ class TestBSAR11SobolevScaling(unittest.TestCase):
         for q in EXPONENT_QUARTERS:
             tail = [Q(exact_envelopes(m,q,nu,t,positive_start)[
                 "positive_start_cone_integral_upper_rational"])
-                for m in (2,3,4,8,16,32,64,128)]
+                for m in (4,8,16,32,64,128)]
+            # N/(1+2nu*N²*tau) decreases once N >= 1/sqrt(2nu*tau).
             self.assertTrue(all(a>b for a,b in zip(tail,tail[1:])))
             self.assertLess(tail[-1], tail[0]/100)
             self.assertTrue(all(x <= Q(1)/(2*nu*nu*positive_start) for x in tail))
+        # The upper envelope can first increase below the damping crossover.
+        self.assertLess(
+            Q(exact_envelopes(2, 0, nu, t, positive_start)[
+                "positive_start_cone_integral_upper_rational"]),
+            Q(exact_envelopes(3, 0, nu, t, positive_start)[
+                "positive_start_cone_integral_upper_rational"]),
+        )
         self.assertTrue(
             Q(exact_envelopes(128, 0, nu, t, positive_start)[
                 "initial_cone_integral_lower_rational"])
