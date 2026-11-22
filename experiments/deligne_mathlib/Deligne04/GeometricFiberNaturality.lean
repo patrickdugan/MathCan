@@ -404,8 +404,14 @@ theorem geometricCotangentTowerEquiv_tmul
     ext i
     simp only [map_smul, Pi.smul_apply, smul_eq_mul,
       fieldTowerCoordinateEquiv_one_tmul]
-  simpa only [LinearMap.comp_apply, LinearMap.baseChange_tmul,
-    Submodule.mkQ_apply, hc] using h
+  have hh : geometricCotangentTowerEquiv f u hu φ
+      (m ⊗ₜ[L] (Submodule.Quotient.mk v)) =
+      Submodule.Quotient.mk
+        (fieldTowerCoordinateEquiv (ι := Deligne16.Coord k s) φ (m ⊗ₜ[L] v)) := by
+    simpa only [LinearMap.comp_apply, LinearMap.baseChange_tmul,
+      Submodule.mkQ_apply] using h
+  rw [hc] at hh
+  exact hh
 
 /-- At L=K the original (possibly nonreduced) conormal span is
 literally the DEL-21D conormal subspace. -/
