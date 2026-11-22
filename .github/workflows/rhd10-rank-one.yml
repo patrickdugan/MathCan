@@ -10,6 +10,9 @@ on:
       - 'tests/test_rhd10_rank_one_repair.py'
       - 'research/rh_proof_distillation/rhd10_policy_eval.py'
       - 'tests/test_rhd10_policy_eval.py'
+      - 'research/rh_proof_distillation/rhd10_unit_obstruction.py'
+      - 'tests/test_rhd10_unit_obstruction.py'
+      - 'research/rh_proof_distillation/RHD10C_UNIT_OBSTRUCTION.md'
       - 'research/rh_proof_distillation/RHD10B_POLICY_EVAL.md'
       - '.github/workflows/rhd10-rank-one.yml'
   pull_request:
@@ -21,6 +24,9 @@ on:
       - 'tests/test_rhd10_rank_one_repair.py'
       - 'research/rh_proof_distillation/rhd10_policy_eval.py'
       - 'tests/test_rhd10_policy_eval.py'
+      - 'research/rh_proof_distillation/rhd10_unit_obstruction.py'
+      - 'tests/test_rhd10_unit_obstruction.py'
+      - 'research/rh_proof_distillation/RHD10C_UNIT_OBSTRUCTION.md'
       - 'research/rh_proof_distillation/RHD10B_POLICY_EVAL.md'
       - '.github/workflows/rhd10-rank-one.yml'
   workflow_dispatch:
@@ -41,12 +47,13 @@ jobs:
           python-version: '3.12'
       - name: Verify finite character and all-root recurrent repair
         run: |
-          python -m unittest tests.test_rhd09_local_character tests.test_rhd10_rank_one_repair tests.test_rhd10_policy_eval -v
+          python -m unittest tests.test_rhd09_local_character tests.test_rhd10_rank_one_repair tests.test_rhd10_policy_eval tests.test_rhd10_unit_obstruction -v
       - name: Generate JSONL and content-addressed manifest
         run: |
           mkdir -p rhd10
           python -m research.rh_proof_distillation.rhd10_rank_one_repair --output rhd10/rank_one_repair.jsonl
           python -m research.rh_proof_distillation.rhd10_policy_eval --output rhd10/policy_eval.json
+          python -m research.rh_proof_distillation.rhd10_unit_obstruction --output rhd10/unit_obstruction.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
