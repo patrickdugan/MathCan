@@ -130,6 +130,10 @@ theorem productKahler_relation_at_point
     funext j
     exact productPoint_val f u hu j
   rw [hval] at h
+  have hr :
+      (Deligne21E.productAlgebraPresentation (k := k) f).relation t =
+        Deligne16.copyEquation f t := rfl
+  rw [hr] at h
   simpa only [Deligne21E.productKahlerPresentation, Deligne21D.conormalRow] using h
 
 #print axioms productPoint_mk
