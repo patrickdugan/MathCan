@@ -50,7 +50,7 @@ class RHD10PolicyEvalTests(unittest.TestCase):
             [r for r in self.rows if r["split"] == "train"]
         )
         keys = set(learned.table)
-        self.assertEqual(len(keys), 10)
+        self.assertEqual(len(keys), 11)
         self.assertEqual(
             set(self.report["learned_action_keys"]), keys,
         )
@@ -59,6 +59,7 @@ class RHD10PolicyEvalTests(unittest.TestCase):
         self.assertIn("idele_unit_normalization", keys)
         self.assertIn("local_character:0", keys)
         self.assertIn("missing_exception:3", keys)
+        self.assertEqual(learned.choose({"gate": "verified"}), {"kind": "STOP"})
 
     def test_full_feedback_open_loop_is_necessary_control(self):
         self.assertEqual(sum(self.report["split_counts"].values()), 3364)
