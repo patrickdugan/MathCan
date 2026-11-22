@@ -134,7 +134,38 @@ theorem productKahler_relation_at_point
       (Deligne21E.productAlgebraPresentation (k := k) f).relation t =
         Deligne16.copyEquation f t := rfl
   rw [hr] at h
-  simpa only [Deligne21E.productKahlerPresentation, Deligne21D.conormalRow] using h
+  change productPoint f u hu
+    (((Deligne21E.productAlgebraPresentation (k := k) f).differentials).relation t i) =
+      MvPolynomial.eval u (MvPolynomial.pderiv i (Deligne16.copyEquation f t))
+  exact h
+
+/-- The canonical base-change coordinate isomorphism for a finite free
+module at a K-valued algebra point. The A-algebra structure on K
+is explicitly induced by the point. -/
+noncomputable def coordinateTensorEquiv
+    {K : Type*} [Field K] {A : Type*} [CommRing A] [Algebra K A]
+    {ι : Type*} [Fintype ι] (point : A →ₐ[K] K) :
+    letI : Algebra A K := point.toRingHom.toAlgebra
+    (K ⊗[A] (ι →₀ A)) ≃ₗ[K] (ι → K) := by
+  letI : Algebra A K := point.toRingHom.toAlgebra
+  classical
+  exact ((Finsupp.basisSingleOne : Basis ι A (ι →₀ A)).baseChange K).repr.trans
+    (Finsupp.linearEquivFunOnFinite K K ι)
+
+/-- Each coordinate after tensoring along a point evaluates the old
+coefficient at that point. -/
+theorem coordinateTensorEquiv_one_tmul
+    {K : Type*} [Field K] {A : Type*} [CommRing A] [Algebra K A]
+    {ι : Type*} [Fintype ι] (point : A →ₐ[K] K)
+    (v : ι →₀ A) (i : ι) :
+    letI : Algebra A K := point.toRingHom.toAlgebra
+    coordinateTensorEquiv (ι := ι) point (1 ⊗ₜ[A] v) i = point (v i) := by
+  letI : Algebra A K := point.toRingHom.toAlgebra
+  classical
+  simp only [coordinateTensorEquiv, LinearEquiv.trans_apply,
+    Finsupp.linearEquivFunOnFinite_apply, Basis.baseChange_repr_tmul,
+    one_smul, Finsupp.mapRange_apply]
+  rfl
 
 #print axioms productPoint_mk
 #print axioms productKahler_fiber_right_exact
@@ -142,5 +173,6 @@ theorem productKahler_relation_at_point
 #print axioms differential_relation_coefficient_at_point
 #print axioms productPoint_val
 #print axioms productKahler_relation_at_point
+#print axioms coordinateTensorEquiv_one_tmul
 
 end Deligne21F
