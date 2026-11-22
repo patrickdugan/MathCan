@@ -19,7 +19,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-from fractions import Fraction
 from pathlib import Path
 from typing import Any
 
@@ -33,6 +32,7 @@ from experiments.bsar16.rational_enclosure import (
 )
 
 UNITS = "normalized torus Fourier L2; exact rational outward enclosures"
+REGISTERED_PARENT_SHA256 = "9ef44ff668bb98e4c0d8ac925e13842ed10f3fa4230fd7ede2dd6740837c8e58"
 
 
 def dense_run(node_run: dict[str, Any]) -> dict[str, Any]:
@@ -131,8 +131,11 @@ def dense_run(node_run: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def generate(source_dir: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+def generate(source_dir: Path, *, expected_parent_sha256: str | None = None) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     parent = verify_archive(source_dir, rerun=False)
+    if (expected_parent_sha256 is not None
+            and parent["runs_sha256"] != expected_parent_sha256):
+        raise ValueError("source BSAR-16D binary64 receipt digest changed")
     if parent["run_count"] != 16 or parent["snapshot_count"] != 256:
         raise ValueError("wrong BSAR-16D source campaign")
     node_runs = json.loads((source_dir/"runs.json").read_text(encoding="utf-8"))
@@ -145,10 +148,12 @@ def generate(source_dir: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
         "run_count": len(rows),
         "interval_count": sum(len(x["intervals"]) for x in rows),
         "interval_direct_core_count": sum(
-            len(x["intervals"]) for x in rows if x["all_interval_direct_core_certified"]
+            int(interval["polygon_continuum_core"]["positive_cone_witness_certified"])
+            for row in rows for interval in row["intervals"]
         ),
         "interval_via_galerkin_core_count": sum(
-            len(x["intervals"]) for x in rows if x["all_interval_via_galerkin_core_certified"]
+            int(interval["polygon_continuum_core_via_galerkin"]["positive_cone_witness_certified"])
+            for row in rows for interval in row["intervals"]
         ),
         "rational_units": UNITS,
         "interpretation": "piecewise-linear projection of the exact binary64 Fourier node arrays",
@@ -158,8 +163,8 @@ def generate(source_dir: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     return rows, manifest
 
 
-def freeze(source: Path, out: Path) -> dict[str, Any]:
-    rows, manifest = generate(source)
+def freeze(source: Path, out: Path, *, expected_parent_sha256: str | None = None) -> dict[str, Any]:
+    rows, manifest = generate(source, expected_parent_sha256=expected_parent_sha256)
     out.mkdir(parents=True, exist_ok=True)
     (out/"rows.json").write_bytes(
         json.dumps(rows, sort_keys=True, separators=(",", ":")).encode()
@@ -170,8 +175,8 @@ def freeze(source: Path, out: Path) -> dict[str, Any]:
     return manifest
 
 
-def audit(source: Path, out: Path) -> dict[str, Any]:
-    rows, manifest = generate(source)
+def audit(source: Path, out: Path, *, expected_parent_sha256: str | None = None) -> dict[str, Any]:
+    rows, manifest = generate(source, expected_parent_sha256=expected_parent_sha256)
     actual_rows = json.loads((out/"rows.json").read_text(encoding="utf-8"))
     actual_manifest = json.loads((out/"manifest.json").read_text(encoding="utf-8"))
     if rows != actual_rows or manifest != actual_manifest:
@@ -184,10 +189,11 @@ def main() -> int:
     parser.add_argument("action", choices=("generate", "audit"))
     parser.add_argument("--source", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--expected-parent-sha256", default=None)
     args = parser.parse_args()
-    report = freeze(args.source, args.out) if args.action == "generate" else (
-        audit(args.source, args.out)
-    )
+    report = (freeze(args.source, args.out, expected_parent_sha256=args.expected_parent_sha256)
+              if args.action == "generate" else
+              audit(args.source, args.out, expected_parent_sha256=args.expected_parent_sha256))
     print(json.dumps(report, indent=2, sort_keys=True))
     return 0
 
