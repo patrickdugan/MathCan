@@ -228,7 +228,7 @@ def generate() -> tuple[list[dict[str, Any]], dict[str, Any]]:
         for n, phase in ROOTS for m in M_VALUES
     ]
     rows = {"transfers": transfers, "l2_counterexamples": obstacles}
-    canonical = json.dumps(rows, sort_keys=True, separators=(",", ":")).encode()
+    canonical = json.dumps([rows], sort_keys=True, separators=(",", ":")).encode()
     manifest = {
         "experiment": "BSAR-16I exact L2-to-core obstruction and conditional H4 transfer",
         "source_bsar16c_rows_sha256": SOURCE_BSAR16C_ROWS_SHA256,
