@@ -1,4 +1,5 @@
 import Init
+import MathCan.RHPrimeFibers
 
 /-!
 # RHD-15: local split U(1) torus character first-layer certificates
@@ -87,6 +88,49 @@ theorem conjugate_same_real5 (j : Fin 4) :
 /-- Nontriviality witnesses for an asymmetric local character. -/
 theorem local_witness29 : (2*15) % 29 = 1 := by decide
 theorem local_witness5 : (2*3) % 5 = 1 := by decide
+
+/-- Independent quadratic residue ring at p=5 with α²+cα+d=0.
+The two sets of coordinates represent the local Hensel factors mod 5. -/
+abbrev Residue5 := Int × Int
+
+def multiply5 (d c : Int) (x y : Residue5) : Residue5 :=
+  (((x.1*y.1 - d*x.2*y.2) % 5),
+   ((x.1*y.2 + x.2*y.1 - c*x.2*y.2) % 5))
+
+def alphaPower5 (d c : Int) : Nat → Residue5
+  | 0 => (1, 0)
+  | n + 1 => multiply5 d c (alphaPower5 d c n) (0, 1)
+
+/-- In Q(zeta24), ζ^6=i reduces to 2 or 3 in the F5 residue fields.
+Factors 0 and 3 share one Q(i) contraction; 1 and 2 share the other. -/
+theorem zeta24_quadratic_subfield_tags :
+    alphaPower5 2 1 6 = (2, 0) ∧
+    alphaPower5 3 2 6 = (3, 0) ∧
+    alphaPower5 3 3 6 = (3, 0) ∧
+    alphaPower5 2 4 6 = (2, 0) := by decide
+
+/-- The Q(i)-equal prime indices are separated by the E^+ partition. -/
+theorem transverse_oneK_apart_shadow5 :
+    (alphaPower5 2 1 6).1 = (alphaPower5 2 4 6).1 ∧
+    real5 0 ≠ real5 3 ∧
+    (alphaPower5 3 2 6).1 = (alphaPower5 3 3 6).1 ∧
+    real5 1 ≠ real5 2 := by decide
+
+/-- RHD-12 already computes ζ20^5=i for the four finite residues.
+Its Q(i)-equal pairs are different maximal-real-field pairs. -/
+theorem transverse_oneK_apart_shadow29 :
+    MathCan.RHPrimeFibers.contractionTag MathCan.RHPrimeFibers.w0 =
+      MathCan.RHPrimeFibers.contractionTag MathCan.RHPrimeFibers.w2 ∧
+    real29 MathCan.RHPrimeFibers.w0.val ≠
+      real29 MathCan.RHPrimeFibers.w2.val ∧
+    MathCan.RHPrimeFibers.contractionTag MathCan.RHPrimeFibers.w1 =
+      MathCan.RHPrimeFibers.contractionTag MathCan.RHPrimeFibers.w3 ∧
+    real29 MathCan.RHPrimeFibers.w1.val ≠
+      real29 MathCan.RHPrimeFibers.w3.val := by decide
+
+#print axioms zeta24_quadratic_subfield_tags
+#print axioms transverse_oneK_apart_shadow5
+#print axioms transverse_oneK_apart_shadow29
 
 #print axioms pair29_0
 #print axioms pair29_1
