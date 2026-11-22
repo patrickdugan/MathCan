@@ -17,6 +17,7 @@ quotient and show naturality on original coordinate generators.
 -/
 
 open TensorProduct Module
+open scoped BigOperators
 
 namespace Deligne21H
 
@@ -297,6 +298,89 @@ theorem geometricCotangentTowerEquiv_single
 
 #print axioms geometricKahlerFiberEquiv_single
 #print axioms geometricCotangentTowerEquiv_single
+/-- The quotient naturality square commutes on the complete
+finite free coordinate module, extending its generator calculation.
+The bottom map is the *independently defined* coordinate extension
+followed by the original-Jacobian quotient. -/
+theorem geometricCotangentTower_coordinate_square
+    {K L M : Type*} [Field K] [Field L] [Field M]
+    [Algebra K L] [Algebra K M]
+    {k s r : ℕ} (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (hu : Deligne21G.onGeometricProduct f u)
+    (φ : L →ₐ[K] M) :
+    letI : Algebra L M := φ.toRingHom.toAlgebra
+    (geometricCotangentTowerEquiv f u hu φ).toLinearMap.comp
+      ((Submodule.mkQ (Deligne21G.geometricConormalRelations f u)).baseChange M) =
+    (Submodule.mkQ
+      (Deligne21G.geometricConormalRelations f (fun j => φ (u j)))).comp
+      (fieldTowerCoordinateEquiv (ι := Deligne16.Coord k s) φ).toLinearMap := by
+  letI : Algebra L M := φ.toRingHom.toAlgebra
+  classical
+  apply ((Pi.basisFun L (Deligne16.Coord k s)).baseChange M).ext
+  intro i
+  simp only [Basis.baseChange_apply, Pi.basisFun_apply]
+  change geometricCotangentTowerEquiv f u hu φ
+      (((Submodule.mkQ (Deligne21G.geometricConormalRelations f u)).baseChange M)
+        ((1 : M) ⊗ₜ[L] Pi.single i (1 : L))) =
+    (Submodule.mkQ
+      (Deligne21G.geometricConormalRelations f (fun j => φ (u j))))
+      (fieldTowerCoordinateEquiv (ι := Deligne16.Coord k s) φ
+        ((1 : M) ⊗ₜ[L] Pi.single i (1 : L)))
+  rw [LinearMap.baseChange_tmul]
+  rw [fieldTowerCoordinateEquiv_single]
+  simpa only [Submodule.mkQ_apply] using
+    (geometricCotangentTowerEquiv_single f u hu φ i)
+
+/-- The original polynomial-Jacobian tangent is preserved
+coordinatewise by arbitrary field homomorphisms over K.
+This includes positive-characteristic inseparable towers and
+Frobenius maps wherever the indicated algebra maps exist. -/
+theorem geometricJacobianTangent_map_mem
+    {K L M : Type*} [Field K] [Field L] [Field M]
+    [Algebra K L] [Algebra K M]
+    {k s r : ℕ} (f : Fin r → MvPolynomial (Fin s) K)
+    (u v : Deligne16.Coord k s → L)
+    (φ : L →ₐ[K] M)
+    (hv : v ∈ Deligne21G.geometricJacobianTangent f u) :
+    (fun i => φ (v i)) ∈ Deligne21G.geometricJacobianTangent f
+      (fun i => φ (u i)) := by
+  classical
+  apply (Deligne21G.mem_geometricJacobianTangent_iff f
+    (fun i => φ (u i)) (fun i => φ (v i))).mpr
+  intro t
+  have ht := (Deligne21G.mem_geometricJacobianTangent_iff f u v).mp hv t
+  calc
+    (∑ i : Deligne16.Coord k s,
+        Deligne21G.geometricConormalRow f (fun j => φ (u j)) t i * φ (v i)) =
+      ∑ i : Deligne16.Coord k s,
+        φ (Deligne21G.geometricConormalRow f u t i * v i) := by
+        apply Finset.sum_congr rfl
+        intro i _
+        rw [Deligne21G.geometricConormalRow_map, map_mul]
+    _ = φ (∑ i : Deligne16.Coord k s,
+          Deligne21G.geometricConormalRow f u t i * v i) := by rw [map_sum]
+    _ = 0 := by rw [ht, map_zero]
+
+/-- Field homomorphisms preserve the evaluation pairing that
+identifies the original conormal quotient dual with its Jacobian
+tangent in DEL-21G. -/
+theorem geometricCoordinatePairing_map
+    {K L M : Type*} [Field K] [Field L] [Field M]
+    [Algebra K L] [Algebra K M]
+    {k s : ℕ} (φ : L →ₐ[K] M)
+    (v w : Deligne16.Coord k s → L) :
+    (∑ i : Deligne16.Coord k s, φ (v i) * φ (w i)) =
+      φ (∑ i : Deligne16.Coord k s, v i * w i) := by
+  classical
+  rw [map_sum]
+  apply Finset.sum_congr rfl
+  intro i _
+  rw [map_mul]
+
+#print axioms geometricCotangentTower_coordinate_square
+#print axioms geometricJacobianTangent_map_mem
+#print axioms geometricCoordinatePairing_map
 #print axioms geometricPoint_tower
 #print axioms geometricKahlerCancelBaseChange_tmul
 
