@@ -1,6 +1,7 @@
 import Deligne04.ActualQuotientKahler
 import Mathlib.LinearAlgebra.TensorProduct.RightExactness
 import Mathlib.RingTheory.TensorProduct.Free
+import Mathlib.LinearAlgebra.TensorProduct.Basis
 import Mathlib.Tactic
 
 /-!
@@ -13,6 +14,8 @@ along that point. Tensoring is right-exact, including when K is not flat
 as an A-module. The remaining coordinate computation identifies the image
 of the tensorized relation map with DEL-21D's Jacobian-row span.
 -/
+
+open TensorProduct
 
 namespace Deligne21F
 
