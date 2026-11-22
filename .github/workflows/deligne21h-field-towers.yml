@@ -60,4 +60,4 @@ jobs:
       - name: Check extension-field geometry
         run: |
           set -euo pipefail
-          python -m unittest -v tests.test_deligne21g_geometric_fiber tests.test_deligne21f_actual_fiber
+          python -m unittest -v tests.test_deligne21h_field_towers tests.test_deligne21g_geometric_fiber tests.test_deligne21f_actual_fiber
