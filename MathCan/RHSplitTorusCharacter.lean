@@ -71,7 +71,7 @@ theorem conjugate_same_real29 (j : Fin 4) :
     real29 j.val = real29 (mate29 j.val) := by
   rcases j with ⟨n, hn⟩
   have h : n = 0 ∨ n = 1 ∨ n = 2 ∨ n = 3 := by omega
-  rcases h with h | h | h | h <;> subst n <;> decide
+  rcases h with h | h | h | h <;> subst n <;> simp [real29, mate29]
 
 def real5 (j : Nat) : Nat :=
   if j = 0 ∨ j = 2 then 0 else 1
@@ -83,7 +83,7 @@ theorem conjugate_same_real5 (j : Fin 4) :
     real5 j.val = real5 (mate5 j.val) := by
   rcases j with ⟨n, hn⟩
   have h : n = 0 ∨ n = 1 ∨ n = 2 ∨ n = 3 := by omega
-  rcases h with h | h | h | h <;> subst n <;> decide
+  rcases h with h | h | h | h <;> subst n <;> simp [real5, mate5]
 
 /-- Nontriviality witnesses for an asymmetric local character. -/
 theorem local_witness29 : (2*15) % 29 = 1 := by decide
