@@ -6,6 +6,7 @@ on:
   pull_request:
     paths:
       - 'experiments/deligne_mathlib/Deligne04/BilinearBadLocus.lean'
+      - 'experiments/deligne_mathlib/Deligne04/IncidenceIdeal.lean'
       - 'experiments/deligne_mathlib/Deligne04.lean'
       - 'research/deligne_sign_audit/DEL11_*'
       - 'research/deligne_sign_audit/del11_*'
@@ -45,6 +46,7 @@ jobs:
           set -euo pipefail
           lake build Deligne04
           lake env lean Deligne04/BilinearBadLocus.lean | tee deligne11-axioms.txt
+          lake env lean Deligne04/IncidenceIdeal.lean | tee -a deligne11-axioms.txt
           if grep -Eq 'sorryAx|ofReduceBool' deligne11-axioms.txt; then
             echo 'DEL-11 admitted proof or unexpected reduction axiom'
             exit 1
