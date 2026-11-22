@@ -82,6 +82,18 @@ theorem exponent_budget_limit
       (fun j => cancel_extension_degree hq hr
         (hk j) (he j) (hbound j))
 
+/-- The paper writes the bound as q^(e*n*(k*a+c)). The
+fixed-spectrum lemma uses (q^(e*(k*a+c)))^n. -/
+theorem paper_exponent_normalization
+    (q : ℝ) (hq : 0 ≤ q) (k e n : ℕ) (a c : ℝ) :
+    q ^ ((e : ℝ) * (n : ℝ) * ((k : ℝ) * a + c)) =
+      (q ^ ((e : ℝ) * ((k : ℝ) * a + c))) ^ n := by
+  rw [← Real.rpow_natCast, ← Real.rpow_mul hq]
+  congr 1
+  ring
+
+#print axioms paper_exponent_normalization
+
 #print axioms cancel_extension_degree
 #print axioms relative_error_limit
 #print axioms exponent_budget_limit
