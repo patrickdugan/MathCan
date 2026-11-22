@@ -102,12 +102,12 @@ theorem jacobian_top_of_eliminant_nonzero
         MvPolynomial Bool K) ∈ J :=
     eliminant_mem_jacobian alpha beta p q c
   have hmul :
-      (MvPolynomial.C (Deligne17.eliminant alpha beta p q c)⁻¹ *
+      (MvPolynomial.C ((Deligne17.eliminant alpha beta p q c)⁻¹) *
         MvPolynomial.C (Deligne17.eliminant alpha beta p q c) :
           MvPolynomial Bool K) ∈ J :=
     J.mul_mem_left _ hconst
   have hvalue :
-      (MvPolynomial.C (Deligne17.eliminant alpha beta p q c)⁻¹ *
+      (MvPolynomial.C ((Deligne17.eliminant alpha beta p q c)⁻¹) *
         MvPolynomial.C (Deligne17.eliminant alpha beta p q c) :
           MvPolynomial Bool K) = 1 := by
     rw [← map_mul, inv_mul_cancel₀ hE, map_one]
