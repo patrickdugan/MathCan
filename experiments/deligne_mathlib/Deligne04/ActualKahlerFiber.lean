@@ -169,6 +169,7 @@ theorem coordinateTensorEquiv_one_tmul
     Finsupp.linearEquivFunOnFinite_apply, Basis.baseChange_repr_tmul]
   change (v i) • (1 : K) = point (v i)
   simp only [Algebra.smul_def, mul_one, RingHom.algebraMap_toAlgebra]
+  rfl
 
 /-- Basis vectors of the specialized free module are the actual
 coordinate unit vectors at the chosen K-valued point. -/
@@ -184,7 +185,10 @@ theorem coordinateTensorEquiv_single
   classical
   ext i
   rw [coordinateTensorEquiv_one_tmul]
-  simp
+  by_cases hi : i = t
+  · subst i
+    simp
+  · simp [Pi.single_apply, Finsupp.single_apply, hi, Ne.symm hi]
 
 /-- The span of Mathlib's genuine Kähler module-presentation
 relations, evaluated at the actual quotient point, is exactly
