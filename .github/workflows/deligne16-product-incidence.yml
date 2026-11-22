@@ -1,0 +1,64 @@
+name: DEL-16 embedded-product tangent-incidence proof
+
+on:
+  push:
+    branches: [proof/deligne16-product-tangent-incidence-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/EmbeddedProductIncidence.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL16_*'
+      - 'research/deligne_sign_audit/del16_*'
+      - 'tests/test_deligne16_product_incidence.py'
+      - '.github/workflows/deligne16-product-incidence.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne16-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check product equation, tangent pairing and elimination
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/EmbeddedProductIncidence.lean | tee deligne16-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne16-axioms.txt; then
+            echo 'DEL-16 admitted proof or unexpected axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify 96 exact U² tangent and elimination cases
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne16_product_incidence
