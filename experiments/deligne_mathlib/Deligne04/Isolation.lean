@@ -47,7 +47,7 @@ theorem exists_isolating_coefficients
     ∃ coeff : Fin s → ℂ,
       ∀ j : Fin s,
         (∑ r : Fin s, coeff r * lam j ^ r.val) =
-          Pi.single i (1 : ℂ) j := by
+          (if j = i then (1 : ℂ) else 0) := by
   have hv : (Matrix.vandermonde lam).det ≠ 0 :=
     (Matrix.det_vandermonde_ne_zero_iff).mpr hinj
   have hu : IsUnit ((Matrix.vandermonde lam).det) :=
@@ -56,7 +56,7 @@ theorem exists_isolating_coefficients
     (Matrix.isUnit_iff_isUnit_det).mpr hu
   obtain ⟨coeff, hcoeff⟩ :=
     (Matrix.mulVec_surjective_iff_isUnit).mpr hmu
-      (Pi.single i (1 : ℂ))
+      (fun j : Fin s => if j = i then (1 : ℂ) else 0)
   refine ⟨coeff, ?_⟩
   intro j
   have hj := congrArg (fun v : Fin s → ℂ => v j) hcoeff
@@ -69,12 +69,12 @@ theorem trace_window_extract (lam weights coeff : Fin s → ℂ)
     (i : Fin s)
     (hi : ∀ j : Fin s,
       (∑ r : Fin s, coeff r * lam j ^ r.val) =
-        Pi.single i (1 : ℂ) j)
+        (if j = i then (1 : ℂ) else 0))
     (n : ℕ) :
     (∑ r : Fin s, coeff r * powerTrace lam weights (n + r.val)) =
       weights i * lam i ^ n := by
   rw [trace_window_convolution]
-  simp [hi, Pi.single_apply]
+  simp [hi]
 
 /-- The exact spectral extraction theorem, with an existential
 witness constructed over ℂ. -/
