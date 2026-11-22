@@ -6,3 +6,4 @@ import Deligne04.PowerLimit
 import Deligne04.TensorLimit
 import Deligne04.TensorSpectrum
 import Deligne04.GysinTrace
+import Deligne04.GysinPowers
