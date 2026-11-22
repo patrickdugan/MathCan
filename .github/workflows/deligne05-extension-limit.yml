@@ -1,0 +1,51 @@
+name: DEL-05 variable-extension spectral bound
+
+on:
+  push:
+    branches: [proof/deligne05-extension-limit-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/**'
+      - 'research/deligne_sign_audit/DEL05_*'
+      - '.github/workflows/deligne05-extension-limit.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne05-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check DEL-05 scalar and spectral bounds
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/PowerLimit.lean | tee deligne05-axioms.txt
+          if test -f Deligne04/TensorLimit.lean; then
+            lake env lean Deligne04/TensorLimit.lean | tee -a deligne05-axioms.txt
+          fi
+          if grep -Eq 'sorryAx|ofReduceBool' deligne05-axioms.txt; then
+            echo 'Unexpected axiom in DEL-05'
+            exit 1
+          fi
