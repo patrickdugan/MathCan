@@ -44,7 +44,7 @@ class LagrangeIsolatorTests(unittest.TestCase):
                          (Q(-5*2**5), Q(-5*2**5)))
 
     def test_canceled_and_absent_poles(self):
-        with self.assertRaisesRegex(ValueError,"zero aggregated"):
+        with self.assertRaisesRegex(ValueError,"positive"):
             isolating_polynomial([(7,1),(7,-1),(3,1)],7)
         with self.assertRaisesRegex(ValueError,"zero aggregated"):
             isolating_polynomial([(2,1),(3,1)],11)
