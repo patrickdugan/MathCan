@@ -1,0 +1,64 @@
+name: DEL-21A dual-number quotient tangent
+
+on:
+  push:
+    branches: [proof/deligne21-dual-number-tangent-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/DualNumberSchemeTangent.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL21_*'
+      - 'research/deligne_sign_audit/del21_*'
+      - 'tests/test_deligne21_dual_number_tangent.py'
+      - '.github/workflows/deligne21-dual-number.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne21-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check dual-number tangent factorization
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/DualNumberSchemeTangent.lean | tee deligne21-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne21-axioms.txt; then
+            echo 'DEL-21A admitted proof or unexpected axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify 120 exact nonreduced dual-number tangent cases
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne21_dual_number_tangent
