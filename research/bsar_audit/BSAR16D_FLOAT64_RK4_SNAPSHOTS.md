@@ -90,6 +90,31 @@ and the exact distance between anchors \(\pi/N\), using \(N/\pi>7N/22\). Every r
 
 The result covers discrete **time nodes** and the continuous **spatial** torus. It does not transfer pointwise vorticity to a full infinite-dimensional Navier–Stokes solution.
 
+## Verified 256-node receipts
+
+The [dedicated BSAR-16D run](https://github.com/patrickdugan/MathCan/actions/runs/45008069630) passed its five targeted tests, certified all 16 numerical trajectories and 256 registered time nodes, and completed the independent replay of the archived rational bounds and binary64 state-stream SHA-256.
+
+The canonical JSON campaign archive SHA-256 is:
+
+    9ef44ff668bb98e4c0d8ac925e13842ed10f3fa4230fd7ede2dd6740837c8e58
+
+The measured **rigorous rational upper bounds** are grouped below by the least favorable phase and time-step at the indicated grid. Error values are rounded **upward**, and continuous-spatial half-core margins are rounded **downward** for display.
+
+| Initial N | Grid M | Max over time nodes of \(\|H_j-v_K(t_j)\|_2\) | Min direct core margin | Min via-Galerkin core margin |
+|---:|---:|---:|---:|---:|
+| 1 | 16 | ≤ 0.00001051 | ≥ 1.3680 | ≥ 1.3613 |
+| 1 | 24 | ≤ 0.00001051 | ≥ 1.3644 | ≥ 1.3498 |
+| 1 | 32 | ≤ 0.00001051 | ≥ 1.3560 | ≥ 1.3221 |
+| 2 | 16 | ≤ 0.0001261 | ≥ 0.9124 | ≥ 0.8261 |
+| 2 | 24 | ≤ 0.0001314 | ≥ 0.8652 | ≥ 0.6697 |
+| 2 | 32 | ≤ 0.0001324 | ≥ 0.6804 | ≥ 0.2230 |
+
+All 256 nodes satisfy the source-pinned continuous spatial half-maximum core criterion **under both the direct snapshot audit and the more conservative transfer through the exact Galerkin path**. Both calculations retain a positive rational lower bound for the normalized-direction cone witness.
+
+The largest observed exact a posteriori bound occurs at \(N=2\), \(\sigma=-1\), \(M=32\), \(h=1/1000\): the final upper bound is approximately \(0.00013237323477680526\). The raw binary64 output's rational distance from the independent Taylor reference is bounded by approximately \(0.0000568477541\), with the remaining allowance supplied by the exact Galerkin trajectory enclosure. This error is an upper bound on Fourier coefficient-space error at the time nodes, rather than a numerical inter-resolution difference. The two 32-grid time-step variants have close but distinct SHA-256 state streams and independently certified bounds.
+
+The 256 nodes comprise exactly 4 phase/frequency sources times (3 coarse runs of 13 nodes plus one fine run of 25). Each archived run stores a digest of all its binary64 coefficient arrays, plus explicit rational values for every time-node error and core witness. To recover all raw coefficients, rerun the pinned BSAR-15 Fourier integrator; the replay step checks that their canonical state-stream digests and certificates match the archive. The 14-day CI artifact provides the manifest, source hashes and receipts.
+
 ## Registered campaign and reproduction
 
 All sixteen original BSAR-15 source scenarios are included: \(N=1,2\), \(\sigma=\pm1\), grids \(M=16,24,32\) at \(h=1/1000\), with a second \(M=32\) run per source using \(h=1/2000\). The coarse runs have 13 nodes and the fine runs 25, for **256 rational-certified numerical snapshots**.
