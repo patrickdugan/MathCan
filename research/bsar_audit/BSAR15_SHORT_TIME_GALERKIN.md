@@ -128,6 +128,27 @@ K_{\xi,M}(t)\le\frac{8L_\omega(t)}{M_{\omega,\mathrm{grid}}(t)}.
 
 These inequalities are valid for a finite Fourier polynomial and periodic geodesic distances. Their **floating-point evaluations are not certified outward intervals**. Accordingly, the report always retains separate fields for the grid-relative sample, eligible anchor witness, and analytic finite-polynomial upper envelope.
 
+## Registered numerical results
+
+The [precision-preserving CI run](https://github.com/patrickdugan/MathCan/actions/runs/44999442590) passed the ten dedicated numerical/source tests and archived 16 runs. The source SHA-256 was 787b227115cfbc58ebf114aa8820e1155d2938adbfd2a050c3bc452b60aa5419. The archived normalized JSON run-list SHA-256 is 8a2997e207ab9b308de03d59aa25fee5f66327fb26a6a6003c61a94ac4b416bf.
+
+The M=32, Δt=0.0005 trajectories at T=0.012 give:
+
+| N | σ | E(T) | Imaginary part of new-mode y coefficient | Trapezoidal energy defect | Galerkin core-anchor lower witness |
+|---|---:|---:|---:|---:|---:|
+| 1 | −1 | 1.981502444602 | −0.002975007006 | 4.44e−10 | 1.223109528 |
+| 1 | +1 | 1.981502512310 | −0.003010745983 | 3.87e−10 | 1.224478258 |
+| 2 | −1 | 1.927219852383 | −0.005873249513 | 2.35e−8 | 2.441873516 |
+| 2 | +1 | 1.927221962035 | −0.006013125111 | 2.17e−8 | 2.447502370 |
+
+The initial source-mode derivative predicts an imaginary y-component of −N t/4, hence −0.003 for N=1 and −0.006 for N=2 at this horizon. The observed differences agree with the expected nonlinear and viscous curvature away from the tangent approximation. All three initial shell-transfer signs persisted in every registered numerical run through T=0.012; no claim is made beyond that interval.
+
+Comparing M=24 and M=32 at fixed Δt=0.001 yielded energy discrepancies at most 2.38e−9 and new-mode coefficient discrepancies at most 1.04e−9. At M=32, comparing Δt=0.001 and 0.0005 yielded energy discrepancies at most 2.19e−13 and new-mode differences at most 2.11e−14. These are empirical numerical self-comparisons, and the small values do not certify any upper bound for truncation error relative to the true infinite-dimensional PDE.
+
+The 24³ and 32³ grid-relative sampled-core fractions differed by up to 0.01881 (about 1.9 percentage points). At M=32, the two source-derived anchor points remained eligible under the finite Galerkin global-max envelope for all three recorded times. Their final lower witnesses ranged from 1.223 to 1.224 for N=1, and from 2.442 to 2.448 for N=2. The finite-polynomial Lipschitz upper envelopes were substantially wider (about 17.4–17.5 and 35.5–35.8 respectively). These refer exclusively to the **computed Galerkin trigonometric fields**, evaluated in floating point without outward rounding.
+
+The fact that low-mode energy and generated-mode coefficients agree closely across grids while grid-sampled core fraction differs is a reason to prioritize vorticity-core geometry in the next spatial-resolution study.
+
 ## Verification and interpretive limits
 
 The [standalone numerical module](../../experiments/bsar15/galerkin.py) depends on NumPy, installed **only in the dedicated BSAR-15 workflow**. MathCan's core Init-only Lean library and standard Python dependencies remain unchanged.
