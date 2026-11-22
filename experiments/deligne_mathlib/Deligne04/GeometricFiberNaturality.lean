@@ -378,6 +378,74 @@ theorem geometricCoordinatePairing_map
   intro i _
   rw [map_mul]
 
+/-- Full pure-tensor formula for the original-ideal cotangent
+quotient under field extension. A scalar in M multiplies the
+coordinatewise image of the L-valued representative. -/
+theorem geometricCotangentTowerEquiv_tmul
+    {K L M : Type*} [Field K] [Field L] [Field M]
+    [Algebra K L] [Algebra K M]
+    {k s r : ℕ} (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (hu : Deligne21G.onGeometricProduct f u)
+    (φ : L →ₐ[K] M)
+    (m : M) (v : Deligne16.Coord k s → L) :
+    letI : Algebra L M := φ.toRingHom.toAlgebra
+    geometricCotangentTowerEquiv f u hu φ
+      (m ⊗ₜ[L] (Submodule.Quotient.mk v)) =
+      Submodule.Quotient.mk (fun i => m * φ (v i)) := by
+  letI : Algebra L M := φ.toRingHom.toAlgebra
+  classical
+  have h := LinearMap.congr_fun
+    (geometricCotangentTower_coordinate_square f u hu φ) (m ⊗ₜ[L] v)
+  have hc : fieldTowerCoordinateEquiv (ι := Deligne16.Coord k s) φ
+      (m ⊗ₜ[L] v) = fun i => m * φ (v i) := by
+    rw [tmul_eq_smul_one_tmul]
+    ext i
+    simp only [map_smul, Pi.smul_apply, smul_eq_mul,
+      fieldTowerCoordinateEquiv_one_tmul]
+  simpa only [LinearMap.comp_apply, LinearMap.baseChange_tmul,
+    Submodule.mkQ_apply, hc] using h
+
+/-- At L=K the original (possibly nonreduced) conormal span is
+literally the DEL-21D conormal subspace. -/
+theorem geometricConormalRelations_self
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → K) :
+    Deligne21G.geometricConormalRelations f u =
+      Deligne21D.conormalRelations f u := by
+  change Submodule.span K (Set.range (Deligne21G.geometricConormalRow f u)) =
+    Submodule.span K (Set.range (Deligne21D.conormalRow f u))
+  have hrows : Deligne21G.geometricConormalRow f u =
+      Deligne21D.conormalRow f u := by
+    funext t
+    exact Deligne21G.geometricConormalRow_self f u t
+  rw [hrows]
+
+/-- The coordinate presentation of the geometric cotangent fiber
+specializes, by the actual original ideal, to DEL-21D's base-field
+Jacobian quotient. -/
+noncomputable def geometricCotangentSelfEquiv
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → K) :
+    Deligne21G.geometricCotangentFiber f u ≃ₗ[K]
+      Deligne21D.presentedCotangentFiber f u :=
+  Submodule.quotEquivOfEq _ _ (geometricConormalRelations_self f u)
+
+/-- The L=K comparison is the identity on classes of every
+coordinate representative, not just a dimension equality. -/
+theorem geometricCotangentSelfEquiv_mk
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u v : Deligne16.Coord k s → K) :
+    geometricCotangentSelfEquiv f u
+      (Submodule.Quotient.mk v) = Submodule.Quotient.mk v := by
+  exact Submodule.quotEquivOfEq_mk _ _ (geometricConormalRelations_self f u) v
+
+#print axioms geometricCotangentTowerEquiv_tmul
+#print axioms geometricConormalRelations_self
+#print axioms geometricCotangentSelfEquiv_mk
 #print axioms geometricCotangentTower_coordinate_square
 #print axioms geometricJacobianTangent_map_mem
 #print axioms geometricCoordinatePairing_map
