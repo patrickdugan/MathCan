@@ -71,6 +71,23 @@ For each coefficient, \(k\cdot\widehat r_K=0\) holds exactly. Its squared Euclid
 
 For \(N=1\), the initial quadratic forcing lies within the smallest retained cube. The same holds for \(N=2\), \(K=10\). **Zero high-mode residual at \(t=0\) implies no bound on its positive-time value**, since the Galerkin solution creates new modes. In particular, BSAR-15's close energy agreement between grids is compatible with the exact \(N=2\), \(K=7\) high-mode forcing being nonzero initially.
 
+## Immediate implication for full-PDE versus Galerkin tangents
+
+The exact full Navier–Stokes time derivative from the smooth BSAR-14 datum and the Galerkin ODE time derivative have the same viscous term, because the initial field is wholly retained. Their difference is exactly
+
+\[
+\left.\partial_t(u-v_K)\right|_{t=0}=-r_K(0).
+\]
+
+Local smooth well-posedness for this trigonometric initial datum and the smooth finite Galerkin ODE therefore imply the short-time asymptotic
+
+\[
+\lim_{t\downarrow0}\frac{\|u(t)-v_K(t)\|_2}{t}
+=\|r_K(0)\|_2.
+\]
+
+For \(N=2\), \(K=5\) or \(7\), this limit is exactly \(1/\sqrt{34}\approx0.1714985851\); for the other registered source/grid pairs the linear coefficient is zero. The result is **a local tangent statement**, with no certified remainder or quantitative interval of validity. A close *scalar kinetic-energy* match between different Galerkin grids can coexist with a nonzero first-order difference between their full Fourier velocity fields. This motivates full-field error auditing rather than interpreting BSAR-15's small energy discrepancy as spatial convergence of the solution.
+
 ## Energy algebra
 
 Set
