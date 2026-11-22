@@ -42,8 +42,8 @@ theorem tensor_trace_power {n : ℕ} (lam : Fin n → ℂ)
     (k e : ℕ) :
     (∑ x : Fin k → Fin n, (tensorEigenvalue lam k x) ^ e) =
       (∑ i : Fin n, (lam i) ^ e) ^ k := by
-  simp only [tensorEigenvalue, Finset.prod_pow]
-  exact (Fintype.sum_pow (fun i : Fin n => (lam i) ^ e) k).symm
+  simpa only [tensorEigenvalue, ← Finset.prod_pow] using
+    (Fintype.sum_pow (fun i : Fin n => (lam i) ^ e) k).symm
 
 /-- The diagonal matrix realizing this finite tensor spectrum. -/
 def diagonalTensorFrob {n : ℕ} (lam : Fin n → ℂ) (k : ℕ) :
