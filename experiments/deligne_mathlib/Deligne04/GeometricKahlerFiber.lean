@@ -523,6 +523,76 @@ noncomputable def geometricKahlerFiberDualEquivTangent
   exact (geometricKahlerFiberEquiv f u hu).dualMap.trans
     (geometricCotangentDualEquivTangent f u)
 
+/-- A K-algebra homomorphism of extension fields transports each
+original DEL-16 geometric point to another geometric point. -/
+theorem onGeometricProduct_map
+    {K L M : Type*} [Field K] [Field L] [Field M]
+    [Algebra K L] [Algebra K M]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (hu : onGeometricProduct f u)
+    (φ : L →ₐ[K] M) :
+    onGeometricProduct f (fun i => φ (u i)) := by
+  intro t
+  have h := MvPolynomial.comp_aeval_apply (f := u) φ
+    (Deligne16.copyEquation f t)
+  rw [hu t, map_zero] at h
+  exact h.symm
+
+/-- Quotient-algebra points commute with every field homomorphism
+over K, including maps in a tower of extension fields. -/
+theorem productGeometricPoint_map
+    {K L M : Type*} [Field K] [Field L] [Field M]
+    [Algebra K L] [Algebra K M]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (hu : onGeometricProduct f u)
+    (φ : L →ₐ[K] M) :
+    φ.comp (productGeometricPoint f u hu) =
+      productGeometricPoint f (fun i => φ (u i))
+        (onGeometricProduct_map f u hu φ) := by
+  apply AlgHom.ext
+  intro q
+  obtain ⟨P, rfl⟩ := Ideal.Quotient.mk_surjective q
+  change φ (productGeometricPoint f u hu
+      (Ideal.Quotient.mk (Deligne16.productIdeal f) P)) =
+    productGeometricPoint f (fun i => φ (u i))
+      (onGeometricProduct_map f u hu φ)
+      (Ideal.Quotient.mk (Deligne16.productIdeal f) P)
+  rw [productGeometricPoint_mk, productGeometricPoint_mk]
+  exact MvPolynomial.comp_aeval_apply (f := u) φ P
+
+/-- The original K-coefficient Jacobian rows commute with field
+homomorphisms, before any reduction or change of the defining ideal. -/
+theorem geometricConormalRow_map
+    {K L M : Type*} [Field K] [Field L] [Field M]
+    [Algebra K L] [Algebra K M]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (φ : L →ₐ[K] M)
+    (t : Deligne16.EqCoord k r) (i : Deligne16.Coord k s) :
+    geometricConormalRow f (fun j => φ (u j)) t i =
+      φ (geometricConormalRow f u t i) := by
+  change MvPolynomial.aeval (fun j => φ (u j))
+      (MvPolynomial.pderiv i (Deligne16.copyEquation f t)) =
+    φ (MvPolynomial.aeval u
+      (MvPolynomial.pderiv i (Deligne16.copyEquation f t)))
+  exact (MvPolynomial.comp_aeval_apply (f := u) φ
+    (MvPolynomial.pderiv i (Deligne16.copyEquation f t))).symm
+
+/-- The geometric conormal row specializes to the DEL-21D row when
+the coefficient and point fields are both K. -/
+theorem geometricConormalRow_self
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → K)
+    (t : Deligne16.EqCoord k r) :
+    geometricConormalRow f u t = Deligne21D.conormalRow f u t := by
+  rfl
+
 #print axioms productGeometricPoint_mk
 #print axioms productGeometricPoint_val
 #print axioms productGeometricKahler_right_exact
@@ -538,5 +608,9 @@ noncomputable def geometricKahlerFiberDualEquivTangent
 #print axioms mem_geometricJacobianTangent_iff
 #print axioms geometricCotangentDualEquivTangent
 #print axioms geometricKahlerFiberDualEquivTangent
+#print axioms onGeometricProduct_map
+#print axioms productGeometricPoint_map
+#print axioms geometricConormalRow_map
+#print axioms geometricConormalRow_self
 
 end Deligne21G
