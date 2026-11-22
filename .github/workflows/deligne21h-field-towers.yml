@@ -42,7 +42,7 @@ jobs:
         working-directory: experiments/deligne_mathlib
         run: |
           set -euo pipefail
-          lake build Deligne04.GeometricFiberNaturality
+          lake build Deligne04
           lake env lean Deligne04/GeometricFiberNaturality.lean | tee deligne21h-axioms.txt
           if grep -Eq 'sorryAx|ofReduceBool' deligne21h-axioms.txt; then
             echo 'DEL-21H unexpected axiom'
