@@ -21,3 +21,4 @@ import Deligne04.BilinearBadLocus
 import Deligne04.IncidenceIdeal
 import Deligne04.ConicJacobian
 import Deligne04.GlobalJacobianIdeal
+import Deligne04.SharpJacobianIdeal
