@@ -11,3 +11,5 @@ import Deligne04.MatrixTensorEigen
 import Deligne04.KunnethDegrees
 import Deligne04.KatzGysinDuality
 import Deligne04.KatzDegreeShift
+import Deligne04.FixedCoefficientChart
+import Deligne04.BipartiteSmoothness
