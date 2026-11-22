@@ -1,0 +1,11 @@
+name = "deligne04"
+version = "0.1.0"
+defaultTargets = ["Deligne04"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.35.0"
+
+[[lean_lib]]
+name = "Deligne04"
