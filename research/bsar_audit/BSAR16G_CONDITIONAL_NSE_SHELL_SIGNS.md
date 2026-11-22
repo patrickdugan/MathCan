@@ -122,6 +122,31 @@ All \(P,H_s,C_s,E\) are nonnegative **rational upper bounds**; the three powers 
 
 When the exact-rational lower bound is positive, the full smooth NSE flow retains the initial BSAR-14 shell-transfer sign throughout the certified interval. This is **stronger in PDE scope** than the exact finite Galerkin sign statement, subject to the separately stated smooth-existence premise. It does **not** control pointwise vorticity maxima, normalized direction fields, or half-maximum core membership of the full PDE solution; those functionals require stronger spatial regularity/error control.
 
+## Sealed rational results: 36 conditional signs through T = 0.012
+
+The [first BSAR-16G dedicated CI run](https://github.com/patrickdugan/MathCan/actions/runs/45015615658) passed its four targeted tests, froze twelve source/grid cases and thirty-six conditional full-PDE signed transfer records, and re-audited their exact rational SHA-256 manifest. All five workflows passed, including source parity, BSAR-16B residual controls, the Lean kernel, and repository-wide mathematical checks.
+
+The canonical BSAR-16G row-list SHA-256 is
+
+    6eb0137156069d8fb969134acf313df53ea5938fd6c815c53063eb208ba820bf
+
+The preceding source archives are BSAR-16F exact Galerkin transfer signs (SHA-256 \`daf4ebdd3b3d514beaae20381f6af9fb4c2f448b6edc04c6b8d8f5212e9ed6f3\`) and BSAR-16B rational Galerkin/PDE error envelopes (SHA-256 \`da7772a24fdc392e958c84aa49d4262401d3a94ed26bd492a568d7445f402f67\`).
+
+The table selects the least favorable registered phase and grid for each initial frequency/shell pair. The signed lower bounds are rounded **downward**, and transfer-error upper bounds **upward** for display. Each bound holds simultaneously for **every time** \(t\in[0,3/250]\), under the explicit smooth-full-NSE-existence hypothesis.
+
+| Initial frequency N | Shell \(\lvert k\rvert^2/N^2\) | Rational reference signed lower | Full-PDE transfer perturbation upper | Conditional full-NSE signed lower |
+|---:|---:|---:|---:|---:|
+| 1 | 1 | 0.243697700622 | 0.004822351793 | **0.238875348830** |
+| 1 | 4 | 0.975923482352 | 0.006584986741 | **0.969338495612** |
+| 1 | 5 | 0.695676988235 | 0.015127002762 | **0.680549985473** |
+| 2 | 1 | 0.462723058816 | 0.181252099521 | **0.281470959296** |
+| 2 | 4 | 1.860799667172 | 0.260379421364 | **1.600420245808** |
+| 2 | 5 | 1.251598559639 | 0.594722308663 | **0.656876250977** |
+
+The **least** conditional full-PDE signed margin in the registered experiment is \(0.238875348830\), for \(N=1,\sigma=-1,M=32\), shell 1. The full rational audit records **12/12 roots and 36/36 shell signs certified for the entire \(0.012\) window**. For N=2 the largest registered PDE-to-Galerkin \(L^2\) upper bound is \(0.004714812\); the corresponding total PDE-to-rational-reference upper bound is \(0.004789776587\). These upper bounds include the Galerkin spatial residual and continuous-time rational Galerkin reference error, and are distinct from empirical differences between two floating numerical runs.
+
+**The smooth-existence premise is essential.** These numbers certify nonlinear transfer signs of an actual full NSE solution *if* such a solution is smooth on this particular time interval. They give no quantitative proof that every registered smooth source survives through T=0.012, and no lower or upper bound for the true full-PDE pointwise vorticity core. The full-PDE shell functional is controlled from \(L^2\) because the derivative moves to a finite projector; pointwise vorticity and normalized direction require different regularity information.
+
 ## Registered computation, replay and limitations
 
 The twelve exact roots are N=1/2, \(\sigma=\pm1\), grid 16/24/32 with retained K=5/7/10, amplitude 1, viscosity 1/10, and the registered horizon 3/250. Each row reuses the exact BSAR-16B conditional PDE \(L^2\) error receipt and independently reconstructs the BSAR-16F exact rational polynomial and shell-local constants. All three shell signs are tested with rigorous directed-rational rounding of output bounds.
