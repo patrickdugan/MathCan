@@ -40,6 +40,16 @@ This distinction matters: an algebraic elimination ideal describes the closure o
 
 In characteristic two d=-1=1, so the gradient system is always uniquely solvable. The same universal identity still works, without dividing by 2.
 
+## Exact finite-field size of the certified regular open
+
+For every finite field K=F_Q, the polynomial E vanishes on exactly Q⁴ of the Q⁵ affine parameter points. Therefore
+
+    #D(E)(F_Q)=Q⁴(Q-1).
+
+Proof by elementary fibers: Fix (α,β) and put d=4αβ-1. When d≠0, each choice of (p,q) forces exactly one c for which E=0, hence Q² bad parameters. When d=0, which can only happen in odd characteristic, α and β are nonzero and 4αβ=1. Then E=-α(q-2βp)², whose zero condition is q=2βp. There are Q choices of p, one matching q, and Q arbitrary values of c, again Q² bad parameters. Summing over Q² possible (α,β) yields Q⁴ zeros.
+
+The independent Python oracle exhaustively checks every parameter over prime fields F2, F3, F5, F7 and F11. It also checks the Bézout polynomial's *formal coefficients* in Z[x,y], rather than relying solely on finite-field evaluations. This exact density counts the guaranteed principal Bertini open D(E), while some exceptional parameters on E=0 also define smooth sections.
+
 ## Effective finite-field selection and remaining geometry
 
 If a separate nonzero Katz-good principal polynomial L exists and for every parameter coordinate i,
