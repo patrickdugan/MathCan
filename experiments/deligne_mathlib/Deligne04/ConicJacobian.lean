@@ -1,4 +1,5 @@
 import Deligne04.BilinearBadLocus
+import Deligne04.BipartiteSmoothness
 import Mathlib.Algebra.MvPolynomial.PDeriv
 import Mathlib.Tactic
 
