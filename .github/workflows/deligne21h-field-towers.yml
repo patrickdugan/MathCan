@@ -1,0 +1,63 @@
+name: DEL-21H geometric Kähler field-tower naturality
+
+on:
+  push:
+    branches: [proof/deligne21h-field-tower-naturality-20261123]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/GeometricFiberNaturality.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'tests/test_deligne21h_field_towers.py'
+      - 'research/deligne_sign_audit/DEL21H_*'
+      - '.github/workflows/deligne21h-field-towers.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne21h-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check true Kähler field-tower naturality
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04.GeometricFiberNaturality
+          lake env lean Deligne04/GeometricFiberNaturality.lean | tee deligne21h-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne21h-axioms.txt; then
+            echo 'DEL-21H unexpected axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check extension-field geometry
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne21g_geometric_fiber tests.test_deligne21f_actual_fiber
