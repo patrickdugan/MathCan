@@ -22,7 +22,8 @@ from typing import Any
 
 from experiments.bsar16.core_intervals import generate as core_generate
 from experiments.bsar16.exact_residual import (
-    GRID_SIZES, ROOTS, Q, SOURCE_BSAR14_BLOB, SOURCE_MATHCAN, encode,
+    GRID_SIZES, ROOTS, Q, SOURCE_BSAR14_BLOB, SOURCE_MATHCAN,
+    Gaussian, I, ZERO, encode, squared_norm, validate_field,
 )
 from scripts.bsar14_initial_triad_transfer import (
     exact_point, modes as exact_source_modes,
@@ -75,6 +76,27 @@ def exact_high_frequency_obstruction(n: int, phase: int, m: int) -> dict[str, An
     wave = 24*n*m
     assert wave % (2*n) == 0
     assert amplitude*wave == 24*n
+
+    # Construct exact positive/negative Fourier modes of delta*cos(Mx)e_y.
+    # This checks the periodic Fourier reality, mean and divergence.
+    plus = (wave, 0, 0)
+    minus = (-wave, 0, 0)
+    coeff = (ZERO, Gaussian(amplitude/2), ZERO)
+    perturbation = {plus: coeff, minus: coeff}
+    validate_field(perturbation)
+    norm_squared = sum((squared_norm(v) for v in perturbation.values()), Q(0))
+    assert norm_squared == amplitude*amplitude/2
+    # curl(perturbation) has z coefficients ±i*M*delta/2.
+    curl_plus = Gaussian(Q(0), wave*amplitude/2)
+    curl_minus = -curl_plus
+    assert curl_plus+curl_minus == ZERO
+    # At pi/N both exponentials equal 1 since M/N is even.
+    assert (wave//n) % 2 == 0
+    assert curl_plus+curl_minus == ZERO
+    # At pi/(2M), the Fourier phase factors are +i and -i.
+    curl_quarter = curl_plus*I + curl_minus*(-I)
+    assert curl_quarter.imag == 0
+    assert curl_quarter.real == -wave*amplitude
     source = exact_source_modes(n, Q(1), phase)
     p0 = exact_point(source, n, x_pi_over_n=False)["vorticity"]
     p1 = exact_point(source, n, x_pi_over_n=True)["vorticity"]
