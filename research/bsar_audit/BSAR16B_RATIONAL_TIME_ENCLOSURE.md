@@ -138,6 +138,27 @@ Suppose a smooth full incompressible Navier–Stokes solution \(u\) exists on \(
 
 The final exponential is also replaced by a rational upward bound. This is a **conditional \(L^2\) solution-error enclosure** assuming a smooth NSE solution throughout the chosen interval. It yields no uniform-in-frequency lifespan, global regularity result, or certified vorticity-core geometry. \(L^2\) control of velocity alone is insufficient to certify pointwise vorticity or normalized-direction half-maximum anchors.
 
+## First exact-rational receipts at T = 0.012
+
+The [BSAR-16B initial dedicated CI run](https://github.com/patrickdugan/MathCan/actions/runs/45002311081) passed all five new tests and the earlier BSAR-16A controls. Its twelve-case canonical JSON row-list SHA-256 is:
+
+\`da7772a24fdc392e958c84aa49d4262401d3a94ed26bd492a568d7445f402f67\`
+
+The following are **upper bounds** evaluated over the entire registered interval, grouped by initial frequency and grid. Each entry takes the worse of the two \(\sigma=\pm1\) cases at the same grid, potentially from different phases. Their values are rounded upward for display.
+
+| N | Grid M | \(\sup\|v_K-p\|_2\) | \(\sup\|r_K\|_2\) | Conditional \(\|u(T)-v_K(T)\|_2\) |
+|---:|---:|---:|---:|---:|
+| 1 | 16 | 0.000005590 | 0.004357 | 0.00005882 |
+| 1 | 24 | 0.000005595 | 0.008248 | 0.00011134 |
+| 1 | 32 | 0.000005595 | 0.019168 | 0.00025877 |
+| 2 | 16 | 0.000071917 | 0.261512 | 0.00407275 |
+| 2 | 24 | 0.000074965 | 0.302643 | 0.00471482 |
+| 2 | 32 | 0.000075526 | 0.261318 | 0.00407561 |
+
+The last column assumes the smooth full Navier–Stokes flow exists on \([0,T]\), and refers to its error against the **exact continuous-time Galerkin solution**, not against BSAR-15's RK4 output. In particular, the explicit rational comparison makes no claim that the error of NumPy/FFT time stepping is smaller than the numbers shown. The residual envelope becomes looser as spatial cutoff grows in some cases because it bounds the unknown Galerkin-minus-reference forcing with finite-dimensional Fourier Cauchy–Schwarz.
+
+The algebraic source and polynomial identities are checked with Python rational arithmetic; the Gronwall inequality, energy cancellation, torus Fourier estimates, and regularity assumptions are justified in this note, not formally proved by Lean's kernel.
+
 ## Reproduction and remaining work
 
 From the repository root, using **standard-library Python 3.11 only**:
