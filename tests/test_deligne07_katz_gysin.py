@@ -7,6 +7,7 @@ from research.deligne_sign_audit.del07_oracle import (
     add, transpose, rank, mat, eye, power,
     example, gysin, compact_frob, compose_certificate,
     kernel_action_certificate, wrong_forward_dual_certificate,
+    tate_equivariance_certificate,
 )
 from research.deligne_sign_audit.del07_verify_tasks import verify
 from research.deligne_sign_audit.geometry_trace import multiply, trace
@@ -55,6 +56,20 @@ class KatzPoincareGysinTests(unittest.TestCase):
         good=compose_certificate(R,PX,PY,AX,AY)
         self.assertTrue(good["gysin_equivariant"])
         self.assertFalse(wrong_forward_dual_certificate(R,PX,PY,AX,AY))
+
+    def test_common_tate_scalar_is_required(self):
+        R,PX,PY,AX,AY=example()
+        for r in (2,3,5,7):
+            for D in (1,2,3,4):
+                with self.subTest(r=r,D=D):
+                    t=r**D
+                    self.assertTrue(
+                        tate_equivariance_certificate(R,PX,PY,AX,AY,t,t))
+                    # Missing the extra (-1) twist on Y changes
+                    # its scalar from r^D to r^(D-1).
+                    self.assertFalse(
+                        tate_equivariance_certificate(
+                            R,PX,PY,AX,AY,t,r**(D-1)))
 
     def test_injective_restriction_is_essential(self):
         R,PX,PY,AX,AY=example()
