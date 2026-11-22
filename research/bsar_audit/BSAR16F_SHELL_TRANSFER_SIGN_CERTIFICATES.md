@@ -137,6 +137,29 @@ M_s(\tau)=M_s^{\mathrm{ref}}(\tau)-
 
 When it holds, the exact Galerkin transfer \(T_s(v_K(t))\) has the original BSAR-14 sign throughout \([0,\tau]\). Every gate is evaluated in exact rational arithmetic. Positive lower bounds are rounded **downward**, and perturbation upper bounds **upward**, for the archived display receipts. If the full \(T=3/250\) sign gate fails, the checker searches rational dyadic subintervals and records the first strictly certified positive duration. A failure to certify the full horizon is preserved as such rather than silently equated with the numerical trajectory.
 
+## Sealed 36/36 sign-persistence receipts
+
+The [first dedicated BSAR-16F run](https://github.com/patrickdugan/MathCan/actions/runs/45014808927) passed all six targeted tests, generated 12 source/grid cases and 36 shell records, and completed independent exact-rational archive replay. All 36 shell certificates prove their original signed transfer remains strictly positive **for every real time in the full registered window** \(0\le t\le3/250\). The source exact parity, BSAR-16B regression, BSAR-02 corpus, and broad mathematical/Lean workflows also passed on the same PR head.
+
+The canonical SHA-256 of the exact-rational JSON records is
+
+    daf4ebdd3b3d514beaae20381f6af9fb4c2f448b6edc04c6b8d8f5212e9ed6f3
+
+The table reports, for each initial frequency and shell, the **least** certified signed transfer lower bound among both phase signs and all three grid sizes, evaluated over the entire continuous interval. Values are rounded *downward* for display; the full exact-rational records preserve the coefficients and directed errors.
+
+| Initial frequency N | Shell \(\lvert k\rvert^2/N^2\) | Reference signed polynomial lower bound | Shell-local Galerkin transfer error upper | Certified exact-Galerkin signed transfer lower bound |
+|---:|---:|---:|---:|---:|
+| 1 | 1 | 0.243697700622 | 0.000102033660 | **0.243595666962** |
+| 1 | 4 | 0.975923482352 | 0.000139372592 | **0.975784109761** |
+| 1 | 5 | 0.695676988235 | 0.000320167115 | **0.695356821120** |
+| 2 | 1 | 0.462721875724 | 0.002849368674 | **0.459872507050** |
+| 2 | 4 | 1.856564679217 | 0.003511238865 | **1.853053440352** |
+| 2 | 5 | 1.247010844613 | 0.008020160337 | **1.238990684277** |
+
+The global minimum signed transfer lower bound is **0.243595666962** (N=1, phase -1, grid 32, shell 1). All cases keep the exact BSAR-14 initial signs \((\sigma,-\sigma,\sigma)\) for shells \((1,4,5)\). The worst registered Galerkin-minus-Taylor \(L^2\) upper bound underlying the perturbation estimate is \(7.5525481\times10^{-5}\), for N=2.
+
+The intervals and full finite Fourier coefficients are certified using exact rational arithmetic. The proof establishes shell-transfer sign persistence for the **exact continuous Galerkin vector field**; the BSAR-15 float64 result was an empirical check of the same signs, with independent audit of its coefficient arrays in BSAR-16D/E.
+
 ## Tests, provenance and interpretation
 
 The dedicated CI uses standard-library Python 3.11 only, with exact-source blob pinning. Independent tests verify the full BSAR-14 convolution/Leray shell coefficients, degree-six polynomial equality at several positive rational times, the rational interval minimum, explicit quadratic and cubic transfer-error terms, rejected malformed source arguments, and frozen SHA-256 corpus integrity.
