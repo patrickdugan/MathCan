@@ -1,6 +1,7 @@
 import Deligne04.GeometricKahlerFiber
 import Mathlib.LinearAlgebra.TensorProduct.Tower
 import Mathlib.LinearAlgebra.TensorProduct.Quotient
+import Mathlib.LinearAlgebra.Dual.BaseChange
 import Mathlib.Tactic
 
 /-!
@@ -446,6 +447,35 @@ theorem geometricCotangentSelfEquiv_mk
 #print axioms geometricCotangentTowerEquiv_tmul
 #print axioms geometricConormalRelations_self
 #print axioms geometricCotangentSelfEquiv_mk
+/-- Dualizing the verified cotangent field-tower equivalence
+gives an actual M-linear extension-of-scalars equivalence for the
+original polynomial Jacobian tangent. The finite-dimensional dual
+base-change map is Mathlib's `IsBaseChange.toDualBaseChange`, and
+each tangent is identified with the genuine quotient-dual using
+DEL-21G's Jacobian duality theorem. -/
+noncomputable def geometricJacobianTangentTowerEquiv
+    {K L M : Type*} [Field K] [Field L] [Field M]
+    [Algebra K L] [Algebra K M]
+    {k s r : ℕ} (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (hu : Deligne21G.onGeometricProduct f u)
+    (φ : L →ₐ[K] M) :
+    letI : Algebra L M := φ.toRingHom.toAlgebra
+    M ⊗[L] Deligne21G.geometricJacobianTangent f u ≃ₗ[M]
+      Deligne21G.geometricJacobianTangent f (fun i => φ (u i)) := by
+  letI : Algebra L M := φ.toRingHom.toAlgebra
+  let eQ := geometricCotangentTowerEquiv f u hu φ
+  let j : Deligne21G.geometricCotangentFiber f u →ₗ[L]
+      Deligne21G.geometricCotangentFiber f (fun i => φ (u i)) :=
+    (eQ.toLinearMap.restrictScalars L).comp
+      (TensorProduct.mk L M (Deligne21G.geometricCotangentFiber f u) 1)
+  have hb : IsBaseChange M j :=
+    IsBaseChange.of_equiv eQ (by intro x; rfl)
+  let eL := Deligne21G.geometricCotangentDualEquivTangent f u
+  let eM := Deligne21G.geometricCotangentDualEquivTangent f (fun i => φ (u i))
+  exact (eL.symm.baseChange L M _ _).trans (hb.toDualBaseChange.trans eM)
+
+#print axioms geometricJacobianTangentTowerEquiv
 #print axioms geometricCotangentTower_coordinate_square
 #print axioms geometricJacobianTangent_map_mem
 #print axioms geometricCoordinatePairing_map
