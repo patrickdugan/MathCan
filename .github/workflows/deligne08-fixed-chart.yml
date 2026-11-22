@@ -1,0 +1,66 @@
+name: DEL-08 fixed-coefficient Bertini chart
+
+on:
+  push:
+    branches: [proof/deligne08-fixed-chart-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/FixedCoefficientChart.lean'
+      - 'experiments/deligne_mathlib/Deligne04/BipartiteSmoothness.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL08_*'
+      - 'research/deligne_sign_audit/del08_*'
+      - 'tests/test_deligne08_fixed_chart.py'
+      - '.github/workflows/deligne08-fixed-chart.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne08-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Check graph immersion and chart certificates
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/FixedCoefficientChart.lean | tee deligne08-axioms.txt
+          lake env lean Deligne04/BipartiteSmoothness.lean | tee -a deligne08-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne08-axioms.txt; then
+            echo 'DEL-08 uses an admitted proof or reduction axiom'
+            exit 1
+          fi
+  exact-oracles:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify finite extension and fixed chart fixtures
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne08_fixed_chart
+          python -m research.deligne_sign_audit.del08_verify_tasks
