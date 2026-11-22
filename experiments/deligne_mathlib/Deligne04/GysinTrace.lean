@@ -35,7 +35,8 @@ theorem boundary_trace {a b : ℕ}
     (mix : Matrix (Fin a) (Fin b) ℂ) :
     Matrix.trace (boundaryFrob K Q mix) =
       Matrix.trace K + Matrix.trace Q := by
-  simp [boundaryFrob]
+  exact Matrix.trace_fromBlocks K mix
+    (0 : Matrix (Fin b) (Fin a) ℂ) Q
 
 /-- Frobenius conjugacy preserves trace, the linear-algebraic
 consequence of a Frobenius-compatible Gysin isomorphism. -/
@@ -80,7 +81,6 @@ theorem gysin_signed_remainder {a b c h : ℕ}
     signedRemainder K Q mix L Yhigh Xhigh =
       Matrix.trace K + Matrix.trace L := by
   simp [signedRemainder, boundary_trace, hpaired]
-  ring
 
 /-- The pairing can be proved from explicit Frobenius conjugacies,
 rather than assuming equality of high-degree traces. -/
