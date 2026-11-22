@@ -110,10 +110,33 @@ theorem productPoint_val
     (Ideal.Quotient.mk (Deligne16.productIdeal f) (MvPolynomial.X j)) = u j
   simpa using productPoint_mk f u hu (MvPolynomial.X j)
 
+/-- For the DEL-16 embedded product, the genuine Kähler relations
+specialize to exactly DEL-21D's original evaluated Jacobian rows. -/
+theorem productKahler_relation_at_point
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → K)
+    (hu : Deligne16.onEmbeddedProduct f u)
+    (t : Deligne16.EqCoord k r) (i : Deligne16.Coord k s) :
+    productPoint f u hu
+      ((Deligne21E.productKahlerPresentation (k := k) f).relation t i) =
+        Deligne21D.conormalRow f u t i := by
+  have h := differential_relation_coefficient_at_point
+    (Deligne21E.productAlgebraPresentation (k := k) f)
+    (productPoint f u hu) t i
+  have hval : (fun j : Deligne16.Coord k s =>
+      productPoint f u hu
+        ((Deligne21E.productAlgebraPresentation (k := k) f).val j)) = u := by
+    funext j
+    exact productPoint_val f u hu j
+  rw [hval] at h
+  simpa only [Deligne21E.productKahlerPresentation, Deligne21D.conormalRow] using h
+
 #print axioms productPoint_mk
 #print axioms productKahler_fiber_right_exact
 #print axioms differential_relation_coefficient
 #print axioms differential_relation_coefficient_at_point
 #print axioms productPoint_val
+#print axioms productKahler_relation_at_point
 
 end Deligne21F
