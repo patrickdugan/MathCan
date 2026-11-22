@@ -1,0 +1,105 @@
+name: BSAR-04 upstream Lean kernel and axiom audit
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/bsar04-native-kernel.yml"
+      - "research/bsar_audit/BSAR04_NATIVE_KERNEL.md"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/bsar04-native-kernel.yml"
+      - "research/bsar_audit/BSAR04_NATIVE_KERNEL.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bsar04-pinned-kernel:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout MathCan
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Checkout exact upstream BSA-R source
+        uses: actions/checkout@v4
+        with:
+          repository: VivienSweetbrier/bsa-r
+          ref: 80c62433b0eb671175bd8d6169822d3ebd922b60
+          path: external/bsar
+          persist-credentials: false
+      - name: Verify upstream pin and MathCan Lean toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C external/bsar rev-parse HEAD)" = "80c62433b0eb671175bd8d6169822d3ebd922b60"
+          grep -Fx 'leanprover/lean4:v4.35.0' lean-toolchain
+          find external/bsar/lean -maxdepth 1 -type f -name 'Step*.lean' | sort
+      - name: Setup pinned Lean 4 from MathCan
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Compile all six published round modules
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar04
+          lean --version | tee artifacts/bsar04/lean-version.txt
+          grep -F 'Lean (version 4.35.0' artifacts/bsar04/lean-version.txt
+          modules=(
+            Step2ViscousCooldown.lean
+            Step3ArbitraryDataRound2.lean
+            Step4UltravioletGevreyRound3.lean
+            Step5SpectralVarianceTaoRound4.lean
+            Step6BiotSavartCommutatorRound5.lean
+            Step7VorticityDirectionPdeRound6.lean
+          )
+          for module in "${modules[@]}"; do
+            file="external/bsar/lean/$module"
+            sha256sum "$file" | tee -a artifacts/bsar04/source-sha256.txt
+            echo "::group::Native Lean compiler: $module"
+            timeout 360s lean "$file" 2>&1 | tee "artifacts/bsar04/${module%.lean}.log"
+            echo "::endgroup::"
+          done
+          if grep -ER 'sorryAx|Classical[.]choice' artifacts/bsar04/*.log; then
+            echo "::error::Forbidden axiom appears in #print axioms output"
+            exit 1
+          fi
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root = Path("artifacts/bsar04")
+          modules = sorted(root.glob("Step*.log"))
+          assert len(modules) == 6, len(modules)
+          report = {
+              "source_repo": "VivienSweetbrier/bsa-r",
+              "source_commit": "80c62433b0eb671175bd8d6169822d3ebd922b60",
+              "lean_version": (root / "lean-version.txt").read_text().strip(),
+              "scope": "Lean core compilation and printed axioms of exact upstream source",
+              "files": [
+                  {
+                      "file": item.name.removesuffix(".log") + ".lean",
+                      "stdout_sha256": hashlib.sha256(item.read_bytes()).hexdigest(),
+                      "lines": len(item.read_text().splitlines()),
+                  }
+                  for item in modules
+              ],
+              "pde_proof_claim": "UNVERIFIED; compilation certifies stated Lean propositions only",
+          }
+          (root / "manifest.json").write_text(json.dumps(report, indent=2) + "\n")
+          PY
+      - name: Preserve compiler outputs, including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsar04-lean-kernel-receipts
+          path: artifacts/bsar04/
+          if-no-files-found: warn
+          retention-days: 14
