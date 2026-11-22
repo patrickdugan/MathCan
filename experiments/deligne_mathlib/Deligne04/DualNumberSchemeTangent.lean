@@ -101,16 +101,17 @@ noncomputable def firstOrderEvaluation
     · simp [tangentDerivative_one]
   map_add' := by
     intro P Q
-    apply TrivSqZeroExt.ext
-    · simp
-    · simp only [TrivSqZeroExt.snd_mk, TrivSqZeroExt.snd_add,
-        tangentDerivative_add]
+    change (MvPolynomial.eval u (P + Q), tangentDerivative u v (P + Q)) =
+      (MvPolynomial.eval u P + MvPolynomial.eval u Q,
+        tangentDerivative u v P + tangentDerivative u v Q)
+    simp only [map_add, tangentDerivative_add]
   map_mul' := by
     intro P Q
-    apply TrivSqZeroExt.ext
-    · simp [TrivSqZeroExt.fst_mul]
-    · simp only [TrivSqZeroExt.snd_mk, DualNumber.snd_mul,
-        TrivSqZeroExt.fst_mk, tangentDerivative_mul]
+    change (MvPolynomial.eval u (P * Q), tangentDerivative u v (P * Q)) =
+      (MvPolynomial.eval u P * MvPolynomial.eval u Q,
+        MvPolynomial.eval u P * tangentDerivative u v Q +
+          tangentDerivative u v P * MvPolynomial.eval u Q)
+    simp only [map_mul, tangentDerivative_mul]
 
 /-- A polynomial evaluates to zero in the actual dual-number
 algebra exactly when both its value and its differential vanish. -/
@@ -120,7 +121,7 @@ theorem firstOrderEvaluation_eq_zero_iff
     firstOrderEvaluation u v P = 0 ↔
       MvPolynomial.eval u P = 0 ∧ tangentDerivative u v P = 0 := by
   change (MvPolynomial.eval u P, tangentDerivative u v P) =
-    (0 : K, 0 : K) ↔ _
+    ((0 : K), (0 : K)) ↔ _
   exact Prod.mk.injEq
 
 /-- For a genuine defining ideal, a dual-number homomorphism
@@ -171,7 +172,6 @@ theorem firstOrder_factors_through_quotient_iff
       change firstOrderEvaluation u v P = 0
       exact h P hP
     refine ⟨Ideal.Quotient.lift I (firstOrderEvaluation u v) hle, ?_⟩
-    ext P
     rfl
 
 /-- DEL-20's true MvPolynomial Jacobian-kernel tangent vectors
