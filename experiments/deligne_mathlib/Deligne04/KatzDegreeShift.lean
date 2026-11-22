@@ -65,6 +65,16 @@ theorem katz_to_gysin_iso_cutoff {D a i j : ℤ}
       (katz_shift_iso_degree hshift hi) hj,
     gysin_compact_degree_formula hj⟩
 
+/-- The Poincare dual of compact cohomology in dimension D
+uses q^D times inverse ordinary Frobenius. In codimension one,
+H_c(Y)(-1) has the same factor: q*q^(D-1)=q^D. -/
+theorem codimension_one_tate_balance (q : ℂ) (d : ℕ) :
+    q * q ^ d = q ^ (d + 1) := by
+  rw [pow_succ]
+  ring
+
+#print axioms codimension_one_tate_balance
+
 /-- A missing Tate twist would change Frobenius weights:
 for an extension field of cardinality r, the (-1) twist has
 Frobenius r, and the twist of F^n has eigenvalue r^n. -/
