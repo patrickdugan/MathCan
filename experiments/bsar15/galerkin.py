@@ -39,8 +39,8 @@ AMPLITUDE = Fraction(1)
 
 
 def _jfloat(number: float) -> float:
-    """Round observational values for compact deterministic JSON receipts."""
-    return round(float(number), 12)
+    """Keep 16 significant digits so sub-picounit convergence differences survive."""
+    return float(f"{float(number):.16g}")
 
 
 def _complex_list(z: complex) -> list[float]:
