@@ -5,7 +5,7 @@ import json
 
 from research.deligne_sign_audit.prime_power_fourier import FIELDS
 from research.deligne_sign_audit.del13_oracle import (
-    field_oracle, wrong_sign_certificate, swapped_factor_certificate,
+    field_oracle, conic_bezout, wrong_sign_certificate, swapped_factor_certificate,
     poly_add, poly_mul, constant,
 )
 
@@ -37,15 +37,10 @@ def verify():
             assert cert is not None and cert["unit_identity"]
             assert receipt["unit_if_nonzero"]
             assert not receipt["singular_if_zero"]
+            polynomials=conic_bezout(f,a,b,c)
             lhs=poly_add(f,
-              poly_mul(f,cert["coeffs"]["F"],receipt["singular_obstruction"]["unused_F"])
-              if "unused_F" in receipt["singular_obstruction"] else
-              poly_mul(f,cert["coeffs"]["F"],
-                __import__("research.deligne_sign_audit.del13_oracle",
-                           fromlist=["conic_bezout"]).conic_bezout(f,a,b,c)["F"]),
-              poly_mul(f,cert["coeffs"]["dx"],
-                __import__("research.deligne_sign_audit.del13_oracle",
-                           fromlist=["conic_bezout"]).conic_bezout(f,a,b,c)["dx"]))
+                poly_mul(f,cert["coeffs"]["F"],polynomials["F"]),
+                poly_mul(f,cert["coeffs"]["dx"],polynomials["dx"]))
             assert lhs==constant(f,1),row["id"]
         elif kind=="on_discriminant_obstruction":
             assert row["label"]=="proper_ideal_witness"
