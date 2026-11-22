@@ -49,7 +49,7 @@ theorem local_doubling
 
 /-- One-step growth envelope with explicit dimensionless cost I/M.
     It retains much more information than the crude factor of two. -/
-theorem refined_cross_multipled_envelope
+theorem refined_cross_multiplied_envelope
     (hM : 0 < M)
     (hI : 0 ≤ I)
     (hnn : 0 ≤ dnext)
@@ -115,6 +115,6 @@ theorem strict_growth_at_arbitrarily_small_relative_cost
 end MathCan.BSARRatioWindow
 
 #print axioms MathCan.BSARRatioWindow.local_doubling
-#print axioms MathCan.BSARRatioWindow.refined_cross_multipled_envelope
+#print axioms MathCan.BSARRatioWindow.refined_cross_multiplied_envelope
 #print axioms MathCan.BSARRatioWindow.scaled_window_constraints
 #print axioms MathCan.BSARRatioWindow.strict_growth_at_arbitrarily_small_relative_cost
