@@ -209,7 +209,7 @@ theorem exists_two_good_opens_general
   have hmul :
       MvPolynomial.eval x P * MvPolynomial.eval x Q ≠ 0 := by
     simpa only [map_mul] using hx
-  constructor
+  refine ⟨x, ?_, ?_⟩
   · intro hp
     exact hmul (by rw [hp, zero_mul])
   · intro hq
