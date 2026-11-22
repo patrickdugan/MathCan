@@ -20,7 +20,7 @@ The **full open-loop baseline is mandatory**. RHD-10's original verifier exposes
 
 The privileged_rule_ceiling calls the exact RHD-10 arithmetic suggestion function and is explicitly marked as a privileged control. The trained_frequency policy is a fitted lookup policy. Repeated application of that policy with new feedback is an iterative correction procedure, **not** evidence that a neural recurrent network has learned to reason. A future RLT checkpoint must be scored with the same observation and billing interface.
 
-Every reported success is a *final verifier pass*. The invalid_edits metric counts edits that failed to reduce the total number of finite gate violations. Independently computed scoring checks do not enter the **policy-visible verifier call** denominator; the report says so. The stop_accuracy metric records whether a policy stops with all finite gates satisfied. The primary efficiency metric is 100 × solved_episodes / policy_visible_verifier_calls.
+Every reported success is a *final verifier pass*. The invalid_edits metric counts edits that failed to reduce the total number of finite gate violations. Independently computed scoring checks do not enter the **policy-visible verifier call** denominator; the report says so. The stop_accuracy metric records the learned STOP-versus-CONTINUE decision at the final verifier observation. A STOP response is correct when the finite gates pass, while CONTINUE is correct when a failed gate remains. The training split supplies explicit terminal STOP examples. The primary efficiency metric is 100 × solved_episodes / policy_visible_verifier_calls.
 
 ## Reproduction
 
