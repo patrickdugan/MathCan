@@ -110,7 +110,7 @@ theorem conic_jacobian_ideal_top_iff
   constructor
   · intro htop
     by_contra hdelta
-    have hc : c = a * b := of_not_ne hdelta
+    have hc : c = a * b := not_ne_iff.mp hdelta
     exact (conic_jacobian_ideal_ne_top_of_delta_zero
       a b c hc) htop
   · exact Deligne13.conic_jacobian_ideal_eq_top a b c
