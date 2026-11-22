@@ -47,7 +47,7 @@ noncomputable def productAlgebraPresentation
   let I : Ideal (MvPolynomial (Deligne16.Coord k s) K) := Deligne16.productIdeal f
   let Q : MvPolynomial (Deligne16.Coord k s) K →ₐ[K]
       productCoordinateRing (k := k) f := Ideal.Quotient.mkₐ K I
-  have hQ : Function.Surjective Q := Ideal.Quotient.mk_surjective I
+  have hQ : Function.Surjective Q := fun x => Ideal.Quotient.mk_surjective x
   let G : Algebra.Generators K (productCoordinateRing (k := k) f)
       (Deligne16.Coord k s) := Algebra.Generators.ofAlgHom Q hQ
   refine {
