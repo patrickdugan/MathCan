@@ -12,7 +12,8 @@ from research.rh_proof_distillation.rhd11_crossfamily import (
     TRUE_COEFFS, aggregate, apply, arithmetic_action, clean, episode,
     episodes, exact_oracle_check, fault_catalog, hensel_factors, inject,
     local_norm, poly_product, principal_norm, public_episode, q, redact_failure,
-    report, score_one, theta, verify, write,
+    report, score_one, theta, verify, write, cyclotomic_unit,
+    first_layer_log, ring_mul, unit_obstruction,
 )
 from research.rh_proof_distillation.rhd10_policy_eval import FrequencyPolicy
 from research.rh_proof_distillation.rhd10_rank_one_repair import (
@@ -133,6 +134,35 @@ class RHD11CrossFamilyTests(unittest.TestCase):
         self.assertEqual(results["training_family"],"Q(zeta_20), p=29")
         self.assertEqual(results["heldout_examples"],100)
         self.assertFalse(results["lean_witness_proved"])
+
+    def test_independent_global_units_span_each_local_first_layer(self):
+        receipt = unit_obstruction()
+        self.assertEqual(receipt["global_unit_exponents"], [1, 7])
+        self.assertEqual(receipt["determinants_mod_5"], [2, 4, 1, 3])
+        self.assertEqual(receipt["global_norm_products_mod_25"], [1, 1])
+        self.assertEqual(receipt["character_exponent_sums_mod_5"], [0, 0])
+        expected = (
+            ((3, 0), (4, 4)),
+            ((4, 2), (3, 0)),
+            ((3, 0), (0, 2)),
+            ((0, 4), (3, 0)),
+        )
+        for j, f in enumerate(FACTORS):
+            units = [cyclotomic_unit(f, k) for k in (1, 7)]
+            logs = tuple(first_layer_log(f, u) for u in units)
+            self.assertEqual(logs, expected[j])
+            self.assertEqual(
+                first_layer_log(f, ring_mul(f, *units)),
+                tuple((x+y) % P for x, y in zip(*logs)),
+            )
+            for a in range(P):
+                for b in range(P):
+                    if (a,b) == (0,0):
+                        continue
+                    self.assertTrue(any(
+                        (a*v[0]+b*v[1]) % P != 0 for v in logs
+                    ))
+        self.assertEqual(report()["global_unit_obstruction"], receipt)
 
     def test_deterministic_report_and_two_sha256_receipts(self):
         with tempfile.TemporaryDirectory() as tmp:
