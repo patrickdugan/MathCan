@@ -22,3 +22,4 @@ import Deligne04.IncidenceIdeal
 import Deligne04.ConicJacobian
 import Deligne04.GlobalJacobianIdeal
 import Deligne04.SharpJacobianIdeal
+import Deligne04.EmbeddedLineBadLocus
