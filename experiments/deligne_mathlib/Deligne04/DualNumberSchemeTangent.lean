@@ -122,7 +122,7 @@ theorem firstOrderEvaluation_eq_zero_iff
       MvPolynomial.eval u P = 0 ∧ tangentDerivative u v P = 0 := by
   change (MvPolynomial.eval u P, tangentDerivative u v P) =
     ((0 : K), (0 : K)) ↔ _
-  exact Prod.mk.injEq
+  simp only [Prod.mk.injEq]
 
 /-- For a genuine defining ideal, a dual-number homomorphism
 annihilates the entire ideal iff it annihilates each generator.
