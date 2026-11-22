@@ -63,7 +63,26 @@ theorem productKahler_fiber_right_exact
     (Deligne21E.productKahlerPresentation (k := k) f).exact
     (Deligne21E.productKahlerPresentation (k := k) f).surjective_π
 
+/-- Every coefficient in the actual Mathlib Kähler presentation is
+the image of the genuine formal partial derivative of its original
+polynomial relation. This holds before base change and for nonreduced
+or redundant relations as well. -/
+theorem differential_relation_coefficient
+    {K : Type*} [Field K] {S : Type*} [CommRing S] [Algebra K S]
+    {ι σ : Type*} (pres : Algebra.Presentation K S ι σ)
+    (t : σ) (i : ι) :
+    (pres.differentials).relation t i =
+      algebraMap pres.Ring S (MvPolynomial.pderiv i (pres.relation t)) := by
+  classical
+  change (Finsupp.mapRange (algebraMap pres.Ring S) (by simp)
+    ((KaehlerDifferential.mvPolynomialBasis K ι).repr
+      (KaehlerDifferential.D K pres.Ring (pres.relation t)))) i =
+        algebraMap pres.Ring S (MvPolynomial.pderiv i (pres.relation t))
+  simp only [Finsupp.mapRange_apply,
+    KaehlerDifferential.mvPolynomialBasis_repr_apply]
+
 #print axioms productPoint_mk
 #print axioms productKahler_fiber_right_exact
+#print axioms differential_relation_coefficient
 
 end Deligne21F
