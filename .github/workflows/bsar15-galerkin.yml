@@ -1,0 +1,82 @@
+name: BSAR-15 dealiased NSE short-time Galerkin audit
+
+on:
+  pull_request:
+    paths:
+      - "experiments/bsar15/**"
+      - "research/bsar_audit/BSAR15_SHORT_TIME_GALERKIN.md"
+      - ".github/workflows/bsar15-galerkin.yml"
+  push:
+    branches: [main, audit/bsar15-dealiased-galerkin-20261122]
+    paths:
+      - "experiments/bsar15/**"
+      - ".github/workflows/bsar15-galerkin.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  numerical-galerkin:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install isolated numerical dependency
+        run: python -m pip install "numpy==2.3.5"
+      - name: Check pinned Gaussian-rational BSAR-14 initial data
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/bsar14_initial_triad_transfer.py)" = "aa25ad74be2347acf061d631f55338802eead212"
+          python -m py_compile experiments/bsar15/galerkin.py
+          python -m py_compile experiments/bsar15/test_galerkin.py
+      - name: Run exact-source and short-time dealiased Galerkin controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest experiments.bsar15.test_galerkin -v
+      - name: Freeze 16 matched multi-grid multi-time-step trajectories
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar15
+          python -m experiments.bsar15.galerkin --out artifacts/bsar15
+          sha256sum experiments/bsar15/galerkin.py > artifacts/bsar15/source.sha256
+          python - <<'PY'
+          import json
+          import hashlib
+          from pathlib import Path
+          root = Path("artifacts/bsar15")
+          manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+          data = (root / "runs.json").read_bytes()
+          runs = json.loads(data)
+          comparisons = json.loads((root / "comparisons.json").read_text(encoding="utf-8"))
+          assert manifest["run_count"] == len(runs) == 16
+          assert manifest["phase_matched_roots"] == 2
+          assert manifest["run_sha256"] == hashlib.sha256(data).hexdigest()
+          assert len(comparisons) == 4
+          assert {r["grid"] for r in runs} == {16, 24, 32}
+          assert {(r["mode_n"], r["phase"]) for r in runs} == {
+              (1, -1), (1, 1), (2, -1), (2, 1)
+          }
+          assert all(abs(r["energy_defect_trapezoid"]) < 1e-5 for r in runs)
+          assert all(r["max_divergence_hat"] < 1e-10 for r in runs)
+          assert all(r["all_initial_shell_transfer_signs_persist"] for r in runs)
+          assert all(c["all_reference_anchor_core_guarantees"] for c in comparisons)
+          assert "NO rigorous" in manifest["disclaimer"]
+          print("BSAR-15 spectral source parity and numerical receipts verified")
+          PY
+      - name: Preserve the source and numerical evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsar15-short-time-dealiased-galerkin
+          path: artifacts/bsar15/
+          if-no-files-found: warn
+          retention-days: 14
