@@ -53,6 +53,8 @@ The statement does **not** require the full ambient algebraic closure to be fini
 
 This is an actual all-finite-tuples field-theoretic descent theorem, distinct from the finite model oracles in DEL-08.
 
+The assembled Lean theorem exists_good_parameter_over_finite_extension now also composes DEL-08's dense-open fixed-chart selection with that field-theoretic result. With named Bertini, weak-Lefschetz and chart subsets of an affine parameter space, their prescribed density/openness assumptions give a selected point; the theorem constructs the finite intermediate field of its coordinates and proves their membership. Its topological assumptions are generic over the coordinate-parameter space; an actual Zariski-topology/projective-chart implementation remains future geometric work.
+
 **Formal boundary:** finding the geometric point in the intersection of the Bertini/Katz opens is still a geometric premise. The result says that *any finitely many parameters selected in the algebraic closure* have a common finite field of definition. To apply it to a scheme, the chosen parameter point must come from such a finite tuple and the defining conditions must descend from the algebraic closure.
 
 ## 3. Exact finite-field subfield checks
