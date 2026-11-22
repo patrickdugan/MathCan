@@ -18,3 +18,4 @@ import Deligne04.FiniteParameterDescent
 import Deligne04.ActualProjChart
 import Deligne04.EffectiveFiniteOpen
 import Deligne04.BilinearBadLocus
+import Deligne04.IncidenceIdeal
