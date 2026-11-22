@@ -1,0 +1,77 @@
+name: RHD-16 cyclic character extension and order inflation
+
+on:
+  push:
+    paths:
+      - 'MathCan/RHCyclicExtension.lean'
+      - 'MathCan.lean'
+      - 'research/rh_proof_distillation/rhd16_cyclic_extension.py'
+      - 'research/rh_proof_distillation/RHD16_CYCLIC_CHARACTER_EXTENSION.md'
+      - 'tests/test_rhd16_cyclic_extension.py'
+      - '.github/workflows/rhd16-cyclic-extension.yml'
+  pull_request:
+    paths:
+      - 'MathCan/RHCyclicExtension.lean'
+      - 'MathCan.lean'
+      - 'research/rh_proof_distillation/rhd16_cyclic_extension.py'
+      - 'research/rh_proof_distillation/RHD16_CYCLIC_CHARACTER_EXTENSION.md'
+      - 'tests/test_rhd16_cyclic_extension.py'
+      - '.github/workflows/rhd16-cyclic-extension.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-extension-and-repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify cyclic restriction, root order, all faults and STOP controls
+        run: python -m unittest tests.test_rhd16_cyclic_extension -v
+      - name: Write synthetic JSONL and SHA-256 manifest
+        run: |
+          mkdir -p rhd16
+          python -m research.rh_proof_distillation.rhd16_cyclic_extension --output rhd16/cyclic_extension.jsonl
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rhd16-cyclic-character-receipts
+          path: rhd16/
+          if-no-files-found: ignore
+
+  finite-extension-lean:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Audit exact finite extension proofs and axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/RHCyclicExtension.lean | tee rhd16-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:|admit' rhd16-axioms.txt; then
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rhd16-cyclic-lean-axioms
+          path: rhd16-axioms.txt
+          if-no-files-found: ignore
