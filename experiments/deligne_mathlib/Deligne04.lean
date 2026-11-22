@@ -28,3 +28,4 @@ import Deligne04.ParabolaProductBadLocus
 import Deligne04.ParabolaGlobalJacobian
 import Deligne04.AffineBertiniFiber
 import Deligne04.JacobianTangentCotangent
+import Deligne04.DualNumberSchemeTangent
