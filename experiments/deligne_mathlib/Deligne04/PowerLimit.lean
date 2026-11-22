@@ -33,7 +33,6 @@ theorem cancel_extension_degree
         (e : ℝ) * ((k : ℝ) * a + c) := by
     push_cast
     field_simp [hk0]
-    ring
   have hpow :
       r ^ (((k * e : ℕ) : ℝ)) ≤
         (q ^ (a + c / (k : ℝ))) ^ (((k * e : ℕ) : ℝ)) := by
