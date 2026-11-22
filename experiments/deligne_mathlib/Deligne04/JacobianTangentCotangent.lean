@@ -80,8 +80,9 @@ to the dual of an arbitrary subspace W. This is the algebraic
 cotangent restriction needed in the Bertini parameter map. -/
 noncomputable def coordinateCotangent
     {K : Type*} [Field K] {σ : Type*} [Fintype σ]
-    (W : Subspace K (σ → K)) (a : σ → K) : Module.Dual K W :=
-  W.dualRestrict ((LinearEquiv.piRing K K σ K).symm a)
+    (W : Subspace K (σ → K)) (a : σ → K) : Module.Dual K W := by
+  classical
+  exact W.dualRestrict ((LinearEquiv.piRing K K σ K).symm a)
 
 /-- The actual coordinate covectors span the entire cotangent of
 every subspace of a finite ambient coordinate vector space.
