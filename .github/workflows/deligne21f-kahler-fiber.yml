@@ -40,7 +40,7 @@ jobs:
         working-directory: experiments/deligne_mathlib
         run: |
           set -euo pipefail
-          lake build Deligne04
+          lake build Deligne04.ActualKahlerFiber
           lake env lean Deligne04/ActualKahlerFiber.lean | tee deligne21f-axioms.txt
           if grep -Eq 'sorryAx|ofReduceBool' deligne21f-axioms.txt; then
             echo 'DEL-21F admitted proof or unexpected axiom'
