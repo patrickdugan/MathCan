@@ -6,6 +6,7 @@ on:
   pull_request:
     paths:
       - 'experiments/deligne_mathlib/Deligne04/ProjectiveQuasiFinite.lean'
+      - 'experiments/deligne_mathlib/Deligne04/ActualProjChart.lean'
       - 'experiments/deligne_mathlib/Deligne04/FiniteParameterDescent.lean'
       - 'experiments/deligne_mathlib/Deligne04.lean'
       - 'research/deligne_sign_audit/DEL09_*'
@@ -46,6 +47,7 @@ jobs:
           set -euo pipefail
           lake build Deligne04
           lake env lean Deligne04/ProjectiveQuasiFinite.lean | tee deligne09-axioms.txt
+          lake env lean Deligne04/ActualProjChart.lean | tee -a deligne09-axioms.txt
           lake env lean Deligne04/FiniteParameterDescent.lean | tee -a deligne09-axioms.txt
           if grep -Eq 'sorryAx|ofReduceBool' deligne09-axioms.txt; then
             echo 'DEL-09 introduced admitted or reduction axioms'
