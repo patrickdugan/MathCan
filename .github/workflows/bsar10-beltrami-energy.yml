@@ -1,0 +1,61 @@
+name: BSAR-10 exact Beltrami energy-budget counterfamily
+
+on:
+  pull_request:
+    paths:
+      - "scripts/bsar10_beltrami_energy_audit.py"
+      - "tests/test_bsar10_beltrami_energy_audit.py"
+      - "research/bsar_audit/BSAR10_BELTRAMI_ENERGY_OBSTRUCTION.md"
+      - ".github/workflows/bsar10-beltrami-energy.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/bsar10_beltrami_energy_audit.py"
+      - "tests/test_bsar10_beltrami_energy_audit.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  periodic-nse-fourier:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Test exact Gaussian Fourier and time-budget lower-bound formulas
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p 'test_bsar10_beltrami_energy_audit.py' -v
+      - name: Create and replay frozen 414-case Fourier ledger
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar10
+          python scripts/bsar10_beltrami_energy_audit.py generate --out artifacts/bsar10
+          python scripts/bsar10_beltrami_energy_audit.py audit --out artifacts/bsar10
+          sha256sum scripts/bsar10_beltrami_energy_audit.py > artifacts/bsar10/source.sha256
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("artifacts/bsar10/manifest.json")
+          receipt = json.loads(p.read_text(encoding="utf-8"))
+          assert receipt["cases"] == 414
+          assert receipt["energy0_density"] == "1/2"
+          assert receipt["source_commit"] == "80c62433b0eb671175bd8d6169822d3ebd922b60"
+          rows = [
+              json.loads(line)
+              for line in (p.parent / "cases.jsonl").read_text().splitlines()
+          ]
+          assert all(x["if_gate_then_integrated_Kxi_D_ge_n_over_4nu"] for x in rows)
+          print("Fourier identities and exact rational lower receipts verified")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bsar10-exact-helical-fourier-and-rational-receipts
+          path: artifacts/bsar10/
+          retention-days: 14
