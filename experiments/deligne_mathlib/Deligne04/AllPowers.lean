@@ -65,6 +65,33 @@ theorem finite_spectral_power_bound {s : ℕ}
   exact complex_weighted_power_growth_le (lam i) (weights i)
     hB (hw i) hwindow
 
+/-- The form used in Lemma 2: the trace bound is only assumed
+for strictly positive powers. Enlarge its constant to control n=0. -/
+theorem finite_spectral_power_bound_pos {s : ℕ}
+    (lam weights : Fin s → ℂ)
+    (hinj : Function.Injective lam)
+    (hw : ∀ i, weights i ≠ 0)
+    {B C : ℝ} (hB : 0 < B)
+    (htrace : ∀ n : ℕ, 0 < n →
+      ‖powerTrace lam weights n‖ ≤ C * B ^ n) :
+    ∀ i : Fin s, ‖lam i‖ ≤ B := by
+  let C' : ℝ := max C ‖powerTrace lam weights 0‖
+  have hfull : ∀ n : ℕ,
+      ‖powerTrace lam weights n‖ ≤ C' * B ^ n := by
+    intro n
+    by_cases hn : n = 0
+    · subst n
+      simpa [C'] using (le_max_right C ‖powerTrace lam weights 0‖)
+    · have hnpos : 0 < n := Nat.pos_of_ne_zero hn
+      apply (htrace n hnpos).trans
+      dsimp [C']
+      exact mul_le_mul_of_nonneg_right
+        (le_max_left C ‖powerTrace lam weights 0‖)
+        (pow_nonneg (le_of_lt hB) n)
+  exact finite_spectral_power_bound lam weights hinj hw hB hfull
+
+#print axioms finite_spectral_power_bound_pos
+
 #print axioms finite_spectral_power_bound
 
 end Deligne04
