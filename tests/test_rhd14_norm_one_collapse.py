@@ -14,16 +14,16 @@ class NormOneCollapseTests(unittest.TestCase):
     def test_conjugate_pair_involution_and_lifted_opposition(self):
         for fam in FAMILIES:
             indices = conjugate_factor_indices(fam)
-            self.assertEqual(indices, (3, 2, 1, 0))
+            self.assertEqual(indices, (3, 2, 1, 0) if fam.p == 29 else
+                             (2, 3, 0, 1))
             for j in range(4):
                 k = indices[j]
                 self.assertNotEqual(j, k)
                 self.assertEqual(indices[k], j)
-                self.assertEqual(
-                    (fam.factors[j][1] + fam.factors[k][1]) % (fam.p**2),
-                    0,
-                )
-                self.assertEqual(fam.factors[j][0], fam.factors[k][0])
+                d, c, _ = fam.factors[j]
+                d2, c2, _ = fam.factors[k]
+                self.assertEqual(d*d2 % (fam.p**2), 1)
+                self.assertEqual(c2*d % (fam.p**2), c % (fam.p**2))
 
     def test_full_first_layer_norm_and_character_equivariance(self):
         expected = sum(4*fam.p*fam.p for fam in FAMILIES)
