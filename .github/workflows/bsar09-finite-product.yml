@@ -1,0 +1,91 @@
+name: BSAR-09 exact rational finite-product kernel
+
+on:
+  pull_request:
+    paths:
+      - "MathCan/BSARFiniteProduct.lean"
+      - "scripts/bsar09_exact_oracle.py"
+      - "tests/test_bsar09_exact_oracle.py"
+      - "research/bsar_audit/BSAR09_FINITE_PRODUCT.md"
+      - ".github/workflows/bsar09-finite-product.yml"
+  push:
+    branches: [main]
+    paths:
+      - "MathCan/BSARFiniteProduct.lean"
+      - "scripts/bsar09_exact_oracle.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-product-kernel:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Build BSAR-08 dependency
+        run: lake build MathCan.BSARRatioWindow
+      - name: Kernel-check BSAR-09 finite product
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar09
+          lake env lean MathCan/BSARFiniteProduct.lean 2>&1 | tee artifacts/bsar09/kernel.log
+          sha256sum MathCan/BSARFiniteProduct.lean > artifacts/bsar09/lean-source.sha256
+          cat lean-toolchain > artifacts/bsar09/lean-toolchain.txt
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          log = Path("artifacts/bsar09/kernel.log").read_text()
+          names = (
+              "MathCan.BSARFiniteProduct.certificate",
+              "MathCan.BSARFiniteProduct.endpoint_cross_multiplied",
+              "MathCan.BSARFiniteProduct.budgeted_cross_multiplied",
+          )
+          axioms = dict(re.findall(r"'([^']+)' depends on axioms:\s*\[([^\]]*)\]", log, re.S))
+          axiom_free = set(re.findall(r"'([^']+)' does not depend on any axioms", log))
+          for name in names:
+              assert name in axioms or name in axiom_free, f"Missing kernel axiom record: {name}"
+              actual = {x.strip() for x in axioms.get(name, "").split(",") if x.strip()}
+              assert actual <= {"propext", "Quot.sound", "Classical.choice"}, actual
+          assert "sorryAx" not in log
+          print("BSAR-09 kernel and axiom gate passed")
+          PY
+      - name: Preserve kernel evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsar09-finite-product-kernel
+          path: artifacts/bsar09/
+          if-no-files-found: warn
+          retention-days: 14
+  exact-fraction-oracle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Unit-test exact fraction verification, controls and custody
+        run: python -m unittest discover -s tests -p 'test_bsar09_exact_oracle.py' -v
+      - name: Generate paired rational-window corpus and freeze digest
+        run: |
+          mkdir -p artifacts/bsar09
+          python scripts/bsar09_exact_oracle.py generate --output-dir artifacts/bsar09
+          python scripts/bsar09_exact_oracle.py audit --corpus artifacts/bsar09/corpus.jsonl
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bsar09-exact-rational-oracle
+          path: artifacts/bsar09/
+          retention-days: 14
