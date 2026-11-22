@@ -104,6 +104,47 @@ theorem indexed_spectral_bound_integer_multiplicity
     alpha k e c C lam (fun j i => (m j i : ℂ)) eps R
     hk he herr hinj hmult hfound hunit hidentity hR
 
+/-- Lemma 2 with the exact exponent layout used in the
+Hexagon paper: the remainder is bounded by C_k*q^(e_k*n*(k*a+c_k)).
+This is equivalent to the normalized geometric bound passed to DEL-04. -/
+theorem indexed_spectral_bound_paper_formula
+    {s : ℕ → ℕ}
+    (q a : ℝ) (hq : 1 < q) (alpha : ℂ)
+    (k e : ℕ → ℕ) (c C : ℕ → ℝ)
+    (lam : (j : ℕ) → Fin (s j) → ℂ)
+    (m : (j : ℕ) → Fin (s j) → ℕ)
+    (eps : ℕ → ℂ) (R : ℕ → ℕ → ℂ)
+    (hks : StrictMono k)
+    (hk : ∀ j, 0 < k j) (he : ∀ j, 0 < e j)
+    (hc : ∀ j, 0 ≤ c j) (hC : ∀ j, 0 < C j)
+    (herr : Tendsto (fun j => c j / (k j : ℝ)) atTop (nhds 0))
+    (hinj : ∀ j, Function.Injective (lam j))
+    (hm : ∀ j i, 0 < m j i)
+    (hfound : ∀ j, ∃ i : Fin (s j),
+      lam j i = alpha ^ (k j * e j))
+    (heps : ∀ j, eps j = 1 ∨ eps j = -1)
+    (hidentity : ∀ j n, 0 < n →
+      eps j * R j n = Deligne04.powerTrace (lam j)
+        (fun i => (m j i : ℂ)) n)
+    (hR : ∀ j n, 0 < n →
+      ‖R j n‖ ≤ C j *
+        q ^ ((e j : ℝ) * (n : ℝ) * ((k j : ℝ) * a + c j))) :
+    ‖alpha‖ ≤ q ^ a := by
+  apply indexed_spectral_bound_integer_multiplicity
+    q a hq alpha k e c C lam m eps R
+    hks hk he hc hC herr hinj hm hfound heps hidentity
+  intro j n hn
+  calc
+    ‖R j n‖ ≤ C j *
+        q ^ ((e j : ℝ) * (n : ℝ) * ((k j : ℝ) * a + c j)) :=
+      hR j n hn
+    _ = C j *
+        (q ^ ((e j : ℝ) * ((k j : ℝ) * a + c j))) ^ n := by
+      rw [paper_exponent_normalization q
+        (le_of_lt (lt_trans zero_lt_one hq)) (k j) (e j) n a (c j)]
+
+#print axioms indexed_spectral_bound_paper_formula
+
 #print axioms indexed_spectral_bound
 #print axioms indexed_spectral_bound_integer_multiplicity
 
