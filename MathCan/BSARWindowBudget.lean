@@ -78,13 +78,13 @@ private theorem strict_growth_has_positive_cost
     (hM : 0 < M)
     (hode : M * (dnext - dm) ≤ (Im : Int) * dnext)
     (hgrowth : dm < dnext) : 1 ≤ Im := by
-  by_contra h
-  have hzero : Im = 0 := by omega
-  subst Im
-  simp only [Nat.cast_zero, zero_mul] at hode
-  have hpos : 0 < M * (dnext - dm) :=
-    Int.mul_pos hM (by omega)
-  omega
+  by_cases hzero : Im = 0
+  · subst Im
+    simp only [Nat.cast_zero, zero_mul] at hode
+    have hpos : 0 < M * (dnext - dm) :=
+      Int.mul_pos hM (by omega)
+    omega
+  · omega
 
 /-- Every well-accounted BSA-R window chain admits the BSAR-06
     metered certificate with the SAME cumulative cost, and same horizon. -/
