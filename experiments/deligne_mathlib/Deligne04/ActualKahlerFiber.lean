@@ -81,8 +81,39 @@ theorem differential_relation_coefficient
   simp only [Finsupp.mapRange_apply,
     KaehlerDifferential.mvPolynomialBasis_repr_apply]
 
+/-- At an arbitrary K-valued point, genuine Kähler presentation
+coefficients evaluate to the original polynomial Jacobian entries,
+in the coordinates supplied by the algebra presentation. -/
+theorem differential_relation_coefficient_at_point
+    {K : Type*} [Field K] {S : Type*} [CommRing S] [Algebra K S]
+    {ι σ : Type*} (pres : Algebra.Presentation K S ι σ)
+    (point : S →ₐ[K] K) (t : σ) (i : ι) :
+    point ((pres.differentials).relation t i) =
+      MvPolynomial.eval (fun j : ι => point (pres.val j))
+        (MvPolynomial.pderiv i (pres.relation t)) := by
+  rw [differential_relation_coefficient]
+  rw [pres.toGenerators.algebraMap_apply]
+  rw [MvPolynomial.comp_aeval_apply]
+  rfl
+
+/-- The actual quotient point takes every coordinate residue class
+to its assigned value. -/
+theorem productPoint_val
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → K)
+    (hu : Deligne16.onEmbeddedProduct f u)
+    (j : Deligne16.Coord k s) :
+    productPoint f u hu
+      ((Deligne21E.productAlgebraPresentation (k := k) f).val j) = u j := by
+  change productPoint f u hu
+    (Ideal.Quotient.mk (Deligne16.productIdeal f) (MvPolynomial.X j)) = u j
+  simpa using productPoint_mk f u hu (MvPolynomial.X j)
+
 #print axioms productPoint_mk
 #print axioms productKahler_fiber_right_exact
 #print axioms differential_relation_coefficient
+#print axioms differential_relation_coefficient_at_point
+#print axioms productPoint_val
 
 end Deligne21F
