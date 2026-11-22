@@ -7,6 +7,8 @@ on:
     paths:
       - 'experiments/deligne_mathlib/Deligne04/ActualKahlerFiber.lean'
       - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL21F_*'
+      - 'tests/test_deligne21f_actual_fiber.py'
       - '.github/workflows/deligne21f-kahler-fiber.yml'
   workflow_dispatch:
 
@@ -40,9 +42,22 @@ jobs:
         working-directory: experiments/deligne_mathlib
         run: |
           set -euo pipefail
-          lake build Deligne04.ActualKahlerFiber
+          lake build Deligne04
           lake env lean Deligne04/ActualKahlerFiber.lean | tee deligne21f-axioms.txt
           if grep -Eq 'sorryAx|ofReduceBool' deligne21f-axioms.txt; then
             echo 'DEL-21F admitted proof or unexpected axiom'
             exit 1
           fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Audit original-ideal Kähler point fibers and radical mutants
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne21f_actual_fiber tests.test_deligne21e_actual_kahler
