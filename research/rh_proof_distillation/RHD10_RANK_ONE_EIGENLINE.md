@@ -2,7 +2,7 @@
 
 **Source pin:** [leanprover-community/riemann-hypothesis at f150e026](https://github.com/leanprover-community/riemann-hypothesis/tree/f150e02623b1e2bbe1f1da8eab5ffee5e930a6a3/src).
 **Parent:** MathCan RHD-09, PR #159, merged at 51582b2.
-**Proof status:** abstract character-eigenline Lean theorem, with separate synthetic finite-ring gate verifier. The original automorphic `TyEll` and `SeedFinOdd` remain unproved.
+**Proof status:** Init-only integer-scalar eigenfamily theorem, with a separate synthetic finite-ring gate verifier. No complex automorphic representation is imported into MathCan. The original automorphic `TyEll` and `SeedFinOdd` remain unproved.
 
 ## Source-accurate original interfaces
 
@@ -34,13 +34,13 @@ The candidate global character is a Hecke idele-class character of `ℚ` associa
 
 ## What the kernel proves in RHD-10
 
-`MathCan/RHRankOneEigenline.lean` uses Mathlib and proves for an *arbitrary group* `G` and `χ : G →* ℂˣ`:
+MathCan's Lean 4.35 project imports `Init` and has no Mathlib dependency. `MathCan/RHRankOneEigenline.lean` therefore formalizes the universal algebraic eigenfamily calculation for an abstract type `G`, a supplied multiplication `mulG`, and an integer-valued multiplicative function `χ : G → Int`. The nonzero theorem assumes a unit witness `χ e = 1`.
 
-- `characterFunction χ` is nonzero and belongs to the concrete one-dimensional `ℂ`-submodule `eigenline χ` in `G → ℂ`.
-- Right translation by `h` acts on every vector of that submodule by the scalar `χ h`. The submodule is stable under every right translation.
-- For any chosen index among four, the finite complement has cardinality three.
+- `characterFunction χ` belongs to the explicitly defined set `eigenfamily χ` of integer scalar multiples, and is nonzero under the unit witness.
+- Every member of the eigenfamily obeys the right-eigenrelation `rightTranslate mulG h f = fun g => χ h * f g`. The family is stable under every such translation.
+- Four finite indices are modeled, with a decidable count of precisely three indices other than the selected one.
 
-This is a real Lean kernel target at the abstract character level. Its `G → ℂ` is not yet the source's `UA E 1 → ℂ` with its automorphic conditions. The three-index theorem is not the actual construction of `HeightOneSpectrum` places.
+This is a **kernel-checkable algebraic skeleton**, with integer scalars deliberately used to fit the independent Init-only project. Integers cannot represent the required primitive 29th-root complex character. The `ℂ`-submodule `U`, original `UA E 1 → ℂ` function space, and the adelic bridge remain open proof targets. No field-theoretic claim is inferred from the finite-index count.
 
 ## Finite verifier and recurrent correction dataset
 
