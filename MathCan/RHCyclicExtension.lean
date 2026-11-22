@@ -40,17 +40,19 @@ theorem extension_iff_residue29 (e : Fin 841) (t : Fin 29) :
 /-- Every prescribed local p-torsion exponent has a p^2-root lift. -/
 theorem exists_extension5 (t : Fin 5) :
     ∃ e : Fin 25, Extends 5 e.val t.val := by
-  refine ⟨⟨t.val, by have h := t.isLt; omega⟩, ?_⟩
-  unfold Extends
-  have h := t.isLt
-  omega
+  let e : Fin 25 := ⟨t.val, by have h := t.isLt; omega⟩
+  refine ⟨e, ?_⟩
+  exact (extension_iff_residue5 e t).2 (by
+    change t.val % 5 = t.val
+    exact Nat.mod_eq_of_lt t.isLt)
 
 theorem exists_extension29 (t : Fin 29) :
     ∃ e : Fin 841, Extends 29 e.val t.val := by
-  refine ⟨⟨t.val, by have h := t.isLt; omega⟩, ?_⟩
-  unfold Extends
-  have h := t.isLt
-  omega
+  let e : Fin 841 := ⟨t.val, by have h := t.isLt; omega⟩
+  refine ⟨e, ?_⟩
+  exact (extension_iff_residue29 e t).2 (by
+    change t.val % 29 = t.val
+    exact Nat.mod_eq_of_lt t.isLt)
 
 /-- A character G -> mu_p sends p times a generator to identity.
 It cannot extend a local character with nonzero p-torsion exponent. -/
