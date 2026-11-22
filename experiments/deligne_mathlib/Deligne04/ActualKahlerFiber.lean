@@ -275,6 +275,9 @@ theorem productKahler_relation_map_baseChange
         (productPoint f u hu) t, Fintype.linearCombination_apply_single, one_smul]
   exact hl.trans ((productKahler_relation_at_point f u hu t i).trans hr.symm)
 
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
+
 /-- After the concrete coordinate change, the image of the
 base-changed true Kähler relation map is precisely the actual
 Jacobian-row span. -/
@@ -317,7 +320,7 @@ theorem productKahler_fiber_kernel
       ((Deligne21E.productKahlerPresentation (k := k) f).toSolution.π.baseChange K) := by
     simpa only [LinearMap.baseChange_eq_lTensor] using
       (productKahler_fiber_right_exact f point)
-  exact (LinearMap.exact_iff.mp he).symm
+  exact LinearMap.exact_iff.mp he
 
 /-- Canonical K-linear cotangent-fiber equivalence for the genuine
 full-ideal coordinate algebra. All Kähler generators and relations
