@@ -1,0 +1,70 @@
+name: BSAR-13 ABC pressure-balanced exact Fourier and cone audit
+
+on:
+  pull_request:
+    paths:
+      - "scripts/bsar13_abc_pressure.py"
+      - "tests/test_bsar13_abc_pressure.py"
+      - "research/bsar_audit/BSAR13_ABC_PRESSURE.md"
+      - ".github/workflows/bsar13-abc-pressure.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/bsar13_abc_pressure.py"
+      - "tests/test_bsar13_abc_pressure.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-abc:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Pin exact BSAR-10/11/12 input modules
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/bsar10_beltrami_energy_audit.py)" = "87045b392a43477e524e3f844b312324db08c7bf"
+          test "$(git hash-object scripts/bsar11_sobolev_critical_audit.py)" = "07d76458b8d27aba893136a5b07a04e3ed2c460e"
+          test "$(git hash-object scripts/bsar12_two_mode_helical.py)" = "b1a73cadd5c3e4a7938cc1d1af05e351380afd0c"
+          python -m py_compile scripts/bsar13_abc_pressure.py
+      - name: Verify six-mode ABC PDE pressure balance and exact cone receipts
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p 'test_bsar13_abc_pressure.py' -v
+      - name: Generate source-locked 360-case exact ABC archive
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar13
+          python scripts/bsar13_abc_pressure.py generate --out artifacts/bsar13
+          python scripts/bsar13_abc_pressure.py audit --out artifacts/bsar13
+          sha256sum scripts/bsar13_abc_pressure.py > artifacts/bsar13/source.sha256
+          python - <<'PY'
+          import json
+          from fractions import Fraction
+          from pathlib import Path
+          from collections import Counter
+          root=Path("artifacts/bsar13")
+          meta=json.loads((root/"manifest.json").read_text())
+          rows=[json.loads(line) for line in (root/"cases.jsonl").read_text().splitlines() if line]
+          assert len(rows)==360 and meta["cases"]==360
+          assert meta["Hs_squared_initial"]=="3/1"
+          assert meta["nonlinear_advection_zero"] is False
+          assert Counter(x["q"] for x in rows)==dict.fromkeys(range(5),72)
+          assert all(x["high_core_antipodal_pair"] for x in rows)
+          assert all(Fraction(x["initial_cone_integral_lower_rational"]) <
+                     Fraction(x["initial_cone_integral_upper_rational"]) for x in rows)
+          print("BSAR-13 pressure, ABC Fourier and cone receipts verified")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bsar13-exact-abc-pressure-and-cone-receipts
+          path: artifacts/bsar13/
+          retention-days: 14
