@@ -1,0 +1,43 @@
+name: DEL-04 Mathlib Hankel certificates
+
+on:
+  push:
+    branches: [proof/deligne04-hankel-mathlib-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/**'
+      - '.github/workflows/deligne04-mathlib.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Retrieve pinned Mathlib 4.35 and compiled cache
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check generic Hankel identities
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/Hankel.lean | tee deligne04-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne04-axioms.txt; then
+            echo 'DEL-04 admitted proof or reduction axiom detected'
+            exit 1
+          fi
