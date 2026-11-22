@@ -1,0 +1,52 @@
+name: BSAR-16C rational Galerkin core anchor certificates
+
+on:
+  pull_request:
+    paths:
+      - "experiments/bsar16/core_intervals.py"
+      - "experiments/bsar16/test_core_intervals.py"
+      - "research/bsar_audit/BSAR16C_GALERKIN_CORE_ANCHORS.md"
+      - ".github/workflows/bsar16c-core-anchors.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  core-intervals:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Source provenance and compilation
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/bsar14_initial_triad_transfer.py)" = "aa25ad74be2347acf061d631f55338802eead212"
+          python -m py_compile experiments/bsar16/core_intervals.py experiments/bsar16/test_core_intervals.py
+      - name: Audit original exact anchors and outward rational margins
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest experiments.bsar16.test_core_intervals -v
+      - name: Freeze and re-audit exact Galerkin core witnesses
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar16c
+          python -m experiments.bsar16.core_intervals generate --out artifacts/bsar16c
+          python -m experiments.bsar16.core_intervals audit --out artifacts/bsar16c
+          sha256sum experiments/bsar16/core_intervals.py > artifacts/bsar16c/source.sha256
+      - name: Archive directed rational core receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsar16c-rational-core-anchor-witness
+          path: artifacts/bsar16c/
+          if-no-files-found: warn
+          retention-days: 14
