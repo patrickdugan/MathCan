@@ -110,10 +110,11 @@ class Deligne11BilinearBadLocusTests(unittest.TestCase):
             f=FIELDS[name]
             a,b,c=(1,0),(0,1),1
             self.assertEqual(bad_discriminant(f,a,b,c),1)
-            for x,y in product(range(f.q),repeat=2):
-                if bilinear_equation(f,a,b,c,x,y)==0:
-                    dy,dx=formal_gradient(f,a,b,x,y)
-                    self.assertTrue(any(dy+dx))
+            for x in product(range(f.q),repeat=2):
+                for y in product(range(f.q),repeat=2):
+                    if bilinear_equation(f,a,b,c,x,y)==0:
+                        dy,dx=formal_gradient(f,a,b,x,y)
+                        self.assertTrue(any(dy+dx))
 
     def test_singular_gradient_witness_is_unique(self):
         for name,n in (("F2",3),("F3",2),("F4",2),
