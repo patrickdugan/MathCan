@@ -64,6 +64,7 @@ theorem pairedHigherTrace_zero (xs : List Int) :
   | nil => rfl
   | cons x xs ih =>
     simp [pairedHigherTrace, ih]
+    omega
 
 /-- The abstract trace identity behind Proposition 4.
 The hypotheses encode the actual short exact sequence:
@@ -81,7 +82,7 @@ theorem gysin_boundary_sign
 /-- Example 5: for N=q-1 and M=q, R=q*N-M^2=-q. -/
 theorem affine_hyperbola_remainder (q : Int) :
     q * (q - 1) - q * q = -q := by
-  simp [mul_sub]
+  simp [Int.mul_sub]
   omega
 
 /-- Virtual summands with opposite coefficients can cancel completely.
