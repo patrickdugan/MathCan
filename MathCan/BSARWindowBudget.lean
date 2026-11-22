@@ -43,6 +43,7 @@ theorem forget_ledger
 
 /-- The published half-budget arithmetic gives the local doubling bound. -/
 private theorem local_doubling
+    {M dm dnext : Int} {Im : Nat}
     (hM : 0 < M) (hnn : 0 ≤ dnext)
     (hode : M * (dnext - dm) ≤ (Im : Int) * dnext)
     (hhalf : 2 * (Im : Int) ≤ M) :
@@ -73,6 +74,7 @@ private theorem local_doubling
 /-- A strictly increasing window consumes at least one integer unit.
     This implication depends on the Nat-valued, nonnegative Im charge. -/
 private theorem strict_growth_has_positive_cost
+    {M dm dnext : Int} {Im : Nat}
     (hM : 0 < M)
     (hode : M * (dnext - dm) ≤ (Im : Int) * dnext)
     (hgrowth : dm < dnext) : 1 ≤ Im := by
