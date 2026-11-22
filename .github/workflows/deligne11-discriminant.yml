@@ -1,0 +1,65 @@
+name: DEL-11 bilinear critical-incidence discriminant
+
+on:
+  push:
+    branches: [proof/deligne11-discriminant-incidence-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/BilinearBadLocus.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL11_*'
+      - 'research/deligne_sign_audit/del11_*'
+      - 'tests/test_deligne11_discriminant.py'
+      - '.github/workflows/deligne11-discriminant.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne11-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Retrieve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check explicit discriminant and critical locus
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/BilinearBadLocus.lean | tee deligne11-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne11-axioms.txt; then
+            echo 'DEL-11 admitted proof or unexpected reduction axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify DEL-11 exact bilinear discriminant regression
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne11_discriminant
+          python -m research.deligne_sign_audit.del11_verify_tasks
