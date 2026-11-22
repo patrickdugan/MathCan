@@ -237,3 +237,8 @@ def verify_path_bound(field,d,weights,matrices,h,c,t_bound=None):
         "ceiling":ceiling,"field_order":field.q,"p":field.p,
         "d":d,"k":k,"T":t,
         "all_forms_nondegenerate":all(is_nondegenerate(field,b) for b in matrices)}
+
+
+def reduced_cyclotomic(coeffs):
+    """Canonical integer coordinates modulo 1+zeta+...+zeta^(p-1)=0."""
+    return tuple(c - coeffs[-1] for c in coeffs[:-1])
