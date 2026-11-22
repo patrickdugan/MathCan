@@ -1,0 +1,79 @@
+name: BSAR-16G conditional smooth-NSE finite-shell signs
+
+on:
+  pull_request:
+    paths:
+      - "experiments/bsar16/conditional_nse_shells.py"
+      - "experiments/bsar16/test_conditional_nse_shells.py"
+      - "research/bsar_audit/BSAR16G_CONDITIONAL_NSE_SHELL_SIGNS.md"
+      - ".github/workflows/bsar16g-conditional-nse-shells.yml"
+  push:
+    branches: [main]
+    paths:
+      - "experiments/bsar16/conditional_nse_shells.py"
+      - "experiments/bsar16/test_conditional_nse_shells.py"
+      - ".github/workflows/bsar16g-conditional-nse-shells.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rational-conditional-pde-shells:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify BSAR-14 source and exact-rational imports
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/bsar14_initial_triad_transfer.py)" = "aa25ad74be2347acf061d631f55338802eead212"
+          python -m py_compile experiments/bsar16/conditional_nse_shells.py experiments/bsar16/test_conditional_nse_shells.py
+      - name: Verify conditional smooth-NSE shell signs and negative controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest experiments.bsar16.test_conditional_nse_shells -v
+      - name: Freeze and independently replay 36 conditional PDE transfer receipts
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar16g
+          python -m experiments.bsar16.conditional_nse_shells generate --out artifacts/bsar16g
+          python -m experiments.bsar16.conditional_nse_shells audit --out artifacts/bsar16g
+          python - <<'PY'
+          import json
+          from fractions import Fraction as Q
+          from pathlib import Path
+          root=Path("artifacts/bsar16g")
+          manifest=json.loads((root/"manifest.json").read_text())
+          rows=json.loads((root/"rows.json").read_text())
+          assert manifest["case_count"] == 12
+          assert manifest["conditional_shell_certificates"] == 36
+          assert all(r["PDE_hypothesis"].startswith("The given") for r in rows)
+          assert all(s["conditional_smooth_nse_existence_required"]
+                     for r in rows for s in r["shells"])
+          assert all(Q(s["conditional_full_NSE_signed_transfer_lower"]) > 0
+                     for r in rows for s in r["shells"])
+          print("BSAR-16G full-window conditional 12-case count:",
+                manifest["cases_full_T_conditionally_certified"])
+          for row in rows:
+              print("root",row["frequency_N"],row["phase_sigma"],row["grid_M"],
+                    "durations",*(s["certified_duration_if_smooth"]
+                                  for s in row["shells"]))
+          PY
+          sha256sum experiments/bsar16/conditional_nse_shells.py > artifacts/bsar16g/source.sha256
+      - name: Archive conditional rational full-PDE shell receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsar16g-conditional-smooth-nse-shells
+          path: artifacts/bsar16g/
+          if-no-files-found: warn
+          retention-days: 14
