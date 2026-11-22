@@ -92,6 +92,7 @@ class FrequencyPolicy:
                 n += 1
             if verify(state):
                 raise AssertionError("training teacher trace failed replay")
+            votes["verified"][action_string({"kind": "STOP"})] += 1
         table = {}
         for key in sorted(votes):
             winning = sorted(votes[key].items(), key=lambda item: (-item[1], item[0]))[0][0]
@@ -106,6 +107,8 @@ class FrequencyPolicy:
 class ExactRuleCeiling:
     """Privileged finite-arithmetic control, deliberately labeled an oracle."""
     def choose(self, failure: dict) -> dict:
+        if failure["gate"] == "verified":
+            return {"kind": "STOP"}
         return suggested_action(failure)
 
 
@@ -164,7 +167,11 @@ def evaluate_episode(row: dict, policy, mode: str) -> dict:
     else:
         raise ValueError(f"unrecognized mode: {mode}")
     solved = not final
-    return _metric_result(solved, edits, calls, invalid, post_success, solved)
+    terminal_observation = final[0] if final else {"gate": "verified"}
+    terminal_decision = policy.choose(terminal_observation)
+    correct_terminal_decision = (terminal_decision.get("kind") == "STOP") == solved
+    return _metric_result(solved, edits, calls, invalid, post_success,
+                          correct_terminal_decision)
 
 
 def aggregate(rows: list[dict], policy, mode: str) -> dict:
@@ -228,6 +235,8 @@ def build_report(root_rows: list[dict] | None = None) -> dict:
                 split["test"][0]["candidate"]))[0]).keys()),
         "verifier_call_definition":
             "policy-visible queries only; independent evaluator audit checks excluded",
+        "stop_accuracy_definition":
+            "correct STOP vs CONTINUE decision at final verifier observation; distinct from repair success",
         "generalization": "within Q(zeta20), p=29 finite fault grammar only",
         "proof_term_data": False,
         "results": metrics,
