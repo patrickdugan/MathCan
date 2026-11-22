@@ -9,3 +9,5 @@ import Deligne04.GysinTrace
 import Deligne04.GysinPowers
 import Deligne04.MatrixTensorEigen
 import Deligne04.KunnethDegrees
+import Deligne04.KatzGysinDuality
+import Deligne04.KatzDegreeShift
