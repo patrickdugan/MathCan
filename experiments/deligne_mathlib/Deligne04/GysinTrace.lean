@@ -35,8 +35,9 @@ theorem boundary_trace {a b : ℕ}
     (mix : Matrix (Fin a) (Fin b) ℂ) :
     Matrix.trace (boundaryFrob K Q mix) =
       Matrix.trace K + Matrix.trace Q := by
-  exact Matrix.trace_fromBlocks K mix
-    (0 : Matrix (Fin b) (Fin a) ℂ) Q
+  simp only [boundaryFrob, Matrix.trace, Fintype.sum_sum_type,
+    Matrix.diag_apply, Matrix.fromBlocks_apply₁₁,
+    Matrix.fromBlocks_apply₂₂]
 
 /-- Frobenius conjugacy preserves trace, the linear-algebraic
 consequence of a Frobenius-compatible Gysin isomorphism. -/
