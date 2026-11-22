@@ -145,6 +145,8 @@ class TestH4LatticeAndCoreTransfer(unittest.TestCase):
             out = Path(directory)
             frozen = freeze(out)
             self.assertEqual(self.manifest, frozen)
+            import hashlib
+            self.assertEqual(hashlib.sha256((out/"rows.json").read_bytes()).hexdigest(), frozen["rows_sha256"])
             self.assertEqual(audit(out), frozen)
             rows = json.loads((out/"rows.json").read_text())
             rows[0]["transfers"][0]["full_PDE_H4_error_bound_proved"] = True
