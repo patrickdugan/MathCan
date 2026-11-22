@@ -15,6 +15,21 @@ Work over E = Q(zeta_24), p = 5. The cyclotomic polynomial is Phi_24(X) = X^8-X^
 
 Their product is Phi_24 modulo 25, and their discriminants are nonsquares modulo 5. For f_j(X)=X^2+c_j X+d_j and u=1+5(a+b alpha_j), the finite first-layer norm is 1+5(2a-c_j b) modulo 25. The order-5 Dirichlet exponent is q(x)=-((x^4 mod 25)-1)/5 modulo 5, and exhaustive testing checks q(N(u))=2a-c_j b for every factor and a,b in F_5. The scalar a=3,b=0 witnesses surjectivity at every factor. These are finite-ring statements, not a construction of the full p-adic Hecke character or TyEll.
 
+## Global-unit compatibility witness
+
+The independent finite-ring check also evaluates the actual cyclotomic units `1-zeta_24` and `1-zeta_24^7`. Since both have global norm 1, a global finite-order character must have compatible local exponents. The first-layer logarithms give:
+
+| factor j | log(1-zeta_24) | log(1-zeta_24^7) | determinant mod 5 |
+| --- | --- | --- | ---: |
+| 0 | (3,0) | (4,4) | 2 |
+| 1 | (4,2) | (3,0) | 4 |
+| 2 | (3,0) | (0,2) | 1 |
+| 3 | (0,4) | (3,0) | 3 |
+
+Both unit images span the first principal-unit layer at every place, and their local norm-character exponents sum to zero modulo 5 across all four places. The tests enumerate all 24 nonzero F_5-linear functionals at each factor, rejecting any single-place order-5 functional that vanishes on both units.
+
+As in RHD-10C, the resulting **single-place ramification obstruction** is conditional on finite order, trivial infinity type, and the other places being unramified. The finite arithmetic gives the exact local unit data; the general class-field-theoretic step awaits a Lean formalization.
+
 ## Held-out episodes and policies
 
 There are exactly 4 * 5^2 = **100** target-family root episodes, SHA-256 keyed by the selected factor and two residue coordinates. The deterministic corruption counts are:
