@@ -1,0 +1,30 @@
+name: DEL-02 prime-power exact Fourier certificates
+
+on:
+  push:
+    branches: [audit/deligne-prime-power-20261122]
+  pull_request:
+    paths:
+      - 'research/deligne_sign_audit/prime_power_fourier.py'
+      - 'research/deligne_sign_audit/DEL02_PRIME_POWER.md'
+      - 'research/deligne_sign_audit/del02_tasks.jsonl'
+      - 'tests/test_deligne_prime_power_fourier.py'
+      - '.github/workflows/deligne-prime-power.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prime-power-exact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run exact extension-field character-sum checks
+        run: python -m unittest -v tests.test_deligne_prime_power_fourier
+      - name: Verify reproducible synth labels
+        run: python research/deligne_sign_audit/verify_del02_tasks.py
