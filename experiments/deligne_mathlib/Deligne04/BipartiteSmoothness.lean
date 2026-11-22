@@ -59,7 +59,8 @@ theorem bipartite_nonzero_level_regular
   by_contra h
   push_neg at h
   have hQ : bipartiteQuadratic A x y = 0 := by
-    simp [bipartiteQuadratic, bipartitePartialX, h]
+    rw [bipartite_euler_identity A x y]
+    simp [h]
   have hc0 : c = 0 := by simpa [hQ] using hlevel
   exact hc hc0
 
