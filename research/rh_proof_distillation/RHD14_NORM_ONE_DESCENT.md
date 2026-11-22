@@ -25,18 +25,31 @@ For E=Q(zeta_20), p=29, the four degree-two Hensel factors `X²+c_j X-1` have co
 
     (c0,c1,c2,c3) = (785,826,15,56) (mod 841).
 
-For E=Q(zeta_24), p=5, the corresponding factors have coefficients
+For E=Q(zeta_24), p=5, the corresponding lifted quadratic factors have
 
-    (11,2,23,14) (mod 25).
+    (d0,c0)=(7,11), (d1,c1)=(18,2),
+    (d2,c2)=(18,23), (d3,c3)=(7,14) modulo 25.
 
-In both families `c_j + c_{j'} = 0` modulo `p²` precisely for the involution `j↔j' = (0 3)(1 2)`. Since `alpha_j^(-1) = alpha_j + c_j` in the local quadratic quotient, the conjugation map can be expressed on coefficient pairs as
+The correct complex-conjugation pairing is obtained from **reciprocal quadratics**. For `f_j(X)=X²+c_j X+d_j`, the polynomial of `alpha_j^(-1)` is
 
-    a+b alpha_j ↦ (a-c_j b)+b alpha_{j'}.
+    X²+(c_j/d_j)X+(1/d_j),
+
+with division taken modulo `p²`. Thus the conjugate factor `k` satisfies `d_j d_k=1` and `c_k d_j=c_j`. This gives the involutions
+
+    Q(zeta20), p29:  (0 3)(1 2)
+    Q(zeta24), p5:   (0 2)(1 3).
+
+The old opposite-coefficient rule `c_j+c_k=0` holds for Q(zeta20), since all its `d_j=-1`. It is insufficient for Q(zeta24), whose quadratic constant coefficients are 7 and 18.
+
+Conjugation transports coefficient pairs by the genuine inversion map
+
+    alpha_j ↦ alpha_k^(-1) = -d_j(alpha_k+c_k),
+    a+b alpha_j ↦ (a-d_j c_k b)+(-d_j b) alpha_k.
 
 It preserves the quadratic norm, hence the rational base-field character exponent. On the first principal-unit layer, for all `a,b in F_p`,
 
     theta_j(a,b) = 2a-c_j b (mod p)
-                  = theta_{j'}(a-c_j b,b).
+                  = theta_k(a-d_j c_k b,-d_j b).
 
 The difference of the norm-pullback character and its conjugate has exponent **zero**. This is the local version of the global norm-one cancellation.
 
