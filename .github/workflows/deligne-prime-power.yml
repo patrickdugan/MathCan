@@ -27,4 +27,4 @@ jobs:
       - name: Run exact extension-field character-sum checks
         run: python -m unittest -v tests.test_deligne_prime_power_fourier
       - name: Verify reproducible synth labels
-        run: python research/deligne_sign_audit/verify_del02_tasks.py
+        run: python -m research.deligne_sign_audit.verify_del02_tasks
