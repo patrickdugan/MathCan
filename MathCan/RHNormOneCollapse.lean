@@ -66,4 +66,20 @@ theorem zeta24_factor2_to1 (a b : Nat) :
 #print axioms zeta24_factor1_to2
 #print axioms zeta24_factor2_to1
 
+/-- A 29-torsion exponent that annihilates every 20th root is zero.
+This finite relation models compatibility with μ20, not actual U(1) units. -/
+theorem zeta20_root_torsion_compatible (a : Fin 29)
+    (h : (20*a.val) % 29 = 0) : a = 0 := by
+  apply Fin.ext
+  omega
+
+/-- The corresponding order-5 character and μ24 finite relation. -/
+theorem zeta24_root_torsion_compatible (a : Fin 5)
+    (h : (24*a.val) % 5 = 0) : a = 0 := by
+  apply Fin.ext
+  omega
+
+#print axioms zeta20_root_torsion_compatible
+#print axioms zeta24_root_torsion_compatible
+
 end MathCan.RHNormOneCollapse
