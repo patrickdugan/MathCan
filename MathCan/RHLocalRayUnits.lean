@@ -142,8 +142,8 @@ def rootInvariantSetoid {G : Type} (f : G → G → G) (root : G) :
   r := rootInvariantRel f root
   iseqv := ⟨
     (fun x ψ hψ => rfl),
-    (fun x y hxy ψ hψ => (hxy ψ hψ).symm),
-    (fun x y z hxy hyz ψ hψ => (hxy ψ hψ).trans (hyz ψ hψ))⟩
+    (fun hxy ψ hψ => (hxy ψ hψ).symm),
+    (fun hxy hyz ψ hψ => (hxy ψ hψ).trans (hyz ψ hψ))⟩
 
 def rootInvariantQuotient {G : Type} (f : G → G → G) (root : G) :
     Type := Quotient (rootInvariantSetoid f root)
