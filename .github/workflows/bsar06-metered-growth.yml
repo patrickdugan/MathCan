@@ -1,0 +1,52 @@
+name: BSAR-06 charged-growth global bound Lean kernel
+
+on:
+  pull_request:
+    paths:
+      - "MathCan/BSARMeteredGrowth.lean"
+      - "research/bsar_audit/BSAR06_METERED_GROWTH.md"
+      - ".github/workflows/bsar06-metered-growth.yml"
+  push:
+    branches: [main]
+    paths:
+      - "MathCan/BSARMeteredGrowth.lean"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  arithmetic-global-budget:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Compile formal charged-growth theorem and inspect axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar06
+          lake env lean MathCan/BSARMeteredGrowth.lean 2>&1 | tee artifacts/bsar06/kernel.log
+          if grep -E 'sorryAx|Classical[.]choice' artifacts/bsar06/kernel.log; then
+            echo "::error::Unapproved axiom dependence"
+            exit 1
+          fi
+          sha256sum MathCan/BSARMeteredGrowth.lean > artifacts/bsar06/source.sha256
+          cat lean-toolchain > artifacts/bsar06/lean-toolchain.txt
+      - name: Archive proof receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsar06-charged-growth-kernel
+          path: artifacts/bsar06/
+          if-no-files-found: warn
+          retention-days: 14
