@@ -36,7 +36,7 @@ theorem ideal_separator_of_point_outside
   push Not at hx
   obtain ⟨P, hP, hval⟩ := hx
   have hv : MvPolynomial.eval point P ≠ 0 := by
-    simpa only [MvPolynomial.coe_aeval_eq_eval] using hval
+    simpa only [MvPolynomial.aeval_eq_eval] using hval
   refine ⟨P, hP, ?_, hv⟩
   intro hzero
   apply hv
@@ -62,7 +62,7 @@ theorem principal_open_excluding_bad_locus
   have hvanish : MvPolynomial.aeval u P = 0 :=
     (hbad hU) P hP
   apply hnonzero
-  simpa only [MvPolynomial.coe_aeval_eq_eval] using hvanish
+  simpa only [MvPolynomial.aeval_eq_eval] using hvanish
 
 /-- Given one good geometric parameter for both ideal-defined bad
 loci, extract a pair of nonzero polynomial certificates. Their
