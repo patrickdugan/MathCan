@@ -60,10 +60,10 @@ class FourierGalerkin:
     amplitude: Fraction = AMPLITUDE
 
     def __post_init__(self) -> None:
-        if self.grid < 12 or self.grid % (4 * self.mode_n):
-            raise ValueError("grid must fit the exact anchored Fourier points")
         if self.mode_n < 1 or self.phase not in (-1, 1):
             raise ValueError("invalid mode frequency or phase")
+        if self.grid < 12 or self.grid % (4 * self.mode_n):
+            raise ValueError("grid must fit the exact anchored Fourier points")
         if self.amplitude <= 0 or not self.viscosity > 0:
             raise ValueError("expected positive amplitude and viscosity")
         freq = np.fft.fftfreq(self.grid, d=1 / self.grid)
