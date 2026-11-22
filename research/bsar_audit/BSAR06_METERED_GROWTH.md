@@ -34,7 +34,7 @@ A finite-energy assumption alone cannot be substituted by name for this metering
 lake env lean MathCan/BSARMeteredGrowth.lean
 ```
 
-The [BSAR-06 CI workflow](../../.github/workflows/bsar06-metered-growth.yml) pins Lean via MathCan's toolchain, compiles the new theorem, archives its printed axioms and rejects `sorryAx` or `Classical.choice`.
+The [BSAR-06 CI workflow](../../.github/workflows/bsar06-metered-growth.yml) pins Lean via MathCan's toolchain, compiles the theorem, and archives its printed axiom dependencies. It rejects `sorryAx` and all axioms outside the explicitly reviewed set `propext`, `Quot.sound`, and `Classical.choice`. The current elaboration of the positive-cost arithmetic lemma uses Lean's standard `Classical.choice`; the claim is therefore a kernel-checked conditional arithmetic theorem under that declared logical foundation.
 
 ## Next RLT curriculum
 
