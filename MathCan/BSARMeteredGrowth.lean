@@ -34,7 +34,8 @@ private theorem pow2_mono_add (n cost : Nat) :
     Pow2 n ≤ Pow2 (n + cost) := by
   induction cost with
   | zero =>
-      rfl
+      have h : Pow2 n ≤ Pow2 n := by omega
+      simpa only [Nat.add_zero] using h
   | succ cost ih =>
       rw [Nat.add_succ]
       dsimp [Pow2]
