@@ -57,7 +57,8 @@ theorem productGeometricPoint_mk
     productGeometricPoint f u hu
       (Ideal.Quotient.mk (Deligne16.productIdeal f) P) =
         MvPolynomial.aeval u P := by
-  simp [productGeometricPoint]
+  unfold productGeometricPoint
+  rw [Ideal.Quotient.liftₐ_apply, Ideal.Quotient.lift_mk]
 
 /-- The actual coordinate residues specialize to their assigned
 L-values at a geometric point. -/
