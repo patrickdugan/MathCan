@@ -4,17 +4,16 @@ from __future__ import annotations
 
 import json
 import unittest
-from fractions import Fraction
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from experiments.bsar16.exact_residual import (
     GRID_SIZES, ROOTS, VISCOSITY, cutoff, exact_decomposition,
-    squared_norm, source_modes,
+    source_modes, validate_field,
 )
 from experiments.bsar16.rational_enclosure import (
     Q, TIME_END, add_field, audit, ceil_sqrt, enclosure,
-    exp_upper, freeze, generate, high_polynomial, norm_squared,
+    exp_upper, freeze, generate, norm_squared,
     polynomial_at, projected_split, rhs_polynomial, round_up,
     scale_field, taylor_data,
 )
@@ -28,6 +27,8 @@ class TestExactRationalTaylorEnvelope(unittest.TestCase):
             kmax = cutoff(grid)
             poly, defect, residual = taylor_data(n, phase, grid)
             self.assertEqual(poly[0], source_modes(n, phase))
+            for field in poly + defect + residual:
+                validate_field(field)
             self.assertFalse(defect[0])
             self.assertFalse(defect[1])
             self.assertEqual(len(defect), 5)
@@ -63,6 +64,8 @@ class TestExactRationalTaylorEnvelope(unittest.TestCase):
         rows, manifest = generate()
         self.assertEqual(len(rows), len(ROOTS)*len(GRID_SIZES))
         self.assertEqual(manifest["cases"], 12)
+        self.assertEqual(manifest["rows_sha256"],
+                         "da7772a24fdc392e958c84aa49d4262401d3a94ed26bd492a568d7445f402f67")
         self.assertIn("exact rational", manifest["validation"])
         for row in rows:
             n, phase, grid = row["frequency_N"], row["phase_sigma"], row["grid_M"]
