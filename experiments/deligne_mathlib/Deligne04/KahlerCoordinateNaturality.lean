@@ -73,7 +73,20 @@ theorem tangentDerivative_X
     Deligne21.tangentDerivative u v
         (MvPolynomial.X j : MvPolynomial σ K) = v j := by
   classical
-  simp [Deligne21.tangentDerivative, MvPolynomial.pderiv_X]
+  unfold Deligne21.tangentDerivative
+  calc
+    (∑ i : σ,
+      MvPolynomial.eval u
+        (MvPolynomial.pderiv i (MvPolynomial.X j)) * v i) =
+        ∑ i : σ, if i = j then v i else 0 := by
+          apply Finset.sum_congr rfl
+          intro i _
+          by_cases hij : i = j
+          · subst i
+            simp
+          · have hji : j ≠ i := Ne.symm hij
+            simp [hij, MvPolynomial.pderiv_X_of_ne hji]
+    _ = v j := by simp
 
 /-- The Kähler readout of d(X_j) is the tangent coordinate v_j. -/
 theorem kahler_readout_D_X
@@ -91,10 +104,9 @@ theorem firstOrder_coordinate
     (u v : σ → K) (j : σ) :
     Deligne21.firstOrderEvaluation u v
         (MvPolynomial.X j) = (u j, v j) := by
-  apply TrivSqZeroExt.ext
-  · simp [Deligne21.firstOrderEvaluation]
-  · simpa [Deligne21.firstOrderEvaluation] using
-      tangentDerivative_X u v j
+  change (MvPolynomial.eval u (MvPolynomial.X j),
+      Deligne21.tangentDerivative u v (MvPolynomial.X j)) = (u j, v j)
+  simp only [MvPolynomial.eval_X, tangentDerivative_X]
 
 /-- For any actual defining ideal I, a factorization through
 K[z]/I agrees on *every polynomial* with its Kähler differential
