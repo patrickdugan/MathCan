@@ -1,0 +1,87 @@
+name: BSAR-16I exact L2 core obstruction and H4 transfer
+
+on:
+  pull_request:
+    paths:
+      - "experiments/bsar16/core_transfer_frontier.py"
+      - "experiments/bsar16/test_core_transfer_frontier.py"
+      - "research/bsar_audit/BSAR16I_L2_CORE_OBSTRUCTION_H4_THRESHOLD.md"
+      - ".github/workflows/bsar16i-l2-h4-frontier.yml"
+  push:
+    branches: [main]
+    paths:
+      - "experiments/bsar16/core_transfer_frontier.py"
+      - "experiments/bsar16/test_core_transfer_frontier.py"
+      - ".github/workflows/bsar16i-l2-h4-frontier.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  l2-obstruction-h4-transfer:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify original source and exact rational modules
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/bsar14_initial_triad_transfer.py)" = "aa25ad74be2347acf061d631f55338802eead212"
+          python -m py_compile experiments/bsar16/core_transfer_frontier.py experiments/bsar16/test_core_transfer_frontier.py
+      - name: Exact high-frequency obstruction and H4 transfer tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest experiments.bsar16.test_core_transfer_frontier -v
+      - name: Rebuild and audit 24 L2 counterexamples and 12 conditional H4 cases
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar16i
+          python -m experiments.bsar16.core_transfer_frontier generate --out artifacts/bsar16i
+          python -m experiments.bsar16.core_transfer_frontier audit --out artifacts/bsar16i
+          python - <<'PY'
+          import hashlib
+          import json
+          from fractions import Fraction as Q
+          from pathlib import Path
+
+          root=Path("artifacts/bsar16i")
+          data=(root/"rows.json").read_bytes()
+          rows=json.loads(data)[0]
+          manifest=json.loads((root/"manifest.json").read_text())
+          assert manifest["source_bsar16c_rows_sha256"]=="aabf443503a9f30b16f3a1e8701b1a187075091cdbc4c8e811e250ab06f925cb"
+          assert manifest["l2_obstruction_count"]==24
+          assert manifest["conditional_h4_core_cases"]==12
+          assert Q(manifest["lattice_fourier_curl_C4_squared_upper"])<9
+          assert Q(manifest["uniform_H4_velocity_error_threshold"])==Q(1,20)
+          assert not manifest["conditional_full_PDE_H4_error_proved"]
+          assert not manifest["independent_full_PDE_existence_through_T_proved"]
+          assert len(rows["l2_counterexamples"])==24
+          assert len(rows["transfers"])==12
+          assert all(r["both_anchors_outside_new_true_half_core"] for r in rows["l2_counterexamples"])
+          assert all(r["full_core_condition_met_if_H4_bound_proved"] and not r["full_PDE_H4_error_bound_proved"] for r in rows["transfers"])
+          assert all(Q(r["conditional_full_half_core_margin_lower"])>Q(3,20) for r in rows["transfers"])
+          assert all(Q(r["conditional_full_direction_gap_lower"])>Q(4,5) for r in rows["transfers"])
+          assert hashlib.sha256(data).hexdigest()==manifest["rows_sha256"]
+          print("BSAR-16I 24/24 exact L2 obstructions; 12/12 conditional H4 core transfers")
+          print("Worst conditional full core margin:",
+                min(Q(r["conditional_full_half_core_margin_lower"]) for r in rows["transfers"]))
+          print("Lattice bound C4²=",manifest["lattice_fourier_curl_C4_squared_upper"])
+          PY
+          sha256sum experiments/bsar16/core_transfer_frontier.py > artifacts/bsar16i/source.sha256
+      - name: Preserve exact rational frontier evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsar16i-l2-core-obstruction-h4-threshold
+          path: artifacts/bsar16i/
+          if-no-files-found: warn
+          retention-days: 14
