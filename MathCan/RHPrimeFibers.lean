@@ -23,8 +23,9 @@ def multiply (c : Int) (x y : Residue) : Residue :=
    ((x.1 * y.2 + x.2 * y.1 - c * x.2 * y.2) % 29))
 
 /-- Compute alpha^n in the fixed residue quotient. -/
-def alphaPower (c : Int) (n : Nat) : Residue :=
-  n.repeat (fun x => multiply c x (0, 1)) (1, 0)
+def alphaPower (c : Int) : Nat → Residue
+  | 0 => (1, 0)
+  | n + 1 => multiply c (alphaPower c n) (0, 1)
 
 /-- Exact closed irreducibility test for X²+cX-1 over F_29. -/
 def hasResidueRoot (c : Int) : Bool :=
