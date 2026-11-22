@@ -60,7 +60,7 @@ theorem derivative_graphSection
     Polynomial.derivative (graphSection K a b c d) =
       Polynomial.C (2 : K) * Polynomial.X +
         Polynomial.C (d + a + b) := by
-  simp [graphSection, Polynomial.derivative_X_sq]
+  simp [graphSection, Polynomial.C_ofNat] <;> ring
 
 /-- Evaluation of the actual derivative, in every characteristic. -/
 theorem eval_derivative_graphSection
@@ -111,14 +111,14 @@ theorem section_mem_relative_jacobian
     {K : Type*} [Field K] (a b c d : K) :
     graphSection K a b c d ∈ relativeJacobianIdeal K a b c d := by
   apply Ideal.subset_span
-  simp [relativeJacobianIdeal]
+  simp
 
 theorem derivative_mem_relative_jacobian
     {K : Type*} [Field K] (a b c d : K) :
     Polynomial.derivative (graphSection K a b c d) ∈
       relativeJacobianIdeal K a b c d := by
   apply Ideal.subset_span
-  simp [relativeJacobianIdeal]
+  simp
 
 /-- The relative discriminant is a constant in the actual
 Jacobian ideal; this is a global algebraic certificate. -/
