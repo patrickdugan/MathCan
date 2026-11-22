@@ -1,3 +1,4 @@
+import Deligne04.FixedCoefficientChart
 import Mathlib.FieldTheory.IntermediateField.Adjoin.Algebra
 import Mathlib.FieldTheory.IntermediateField.Algebraic
 import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
@@ -75,6 +76,38 @@ theorem polynomial_coefficients_in_common_extension
       IntermediateField.adjoin F (Set.range coeff) := by
   intro i
   exact parameter_mem_common_extension coeff i
+
+/-- A dense Bertini open, a dense weak-Lefschetz open and a nonempty
+open fixed-coefficient chart admit one common geometric parameter whose
+finitely many coordinates descend to an actual finite intermediate field.
+
+The *density and openness* hypotheses must be supplied for the actual
+hyperplane parameter scheme. The descent of its selected point is proved
+from algebraicity of the field extension and finite generation. -/
+theorem exists_good_parameter_over_finite_extension
+    {F : Type u} [Field F] [Finite F]
+    {E : Type v} [Field E] [Algebra F E]
+    [Algebra.IsAlgebraic F E] {n : ℕ}
+    [TopologicalSpace (Fin n → E)]
+    (bertini lefschetz chart : Set (Fin n → E))
+    (hb : Dense bertini) (hl : Dense lefschetz)
+    (hob : IsOpen bertini) (hoc : IsOpen chart)
+    (hnc : chart.Nonempty) :
+    ∃ parameters : Fin n → E,
+      parameters ∈ bertini ∧ parameters ∈ lefschetz ∧
+        parameters ∈ chart ∧
+        ∃ K : IntermediateField F E, Finite K ∧
+          ∀ i : Fin n, parameters i ∈ K := by
+  obtain ⟨parameters, hB, hL, hC⟩ :=
+    Deligne08.good_hyperplane_in_fixed_chart
+      bertini lefschetz chart hb hl hob hoc hnc
+  refine ⟨parameters, hB, hL, hC,
+    IntermediateField.adjoin F (Set.range parameters),
+    finite_tuple_parameter_field parameters, ?_⟩
+  intro i
+  exact parameter_mem_common_extension parameters i
+
+#print axioms exists_good_parameter_over_finite_extension
 
 #print axioms finite_parameter_field
 #print axioms finite_tuple_parameter_field
