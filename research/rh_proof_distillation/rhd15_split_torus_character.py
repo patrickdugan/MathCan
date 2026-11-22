@@ -37,6 +37,48 @@ def same_real_place(family, j: int, k: int) -> bool:
     return orbit(family, j) == orbit(family, k)
 
 
+def residue_mul(f: tuple[int, int, int], x: tuple[int, int],
+                y: tuple[int, int], p: int) -> tuple[int, int]:
+    """Independent quadratic residue arithmetic for the K=Q(i) tags."""
+    d, c, _ = f
+    a, b = x
+    v, w = y
+    return ((a*v - d*b*w) % p, (a*w+b*v-c*b*w) % p)
+
+
+def residue_pow(f: tuple[int, int, int], n: int, p: int) -> tuple[int, int]:
+    z = (1, 0)
+    alpha = (0, 1)
+    while n:
+        if n & 1:
+            z = residue_mul(f, z, alpha, p)
+        alpha = residue_mul(f, alpha, alpha, p)
+        n >>= 1
+    return z
+
+
+def quadratic_subfield_tag(family, j: int) -> int:
+    """zeta20^5 or zeta24^6 gives i in the shared quadratic subfield."""
+    n = 5 if family.p == 29 else 6
+    tag, remainder = residue_pow(family.factors[j], n, family.p)
+    if remainder != 0 or (tag*tag+1) % family.p:
+        raise AssertionError("quadratic subfield element is not scalar i")
+    return tag
+
+
+def oneK_apart_candidate(family, j: int) -> int:
+    """Unique finite index with same Q(i) restriction but different E^+ place."""
+    tag = quadratic_subfield_tag(family, j)
+    matches = [
+        k for k in range(4) if k != j
+        and quadratic_subfield_tag(family, k) == tag
+        and not same_real_place(family, j, k)
+    ]
+    if len(matches) != 1:
+        raise AssertionError("missing transverse OneK/Apart finite witness")
+    return matches[0]
+
+
 def pair_witness(family, j: int, a: int, b: int) -> dict:
     """First principal-unit layer of (u,bar(u)^-1) at a split F place."""
     p = family.p
@@ -61,6 +103,8 @@ def pair_witness(family, j: int, a: int, b: int) -> dict:
         "selected_character": source, "partner_character": partner,
         "absolute_norm_pullback_exponent": (source + partner) % p,
         "same_real_place": same_real_place(family, j, k),
+        "quadratic_subfield_tag": quadratic_subfield_tag(family, j),
+        "same_K_different_F_factor": oneK_apart_candidate(family, j),
     }
 
 
