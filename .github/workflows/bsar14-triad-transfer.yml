@@ -8,7 +8,7 @@ on:
       - "research/bsar_audit/BSAR14_INITIAL_TRIAD_TRANSFER.md"
       - ".github/workflows/bsar14-triad-transfer.yml"
   push:
-    branches: [main]
+    branches: [main, audit/bsar14-triad-projection-20261122]
     paths:
       - "scripts/bsar14_initial_triad_transfer.py"
       - "tests/test_bsar14_initial_triad_transfer.py"
