@@ -5,7 +5,7 @@ import unittest
 from research.deligne_sign_audit.prime_power_fourier import (
  FIELDS, SmallField, identity_matrix, is_nondegenerate,
  orthogonality_fiber_certificate, one, scalar, shift_poly,
- mul_poly, norm_certificate, norm_sq_le_integer, path_sum_contract,
+ mul_poly, norm_certificate, norm_sq_le_integer, reduced_cyclotomic, path_sum_contract,
  path_sum_direct, verify_path_bound
 )
 
@@ -90,18 +90,32 @@ class PrimePowerFourierTests(unittest.TestCase):
             self.assertTrue(receipt["all_forms_nondegenerate"])
             self.assertTrue(receipt["ok"],(name,receipt))
 
- def test_sharpness_for_length_three(self):
-    # With unit weights and b(x,y)=xy, the k=3 sum equals q^2 exactly.
-    for name,f in FIELDS.items():
-        space=f.vectors(1)
-        weights=tuple({x:one(f.p) for x in space} for _ in range(3))
-        matrices=(identity_matrix(1),)*2
-        cert=verify_path_bound(f,1,weights,matrices,1,0,t_bound=1)
-        self.assertTrue(cert["ok"])
-        r,s,den=cert["norm_certificate"]
-        self.assertEqual(s,0)
-        self.assertEqual(r,den*cert["ceiling"])
-        self.assertEqual(cert["ceiling"],f.q**4)
+ def test_all_odd_lengths_sharp_with_constant_weights(self):
+    # For any nondegenerate pairings and uniform weight 1,
+    # S_k=N*S_(k-2), S_1=S_2=N, hence S_k=N^ceil(k/2).
+    for name,d,ks in (("F2",1,(3,5,7)),("F4",2,(3,5,7)),
+                      ("F8",1,(3,5,7)),("F9",2,(3,5)),
+                      ("F16",1,(3,5)),("F25",1,(3,5)),
+                      ("F27",1,(3,5))):
+        f=FIELDS[name]
+        N=f.q**d
+        space=f.vectors(d)
+        h,c=f.q-1,f.q//2
+        for k in ks:
+            weights=tuple({x:one(f.p) for x in space} for _ in range(k))
+            matrices=tuple(identity_matrix(d) for _ in range(k-1))
+            got=path_sum_contract(f,d,weights,matrices,h,c)
+            expect=shift_poly(scalar(N**((k+1)//2),f.p),
+                              f.trace(f.mul(h,c)))
+            with self.subTest(field=name,d=d,k=k):
+                self.assertEqual(reduced_cyclotomic(got),
+                                 reduced_cyclotomic(expect))
+                cert=verify_path_bound(f,d,weights,matrices,h,c,t_bound=1)
+                self.assertTrue(cert["ok"])
+                self.assertTrue(cert["all_forms_nondegenerate"])
+                self.assertEqual(cert["norm_certificate"][1],0)
+                self.assertEqual(cert["norm_certificate"][0],
+                                 cert["norm_certificate"][2]*cert["ceiling"])
 
  def test_degenerate_mutants(self):
     for name in ("F4","F9","F25"):
