@@ -29,40 +29,45 @@ inductive LerayDoublingChain (M : Int) : Nat → Int → Int → Prop
       (hwin_half_budget : 2 * Im ≤ M) :
       LerayDoublingChain M (k + 1) d0 dnext
 
+/-- The same recursive doubling operator used in BSA-R Step7. -/
+def Pow2 : Nat → Int
+  | 0 => 1
+  | k + 1 => 2 * Pow2 k
+
 /-- Integer powers of two are nonnegative. -/
-private theorem power_nonneg (k : Nat) : 0 ≤ (2 : Int) ^ k := by
+private theorem power_nonneg (k : Nat) : 0 ≤ Pow2 k := by
   induction k with
   | zero => decide
   | succ k ih =>
-      rw [pow_succ]
-      exact Int.mul_nonneg ih (by decide)
+      dsimp [Pow2]
+      omega
 
 /-- Every geometric step with M=2, Im=1 satisfies the local step premises. -/
 theorem geometric_chain (k : Nat) :
-    LerayDoublingChain 2 k 1 ((2 : Int) ^ k) := by
+    LerayDoublingChain 2 k 1 (Pow2 k) := by
   induction k with
   | zero =>
       exact LerayDoublingChain.refl 1
   | succ k ih =>
       refine LerayDoublingChain.step (Im := 1) ih ?_ ?_ ?_
       · exact power_nonneg (k + 1)
-      · rw [pow_succ]
+      · dsimp [Pow2]
         omega
       · decide
 
 /-- A power of two is at least one greater than its integer index. -/
 theorem power_dominates_index (k : Nat) :
-    (k : Int) + 1 ≤ (2 : Int) ^ k := by
+    (k : Int) + 1 ≤ Pow2 k := by
   induction k with
   | zero => decide
   | succ k ih =>
-      rw [pow_succ]
+      dsimp [Pow2]
       omega
 
 /-- Arbitrarily large final chain states are consistent with these finite rules. -/
 theorem chains_with_arbitrarily_large_endpoint (bound : Int) :
-    ∃ k : Nat, LerayDoublingChain 2 k 1 ((2 : Int) ^ k) ∧
-      bound < (2 : Int) ^ k := by
+    ∃ k : Nat, LerayDoublingChain 2 k 1 (Pow2 k) ∧
+      bound < Pow2 k := by
   refine ⟨bound.toNat, geometric_chain bound.toNat, ?_⟩
   have hb : bound ≤ (bound.toNat : Int) := by omega
   have hd := power_dominates_index bound.toNat
@@ -71,12 +76,13 @@ theorem chains_with_arbitrarily_large_endpoint (bound : Int) :
 /-- The finite-window rule does not establish a single cap for every K. -/
 theorem no_uniform_cap_from_chain_rules :
     ¬ ∃ cap : Int, ∀ k : Nat,
-      LerayDoublingChain 2 k 1 ((2 : Int) ^ k) →
-        (2 : Int) ^ k ≤ cap := by
+      LerayDoublingChain 2 k 1 (Pow2 k) →
+        Pow2 k ≤ cap := by
   intro h
   obtain ⟨cap, bound⟩ := h
   obtain ⟨k, hk, hgt⟩ := chains_with_arbitrarily_large_endpoint cap
-  exact (not_le.mpr hgt) (bound k hk)
+  have hc := bound k hk
+  omega
 
 end MathCan.BSARChainAudit
 
