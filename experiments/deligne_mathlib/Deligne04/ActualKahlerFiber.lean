@@ -15,7 +15,7 @@ as an A-module. The remaining coordinate computation identifies the image
 of the tensorized relation map with DEL-21D's Jacobian-row span.
 -/
 
-open TensorProduct
+open TensorProduct Module
 
 namespace Deligne21F
 
