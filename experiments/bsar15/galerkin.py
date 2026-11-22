@@ -263,6 +263,8 @@ class FourierGalerkin:
         }
 
     def run(self, dt: float, t_end: float) -> dict[str, Any]:
+        if not math.isfinite(dt) or dt <= 0 or not math.isfinite(t_end) or t_end <= 0:
+            raise ValueError("positive finite time increment and horizon required")
         total = round(t_end / dt)
         if total < 1 or abs(total * dt - t_end) > 1e-12:
             raise ValueError("t_end must be an integral multiple of dt")
