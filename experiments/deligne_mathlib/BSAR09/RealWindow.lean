@@ -71,9 +71,12 @@ theorem source_window_real_factor
   have hrw : (M + 2 * I) * dprev =
       M * ((1 + 2 * (I / M)) * dprev) := by
     field_simp [hne]
-    ring
   rw [hrw] at hcross
-  exact (mul_le_mul_left hM).mp hcross
+  by_contra h
+  have hgap : 0 < dnext - ((1 + 2 * (I / M)) * dprev) := by linarith
+  have hpositive : 0 < M * (dnext - ((1 + 2 * (I / M)) * dprev)) :=
+    mul_pos hM hgap
+  nlinarith [hcross, hpositive]
 
 /-- Iteration of the source-aligned real window rule yields the
 finite product bound for each K. The nonnegative D assumption
