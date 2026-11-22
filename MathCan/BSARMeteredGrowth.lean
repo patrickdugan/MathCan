@@ -108,6 +108,7 @@ theorem free_steps_cannot_increase
 
 end MathCan.BSARMeteredGrowth
 
+#print axioms Nat.add_le_add_left
 #print axioms MathCan.BSARMeteredGrowth.pow2_nonneg
 #print axioms MathCan.BSARMeteredGrowth.pow2_mono_add
 #print axioms MathCan.BSARMeteredGrowth.pow2_monotone
