@@ -121,7 +121,6 @@ theorem gysin_signed_all_powers
     exact trace_conjugate_all_powers
       (Xhigh i) (P i) (Pinv i) (hinvL i) (hinvR i) n
   simp [signedPowerRemainder, boundary_trace_all_powers, hpair]
-  ring
 
 /-- The Proposition 4 point-count identity follows for every n
 from a separately supplied *geometric* trace-formula equality. -/
