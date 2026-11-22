@@ -1,0 +1,88 @@
+name: BSAR-16D binary64 Fourier time-node enclosure
+
+on:
+  pull_request:
+    paths:
+      - "experiments/bsar16/float64_snapshots.py"
+      - "experiments/bsar16/test_float64_snapshots.py"
+      - "research/bsar_audit/BSAR16D_FLOAT64_RK4_SNAPSHOTS.md"
+      - ".github/workflows/bsar16d-float64-snapshots.yml"
+  push:
+    branches: [main]
+    paths:
+      - "experiments/bsar16/float64_snapshots.py"
+      - "experiments/bsar16/test_float64_snapshots.py"
+      - ".github/workflows/bsar16d-float64-snapshots.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  binary64-node-enclosure:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install pinned BSAR-15 numerical dependency
+        run: python -m pip install "numpy==2.3.5"
+      - name: Check original exact source and numerical entry point
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/bsar14_initial_triad_transfer.py)" = "aa25ad74be2347acf061d631f55338802eead212"
+          python -m py_compile experiments/bsar16/float64_snapshots.py experiments/bsar16/test_float64_snapshots.py
+          python - <<'PY'
+          from experiments.bsar15.galerkin import FourierGalerkin, SOURCE_MATHCAN
+          assert SOURCE_MATHCAN == "e2c0e1c56f6e5d2291536156709f75668d1e0f8f"
+          assert FourierGalerkin.step.__module__ == "experiments.bsar15.galerkin"
+          PY
+      - name: Exact binary-coordinate and a posteriori boundary tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest experiments.bsar16.test_float64_snapshots -v
+      - name: Freeze 16 numerical trajectories with all 256 time nodes
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar16d
+          python -m experiments.bsar16.float64_snapshots generate --out artifacts/bsar16d
+          python - <<'PY'
+          import json
+          from fractions import Fraction as Q
+          from pathlib import Path
+          root=Path("artifacts/bsar16d")
+          manifest=json.loads((root/"manifest.json").read_text())
+          cases=json.loads((root/"runs.json").read_text())
+          assert manifest["run_count"] == 16
+          assert manifest["snapshot_count"] == 256
+          assert len(cases) == 16
+          assert all(x["all_nodes_interpreted_core_certified"] for x in cases)
+          assert all(Q(x["max_node_snapshot_to_exact_galerkin_L2_upper"]) < Q(1,1000) for x in cases)
+          print("Certified 256 binary64 RK4 Fourier time-node enclosures")
+          print("Worst overall node-to-exact Galerkin L2 upper:",
+                max(Q(x["max_node_snapshot_to_exact_galerkin_L2_upper"]) for x in cases))
+          print("All nodes transfer through exact Galerkin core:",
+                all(x["all_nodes_core_via_exact_galerkin_certified"] for x in cases))
+          PY
+          sha256sum experiments/bsar16/float64_snapshots.py > artifacts/bsar16d/source.sha256
+          sha256sum experiments/bsar15/galerkin.py > artifacts/bsar16d/numerical_source.sha256
+      - name: Re-run numerical and rational certificates from frozen archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m experiments.bsar16.float64_snapshots audit --out artifacts/bsar16d
+      - name: Archive full coefficient hashes and rational evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsar16d-binary64-rk4-time-node-enclosure
+          path: artifacts/bsar16d/
+          if-no-files-found: warn
+          retention-days: 14
