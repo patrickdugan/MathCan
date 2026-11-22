@@ -257,9 +257,23 @@ theorem productKahler_relation_map_baseChange
       (Deligne21E.productKahlerPresentation (k := k) f).relation t :=
     (Deligne21E.productKahlerPresentation (k := k) f).toRelations.map_single t
   rw [hrel]
-  rw [coordinateTensorEquiv_one_tmul, coordinateTensorEquiv_single,
-    Fintype.linearCombination_apply_single, one_smul]
-  exact productKahler_relation_at_point f u hu t i
+  have hl :
+      coordinateTensorEquiv (ι := Deligne16.Coord k s) (productPoint f u hu)
+        (1 ⊗ₜ[Deligne21E.productCoordinateRing (k := k) f]
+          (Deligne21E.productKahlerPresentation (k := k) f).relation t) i =
+      productPoint f u hu
+        ((Deligne21E.productKahlerPresentation (k := k) f).relation t i) :=
+    coordinateTensorEquiv_one_tmul
+      (ι := Deligne16.Coord k s) (productPoint f u hu)
+      ((Deligne21E.productKahlerPresentation (k := k) f).relation t) i
+  have hr :
+      (Fintype.linearCombination K (Deligne21D.conormalRow f u))
+        (coordinateTensorEquiv (ι := Deligne16.EqCoord k r) (productPoint f u hu)
+          (1 ⊗ₜ[Deligne21E.productCoordinateRing (k := k) f]
+            (Finsupp.single t 1))) i = Deligne21D.conormalRow f u t i := by
+    rw [coordinateTensorEquiv_single (ι := Deligne16.EqCoord k r)
+        (productPoint f u hu) t, Fintype.linearCombination_apply_single, one_smul]
+  exact hl.trans ((productKahler_relation_at_point f u hu t i).trans hr.symm)
 
 #print axioms productPoint_mk
 #print axioms productKahler_fiber_right_exact
