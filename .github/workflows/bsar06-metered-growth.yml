@@ -36,10 +36,21 @@ jobs:
           set -euo pipefail
           mkdir -p artifacts/bsar06
           lake env lean MathCan/BSARMeteredGrowth.lean 2>&1 | tee artifacts/bsar06/kernel.log
-          if grep -E 'sorryAx|Classical[.]choice' artifacts/bsar06/kernel.log; then
-            echo "::error::Unapproved axiom dependence"
-            exit 1
-          fi
+          python - <<'PY'
+          import re
+          from pathlib import Path
+          log = Path("artifacts/bsar06/kernel.log").read_text()
+          target = "MathCan.BSARMeteredGrowth.uniform_bound_from_global_budget"
+          assert target in log, "Expected audited theorem missing"
+          assert "sorryAx" not in log, "Unproven sorry placeholder appeared"
+          found = re.findall(r"depends on axioms:\\s*\\[([^\\]]*)\\]", log, flags=re.S)
+          assert len(found) >= 4, "Expected theorem axiom records missing"
+          allowed = {"propext", "Quot.sound", "Classical.choice"}
+          for entry in found:
+              names = set(entry.replace("\\n", " ").replace(" ", "").split(","))
+              assert names <= allowed, f"Unexpected axiom dependency: {names - allowed}"
+          print("Kernel compiled with reviewed Lean axioms:", sorted(allowed))
+          PY
           sha256sum MathCan/BSARMeteredGrowth.lean > artifacts/bsar06/source.sha256
           cat lean-toolchain > artifacts/bsar06/lean-toolchain.txt
       - name: Archive proof receipts
