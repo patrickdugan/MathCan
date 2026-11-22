@@ -15,7 +15,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-from fractions import Fraction
 from math import isqrt
 from pathlib import Path
 from typing import Any
@@ -26,12 +25,9 @@ from experiments.bsar16.exact_residual import (
     SOURCE_BSAR,
     SOURCE_BSAR14_BLOB,
     SOURCE_MATHCAN,
-    Gaussian,
     I,
     Q,
     VISCOSITY,
-    Wave,
-    Vec,
     Field,
     add,
     cutoff,
