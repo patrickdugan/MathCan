@@ -169,7 +169,8 @@ def exact_envelopes(
         assert initial_lower >= scale / (4 * viscosity)
 
     exponent = 4 - 2 * q
-    assert scale == Q(m**exponent) if exponent >= 0 else scale == Q(1, m**(-exponent))
+    expected_scale = Q(m**exponent) if exponent >= 0 else Q(1, m**(-exponent))
+    assert scale == expected_scale
     return {
         "base": m,
         "regularity_quarters": q,
@@ -224,7 +225,7 @@ def generate() -> tuple[list[dict[str, Any]], dict[str, Any]]:
         },
         "fixed_homogeneous_Hs_norm_squared": "1/1",
         "proof_boundary": "Exact Fourier/Fraction receipt, separate analytic trig/exp derivations",
-        "no_trained_model_or_navier_stokes_global_regularty_claim": True,
+        "no_trained_model_or_navier_stokes_global_regularity_claim": True,
         "case_sha256": hashlib.sha256(canonical).hexdigest(),
     }
     assert len(rows) == 360
