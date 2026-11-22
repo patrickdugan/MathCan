@@ -154,3 +154,4 @@ import MathCan.RHGaloisRowInputs
 import MathCan.RHRankOneEigenline
 import MathCan.RHFiniteUnitObstructions
 import MathCan.RHNormOneCollapse
+import MathCan.RHSplitTorusCharacter
