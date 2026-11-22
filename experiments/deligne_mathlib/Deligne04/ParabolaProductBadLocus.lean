@@ -95,8 +95,7 @@ theorem pderiv_parabola_x
         MvPolynomial.X true + MvPolynomial.C p := by
   classical
   simp [parabolaSection, MvPolynomial.pderiv_mul,
-    MvPolynomial.pderiv_C_mul, MvPolynomial.pderiv_C] <;>
-    simp only [map_mul, map_natCast] <;> ring
+    MvPolynomial.pderiv_C_mul, MvPolynomial.pderiv_C] <;> ring
 
 /-- The formal y partial derivative, in all characteristics. -/
 theorem pderiv_parabola_y
@@ -107,8 +106,7 @@ theorem pderiv_parabola_y
         MvPolynomial.C q := by
   classical
   simp [parabolaSection, MvPolynomial.pderiv_mul,
-    MvPolynomial.pderiv_C_mul, MvPolynomial.pderiv_C] <;>
-    simp only [map_mul, map_natCast] <;> ring
+    MvPolynomial.pderiv_C_mul, MvPolynomial.pderiv_C] <;> ring
 
 /-- The characteristic-free, degree-three parameter eliminant. -/
 def eliminant
@@ -136,7 +134,7 @@ theorem parabola_bezout_identity
           (parabolaSection K alpha beta p q c) := by
   rw [pderiv_parabola_x, pderiv_parabola_y]
   simp only [parabolaSection, eliminant, map_sub, map_add,
-    map_mul, map_pow, map_one, map_natCast]
+    map_mul, map_pow, map_one, MvPolynomial.C_ofNat]
   ring
 
 /-- A parameter is critical when the section and both actual
@@ -179,7 +177,6 @@ theorem eval_badParameterPolynomial
       (badParameterPolynomial K) =
       eliminant alpha beta p q c := by
   simp [badParameterPolynomial, parameterPoint, eliminant]
-  ring
 
 /-- The bad-parameter polynomial is formally nonzero even over
 F₂: at α=β=p=q=0, c=1 its value is -1. -/
