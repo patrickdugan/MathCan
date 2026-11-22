@@ -83,7 +83,7 @@ theorem dual_annihilator_iff_jacobian_tangent
     intro t
     have hrow : conormalRow f u t ∈ conormalRelations f u :=
       Submodule.subset_span (Set.mem_range_self t)
-    have hz := h ⟨conormalRow f u t, hrow⟩
+    have hz := h (conormalRow f u t) hrow
     simpa only [LinearEquiv.piRing_symm_apply, smul_eq_mul,
       conormalRow] using hz
   · intro hv
@@ -100,7 +100,7 @@ theorem dual_annihilator_iff_jacobian_tangent
       change ((LinearEquiv.piRing K K (Deligne16.Coord k s) K).symm v)
         (conormalRow f u t) = 0
       simpa only [LinearEquiv.piRing_symm_apply, smul_eq_mul] using ht t
-    intro ⟨w, hw⟩
+    intro w hw
     exact hker hw
 
 /-- The dual annihilator, represented as ambient coordinate
