@@ -23,11 +23,15 @@ noncomputable def productPoint
     (f : Fin r → MvPolynomial (Fin s) K)
     (u : Deligne16.Coord k s → K)
     (hu : Deligne16.onEmbeddedProduct f u) :
-    Deligne21E.productCoordinateRing f →ₐ[K] K := by
+    Deligne21E.productCoordinateRing (k := k) f →ₐ[K] K := by
   apply Ideal.Quotient.liftₐ (Deligne16.productIdeal f) (MvPolynomial.aeval u)
-  apply Ideal.span_le.mpr
-  rintro _ ⟨t, rfl⟩
-  simpa only [RingHom.mem_ker, MvPolynomial.aeval_eq_eval] using hu t
+  intro P hP
+  have hI : Deligne16.productIdeal f ≤
+      RingHom.ker (MvPolynomial.aeval u).toRingHom := by
+    rw [Deligne16.productIdeal, Ideal.span_le]
+    rintro _ ⟨t, rfl⟩
+    exact RingHom.mem_ker.mpr (by simpa using hu t)
+  exact RingHom.mem_ker.mp (hI hP)
 
 /-- The quotient point agrees with evaluation on every polynomial,
 not only on the chosen generators. -/
@@ -39,7 +43,7 @@ theorem productPoint_mk
     (P : MvPolynomial (Deligne16.Coord k s) K) :
     productPoint f u hu (Ideal.Quotient.mk (Deligne16.productIdeal f) P) =
       MvPolynomial.eval u P := by
-  simp [productPoint, MvPolynomial.aeval_eq_eval]
+  simp [productPoint]
 
 /-- The actual Kaehler presentation remains exact after
 specializing along any K-rational point of A. This uses right exactness,
@@ -47,17 +51,17 @@ not flatness of the point's residue field over A. -/
 theorem productKahler_fiber_right_exact
     {K : Type*} [Field K] {k s r : ℕ}
     (f : Fin r → MvPolynomial (Fin s) K)
-    (point : Deligne21E.productCoordinateRing f →ₐ[K] K) :
-    letI : Algebra (Deligne21E.productCoordinateRing f) K :=
+    (point : Deligne21E.productCoordinateRing (k := k) f →ₐ[K] K) :
+    letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) K :=
       point.toRingHom.toAlgebra
     Function.Exact
-      ((Deligne21E.productKahlerPresentation f).toRelations.map.lTensor K)
-      ((Deligne21E.productKahlerPresentation f).toSolution.π.lTensor K) := by
-  letI : Algebra (Deligne21E.productCoordinateRing f) K :=
+      ((Deligne21E.productKahlerPresentation (k := k) f).toRelations.map.lTensor K)
+      ((Deligne21E.productKahlerPresentation (k := k) f).toSolution.π.lTensor K) := by
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) K :=
     point.toRingHom.toAlgebra
   exact lTensor_exact K
-    (Deligne21E.productKahlerPresentation f).exact
-    (Deligne21E.productKahlerPresentation f).surjective_π
+    (Deligne21E.productKahlerPresentation (k := k) f).exact
+    (Deligne21E.productKahlerPresentation (k := k) f).surjective_π
 
 #print axioms productPoint_mk
 #print axioms productKahler_fiber_right_exact
