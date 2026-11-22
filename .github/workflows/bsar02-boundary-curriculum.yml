@@ -1,0 +1,33 @@
+name: BSAR-02 theorem-boundary corpus
+
+on:
+  pull_request:
+    paths:
+      - "research/bsar_audit/**"
+      - "tests/test_bsar_boundary_curriculum.py"
+      - ".github/workflows/bsar02-boundary-curriculum.yml"
+  push:
+    branches: [main]
+    paths:
+      - "research/bsar_audit/**"
+      - "tests/test_bsar_boundary_curriculum.py"
+  workflow_dispatch:
+
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate pinned-source theorem-boundary dataset
+        run: |
+          python -m unittest tests.test_bsar_source_gate tests.test_bsar_pinned_snapshot tests.test_bsar_boundary_curriculum -v
+          python -m research.bsar_audit.boundary_curriculum --output-dir generated/bsar02
+          python -c 'import json; x=json.load(open("generated/bsar02/manifest.json")); assert x["examples"] > 300'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bsar02-proof-scope-jsonl
+          path: generated/bsar02/
