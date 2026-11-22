@@ -1,0 +1,53 @@
+name: BSAR-05 finite-doubling uniformity audit
+
+on:
+  pull_request:
+    paths:
+      - "MathCan/BSARChainAudit.lean"
+      - "research/bsar_audit/BSAR05_WINDOW_UNIFORMITY.md"
+      - ".github/workflows/bsar05-uniform-chain.yml"
+  push:
+    branches: [main]
+    paths:
+      - "MathCan/BSARChainAudit.lean"
+      - ".github/workflows/bsar05-uniform-chain.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  boundedness-countermodel:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Compile exact finite chain and print axiom dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar05
+          lake env lean MathCan/BSARChainAudit.lean 2>&1 | tee artifacts/bsar05/kernel-axioms.log
+          if grep -E 'sorryAx|Classical[.]choice' artifacts/bsar05/kernel-axioms.log; then
+            echo "::error::Unapproved axiom dependency in BSAR-05 proof"
+            exit 1
+          fi
+          sha256sum MathCan/BSARChainAudit.lean > artifacts/bsar05/source.sha256
+          cat lean-toolchain > artifacts/bsar05/toolchain.txt
+      - name: Preserve failed or successful source and kernel receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsar05-unbounded-chain-kernel
+          path: artifacts/bsar05/
+          if-no-files-found: warn
+          retention-days: 14
