@@ -7,6 +7,9 @@ on:
     paths:
       - 'experiments/deligne_mathlib/**'
       - 'research/deligne_sign_audit/DEL05_*'
+      - 'research/deligne_sign_audit/del05_tasks.jsonl'
+      - 'research/deligne_sign_audit/verify_del05_tasks.py'
+      - 'tests/test_deligne05_extension_limit.py'
       - '.github/workflows/deligne05-extension-limit.yml'
   workflow_dispatch:
 
@@ -49,3 +52,17 @@ jobs:
             echo 'Unexpected axiom in DEL-05'
             exit 1
           fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: DEL-05 exact rational mutations
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne05_extension_limit
+          python -m research.deligne_sign_audit.verify_del05_tasks
