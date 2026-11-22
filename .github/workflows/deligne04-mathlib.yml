@@ -1,5 +1,9 @@
 name: DEL-04 Mathlib Hankel certificates
 
+concurrency:
+  group: deligne04-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
 on:
   push:
     branches: [proof/deligne04-hankel-mathlib-20261122]
