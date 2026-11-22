@@ -13,6 +13,9 @@ on:
       - "tests/test_bsar_boundary_curriculum.py"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   source-gate:
     runs-on: ubuntu-latest
