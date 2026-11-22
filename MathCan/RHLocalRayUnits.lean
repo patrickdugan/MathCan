@@ -116,6 +116,83 @@ theorem nontrivial_ray_quotient_image29 :
 theorem nontrivial_ray_quotient_image5 :
     25 / 5 = 5 := by decide
 
+
+/-!
+## RHD-17B: an actual quotient map for root-invariant characters
+
+The orbit of right multiplication by a specified root determines a
+relation on any carrier G. We quotient by observational equality under
+*all* Nat-valued functions invariant under that root step. The relation
+is an equivalence, and any invariant modular character factors through
+its quotient. In particular, a nonzero character witness survives.
+
+This is a genuine Lean Quotient construction. The carrier is still an
+abstract G; identifying it with R_wˣ and this relation with the cosets
+of the concrete μ_n subgroup remains a separate original-source task.
+-/
+
+/-- Root-invariant observables cannot distinguish related elements. -/
+def rootInvariantRel {G : Type} (f : G → G → G) (root : G)
+    (x y : G) : Prop :=
+  ∀ ψ : G → Nat, (∀ z, ψ (f z root) = ψ z) → ψ x = ψ y
+
+/-- Equivalence induced by all root-invariant Nat-valued observables. -/
+def rootInvariantSetoid {G : Type} (f : G → G → G) (root : G) :
+    Setoid G where
+  r := rootInvariantRel f root
+  iseqv := ⟨
+    (fun x ψ hψ => rfl),
+    (fun x y hxy ψ hψ => (hxy ψ hψ).symm),
+    (fun x y z hxy hyz ψ hψ => (hxy ψ hψ).trans (hyz ψ hψ))⟩
+
+def rootInvariantQuotient {G : Type} (f : G → G → G) (root : G) :
+    Type := Quotient (rootInvariantSetoid f root)
+
+def rootInvariantClass {G : Type} (f : G → G → G) (root : G)
+    (x : G) : rootInvariantQuotient f root :=
+  Quotient.mk (rootInvariantSetoid f root) x
+
+/-- One right-root step represents the same quotient class. -/
+theorem rootInvariantClass_step {G : Type} (f : G → G → G)
+    (root x : G) :
+    rootInvariantClass f root x =
+      rootInvariantClass f root (f x root) := by
+  apply Quotient.sound
+  intro ψ hψ
+  exact (hψ x).symm
+
+/-- Any modular character invariant under the root step factors
+through the root-invariant quotient. -/
+def descendedRootCharacter {G : Type} (f : G → G → G)
+    (root : G) (char : G → Nat) (p : Nat)
+    (h : ∀ x, char (f x root) % p = char x % p) :
+    rootInvariantQuotient f root → Nat :=
+  Quotient.lift (fun x => char x % p) (by
+    intro x y hxy
+    exact hxy (fun z => char z % p) h)
+
+theorem descendedRootCharacter_class {G : Type}
+    (f : G → G → G) (root : G) (char : G → Nat) (p : Nat)
+    (h : ∀ x, char (f x root) % p = char x % p) (x : G) :
+    descendedRootCharacter f root char p h
+      (rootInvariantClass f root x) = char x % p := rfl
+
+/-- Distinct character residues yield distinct quotient classes:
+descent preserves every available nontriviality witness. -/
+theorem rootInvariantClass_ne_of_char_ne {G : Type}
+    (f : G → G → G) (root : G) (char : G → Nat) (p : Nat)
+    (h : ∀ x, char (f x root) % p = char x % p)
+    (x y : G) (hne : char x % p ≠ char y % p) :
+    rootInvariantClass f root x ≠ rootInvariantClass f root y := by
+  intro hxy
+  apply hne
+  calc
+    char x % p =
+        descendedRootCharacter f root char p h (rootInvariantClass f root x) := rfl
+    _ = descendedRootCharacter f root char p h (rootInvariantClass f root y) :=
+      congrArg (descendedRootCharacter f root char p h) hxy
+    _ = char y % p := rfl
+
 #print axioms primitive20_factor0
 #print axioms primitive20_factor1
 #print axioms primitive20_factor2
@@ -129,5 +206,8 @@ theorem nontrivial_ray_quotient_image5 :
 #print axioms ray_quotient_sizes5
 #print axioms nontrivial_ray_quotient_image29
 #print axioms nontrivial_ray_quotient_image5
+#print axioms rootInvariantClass_step
+#print axioms descendedRootCharacter_class
+#print axioms rootInvariantClass_ne_of_char_ne
 
 end MathCan.RHLocalRayUnits
