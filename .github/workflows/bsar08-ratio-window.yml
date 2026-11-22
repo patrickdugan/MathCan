@@ -1,0 +1,69 @@
+name: BSAR-08 scale-invariant local window audit
+
+on:
+  pull_request:
+    paths:
+      - "MathCan/BSARRatioWindow.lean"
+      - "research/bsar_audit/BSAR08_SCALE_HOMOGENEITY.md"
+      - ".github/workflows/bsar08-ratio-window.yml"
+  push:
+    branches: [main]
+    paths:
+      - "MathCan/BSARRatioWindow.lean"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-local-envelope:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Kernel check scale-invariant local envelope and witnesses
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar08
+          lake env lean MathCan/BSARRatioWindow.lean 2>&1 | tee artifacts/bsar08/kernel.log
+          sha256sum MathCan/BSARRatioWindow.lean > artifacts/bsar08/source.sha256
+          cp lean-toolchain artifacts/bsar08/lean-toolchain.txt
+          python - <<'PY'
+          import re
+          from pathlib import Path
+          s = Path("artifacts/bsar08/kernel.log").read_text()
+          names = (
+            "local_doubling",
+            "refined_cross_multiplied_envelope",
+            "scaled_window_constraints",
+            "strict_growth_at_arbitrarily_small_relative_cost",
+          )
+          axioms = dict(re.findall(r"'([^']+)' depends on axioms:\s*\[([^\]]*)\]", s, re.S))
+          axiom_free = set(re.findall(r"'([^']+)' does not depend on any axioms", s))
+          allowed = {"propext", "Quot.sound", "Classical.choice"}
+          for suffix in names:
+            key = "MathCan.BSARRatioWindow." + suffix
+            assert key in axioms or key in axiom_free, key
+            observed = {n.strip() for n in axioms.get(key, "").split(",") if n.strip()}
+            assert observed <= allowed, (key, observed)
+          assert "sorryAx" not in s
+          print("BSAR-08 exact arithmetic proof gates passed")
+          PY
+      - name: Retain exact source and compiler receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsar08-scale-invariant-window
+          path: artifacts/bsar08/
+          if-no-files-found: warn
+          retention-days: 14
