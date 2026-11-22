@@ -4,6 +4,8 @@ import Mathlib.LinearAlgebra.TensorProduct.Basis
 import Mathlib.RingTheory.TensorProduct.Free
 import Mathlib.Tactic
 
+open scoped BigOperators
+
 /-!
 # DEL-21G: geometric points of the actual quotient coordinate algebra
 
@@ -257,6 +259,268 @@ theorem geometricKahler_evaluated_relation_span
     Submodule.span L (Set.range (geometricConormalRow f u))
   rw [hrows]
 
+/-- Tensoring the true quotient-ring Kähler relation map to L and
+converting its finite free coordinates gives the linear combination
+of the original K-coefficient polynomial Jacobian rows over L. -/
+theorem geometricKahler_relation_map_baseChange
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (hu : onGeometricProduct f u) :
+    letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) L :=
+      (productGeometricPoint f u hu).toRingHom.toAlgebra
+    (geometricCoordinateTensorEquiv (ι := Deligne16.Coord k s)
+        (productGeometricPoint f u hu)).toLinearMap.comp
+      ((Deligne21E.productKahlerPresentation (k := k) f).toRelations.map.baseChange L) =
+    (Fintype.linearCombination L (geometricConormalRow f u)).comp
+      (geometricCoordinateTensorEquiv (ι := Deligne16.EqCoord k r)
+        (productGeometricPoint f u hu)).toLinearMap := by
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) L :=
+    (productGeometricPoint f u hu).toRingHom.toAlgebra
+  classical
+  apply ((Finsupp.basisSingleOne :
+      Basis (Deligne16.EqCoord k r) (Deligne21E.productCoordinateRing (k := k) f)
+        (Deligne16.EqCoord k r →₀ Deligne21E.productCoordinateRing (k := k) f)
+      ).baseChange L).ext
+  intro t
+  ext i
+  simp only [Basis.baseChange_apply, Finsupp.coe_basisSingleOne]
+  conv_lhs =>
+    change geometricCoordinateTensorEquiv (ι := Deligne16.Coord k s)
+      (productGeometricPoint f u hu)
+      (((Deligne21E.productKahlerPresentation (k := k) f).toRelations.map.baseChange L)
+        (1 ⊗ₜ[Deligne21E.productCoordinateRing (k := k) f]
+          (Finsupp.single t 1))) i
+  conv_rhs =>
+    change (Fintype.linearCombination L (geometricConormalRow f u))
+      (geometricCoordinateTensorEquiv (ι := Deligne16.EqCoord k r)
+        (productGeometricPoint f u hu)
+        (1 ⊗ₜ[Deligne21E.productCoordinateRing (k := k) f]
+          (Finsupp.single t 1))) i
+  rw [LinearMap.baseChange_tmul]
+  have hrel :
+      (Deligne21E.productKahlerPresentation (k := k) f).toRelations.map
+        (Finsupp.single t 1) =
+      (Deligne21E.productKahlerPresentation (k := k) f).relation t :=
+    (Deligne21E.productKahlerPresentation (k := k) f).toRelations.map_single t
+  rw [hrel]
+  have hl :
+      geometricCoordinateTensorEquiv (ι := Deligne16.Coord k s)
+        (productGeometricPoint f u hu)
+        (1 ⊗ₜ[Deligne21E.productCoordinateRing (k := k) f]
+          (Deligne21E.productKahlerPresentation (k := k) f).relation t) i =
+      productGeometricPoint f u hu
+        ((Deligne21E.productKahlerPresentation (k := k) f).relation t i) :=
+    geometricCoordinateTensorEquiv_one_tmul
+      (ι := Deligne16.Coord k s) (productGeometricPoint f u hu)
+      ((Deligne21E.productKahlerPresentation (k := k) f).relation t) i
+  have hr :
+      (Fintype.linearCombination L (geometricConormalRow f u))
+        (geometricCoordinateTensorEquiv (ι := Deligne16.EqCoord k r)
+          (productGeometricPoint f u hu)
+          (1 ⊗ₜ[Deligne21E.productCoordinateRing (k := k) f]
+            (Finsupp.single t 1))) i = geometricConormalRow f u t i := by
+    rw [geometricCoordinateTensorEquiv_single (ι := Deligne16.EqCoord k r)
+        (productGeometricPoint f u hu) t,
+      Fintype.linearCombination_apply_single, one_smul]
+  exact hl.trans ((geometricKahler_relation_at_point f u hu t i).trans hr.symm)
+
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
+
+/-- The image of the entire base-changed true Kähler relation map,
+in finite geometric coordinates, equals the L-span of original
+Jacobian rows, including their nonreduced and redundant relations. -/
+theorem geometricKahler_relation_range_baseChange
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (hu : onGeometricProduct f u) :
+    letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) L :=
+      (productGeometricPoint f u hu).toRingHom.toAlgebra
+    (LinearMap.range
+        ((Deligne21E.productKahlerPresentation (k := k) f).toRelations.map.baseChange L)).map
+      (geometricCoordinateTensorEquiv (ι := Deligne16.Coord k s)
+        (productGeometricPoint f u hu)).toLinearMap =
+      geometricConormalRelations f u := by
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) L :=
+    (productGeometricPoint f u hu).toRingHom.toAlgebra
+  classical
+  rw [← LinearMap.range_comp]
+  rw [geometricKahler_relation_map_baseChange f u hu]
+  rw [LinearEquiv.range_comp]
+  simpa only [geometricConormalRelations] using
+    (Fintype.range_linearCombination L (geometricConormalRow f u))
+
+/-- Right exactness over the field extension identifies the kernel
+of the L-linear Kähler fiber surjection with the image of its
+actual base-changed relation map. -/
+theorem geometricKahler_fiber_kernel
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (point : Deligne21E.productCoordinateRing (k := k) f →ₐ[K] L) :
+    letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) L :=
+      point.toRingHom.toAlgebra
+    LinearMap.ker
+      ((Deligne21E.productKahlerPresentation (k := k) f).toSolution.π.baseChange L) =
+    LinearMap.range
+      ((Deligne21E.productKahlerPresentation (k := k) f).toRelations.map.baseChange L) := by
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) L :=
+    point.toRingHom.toAlgebra
+  have he : Function.Exact
+      ((Deligne21E.productKahlerPresentation (k := k) f).toRelations.map.baseChange L)
+      ((Deligne21E.productKahlerPresentation (k := k) f).toSolution.π.baseChange L) := by
+    simpa only [LinearMap.baseChange_eq_lTensor] using
+      (productGeometricKahler_right_exact f point)
+  exact LinearMap.exact_iff.mp he
+
+/-- The genuine relative Kähler differential fiber at any
+extension-valued geometric point is the L-vector-space quotient
+by the actual original defining-polynomial Jacobian rows. -/
+noncomputable def geometricKahlerFiberEquiv
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (hu : onGeometricProduct f u) :
+    letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) L :=
+      (productGeometricPoint f u hu).toRingHom.toAlgebra
+    geometricCotangentFiber f u ≃ₗ[L]
+      L ⊗[Deligne21E.productCoordinateRing (k := k) f]
+        Ω[Deligne21E.productCoordinateRing (k := k) f⁄K] := by
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) L :=
+    (productGeometricPoint f u hu).toRingHom.toAlgebra
+  let e := geometricCoordinateTensorEquiv (ι := Deligne16.Coord k s)
+    (productGeometricPoint f u hu)
+  let rel := (Deligne21E.productKahlerPresentation (k := k) f).toRelations.map.baseChange L
+  let π := (Deligne21E.productKahlerPresentation (k := k) f).toSolution.π.baseChange L
+  let g : (Deligne16.Coord k s → L) →ₗ[L]
+      (L ⊗[Deligne21E.productCoordinateRing (k := k) f]
+        Ω[Deligne21E.productCoordinateRing (k := k) f⁄K]) :=
+    π.comp e.symm.toLinearMap
+  have hπ : Function.Surjective π :=
+    LinearMap.baseChange_surjective L
+      (Deligne21E.productKahlerPresentation (k := k) f).surjective_π
+  have hg : Function.Surjective g := hπ.comp e.symm.surjective
+  have hexact : LinearMap.ker π = LinearMap.range rel :=
+    geometricKahler_fiber_kernel f (productGeometricPoint f u hu)
+  have hrange : (LinearMap.range rel).map e.toLinearMap =
+      geometricConormalRelations f u :=
+    geometricKahler_relation_range_baseChange f u hu
+  have hker : LinearMap.ker g = geometricConormalRelations f u := by
+    ext v
+    change π (e.symm v) = 0 ↔ v ∈ geometricConormalRelations f u
+    rw [← LinearMap.mem_ker, hexact]
+    constructor
+    · intro hv
+      have hm : v ∈ (LinearMap.range rel).map e.toLinearMap :=
+        ⟨e.symm v, hv, e.apply_symm_apply v⟩
+      rwa [hrange] at hm
+    · intro hv
+      have hm : v ∈ (LinearMap.range rel).map e.toLinearMap := by
+        rw [hrange]
+        exact hv
+      obtain ⟨w, hw, heq⟩ := hm
+      have he : e.symm v = w := by
+        calc
+          e.symm v = e.symm (e w) := congrArg e.symm heq.symm
+          _ = w := e.symm_apply_apply w
+      rw [he]
+      exact hw
+  exact (Submodule.quotEquivOfEq
+      (geometricConormalRelations f u) (LinearMap.ker g) hker.symm).trans
+    (g.quotKerEquivOfSurjective hg)
+
+/-- The geometric polynomial Jacobian tangent, represented as
+vectors in L^(ks), is the annihilator of the genuine conormal
+relations in finite coordinate duality. -/
+noncomputable def geometricJacobianTangent
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L) :
+    Subspace L (Deligne16.Coord k s → L) :=
+  (geometricConormalRelations f u).dualAnnihilator.comap
+    ((LinearEquiv.piRing L L (Deligne16.Coord k s) L).symm.toLinearMap)
+
+/-- In geometric coordinates, tangent membership is exactly the
+equation that every *original* polynomial Jacobian row annihilates v. -/
+theorem mem_geometricJacobianTangent_iff
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u v : Deligne16.Coord k s → L) :
+    v ∈ geometricJacobianTangent f u ↔
+      ∀ t : Deligne16.EqCoord k r,
+        (∑ i : Deligne16.Coord k s, geometricConormalRow f u t i * v i) = 0 := by
+  classical
+  change ((LinearEquiv.piRing L L (Deligne16.Coord k s) L).symm v :
+    Module.Dual L (Deligne16.Coord k s → L)) ∈
+      (geometricConormalRelations f u).dualAnnihilator ↔ _
+  rw [Submodule.mem_dualAnnihilator]
+  constructor
+  · intro h t
+    have hrow : geometricConormalRow f u t ∈ geometricConormalRelations f u :=
+      Submodule.subset_span (Set.mem_range_self t)
+    have hz := h (geometricConormalRow f u t) hrow
+    simpa only [LinearEquiv.piRing_symm_apply, smul_eq_mul] using hz
+  · intro hv
+    have hker : geometricConormalRelations f u ≤
+        LinearMap.ker
+          ((LinearEquiv.piRing L L (Deligne16.Coord k s) L).symm v) := by
+      apply Submodule.span_le.mpr
+      rintro _ ⟨t, rfl⟩
+      change ((LinearEquiv.piRing L L (Deligne16.Coord k s) L).symm v)
+        (geometricConormalRow f u t) = 0
+      simpa only [LinearEquiv.piRing_symm_apply, smul_eq_mul] using hv t
+    intro w hw
+    exact hker hw
+
+/-- The dual of the original-Jacobian quotient equals the
+geometric tangent subspace of L^(ks). -/
+noncomputable def geometricCotangentDualEquivTangent
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L) :
+    Module.Dual L (geometricCotangentFiber f u) ≃ₗ[L]
+      geometricJacobianTangent f u := by
+  classical
+  let E := LinearEquiv.piRing L L (Deligne16.Coord k s) L
+  have he :
+      (geometricConormalRelations f u).dualAnnihilator =
+        (geometricJacobianTangent f u).comap E.toLinearMap := by
+    ext phi
+    change phi ∈ (geometricConormalRelations f u).dualAnnihilator ↔
+      E phi ∈ (geometricConormalRelations f u).dualAnnihilator.comap E.symm.toLinearMap
+    simp only [Submodule.mem_comap, LinearEquiv.symm_apply_apply]
+  exact ((geometricConormalRelations f u).dualQuotEquivDualAnnihilator).trans
+    ((LinearEquiv.ofEq _ _ he).trans
+      (E.ofSubmodule' (geometricJacobianTangent f u)))
+
+/-- The true Kähler cotangent-fiber dual over an arbitrary field
+extension L/K is exactly the original Jacobian-kernel tangent
+space at the L-valued point. -/
+noncomputable def geometricKahlerFiberDualEquivTangent
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (hu : onGeometricProduct f u) :
+    letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) L :=
+      (productGeometricPoint f u hu).toRingHom.toAlgebra
+    Module.Dual L
+      (L ⊗[Deligne21E.productCoordinateRing (k := k) f]
+        Ω[Deligne21E.productCoordinateRing (k := k) f⁄K]) ≃ₗ[L]
+      geometricJacobianTangent f u := by
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) L :=
+    (productGeometricPoint f u hu).toRingHom.toAlgebra
+  exact (geometricKahlerFiberEquiv f u hu).dualMap.trans
+    (geometricCotangentDualEquivTangent f u)
+
 #print axioms productGeometricPoint_mk
 #print axioms productGeometricPoint_val
 #print axioms productGeometricKahler_right_exact
@@ -265,5 +529,12 @@ theorem geometricKahler_evaluated_relation_span
 #print axioms geometricCoordinateTensorEquiv_one_tmul
 #print axioms geometricCoordinateTensorEquiv_single
 #print axioms geometricKahler_evaluated_relation_span
+#print axioms geometricKahler_relation_map_baseChange
+#print axioms geometricKahler_relation_range_baseChange
+#print axioms geometricKahler_fiber_kernel
+#print axioms geometricKahlerFiberEquiv
+#print axioms mem_geometricJacobianTangent_iff
+#print axioms geometricCotangentDualEquivTangent
+#print axioms geometricKahlerFiberDualEquivTangent
 
 end Deligne21G
