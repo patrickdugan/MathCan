@@ -1,4 +1,5 @@
 import Mathlib.LinearAlgebra.Dual.Lemmas
+import Mathlib.LinearAlgebra.Isomorphisms
 import Mathlib.Tactic
 
 /-!
@@ -155,6 +156,47 @@ theorem boundary_kernel_from_katz_injection
     exact P.gysin_kernel_stable FCX FCY
       (P.gysin_frobenius_equivariant
         FXinv FYinv FCX FCY hres hpdX hpdY) y hy
+
+/-- The first isomorphism theorem turns a surjective boundary
+Gysin map into a genuine quotient-by-kernel equivalence. -/
+noncomputable def boundaryQuotientEquiv
+    (hinj : Function.Injective P.restriction) :
+    (CY ⧸ LinearMap.ker P.gysin) ≃ₗ[ℂ] CX :=
+  P.gysin.quotKerEquivOfSurjective
+    (P.gysin_surjective_of_restriction_injective hinj)
+
+/-- Frobenius descends to the quotient by an invariant Gysin kernel. -/
+def boundaryQuotientFrobenius
+    (FCX : CX →ₗ[ℂ] CX) (FCY : CY →ₗ[ℂ] CY)
+    (hequiv : P.gysin.comp FCY = FCX.comp P.gysin) :
+    (CY ⧸ LinearMap.ker P.gysin) →ₗ[ℂ]
+      (CY ⧸ LinearMap.ker P.gysin) :=
+  Submodule.mapQ (LinearMap.ker P.gysin)
+    (LinearMap.ker P.gysin) FCY (by
+      intro y hy
+      exact P.gysin_kernel_stable FCX FCY hequiv y hy)
+
+/-- Under the exact-sequence isomorphism, the induced quotient
+Frobenius agrees with the target compact-cohomology Frobenius.
+This identifies the quotient as an actual Frobenius module. -/
+theorem boundaryQuotientFrobenius_intertwines
+    (hinj : Function.Injective P.restriction)
+    (FCX : CX →ₗ[ℂ] CX) (FCY : CY →ₗ[ℂ] CY)
+    (hequiv : P.gysin.comp FCY = FCX.comp P.gysin) :
+    (P.boundaryQuotientEquiv hinj).toLinearMap.comp
+        (P.boundaryQuotientFrobenius FCX FCY hequiv) =
+      FCX.comp (P.boundaryQuotientEquiv hinj).toLinearMap := by
+  apply LinearMap.ext
+  intro q
+  refine Submodule.Quotient.induction_on _ q ?_
+  intro y
+  have h := congrArg
+    (fun f : CY →ₗ[ℂ] CX => f y) hequiv
+  change P.gysin (FCY y) = FCX (P.gysin y) at h
+  simpa [boundaryQuotientEquiv, boundaryQuotientFrobenius,
+    LinearMap.comp_apply] using h
+
+#print axioms boundaryQuotientFrobenius_intertwines
 
 #print axioms gysin_surjective_of_restriction_injective
 #print axioms gysin_injective_of_restriction_surjective
