@@ -4,3 +4,8 @@ import Deligne04.Isolation
 import Deligne04.AllPowers
 import Deligne04.PowerLimit
 import Deligne04.TensorLimit
+import Deligne04.TensorSpectrum
+import Deligne04.GysinTrace
+import Deligne04.GysinPowers
+import Deligne04.MatrixTensorEigen
+import Deligne04.KunnethDegrees
