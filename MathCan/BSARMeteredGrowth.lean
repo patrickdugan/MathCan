@@ -50,9 +50,10 @@ private theorem pow2_monotone (a b : Nat) (h : a ≤ b) :
 
 private theorem pow2_double_paid (n cost : Nat) (hpaid : 1 ≤ cost) :
     2 * Pow2 n ≤ Pow2 (n + cost) := by
-  change Pow2 (n + 1) ≤ Pow2 (n + cost)
-  exact pow2_monotone (n + 1) (n + cost)
-    (Nat.add_le_add_left hpaid n)
+  calc
+    2 * Pow2 n = Pow2 (n + 1) := rfl
+    _ ≤ Pow2 (n + cost) :=
+      pow2_monotone (n + 1) (n + cost) (Nat.add_le_add_left hpaid n)
 
 /-- A finite sequence of local steps with cumulative charged growth. -/
 inductive MeteredChain : Nat → Int → Int → Nat → Prop
