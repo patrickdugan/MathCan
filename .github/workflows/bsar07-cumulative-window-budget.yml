@@ -1,0 +1,70 @@
+name: BSAR-07 cumulative Im window-budget Lean audit
+
+on:
+  pull_request:
+    paths:
+      - "MathCan/BSARWindowBudget.lean"
+      - "research/bsar_audit/BSAR07_WINDOW_COST_BRIDGE.md"
+      - ".github/workflows/bsar07-cumulative-window-budget.yml"
+  push:
+    branches: [main]
+    paths:
+      - "MathCan/BSARWindowBudget.lean"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-to-metered:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Build independently checked BSAR-05 and BSAR-06 imports
+        run: lake build MathCan.BSARChainAudit MathCan.BSARMeteredGrowth
+      - name: Kernel-check BSA-R cumulative window ledger
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar07
+          lake env lean MathCan/BSARWindowBudget.lean 2>&1 | tee artifacts/bsar07/kernel.log
+          sha256sum MathCan/BSARWindowBudget.lean > artifacts/bsar07/source.sha256
+          cat lean-toolchain > artifacts/bsar07/toolchain.txt
+          python - <<'PY'
+          import re
+          from pathlib import Path
+          log = Path("artifacts/bsar07/kernel.log").read_text()
+          targets = (
+              "MathCan.BSARWindowBudget.forget_ledger",
+              "MathCan.BSARWindowBudget.to_metered_chain",
+              "MathCan.BSARWindowBudget.uniform_bound_from_integer_window_budget",
+          )
+          records = dict(
+              re.findall(r"'([^']+)' depends on axioms:\s*\[([^\]]*)\]", log, flags=re.S)
+          )
+          assert all(key in records for key in targets), "Expected theorem axiom records missing"
+          assert "sorryAx" not in log, "Unproven Lean placeholder encountered"
+          allowed = {"propext", "Quot.sound", "Classical.choice"}
+          for key in targets:
+              names = {x.strip() for x in records[key].split(",") if x.strip()}
+              assert names <= allowed, f"Unexpected axiom for {key}: {names - allowed}"
+          print("All BSAR-07 theorems kernel-checked, with permitted Lean axioms")
+          PY
+      - name: Retain compiler evidence and source pin
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsar07-source-to-metered-kernel
+          path: artifacts/bsar07/
+          if-no-files-found: warn
+          retention-days: 14
