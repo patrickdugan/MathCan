@@ -42,6 +42,50 @@ noncomputable def parabolaSection
     MvPolynomial.C q * MvPolynomial.X true +
     MvPolynomial.C c
 
+/-- The point of the actual ambient embedding U² ⊂ A⁴, where
+each U is the graph of y=x². The first two variables belong to
+the first parabola and the final two to the second. -/
+def embeddedParabolaProductPoint
+    {K : Type*} [CommRing K] (x0 x1 : K) :
+    (Fin 2 × Fin 2) → K :=
+  fun i =>
+    if i.1 = 0 then
+      if i.2 = 0 then x0 else x0 ^ 2
+    else if i.2 = 0 then x1 else x1 ^ 2
+
+/-- Both product factors satisfy the actual embedding equation. -/
+theorem embeddedParabolaProductPoint_on_U
+    {K : Type*} [CommRing K] (x0 x1 : K) :
+    ∀ j : Fin 2,
+      embeddedParabolaProductPoint x0 x1 (j, 1) -
+        (embeddedParabolaProductPoint x0 x1 (j, 0)) ^ 2 = 0 := by
+  intro j
+  fin_cases j <;> simp [embeddedParabolaProductPoint]
+
+/-- Actual ambient affine hyperplane, with coefficient exactly 1
+on the prescribed path-bilinear coordinate x0*x1. -/
+noncomputable def ambientHyperplaneSection
+    (K : Type*) [CommRing K] (alpha beta p q c : K) :
+    MvPolynomial (Fin 2 × Fin 2) K :=
+  MvPolynomial.X (0, 0) * MvPolynomial.X (1, 0) +
+    MvPolynomial.C alpha * MvPolynomial.X (0, 1) +
+    MvPolynomial.C beta * MvPolynomial.X (1, 1) +
+    MvPolynomial.C p * MvPolynomial.X (0, 0) +
+    MvPolynomial.C q * MvPolynomial.X (1, 0) +
+    MvPolynomial.C c
+
+/-- Kernel equality of the actual ambient hyperplane evaluated on
+the embedded U² and the restricted quadratic polynomial G. -/
+theorem ambient_hyperplane_restricts_to_parabolaSection
+    {K : Type*} [CommRing K] (alpha beta p q c x0 x1 : K) :
+    MvPolynomial.eval
+        (embeddedParabolaProductPoint x0 x1)
+        (ambientHyperplaneSection K alpha beta p q c) =
+      MvPolynomial.eval (Deligne12.conicPoint x0 x1)
+        (parabolaSection K alpha beta p q c) := by
+  simp [embeddedParabolaProductPoint, ambientHyperplaneSection,
+    parabolaSection, Deligne12.conicPoint] <;> ring
+
 /-- The formal x partial derivative, evaluated in Mathlib's
 actual multivariate polynomial ring. -/
 theorem pderiv_parabola_x
@@ -175,6 +219,8 @@ theorem critical_parameters_in_bad_hypersurface
   rw [eval_badParameterPolynomial]
   exact critical_implies_eliminant_zero alpha beta p q c u hG hX hY
 
+#print axioms embeddedParabolaProductPoint_on_U
+#print axioms ambient_hyperplane_restricts_to_parabolaSection
 #print axioms pderiv_parabola_x
 #print axioms pderiv_parabola_y
 #print axioms parabola_bezout_identity
