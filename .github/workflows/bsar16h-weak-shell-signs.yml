@@ -1,0 +1,86 @@
+name: BSAR-16H Leray-Hopf relative-energy shell signs
+
+on:
+  pull_request:
+    paths:
+      - "experiments/bsar16/weak_shell_signs.py"
+      - "experiments/bsar16/test_weak_shell_signs.py"
+      - "research/bsar_audit/BSAR16H_LERAY_HOPF_RELATIVE_ENERGY.md"
+      - ".github/workflows/bsar16h-weak-shell-signs.yml"
+  push:
+    branches: [main]
+    paths:
+      - "experiments/bsar16/weak_shell_signs.py"
+      - "experiments/bsar16/test_weak_shell_signs.py"
+      - ".github/workflows/bsar16h-weak-shell-signs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  weak-relative-energy-shells:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Pin BSAR-14 source and compile exact-rational checker
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/bsar14_initial_triad_transfer.py)" = "aa25ad74be2347acf061d631f55338802eead212"
+          python -m py_compile experiments/bsar16/weak_shell_signs.py experiments/bsar16/test_weak_shell_signs.py
+      - name: Check exact residual sign, weak shell convention, and input custody
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest experiments.bsar16.test_weak_shell_signs -v
+      - name: Freeze and re-audit 36 a.e.-time Leray-Hopf shell signs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar16h
+          python -m experiments.bsar16.weak_shell_signs generate --out artifacts/bsar16h
+          python -m experiments.bsar16.weak_shell_signs audit --out artifacts/bsar16h
+          python - <<'PY'
+          import hashlib
+          import json
+          from fractions import Fraction as Q
+          from pathlib import Path
+
+          root=Path("artifacts/bsar16h")
+          manifest=json.loads((root/"manifest.json").read_text(encoding="utf-8"))
+          data=(root/"rows.json").read_bytes()
+          rows=json.loads(data)
+          assert manifest["cases"]==12
+          assert manifest["a.e._shell_certificates"]==36
+          assert manifest["source_bsar16g_rows_sha256"]=="6eb0137156069d8fb969134acf313df53ea5938fd6c815c53063eb208ba820bf"
+          assert hashlib.sha256(data).hexdigest()==manifest["rows_sha256"]
+          assert not manifest["smooth_nse_lifespan_premise"]
+          assert all(not r["full_smooth_nse_existence_premise"] for r in rows)
+          assert all("almost every" in r["valid_times"] for r in rows)
+          assert all(Q(s["leray_hopf_ae_signed_transfer_lower"])>0
+                     for r in rows for s in r["source_shells"])
+          algebra=manifest["relative_energy_algebra"]
+          assert algebra["relative_energy_left"]==algebra["relative_energy_right"]
+          assert Q(algebra["high_mode_work"])>0
+          assert algebra["transport_cancellation"]=="0/1"
+          print("BSAR-16H Leray-Hopf 36/36 a.e.-time signs verified")
+          print("Minimum certified rational signed margin:",
+                min(Q(s["leray_hopf_ae_signed_transfer_lower"])
+                    for r in rows for s in r["source_shells"]))
+          PY
+          sha256sum experiments/bsar16/weak_shell_signs.py > artifacts/bsar16h/source.sha256
+      - name: Archive exact shell signs and weak-form residual audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsar16h-leray-hopf-relative-energy-shells
+          path: artifacts/bsar16h/
+          if-no-files-found: warn
+          retention-days: 14
