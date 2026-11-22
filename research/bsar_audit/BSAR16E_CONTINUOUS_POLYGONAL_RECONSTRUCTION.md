@@ -106,6 +106,31 @@ both anchors lie in the **true continuous-spatial half-maximum vorticity core** 
 
 then supplies a positive cone quotient lower witness using \(N/\pi>7N/22\). Every square root and final margin is directed rationally toward a safe bound. If either gate fails, the archive reports an uncertified interval rather than substituting the original numerical sample statistic.
 
+## Verified 240-interval rational evidence
+
+The [BSAR-16E dedicated workflow](https://github.com/patrickdugan/MathCan/actions/runs/45008690757) passed its three targeted tests, regenerated the complete 256-node binary64 source archive with its pinned SHA-256, and froze plus re-audited all 240 time-continuous polygonal intervals. Every direct and via-Galerkin continuum-spatial core witness remained positive.
+
+The archived BSAR-16E canonical JSON SHA-256 is
+
+    55eb0cf597904f155571f98d7c7c2716f83ac324fce4bf40d7fc5340dc488cf5
+
+The following figures aggregate the least favorable phase and timestep for each initial frequency and grid. Error upper bounds are rounded **upward** and core-margin lower bounds **downward** for display.
+
+| Initial N | Grid M | Worst interval \(\sup_t\|W_{\mathrm{lin}}-v_K\|_2\) | Minimum direct half-core margin | Minimum via-Galerkin half-core margin |
+|---:|---:|---:|---:|---:|
+| 1 | 16 | ≤ 0.00001121 | ≥ 1.3676 | ≥ 1.3609 |
+| 1 | 24 | ≤ 0.00001121 | ≥ 1.3635 | ≥ 1.3489 |
+| 1 | 32 | ≤ 0.00001121 | ≥ 1.3538 | ≥ 1.3200 |
+| 2 | 16 | ≤ 0.0001297 | ≥ 0.9102 | ≥ 0.8240 |
+| 2 | 24 | ≤ 0.0001350 | ≥ 0.8605 | ≥ 0.6650 |
+| 2 | 32 | ≤ 0.0001360 | ≥ 0.6695 | ≥ 0.2121 |
+
+The worst continuous-time error upper bound, approximately \(0.00013596343688305524\), occurs for \(N=2,\sigma=-1,M=32,h=0.001\). In that case the exact quadratic-interpolation remainder bound is \(0.00000359020210625\). The smaller registered step \(h=0.0005\) yields a remainder bound one-quarter as large, consistent with the exact \(h^2\) interpolation identity.
+
+The least conservative direct-core lower margin is approximately \(0.669561342\); the more cautious transfer-through-Galerkin lower margin reaches a minimum of approximately \(0.212188858\). Both remain **strictly positive for every time and spatial point relevant to the two anchored half-core checks**, by the documented rational supremum inequalities.
+
+This evidence certifies an independently defined continuous-time Fourier reconstruction of numerical output. The actual RK4 integration stages and their physical FFT intermediates continue to require a separate operation-level roundoff analysis.
+
 ## Registered campaign and evidence limits
 
 The exact BSAR-16D source contains 16 runs and 256 stored nodes across \(N=1,2\), phases \(\sigma=\pm1\), grids \(M=16,24,32\), standard rational time step \(1/1000\), and fine time step \(1/2000\) for \(M=32\). The polygonal reconstruction therefore has exactly **240 nonoverlapping time intervals**. A pin of the canonical BSAR-16D archive SHA-256 is supplied in dedicated CI, and each output run retains the corresponding full binary64 state-stream hash.
