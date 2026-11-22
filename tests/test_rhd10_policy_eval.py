@@ -50,7 +50,7 @@ class RHD10PolicyEvalTests(unittest.TestCase):
             [r for r in self.rows if r["split"] == "train"]
         )
         keys = set(learned.table)
-        self.assertEqual(len(keys), 11)
+        self.assertEqual(len(keys), 12)  # Four local, four missing-place, three other edits, STOP
         self.assertEqual(
             set(self.report["learned_action_keys"]), keys,
         )
