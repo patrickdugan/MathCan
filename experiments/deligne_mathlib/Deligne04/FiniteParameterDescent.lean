@@ -2,6 +2,7 @@ import Deligne04.FixedCoefficientChart
 import Mathlib.FieldTheory.IntermediateField.Adjoin.Algebra
 import Mathlib.FieldTheory.IntermediateField.Algebraic
 import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
+import Mathlib.FieldTheory.Finiteness
 import Mathlib.RingTheory.Finiteness.Cardinality
 import Mathlib.Tactic
 
@@ -108,6 +109,31 @@ theorem exists_good_parameter_over_finite_extension
   exact parameter_mem_common_extension parameters i
 
 #print axioms exists_good_parameter_over_finite_extension
+
+/-- The finite common field of definition has exactly q^e
+elements, where q is the cardinality of the original finite field
+and e is the vector-space dimension of the generated extension.
+The degree depends on the chosen coefficient tuple. -/
+theorem finite_tuple_extension_cardinality
+    {F : Type u} [Field F] [Finite F]
+    {E : Type v} [Field E] [Algebra F E]
+    [Algebra.IsAlgebraic F E] {n : ℕ} (a : Fin n → E) :
+    ∃ e : ℕ,
+      Nat.card (IntermediateField.adjoin F (Set.range a)) =
+        Nat.card F ^ e := by
+  haveI : Finite (Set.range a) := (Set.finite_range a).to_subtype
+  haveI : Algebra.EssFiniteType F
+      (IntermediateField.adjoin F (Set.range a)) := inferInstance
+  haveI : Algebra.IsAlgebraic F
+      (IntermediateField.adjoin F (Set.range a)) := inferInstance
+  haveI : Module.Finite F
+      (IntermediateField.adjoin F (Set.range a)) :=
+    Algebra.finite_of_essFiniteType_of_isAlgebraic
+  exact ⟨Module.finrank F
+    (IntermediateField.adjoin F (Set.range a)),
+    Module.natCard_eq_pow_finrank⟩
+
+#print axioms finite_tuple_extension_cardinality
 
 #print axioms finite_parameter_field
 #print axioms finite_tuple_parameter_field
