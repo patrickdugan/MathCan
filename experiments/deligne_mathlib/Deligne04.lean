@@ -16,3 +16,4 @@ import Deligne04.BipartiteSmoothness
 import Deligne04.ProjectiveQuasiFinite
 import Deligne04.FiniteParameterDescent
 import Deligne04.ActualProjChart
+import Deligne04.EffectiveFiniteOpen
