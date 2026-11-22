@@ -1,0 +1,64 @@
+name: DEL-21C Kähler coordinate naturality
+
+on:
+  push:
+    branches: [proof/deligne21c-kahler-coordinate-naturality-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/KahlerCoordinateNaturality.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL21C_*'
+      - 'research/deligne_sign_audit/del21c_*'
+      - 'tests/test_deligne21c_kahler_naturality.py'
+      - '.github/workflows/deligne21c-kahler-naturality.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne21c-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check true Kähler coordinate readout and quotient naturality
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/KahlerCoordinateNaturality.lean | tee deligne21c-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne21c-axioms.txt; then
+            echo 'DEL-21C admitted proof or unexpected axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify 144 Kähler coordinate and dual-number naturality cases
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne21c_kahler_naturality
