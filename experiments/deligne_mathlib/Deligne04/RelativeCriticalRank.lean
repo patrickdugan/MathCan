@@ -25,7 +25,7 @@ tangent subspace exactly when its coefficient vector is in the original
 relation subspace. This uses genuine dual separation over a field. -/
 theorem mem_conormal_iff_annihilates_tangent
     {L : Type*} [Field L]
-    {ι : Type*} [Fintype ι]
+    {ι : Type*} [Fintype ι] [DecidableEq ι]
     (R : Subspace L (ι → L)) (g : ι → L) :
     g ∈ R ↔
       ∀ v : ι → L,
@@ -37,9 +37,6 @@ theorem mem_conormal_iff_annihilates_tangent
   have hpair (v : ι → L) :
       (E.symm v) g = ∑ i : ι, g i * v i := by
     simp only [E, LinearEquiv.piRing_symm_apply, smul_eq_mul]
-    apply Finset.sum_congr rfl
-    intro i _
-    exact mul_comm (v i) (g i)
   constructor
   · intro hg v hv
     have hv' : E.symm v ∈ R.dualAnnihilator := hv
@@ -108,14 +105,17 @@ theorem criticalOnTangent_iff_conormal
     (a : Deligne16.Coord k s → K) (c : K)
     (u : Deligne16.Coord k s → L) :
     criticalOnTangent f B a c u ↔ criticalInConormal f B a c u := by
-  unfold criticalOnTangent criticalInConormal
-  simp only [and_congr_right_iff]
-  intro _
-  simp only [and_congr_right_iff]
-  intro _
-  exact (mem_conormal_iff_annihilates_tangent
-    (Deligne21G.geometricConormalRelations f u)
-    (sectionGradient B a c u)).symm
+  constructor
+  · rintro ⟨hu, hs, hder⟩
+    refine ⟨hu, hs, ?_⟩
+    exact (mem_conormal_iff_annihilates_tangent
+      (Deligne21G.geometricConormalRelations f u)
+      (sectionGradient B a c u)).mpr hder
+  · rintro ⟨hu, hs, hg⟩
+    refine ⟨hu, hs, ?_⟩
+    exact (mem_conormal_iff_annihilates_tangent
+      (Deligne21G.geometricConormalRelations f u)
+      (sectionGradient B a c u)).mp hg
 
 /-- Being in the original conormal span is the existence of a finite
 list of true Lagrange multipliers for each original Jacobian row.
@@ -299,13 +299,14 @@ theorem criticalOnTangent_iff_augmentedRank
         MvPolynomial.aeval u (Deligne16.fixedSection B a c) = 0 ∧
         (augmentedSectionMatrix f B a c u).rank =
           (originalJacobianMatrix f u).rank := by
-  rw [criticalOnTangent_iff_conormal]
-  unfold criticalInConormal
-  simp only [and_congr_right_iff]
-  intro _
-  simp only [and_congr_right_iff]
-  intro _
-  exact (augmentedRank_eq_iff_conormal f B a c u).symm
+  constructor
+  · intro h
+    rcases (criticalOnTangent_iff_conormal f B a c u).mp h
+      with ⟨hu, hs, hg⟩
+    exact ⟨hu, hs, (augmentedRank_eq_iff_conormal f B a c u).mpr hg⟩
+  · rintro ⟨hu, hs, hr⟩
+    apply (criticalOnTangent_iff_conormal f B a c u).mpr
+    exact ⟨hu, hs, (augmentedRank_eq_iff_conormal f B a c u).mp hr⟩
 
 #print axioms mem_conormal_iff_annihilates_tangent
 #print axioms criticalOnTangent_iff_conormal
