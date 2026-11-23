@@ -8,12 +8,12 @@ external. Natural source cardinalities embed in the real-valued window below.
 
 namespace RH26E03
 
-def bracket (x eps n N P m b k a : ℝ) : ℝ :=
+noncomputable def bracket (x eps n N P m b k a : ℝ) : ℝ :=
   N * a * (1 + m ^ 2 / k) +
     m * ((2 * n) * m * b * x ^ eps +
       P * k * b * x ^ eps / (n * (n * x ^ (-eps))))
 
-def perSlot (x eps n N P m b k a : ℝ) : ℝ :=
+noncomputable def perSlot (x eps n N P m b k a : ℝ) : ℝ :=
   a / (m * b) + a * m / (b * k) +
     (2 * n / N) * m * x ^ eps +
     (P / N) * (k / n ^ 2) * x ^ (2 * eps)
