@@ -46,9 +46,15 @@ the true tangent space iff all the above residuals vanish, together
 with the original on-scheme and on-section conditions.
 The statement retains all redundant and nonreduced equations.
 
-The selected-row-span assumption is explicit. The next proof gate
-must derive this span assumption from rank(A)=d and a nonzero
-d×d selected original Jacobian minor, and then establish
+The source module now also derives the selected-row-span equality from
+rank(A)=d and a nonzero selected d×d original Jacobian minor, via
+`Matrix.linearIndependent_rows_of_det_ne_zero`,
+`LinearIndependent.of_comp`, and equality of finite-dimensional subspace
+ranks. Thus the final theorem
+`criticalOnTangent_iff_rankd_pivot_of_rank` assumes the genuine
+original Jacobian rank and nonzero pivot directly. A later global
+result must still establish existence of such a nonzero minor when
+rank(A)≥d+1, in order to prove
 
 \[
 \operatorname{rank}(A)\le d
@@ -65,7 +71,11 @@ presentation remain subsequent tasks.
 Pinned Lean 4.35 / Mathlib 4.35 full Deligne04 kernel workflow,
 printed axiom list with no sorryAx or ofReduceBool, and
 GF(4)/GF(9) determinant/row-span/rank-drop tests.
-None of these proof statements is claimed as kernel-verified
-before the workflow passes.
+**Verified at `94993c8`:** the pinned Lean 4.35/Mathlib 4.35
+[DEL-22D run 45139582750](https://github.com/patrickdugan/MathCan/actions/runs/45139582750)
+passed the full Deligne04 build (3,603 jobs), all five new
+`#print axioms` checks using only `propext`, `Classical.choice`,
+and `Quot.sound`, and the exact GF(4)/GF(9) regression suite.
+Repository-wide PR checks remain a separate acceptance gate.
 
 Refs DEL-22C PR #258, DEL-22B issue #253, DEL-16 #191.
