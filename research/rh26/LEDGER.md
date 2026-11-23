@@ -1,5 +1,19 @@
 # RH-26 run ledger
 
+## RH-26B-02 — 2026-11-23 — Weil-theta integration / quotient structure
+
+- **Status:** PARTIAL SOURCE PASS for operator and quotient definitions; **BLOCKED** on locating the *original* `WeilTensorModels.ThetaIntegralsAgree` and `WeilTensorModels.LocalMatching` declarations. No Lean kernel verification.
+- **Pinned upstream:** `leanprover-community/riemann-hypothesis@c900e67c2fcd1fdb041685820bbd2b867fbc5a4b`, with upstream `main` checked unchanged.
+- **MathCan:** `research/rh26-extraction-rubrics-20261123` / [draft PR #265](https://github.com/patrickdugan/MathCan/pull/265). Source report [RH26B02_WEIL_QUOTIENTS.md](RH26B02_WEIL_QUOTIENTS.md), committed as `1338cbe040c3e8f61c533e8974208ae16246cef6`.
+- **Read receipt:** **one upstream file**, 250 lines total: `src/Development/AbelianVarietyTheory/BlockTheory/DivisorBase/WeilTensorModels.lean:251-500`. This follows lines 1–250 already inspected in RH-26B-01, with a separate session budget. No wider source scan.
+- **Exact declarations reached:** `Rep` (251–253), `Model.IsGood` (273–279), `theta` (324), `Model.I` (326–327), `Model.Conv` (329–330), `Geo.IsGood` (398–408), `RealMaps` / `FinMaps` (434–455), `RealQuot` (463–469), `IsRealMaps` (471–484), `IsZetaAt` (486–494), partial `IsFinMaps` (496–500).
+- **Mathematical information:** `theta` applies `thetaSum` to the Weil representation acting on `Φ`; `Model.I` integrates `theta` over a Haar fundamental domain, and `Model.Conv` requires integrability for each second-group argument. `RealQuot` demands full image of the polynomial submodule, Lie-derived vectors in the kernel, and invariance under specified compact actions. `IsRealMaps` imposes matched Lie/compact actions on the two maps, nontrivial common image, and irreducibility. `IsZetaAt` equates local quotient-image matching with equality of two local transforms, under additional standard-vacuum constraints.
+- **Independent mathematical candidate (not run):** under a kernel containment `K ≤ ker p`, a linear map `p` descends uniquely to `S/K`. To apply this to theta integrals, one must prove the actual integrals annihilate the chosen action-generated subspace under convergence conditions. Label this as proposed RH-26E toy, with no extrapolation to RH.
+- **Competing interpretation and falsifier:** a scalar theta-integral identity can hold while the proposed quotient fails compatibility with the Lie or compact action, or lacks a correct common irreducible image. Failure of any such requirement blocks operator-level compression.
+- **Still unknown:** original `WeilTensorModels` premise signatures, exact theta multiplicity bound, `X/m+m` formula, full `IsFinMaps` structure, independent kernel audit.
+- **Resource receipt:** read-only GitHub access. No local pretrained inference, GPU/QPU/cloud compute, Lean build, or CI. RAM and elapsed wall-clock not measured.
+- **Next session RH-26B-03:** read the *same* pinned `WeilTensorModels.lean:501-750` as a single <=250-line window and record whether the two premise definitions appear, before any broader dependency scan.
+
 ## RH-26B-01 — 2026-11-23 — theta quotient comparison and two/three-prime local bound
 
 - **Disposition:** SOURCE DISCOVERY PASS; elementary tensor-factorization **TOY PASS** (paper derivation only); quantitative theta-lift multiplicity **BLOCKED / UNSOURCED**; independent Lean kernel **NOT RUN**.
