@@ -124,8 +124,10 @@ theorem geometricCotangentTowerEquiv_one_tmul_mk
     exact Deligne21H.fieldTowerCoordinateEquiv_one_tmul φ v i
   simp only [LinearMap.comp_apply, LinearMap.baseChange_tmul,
     Submodule.mkQ_apply] at heq
-  rw [hcoord] at heq
-  exact heq
+  exact heq.trans (congrArg
+    (fun w : Deligne16.Coord k s → M =>
+      (Submodule.Quotient.mk w :
+        Deligne21G.geometricCotangentFiber f (fun i => φ (u i)))) hcoord)
 
 /-- Arbitrary pure tensors of an original coordinate quotient class
 are transported by scalar extension and the field-homomorphic coordinates. -/
