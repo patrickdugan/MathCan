@@ -22,11 +22,11 @@ This simplification uses the source denominator n*(n*x^(-eps)) and requires x>0 
 The role of B is exact: `Deduction.ch_top` at [ChTop.lean:84–91](https://github.com/leanprover-community/riemann-hypothesis/blob/c900e67c2fcd1fdb041685820bbd2b867fbc5a4b/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/ChTop.lean#L84-L91) states
 
 ```text
-gapA(D,N_conductor,ell,TT,a,w,tr(u))
+gapA(D,N_arg,ell,TT,a,w,tr(u))
     <= Dd.x^(CErr(C)*Dd.eps) * B(Dd.x,Dd.eps,n,|TT|,|T2|,m,Dd.b,Dd.k,Dd.a).
 ```
 
-Here N_conductor is the separate natural N of the source `gapA` signature; it is not our shorthand N=|TT|. The theorem requires `IdentU`, `SizeData₂`, `ErrWindows`, `BNBoundsU` and `LargeX` on the actual indexed family. The proof identifies the gap as Dd.ASK−Dd.Main, bounds its internal error by the power-scaled ErrText, then uses the cardinality bounds to compare ErrText to B ([ChTop.lean:92–105](https://github.com/leanprover-community/riemann-hypothesis/blob/c900e67c2fcd1fdb041685820bbd2b867fbc5a4b/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/ChTop.lean#L92-L105) and [ChTop.lean:159–175](https://github.com/leanprover-community/riemann-hypothesis/blob/c900e67c2fcd1fdb041685820bbd2b867fbc5a4b/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/ChTop.lean#L159-L175)). This is a **one-sided gap bound**, not an absolute error bound or a statement that B equals the gap. The previously inspected `CoreGm.lean:91–103` consumes this result.
+Here N_arg denotes the separate natural-number N in the source `gapA` signature. Its detailed interpretation is outside this read; it is distinct from our shorthand N=|TT|. The theorem requires `IdentU`, `SizeData₂`, `ErrWindows`, `BNBoundsU` and `LargeX` on the actual indexed family. The proof identifies the gap as Dd.ASK−Dd.Main, bounds its internal error by the power-scaled ErrText, then uses the cardinality bounds to compare ErrText to B ([ChTop.lean:92–105](https://github.com/leanprover-community/riemann-hypothesis/blob/c900e67c2fcd1fdb041685820bbd2b867fbc5a4b/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/ChTop.lean#L92-L105) and [ChTop.lean:159–175](https://github.com/leanprover-community/riemann-hypothesis/blob/c900e67c2fcd1fdb041685820bbd2b867fbc5a4b/src/Development/AutomorphicArithmetic/DedekindLFunctions/LandauTheorems/ChTop.lean#L159-L175)). This is a **one-sided gap bound**, not an absolute error bound or a statement that B equals the gap. The previously inspected `CoreGm.lean:91–103` consumes this result.
 
 ## 2. The actual scalar window
 
