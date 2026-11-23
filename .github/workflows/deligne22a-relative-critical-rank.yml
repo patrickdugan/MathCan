@@ -6,6 +6,7 @@ on:
   pull_request:
     paths:
       - 'experiments/deligne_mathlib/Deligne04/RelativeCriticalRank.lean'
+      - 'experiments/deligne_mathlib/Deligne04/RelativeCriticalMinors.lean'
       - 'experiments/deligne_mathlib/Deligne04.lean'
       - 'tests/test_deligne22a_relative_critical.py'
       - 'research/deligne_sign_audit/DEL22A_*'
@@ -42,9 +43,10 @@ jobs:
         working-directory: experiments/deligne_mathlib
         run: |
           set -euo pipefail
-          lake build Deligne04.RelativeCriticalRank
-          lake env lean Deligne04/RelativeCriticalRank.lean | tee deligne22a-axioms.txt
-          if grep -Eq 'sorryAx|ofReduceBool' deligne22a-axioms.txt; then
+          lake build Deligne04.RelativeCriticalMinors
+          lake env lean Deligne04/RelativeCriticalRank.lean | tee deligne22a-rank-axioms.txt
+          lake env lean Deligne04/RelativeCriticalMinors.lean | tee deligne22a-minor-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne22a-rank-axioms.txt deligne22a-minor-axioms.txt; then
             echo 'DEL-22A unexpected axiom'
             exit 1
           fi
