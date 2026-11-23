@@ -4,7 +4,7 @@
 **Registration:** [RH26E02_REGISTRATION.md](RH26E02_REGISTRATION.md), frozen in commit `3fdd8420fcc44788330254bdd8524f2bbc29c4c3` before source and workflow.  
 **Implementation:** [RH26E02WitnessDescent.lean](lean/RH26E02WitnessDescent.lean), source commit `f73cdcc2e835e098aec0df6022ac7d32d8eb8a2a`. Workflow commit `bb18e10c92a111d21e9cc7a43e1980294152e410`.  
 **Upstream inspiration:** `leanprover-community/riemann-hypothesis@c900e67c2fcd1fdb041685820bbd2b867fbc5a4b`, `src/Development/WeilBound/ThetaLifts/ConeHypotheses/CtSmallCone.lean:243–274`, `ConeHypotheses/PolDense.lean:62–70`; previous frozen source trace [RH26B06_RANK_STEP_PROOFS.md](RH26B06_RANK_STEP_PROOFS.md).  
-**Disposition:** IMPLEMENTED; **KERNEL RESULT PENDING**. Do not mark PASS before the pinned CI job succeeds and all sixteen axiom receipts are inspected.
+**Disposition:** **KERNEL PASS**, sixteen of sixteen registered declarations and all five counterexamples accepted, on the original implementation commit.
 
 ## 1. New independent algebraic interface
 
@@ -42,21 +42,44 @@ The five negative controls are positive existential claims:
 | zero L factor | d=1,l=0,c=0,c₁=1 | alpha relation holds, nonzero propagation fails |
 | non-strict descent | one state, rank 1, scalar 0, alpha factor pair (1,1) | zero self-loop satisfies non-increasing rank, base assumption is vacuous |
 
-## 4. Reproducibility and current verification
+## 4. Verified kernel receipt
 
-The source inspection at the implementation commit found exactly 16 theorem declarations and 16 corresponding print-axioms commands, with no sorry or admit token. This is a source-level check only.
+**KERNEL PASS: all sixteen preregistered declarations, including all five existential counterexamples, typechecked and passed the strict transitive axiom allowlist.** The job completed successfully on the original code/workflow commit without repairs.
 
-- Pinned Lean: 4.35.0; Mathlib target: v4.35.0.
-- CPU workflow: [RH-26E-02 run 45270451576](https://github.com/patrickdugan/MathCan/actions/runs/45270451576).
-- Job: `138028545549`, `witness-descent-kernel`.
-- Source Git blob: `0be93920f0178b991735be6df2eda6342c4bec74`.
-- Last observed: checkout and pin checks successful, Lean setup successful, Mathlib resolution running; kernel step pending.
-- The workflow requires exactly the sixteen preregistered axiom reports and an allowlist of `propext`, `Classical.choice` and `Quot.sound`. Compiler version, Mathlib SHA, source SHA-256, timing, and axiom stdout are designed to be retained as artifacts.
+- GitHub Actions: [run 45270451576](https://github.com/patrickdugan/MathCan/actions/runs/45270451576), job `138028545549`, completed success.
+- Checked commit: `bb18e10c92a111d21e9cc7a43e1980294152e410`.
+- Lean 4.35.0, Linux release, compiler commit `eb6cafb7290e8bd5f2937522d8d804f58f02bafc`.
+- Mathlib v4.35.0 resolved to `56a005855ea17e0b0958f73ec801ae140b0a1679`.
+- Source SHA-256: `5a3d1761dfff34e231ba70f8e73c3f89d45572322d236c4860ca5a36dea67f42`.
+- [Uploaded compiler/axiom/timing artifact](https://github.com/patrickdugan/MathCan/actions/runs/45270451576/artifacts/14864167907), ID `14864167907`.
+- Isolated Lean invocation: 6.75 seconds elapsed, 3.97 seconds user CPU, 3.10 seconds system CPU, maximum RSS 6,968,288 kB (as reported by GNU time). These measure the isolated invocation, not the cache download or entire job.
+- The complete check ran approximately 1 minute 53 seconds from workflow creation to artifact upload. No upstream build, full Deligne build, GPU, QPU, or paid compute.
 
-A completed successful job plus the actual audit receipt is required to change this report to KERNEL PASS. No resource metrics or axiom results are inferred while CI is pending.
+Literal compiler axiom receipt:
+
+```text
+'RH26E02.beta_normalized_from_component' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E02.beta_inverse_from_component' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E02.beta_l_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E02.alpha_from_component' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E02.alpha_l_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E02.scalar_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E02.witness_to_transport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E02.edge_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E02.rank_descent_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E02.witness_rank_descent_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E02.mixed_path_fixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E02.beta_zero_witness_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E02.alpha_zero_witness_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E02.beta_no_inverse_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E02.zero_l_propagation_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E02.invalid_descent_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+The CI verified exactly the sixteen preregistered names, without unexpected axioms. All dependencies are in the approved foundational set. The source is an independent field-level model; the result certifies only the declared conditional algebra, not native theta integrals or the analytic assumptions of the upstream proof.
 
 ## 5. Next research boundary
 
-Complete the pending compiler receipt, preserving the preregistered theorem contracts. Once RH-26E-02 is closed, return to the separate quantitative RH-26C source track: identify the exact prime-sum estimate, its variables, and range from a pinned source before introducing any numerical toy or asserting an X/m+m asymptotic. The quantitative theta-lift multiplicity result is also still UNSOURCED.
+The compiler receipt closes RH-26E-02 under the preregistered theorem contracts. Return to the separate quantitative RH-26C source track: identify the exact prime-sum estimate, its variables, and range from a pinned source before introducing any numerical toy or asserting an X/m+m asymptotic. The quantitative theta-lift multiplicity result is also still UNSOURCED.
 
 No upstream Lean source was newly read in RH-26E-02. No full upstream or Deligne build, GPU, QPU, or paid cloud was launched.
