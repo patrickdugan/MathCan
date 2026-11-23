@@ -1,6 +1,6 @@
 # AHR-QPU-01 · Signed arithmetic-square holonomy
 
-This package prepares a two-qubit IBM pilot to recover a phase relative to a calibrated reference. It records exact predictions, independently simulated compiled circuits, Aer noise forecasts, finite-shot intervals and a simulation-only extension to the three-prime cube. [Results](RESULTS.md) · [Hardware gate](HARDWARE_GATE.md)
+This package implements a two-qubit IBM pilot to recover a phase relative to a calibrated reference. It records exact predictions, independently simulated compiled circuits, Aer noise forecasts, finite-shot intervals and a simulation-only extension to the three-prime cube. The approved 36-circuit IBM run has its own counts, fresh calibration and analysis receipts. [Simulation results](RESULTS.md) · [Q2 hardware results](Q2_HARDWARE_RESULTS.md) · [Hardware gate](HARDWARE_GATE.md)
 
 ## Square and four-phase readout
 
@@ -44,7 +44,13 @@ python experiment.py capture --backend ibm_fez --output runs/current-calibration
 python experiment.py simulate --snapshot runs/current-calibration.json --out runs/current
 ~~~
 
-Submission is gated separately by explicit approval and a free-allocation, calibration and receipt check. The authorized command and the conditions for using it are in the [hardware gate](HARDWARE_GATE.md). The local simulation and calibration-capture commands use zero QPU execution time. [IBM client-side Sampler](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/executor-sampler-sampler)
+Submission is gated separately by explicit approval and a free-allocation, calibration and receipt check. The approved run used 2,048 shots per setting. The local simulation and calibration-capture commands use zero QPU execution time. [Hardware gate](HARDWARE_GATE.md) · [IBM client-side Sampler](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/executor-sampler-sampler)
+
+Reproduce the analysis of the recorded IBM counts offline.
+
+~~~shell
+python hardware_analysis.py receipts/hardware_q2
+~~~
 
 ## Audit baseline
 

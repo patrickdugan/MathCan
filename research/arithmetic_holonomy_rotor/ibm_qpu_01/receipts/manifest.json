@@ -10,7 +10,7 @@
   ],
   "calibration_timestamp": "2026-11-23T13:57:23+08:00",
   "calibration_id": null,
-  "calibration_sha256": "11efd3de1cadafe88721a9de8a84055634b2d5da6882a4ebca7cb9150cbc99b3",
+  "calibration_sha256": "bf0f3a306305c8ec7e4bbf7e1c6a5528d42ced19b0fb4a85e41dc43fc842fb8c",
   "qpy_sha256": "a0c68c6905894fd44ffd8930dc922196bc734b1193b45c591c2607430e948a45",
   "selected_synthesis": "exact",
   "synthesis_bakeoff": {

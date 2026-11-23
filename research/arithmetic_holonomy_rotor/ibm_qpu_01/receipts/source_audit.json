@@ -20,6 +20,7 @@
     "logical_cpus": 20,
     "memory_gib": 47.1
   },
+  "scope": "Original software audit and calibration planning snapshot before the Q2 run was approved.",
   "hardware_submission_authorized": false,
   "qpu_job_submitted": false
 }

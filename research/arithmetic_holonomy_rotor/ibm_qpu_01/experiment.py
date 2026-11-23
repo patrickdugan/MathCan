@@ -55,12 +55,16 @@ def load(path):
 
 def write(path, value):
     temp = path.with_suffix(path.suffix + ".tmp")
-    temp.write_text(json.dumps(value, indent=2, allow_nan=False)+"\n", encoding="utf-8")
+    temp.write_text(json.dumps(value, indent=2, allow_nan=False)+"\n", encoding="utf-8", newline="\n")
     temp.replace(path)
 
 
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def calibration_digest(path):
+    return hashlib.sha256(path.read_text(encoding="utf-8").encode("utf-8")).hexdigest()
 
 
 def budget(rows, shots):
@@ -122,7 +126,7 @@ def simulate(snapshot_path, out):
         "protocol": PROTOCOL, "prepared_utc": now(), "evidence": "simulation only",
         "target_type": snapshot["target_type"], "backend": snapshot["backend"],
         "physical_pair_xy": snapshot["physical_pair_xy"], "calibration_timestamp": snapshot["calibration_timestamp"],
-        "calibration_id": snapshot["calibration_id"], "calibration_sha256": digest(input_snapshot),
+        "calibration_id": snapshot["calibration_id"], "calibration_sha256": calibration_digest(input_snapshot),
         "qpy_sha256": digest(path), "selected_synthesis": chosen, "synthesis_bakeoff": costs,
         "case_order": [case.id for case in cases], "cases": [case.record() for case in cases],
         "primary": {"signal": f"signal_t{PRIMARY_TIME:.1f}", "reference": f"reference_t{PRIMARY_TIME:.1f}",
@@ -195,7 +199,8 @@ def submission(service, out, shots, *, authorized=False):
     if manifest["target_type"] != "live_snapshot" or shots not in SHOT_LEVELS:
         raise Hold("a live calibration and a prespecified shot level are required")
     snapshot, qpy_path = out / "calibration.json", out / "q2_isa.qpy"
-    if digest(snapshot) != manifest["calibration_sha256"] or digest(qpy_path) != manifest["qpy_sha256"]:
+    if (manifest["calibration_sha256"] not in (calibration_digest(snapshot), digest(snapshot))
+            or digest(qpy_path) != manifest["qpy_sha256"]):
         raise Hold("simulation or ISA receipt integrity check failed")
     estimate = manifest["budget"][str(shots)]
     account = free_balance(service)

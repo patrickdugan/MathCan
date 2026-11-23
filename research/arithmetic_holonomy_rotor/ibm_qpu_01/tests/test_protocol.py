@@ -14,7 +14,7 @@ from exact_oracle import (
     phase_scan,
     wrap,
 )
-from experiment import Hold, load, submission
+from experiment import Hold, calibration_digest, digest, load, submission
 from hamiltonian import (
     PLANTED_PHASE,
     PRIMARY_TIME,
@@ -22,6 +22,7 @@ from hamiltonian import (
     pilot,
     square_paulis,
 )
+from hardware_analysis import summarize
 from noise_benchmark import benchmark_noise
 from phase_estimator import acceptance, estimate, fisher, rectangle, shot_benchmark
 from q3_curvature import BIANCHI, addresses, chords, incidence, project, run_q3
@@ -121,3 +122,37 @@ def test_readout_order_and_explicit_hardware_gate(tmp_path):
     assert abs(probabilities["readout_off"][0]) < 1e-12
     with pytest.raises(Hold, match="separate approval"):
         submission(None, tmp_path, 2048, authorized=False)
+
+
+def test_hardware_analysis_keeps_phases_and_tree_separate():
+    cases = pilot()
+    counts = {}
+    exact = {}
+    for case in cases:
+        name = f"{case.arm}_t{case.time:.1f}"
+        probabilities = phase_scan(
+            case.time, case.theta + case.reference_offset, energies=case.energy, mask=case.mask,
+        )
+        exact[name] = probabilities
+        zeros = round(2048*probabilities[case.quadrant])
+        counts[case.id] = {"00": zeros, "01": 2048-zeros}
+    manifest = {
+        "case_order": [case.id for case in cases], "cases": [case.record() for case in cases],
+        "primary": {"signal": "signal_t1.6"},
+    }
+    hardware = {"counts": counts, "job_id": "local-test", "shots_per_circuit": 2048}
+    rows = summarize(manifest, {"exact": exact, "calibrated_aer": exact}, hardware)
+    groups = rows["four_phase_groups"]
+    assert rows["primary_acceptance"]["passes"] and rows["tree_rectangle_contains_origin"]
+    assert groups["signal_t1.6"]["reference_calibrated_phase"]["relative_phase_rad"] > 0
+    assert groups["reversed_t1.6"]["reference_calibrated_phase"]["relative_phase_rad"] < 0
+    assert "reference_calibrated_phase" not in groups["matched_detuning_t1.6"]
+
+
+def test_calibration_digest_survives_git_line_ending_conversion(tmp_path):
+    snapshot = tmp_path / "calibration.json"
+    snapshot.write_bytes(b'{\r\n  "sample": 1\r\n}\r\n')
+    normalized = calibration_digest(snapshot)
+    assert normalized != digest(snapshot)
+    snapshot.write_bytes(snapshot.read_bytes().replace(b"\r\n", b"\n"))
+    assert calibration_digest(snapshot) == digest(snapshot) == normalized

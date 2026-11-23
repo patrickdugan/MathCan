@@ -1,8 +1,8 @@
 # AHR-QPU-01 · Hardware gate
 
-**HOLD pending explicit approval.** The Q2 pilot is technically ready against the recorded calibration and verified Open Plan balance. This draft contains simulations and a read-only device snapshot. It contains no AHR-QPU-01 hardware observations.
+**The approved Q2 pilot completed.** IBM job dc1vksqnj2vs73dfu0n0 executed 36 circuits at 2,048 shots per setting. It used 21 Open Plan seconds and left 515 seconds in the account. A further QPU job requires its own explicit authorization and a fresh resource check. Q3 remains simulation-only. [Q2 hardware results](Q2_HARDWARE_RESULTS.md)
 
-## Verified preparation
+## Original planning snapshot
 
 The read-only IBM check on 23 November 2026 at 14:21 Singapore time returned **536 free QPU seconds**. It found an operational **ibm_fez** backend and an adjacent CZ pair with **$x\mapsto9$ and $y\mapsto10$**. The recorded backend calibration was from 13:57:23 Singapore time. The saved Qiskit account file was empty. Authentication succeeded through the SDK token-file path with an existing IBM Cloud credential. The receipts contain no account identifier or credential value.
 
@@ -13,7 +13,7 @@ The read-only IBM check on 23 November 2026 at 14:21 Singapore time returned **5
 
 The resource model sums calibrated native instruction durations, adds 500 μs per shot for reset and delays, and adds a 60 s job-level reserve. It estimates usage rather than queue time. The Q2 circuit manifest, compact target and physical QPY share a checked order and calibration. The code uses Qiskit 2.6.2, Aer 0.18.4, and the client-side IBM Runtime 0.52.1 SamplerV2. [IBM work usage](https://quantum.cloud.ibm.com/docs/en/ibm-quantum-compute/estimate-job-run-time)
 
-After explicit approval, refresh the calibration and rerun simulation if the live snapshot has changed. Submit only to an existing verified Open Plan instance and start at 2,048 shots per setting. The submit command rechecks the free balance, calibration and file digests. It writes a unique job checkpoint before requesting execution and caps QPU time at the reserved amount. If a submission outcome is ambiguous, use the checkpoint tag through the collect command instead of resubmitting.
+After explicit approval for a new run, refresh the calibration and rerun simulation if the live snapshot has changed. Submit only to an existing verified Open Plan instance. The submit command rechecks the free balance, calibration and file digests. It writes a unique job checkpoint before requesting execution and caps QPU time at the reserved amount. If a submission outcome is ambiguous, use the checkpoint tag through the collect command instead of resubmitting.
 
 ~~~shell
 python experiment.py submit --out runs/current --shots 2048 --confirm-free-qpu --token-file PATH_TO_KEY

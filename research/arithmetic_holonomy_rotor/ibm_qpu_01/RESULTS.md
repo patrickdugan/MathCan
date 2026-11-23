@@ -1,6 +1,6 @@
 # AHR-QPU-01 · Numerical audit and pilot predictions
 
-All results in this report come from finite-dimensional calculation or local simulation. IBM authentication and the read-only calibration capture supplied the two-qubit noise model and resource snapshot. The hardware gate remains on hold pending explicit authorization. [Hardware gate](HARDWARE_GATE.md)
+All results in this report come from finite-dimensional calculation or local simulation. IBM authentication and the original read-only calibration capture supplied the two-qubit noise model and resource snapshot here. The approved pilot was separately prepared against a fresher calibration. [Q2 hardware results](Q2_HARDWARE_RESULTS.md) · [Hardware gate](HARDWARE_GATE.md)
 
 ## Mathematics audit
 
