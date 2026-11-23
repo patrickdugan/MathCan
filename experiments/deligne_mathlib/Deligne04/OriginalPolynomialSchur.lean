@@ -108,7 +108,12 @@ theorem aeval_fixedPolynomialPivotMinor
         (fun b => Deligne22A.sectionGradient B a c u (cc b))
         (Deligne22A.sectionGradient B a c u j)).det := by
   unfold fixedPolynomialPivotMinor
-  rw [det_borderedPivot_map (MvPolynomial.aeval u).toRingHom]
+  change (MvPolynomial.aeval u).toRingHom
+    ((borderedPivot (fixedPolynomialPivotH f rr cc)
+      (fixedPolynomialPivotB f rr j)
+      (fixedPolynomialPivotC B a c cc)
+      (fixedPolynomialPivotV B a c j)).det) = _
+  rw [det_borderedPivot_map]
   rfl
 
 /-- The polynomial numerator also specializes exactly, through
@@ -130,7 +135,12 @@ theorem aeval_fixedPolynomialPivotNumerator
         (fun b => Deligne22A.sectionGradient B a c u (cc b))
         (Deligne22A.sectionGradient B a c u j) := by
   unfold fixedPolynomialPivotNumerator
-  rw [pivotNumerator_map (MvPolynomial.aeval u).toRingHom]
+  change (MvPolynomial.aeval u).toRingHom
+    (pivotNumerator (fixedPolynomialPivotH f rr cc)
+      (fixedPolynomialPivotB f rr j)
+      (fixedPolynomialPivotC B a c cc)
+      (fixedPolynomialPivotV B a c j)) = _
+  rw [pivotNumerator_map]
   rfl
 
 /-- On any nonzero original Jacobian pivot over a geometric field,
