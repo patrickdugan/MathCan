@@ -1,0 +1,62 @@
+name: DEL-21K identity field normalization
+
+on:
+  push:
+    branches: [proof/deligne21k-identity-normalization-20261123]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/GeometricIdentityCoherence.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL21K_*'
+      - '.github/workflows/deligne21k-identity.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne21k-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check identity map normalization
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04.GeometricIdentityCoherence
+          lake env lean Deligne04/GeometricIdentityCoherence.lean | tee deligne21k-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne21k-axioms.txt; then
+            echo 'DEL-21K unexpected axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Replay original-ideal extension and tower arithmetic
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne21j_three_field_towers tests.test_deligne21h_field_towers tests.test_deligne21g_geometric_fiber tests.test_deligne21f_actual_fiber
