@@ -3,7 +3,7 @@
 **Date:** 2026-11-24 (Asia/Manila).  
 **Registration:** [RH26E04A_REGISTRATION.md](RH26E04A_REGISTRATION.md), committed at `fb84c0dd966012d06f5125d33f1d49c385a4ac69` before implementation and CI.  
 **Implementation:** [RH26E04AOverlapCapacity.lean](lean/RH26E04AOverlapCapacity.lean) at `5810fb9346ced9d5101c76150e895300d575d456`; source plus workflow at `d97efea02711c4f3444de9b18716731abf77213a`.  
-**Disposition:** IMPLEMENTED, **FIRST KERNEL RUN FAILED; REPAIR IN PROGRESS**. All ten preregistered theorem names have matching print-axioms commands. No admission tokens or native_decide found by source inspection. Compiler acceptance is not yet confirmed.
+**Disposition:** **KERNEL PASS (10/10)**. All frozen theorem statements preserved; initial failure and proof-only repair retained below.
 
 ## 1. Source connection
 
@@ -56,3 +56,24 @@ Eight registered declarations printed only `propext`, `Classical.choice`, `Quot.
 ## Proof-only repair
 
 Commit `90105836caabc86b1711dfcfee1eb3e661f36b21` explicitly proves the empty indexed supremum is bottom and rewrites the zero-dimensional intersection in the dimension identity. All ten theorem statements match the original source. Repaired blob `4d5ebf57ab72055dbc81d1e7b39b1b0c6c2e488d`. Fresh [CPU run 45285673626](https://github.com/patrickdugan/MathCan/actions/runs/45285673626) is queued. Compiler exit and ten-name audit remain pending; first failure retained above.
+
+## Final kernel receipt: PASS
+
+[Run 45285673626](https://github.com/patrickdugan/MathCan/actions/runs/45285673626), job `138081245218`, completed success on `90105836caabc86b1711dfcfee1eb3e661f36b21`. [Artifact 14871293152](https://github.com/patrickdugan/MathCan/actions/runs/45285673626/artifacts/14871293152). Lean 4.35.0 compiler `eb6cafb7290e8bd5f2937522d8d804f58f02bafc`; Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`; source SHA-256 `409f0757331511bb44eb62577219791d5b85f2141fa7dfcc899de98029570465`. Isolated Lean invocation elapsed 7.35 s, user CPU 4.82 s, system CPU 3.13 s, maximum RSS 6,969,532 kB. Compiler exit and exact ten-name axiom audit both succeeded. Earlier pending language is historical.
+
+Literal compiler receipt:
+
+```text
+'RH26E04A.occurrence_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04A.weighted_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04A.overlap_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04A.overlap_zero_of_disjoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04A.budget_with_overlap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04A.independent_union_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04A.subspace_capacity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04A.rank_nullity_defect' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04A.duplicate_label_fixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04A.dependent_lines_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+The independent finite incidence identity, overlap-corrected rank budget, rank-nullity theorem and two exact adversarial controls now have kernel proofs. The source's analytic/automorphic hypotheses and the actual theta-space realization remain outside this module. The two defects are verified separately; a joint accounting theorem still requires a certified direct-sum map and domain dimension.
