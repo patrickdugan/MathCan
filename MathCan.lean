@@ -156,3 +156,4 @@ import MathCan.RHFiniteUnitObstructions
 import MathCan.RHNormOneCollapse
 import MathCan.RHSplitTorusCharacter
 import MathCan.RHCyclicExtension
+import MathCan.RHLocalRayUnits
