@@ -131,7 +131,7 @@ theorem universalAugmentedMatrix_specialize
       (MvPolynomial.map (parameterEval a c)) =
       Deligne22A.polynomialAugmentedSectionMatrix f B a c := by
   classical
-  ext t i
+  ext t i : 1
   cases t with
   | none =>
       change MvPolynomial.map (parameterEval a c)
@@ -175,12 +175,13 @@ theorem universalMinor_specialize
     ((Deligne22A.polynomialAugmentedSectionMatrix f B a c).submatrix rr cc).det
   rw [RingHom.map_det]
   congr 1
-  ext i j
+  ext i j : 1
   have h := universalAugmentedMatrix_specialize f B a c
-  exact congrArg
-    (fun A : Matrix (Option (Deligne16.EqCoord k r))
-      (Deligne16.Coord k s) (MvPolynomial (Deligne16.Coord k s) K) =>
-      A (rr i) (cc j)) h
+  simpa only [Matrix.map_apply, Matrix.submatrix_apply] using
+    congrArg
+      (fun A : Matrix (Option (Deligne16.EqCoord k r))
+        (Deligne16.Coord k s) (MvPolynomial (Deligne16.Coord k s) K) =>
+        A (rr i) (cc j)) h
 
 /-- The genuine universal determinantal ideal in K[a_i,c][z_i],
 before any section-parameter specialization or Zariski projection. -/
