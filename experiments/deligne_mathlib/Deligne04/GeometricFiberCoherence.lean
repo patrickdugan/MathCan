@@ -105,4 +105,73 @@ theorem geometricJacobianTangentTowerEquiv_one_tmul
 
 #print axioms geometricJacobianTangentTowerEquiv_one_tmul
 
+/-- The original DEL-16 K-valued scheme point is a geometric point
+after specializing the extension field to K itself. -/
+theorem onGeometricProduct_self
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → K)
+    (hu : Deligne16.onEmbeddedProduct f u) :
+    Deligne21G.onGeometricProduct f u := by
+  intro t
+  simpa only [MvPolynomial.aeval_eq_eval] using hu t
+
+/-- The two point constructions for the full DEL-16 quotient algebra
+are the same algebra map at a base-field point. -/
+theorem productGeometricPoint_self
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → K)
+    (hu : Deligne16.onEmbeddedProduct f u) :
+    Deligne21G.productGeometricPoint f u (onGeometricProduct_self f u hu) =
+      Deligne21F.productPoint f u hu := by
+  apply AlgHom.ext
+  intro q
+  obtain ⟨P, rfl⟩ := Ideal.Quotient.mk_surjective q
+  rw [Deligne21G.productGeometricPoint_mk, Deligne21F.productPoint_mk]
+  rfl
+
+/-- The two Kähler fiber equivalences agree on each original quotient
+coordinate class, using the full scheme ideal and its original rows. -/
+theorem geometricKahlerSelfEquiv_mk
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u v : Deligne16.Coord k s → K)
+    (hu : Deligne16.onEmbeddedProduct f u) :
+    letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) K :=
+      (Deligne21F.productPoint f u hu).toRingHom.toAlgebra
+    ((Deligne21H.geometricCotangentSelfEquiv f u).trans
+      (Deligne21F.productKahlerFiberEquiv f u hu))
+        (Submodule.Quotient.mk v) =
+      (Deligne21G.geometricKahlerFiberEquiv f u
+        (onGeometricProduct_self f u hu))
+        (Submodule.Quotient.mk v) := by
+  rfl
+
+/-- Over the base field, DEL-21F's and DEL-21G's original-ideal
+quotient-to-Kähler fiber isomorphisms are the same entire linear map. -/
+theorem geometricKahlerSelfEquiv
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → K)
+    (hu : Deligne16.onEmbeddedProduct f u) :
+    letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) K :=
+      (Deligne21F.productPoint f u hu).toRingHom.toAlgebra
+    (Deligne21H.geometricCotangentSelfEquiv f u).trans
+      (Deligne21F.productKahlerFiberEquiv f u hu) =
+    Deligne21G.geometricKahlerFiberEquiv f u
+      (onGeometricProduct_self f u hu) := by
+  letI : Algebra (Deligne21E.productCoordinateRing (k := k) f) K :=
+    (Deligne21F.productPoint f u hu).toRingHom.toAlgebra
+  apply LinearEquiv.ext
+  intro q
+  obtain ⟨v, rfl⟩ :=
+    Submodule.Quotient.mk_surjective (Deligne21G.geometricConormalRelations f u) q
+  exact geometricKahlerSelfEquiv_mk f u v hu
+
+#print axioms onGeometricProduct_self
+#print axioms productGeometricPoint_self
+#print axioms geometricKahlerSelfEquiv_mk
+#print axioms geometricKahlerSelfEquiv
+
 end Deligne21I
