@@ -1,0 +1,47 @@
+name: AHR-QPU-04B offline memory lifetime and QPY audit
+on:
+  pull_request:
+    paths:
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_04b/**'
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_04/receipts/**'
+      - '.github/workflows/ahr-qpu-04b.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_04b/**'
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_04/receipts/**'
+      - '.github/workflows/ahr-qpu-04b.yml'
+permissions:
+  contents: read
+jobs:
+  count-ledger-and-models:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Offline replay, phase-profile fits and exact channel algebra
+        run: python research/arithmetic_holonomy_rotor/ibm_qpu_04b/verify.py --output ahr04b.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ahr04b-offline-models
+          path: ahr04b.json
+  qpy-prefix-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: research/arithmetic_holonomy_rotor/ibm_qpu_04/requirements.txt
+      - run: python -m pip install -r research/arithmetic_holonomy_rotor/ibm_qpu_04/requirements.txt
+      - name: Verify actual dwell-site mapping using archived compiled QPY
+        run: python research/arithmetic_holonomy_rotor/ibm_qpu_04b/qpy_audit.py --output ahr04b-qpy.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ahr04b-qpy-prefix
+          path: ahr04b-qpy.json
