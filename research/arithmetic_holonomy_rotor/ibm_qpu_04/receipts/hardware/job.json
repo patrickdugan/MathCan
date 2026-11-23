@@ -1,0 +1,23 @@
+{
+  "tag": "ahr-qpu-04-99ef1d8f-e32cdc5ca23b",
+  "job_id": "dc2b0g5s2omc738bn0d0",
+  "submitted_request_utc": "2026-11-23T21:29:35.406938+00:00",
+  "approved_manifest_sha256": "99ef1d8f254cf58f052017146eb8d71d74302ae7b69c7edf9a691dedc1c381c0",
+  "preflight_sha256": "52e771c7f3bc8bb3ac3eb4be6001d983149e563281c2766bbae3848f5029b2fc",
+  "preflight_calibration": "2026-11-24T05:03:37+08:00",
+  "free_balance": {
+    "plan": "open",
+    "checked_utc": "2026-11-23T21:29:35.364858+00:00",
+    "remaining_seconds": 461
+  },
+  "backend": "ibm_kingston",
+  "physical_qubits": [
+    1,
+    16,
+    2,
+    3
+  ],
+  "cap_seconds": 112,
+  "shots_per_circuit": 2048,
+  "circuits": 76
+}
