@@ -3,7 +3,7 @@
 **Date:** 2026-11-24 (Asia/Manila).  
 **Registration:** [RH26E04A_REGISTRATION.md](RH26E04A_REGISTRATION.md), committed at `fb84c0dd966012d06f5125d33f1d49c385a4ac69` before implementation and CI.  
 **Implementation:** [RH26E04AOverlapCapacity.lean](lean/RH26E04AOverlapCapacity.lean) at `5810fb9346ced9d5101c76150e895300d575d456`; source plus workflow at `d97efea02711c4f3444de9b18716731abf77213a`.  
-**Disposition:** IMPLEMENTED, **KERNEL RESULT PENDING**. All ten preregistered theorem names have matching print-axioms commands. No admission tokens or native_decide found by source inspection. Compiler acceptance is not yet confirmed.
+**Disposition:** IMPLEMENTED, **FIRST KERNEL RUN FAILED; REPAIR IN PROGRESS**. All ten preregistered theorem names have matching print-axioms commands. No admission tokens or native_decide found by source inspection. Compiler acceptance is not yet confirmed.
 
 ## 1. Source connection
 
@@ -46,3 +46,9 @@ Next E04B: block-scalar transport (exact left-inverse injection, then norm pertu
 - Isolated Lean 4.35.0 / Mathlib v4.35.0 CPU job, 25-minute timeout. No full Deligne or upstream build, GPU/QPU, paid compute or new upstream source reads.
 
 On resumption inspect this exact run first. Preserve any failed compiler receipts and repair only proof bodies or necessary declaration modifiers without weakening the registered mathematical contracts. Close only after successful compiler and complete axiom gate.
+
+## First-run failure receipt
+
+[Run 45285266342](https://github.com/patrickdugan/MathCan/actions/runs/45285266342), job `138079841456`, completed failure on `d97efea02711c4f3444de9b18716731abf77213a`. Source SHA-256 `97383faa2b867d22e28a1dd060cb61ab7bd1cf410a891b73c8c26b0ee8f7dcdc`. [Failed audit artifact](https://github.com/patrickdugan/MathCan/actions/runs/45285266342/artifacts/14870314640). Checkout, toolchain, Mathlib resolution, and artifact upload succeeded.
+
+Eight registered declarations printed only `propext`, `Classical.choice`, `Quot.sound`, including both exact counterexample fixtures, weighted incidence counting, overlap identity, disjointness, combinatorial capacity and rank-nullity. Two errors in `independent_union_rank`: line 125, the empty finite supremum did not simplify to the bottom subspace; line 134, the simplifier did not eliminate the zero-dimensional intersection in the dimension addition identity. The declarations `independent_union_rank` and dependent `subspace_capacity` had sorryAx from elaboration recovery. The complete registered gate failed. Repair only the dimension proof, retain every mathematical contract, and rerun the original audit.
