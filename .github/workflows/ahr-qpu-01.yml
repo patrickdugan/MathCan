@@ -1,0 +1,55 @@
+name: AHR-QPU-01 simulator and Qiskit circuit checks
+
+on:
+  pull_request:
+    paths:
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_01/**'
+      - '.github/workflows/ahr-qpu-01.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_01/**'
+      - '.github/workflows/ahr-qpu-01.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  offline-oracle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Numerical dependencies
+        working-directory: research/arithmetic_holonomy_rotor/ibm_qpu_01
+        run: python -m pip install -r requirements.txt
+      - name: Exact oracle, Bianchi, shot and phase tests
+        working-directory: research/arithmetic_holonomy_rotor/ibm_qpu_01
+        run: |
+          python -m pytest -q tests/test_oracle.py tests/test_q3.py
+          python run_benchmarks.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ahr-qpu-01-offline-validation
+          path: research/arithmetic_holonomy_rotor/ibm_qpu_01/receipts/offline_validation.json
+          retention-days: 30
+
+  qiskit-circuit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Qiskit and test dependencies
+        working-directory: research/arithmetic_holonomy_rotor/ibm_qpu_01
+        run: python -m pip install -r requirements-qiskit.txt
+      - name: Two-qubit statevector and ISA basis tests
+        working-directory: research/arithmetic_holonomy_rotor/ibm_qpu_01
+        run: |
+          python -m pytest -q tests/test_optional_qiskit.py
+          python experiment.py --mode compile_only
