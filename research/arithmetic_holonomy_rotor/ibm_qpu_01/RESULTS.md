@@ -1,5 +1,7 @@
 # AHR-QPU-01 numerical results (2026-11-23)
 
+**Hardware validation completed later on 2026-11-23.** The approved Q2 experiment on `ibm_fez` passed its prespecified t=1.6 signed-holonomy test, with raw counts, calibration, QPY circuits and analysis archived at [Q2_HARDWARE_RESULTS.md](Q2_HARDWARE_RESULTS.md). The numerical benchmarks below describe the prior simulator-only stage. Q3 remains simulation-only.
+
 Recompute `receipts/offline_validation.json` with `python run_benchmarks.py`. The receipt is deterministic with seed 20261123, 1,000 Bernoulli Monte Carlo replicates and **8,192 total shots** across four phase settings.
 
 ## Q2 four-phase experiment, ideal dense matrix
