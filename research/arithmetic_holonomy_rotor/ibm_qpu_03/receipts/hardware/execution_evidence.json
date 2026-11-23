@@ -1,0 +1,11 @@
+{
+  "job_id": "dc25sdmq4uuc73a4pbl0",
+  "chunks": [],
+  "checked_utc": "2026-11-23T15:44:23.922113+00:00",
+  "calibration_preflight": "2026-11-23T23:20:48+08:00",
+  "calibration_at_job_start": "2026-11-23T23:20:48+08:00",
+  "calibration_at_last_chunk": null,
+  "job_completion_utc": "2026-11-23T15:40:38.080504+00:00",
+  "calibration_at_completion": "2026-11-23T23:28:44+08:00",
+  "pub_metadata_matches_manifest": true
+}

@@ -1,0 +1,2119 @@
+{
+  "job_id": "dc25sdmq4uuc73a4pbl0",
+  "shots": 196608,
+  "pub_case_ids_match": true,
+  "execution_calibration_timestamps_match_preflight": false,
+  "selected_numeric_boundary_calibrations_equal": true,
+  "likelihood": {
+    "fit_converged": true,
+    "estimated_faces_deg": [
+      -21.09116678459227,
+      -86.60554341465756,
+      24.084503197345196,
+      -14.513777794064978,
+      -9.42194878792926,
+      17.494146850725848
+    ],
+    "expected_faces_deg": [
+      -18.334649444186333,
+      -84.79775367936183,
+      20.62648062470963,
+      -12.032113697747286,
+      -16.042818263663065,
+      17.761691649055525
+    ],
+    "face_errors_deg": [
+      -2.756517340405938,
+      -1.8077897352957195,
+      3.4580225726355676,
+      -2.481664096317692,
+      6.620869475733803,
+      -0.26754479832967465
+    ],
+    "face_local_95_halfwidth_deg": [
+      2.6420882005732516,
+      1.8923970720175627,
+      2.9132696041793653,
+      3.4643278288691257,
+      4.393445601765014,
+      3.3314046668857027
+    ],
+    "estimated_chords_deg": [
+      21.09116678459227,
+      -24.084503197345196,
+      9.42194878792926,
+      -17.494146850725848,
+      35.60494457865725
+    ],
+    "expected_chords_deg": [
+      18.334649444186343,
+      -20.626480624709636,
+      16.04281826366305,
+      -17.76169164905552,
+      30.36676314193363
+    ],
+    "chord_local_95_halfwidth_deg": [
+      2.6420882005732516,
+      2.9132696041793653,
+      4.393445601765014,
+      3.3314046668857027,
+      3.761481786506604
+    ],
+    "expected_field_in_local_joint_95_region": false,
+    "expected_field_local_joint_chi_square": 29.754111653857215,
+    "wrapped_bianchi_closure_deg": 0.0,
+    "closure_enforced_by_fit": true
+  },
+  "primary_return_error": {
+    "exact": {
+      "return_rmse": 0.017071722641224953,
+      "max_abs_return_error": 0.047251406320094946
+    },
+    "compiled": {
+      "return_rmse": 0.017071722641223645,
+      "max_abs_return_error": 0.047251406320094946
+    },
+    "aer": {
+      "return_rmse": 0.01298437804791982,
+      "max_abs_return_error": 0.02966966903345844
+    }
+  },
+  "gauge_copy_minus_signal_return": [
+    0.016845703125,
+    -0.015869140625,
+    -0.00244140625,
+    0.01171875
+  ],
+  "quadratures": {
+    "signal/f0": {
+      "observed_re_im": [
+        0.0007324218749999974,
+        -0.0067138671875000035
+      ],
+      "exact_re_im": [
+        0.009002951870654636,
+        -0.0023387487925526076
+      ],
+      "aer_re_im": [
+        0.009251849340414656,
+        -0.0008445870333208347
+      ],
+      "simultaneous_95_counting_rectangle": [
+        [
+          -0.008216484399560773,
+          0.009679100469363818
+        ],
+        [
+          -0.01392185828750368,
+          0.0005145443143091122
+        ]
+      ],
+      "counting_rectangle_contains_origin": true
+    },
+    "zero/f0": {
+      "observed_re_im": [
+        0.0645751953125,
+        -0.0014648437500000035
+      ],
+      "exact_re_im": [
+        0.07309979541810599,
+        7.806255641895632e-17
+      ],
+      "aer_re_im": [
+        0.06874352014133422,
+        0.0019286411156492662
+      ],
+      "simultaneous_95_counting_rectangle": [
+        [
+          0.05383752640222485,
+          0.07511645708541012
+        ],
+        [
+          -0.008725529144437567,
+          0.00580029700483148
+        ]
+      ],
+      "counting_rectangle_contains_origin": false
+    },
+    "reverse/f0": {
+      "observed_re_im": [
+        0.003295898437499997,
+        0.0021972656249999965
+      ],
+      "exact_re_im": [
+        0.009002951870654629,
+        0.0023387487925527264
+      ],
+      "aer_re_im": [
+        0.008117922397293888,
+        0.003968933633530137
+      ],
+      "simultaneous_95_counting_rectangle": [
+        [
+          -0.00526398571728464,
+          0.011845758031398333
+        ],
+        [
+          -0.0043365883832595185,
+          0.00872443659266865
+        ]
+      ],
+      "counting_rectangle_contains_origin": true
+    },
+    "tree/f0": {
+      "observed_re_im": [
+        0.003295898437499982,
+        -0.005981445312500014
+      ],
+      "exact_re_im": [
+        -7.155537717110514e-18,
+        -3.7470027081099033e-16
+      ],
+      "aer_re_im": [
+        0.0001789671281929658,
+        -0.0008537452091224168
+      ],
+      "simultaneous_95_counting_rectangle": [
+        [
+          -0.012819139191389398,
+          0.01940091150550309
+        ],
+        [
+          -0.021711028498963725,
+          0.00976633059557222
+        ]
+      ],
+      "counting_rectangle_contains_origin": true
+    },
+    "gauge_copy/f0": {
+      "observed_re_im": [
+        0.010375976562499997,
+        0.0070800781249999965
+      ],
+      "exact_re_im": [
+        0.009002951870654982,
+        -0.002338748792552983
+      ],
+      "aer_re_im": [
+        0.009712333061780985,
+        -0.0010081443631135036
+      ],
+      "simultaneous_95_counting_rectangle": [
+        [
+          0.000925415996825326,
+          0.019794978325384457
+        ],
+        [
+          6.368852706963718e-05,
+          0.014074933481026454
+        ]
+      ],
+      "counting_rectangle_contains_origin": false
+    },
+    "detuned/f0": {
+      "observed_re_im": [
+        0.012939453124999997,
+        0.0009765624999999965
+      ],
+      "exact_re_im": [
+        0.012714990156418563,
+        -0.0037494150874942756
+      ],
+      "aer_re_im": [
+        0.012945839960762541,
+        -0.0016207738420723206
+      ],
+      "simultaneous_95_counting_rectangle": [
+        [
+          0.003637737319759901,
+          0.022201813246760536
+        ],
+        [
+          -0.005795404621769494,
+          0.007745559381506884
+        ]
+      ],
+      "counting_rectangle_contains_origin": false
+    },
+    "balanced_excitation/f0": {
+      "observed_re_im": [
+        0.04772949218749999,
+        0.0185546875
+      ],
+      "exact_re_im": [
+        0.054808053081736585,
+        0.0207036515006334
+      ],
+      "aer_re_im": [
+        0.05152060947976239,
+        0.021224061796531885
+      ],
+      "simultaneous_95_counting_rectangle": [
+        [
+          0.03838767822788595,
+          0.05692613565427904
+        ],
+        [
+          0.010183604773512961,
+          0.026869335661497476
+        ]
+      ],
+      "counting_rectangle_contains_origin": false
+    },
+    "signal/f1": {
+      "observed_re_im": [
+        0.03771972656249997,
+        0.1197509765625
+      ],
+      "exact_re_im": [
+        0.024776919274414118,
+        0.1500341628948169
+      ],
+      "aer_re_im": [
+        0.02294604047695139,
+        0.13663577483286385
+      ],
+      "simultaneous_95_counting_rectangle": [
+        [
+          0.022810042151852117,
+          0.05251468544300461
+        ],
+        [
+          0.10464375977926106,
+          0.1344939676335365
+        ]
+      ],
+      "counting_rectangle_contains_origin": false
+    },
+    "signal/f2": {
+      "observed_re_im": [
+        0.062255859374999986,
+        0.029296874999999993
+      ],
+      "exact_re_im": [
+        0.07351607671759523,
+        0.028943842653232625
+      ],
+      "aer_re_im": [
+        0.06762930294066154,
+        0.027074466163352726
+      ],
+      "simultaneous_95_counting_rectangle": [
+        [
+          0.048622877840325845,
+          0.07569948809293281
+        ],
+        [
+          0.016360640343116996,
+          0.04214400244900473
+        ]
+      ],
+      "counting_rectangle_contains_origin": false
+    },
+    "signal/f3": {
+      "observed_re_im": [
+        0.05126953124999999,
+        0.021972656249999997
+      ],
+      "exact_re_im": [
+        0.05049516663582142,
+        0.02597400089289513
+      ],
+      "aer_re_im": [
+        0.047384711335050185,
+        0.02285032994326159
+      ],
+      "simultaneous_95_counting_rectangle": [
+        [
+          0.04079134279676413,
+          0.061591782089448904
+        ],
+        [
+          0.013155909385852375,
+          0.030722572708238933
+        ]
+      ],
+      "counting_rectangle_contains_origin": false
+    },
+    "signal/f4": {
+      "observed_re_im": [
+        0.05529785156249999,
+        -0.0380859375
+      ],
+      "exact_re_im": [
+        0.04031782046142519,
+        -0.051145447345375315
+      ],
+      "aer_re_im": [
+        0.03673045743147335,
+        -0.04584066626502755
+      ],
+      "simultaneous_95_counting_rectangle": [
+        [
+          0.041686864370516344,
+          0.06874064889961341
+        ],
+        [
+          -0.0514654618294416,
+          -0.02459057380031665
+        ]
+      ],
+      "counting_rectangle_contains_origin": false
+    },
+    "signal/f5": {
+      "observed_re_im": [
+        -0.038452148437500014,
+        0.03833007812499999
+      ],
+      "exact_re_im": [
+        -0.06496990592878528,
+        0.03520470199931283
+      ],
+      "aer_re_im": [
+        -0.0602633346656229,
+        0.03370037051958249
+      ],
+      "simultaneous_95_counting_rectangle": [
+        [
+          -0.05136026899666801,
+          -0.025427074667991753
+        ],
+        [
+          0.025137457875757246,
+          0.05140611644393535
+        ]
+      ],
+      "counting_rectangle_contains_origin": false
+    }
+  },
+  "cases": [
+    {
+      "case_id": "signal/f0_x2_e0_t2.000000_q0of4",
+      "exact": 0.05997112274745204,
+      "compiled": 0.05997112274745344,
+      "aer": 0.06696887083601197,
+      "depth": 122,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 0.0,
+        "time": 2.0,
+        "offset_index": 0,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 230,
+      "observed": 0.05615234375,
+      "wilson_95": [
+        0.049509036332620285,
+        0.0636274016198162
+      ]
+    },
+    {
+      "case_id": "zero/f0_x2_e0_t2.000000_q0of4",
+      "exact": 0.15962718347076676,
+      "compiled": 0.15962718347076366,
+      "aer": 0.16047636668847942,
+      "depth": 76,
+      "native_two_qubit_gates": {
+        "cz": 19
+      },
+      "two_qubit_gates": 19,
+      "critical_path_s": 4.464e-06,
+      "classical_bit_to_physical": [
+        67,
+        68,
+        69
+      ],
+      "role": "zero",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 0.0,
+        "time": 2.0,
+        "offset_index": 0,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 661,
+      "observed": 0.161376953125,
+      "wilson_95": [
+        0.1504289801326529,
+        0.17295949040641714
+      ]
+    },
+    {
+      "case_id": "reverse/f0_x2_e0_t2.000000_q0of4",
+      "exact": 0.05997112274745204,
+      "compiled": 0.05997112274745215,
+      "aer": 0.06463902007327703,
+      "depth": 121,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "reverse",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 0.0,
+        "time": 2.0,
+        "offset_index": 0,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 220,
+      "observed": 0.0537109375,
+      "wilson_95": [
+        0.047215509167164486,
+        0.06104269137026889
+      ]
+    },
+    {
+      "case_id": "tree/f0_x2_e0_t2.000000_q0of4",
+      "exact": 0.22900018236081582,
+      "compiled": 0.22900018236081615,
+      "aer": 0.22251481693318595,
+      "depth": 124,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "tree",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 0.0,
+        "time": 2.0,
+        "offset_index": 0,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 907,
+      "observed": 0.221435546875,
+      "wilson_95": [
+        0.2089841694010989,
+        0.23440894154704736
+      ]
+    },
+    {
+      "case_id": "gauge_copy/f0_x2_e0_t2.000000_q0of4",
+      "exact": 0.05997112274745262,
+      "compiled": 0.05997112274745188,
+      "aer": 0.06843251913823573,
+      "depth": 122,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "gauge_copy",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 0.0,
+        "time": 2.0,
+        "offset_index": 0,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 299,
+      "observed": 0.072998046875,
+      "wilson_95": [
+        0.06542539021072463,
+        0.08137088590523323
+      ]
+    },
+    {
+      "case_id": "detuned/f0_x2_e0_t2.000000_q0of4",
+      "exact": 0.07121065904502778,
+      "compiled": 0.07121065904502734,
+      "aer": 0.07737493329045372,
+      "depth": 123,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "detuned",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 0.0,
+        "time": 2.0,
+        "offset_index": 0,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 302,
+      "observed": 0.07373046875,
+      "wilson_95": [
+        0.06612052113669269,
+        0.08213922620376611
+      ]
+    },
+    {
+      "case_id": "balanced_excitation/f0_x2_e0_t2.000000_q0of4",
+      "exact": 0.1159007624512658,
+      "compiled": 0.11590076245126688,
+      "aer": 0.1181100646783341,
+      "depth": 125,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.719999999999998e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "balanced_excitation",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 0.0,
+        "time": 2.0,
+        "offset_index": 0,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 486,
+      "observed": 0.11865234375,
+      "wilson_95": [
+        0.10910455233278546,
+        0.12891476344373037
+      ]
+    },
+    {
+      "case_id": "signal/f0_x2_e0_t2.000000_q1of4",
+      "exact": 0.019799217027914977,
+      "compiled": 0.019799217027915015,
+      "aer": 0.028493648151188235,
+      "depth": 124,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 1.5707963267948966,
+        "time": 2.0,
+        "offset_index": 1,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 173,
+      "observed": 0.042236328125,
+      "wilson_95": [
+        0.036493778036933766,
+        0.048836706649985046
+      ]
+    },
+    {
+      "case_id": "zero/f0_x2_e0_t2.000000_q1of4",
+      "exact": 0.026935810156197764,
+      "compiled": 0.02693581015619711,
+      "aer": 0.0321641243840569,
+      "depth": 122,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "zero",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 1.5707963267948966,
+        "time": 2.0,
+        "offset_index": 1,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 152,
+      "observed": 0.037109375,
+      "wilson_95": [
+        0.031740641817972134,
+        0.04334554429744017
+      ]
+    },
+    {
+      "case_id": "reverse/f0_x2_e0_t2.000000_q1of4",
+      "exact": 0.015121719442809793,
+      "compiled": 0.015121719442809161,
+      "aer": 0.02304790211075946,
+      "depth": 126,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.719999999999998e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "reverse",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 1.5707963267948966,
+        "time": 2.0,
+        "offset_index": 1,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 108,
+      "observed": 0.0263671875,
+      "wilson_95": [
+        0.021886441418738075,
+        0.03173550007066059
+      ]
+    },
+    {
+      "case_id": "tree/f0_x2_e0_t2.000000_q1of4",
+      "exact": 0.2290001823608163,
+      "compiled": 0.22900018236081737,
+      "aer": 0.22288135401244502,
+      "depth": 123,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "tree",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 1.5707963267948966,
+        "time": 2.0,
+        "offset_index": 1,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 863,
+      "observed": 0.210693359375,
+      "wilson_95": [
+        0.19847866580657686,
+        0.2234502005155558
+      ]
+    },
+    {
+      "case_id": "gauge_copy/f0_x2_e0_t2.000000_q1of4",
+      "exact": 0.019799217027915508,
+      "compiled": 0.019799217027915546,
+      "aer": 0.02883098104490395,
+      "depth": 126,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.719999999999998e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "gauge_copy",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 1.5707963267948966,
+        "time": 2.0,
+        "offset_index": 1,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 108,
+      "observed": 0.0263671875,
+      "wilson_95": [
+        0.021886441418738075,
+        0.03173550007066059
+      ]
+    },
+    {
+      "case_id": "detuned/f0_x2_e0_t2.000000_q1of4",
+      "exact": 0.019590136514426457,
+      "compiled": 0.01959013651442582,
+      "aer": 0.02910630123185418,
+      "depth": 123,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "detuned",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 1.5707963267948966,
+        "time": 2.0,
+        "offset_index": 1,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 122,
+      "observed": 0.02978515625,
+      "wilson_95": [
+        0.02500358363123029,
+        0.03544789023917271
+      ]
+    },
+    {
+      "case_id": "balanced_excitation/f0_x2_e0_t2.000000_q1of4",
+      "exact": 0.01946405595008638,
+      "compiled": 0.01946405595008827,
+      "aer": 0.026532314295711956,
+      "depth": 120,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.655999999999998e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "balanced_excitation",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 1.5707963267948966,
+        "time": 2.0,
+        "offset_index": 1,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 128,
+      "observed": 0.03125,
+      "wilson_95": [
+        0.02634519929104107,
+        0.03703321702836379
+      ]
+    },
+    {
+      "case_id": "signal/f0_x2_e0_t2.000000_q2of4",
+      "exact": 0.041965219006142765,
+      "compiled": 0.04196521900614349,
+      "aer": 0.04846517215518265,
+      "depth": 124,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.719999999999998e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 3.141592653589793,
+        "time": 2.0,
+        "offset_index": 2,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 224,
+      "observed": 0.0546875,
+      "wilson_95": [
+        0.048132459168260984,
+        0.062077036335173634
+      ]
+    },
+    {
+      "case_id": "zero/f0_x2_e0_t2.000000_q2of4",
+      "exact": 0.013427592634554794,
+      "compiled": 0.013427592634554359,
+      "aer": 0.02298932640581097,
+      "depth": 126,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.719999999999998e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "zero",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 3.141592653589793,
+        "time": 2.0,
+        "offset_index": 2,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 132,
+      "observed": 0.0322265625,
+      "wilson_95": [
+        0.027241336238722554,
+        0.03808837504668355
+      ]
+    },
+    {
+      "case_id": "reverse/f0_x2_e0_t2.000000_q2of4",
+      "exact": 0.04196521900614278,
+      "compiled": 0.041965219006141405,
+      "aer": 0.048403175278689245,
+      "depth": 124,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.719999999999998e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "reverse",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 3.141592653589793,
+        "time": 2.0,
+        "offset_index": 2,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 193,
+      "observed": 0.047119140625,
+      "wilson_95": [
+        0.04104353021153968,
+        0.05404342930538533
+      ]
+    },
+    {
+      "case_id": "tree/f0_x2_e0_t2.000000_q2of4",
+      "exact": 0.22900018236081582,
+      "compiled": 0.2290001823608135,
+      "aer": 0.22215688267679998,
+      "depth": 123,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "tree",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 3.141592653589793,
+        "time": 2.0,
+        "offset_index": 2,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 880,
+      "observed": 0.21484375,
+      "wilson_95": [
+        0.202536107835497,
+        0.22768576209214095
+      ]
+    },
+    {
+      "case_id": "gauge_copy/f0_x2_e0_t2.000000_q2of4",
+      "exact": 0.041965219006142654,
+      "compiled": 0.041965219006142446,
+      "aer": 0.04900785301467375,
+      "depth": 124,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.719999999999998e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "gauge_copy",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 3.141592653589793,
+        "time": 2.0,
+        "offset_index": 2,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 214,
+      "observed": 0.05224609375,
+      "wilson_95": [
+        0.04584127596794985,
+        0.05948998212048167
+      ]
+    },
+    {
+      "case_id": "detuned/f0_x2_e0_t2.000000_q2of4",
+      "exact": 0.045780678732190654,
+      "compiled": 0.04578067873219046,
+      "aer": 0.05148325336892864,
+      "depth": 124,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "detuned",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 3.141592653589793,
+        "time": 2.0,
+        "offset_index": 2,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 196,
+      "observed": 0.0478515625,
+      "wilson_95": [
+        0.0417277082068451,
+        0.05482272253458084
+      ]
+    },
+    {
+      "case_id": "balanced_excitation/f0_x2_e0_t2.000000_q2of4",
+      "exact": 0.006284656287792622,
+      "compiled": 0.0062846562877923754,
+      "aer": 0.015068845718809296,
+      "depth": 124,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "balanced_excitation",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 3.141592653589793,
+        "time": 2.0,
+        "offset_index": 2,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 95,
+      "observed": 0.023193359375,
+      "wilson_95": [
+        0.019011162380883052,
+        0.02826907046901158
+      ]
+    },
+    {
+      "case_id": "signal/f0_x2_e0_t2.000000_q3of4",
+      "exact": 0.015121719442809765,
+      "compiled": 0.015121719442808872,
+      "aer": 0.026804474084546573,
+      "depth": 123,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 4.71238898038469,
+        "time": 2.0,
+        "offset_index": 3,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 118,
+      "observed": 0.02880859375,
+      "wilson_95": [
+        0.0241109952204326,
+        0.03438918368396916
+      ]
+    },
+    {
+      "case_id": "zero/f0_x2_e0_t2.000000_q3of4",
+      "exact": 0.02693581015619792,
+      "compiled": 0.026935810156199003,
+      "aer": 0.03602140661535543,
+      "depth": 126,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.719999999999998e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "zero",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 4.71238898038469,
+        "time": 2.0,
+        "offset_index": 3,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 140,
+      "observed": 0.0341796875,
+      "wilson_95": [
+        0.029037488565238835,
+        0.04019481265216975
+      ]
+    },
+    {
+      "case_id": "reverse/f0_x2_e0_t2.000000_q3of4",
+      "exact": 0.01979921702791525,
+      "compiled": 0.01979921702791645,
+      "aer": 0.03098576937781974,
+      "depth": 122,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "reverse",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 4.71238898038469,
+        "time": 2.0,
+        "offset_index": 3,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 126,
+      "observed": 0.03076171875,
+      "wilson_95": [
+        0.025897640903542296,
+        0.036505127932861946
+      ]
+    },
+    {
+      "case_id": "tree/f0_x2_e0_t2.000000_q3of4",
+      "exact": 0.22900018236081557,
+      "compiled": 0.2290001823608172,
+      "aer": 0.22117386359420022,
+      "depth": 123,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "tree",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 4.71238898038469,
+        "time": 2.0,
+        "offset_index": 3,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 814,
+      "observed": 0.19873046875,
+      "wilson_95": [
+        0.1867946974212916,
+        0.21123080556732585
+      ]
+    },
+    {
+      "case_id": "gauge_copy/f0_x2_e0_t2.000000_q3of4",
+      "exact": 0.015121719442809545,
+      "compiled": 0.015121719442809775,
+      "aer": 0.02681469231867695,
+      "depth": 124,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "gauge_copy",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 4.71238898038469,
+        "time": 2.0,
+        "offset_index": 3,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 166,
+      "observed": 0.04052734375,
+      "wilson_95": [
+        0.03490644652745252,
+        0.04700927196896412
+      ]
+    },
+    {
+      "case_id": "detuned/f0_x2_e0_t2.000000_q3of4",
+      "exact": 0.012091306339437913,
+      "compiled": 0.012091306339437674,
+      "aer": 0.025864753547709545,
+      "depth": 127,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.719999999999998e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "detuned",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 4.71238898038469,
+        "time": 2.0,
+        "offset_index": 3,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 130,
+      "observed": 0.03173828125,
+      "wilson_95": [
+        0.026793100257844867,
+        0.03756096354456061
+      ]
+    },
+    {
+      "case_id": "balanced_excitation/f0_x2_e0_t2.000000_q3of4",
+      "exact": 0.06087135895135318,
+      "compiled": 0.060871358951352844,
+      "aer": 0.06898043788877573,
+      "depth": 126,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.719999999999998e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "balanced_excitation",
+      "shots": 4096,
+      "setting": {
+        "face": 0,
+        "start": 2,
+        "edge": 0,
+        "direction": 1,
+        "offset": 4.71238898038469,
+        "time": 2.0,
+        "offset_index": 3,
+        "offset_count": 4
+      },
+      "return_outcome": "010",
+      "return_count": 280,
+      "observed": 0.068359375,
+      "wilson_95": [
+        0.061028422391329204,
+        0.07649920263612277
+      ]
+    },
+    {
+      "case_id": "signal/f1_x4_e10_t2.000000_q0of4",
+      "exact": 0.2125972513053909,
+      "compiled": 0.21259725130539198,
+      "aer": 0.20519133145375792,
+      "depth": 122,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 1,
+        "start": 4,
+        "edge": 10,
+        "direction": 1,
+        "offset": 0.0,
+        "time": 2.0,
+        "offset_index": 0,
+        "offset_count": 4
+      },
+      "return_outcome": "100",
+      "return_count": 890,
+      "observed": 0.21728515625,
+      "wilson_95": [
+        0.2049237284178389,
+        0.23017637892480214
+      ]
+    },
+    {
+      "case_id": "signal/f1_x4_e10_t2.000000_q1of4",
+      "exact": 0.08165573678046108,
+      "compiled": 0.08165573678046095,
+      "aer": 0.08640480154525397,
+      "depth": 127,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.719999999999998e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 1,
+        "start": 4,
+        "edge": 10,
+        "direction": 1,
+        "offset": 1.5707963267948966,
+        "time": 2.0,
+        "offset_index": 1,
+        "offset_count": 4
+      },
+      "return_outcome": "100",
+      "return_count": 389,
+      "observed": 0.094970703125,
+      "wilson_95": [
+        0.0863680897687127,
+        0.10433232308227307
+      ]
+    },
+    {
+      "case_id": "signal/f1_x4_e10_t2.000000_q2of4",
+      "exact": 0.1630434127565626,
+      "compiled": 0.16304341275655876,
+      "aer": 0.15929925049985508,
+      "depth": 124,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 1,
+        "start": 4,
+        "edge": 10,
+        "direction": 1,
+        "offset": 3.141592653589793,
+        "time": 2.0,
+        "offset_index": 2,
+        "offset_count": 4
+      },
+      "return_outcome": "100",
+      "return_count": 581,
+      "observed": 0.141845703125,
+      "wilson_95": [
+        0.13149640570109858,
+        0.15286616551794666
+      ]
+    },
+    {
+      "case_id": "signal/f1_x4_e10_t2.000000_q3of4",
+      "exact": 0.38172406257009495,
+      "compiled": 0.38172406257009495,
+      "aer": 0.3596763512109817,
+      "depth": 121,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 1,
+        "start": 4,
+        "edge": 10,
+        "direction": 1,
+        "offset": 4.71238898038469,
+        "time": 2.0,
+        "offset_index": 3,
+        "offset_count": 4
+      },
+      "return_outcome": "100",
+      "return_count": 1370,
+      "observed": 0.33447265625,
+      "wilson_95": [
+        0.3201849028850972,
+        0.3490706003776926
+      ]
+    },
+    {
+      "case_id": "signal/f2_x4_e0_t2.000000_q0of4",
+      "exact": 0.2125972513053909,
+      "compiled": 0.21259725130539198,
+      "aer": 0.20519133145375792,
+      "depth": 122,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 2,
+        "start": 4,
+        "edge": 0,
+        "direction": 1,
+        "offset": 0.0,
+        "time": 2.0,
+        "offset_index": 0,
+        "offset_count": 4
+      },
+      "return_outcome": "100",
+      "return_count": 873,
+      "observed": 0.213134765625,
+      "wilson_95": [
+        0.20086516404843133,
+        0.22594193968870444
+      ]
+    },
+    {
+      "case_id": "signal/f2_x4_e0_t2.000000_q1of4",
+      "exact": 0.10121516807995137,
+      "compiled": 0.1012151680799516,
+      "aer": 0.10183578700057581,
+      "depth": 124,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 2,
+        "start": 4,
+        "edge": 0,
+        "direction": 1,
+        "offset": 1.5707963267948966,
+        "time": 2.0,
+        "offset_index": 1,
+        "offset_count": 4
+      },
+      "return_outcome": "100",
+      "return_count": 401,
+      "observed": 0.097900390625,
+      "wilson_95": [
+        0.0891726470391819,
+        0.10738165070980757
+      ]
+    },
+    {
+      "case_id": "signal/f2_x4_e0_t2.000000_q2of4",
+      "exact": 0.06556509787020041,
+      "compiled": 0.0655650978701996,
+      "aer": 0.06993272557243484,
+      "depth": 124,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.719999999999998e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 2,
+        "start": 4,
+        "edge": 0,
+        "direction": 1,
+        "offset": 3.141592653589793,
+        "time": 2.0,
+        "offset_index": 2,
+        "offset_count": 4
+      },
+      "return_outcome": "100",
+      "return_count": 363,
+      "observed": 0.088623046875,
+      "wilson_95": [
+        0.0803006103898273,
+        0.0977163851821504
+      ]
+    },
+    {
+      "case_id": "signal/f2_x4_e0_t2.000000_q3of4",
+      "exact": 0.15910285338641664,
+      "compiled": 0.15910285338641775,
+      "aer": 0.15598471932728128,
+      "depth": 123,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 2,
+        "start": 4,
+        "edge": 0,
+        "direction": 1,
+        "offset": 4.71238898038469,
+        "time": 2.0,
+        "offset_index": 3,
+        "offset_count": 4
+      },
+      "return_outcome": "100",
+      "return_count": 641,
+      "observed": 0.156494140625,
+      "wilson_95": [
+        0.14568998780190867,
+        0.1679420079071552
+      ]
+    },
+    {
+      "case_id": "signal/f3_x3_e6_t2.000000_q0of4",
+      "exact": 0.13452549751696083,
+      "compiled": 0.13452549751696286,
+      "aer": 0.13437996796400684,
+      "depth": 122,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 3,
+        "start": 3,
+        "edge": 6,
+        "direction": -1,
+        "offset": 0.0,
+        "time": 2.0,
+        "offset_index": 0,
+        "offset_count": 4
+      },
+      "return_outcome": "011",
+      "return_count": 568,
+      "observed": 0.138671875,
+      "wilson_95": [
+        0.12842605304573268,
+        0.14959480953380855
+      ]
+    },
+    {
+      "case_id": "signal/f3_x3_e6_t2.000000_q1of4",
+      "exact": 0.01968001828987223,
+      "compiled": 0.0196800182898716,
+      "aer": 0.029137084265746637,
+      "depth": 124,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 3,
+        "start": 3,
+        "edge": 6,
+        "direction": -1,
+        "offset": 1.5707963267948966,
+        "time": 2.0,
+        "offset_index": 1,
+        "offset_count": 4
+      },
+      "return_outcome": "011",
+      "return_count": 139,
+      "observed": 0.033935546875,
+      "wilson_95": [
+        0.028812697629858053,
+        0.03993177984605022
+      ]
+    },
+    {
+      "case_id": "signal/f3_x3_e6_t2.000000_q2of4",
+      "exact": 0.03353516424531798,
+      "compiled": 0.03353516424531822,
+      "aer": 0.03961054529390646,
+      "depth": 126,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.719999999999998e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 3,
+        "start": 3,
+        "edge": 6,
+        "direction": -1,
+        "offset": 3.141592653589793,
+        "time": 2.0,
+        "offset_index": 2,
+        "offset_count": 4
+      },
+      "return_outcome": "011",
+      "return_count": 148,
+      "observed": 0.0361328125,
+      "wilson_95": [
+        0.030838463484247167,
+        0.042296427665163894
+      ]
+    },
+    {
+      "case_id": "signal/f3_x3_e6_t2.000000_q3of4",
+      "exact": 0.07162802007566249,
+      "compiled": 0.07162802007566263,
+      "aer": 0.07483774415226982,
+      "depth": 123,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 3,
+        "start": 3,
+        "edge": 6,
+        "direction": -1,
+        "offset": 4.71238898038469,
+        "time": 2.0,
+        "offset_index": 3,
+        "offset_count": 4
+      },
+      "return_outcome": "011",
+      "return_count": 319,
+      "observed": 0.077880859375,
+      "wilson_95": [
+        0.07006383205199908,
+        0.086488918893965
+      ]
+    },
+    {
+      "case_id": "signal/f4_x0_e6_t2.000000_q0of4",
+      "exact": 0.18472916683270701,
+      "compiled": 0.18472916683270887,
+      "aer": 0.18124407823536762,
+      "depth": 122,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 4,
+        "start": 0,
+        "edge": 6,
+        "direction": 1,
+        "offset": 0.0,
+        "time": 2.0,
+        "offset_index": 0,
+        "offset_count": 4
+      },
+      "return_outcome": "000",
+      "return_count": 834,
+      "observed": 0.20361328125,
+      "wilson_95": [
+        0.1915616494513297,
+        0.216220328367294
+      ]
+    },
+    {
+      "case_id": "signal/f4_x0_e6_t2.000000_q1of4",
+      "exact": 0.18721218902056674,
+      "compiled": 0.18721218902056536,
+      "aer": 0.18161114771823128,
+      "depth": 125,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 4,
+        "start": 0,
+        "edge": 6,
+        "direction": 1,
+        "offset": 1.5707963267948966,
+        "time": 2.0,
+        "offset_index": 1,
+        "offset_count": 4
+      },
+      "return_outcome": "000",
+      "return_count": 736,
+      "observed": 0.1796875,
+      "wilson_95": [
+        0.16823175667106757,
+        0.19174349448052572
+      ]
+    },
+    {
+      "case_id": "signal/f4_x0_e6_t2.000000_q2of4",
+      "exact": 0.10409352590985663,
+      "compiled": 0.10409352590985767,
+      "aer": 0.1077831633724209,
+      "depth": 123,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 4,
+        "start": 0,
+        "edge": 6,
+        "direction": 1,
+        "offset": 3.141592653589793,
+        "time": 2.0,
+        "offset_index": 2,
+        "offset_count": 4
+      },
+      "return_outcome": "000",
+      "return_count": 381,
+      "observed": 0.093017578125,
+      "wilson_95": [
+        0.0844998214531925,
+        0.10229800146579078
+      ]
+    },
+    {
+      "case_id": "signal/f4_x0_e6_t2.000000_q3of4",
+      "exact": 0.08492129432981611,
+      "compiled": 0.08492129432981602,
+      "aer": 0.08992981518817618,
+      "depth": 122,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 4,
+        "start": 0,
+        "edge": 6,
+        "direction": 1,
+        "offset": 4.71238898038469,
+        "time": 2.0,
+        "offset_index": 3,
+        "offset_count": 4
+      },
+      "return_outcome": "000",
+      "return_count": 424,
+      "observed": 0.103515625,
+      "wilson_95": [
+        0.09455493861565754,
+        0.11321930518783906
+      ]
+    },
+    {
+      "case_id": "signal/f5_x1_e10_t2.000000_q0of4",
+      "exact": 0.07284444004698817,
+      "compiled": 0.07284444004698802,
+      "aer": 0.07833245282721267,
+      "depth": 122,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 5,
+        "start": 1,
+        "edge": 10,
+        "direction": -1,
+        "offset": 0.0,
+        "time": 2.0,
+        "offset_index": 0,
+        "offset_count": 4
+      },
+      "return_outcome": "001",
+      "return_count": 378,
+      "observed": 0.09228515625,
+      "wilson_95": [
+        0.08379952506389676,
+        0.10153482663058558
+      ]
+    },
+    {
+      "case_id": "signal/f5_x1_e10_t2.000000_q1of4",
+      "exact": 0.10266329621540765,
+      "compiled": 0.10266329621540889,
+      "aer": 0.10418931736749397,
+      "depth": 124,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 5,
+        "start": 1,
+        "edge": 10,
+        "direction": -1,
+        "offset": 1.5707963267948966,
+        "time": 2.0,
+        "offset_index": 1,
+        "offset_count": 4
+      },
+      "return_outcome": "001",
+      "return_count": 394,
+      "observed": 0.09619140625,
+      "wilson_95": [
+        0.08753634569940273,
+        0.10560318585908458
+      ]
+    },
+    {
+      "case_id": "signal/f5_x1_e10_t2.000000_q2of4",
+      "exact": 0.2027842519045587,
+      "compiled": 0.20278425190454505,
+      "aer": 0.19885912215845844,
+      "depth": 122,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.687999999999999e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 5,
+        "start": 1,
+        "edge": 10,
+        "direction": -1,
+        "offset": 3.141592653589793,
+        "time": 2.0,
+        "offset_index": 2,
+        "offset_count": 4
+      },
+      "return_outcome": "001",
+      "return_count": 693,
+      "observed": 0.169189453125,
+      "wilson_95": [
+        0.15801892181955537,
+        0.18097990844752457
+      ]
+    },
+    {
+      "case_id": "signal/f5_x1_e10_t2.000000_q3of4",
+      "exact": 0.17307270021403334,
+      "compiled": 0.17307270021403257,
+      "aer": 0.17159005840665897,
+      "depth": 127,
+      "native_two_qubit_gates": {
+        "cz": 29
+      },
+      "two_qubit_gates": 29,
+      "critical_path_s": 5.719999999999998e-06,
+      "classical_bit_to_physical": [
+        68,
+        69,
+        67
+      ],
+      "role": "signal",
+      "shots": 4096,
+      "setting": {
+        "face": 5,
+        "start": 1,
+        "edge": 10,
+        "direction": -1,
+        "offset": 4.71238898038469,
+        "time": 2.0,
+        "offset_index": 3,
+        "offset_count": 4
+      },
+      "return_outcome": "001",
+      "return_count": 708,
+      "observed": 0.1728515625,
+      "wilson_95": [
+        0.16157978265045772,
+        0.1847364037391269
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "previous_manifest_sha256": "52bd98145e5ef2be205f5128097ed9101af3797c8b4662341a39957e6dfa5f6f",
+  "refreshed_manifest_sha256": "34412d22486fc93aeec95b0685b3c8f9918e8dff99f05b742a8c83a2117eb6fa",
+  "previous_calibration_timestamp": "2026-11-23T22:46:22+08:00",
+  "refreshed_calibration_timestamp": "2026-11-23T23:20:48+08:00",
+  "simulation_inputs_sha256": "d2916510d36fb37edc7a32b38202ce76610325347ba141e75140da01fb752dd6",
+  "previous_statistics_sha256": "25c600f82576ba6af1ad709ca2a15dbf0cf007e7877caca15e3473d0ee4ce17d",
+  "max_return_probability_changes": {
+    "exact": 0.0,
+    "compiled": 0.0,
+    "aer": 0.0
+  },
+  "case_order_shots_and_readout_maps_unchanged": true,
+  "original_submission_held_for_calibration_change": true,
+  "qpu_submitted": false
+}
