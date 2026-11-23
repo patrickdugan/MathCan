@@ -1,0 +1,362 @@
+{
+  "status": "PASS",
+  "seed": 20261123,
+  "provenance": {
+    "python": "3.13.5",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "qiskit": null,
+    "qiskit-aer": null,
+    "qiskit-ibm-runtime": null
+  },
+  "q2": {
+    "time": 1.6,
+    "implanted_phase": 0.73,
+    "phase_offsets": [
+      0,
+      1.5707963267948966,
+      3.141592653589793,
+      4.71238898038469
+    ],
+    "return_probabilities": [
+      0.06259878781121185,
+      0.41455869638683807,
+      0.44327438821718923,
+      0.07363323465165304
+    ],
+    "first_harmonic_a1": -0.25509419580938064,
+    "quadrature": [
+      -0.19033780020298868,
+      -0.17046273086759253
+    ],
+    "estimated_phase": 0.7303677498892878,
+    "conditional_fisher": {
+      "known_response_fisher": 1765.0933245365572,
+      "known_response_crlb_rad2": 0.0005665422819853222,
+      "nuisance_fisher_schur": 1764.342892822075,
+      "nuisance_crlb_rad2": 0.0005667832506188721
+    },
+    "shot_target": {
+      "time": 1.6,
+      "theta": 0.73,
+      "target_half_width_deg": 5.0,
+      "confidence_z": 1.96,
+      "needed_total_shots_crlb": 2344,
+      "shots_per_phase": 586,
+      "fisher_per_shot": 0.21546549371784146,
+      "scope": "Local asymptotic CRLB; assumes calibrated response and independent Bernoulli observations"
+    }
+  },
+  "noise": {
+    "ideal": {
+      "seed": 20261123,
+      "shots_total": 8192,
+      "replicates": 1000,
+      "bitflip": 0.0,
+      "depolarizing": 0.0,
+      "estimated_p": [
+        0.06259878781121185,
+        0.41455869638683807,
+        0.44327438821718923,
+        0.07363323465165304
+      ],
+      "calibration_a1": -0.25509419580938064,
+      "mean_circular_bias_rad": 3.587042598143651e-05,
+      "rmse_rad": 0.023491229935250962,
+      "rmse_deg": 1.3459483308612583,
+      "abs_error_95pct_deg": 2.557794753609773
+    },
+    "independent_2pct_readout": {
+      "seed": 20261123,
+      "shots_total": 8192,
+      "replicates": 1000,
+      "bitflip": 0.02,
+      "depolarizing": 0.0,
+      "estimated_p": [
+        0.06971050148380017,
+        0.4091619599502872,
+        0.4338550798522502,
+        0.07754747848261127
+      ],
+      "calibration_a1": -0.25509419580938064,
+      "mean_circular_bias_rad": 0.007953897112478105,
+      "rmse_rad": 0.026365381401904496,
+      "rmse_deg": 1.5106250795818412,
+      "abs_error_95pct_deg": 2.8927477813681413
+    },
+    "global_5pct_depolarization": {
+      "seed": 20261123,
+      "shots_total": 8192,
+      "replicates": 1000,
+      "bitflip": 0.0,
+      "depolarizing": 0.05,
+      "estimated_p": [
+        0.07196884842065125,
+        0.40633076156749615,
+        0.43361066880632976,
+        0.08245157291907039
+      ],
+      "calibration_a1": -0.25509419580938064,
+      "mean_circular_bias_rad": 0.0005521731693562634,
+      "rmse_rad": 0.02464257412506468,
+      "rmse_deg": 1.4119154937044935,
+      "abs_error_95pct_deg": 2.8000845891069956
+    },
+    "both": {
+      "seed": 20261123,
+      "shots_total": 8192,
+      "replicates": 1000,
+      "bitflip": 0.02,
+      "depolarizing": 0.05,
+      "estimated_p": [
+        0.07872497640961018,
+        0.40120386195277286,
+        0.42466232585963765,
+        0.08617010455848072
+      ],
+      "calibration_a1": -0.25509419580938064,
+      "mean_circular_bias_rad": 0.00947147853486744,
+      "rmse_rad": 0.02835348871155556,
+      "rmse_deg": 1.624535237643956,
+      "abs_error_95pct_deg": 3.138954136865564
+    }
+  },
+  "masked_equal_budget": {
+    "total_shots": 8192,
+    "shots_per_intact_setting": 2048,
+    "shots_per_mask_setting": 128,
+    "phase_settings_intact": 4,
+    "phase_settings_masked": 64,
+    "intact_rmse_deg": 1.3459483308612583,
+    "masked_rmse_deg": 21.39519119935542,
+    "ideal_quadrature_discrepancy": 2.237726045655905e-16
+  },
+  "q3": {
+    "faces": [
+      [
+        0,
+        1,
+        3,
+        2
+      ],
+      [
+        4,
+        5,
+        7,
+        6
+      ],
+      [
+        0,
+        1,
+        5,
+        4
+      ],
+      [
+        2,
+        3,
+        7,
+        6
+      ],
+      [
+        0,
+        2,
+        6,
+        4
+      ],
+      [
+        1,
+        3,
+        7,
+        5
+      ]
+    ],
+    "controlled_schedule": [
+      {
+        "face": 0,
+        "control_edge": [
+          0,
+          1
+        ],
+        "initial_state": 2,
+        "offsets": [
+          0.0,
+          1.5707963267948966,
+          3.141592653589793,
+          4.71238898038469
+        ]
+      },
+      {
+        "face": 1,
+        "control_edge": [
+          5,
+          7
+        ],
+        "initial_state": 4,
+        "offsets": [
+          0.0,
+          1.5707963267948966,
+          3.141592653589793,
+          4.71238898038469
+        ]
+      },
+      {
+        "face": 2,
+        "control_edge": [
+          0,
+          1
+        ],
+        "initial_state": 4,
+        "offsets": [
+          0.0,
+          1.5707963267948966,
+          3.141592653589793,
+          4.71238898038469
+        ]
+      },
+      {
+        "face": 3,
+        "control_edge": [
+          2,
+          6
+        ],
+        "initial_state": 3,
+        "offsets": [
+          0.0,
+          1.5707963267948966,
+          3.141592653589793,
+          4.71238898038469
+        ]
+      },
+      {
+        "face": 4,
+        "control_edge": [
+          2,
+          6
+        ],
+        "initial_state": 0,
+        "offsets": [
+          0.0,
+          1.5707963267948966,
+          3.141592653589793,
+          4.71238898038469
+        ]
+      },
+      {
+        "face": 5,
+        "control_edge": [
+          5,
+          7
+        ],
+        "initial_state": 1,
+        "offsets": [
+          0.0,
+          1.5707963267948966,
+          3.141592653589793,
+          4.71238898038469
+        ]
+      }
+    ],
+    "bianchi_residual": -4.440892098500626e-16,
+    "reconstructed_chords": [
+      0.137950167765426,
+      0.0680676494962067,
+      -0.34541353780643247,
+      0.5884190914659095,
+      0.36409168662967506
+    ],
+    "projected_bianchi_residual": -4.440892098500626e-16,
+    "addressed_faces": [
+      {
+        "face": 0,
+        "edge": [
+          0,
+          1
+        ],
+        "start": 2,
+        "true_phase": -0.137950167765426,
+        "measured_phase": -0.13834555960158346,
+        "angular_error": -0.0003953918361574438,
+        "complex_quadrature": [
+          3.321080414081523e-05,
+          -4.624106010930884e-06
+        ]
+      },
+      {
+        "face": 1,
+        "edge": [
+          5,
+          7
+        ],
+        "start": 4,
+        "true_phase": 0.6378085921388736,
+        "measured_phase": 0.6379690246425711,
+        "angular_error": 0.00016043250369746076,
+        "complex_quadrature": [
+          2.683332156716567e-05,
+          1.989400315138834e-05
+        ]
+      },
+      {
+        "face": 2,
+        "edge": [
+          0,
+          1
+        ],
+        "start": 4,
+        "true_phase": -0.0680676494962067,
+        "measured_phase": -0.0680450864892359,
+        "angular_error": 2.256300697078828e-05,
+        "complex_quadrature": [
+          3.34166918159462e-05,
+          -2.2773575936718693e-06
+        ]
+      },
+      {
+        "face": 3,
+        "edge": [
+          2,
+          6
+        ],
+        "start": 3,
+        "true_phase": -0.22614151886424905,
+        "measured_phase": -0.22598348397813606,
+        "angular_error": 0.00015803488611298988,
+        "complex_quadrature": [
+          3.2641308792380475e-05,
+          7.504583095119255e-06
+        ]
+      },
+      {
+        "face": 4,
+        "edge": [
+          2,
+          6
+        ],
+        "start": 0,
+        "true_phase": 0.34541353780643247,
+        "measured_phase": 0.3460373764698508,
+        "angular_error": 0.000623838663418308,
+        "complex_quadrature": [
+          3.125331406933496e-05,
+          1.1268205215464455e-05
+        ]
+      },
+      {
+        "face": 5,
+        "edge": [
+          5,
+          7
+        ],
+        "start": 1,
+        "true_phase": -0.58841909146591,
+        "measured_phase": -0.5887184441485691,
+        "angular_error": -0.0002993526826591264,
+        "complex_quadrature": [
+          2.7626829947280385e-05,
+          1.8446466195920497e-05
+        ]
+      }
+    ],
+    "short_time_note": "Full-cube exact dense matrix; t=0.12; finite-time O(t^2) angular bias"
+  }
+}
