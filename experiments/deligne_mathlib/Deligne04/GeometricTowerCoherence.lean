@@ -293,59 +293,6 @@ theorem geometricCotangentTower_comp
   exact towerEquiv_comp_of_one_tmul eLM eMN eLN hunit
 
 
-/-- The canonical Kähler cotangent field-extension equivalence along
-the identity field algebra map is the ordinary tensor unit map. -/
-theorem geometricCotangentTower_id
-    {K L : Type*} [Field K] [Field L] [Algebra K L]
-    {k s r : ℕ}
-    (f : Fin r → MvPolynomial (Fin s) K)
-    (u : Deligne16.Coord k s → L)
-    (hu : Deligne21G.onGeometricProduct f u) :
-    letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
-    Deligne21H.geometricCotangentTowerEquiv f u hu (AlgHom.id K L) =
-      TensorProduct.lid L (Deligne21G.geometricCotangentFiber f u) := by
-  letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
-  classical
-  apply LinearEquiv.ext
-  intro z
-  induction z using TensorProduct.inductionOn with
-  | add x y hx hy =>
-      simpa only [map_add] using congrArg₂ (· + ·) hx hy
-  | tmul m q =>
-      obtain ⟨v, rfl⟩ :=
-        Submodule.Quotient.mk_surjective (Deligne21G.geometricConormalRelations f u) q
-      rw [geometricCotangentTowerEquiv_tmul_mk]
-      rw [TensorProduct.lid_tmul]
-      rfl
-
-/-- The dual-defined Jacobian tangent field-extension equivalence
-is normalized to the canonical tensor unit on the identity map. -/
-theorem geometricJacobianTangentTower_id
-    {K L : Type*} [Field K] [Field L] [Algebra K L]
-    {k s r : ℕ}
-    (f : Fin r → MvPolynomial (Fin s) K)
-    (u : Deligne16.Coord k s → L)
-    (hu : Deligne21G.onGeometricProduct f u) :
-    letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
-    Deligne21H.geometricJacobianTangentTowerEquiv f u hu (AlgHom.id K L) =
-      TensorProduct.lid L (Deligne21G.geometricJacobianTangent f u) := by
-  letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
-  classical
-  apply LinearEquiv.ext
-  intro z
-  induction z using TensorProduct.inductionOn with
-  | add x y hx hy =>
-      simpa only [map_add] using congrArg₂ (· + ·) hx hy
-  | tmul m v =>
-      rw [geometricJacobianTangentTowerEquiv_tmul]
-      rw [TensorProduct.lid_tmul]
-      apply Subtype.ext
-      funext i
-      rfl
-
-#print axioms geometricCotangentTower_id
-#print axioms geometricJacobianTangentTower_id
-
 #print axioms towerEquiv_comp_of_one_tmul
 #print axioms geometricJacobianTangentTower_comp
 #print axioms geometricCotangentTower_comp
