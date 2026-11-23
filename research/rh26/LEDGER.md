@@ -1,5 +1,16 @@
 # RH-26 run ledger
 
+## RH-26E-03 — 2026-11-24 — density-normalized scalar growth bound
+
+- **Status:** IMPLEMENTED; **KERNEL RESULT PENDING**. Source contains all 14 frozen theorem declarations and matching axiom-print commands, without sorry/admit tokens. Compilation is not yet confirmed.
+- **Registration:** [RH26E03_REGISTRATION.md](RH26E03_REGISTRATION.md) at `e8dd41174d9a6ff1f2d201261b4ddb64b2d45120`, committed before executable source. **Implementation:** [lean/RH26E03GrowthBound.lean](lean/RH26E03GrowthBound.lean), initial `71c25b03`, explicit real-power regrouping `b4d3b5c7`, source+workflow `108f74fdb2305889c04bd02c02827c76ce711a30`. Source Git blob `5cc2de37912655520a65901ea75761d85951334d`, 437 lines.
+- **Report:** [RH26E03_RESULTS.md](RH26E03_RESULTS.md), pending receipt at `235a8bfa6e05a64c0414200f1ca74ae3317e95c1`. **Source inspiration:** immutable upstream `c900e67c2fcd1fdb041685820bbd2b867fbc5a4b`, prior C-02/C-03 reports; no new upstream reads/imports.
+- **Proof contracts:** original scalar window and raw bracket B; positive denominator facts, B/Q exact normalization, four component estimates, R≤10*x^(1/2+13eps/8), two-term power-loss envelope under m≥1, density inverse and exact normalized inequality. Final real-power theorem derives G≤x^(1/2+(C+3)*eps) from the actual scalar input, Err≤x^(C*eps)*B, and 26≤x^(3eps/8), without assuming G≥0. These remain independent scalar declarations, with no analytic/family-existence theorem.
+- **Controls:** zero Q, zero density, omission of inverse density with positive denominator, and parametric integer t family satisfying the source scalar window at eps=1, n=N=P=x=t², m=b=t, k=a=xt. Intended final existential proves that any fixed A,D>0 has an integer counterexample to R≤Ax/m+Dm on the scalar domain, without claiming realization by an actual arithmetic host.
+- **CPU run:** [45279143901](https://github.com/patrickdugan/MathCan/actions/runs/45279143901), job `138058675275`, on `108f74fd`. Last observed checkout, pin check and Lean installation succeeded; Mathlib resolution running; kernel step pending. Require 14 exact audited names and only foundational propext, Classical.choice, Quot.sound; record version, Mathlib SHA, source SHA-256, timing/RSS and artifact.
+- **Resources:** one GitHub-hosted CPU workflow per code change, 25-minute timeout; isolated Lean/Mathlib v4.35.0 file check. No upstream or full Deligne build, GPU, QPU or paid cloud.
+- **Resume:** inspect run 45279143901 first; preserve failure receipts and repair only under frozen contracts, or close verification with literal axiom/timing logs. After closure, RH-26C-04 source supplier inspection or RH-26D operator bridge; quantitative theta multiplicity remains UNSOURCED.
+
 ## RH-26C-03 — 2026-11-24 — actual density normalization and scalar exponent closure
 
 - **Status:** **PASS (source normalization and paper scalar derivation)**. Complete `Deduction.ch_core` located. Its call to `proposition_size_bound` is anchored; the supplier's full proof body remains uninspected. The independently derived bound reproduces the exact `GrowthSizeBound` scalar conclusion. No new independent Lean check; no fixed-coefficient no-loss X/m+m prime-error theorem established.
