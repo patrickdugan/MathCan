@@ -64,11 +64,13 @@ quotient satisfies
  \operatorname{BC}^{Q}_{L,M}(m\otimes[w])
       =m\,[\varphi(w_i)].
 \]
-Both are proved directly in Lean. Identity-field comparison lemmas
-`geometricCotangentTower_id` and `geometricJacobianTangentTower_id`
-compare the same DEL-21H equivalences with `TensorProduct.lid`.
-The base-field \(L=K\) Kähler-map normalization remains the separate
-kernel-verified DEL-21I theorem `geometricKahlerSelfEquiv`.
+Both are proved directly in Lean. The base-field \(L=K\) Kähler-map
+normalization is already the separate kernel-verified DEL-21I theorem
+`geometricKahlerSelfEquiv`. A further explicit comparison of identity-map
+field extension with `TensorProduct.lid` has been separated as an
+implementation-level normalization refinement; it requires an exact
+identification between the geometric target at
+\(u\) and at \(i\mapsto(\mathrm{id}\;K\;L)(u_i)\).
 
 ## Independent exact arithmetic regressions
 
