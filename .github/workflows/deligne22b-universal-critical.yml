@@ -43,7 +43,7 @@ jobs:
         working-directory: experiments/deligne_mathlib
         run: |
           set -euo pipefail
-          lake build Deligne04.RelativeCriticalRankOneChart
+          lake build Deligne04
           lake env lean Deligne04/UniversalRelativeCritical.lean | tee deligne22b-universal-axioms.txt
           lake env lean Deligne04/RelativeCriticalRankOneChart.lean | tee deligne22b-chart-axioms.txt
           if grep -Eq 'sorryAx|ofReduceBool' deligne22b-universal-axioms.txt deligne22b-chart-axioms.txt; then
