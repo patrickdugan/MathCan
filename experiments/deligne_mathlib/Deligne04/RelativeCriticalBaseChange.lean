@@ -75,7 +75,7 @@ theorem universalSectionIdeal_map_specialize
         (ParameterRing K (Deligne16.Coord k s)))).map
         (MvPolynomial.map (parameterEval a c)) =
       Ideal.span ({Deligne16.fixedSection B a c} : Set
-        (MvPolynomial (Deligne16.Coord k s) K)) := by
+        (MvPolynomial (Deligne16.Coord k s) K))) := by
   classical
   rw [Ideal.map_span, Set.image_singleton]
   rw [universalSection_specialize]
