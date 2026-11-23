@@ -28,6 +28,9 @@ open scoped BigOperators
 
 namespace Deligne22F
 
+set_option maxHeartbeats 2000000
+set_option maxRecDepth 2048
+
 /-- Actual universal parameter coefficient ring K[a_i,c]. -/
 abbrev P (K : Type*) [Field K] (k s : ℕ) :=
   Deligne22B.ParameterRing K (Deligne16.Coord k s)
@@ -127,7 +130,7 @@ theorem universalRelation_pderiv
   | none => rfl
   | some t =>
       exact MvPolynomial.pderiv_map
-        (φ := MvPolynomial.C : K →+* P K k s)
+        (φ := (MvPolynomial.C : K →+* P K k s))
         (f := Deligne16.copyEquation f t)
         (i := i)
 
