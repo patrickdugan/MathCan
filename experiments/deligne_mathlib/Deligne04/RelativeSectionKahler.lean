@@ -126,9 +126,10 @@ theorem universalRelation_pderiv
   cases t with
   | none => rfl
   | some t =>
-      exact MvPolynomial.pderiv_map i
-        (MvPolynomial.C : K →+* P K k s)
-        (Deligne16.copyEquation f t)
+      exact MvPolynomial.pderiv_map
+        (φ := MvPolynomial.C : K →+* P K k s)
+        (f := Deligne16.copyEquation f t)
+        (i := i)
 
 /-- Any actual algebra presentation over a commutative base ring
 presents its Kähler-relation coefficients by formal partial derivatives.
