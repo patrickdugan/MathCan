@@ -70,7 +70,7 @@ theorem geometricJacobianTangentTowerEquiv_tmul
   calc
     _ = (Deligne21H.geometricJacobianTangentTowerEquiv f u hu φ)
           (m • ((1 : M) ⊗ₜ[L] v)) := by
-          rw [TensorProduct.smul_tmul', mul_one]
+          rw [TensorProduct.smul_tmul', smul_eq_mul, mul_one]
     _ = m • (Deligne21H.geometricJacobianTangentTowerEquiv f u hu φ)
           ((1 : M) ⊗ₜ[L] v) := map_smul _ _ _
     _ = _ := by rw [Deligne21I.geometricJacobianTangentTowerEquiv_one_tmul]
@@ -122,8 +122,10 @@ theorem geometricCotangentTowerEquiv_one_tmul_mk
         (fun i => φ (v i)) := by
     ext i
     exact Deligne21H.fieldTowerCoordinateEquiv_one_tmul φ v i
-  simpa only [LinearMap.comp_apply, LinearMap.baseChange_tmul,
-    Submodule.mkQ_apply, hcoord] using heq
+  simp only [LinearMap.comp_apply, LinearMap.baseChange_tmul,
+    Submodule.mkQ_apply] at heq
+  rw [hcoord] at heq
+  exact heq
 
 /-- Arbitrary pure tensors of an original coordinate quotient class
 are transported by scalar extension and the field-homomorphic coordinates. -/
@@ -144,7 +146,7 @@ theorem geometricCotangentTowerEquiv_tmul_mk
   calc
     _ = (Deligne21H.geometricCotangentTowerEquiv f u hu φ)
           (m • ((1 : M) ⊗ₜ[L] Submodule.Quotient.mk v)) := by
-          rw [TensorProduct.smul_tmul', mul_one]
+          rw [TensorProduct.smul_tmul', smul_eq_mul, mul_one]
     _ = m • (Deligne21H.geometricCotangentTowerEquiv f u hu φ)
           ((1 : M) ⊗ₜ[L] Submodule.Quotient.mk v) := map_smul _ _ _
     _ = _ := by rw [geometricCotangentTowerEquiv_one_tmul_mk]
