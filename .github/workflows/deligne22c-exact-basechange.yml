@@ -8,6 +8,7 @@ on:
       - 'experiments/deligne_mathlib/Deligne04/RelativeCriticalBaseChange.lean'
       - 'experiments/deligne_mathlib/Deligne04.lean'
       - 'research/deligne_sign_audit/DEL22C_*'
+      - 'tests/test_deligne22c_rankd_pivot.py'
       - '.github/workflows/deligne22c-exact-basechange.yml'
   workflow_dispatch:
 
@@ -59,4 +60,4 @@ jobs:
       - name: Recheck geometric and universal specialization regressions
         run: |
           set -euo pipefail
-          python -m unittest -v tests.test_deligne22b_universal_section tests.test_deligne22a_relative_critical tests.test_deligne21g_geometric_fiber
+          python -m unittest -v tests.test_deligne22c_rankd_pivot tests.test_deligne22b_universal_section tests.test_deligne22a_relative_critical tests.test_deligne21g_geometric_fiber
