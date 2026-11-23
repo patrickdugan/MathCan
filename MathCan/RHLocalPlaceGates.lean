@@ -19,10 +19,12 @@ def RealRoot29 (v : Fin 29) : Prop :=
 
 theorem imaginary_roots_exact :
     ∀ u : Fin 29, ImagRoot29 u ↔ (u.val = 12 ∨ u.val = 17) := by
+  unfold ImagRoot29
   decide
 
 theorem real_roots_exact :
     ∀ v : Fin 29, RealRoot29 v ↔ (v.val = 11 ∨ v.val = 18) := by
+  unfold RealRoot29
   decide
 
 /-- phi = (1 + sqrt(5))/2 satisfies T^2 - T - 1 = 0.
@@ -32,6 +34,7 @@ def PhiRoot29 (t : Fin 29) : Prop :=
 
 theorem phi_roots_exact :
     ∀ t : Fin 29, PhiRoot29 t ↔ (t.val = 6 ∨ t.val = 24) := by
+  unfold PhiRoot29
   decide
 
 /-- Two residue branches agree on the imaginary coordinate and differ
@@ -43,7 +46,7 @@ theorem compatible_residue_pair :
       p.1 = q.1 ∧ p.2 ≠ q.2 := by
   refine ⟨(⟨12, by decide⟩, ⟨11, by decide⟩),
     (⟨12, by decide⟩, ⟨18, by decide⟩), ?_⟩
-  decide
+  simp only [ImagRoot29, RealRoot29] <;> decide
 
 /-- The local weight dominance limits d when the weight is bounded above
 and the twist exponent is bounded below. -/
