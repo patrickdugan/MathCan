@@ -1,0 +1,100 @@
+name: RH-26E-01 scalar transport Lean kernel
+
+on:
+  push:
+    branches: [research/rh26-extraction-rubrics-20261123]
+    paths:
+      - 'research/rh26/lean/RH26E01ScalarTransport.lean'
+      - 'research/rh26/RH26E01_REGISTRATION.md'
+      - '.github/workflows/rh26e01-scalar-transport.yml'
+  pull_request:
+    paths:
+      - 'research/rh26/lean/RH26E01ScalarTransport.lean'
+      - 'research/rh26/RH26E01_REGISTRATION.md'
+      - '.github/workflows/rh26e01-scalar-transport.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: rh26e01-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  scalar-transport-kernel:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - name: Checkout MathCan branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Check registration and pinned compiler/mathematical dependency
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fx 'leanprover/lean4:v4.35.0' experiments/deligne_mathlib/lean-toolchain
+          grep -Fx 'rev = "v4.35.0"' experiments/deligne_mathlib/lakefile.toml
+          test -s research/rh26/RH26E01_REGISTRATION.md
+          test -s research/rh26/lean/RH26E01ScalarTransport.lean
+          if grep -En '^[[:space:]]*(axiom|sorry|admit|unsafe|opaque)[[:space:]]' research/rh26/lean/RH26E01ScalarTransport.lean; then
+            echo "::error::Forbidden declaration in source"
+            exit 1
+          fi
+      - name: Install pinned Lean
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Download pinned Mathlib cache
+        working-directory: experiments/deligne_mathlib
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel check registered scalar transport and counterexamples
+        working-directory: experiments/deligne_mathlib
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ../../artifacts/rh26e01
+          lean --version | tee ../../artifacts/rh26e01/lean-version.txt
+          grep -F 'Lean (version 4.35.0' ../../artifacts/rh26e01/lean-version.txt
+          sha256sum ../../research/rh26/lean/RH26E01ScalarTransport.lean | tee ../../artifacts/rh26e01/source-sha256.txt
+          lake env lean ../../research/rh26/lean/RH26E01ScalarTransport.lean 2>&1 | tee ../../artifacts/rh26e01/axiom-audit.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          log = Path("../../artifacts/rh26e01/axiom-audit.txt").read_text()
+          names = [
+              "beta_normalized", "beta_nonzero", "alpha_nonzero",
+              "beta_no_target_counterexample", "beta_no_inverse_counterexample",
+              "alpha_no_source_counterexample",
+          ]
+          allowed = {"propext", "Classical.choice", "Quot.sound"}
+          forbidden = {"sorryAx", "ofReduceBool"}
+          assert all(name not in log for name in forbidden), "forbidden axiom or reduction present"
+          for name in names:
+              fqn = f"RH26E01.{name}"
+              assert fqn in log, f"missing axiom report: {fqn}"
+          for line in log.splitlines():
+              if "depends on axioms:" in line:
+                  m = re.search(r"depends on axioms:\s*\[([^]]*)\]", line)
+                  assert m, f"unparsed axiom report: {line!r}"
+                  deps = {s.strip() for s in m.group(1).split(",") if s.strip()}
+                  assert deps <= allowed, f"unexpected axiom(s) {deps - allowed}: {line}"
+          print("RH-26E-01: all six declarations typechecked and axiom dependencies audited")
+          PY
+      - name: Preserve pinned kernel and axiom receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rh26e01-lean435-kernel-receipts
+          path: artifacts/rh26e01/
+          if-no-files-found: warn
+          retention-days: 30
