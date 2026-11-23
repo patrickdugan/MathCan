@@ -234,13 +234,6 @@ theorem geometricJacobianTangentTower_comp
         eMN ((1 : N) ⊗ₜ[M] eLM ((1 : M) ⊗ₜ[L] v)) := by
     apply Subtype.ext
     funext i
-    change
-      ((eLN ((1 : N) ⊗ₜ[L] v) :
-        Deligne21G.geometricJacobianTangent f (fun j => ψ (φ (u j))) :
-        Deligne16.Coord k s → N) i) =
-      ((eMN ((1 : N) ⊗ₜ[M] eLM ((1 : M) ⊗ₜ[L] v)) :
-        Deligne21G.geometricJacobianTangent f (fun j => ψ (φ (u j))) :
-        Deligne16.Coord k s → N) i)
     rw [Deligne21I.geometricJacobianTangentTowerEquiv_one_tmul
       f u hu (ψ.comp φ) v]
     rw [Deligne21I.geometricJacobianTangentTowerEquiv_one_tmul
