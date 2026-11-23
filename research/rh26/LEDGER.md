@@ -1,5 +1,20 @@
 # RH-26 run ledger
 
+## RH-26A-02 — 2026-11-23 — theta/window interface gate
+
+- **Status:** PASS (bounded static interface discovery); RH-26B multiplicity extraction **BLOCKED / UNSOURCED** until operator definitions and quantitative lemma are located.
+- **Upstream:** `leanprover-community/riemann-hypothesis` SHA `c900e67c2fcd1fdb041685820bbd2b867fbc5a4b`, checked against upstream main at session start.
+- **MathCan work:** branch `research/rh26-extraction-rubrics-20261123`; [draft PR #265](https://github.com/patrickdugan/MathCan/pull/265); report committed as `aa919d19f7b3109d20b5fa367a273a1243464552`.
+- **Report:** [RH26A02_THETA_INTERFACE.md](RH26A02_THETA_INTERFACE.md), with pinned source links, exact theorem signatures and a minimal cut diagram.
+- **Eight upstream files read (708 total source lines):** `EveryCharacterOfLiteratureOfVWin.lean:220-322` (103), `SiegelEisensteinSecondTermHypotheses.lean:1-108` (108), `ExistsPageN.lean:1-124` (124), `TopPlug.lean:1-57` (57), `SupplyChi.lean:1-54` (54), `ZeroFreeAllOfTopG.lean:1-78` (78), `Hyps.lean:1-125` (125), `At23OfAll.lean:1-59` (59). Directory name metadata and exact Git refs were read, with no recursive full-repository scan.
+- **Exact target:** `UpperTheory.Lit.every_character_of_theta_integrals_local_matching` takes `P : UnitaryGroupThirdPlaceHypotheses`, `F : ThetaLocalInputs`, `hA : ThetaIntegralsAgree`, `hM : LocalMatching`, `hX : CovolumeBoundOfX`, `hL : RecTExists`, `hV : VWin` and concludes `UpperTheory.EveryCharacter`. The source is `SiegelEisensteinSecondTermHypotheses.lean:101-105`.
+- **Intermediate witness:** `nonempty_hyps_definite_side_of_closed_bound` constructs `Nonempty HypsAlt` at `SiegelEisensteinSecondTermHypotheses.lean:76-100`. It uses matching/integals to build Fourier/test-vector grid witnesses, combines grid thresholds with `max CF0 CF1`, and consumes the covolume and linked local bounds. `HypsAlt` is a long dependent family structure. `At23OfAll.lean:55-57` supplies a linked predicate from a two/three-prime hypothesis.
+- **Coherent window:** `OpenLiteratureStatements` at `EveryCharacterOfLiteratureOfVWin.lean:220-223` has two Galois-row fields and one local-Langlands field. `VWin := ∀ ψ, VWinAt ψ 401` (`ExistsPageN.lean:92`). It packages windows with `0<ε<1/52`, `[Y,Y²]` bounds, Tate–Shafarevich lengths, and an `x^401` cutoff. `TopPlug.lean:50-56` fixes window-width parameter `3/2`, then uses `supplyChi` and `imprimitive`.
+- **Competing explanation/falsifier:** theta-integral and local-matching identities may be too weak to construct a compatible `HypsAlt` witness once the grid, volume, linked-bundle, and cohomological constraints are imposed. A proposed operator compression must provide this witness or explicitly retain it as a hypothesis.
+- **Not yet established:** an explicit theta-lift multiplicity bound; definitions/normalizations of `ThetaIntegralsAgree` and `LocalMatching`; numerical meaning of `BoundAtTwoThreeFamilyFonAlt`; a `X/m+m` prime-sum theorem; independent Lean checks.
+- **Compute receipt:** read-only GitHub and pinpoint web discovery, no local or cloud build, GPU/QPU run, CI job, or independent kernel check; wall time / RAM not measured.
+- **Next fresh bounded run:** RH-26B source discovery: begin with `LocalTypeDictionary/TwistedSquareThetaIntegralsEq.lean` and `LocalTypeDictionary/TwistedSquareLocalMatching.lean`, and `ThirdPlaceSeries/BoundAtTwoThreeFamilyFon.lean`, all under `src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/`. Extract the operator and matching definitions, their quantifiers and one exact inequality. Keep 8-file / 1,200-line cap, commit a separate receipt, stop.
+
 ## RH-26A-01 — 2026-11-23 — static top-level dependency trace
 
 - **Status:** PASS (static source-trace acceptance only). **Not** a new independent Lean verification; deep theta/prime-sum extraction remains OPEN.
