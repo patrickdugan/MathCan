@@ -193,7 +193,7 @@ theorem fixedParameterCriticalIdeal_le_evalKer
     (hcrit : criticalOnTangent f B a c u) :
     fixedParameterCriticalIdeal f B a c d ≤
       RingHom.ker (MvPolynomial.aeval u).toRingHom := by
-  rcases hcrit with ⟨hu, hs, _⟩
+  obtain ⟨hu, hs, hder⟩ := hcrit
   unfold fixedParameterCriticalIdeal
   apply sup_le
   · apply sup_le
@@ -206,7 +206,7 @@ theorem fixedParameterCriticalIdeal_le_evalKer
       subst q
       exact RingHom.mem_ker.mpr hs
   · apply augmentedMinorIdeal_le_evalKer_of_critical f B a c u d hrow
-    exact ⟨hu, hs, hcrit.2.2⟩
+    exact ⟨hu, hs, hder⟩
 
 #print axioms polynomialAugmentedSectionMatrix_aeval
 #print axioms aeval_augmentedMinorPolynomial
