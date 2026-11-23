@@ -38,9 +38,15 @@ theorem mem_span_singleton_iff_pivot_minors
     refine ⟨g pivot / row pivot, ?_⟩
     funext j
     simp only [Pi.smul_apply, smul_eq_mul]
-    have hj := sub_eq_zero.mp (h j)
-    field_simp [hp]
-    nlinarith [hj]
+    have hj : row pivot * g j = g pivot * row j :=
+      sub_eq_zero.mp (h j)
+    calc
+      (g pivot / row pivot) * row j =
+          (g pivot * row j) / row pivot := div_mul_eq_mul_div _ _ _
+      _ = g j := (div_eq_iff hp).mpr (by
+        calc
+          g pivot * row j = row pivot * g j := hj.symm
+          _ = g j * row pivot := mul_comm _ _)
 
 /-- On a genuine original-conormal rank-one chart with pivot ≠ 0,
 relative criticality of the actual DEL-16 section is equivalent to
