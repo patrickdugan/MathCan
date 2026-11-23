@@ -9,19 +9,7 @@
 
 ## 1. Source-backed conditional cut
 
-The literal upstream theorem at [EveryCharacterOfLiteratureOfVWin.lean:570–571](https://github.com/leanprover-community/riemann-hypothesis/blob/c900e67c2fcd1fdb041685820bbd2b867fbc5a4b/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean#L570-L571) is:
-
-```lean
-theorem UpperTheory.LiteratureTheorems.theta_integrals_agree_and_local_matching_of_literature
-    (O : UpperTheory.LiteratureTheorems.OpenLiteratureStatements) :
-    GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.ThetaIntegralsAgree ∧
-    GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.LocalMatching :=
-  PositivityTheory.ThKR.theoremK_head2
-    (UpperTheory.LiteratureTheorems.eis_bl_of_literature O)
-    (UpperTheory.LiteratureTheorems.siegel_weil_std_of_literature O)
-```
-
-(The code block is a short transcribed interface for orientation; consult the linked original for exact qualification.)
+The conditional supplier at [EveryCharacterOfLiteratureOfVWin.lean:570–571](https://github.com/leanprover-community/riemann-hypothesis/blob/c900e67c2fcd1fdb041685820bbd2b867fbc5a4b/src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean#L570-L571) is the statement: for any `O : OpenLiteratureStatements`, the `EisBL` and `SiegelWeilStd` facts constructed from `O` jointly yield `WeilTensorModels.ThetaIntegralsAgree ∧ WeilTensorModels.LocalMatching`. It applies `PositivityTheory.ThKR.theoremK_head2` to those two inputs. This is an independently written description of the public theorem contract; the original Lean source remains at the pinned link.
 
 The decisive bundled supplier is `PositivityTheory.ThKR.theoremK_head2`, declared at [TheoremKOfMod.lean:72–73](https://github.com/leanprover-community/riemann-hypothesis/blob/c900e67c2fcd1fdb041685820bbd2b867fbc5a4b/src/Development/WeilBound/ThetaLifts/Reductions/FiniteClosure/TheoremKOfMod.lean#L72-L73). It has **exactly two mathematical inputs** on that public interface:
 
