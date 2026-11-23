@@ -1,0 +1,102 @@
+name: RH-26E-04A overlap-corrected finite rank capacity
+
+on:
+  push:
+    branches: [research/rh26-extraction-rubrics-20261123]
+    paths:
+      - 'research/rh26/lean/RH26E04AOverlapCapacity.lean'
+      - 'research/rh26/RH26E04A_REGISTRATION.md'
+      - '.github/workflows/rh26e04a-overlap-capacity.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: rh26e04a-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  overlap-capacity-kernel:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Verify registration and pinned toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fx 'leanprover/lean4:v4.35.0' experiments/deligne_mathlib/lean-toolchain
+          grep -Fx 'rev = "v4.35.0"' experiments/deligne_mathlib/lakefile.toml
+          test -s research/rh26/RH26E04A_REGISTRATION.md
+          test -s research/rh26/lean/RH26E04AOverlapCapacity.lean
+          if grep -En '^[[:space:]]*(axiom|sorry|admit|unsafe|opaque)[[:space:]]' research/rh26/lean/RH26E04AOverlapCapacity.lean; then
+            echo "::error::Forbidden declaration in source"
+            exit 1
+          fi
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve Mathlib v4.35.0
+        working-directory: experiments/deligne_mathlib
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel check all ten registered declarations
+        working-directory: experiments/deligne_mathlib
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p ../../artifacts/rh26e04a
+          lean --version | tee ../../artifacts/rh26e04a/lean-version.txt
+          grep -F 'Lean (version 4.35.0' ../../artifacts/rh26e04a/lean-version.txt
+          git -C .lake/packages/mathlib rev-parse HEAD | tee ../../artifacts/rh26e04a/mathlib-sha.txt
+          sha256sum ../../research/rh26/lean/RH26E04AOverlapCapacity.lean | tee ../../artifacts/rh26e04a/source-sha256.txt
+          /usr/bin/time -v -o ../../artifacts/rh26e04a/timing.txt lake env lean ../../research/rh26/lean/RH26E04AOverlapCapacity.lean 2>&1 | tee ../../artifacts/rh26e04a/axiom-audit.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          log = Path("../../artifacts/rh26e04a/axiom-audit.txt").read_text()
+          names = {
+              "occurrence_positive", "weighted_count", "overlap_identity",
+              "overlap_zero_of_disjoint", "budget_with_overlap",
+              "independent_union_rank", "subspace_capacity", "rank_nullity_defect",
+              "duplicate_label_fixture", "dependent_lines_control",
+          }
+          allowed = {"propext", "Classical.choice", "Quot.sound"}
+          assert "sorryAx" not in log and "ofReduceBool" not in log
+          assert not re.search(r"declaration uses 'sorry'", log)
+          found = {}
+          for line in log.splitlines():
+              m = re.match(r"'RH26E04A\.([A-Za-z0-9_]+)' depends on axioms: \[([^]]*)\]$", line.strip())
+              if m:
+                  name = m.group(1)
+                  deps = {s.strip() for s in m.group(2).split(",") if s.strip()}
+              else:
+                  m = re.match(r"'RH26E04A\.([A-Za-z0-9_]+)' does not depend on any axioms$", line.strip())
+                  if not m:
+                      continue
+                  name, deps = m.group(1), set()
+              assert name not in found, f"duplicate audit: {name}"
+              assert deps <= allowed, f"unexpected axiom(s) in {name}: {deps - allowed}"
+              found[name] = deps
+          assert found.keys() == names, f"missing={names-found.keys()} extra={found.keys()-names}"
+          print(f"RH-26E-04A: {len(found)} registered declarations typechecked and axiom-audited")
+          PY
+          cat ../../artifacts/rh26e04a/timing.txt
+      - name: Preserve kernel receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rh26e04a-lean435-kernel-receipts
+          path: artifacts/rh26e04a/
+          if-no-files-found: warn
+          retention-days: 30
