@@ -1,5 +1,17 @@
 # RH-26 run ledger
 
+## RH-26E-04B — 2026-11-24 — exact and stable block-scalar transport
+
+- **Status:** IMPLEMENTED; **KERNEL RESULT PENDING**. Eleven theorem declarations and corresponding axiom-print commands match registration; no admission/native_decide tokens. Compiler acceptance pending.
+- **Registration:** [RH26E04B_REGISTRATION.md](RH26E04B_REGISTRATION.md), `723178d20c14f9261e747339f986996c5ba565bf` before executable code. **Implementation:** [lean/RH26E04BBlockTransport.lean](lean/RH26E04BBlockTransport.lean), `fc3536491c50411ae864313505c8bdde9f16199e`; workflow+source `9be4158b26896d5904a82211ff1449d89d64b4b1`, blob `d2e1bc25b3e1e31592ac16ee14c9370021f262a0`, 259 lines. **Report:** [RH26E04B_RESULTS.md](RH26E04B_RESULTS.md), `cad5b491f39fb9206db214cbcbbb0bb106a0f85a`.
+- **Source inspiration:** frozen upstream `c900e67c2fcd1fdb041685820bbd2b867fbc5a4b`, B08 exact theta injection adapter; no new upstream reads or copied proof imports. E04A completed 10/10 before registration.
+- **Exact contracts:** finite linear projections with sum E_i=I and pairwise annihilation/idempotence, PT E_i=lam_i E_i. Derive E_i PT=lam_i E_i and explicit inverse recovery v=∑lam_i^(-1) E_i PT v when gains nonzero, hence T injective.
+- **Norm contracts:** finite square-energy inequality; real normed-space block lower gain a from explicit Pythagorean identity and E_i A v=lam_i E_i v, a≤||lam_i||. If actual operator norm ||P.comp T−A||≤delta, lower composition gain a−delta, forward gain (a−delta)/||P|| for ||P||>0, injectivity for delta<a. Conjugated gain a/(||S||*||Sinv||) for supplied coordinate inverse and conjugacy with positive norms. No orthogonality inferred from algebraic independence.
+- **Controls:** explicit zero gain on rational line; real-line T=0, P=I, A=(1/2)I has lower gain 1/2 and exact residual norm 1/2 yet noninjective, demonstrating the strict threshold. Mathematical contracts independent of empirical model measurements.
+- **CPU verification:** [run 45286618247](https://github.com/patrickdugan/MathCan/actions/runs/45286618247), job `138084501274`, checked `9be4158b`. Initial checkout and pin/registration preflight passed, Lean installation running. Require successful exit, exact eleven-name axiom audit and only propext, Classical.choice, Quot.sound, version/dependency SHA, source SHA-256, timing/RSS, artifact.
+- **Resources:** isolated pinned Lean 4.35.0 / Mathlib v4.35.0 GitHub CPU job, 25-minute cap; no full upstream/Deligne build, GPU/QPU, paid compute.
+- **Resume:** inspect run 45286618247 first, preserve failures and repair only within frozen contracts. After closure consider E04C weighted allocation dual, joint incidence/kernel defect or B09 source inventory. No new kernel claim until verified.
+
 ## RH-26E-04A — 2026-11-24 — overlap-corrected finite rank capacity
 
 - **Status:** **KERNEL PASS (10/10)** on the proof-only repair; all frozen theorem statements retained. First failed audit is preserved.
