@@ -1,5 +1,18 @@
 # RH-26 run ledger
 
+## RH-26B-03 — 2026-11-23 — original theta-premise definitions recovered
+
+- **Status:** **PASS** for original `WeilTensorModels.LocalMatching` and `ThetaIntegralsAgree` source declarations. **PASS (paper algebra only)** for conditional alpha/beta scalar transport. Explicit theta-multiplicity exponent and `X/m+m` estimate remain **UNSOURCED**. No new Lean kernel verification.
+- **Upstream:** `leanprover-community/riemann-hypothesis@c900e67c2fcd1fdb041685820bbd2b867fbc5a4b`, checked main unchanged before reading.
+- **MathCan:** branch `research/rh26-extraction-rubrics-20261123`, draft [PR #265](https://github.com/patrickdugan/MathCan/pull/265). [RH26B03_ORIGINAL_PREMISES.md](RH26B03_ORIGINAL_PREMISES.md) committed as `c203083a6f9fe1afaa335f61d954b31b1d7b43a8`. Read that report for full source links and exact hypotheses.
+- **Read receipt:** one upstream Lean file: `src/Development/AbelianVarietyTheory/BlockTheory/DivisorBase/WeilTensorModels.lean:501-634` (134 lines; requested window 501–750; EOF at 634). The namespace and source file close here. Earlier sessions covered lines 1–500.
+- **Original definitions:** `LocalMatching` at lines 619–621 means every valid `IsTriple` admits paired `RealMaps` and `FinMaps` satisfying `IsMatched`. `ThetaIntegralsAgree` at 623–630 consists of universal `Decay` and `OneConst`/`Coinv` obligations under `IsMatched`, and independently existential global unit triples for `StepBeta` and `StepAlpha`. These are **premises packaged for proof elsewhere**.
+- **Nonzero scalar gate:** `IsConst` (529) expresses comparison of two theta integrals on `Match` pairs; `OneConst` (541–543) requires one nonzero theta integral, a unique matching scalar, and that each such scalar be nonzero. `Coinv` (545–550) enforces kernel/augmentation and quotient-factorization properties.
+- **Rank-step exact relation:** `StepBeta` (597–605), on a rank-two change in the second space, requires `u·D=1` and `c·L=u·c₁`, with `D=C·stepFac` and a specified special `charL` value `L`. Algebraically `c₁=D·c·L`, and `c₁≠0` implies `L≠0`. `StepAlpha` (608–617), on a rank-two change in the first space, gives `c=D·L·c₁`; under `c≠0`, `L≠0`. The two existential unit triples and their special values differ; preserve that distinction. These are new **paper-algebra consequences** under the quoted formal hypotheses, not new kernel checks or direct RH proofs.
+- **Falsifier:** scalar equality alone is insufficient when `IsMatched`, `OneConst`, `Decay`, `Coinv`, or the rank-step hypotheses fail. A counterexample dropping nonzero scalars falsifies any unconditional L-value inference. No direct derivation of theta-lift multiplicity or a prime-sum error bound was established.
+- **Next run:** **RH-26E-01** registered scalar-transport Lean/CPU gym on the pinned MathCan Lean 4.35 toolchain, with exact beta and alpha implications, normalized beta equality, and adversarial zero-scalar controls; prove under CPU CI and audit axioms. If source investigation continues instead, **RH-26B-04** should locate the proof *suppliers* of `StepBeta`, `StepAlpha`, `OneConst` by strict name/path-scoped queries.
+- **Resource receipt:** GitHub connector file read and commit only. No local build, GitHub Actions, GPU/QPU/cloud jobs, pretrained inference or paid compute. Memory/wall time unmeasured.
+
 ## RH-26B-02 — 2026-11-23 — Weil-theta integration / quotient structure
 
 - **Status:** PARTIAL SOURCE PASS for operator and quotient definitions; **BLOCKED** on locating the *original* `WeilTensorModels.ThetaIntegralsAgree` and `WeilTensorModels.LocalMatching` declarations. No Lean kernel verification.
