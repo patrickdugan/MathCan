@@ -156,11 +156,49 @@ theorem det_borderedPivot_map
     rfl
   rw [hmatrix, borderedPivot_map]
 
+/-- Over a field, the Schur complement evaluates the bordered
+determinant as a nonzero pivot determinant times the residual.
+This is the pointwise form of the localized polynomial identity. -/
+theorem det_borderedPivot_eq_schur_field
+    {L : Type*} [Field L] {d : ℕ}
+    (H : Matrix (Fin d) (Fin d) L) (b c : Fin d → L) (v : L)
+    (hdet : H.det ≠ 0) :
+    (borderedPivot H b c v).det =
+      H.det * (v - (bottomBlock c * H⁻¹ * rightBlock b) 0 0) := by
+  classical
+  have hu : IsUnit H.det := isUnit_iff_ne_zero.mpr hdet
+  obtain ⟨inst⟩ := hu.nonempty_invertible
+  letI : Invertible H.det := inst
+  letI : Invertible H := Matrix.invertibleOfDetInvertible H
+  unfold borderedPivot
+  rw [Matrix.det_fromBlocks₁₁, Matrix.det_fin_one]
+  rw [Matrix.invOf_eq_nonsing_inv]
+  rfl
+
+/-- A bordered determinant vanishes exactly when the new row is
+interpolated by the original pivot rows. This is valid for d=0. -/
+theorem det_borderedPivot_zero_iff_interpolation
+    {L : Type*} [Field L] {d : ℕ}
+    (H : Matrix (Fin d) (Fin d) L) (b c : Fin d → L) (v : L)
+    (hdet : H.det ≠ 0) :
+    (borderedPivot H b c v).det = 0 ↔
+      v = ∑ t : Fin d, (c ᵥ* H⁻¹) t * b t := by
+  classical
+  have hsum :
+      (bottomBlock c * H⁻¹ * rightBlock b) 0 0 =
+        ∑ t : Fin d, (c ᵥ* H⁻¹) t * b t := by
+    simp only [Matrix.mul_apply, Matrix.vecMul_apply_eq_sum,
+      bottomBlock, rightBlock]
+  rw [det_borderedPivot_eq_schur_field H b c v hdet, hsum, mul_eq_zero]
+  simp only [hdet, false_or, sub_eq_zero]
+
 #print axioms det_borderedPivot_eq_numerator_of_invertible
 #print axioms det_borderedPivot_eq_numerator_of_unit
 #print axioms det_borderedPivot_eq_numerator_of_det_ne_zero
 #print axioms borderedPivot_map
 #print axioms pivotNumerator_map
 #print axioms det_borderedPivot_map
+#print axioms det_borderedPivot_eq_schur_field
+#print axioms det_borderedPivot_zero_iff_interpolation
 
 end Deligne22E
