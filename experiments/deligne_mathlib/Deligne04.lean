@@ -39,3 +39,5 @@ import Deligne04.GeometricFiberNaturality
 import Deligne04.GeometricFiberCoherence
 import Deligne04.GeometricTowerCoherence
 import Deligne04.GeometricIdentityCoherence
+import Deligne04.RelativeCriticalRank
+import Deligne04.RelativeCriticalMinors
