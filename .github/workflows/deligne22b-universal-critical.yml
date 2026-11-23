@@ -1,0 +1,65 @@
+name: DEL-22B universal relative critical specialization
+
+on:
+  push:
+    branches: [proof/deligne22b-universal-critical-20261123]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/UniversalRelativeCritical.lean'
+      - 'experiments/deligne_mathlib/Deligne04/RelativeCriticalRankOneChart.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'tests/test_deligne22b_universal_section.py'
+      - 'research/deligne_sign_audit/DEL22B_*'
+      - '.github/workflows/deligne22b-universal-critical.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne22b-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check universal critical section and minor transport
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/UniversalRelativeCritical.lean | tee deligne22b-universal-axioms.txt
+          lake env lean Deligne04/RelativeCriticalRankOneChart.lean | tee deligne22b-chart-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne22b-universal-axioms.txt deligne22b-chart-axioms.txt; then
+            echo 'DEL-22B unexpected axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Replay original scheme and universal parameter regression oracles
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne22b_universal_section tests.test_deligne22a_relative_critical tests.test_deligne21j_three_field_towers tests.test_deligne21h_field_towers tests.test_deligne21g_geometric_fiber tests.test_deligne21f_actual_fiber
