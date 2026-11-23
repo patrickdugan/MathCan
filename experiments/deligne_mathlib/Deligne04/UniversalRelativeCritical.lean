@@ -21,7 +21,7 @@ namespace Deligne22B
 
 /-- The polynomial ring in all linear coefficients and the constant:
 some i denotes a_i, none denotes c. -/
-abbrev ParameterRing (K : Type*) (ι : Type*) := MvPolynomial (Option ι) K
+abbrev ParameterRing (K : Type*) [CommSemiring K] (ι : Type*) := MvPolynomial (Option ι) K
 
 /-- Specialize the independent parameters to (a,c) over the coefficient field. -/
 noncomputable def parameterEval
