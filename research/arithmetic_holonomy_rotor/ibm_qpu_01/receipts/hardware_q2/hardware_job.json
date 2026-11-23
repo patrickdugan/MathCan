@@ -1,0 +1,13 @@
+{
+  "tag": "ahr-qpu-01-39589e0541db4e7a",
+  "job_id": "dc1vksqnj2vs73dfu0n0",
+  "submitted_utc": "2026-11-23T08:33:55+00:00",
+  "backend": "ibm_fez",
+  "shots_per_circuit": 2048,
+  "free_balance_checked": {
+    "plan": "open",
+    "checked_utc": "2026-11-23T08:33:52+00:00",
+    "remaining_qpu_seconds": 536.0
+  },
+  "max_execution_time_s": 98
+}
