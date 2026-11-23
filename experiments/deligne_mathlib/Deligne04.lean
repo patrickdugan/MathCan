@@ -44,3 +44,4 @@ import Deligne04.RelativeCriticalMinors
 import Deligne04.UniversalRelativeCritical
 import Deligne04.RelativeCriticalRankOneChart
 import Deligne04.RelativeCriticalBaseChange
+import Deligne04.RankDPivotInterpolation
