@@ -122,7 +122,13 @@ theorem independent_union_rank {σ : Type*} [DecidableEq σ]
   have hEq : (∑ s ∈ S, Module.finrank K (U s)) =
       Module.finrank K ↥(⨆ s ∈ S, U s) := by
     induction S using Finset.induction_on with
-    | empty => simp
+    | empty =>
+      have hz : (⨆ t ∈ (∅ : Finset σ), U t) = ⊥ := by
+        apply le_antisymm
+        · refine iSup_le fun t => iSup_le fun ht => ?_
+          simp at ht
+        · exact bot_le
+      rw [Finset.sum_empty, hz, finrank_bot]
     | insert s S hs ih =>
       let L : Submodule K V := ⨆ t ∈ S, U t
       have hsep : Disjoint (U s) L := hU.disjoint_biSup (by simpa using hs)
@@ -131,7 +137,8 @@ theorem independent_union_rank {σ : Type*} [DecidableEq σ]
       have hadd : Module.finrank K (U s ⊔ L : Submodule K V) =
           Module.finrank K (U s) + Module.finrank K L := by
         have he := Submodule.finrank_sup_add_finrank_inf_eq (U s) L
-        simpa [hsep.eq_bot] using he
+        rw [hsep.eq_bot, finrank_bot, add_zero] at he
+        exact he
       calc
         (∑ t ∈ insert s S, Module.finrank K (U t)) =
             Module.finrank K (U s) + Module.finrank K L := by
