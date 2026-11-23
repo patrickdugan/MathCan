@@ -1,5 +1,16 @@
 # RH-26 run ledger
 
+## RH-26E-04A — 2026-11-24 — overlap-corrected finite rank capacity
+
+- **Status:** IMPLEMENTED; **KERNEL RESULT PENDING**. Ten preregistered declarations and matching axiom-print commands found in source, no sorry/admit/native_decide tokens. Compiler acceptance is not yet confirmed.
+- **Registration:** [RH26E04A_REGISTRATION.md](RH26E04A_REGISTRATION.md), `fb84c0dd966012d06f5125d33f1d49c385a4ac69` before code/CI. **Implementation:** [lean/RH26E04AOverlapCapacity.lean](lean/RH26E04AOverlapCapacity.lean), `5810fb9346ced9d5101c76150e895300d575d456`; source+workflow `d97efea02711c4f3444de9b18716731abf77213a`. Source Git blob `3a15e42b277412f5381117140b6405f480b972e5`, 232 lines.
+- **Report:** [RH26E04A_RESULTS.md](RH26E04A_RESULTS.md), pending receipt `05ac054b4b13b4a6f41b8253b8473031678522bf`. Source inspiration frozen upstream `c900e67c2fcd1fdb041685820bbd2b867fbc5a4b`, B08 exact local capacity proof. No new upstream source reads/imports.
+- **Contracts:** finite natural weights and incidence sets, occurrence positivity on union; exact weighted count T=∑r(s)d(s); T=union weight+D where D=∑(r(s)−1)d(s); disjointness forces D=0; local counts and union capacity imply total≤R+D. For indexed independent subspaces, selected dimensions equal finite supremum dimension, bounded by ambient dimension; instantiate capacity at these dimensions. Rank-nullity for a specified linear map gives a separate kernel dimension defect. The module does not yet combine both defects into a single certified direct-sum map construction.
+- **Controls:** two label sets {0,1},{1,2}, unit weights, T=4, union weight 3, duplicate defect 1; corrected budget tight. Three rational vectors in Q², e1,e2,e1+e2, each nonzero and each pair has only the trivial scalar relation, but triple has a nonzero relation. Actual indexed independence is required.
+- **CPU run:** [45285266342](https://github.com/patrickdugan/MathCan/actions/runs/45285266342), job `138079841456`, commit `d97efea0`. Last observed checkout and pin/registration preflight passed, Lean installation in progress. Require compiler exit zero, ten exact axiom reports with only propext, Classical.choice, Quot.sound, compiler/dependency SHA, source SHA-256, timing/RSS and artifact.
+- **Resources:** isolated pinned Lean 4.35.0 / Mathlib v4.35.0 GitHub CPU job; 25-minute cap. No full upstream/Deligne build, GPU, QPU or paid compute.
+- **Resume:** inspect 45285266342 first. If failed, preserve logs and repair proof bodies or required modifiers without weakening theorem contracts. Then E04B block-scalar injection/robustness, E04C weighted allocation dual, or separately registered B09 source inventory (admissible-table conversion, generic injection lead).
+
 ## RH-26B-08 — 2026-11-24 — exact multiplicity rank certificate and family consumer
 
 - **Status:** SOURCE PASS for exact MultLe supplier and proof mechanism, theta-injectivity adapter, and ConclF-to-LinkN consumer. The detailed hypotheses' suppliers and global theta growth exponent remain UNSOURCED; no independent kernel check in this chunk.
