@@ -8,6 +8,7 @@ on:
       - 'experiments/deligne_mathlib/Deligne04/GeometricTowerCoherence.lean'
       - 'experiments/deligne_mathlib/Deligne04.lean'
       - 'research/deligne_sign_audit/DEL21J_*'
+      - 'tests/test_deligne21j_three_field_towers.py'
       - '.github/workflows/deligne21j-tower-coherence.yml'
   workflow_dispatch:
 
@@ -41,7 +42,7 @@ jobs:
         working-directory: experiments/deligne_mathlib
         run: |
           set -euo pipefail
-          lake build Deligne04.GeometricTowerCoherence
+          lake build Deligne04
           lake env lean Deligne04/GeometricTowerCoherence.lean | tee deligne21j-axioms.txt
           if grep -Eq 'sorryAx|ofReduceBool' deligne21j-axioms.txt; then
             echo 'DEL-21J unexpected axiom'
@@ -59,4 +60,4 @@ jobs:
       - name: Replay original-ideal extension-field arithmetic
         run: |
           set -euo pipefail
-          python -m unittest -v tests.test_deligne21h_field_towers tests.test_deligne21g_geometric_fiber tests.test_deligne21f_actual_fiber
+          python -m unittest -v tests.test_deligne21j_three_field_towers tests.test_deligne21h_field_towers tests.test_deligne21g_geometric_fiber tests.test_deligne21f_actual_fiber
