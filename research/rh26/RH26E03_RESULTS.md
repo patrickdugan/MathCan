@@ -55,3 +55,28 @@ Run [45279143901](https://github.com/patrickdugan/MathCan/actions/runs/452791439
 ## Repair attempt 1
 
 Commit `ed10fd9b389ec4e9e598955ece6aa929f33155f6` replaces unsuccessful linear arithmetic calls with explicit monotone inequality composition, removes the redundant solved-goal tactic, supplies positive Q using the window's b>0, aligns the addition-order API, and unfolds the natural-to-real local let before casting. All 14 public theorem statements were compared with the original implementation and match byte for byte. The repaired file is 472 lines, Git blob `0a8d0e7f9a84af2985f82d6202c64d6921c92c6e`. Fresh [CPU verification run 45279600326](https://github.com/patrickdugan/MathCan/actions/runs/45279600326), job 138060239393. Kernel and complete axiom status pending. No frozen contract changed.
+
+## Second-run receipt: mathematical declarations accepted; module compilation failed
+
+Run [45279600326](https://github.com/patrickdugan/MathCan/actions/runs/45279600326), job `138060239393`, commit `ed10fd9b389ec4e9e598955ece6aa929f33155f6`, completed failure. Source SHA-256 `482036279c6644f8d0ffaac0a5c0fd50a5ee333ad5ffcfd5260c1c8b8c3ce306`; [artifact 14868309262](https://github.com/patrickdugan/MathCan/actions/runs/45279600326/artifacts/14868309262). Lean 4.35.0, compiler `eb6cafb7290e8bd5f2937522d8d804f58f02bafc`, Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`.
+
+The seven previously reported proof-script errors are absent. Every registered theorem printed only permitted axioms. The remaining two errors at lines 11 and 16 are `lean.dependsOnNoncomputable`: the real-valued definitions `bracket` and `perSlot` depend on the noncomputable real division instance. The compiler exits 1, so the workflow's subsequent exact-name Python audit did not run. The overall registered gate is still FAILED, despite the clean theorem-level receipt. The next repair will mark just those two definitions noncomputable; no theorem type, proof body, definition body, or verification criterion changes.
+
+Literal theorem-level receipt:
+
+```text
+'RH26E03.window_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.bracket_normalization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.card_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.component_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.bracket_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.two_term_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.density_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.density_normalize' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.growth_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.zero_density_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.zero_volume_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.missing_density_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.no_loss_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.no_uniform_no_loss' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
