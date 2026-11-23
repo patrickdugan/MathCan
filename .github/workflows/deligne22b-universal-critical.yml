@@ -62,4 +62,4 @@ jobs:
       - name: Replay original scheme and universal parameter regression oracles
         run: |
           set -euo pipefail
-          python -m unittest -v tests.test_deligne22a_relative_critical tests.test_deligne21j_three_field_towers tests.test_deligne21h_field_towers tests.test_deligne21g_geometric_fiber tests.test_deligne21f_actual_fiber
+          python -m unittest -v tests.test_deligne22b_universal_section tests.test_deligne22a_relative_critical tests.test_deligne21j_three_field_towers tests.test_deligne21h_field_towers tests.test_deligne21g_geometric_fiber tests.test_deligne21f_actual_fiber
