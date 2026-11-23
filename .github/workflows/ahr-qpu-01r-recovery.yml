@@ -1,0 +1,42 @@
+name: AHR-QPU-01R recovered IBM Q2 source and receipt tests
+
+on:
+  pull_request:
+    paths:
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_01/recovered_q2/**'
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_01/receipts/hardware_q2/**'
+      - '.github/workflows/ahr-qpu-01r-recovery.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_01/recovered_q2/**'
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_01/receipts/hardware_q2/**'
+      - '.github/workflows/ahr-qpu-01r-recovery.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  recovered-q2-offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: research/arithmetic_holonomy_rotor/ibm_qpu_01/recovered_q2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: research/arithmetic_holonomy_rotor/ibm_qpu_01/recovered_q2/requirements.txt
+      - name: Install pinned original Q2 numerical and Qiskit requirements
+        run: python -m pip install -r requirements.txt
+      - name: Static syntax checks
+        run: python -m compileall -q .
+      - name: Original ten tests plus recovered hardware and authorization regressions
+        run: python -m pytest -q tests
+      - name: Recompute original Q2 analysis from immutable IBM hardware receipts
+        run: python offline_replay.py
+      - name: Independently replay counts and compiled/calibration integrity
+        run: python ../hardware_q2_replay.py
