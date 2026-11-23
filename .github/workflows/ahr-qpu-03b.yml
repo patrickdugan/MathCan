@@ -1,0 +1,29 @@
+name: AHR-QPU-03B/C offline gauge and closure preparation
+on:
+  pull_request:
+    paths:
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_03b/**'
+      - '.github/workflows/ahr-qpu-03b.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_03b/**'
+      - '.github/workflows/ahr-qpu-03b.yml'
+permissions:
+  contents: read
+jobs:
+  offline-preparation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install numpy==2.3.5 scipy==1.17.0
+      - run: python research/arithmetic_holonomy_rotor/ibm_qpu_03b/verify.py | tee ahr-qpu-03b-receipt.json
+        shell: bash
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ahr-qpu-03b-offline-receipt
+          path: ahr-qpu-03b-receipt.json
