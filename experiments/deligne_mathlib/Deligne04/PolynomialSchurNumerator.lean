@@ -92,8 +92,65 @@ theorem det_borderedPivot_eq_numerator_of_det_ne_zero
   det_borderedPivot_eq_numerator_of_unit H b c v
     (isUnit_iff_ne_zero.mpr hdet)
 
+/-- The bordered pivot itself commutes with every ring homomorphism.
+This will transport actual polynomial minors to geometric field points
+and universal parameters to their fixed specializations. -/
+theorem borderedPivot_map
+    {R S : Type*} [CommRing R] [CommRing S] {d : ℕ}
+    (φ : R →+* S) (H : Matrix (Fin d) (Fin d) R)
+    (b c : Fin d → R) (v : R) :
+    (borderedPivot H b c v).map φ =
+      borderedPivot (H.map φ) (fun i => φ (b i))
+        (fun i => φ (c i)) (φ v) := by
+  ext i j
+  cases i <;> cases j <;> rfl
+
+/-- The unlocalized polynomial Schur numerator commutes exactly with
+coefficient and geometric-point specialization. The adjugate,
+determinant, and matrix products all commute with ring maps. -/
+theorem pivotNumerator_map
+    {R S : Type*} [CommRing R] [CommRing S] {d : ℕ}
+    (φ : R →+* S) (H : Matrix (Fin d) (Fin d) R)
+    (b c : Fin d → R) (v : R) :
+    φ (pivotNumerator H b c v) =
+      pivotNumerator (H.map φ) (fun i => φ (b i))
+        (fun i => φ (c i)) (φ v) := by
+  classical
+  have hbot : (bottomBlock c).map φ =
+      bottomBlock (fun i => φ (c i)) := by
+    ext i j
+    rfl
+  have hright : (rightBlock b).map φ =
+      rightBlock (fun i => φ (b i)) := by
+    ext i j
+    rfl
+  have hadj : (H.adjugate).map φ = (H.map φ).adjugate :=
+    φ.map_adjugate H
+  have hprod :
+      φ ((bottomBlock c * H.adjugate * rightBlock b) 0 0) =
+      (bottomBlock (fun i => φ (c i)) *
+        (H.map φ).adjugate * rightBlock (fun i => φ (b i))) 0 0 := by
+    change ((bottomBlock c * H.adjugate * rightBlock b).map φ) 0 0 = _
+    rw [Matrix.map_mul, Matrix.map_mul, hbot, hright, hadj]
+  unfold pivotNumerator
+  rw [map_sub, map_mul, RingHom.map_det, hprod]
+
+/-- The determinant polynomial of a bordered pivot also specializes
+exactly, even at singular pivots. -/
+theorem det_borderedPivot_map
+    {R S : Type*} [CommRing R] [CommRing S] {d : ℕ}
+    (φ : R →+* S) (H : Matrix (Fin d) (Fin d) R)
+    (b c : Fin d → R) (v : R) :
+    φ (borderedPivot H b c v).det =
+      (borderedPivot (H.map φ) (fun i => φ (b i))
+        (fun i => φ (c i)) (φ v)).det := by
+  rw [RingHom.map_det, borderedPivot_map]
+
 #print axioms det_borderedPivot_eq_numerator_of_invertible
 #print axioms det_borderedPivot_eq_numerator_of_unit
 #print axioms det_borderedPivot_eq_numerator_of_det_ne_zero
+#print axioms borderedPivot_map
+#print axioms pivotNumerator_map
+#print axioms det_borderedPivot_map
 
 end Deligne22E
