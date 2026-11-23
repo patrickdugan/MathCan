@@ -120,7 +120,7 @@ theorem component_bounds {x eps n N P m b k a : ℝ}
   · have hpN : P / N ≤ 2 * x ^ (eps / 8) :=
       (div_le_div_of_nonneg_right h.P_upper hN.le).trans hr
     have hkn : k / n ^ 2 ≤ x ^ ((1 : ℝ) / 2 - eps) := by
-      apply (div_le_iff₀ (sq_pos_of_pos hn)).2
+      apply (div_le_iff₀ (show 0 < n ^ 2 by positivity)).2
       simpa only [mul_comm] using h.k_upper
     have hmul := mul_le_mul hpN hkn (div_nonneg hk.le (sq_nonneg n))
       (show 0 ≤ 2 * x ^ (eps / 8) by positivity)
@@ -192,10 +192,12 @@ theorem two_term_envelope {x eps n N P m b k a : ℝ}
     have hh := mul_le_mul_of_nonneg_right h.m_upper
       (Real.rpow_nonneg hx.le ((1 : ℝ) / 2 + 9 * eps / 8))
     have heq : x ^ ((1 : ℝ) / 2 + eps / 2) * x ^ ((1 : ℝ) / 2 + 9 * eps / 8) = x * L := by
-      dsimp [L]
-      rw [pow_join hx, ← Real.rpow_one x, pow_join hx]
-      congr 1
-      ring
+      calc
+        _ = x ^ (1 + 13 * eps / 8) := by
+          rw [pow_join hx, show (1 : ℝ) / 2 + eps / 2 + ((1 : ℝ) / 2 + 9 * eps / 8) =
+            1 + 13 * eps / 8 by ring]
+        _ = x ^ (1 : ℝ) * x ^ (13 * eps / 8) := (pow_join hx _ _).symm
+        _ = x * L := by rw [Real.rpow_one]; rfl
     rw [heq] at hh
     have hh' : x ^ ((1 : ℝ) / 2 + 9 * eps / 8) * m ≤ x * L := by
       simpa only [mul_comm] using hh
