@@ -43,3 +43,4 @@ import Deligne04.RelativeCriticalRank
 import Deligne04.RelativeCriticalMinors
 import Deligne04.UniversalRelativeCritical
 import Deligne04.RelativeCriticalRankOneChart
+import Deligne04.RelativeCriticalBaseChange
