@@ -172,8 +172,19 @@ theorem relativeSectionKahler_relation_eq_universalJacobian
         (Deligne22B.universalAugmentedMatrix f B t i) := by
   change ((relativeSectionAlgebraPresentation f B).differentials).relation t i = _
   rw [differential_relation_coefficient_relative]
-  congr 1
-  exact universalRelation_pderiv f B t i
+  change algebraMap
+      (MvPolynomial (Deligne16.Coord k s) (P K k s))
+      (universalSectionQuotient f B)
+      (MvPolynomial.pderiv i (universalRelation f B t)) =
+    algebraMap
+      (MvPolynomial (Deligne16.Coord k s) (P K k s))
+      (universalSectionQuotient f B)
+      (Deligne22B.universalAugmentedMatrix f B t i)
+  exact congrArg
+    (algebraMap
+      (MvPolynomial (Deligne16.Coord k s) (P K k s))
+      (universalSectionQuotient f B))
+    (universalRelation_pderiv f B t i)
 
 /-- Mathlib's true differential presentation is exact for the
 universal quotient, retaining the complete original ideal. -/
