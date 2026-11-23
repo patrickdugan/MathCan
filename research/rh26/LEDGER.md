@@ -1,5 +1,17 @@
 # RH-26 run ledger
 
+## RH-26B-06 — 2026-11-24 — completed alpha/beta rank-step source proof trace
+
+- **Status:** **PASS** for the completed source-level `Leaves.kBeta` and `Leaves.kAlpha` proof bodies, including exact nonzero-component cancellation and the beta inverse gate. New independent kernel check **NOT RUN**; quantitative multiplicity and `X/m+m` remain **UNSOURCED**.
+- **Preregistration:** [RH26B06_REGISTRATION.md](RH26B06_REGISTRATION.md), committed `c83d68bd2375f8a551370462c13bb21eefb267f7` before new upstream source reads. **Report:** [RH26B06_RANK_STEP_PROOFS.md](RH26B06_RANK_STEP_PROOFS.md), committed `0fc524f1b2d29ee78f582887882cdc6e64b39c40`.
+- **Provenance:** upstream read pin remains `c900e67c2fcd1fdb041685820bbd2b867fbc5a4b`. Upstream main observed at `90cc2e125ba4b6ca10be17d918857800ba6c39cc`; no semantic-equivalence claim.
+- **Source receipt:** one file, `src/Development/WeilBound/ThetaLifts/ConeHypotheses/CtSmallCone.lean:251–500` requested, **30 lines returned (251–280, EOF)**. Prior pinned session RH-26B-05 read lines 1–250, so the complete declarations at 243–261 and 263–274 have now been inspected across sessions. No additional upstream file or directory scan.
+- **Beta proof:** `kBeta` specializes `KeyB` using the smaller-rank `Below` claim, a matched test pair, and a scaled split. Write `D=C·stepFac`, `l=charL`, `w` for the selected beta-component evaluation. The actual scalar relation is `(D*l)*(c*w)=c₁*w` with `c*w≠0`. The proof obtains `D≠0` from `C≠0` and `facNe`, supplies `u=D⁻¹`, and cancels `w` to get `c*l=u*c₁` and `u*D=1` (lines 251–261).
+- **Alpha proof:** `kAlpha` uses `KeyA`, the lower-rank claim, a matched test pair, and `anAll` to scale the split. With the independently chosen alpha units and corresponding L-value, it obtains `c*w=(D*l*c₁)*w` and `w≠0`, yielding `c=D*l*c₁` by cancellation (lines 263–274).
+- **Key distinction:** the beta inverse and the nonzero component evaluation are supplied by actual geometric hypotheses. RH-26E-01's verified conditional field identities become applicable after these gates; no new proof of the original automorphic premises or RH follows from the abstract scalar statements.
+- **Next experiment: RH-26E-02.** Preregister the independent **witness-certified scalar cancellation and well-founded rank-descent gym**. Prove beta and alpha component cancellation, scalar uniqueness, and explicitly oriented transport with a natural-number decreasing measure and a nonzero base. Include adversarial controls for zero witnesses, missing beta invertibility, zero L-factors and invalid descent. Nonzero L factors needed for propagation must be explicit hypotheses, not circularly obtained from propagation. Use pinned Lean 4.35/Mathlib and isolated CPU CI. Quantitative RH-26C remains a separate source-discovery track.
+- **Compute receipt:** targeted GitHub connector read only; no Lean CI, upstream build, GPU, QPU, paid compute, or runtime/RAM measurement.
+
 ## RH-26B-05 — 2026-11-23 — exact theta endgame and rank induction
 
 - **Status:** **PASS** for exact five-part `agree_of_leaves` decomposition, `KConst`/nonzero comparison scalar proof, and alpha/beta `KeyA`/`KeyB` rank-reduction contracts. `kBeta` and `kAlpha` final proof bodies are **PARTIAL** due to the per-file limit; quantitative multiplicity and `X/m+m` prime-sum error remain **UNSOURCED**. This run is static source inspection and did not perform new Lean kernel checks.
