@@ -3,7 +3,7 @@
 **Date:** 2026-11-24 (Asia/Manila).  
 **Registration:** [RH26E03_REGISTRATION.md](RH26E03_REGISTRATION.md), `e8dd41174d9a6ff1f2d201261b4ddb64b2d45120`, before executable source.  
 **Implementation:** [RH26E03GrowthBound.lean](lean/RH26E03GrowthBound.lean), initially `71c25b03`, explicit power regrouping at `b4d3b5c7`, workflow commit `108f74fdb2305889c04bd02c02827c76ce711a30`.  
-**Disposition:** IMPLEMENTED; **KERNEL RESULT PENDING**. Source inspection found all fourteen preregistered theorem declarations with matching axiom-report commands and no sorry/admit tokens. This does not establish successful elaboration or a kernel pass.
+**Disposition:** IMPLEMENTED; **FIRST KERNEL RUN FAILED; REPAIR IN PROGRESS**. Source inspection found all fourteen preregistered theorem declarations with matching axiom-report commands and no sorry/admit tokens. This does not establish successful elaboration or a kernel pass.
 
 ## Mathematical scope
 
@@ -47,3 +47,7 @@ No full upstream/Deligne build, GPU, QPU, or paid cloud requested. If the job fa
 ## Next research boundary
 
 Check the exact CPU run before proceeding. After closing this verification, revisit RH-26D (operator/arithmetic holonomy bridge) or the unresolved RH-26B quantitative multiplicity theorem. A separately preregistered RH-26C-04 may locate the exact upstream proposition_size_bound assembly after line 250 of LipschitzWeightAndMinimum.lean. Retain the pinned source and bounded read rules.
+
+## First-run failure receipt (preserved)
+
+Run [45279143901](https://github.com/patrickdugan/MathCan/actions/runs/45279143901), job 138058675275, commit `108f74fdb2305889c04bd02c02827c76ce711a30`, completed failure. Source SHA-256 `caf524a5bf3e1eecc62c5ee3ac1a5dbd2f6e8cabeb9ee0adc4a458fd461bd20b`. [Failed audit artifact](https://github.com/patrickdugan/MathCan/actions/runs/45279143901/artifacts/14869036172). Toolchain, Mathlib resolution and artifact upload succeeded. Seven compiler errors at source lines 172, 188, 200, 213, 253, 265, 330: linear arithmetic failed on products/divisions, redundant tactic after a solved goal, unestablished positivity of Q, addition-order mismatch, and a cast through a local let. Five declarations carried sorryAx because Lean elaboration recovered from errors; these are failures and cannot qualify as audited proofs. Nine declarations printed only permitted axioms. Repair the proof scripts without altering any registered mathematical contract; require a fresh complete CPU audit.
