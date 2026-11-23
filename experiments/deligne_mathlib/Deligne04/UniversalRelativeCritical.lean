@@ -177,7 +177,7 @@ theorem universalMinor_specialize
   congr 1
   ext i j : 1
   have h := universalAugmentedMatrix_specialize f B a c
-  simpa only [Matrix.map_apply, Matrix.submatrix_apply] using
+  simpa only [RingHom.mapMatrix_apply, Matrix.map_apply, Matrix.submatrix_apply] using
     congrArg
       (fun A : Matrix (Option (Deligne16.EqCoord k r))
         (Deligne16.Coord k s) (MvPolynomial (Deligne16.Coord k s) K) =>
