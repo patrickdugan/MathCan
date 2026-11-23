@@ -97,9 +97,14 @@ theorem selected_rows_span_of_rank_pivot
     { toFun := fun v b => v (cc b)
       map_add' := by intro v w; rfl
       map_smul' := by intro x v; rfl }
+  have hproject :
+      (fun t : Fin d => project (A.row (rr t))) =
+        (A.submatrix rr cc).row := by
+    funext t b
+    rfl
   have hp : LinearIndependent L (fun t : Fin d => project (A.row (rr t))) := by
-    simpa only [project, Matrix.submatrix_apply, Matrix.row] using
-      (A.submatrix rr cc).linearIndependent_rows_of_det_ne_zero hdet
+    rw [hproject]
+    exact (A.submatrix rr cc).linearIndependent_rows_of_det_ne_zero hdet
   have hs : LinearIndependent L (fun t : Fin d => A.row (rr t)) :=
     LinearIndependent.of_comp project hp
   have hle :
