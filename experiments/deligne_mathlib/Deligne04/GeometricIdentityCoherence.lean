@@ -172,9 +172,9 @@ theorem geometricJacobianTangentIdentityTransport_tmul
   rw [map_smul]
   apply Subtype.ext
   funext i
-  simp only [geometricJacobianTangentIdentityTargetEquiv,
-    LinearEquiv.coe_ofEq_apply, AlgHom.id_apply, Pi.smul_apply,
-    SetLike.val_smul, smul_eq_mul]
+  change (m * (v : Deligne16.Coord k s → L) i) =
+    m * (v : Deligne16.Coord k s → L) i
+  rfl
 
 /-- The true original-ideal Kähler field-extension equivalence along
 identity, after its canonical target equality, is exactly tensor lid on
@@ -218,8 +218,11 @@ theorem geometricJacobianTangentTower_identity
 
 #print axioms geometricPoint_identity
 #print axioms geometricConormalRelations_identity
-#print axioms geometricCotangentTower_identity_tmul_mk
-#print axioms geometricJacobianTangentTower_identity_tmul
+#print axioms tensorLid_ext
+#print axioms geometricCotangentIdentityTargetEquiv_mk
+#print axioms geometricJacobianTangent_identity
+#print axioms geometricCotangentIdentityTransport_tmul_mk
+#print axioms geometricJacobianTangentIdentityTransport_tmul
 #print axioms geometricCotangentTower_identity
 #print axioms geometricJacobianTangentTower_identity
 
