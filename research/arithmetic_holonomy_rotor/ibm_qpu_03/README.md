@@ -1,12 +1,14 @@
 # AHR-QPU-03: three-prime curvature tomography
 
-The experiment recovers static U(1) face phases on the three-qubit arithmetic cube, then reconstructs the five chord phases in the AHR-09 spanning-tree gauge. The only hardware data used here are the archived AHR-QPU-01 Q2 shot counts. The Q3 circuits, statistics, and controls are simulations. The Q3 package has no job submission entry point.
+The experiment recovers static U(1) face phases on the three-qubit arithmetic cube, then reconstructs the five chord phases in the AHR-09 spanning-tree gauge. The archive includes measured AHR-QPU-01 Q2 counts, a historical Q3 simulation, and a Q3 simulation compiled using IBM calibration metadata obtained through a read-only account check. The Q3 package has no job submission entry point.
 
 - [Mathematical specification](Q3_MATHEMATICAL_SPEC.md)
 - [Results and decision](RESULTS.md)
 - [IBM resource and execution gate](HARDWARE_GATE.md)
 - [Simulation and provenance receipts](receipts/)
-- [Proposed circuit manifest](receipts/q3_candidate_manifest.json)
+- [Live-calibration simulation](LIVE_CALIBRATION_RESULTS.md)
+- [Proposed circuit manifest for IBM approval](receipts/live/q3_candidate_manifest.json)
+- [Historical FakeFez circuit manifest](receipts/q3_candidate_manifest.json)
 
 ## Reproduce
 
@@ -16,6 +18,7 @@ Use Python 3.12 in an isolated environment. Run these commands from this directo
 python -m pip install -r requirements.txt
 python -m pytest -q
 python run_study.py --snapshot receipts/calibration.json --out reproduced
+python run_study.py --snapshot receipts/live/calibration.json --out reproduced/live
 ```
 
 The last command runs the full calibration-snapshot study with 1,000 evaluation replicates per design, shot level, or allocation. Use `--quick` for the CI smoke check. Use `--grid-cache /path/to/cache.json` to reuse a matching training sweep. A cache is bound to the selected method and snapshot. The program without `--snapshot` uses IBM's packaged FakeFez calibration. Building the default model and regenerating the receipts needs no IBM account.

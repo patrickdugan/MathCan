@@ -20,12 +20,32 @@ def historical_snapshot():
             "backend": capture(backend, triples[0])}
 
 
+def quantum_instruction(instruction):
+    """Restore AerJSONEncoder's [real, imaginary] pairs to matrix entries."""
+    if instruction["name"] not in {"kraus", "unitary"}:
+        return instruction
+    params = np.asarray(instruction["params"])
+    if params.ndim == 4 and params.shape[-1] == 2:
+        params = params[..., 0] + 1j * params[..., 1]
+    if params.ndim != 3:
+        raise ValueError(f"invalid {instruction['name']} matrix parameters in snapshot")
+    return {**instruction, "params": list(params)}
+
+
 class CalibratedAer:
     def __init__(self, snapshot):
         entries = snapshot["noise"]["errors"]
-        self.simulator = AerSimulator(method="density_matrix", max_parallel_threads=1,
-                                      noise_model=NoiseModel.from_dict(
-                                          {"errors": [e for e in entries if e["type"] != "roerror"]}))
+        gate_errors = [
+            {**entry, "instructions": [
+                [quantum_instruction(instruction) for instruction in channel]
+                for channel in entry["instructions"]
+            ]}
+            for entry in entries if entry["type"] != "roerror"
+        ]
+        self.simulator = AerSimulator(
+            method="density_matrix", max_parallel_threads=1,
+            noise_model=NoiseModel.from_dict({"errors": gate_errors}),
+        )
         readout = {}
         for entry in entries:
             if entry["type"] == "roerror":

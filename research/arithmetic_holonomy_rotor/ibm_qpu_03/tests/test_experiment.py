@@ -1,22 +1,26 @@
 from dataclasses import replace
+from datetime import datetime, timedelta, timezone
 from hashlib import sha256
 from pathlib import Path
 import json
 import runpy
 import sys
+from types import SimpleNamespace
 
 import numpy as np
 import pytest
 from qiskit import qpy
+from qiskit_aer.noise import NoiseModel, thermal_relaxation_error
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
+from backend_snapshot import calibration_fingerprint, historical_errors
 from bianchi_reconstruction import project, reconstruct
 from circuit_synthesis import compact_target, measure_map, physical_archive
 from controls import CENTER, exact_controls
 from fisher_design import (allocate, fisher, mirror_reference, nuisance_templates, response)
-from noise_benchmark import CalibratedAer, benchmark
+from noise_benchmark import CalibratedAer, benchmark, quantum_instruction
 from plaquette_estimator import direct_probability, probability, settings, short_time_audit
 from provenance import q2_audit
 from q3_hamiltonian import (BIANCHI, CHORD_COLUMNS, D0, D1, EDGES, audit, chord_field,
@@ -104,16 +108,51 @@ def test_native_layout_noisy_model_and_edge_formula(snapshot):
     assert high["max_abs_probability_error"] < .4*low["max_abs_probability_error"]
 
 
-def test_archive_q2_and_q3_receipts():
+def test_serialized_kraus_channel_roundtrip():
+    model = NoiseModel()
+    noise = thermal_relaxation_error(t1=1e-4, t2=1.5e-4, time=1e-6)
+    model.add_quantum_error(noise, "sx", [0])
+    encoded = model.to_dict(serializable=True)["errors"][0]["instructions"][0][0]
+    original = noise.to_dict()["instructions"][0][0]
+    assert encoded["name"] == "kraus"
+    restored = quantum_instruction(encoded)
+    np.testing.assert_allclose(restored["params"], original["params"], atol=1e-15)
+
+
+def test_prior_calibration_is_strictly_earlier():
+    current = datetime(2026, 11, 23, tzinfo=timezone.utc)
+    parameter = SimpleNamespace(name="gate_error", value=.002)
+    gate = SimpleNamespace(gate="cz", qubits=[9, 10], parameters=[parameter])
+    latest = SimpleNamespace(last_update_date=current)
+    prior = SimpleNamespace(last_update_date=current-timedelta(hours=1), gates=[gate])
+
+    def properties(datetime):
+        assert datetime < current
+        return prior
+
+    errors, record = historical_errors(SimpleNamespace(properties=properties), latest)
+    assert errors == {("cz", 9, 10): .002}
+    assert record["prior_timestamp"] == prior.last_update_date.isoformat()
+    errors, record = historical_errors(SimpleNamespace(properties=lambda datetime: latest), latest)
+    assert not errors and record["status"] == "no_distinct_prior_calibration"
+
+
+def test_archive_q2_receipt():
     report = q2_audit()
     assert report["forward_deg"] > 0 > report["reverse_deg"]
     assert report["primary_acceptance_replayed"]
-    receipt = ROOT / "receipts"
+
+
+@pytest.mark.parametrize("archive", ["receipts", "receipts/live"])
+def test_archive_q3_receipts(archive):
+    receipt = ROOT / archive
     manifest = json.loads((receipt / "q3_candidate_manifest.json").read_text(encoding="utf-8"))
     qpy_file = receipt / "q3_candidate_isa.qpy"
     assert sha256(qpy_file.read_bytes()).hexdigest() == manifest["qpy_sha256"]
     cal = (receipt / "calibration.json").read_text(encoding="utf-8")
     assert sha256(cal.encode("utf-8")).hexdigest() == manifest["calibration_sha256"]
+    snapshot = json.loads(cal)
+    allowed = {(r["gate"], tuple(r["physical"])) for r in snapshot["backend"]["instructions"]}
     with qpy_file.open("rb") as stream:
         circuits = qpy.load(stream)
     assert len(circuits) == manifest["circuits"]
@@ -121,5 +160,16 @@ def test_archive_q2_and_q3_receipts():
         assert row["case_id"] == circuit.metadata["case_id"]
         assert measure_map(circuit) == row["classical_bit_to_physical"]
         assert row["shots"] == 4096
+        assert set(measure_map(circuit)) == set(manifest["physical_xyz"])
+        for item in circuit.data:
+            qubits = tuple(circuit.find_bit(q).index for q in item.qubits)
+            assert (item.operation.name, qubits) in allowed
     assert sum(row["shots"] for row in manifest["settings"]) == manifest["total_shots"]
     assert not manifest["qpu_submitted"] and not manifest["approval_granted"]
+    if snapshot["mode"] == "live_read_only":
+        recheck = json.loads((receipt / "calibration_recheck.json").read_text(encoding="utf-8"))
+        assert recheck["same_compilation_and_noise_inputs"]
+        assert (recheck["repeat_calibration_fingerprint"] ==
+                calibration_fingerprint(snapshot["backend"]))
+        assert recheck["repeat_account_check"]["plan"] == "open"
+        assert recheck["initial_account_check"] == manifest["current_verified_open_plan"]

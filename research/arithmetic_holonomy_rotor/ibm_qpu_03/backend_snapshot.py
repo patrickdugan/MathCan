@@ -1,7 +1,8 @@
 """Read-only IBM inventory and a portable compact Target/Aer snapshot."""
 import argparse
 import json
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
+from hashlib import sha256
 from itertools import combinations
 from pathlib import Path
 
@@ -15,6 +16,30 @@ def write_json(path, value):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(value, indent=2, allow_nan=False) + "\n", encoding="utf-8", newline="\n")
+
+
+def calibration_fingerprint(snapshot):
+    """Hash the calibrated simulation inputs independently of Aer-generated IDs."""
+    keys = ("backend", "backend_width", "calibration_timestamp", "calibration_id",
+            "dt_s", "rep_delay_s", "instructions")
+    channel = {k: snapshot[k] for k in keys}
+    channel["physical_xyz"] = snapshot["selection"]["physical_xyz"]
+    channel["instructions"] = sorted(channel["instructions"],
+                                     key=lambda row: (row["gate"], row["physical"]))
+    channel["noise"] = sorted(json.dumps({k: v for k, v in row.items() if k != "id"},
+                                         sort_keys=True, separators=(",", ":"))
+                              for row in snapshot["noise"]["errors"])
+    payload = json.dumps(channel, sort_keys=True, separators=(",", ":")).encode()
+    return sha256(payload).hexdigest()
+
+
+def compare_captures(initial, later):
+    a = calibration_fingerprint(initial["backend"])
+    b = calibration_fingerprint(later["backend"])
+    return {"initial_account_check": initial["account"], "repeat_account_check": later["account"],
+            "initial_calibration_fingerprint": a, "repeat_calibration_fingerprint": b,
+            "same_compilation_and_noise_inputs": a == b, "repeat_devices": later["devices"],
+            "repeat_selection": later["backend"]["selection"], "qpu_submitted": False}
 
 
 def rank_triples(target, previous=None):
@@ -112,7 +137,27 @@ def open_account(config_path):
     return service, crn
 
 
-def live_inventory(config_path, previous_path=None):
+def historical_errors(backend, latest):
+    """Use IBM's most recent calibration prior to the current one, if accessible."""
+    cutoff = latest.last_update_date - timedelta(seconds=1)
+    try:
+        prior = backend.properties(datetime=cutoff)
+    except Exception as exc:
+        return {}, {"status": "unavailable", "error_type": type(exc).__name__}
+    if prior is None or prior.last_update_date > cutoff:
+        return {}, {"status": "no_distinct_prior_calibration"}
+    errors = {}
+    for gate in prior.gates:
+        if gate.gate not in NATIVE:
+            continue
+        for parameter in gate.parameters:
+            if parameter.name == "gate_error" and np.isfinite(parameter.value):
+                errors[(gate.gate, *gate.qubits)] = float(parameter.value)
+    return errors, {"status": "available", "prior_timestamp": prior.last_update_date.isoformat(),
+                    "prior_native_couplers": len(errors)}
+
+
+def live_inventory(config_path, previous_path=None, include_historical_drift=False):
     service, crn = open_account(config_path)
     usage = service.usage()
     seconds = usage.get("usage_remaining_seconds")
@@ -126,14 +171,22 @@ def live_inventory(config_path, previous_path=None):
     previous = json.loads(Path(previous_path).read_text(encoding="utf-8")) if previous_path else {}
     devices, eligible = [], []
     for backend in service.backends(operational=True, simulator=False, instance=crn):
+        properties = backend.properties()
+        if not properties:
+            continue
         old = {(r["gate"], *r["physical"]): r["error"]
                for r in previous.get("backend", {}).get("instructions", [])
                if r["error"] is not None and previous["backend"]["backend"] == backend.name}
+        drift = {"status": "previous_capture" if old else "unmeasured"}
+        if include_historical_drift:
+            historical, drift = historical_errors(backend, properties)
+            if historical:
+                old = historical
         triples = rank_triples(backend.target, old)
-        properties = backend.properties()
-        if triples and properties:
+        if triples:
             devices.append({"backend": backend.name, "available_triples": len(triples),
                             "calibration_timestamp": properties.last_update_date.isoformat(),
+                            "calibration_drift": drift,
                             "top_triples": triples[:5],
                             "best_q2_pair_extension": next(
                                 (r for r in triples if r["contains_q2_pair"]), None)})
@@ -152,10 +205,11 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--credential-file", required=True)
     p.add_argument("--previous")
+    p.add_argument("--include-historical-drift", action="store_true")
     p.add_argument("--output", required=True)
     args = p.parse_args()
     try:
-        report = live_inventory(args.credential_file, args.previous)
+        report = live_inventory(args.credential_file, args.previous, args.include_historical_drift)
     except Exception as exc:
         # Cloud exceptions may include account identifiers in text.
         p.exit(1, f"Read-only inventory failed ({type(exc).__name__}). No job was submitted.\n")

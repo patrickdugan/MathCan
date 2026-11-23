@@ -1,6 +1,6 @@
 # AHR-QPU-03 results
 
-**HOLD for IBM execution.** The simulated likelihood design passed the registered precision, coverage, convergence, and circuit thresholds on IBM's historical FakeFez snapshot. The current Open Plan allocation and live calibration were unavailable. The proposed workload is 48 circuits × 4,096 shots, with a nominal 70.2-second estimate and a provisional 106-second cap. The last hardware balance of 515 free seconds belongs to the Q2 archive. [Execution gate](HARDWARE_GATE.md) · [Proposed manifest](receipts/q3_candidate_manifest.json)
+This report records the historical FakeFez baseline. Its simulated likelihood design passed the registered precision, coverage, convergence, and circuit thresholds. A separate read-only calibration and Open Plan check supports the current proposal. Q3 remains on HOLD for execution pending separate approval of the exact manifest. [Live-calibration results](LIVE_CALIBRATION_RESULTS.md) · [Execution gate](HARDWARE_GATE.md) · [Historical manifest](receipts/q3_candidate_manifest.json)
 
 ## Archived Q2 hardware reference
 
