@@ -156,9 +156,11 @@ theorem differential_relation_coefficient_relative
   simp only [Finsupp.mapRange_apply,
     KaehlerDifferential.mvPolynomialBasis_repr_apply]
 
-/-- Every coefficient in the *actual* relative Kähler presentation
-is the corresponding universal augmented-Jacobian entry in T,
-with exactly the DEL-16 relation list and its section row. -/
+/-- Every relation coefficient in the genuine Kähler module is the
+universal augmented-Jacobian entry under the *actual presentation*
+algebra map to the section quotient. The subsequent identification
+of that map with the canonical ideal-quotient map is a separate
+naturality lemma. -/
 theorem relativeSectionKahler_relation_eq_universalJacobian
     {K : Type*} [Field K] {k s r : ℕ}
     (f : Fin r → MvPolynomial (Fin s) K)
@@ -166,23 +168,13 @@ theorem relativeSectionKahler_relation_eq_universalJacobian
     (t : Option (Deligne16.EqCoord k r))
     (i : Deligne16.Coord k s) :
     (relativeSectionKahlerPresentation f B).relation t i =
-      algebraMap
-        (MvPolynomial (Deligne16.Coord k s) (P K k s))
+      algebraMap (relativeSectionAlgebraPresentation f B).Ring
         (universalSectionQuotient f B)
         (Deligne22B.universalAugmentedMatrix f B t i) := by
   change ((relativeSectionAlgebraPresentation f B).differentials).relation t i = _
   rw [differential_relation_coefficient_relative]
-  change algebraMap
-      (MvPolynomial (Deligne16.Coord k s) (P K k s))
-      (universalSectionQuotient f B)
-      (MvPolynomial.pderiv i (universalRelation f B t)) =
-    algebraMap
-      (MvPolynomial (Deligne16.Coord k s) (P K k s))
-      (universalSectionQuotient f B)
-      (Deligne22B.universalAugmentedMatrix f B t i)
   exact congrArg
-    (algebraMap
-      (MvPolynomial (Deligne16.Coord k s) (P K k s))
+    (algebraMap (relativeSectionAlgebraPresentation f B).Ring
       (universalSectionQuotient f B))
     (universalRelation_pderiv f B t i)
 
