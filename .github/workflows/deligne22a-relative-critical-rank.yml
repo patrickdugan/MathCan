@@ -1,0 +1,63 @@
+name: DEL-22A relative original-ideal Jacobian rank
+
+on:
+  push:
+    branches: [proof/deligne22a-relative-jacobian-rank-20261123]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/RelativeCriticalRank.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'tests/test_deligne22a_relative_critical.py'
+      - 'research/deligne_sign_audit/DEL22A_*'
+      - '.github/workflows/deligne22a-relative-critical-rank.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne22a-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check original Jacobian relative critical rank
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04.RelativeCriticalRank
+          lake env lean Deligne04/RelativeCriticalRank.lean | tee deligne22a-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne22a-axioms.txt; then
+            echo 'DEL-22A unexpected axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify original relation and augmented critical rank
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne22a_relative_critical tests.test_deligne21j_three_field_towers tests.test_deligne21h_field_towers tests.test_deligne21g_geometric_fiber tests.test_deligne21f_actual_fiber
