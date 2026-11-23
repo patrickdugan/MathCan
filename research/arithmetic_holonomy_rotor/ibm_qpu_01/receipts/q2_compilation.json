@@ -1,0 +1,4042 @@
+{
+  "exact": [
+    {
+      "id": "reference_t1.2_q3",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 3,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.90238898038469,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.06681555209129016,
+      "p_uncompiled_statevector": 0.06681555209129016,
+      "p_compiled_ideal_aer": 0.0668155520912902
+    },
+    {
+      "id": "matched_detuning_t1.6_q2",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 17,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.530726847712451,
+      "p_uncompiled_statevector": 0.5307268477124516,
+      "p_compiled_ideal_aer": 0.5307268477124497
+    },
+    {
+      "id": "reversed_t1.6_q3",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.17238898038469,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.361254419966794,
+      "p_uncompiled_statevector": 0.36125441996679336,
+      "p_compiled_ideal_aer": 0.36125441996679275
+    },
+    {
+      "id": "tree_t1.6_q0",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.3327753861718161,
+      "p_uncompiled_statevector": 0.3327753861718161,
+      "p_compiled_ideal_aer": 0.3327753861718164
+    },
+    {
+      "id": "signal_t1.2_q1",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.11462730023603168,
+      "p_uncompiled_statevector": 0.11462730023603247,
+      "p_compiled_ideal_aer": 0.11462730023603221
+    },
+    {
+      "id": "reversed_t1.6_q1",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.0307963267948965,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.09809417706522909,
+      "p_uncompiled_statevector": 0.09809417706522912,
+      "p_compiled_ideal_aer": 0.09809417706522874
+    },
+    {
+      "id": "signal_t0.8_q2",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.22684393525364777,
+      "p_uncompiled_statevector": 0.22684393525364777,
+      "p_compiled_ideal_aer": 0.22684393525364768
+    },
+    {
+      "id": "reference_t1.2_q1",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 1,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.7607963267948965,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.0818286950761113,
+      "p_uncompiled_statevector": 0.08182869507611133,
+      "p_compiled_ideal_aer": 0.08182869507611117
+    },
+    {
+      "id": "tree_t1.6_q1",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.33277538617181557,
+      "p_uncompiled_statevector": 0.33277538617181596,
+      "p_compiled_ideal_aer": 0.33277538617181585
+    },
+    {
+      "id": "signal_t0.8_q1",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.22333086086039083,
+      "p_uncompiled_statevector": 0.2233308608603916,
+      "p_compiled_ideal_aer": 0.22333086086039103
+    },
+    {
+      "id": "signal_t1.6_q3",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.05603646016262223,
+      "p_uncompiled_statevector": 0.0560364601626221,
+      "p_compiled_ideal_aer": 0.05603646016262186
+    },
+    {
+      "id": "reversed_t1.6_q0",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": -0.54,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.04854188973847558,
+      "p_uncompiled_statevector": 0.048541889738475306,
+      "p_compiled_ideal_aer": 0.048541889738475494
+    },
+    {
+      "id": "reference_t0.8_q1",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 1,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.7607963267948965,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.2347807829989287,
+      "p_uncompiled_statevector": 0.23478078299892677,
+      "p_compiled_ideal_aer": 0.23478078299892524
+    },
+    {
+      "id": "signal_t1.6_q0",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.08294586328631669,
+      "p_uncompiled_statevector": 0.08294586328631644,
+      "p_compiled_ideal_aer": 0.08294586328631642
+    },
+    {
+      "id": "signal_t1.2_q0",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.055098389469449685,
+      "p_uncompiled_statevector": 0.055098389469449706,
+      "p_compiled_ideal_aer": 0.055098389469449366
+    },
+    {
+      "id": "signal_t0.8_q3",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.2547130129637202,
+      "p_uncompiled_statevector": 0.25471301296372073,
+      "p_compiled_ideal_aer": 0.2547130129637236
+    },
+    {
+      "id": "tree_t1.6_q3",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.33277538617181557,
+      "p_uncompiled_statevector": 0.33277538617181673,
+      "p_compiled_ideal_aer": 0.3327753861718155
+    },
+    {
+      "id": "reference_t1.2_q0",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 0,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.19,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.04892928706488577,
+      "p_uncompiled_statevector": 0.04892928706488545,
+      "p_compiled_ideal_aer": 0.04892928706488556
+    },
+    {
+      "id": "reference_t0.8_q0",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 0,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.19,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.2586761224005275,
+      "p_uncompiled_statevector": 0.2586761224005274,
+      "p_compiled_ideal_aer": 0.25867612240052806
+    },
+    {
+      "id": "signal_t1.6_q1",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.46226159903393965,
+      "p_uncompiled_statevector": 0.4622615990339392,
+      "p_compiled_ideal_aer": 0.4622615990339397
+    },
+    {
+      "id": "reference_t0.8_q3",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 3,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.90238898038469,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.24223003686433228,
+      "p_uncompiled_statevector": 0.24223003686433528,
+      "p_compiled_ideal_aer": 0.24223003686432976
+    },
+    {
+      "id": "signal_t1.2_q3",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.05146236619136764,
+      "p_uncompiled_statevector": 0.051462366191367875,
+      "p_compiled_ideal_aer": 0.05146236619136783
+    },
+    {
+      "id": "tree_t1.6_q2",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.3327753861718161,
+      "p_uncompiled_statevector": 0.33277538617181684,
+      "p_compiled_ideal_aer": 0.3327753861718169
+    },
+    {
+      "id": "signal_t1.6_q2",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.3928218367942301,
+      "p_uncompiled_statevector": 0.39282183679422983,
+      "p_compiled_ideal_aer": 0.39282183679423
+    },
+    {
+      "id": "matched_detuning_t1.6_q1",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 17,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.6051586704138274,
+      "p_uncompiled_statevector": 0.6051586704138275,
+      "p_compiled_ideal_aer": 0.6051586704138291
+    },
+    {
+      "id": "reference_t0.8_q2",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 2,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 3.331592653589793,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.21994082150885091,
+      "p_uncompiled_statevector": 0.21994082150885044,
+      "p_compiled_ideal_aer": 0.2199408215088501
+    },
+    {
+      "id": "reference_t1.6_q0",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.19,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.03550076253795804,
+      "p_uncompiled_statevector": 0.035500762537957725,
+      "p_compiled_ideal_aer": 0.035500762537957566
+    },
+    {
+      "id": "signal_t0.8_q0",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.2507399544603241,
+      "p_uncompiled_statevector": 0.2507399544603253,
+      "p_compiled_ideal_aer": 0.25073995446032565
+    },
+    {
+      "id": "reference_t1.6_q2",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 3.331592653589793,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.5357880426669435,
+      "p_uncompiled_statevector": 0.5357880426669439,
+      "p_compiled_ideal_aer": 0.5357880426669428
+    },
+    {
+      "id": "reversed_t1.6_q2",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.601592653589793,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.48617696028061713,
+      "p_uncompiled_statevector": 0.4861769602806179,
+      "p_compiled_ideal_aer": 0.48617696028061674
+    },
+    {
+      "id": "reference_t1.6_q1",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.7607963267948965,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.25980040620855904,
+      "p_uncompiled_statevector": 0.25980040620855904,
+      "p_compiled_ideal_aer": 0.25980040620855893
+    },
+    {
+      "id": "signal_t1.2_q2",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.10322339336951245,
+      "p_uncompiled_statevector": 0.10322339336951265,
+      "p_compiled_ideal_aer": 0.10322339336951208
+    },
+    {
+      "id": "reference_t1.2_q2",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 2,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 3.331592653589793,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.1268380374954212,
+      "p_uncompiled_statevector": 0.12683803749542163,
+      "p_compiled_ideal_aer": 0.12683803749542158
+    },
+    {
+      "id": "matched_detuning_t1.6_q0",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 17,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.18687375647877072,
+      "p_uncompiled_statevector": 0.18687375647877072,
+      "p_compiled_ideal_aer": 0.18687375647877072
+    },
+    {
+      "id": "reference_t1.6_q3",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.90238898038469,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.16298537255708512,
+      "p_uncompiled_statevector": 0.16298537255708512,
+      "p_compiled_ideal_aer": 0.16298537255708445
+    },
+    {
+      "id": "matched_detuning_t1.6_q3",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 17,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.15430593235412782,
+      "p_uncompiled_statevector": 0.15430593235412748,
+      "p_compiled_ideal_aer": 0.1543059323541274
+    }
+  ],
+  "suzuki_2": [
+    {
+      "id": "reference_t1.2_q3",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 3,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.90238898038469,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.06681555209129016,
+      "p_uncompiled_statevector": 0.045666813505764334,
+      "p_compiled_ideal_aer": 0.04566681350576439
+    },
+    {
+      "id": "matched_detuning_t1.6_q2",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.530726847712451,
+      "p_uncompiled_statevector": 0.32408999244490355,
+      "p_compiled_ideal_aer": 0.32408999244490383
+    },
+    {
+      "id": "reversed_t1.6_q3",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.17238898038469,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.361254419966794,
+      "p_uncompiled_statevector": 0.223270954143331,
+      "p_compiled_ideal_aer": 0.22327095414333128
+    },
+    {
+      "id": "tree_t1.6_q0",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.3327753861718161,
+      "p_uncompiled_statevector": 0.22048043956602115,
+      "p_compiled_ideal_aer": 0.22048043956602226
+    },
+    {
+      "id": "signal_t1.2_q1",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.11462730023603168,
+      "p_uncompiled_statevector": 0.07140786157916286,
+      "p_compiled_ideal_aer": 0.07140786157916311
+    },
+    {
+      "id": "reversed_t1.6_q1",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.0307963267948965,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.09809417706522909,
+      "p_uncompiled_statevector": 0.06623438606613613,
+      "p_compiled_ideal_aer": 0.06623438606613606
+    },
+    {
+      "id": "signal_t0.8_q2",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.22684393525364777,
+      "p_uncompiled_statevector": 0.22648212202694534,
+      "p_compiled_ideal_aer": 0.22648212202696327
+    },
+    {
+      "id": "reference_t1.2_q1",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 1,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.7607963267948965,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.0818286950761113,
+      "p_uncompiled_statevector": 0.05282121800035487,
+      "p_compiled_ideal_aer": 0.05282121800035528
+    },
+    {
+      "id": "tree_t1.6_q1",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.33277538617181557,
+      "p_uncompiled_statevector": 0.22048043956602106,
+      "p_compiled_ideal_aer": 0.2204804395660213
+    },
+    {
+      "id": "signal_t0.8_q1",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.22333086086039083,
+      "p_uncompiled_statevector": 0.22349534428214882,
+      "p_compiled_ideal_aer": 0.22349534428215073
+    },
+    {
+      "id": "signal_t1.6_q3",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.05603646016262223,
+      "p_uncompiled_statevector": 0.03457283972697385,
+      "p_compiled_ideal_aer": 0.03457283972697405
+    },
+    {
+      "id": "reversed_t1.6_q0",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": -0.54,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.04854188973847558,
+      "p_uncompiled_statevector": 0.027793301397685218,
+      "p_compiled_ideal_aer": 0.02779330139768533
+    },
+    {
+      "id": "reference_t0.8_q1",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 1,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.7607963267948965,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.2347807829989287,
+      "p_uncompiled_statevector": 0.23302458591008343,
+      "p_compiled_ideal_aer": 0.23302458591008254
+    },
+    {
+      "id": "signal_t1.6_q0",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.08294586328631669,
+      "p_uncompiled_statevector": 0.05592376456466275,
+      "p_compiled_ideal_aer": 0.05592376456466266
+    },
+    {
+      "id": "signal_t1.2_q0",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.055098389469449685,
+      "p_uncompiled_statevector": 0.03995710203638375,
+      "p_compiled_ideal_aer": 0.039957102036383675
+    },
+    {
+      "id": "signal_t0.8_q3",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.2547130129637202,
+      "p_uncompiled_statevector": 0.24852556792531336,
+      "p_compiled_ideal_aer": 0.24852556792531408
+    },
+    {
+      "id": "tree_t1.6_q3",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.33277538617181557,
+      "p_uncompiled_statevector": 0.22048043956602126,
+      "p_compiled_ideal_aer": 0.22048043956602167
+    },
+    {
+      "id": "reference_t1.2_q0",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 0,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.19,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.04892928706488577,
+      "p_uncompiled_statevector": 0.03741808478756083,
+      "p_compiled_ideal_aer": 0.037418084787561146
+    },
+    {
+      "id": "reference_t0.8_q0",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 0,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.19,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.2586761224005275,
+      "p_uncompiled_statevector": 0.25211632159356473,
+      "p_compiled_ideal_aer": 0.25211632159356695
+    },
+    {
+      "id": "signal_t1.6_q1",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.46226159903393965,
+      "p_uncompiled_statevector": 0.30247766277216925,
+      "p_compiled_ideal_aer": 0.3024776627721696
+    },
+    {
+      "id": "reference_t0.8_q3",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 3,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.90238898038469,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.24223003686433228,
+      "p_uncompiled_statevector": 0.23877350599383412,
+      "p_compiled_ideal_aer": 0.23877350599383615
+    },
+    {
+      "id": "signal_t1.2_q3",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.05146236619136764,
+      "p_uncompiled_statevector": 0.03818940346548715,
+      "p_compiled_ideal_aer": 0.03818940346548756
+    },
+    {
+      "id": "tree_t1.6_q2",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.3327753861718161,
+      "p_uncompiled_statevector": 0.22048043956602126,
+      "p_compiled_ideal_aer": 0.22048043956602142
+    },
+    {
+      "id": "signal_t1.6_q2",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.3928218367942301,
+      "p_uncompiled_statevector": 0.24678514187757158,
+      "p_compiled_ideal_aer": 0.24678514187757122
+    },
+    {
+      "id": "matched_detuning_t1.6_q1",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.6051586704138274,
+      "p_uncompiled_statevector": 0.3713771698953092,
+      "p_compiled_ideal_aer": 0.3713771698953099
+    },
+    {
+      "id": "reference_t0.8_q2",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 2,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 3.331592653589793,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.21994082150885091,
+      "p_uncompiled_statevector": 0.22064522082076893,
+      "p_compiled_ideal_aer": 0.22064522082076898
+    },
+    {
+      "id": "reference_t1.6_q0",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.19,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.03550076253795804,
+      "p_uncompiled_statevector": 0.015352139392873334,
+      "p_compiled_ideal_aer": 0.015352139392873672
+    },
+    {
+      "id": "signal_t0.8_q0",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.2507399544603241,
+      "p_uncompiled_statevector": 0.24526292791992182,
+      "p_compiled_ideal_aer": 0.24526292791992224
+    },
+    {
+      "id": "reference_t1.6_q2",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 3.331592653589793,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.5357880426669435,
+      "p_uncompiled_statevector": 0.3652354820791869,
+      "p_compiled_ideal_aer": 0.3652354820791875
+    },
+    {
+      "id": "reversed_t1.6_q2",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.601592653589793,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.48617696028061713,
+      "p_uncompiled_statevector": 0.32261834928985306,
+      "p_compiled_ideal_aer": 0.3226183492898539
+    },
+    {
+      "id": "reference_t1.6_q1",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.7607963267948965,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.25980040620855904,
+      "p_uncompiled_statevector": 0.1567158908111077,
+      "p_compiled_ideal_aer": 0.15671589081110754
+    },
+    {
+      "id": "signal_t1.2_q2",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.10322339336951245,
+      "p_uncompiled_statevector": 0.06438602829473754,
+      "p_compiled_ideal_aer": 0.06438602829473787
+    },
+    {
+      "id": "reference_t1.2_q2",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 2,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 3.331592653589793,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.1268380374954212,
+      "p_uncompiled_statevector": 0.07943824055053292,
+      "p_compiled_ideal_aer": 0.07943824055053296
+    },
+    {
+      "id": "matched_detuning_t1.6_q0",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.18687375647877072,
+      "p_uncompiled_statevector": 0.17936644579368022,
+      "p_compiled_ideal_aer": 0.17936644579368027
+    },
+    {
+      "id": "reference_t1.6_q3",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.90238898038469,
+      "depth": 16,
+      "two_qubit_gates": 2,
+      "serial_duration_s": 3.744e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.16298537255708512,
+      "p_uncompiled_statevector": 0.10346893911181831,
+      "p_compiled_ideal_aer": 0.10346893911181837
+    },
+    {
+      "id": "matched_detuning_t1.6_q3",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.15430593235412782,
+      "p_uncompiled_statevector": 0.16823425695015218,
+      "p_compiled_ideal_aer": 0.16823425695015246
+    }
+  ],
+  "suzuki_4": [
+    {
+      "id": "reference_t1.2_q3",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 3,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.90238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.06681555209129016,
+      "p_uncompiled_statevector": 0.06119697762366736,
+      "p_compiled_ideal_aer": 0.061196977623667555
+    },
+    {
+      "id": "matched_detuning_t1.6_q2",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.530726847712451,
+      "p_uncompiled_statevector": 0.4793774975846624,
+      "p_compiled_ideal_aer": 0.47937749758466236
+    },
+    {
+      "id": "reversed_t1.6_q3",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.17238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.361254419966794,
+      "p_uncompiled_statevector": 0.325832670742449,
+      "p_compiled_ideal_aer": 0.32583267074244887
+    },
+    {
+      "id": "tree_t1.6_q0",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.3327753861718161,
+      "p_uncompiled_statevector": 0.30552125612417064,
+      "p_compiled_ideal_aer": 0.3055212561241706
+    },
+    {
+      "id": "signal_t1.2_q1",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.11462730023603168,
+      "p_uncompiled_statevector": 0.10322516845927585,
+      "p_compiled_ideal_aer": 0.1032251684592762
+    },
+    {
+      "id": "reversed_t1.6_q1",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.0307963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.09809417706522909,
+      "p_uncompiled_statevector": 0.08947938873624853,
+      "p_compiled_ideal_aer": 0.08947938873624878
+    },
+    {
+      "id": "signal_t0.8_q2",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.22684393525364777,
+      "p_uncompiled_statevector": 0.22664672879781797,
+      "p_compiled_ideal_aer": 0.22664672879781758
+    },
+    {
+      "id": "reference_t1.2_q1",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 1,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.7607963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.0818286950761113,
+      "p_uncompiled_statevector": 0.07403849555622062,
+      "p_compiled_ideal_aer": 0.07403849555622095
+    },
+    {
+      "id": "tree_t1.6_q1",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.33277538617181557,
+      "p_uncompiled_statevector": 0.30552125612417064,
+      "p_compiled_ideal_aer": 0.3055212561241706
+    },
+    {
+      "id": "signal_t0.8_q1",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.22333086086039083,
+      "p_uncompiled_statevector": 0.22324726859240743,
+      "p_compiled_ideal_aer": 0.22324726859240646
+    },
+    {
+      "id": "signal_t1.6_q3",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.05603646016262223,
+      "p_uncompiled_statevector": 0.04994375511607343,
+      "p_compiled_ideal_aer": 0.04994375511607377
+    },
+    {
+      "id": "reversed_t1.6_q0",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": -0.54,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.04854188973847558,
+      "p_uncompiled_statevector": 0.04259195949444754,
+      "p_compiled_ideal_aer": 0.04259195949444783
+    },
+    {
+      "id": "reference_t0.8_q1",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 1,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.7607963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.2347807829989287,
+      "p_uncompiled_statevector": 0.23424407827179194,
+      "p_compiled_ideal_aer": 0.23424407827179092
+    },
+    {
+      "id": "signal_t1.6_q0",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.08294586328631669,
+      "p_uncompiled_statevector": 0.07552857185421306,
+      "p_compiled_ideal_aer": 0.07552857185421333
+    },
+    {
+      "id": "signal_t1.2_q0",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.055098389469449685,
+      "p_uncompiled_statevector": 0.05115513560078539,
+      "p_compiled_ideal_aer": 0.0511551356007859
+    },
+    {
+      "id": "signal_t0.8_q3",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.2547130129637202,
+      "p_uncompiled_statevector": 0.25312407159443356,
+      "p_compiled_ideal_aer": 0.25312407159443384
+    },
+    {
+      "id": "tree_t1.6_q3",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.33277538617181557,
+      "p_uncompiled_statevector": 0.3055212561241705,
+      "p_compiled_ideal_aer": 0.3055212561241717
+    },
+    {
+      "id": "reference_t1.2_q0",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 0,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.19,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.04892928706488577,
+      "p_uncompiled_statevector": 0.04585013314606506,
+      "p_compiled_ideal_aer": 0.04585013314606495
+    },
+    {
+      "id": "reference_t0.8_q0",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 0,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.19,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.2586761224005275,
+      "p_uncompiled_statevector": 0.25699814955759576,
+      "p_compiled_ideal_aer": 0.2569981495575975
+    },
+    {
+      "id": "signal_t1.6_q1",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.46226159903393965,
+      "p_uncompiled_statevector": 0.4232098215837339,
+      "p_compiled_ideal_aer": 0.42320982158373477
+    },
+    {
+      "id": "reference_t0.8_q3",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 3,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.90238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.24223003686433228,
+      "p_uncompiled_statevector": 0.2412797373272595,
+      "p_compiled_ideal_aer": 0.24127973732725935
+    },
+    {
+      "id": "signal_t1.2_q3",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.05146236619136764,
+      "p_uncompiled_statevector": 0.04799976615882703,
+      "p_compiled_ideal_aer": 0.04799976615882758
+    },
+    {
+      "id": "tree_t1.6_q2",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.3327753861718161,
+      "p_uncompiled_statevector": 0.30552125612417075,
+      "p_compiled_ideal_aer": 0.3055212561241698
+    },
+    {
+      "id": "signal_t1.6_q2",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.3928218367942301,
+      "p_uncompiled_statevector": 0.3557778075228287,
+      "p_compiled_ideal_aer": 0.35577780752282917
+    },
+    {
+      "id": "matched_detuning_t1.6_q1",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.6051586704138274,
+      "p_uncompiled_statevector": 0.5483167857756243,
+      "p_compiled_ideal_aer": 0.5483167857756239
+    },
+    {
+      "id": "reference_t0.8_q2",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 2,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 3.331592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.21994082150885091,
+      "p_uncompiled_statevector": 0.21995442473237706,
+      "p_compiled_ideal_aer": 0.21995442473237733
+    },
+    {
+      "id": "reference_t1.6_q0",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.19,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.03550076253795804,
+      "p_uncompiled_statevector": 0.02955858943510898,
+      "p_compiled_ideal_aer": 0.02955858943510993
+    },
+    {
+      "id": "signal_t0.8_q0",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.2507399544603241,
+      "p_uncompiled_statevector": 0.24931539497240573,
+      "p_compiled_ideal_aer": 0.24931539497240532
+    },
+    {
+      "id": "reference_t1.6_q2",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 3.331592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.5357880426669435,
+      "p_uncompiled_statevector": 0.4964526111196474,
+      "p_compiled_ideal_aer": 0.49645261111964883
+    },
+    {
+      "id": "reversed_t1.6_q2",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.601592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.48617696028061713,
+      "p_uncompiled_statevector": 0.44686357096237456,
+      "p_compiled_ideal_aer": 0.44686357096237384
+    },
+    {
+      "id": "reference_t1.6_q1",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.7607963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.25980040620855904,
+      "p_uncompiled_statevector": 0.2327694234195146,
+      "p_compiled_ideal_aer": 0.232769423419514
+    },
+    {
+      "id": "signal_t1.2_q2",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.10322339336951245,
+      "p_uncompiled_statevector": 0.09287421795597882,
+      "p_compiled_ideal_aer": 0.09287421795597942
+    },
+    {
+      "id": "reference_t1.2_q2",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 2,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 3.331592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.1268380374954212,
+      "p_uncompiled_statevector": 0.11450113794241047,
+      "p_compiled_ideal_aer": 0.1145011379424116
+    },
+    {
+      "id": "matched_detuning_t1.6_q0",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.18687375647877072,
+      "p_uncompiled_statevector": 0.18700493970362175,
+      "p_compiled_ideal_aer": 0.18700493970362245
+    },
+    {
+      "id": "reference_t1.6_q3",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.90238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.16298537255708512,
+      "p_uncompiled_statevector": 0.14729010716412586,
+      "p_compiled_ideal_aer": 0.14729010716412616
+    },
+    {
+      "id": "matched_detuning_t1.6_q3",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.15430593235412782,
+      "p_uncompiled_statevector": 0.15888287581337185,
+      "p_compiled_ideal_aer": 0.15888287581337152
+    }
+  ],
+  "suzuki_8": [
+    {
+      "id": "reference_t1.2_q3",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 3,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.90238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.06681555209129016,
+      "p_uncompiled_statevector": 0.06539240604204613,
+      "p_compiled_ideal_aer": 0.06539240604204649
+    },
+    {
+      "id": "matched_detuning_t1.6_q2",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.530726847712451,
+      "p_uncompiled_statevector": 0.518030116254097,
+      "p_compiled_ideal_aer": 0.518030116254097
+    },
+    {
+      "id": "reversed_t1.6_q3",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.17238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.361254419966794,
+      "p_uncompiled_statevector": 0.35238470056460863,
+      "p_compiled_ideal_aer": 0.3523847005646076
+    },
+    {
+      "id": "tree_t1.6_q0",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.3327753861718161,
+      "p_uncompiled_statevector": 0.326044054062666,
+      "p_compiled_ideal_aer": 0.3260440540626654
+    },
+    {
+      "id": "signal_t1.2_q1",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.11462730023603168,
+      "p_uncompiled_statevector": 0.1117464780314053,
+      "p_compiled_ideal_aer": 0.11174647803140646
+    },
+    {
+      "id": "reversed_t1.6_q1",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.0307963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.09809417706522909,
+      "p_uncompiled_statevector": 0.09590060752287716,
+      "p_compiled_ideal_aer": 0.09590060752287789
+    },
+    {
+      "id": "signal_t0.8_q2",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.22684393525364777,
+      "p_uncompiled_statevector": 0.22678823373036103,
+      "p_compiled_ideal_aer": 0.22678823373036053
+    },
+    {
+      "id": "reference_t1.2_q1",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 1,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.7607963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.0818286950761113,
+      "p_uncompiled_statevector": 0.07985108553438766,
+      "p_compiled_ideal_aer": 0.07985108553438826
+    },
+    {
+      "id": "tree_t1.6_q1",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.33277538617181557,
+      "p_uncompiled_statevector": 0.32604405406266485,
+      "p_compiled_ideal_aer": 0.3260440540626677
+    },
+    {
+      "id": "signal_t0.8_q1",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.22333086086039083,
+      "p_uncompiled_statevector": 0.22330250257948403,
+      "p_compiled_ideal_aer": 0.22330250257948497
+    },
+    {
+      "id": "signal_t1.6_q3",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.05603646016262223,
+      "p_uncompiled_statevector": 0.05446783266897301,
+      "p_compiled_ideal_aer": 0.054467832668973565
+    },
+    {
+      "id": "reversed_t1.6_q0",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": -0.54,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.04854188973847558,
+      "p_uncompiled_statevector": 0.047006874886986585,
+      "p_compiled_ideal_aer": 0.047006874886986946
+    },
+    {
+      "id": "reference_t0.8_q1",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 1,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.7607963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.2347807829989287,
+      "p_uncompiled_statevector": 0.23464078883128506,
+      "p_compiled_ideal_aer": 0.2346407888312869
+    },
+    {
+      "id": "signal_t1.6_q0",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.08294586328631669,
+      "p_uncompiled_statevector": 0.08105031066366702,
+      "p_compiled_ideal_aer": 0.08105031066366769
+    },
+    {
+      "id": "signal_t1.2_q0",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.055098389469449685,
+      "p_uncompiled_statevector": 0.0541035457476207,
+      "p_compiled_ideal_aer": 0.054103545747622134
+    },
+    {
+      "id": "signal_t0.8_q3",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.2547130129637202,
+      "p_uncompiled_statevector": 0.2543133032430101,
+      "p_compiled_ideal_aer": 0.2543133032430108
+    },
+    {
+      "id": "tree_t1.6_q3",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.33277538617181557,
+      "p_uncompiled_statevector": 0.3260440540626651,
+      "p_compiled_ideal_aer": 0.3260440540626684
+    },
+    {
+      "id": "reference_t1.2_q0",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 0,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.19,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.04892928706488577,
+      "p_uncompiled_statevector": 0.048147131221408436,
+      "p_compiled_ideal_aer": 0.04814713122140983
+    },
+    {
+      "id": "reference_t0.8_q0",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 0,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.19,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.2586761224005275,
+      "p_uncompiled_statevector": 0.2582543467106786,
+      "p_compiled_ideal_aer": 0.2582543467106789
+    },
+    {
+      "id": "signal_t1.6_q1",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.46226159903393965,
+      "p_uncompiled_statevector": 0.452603117772279,
+      "p_compiled_ideal_aer": 0.45260311777228035
+    },
+    {
+      "id": "reference_t0.8_q3",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 3,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.90238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.24223003686433228,
+      "p_uncompiled_statevector": 0.24198736697589973,
+      "p_compiled_ideal_aer": 0.24198736697589024
+    },
+    {
+      "id": "signal_t1.2_q3",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.05146236619136764,
+      "p_uncompiled_statevector": 0.05058815430370424,
+      "p_compiled_ideal_aer": 0.050588154303705814
+    },
+    {
+      "id": "tree_t1.6_q2",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.3327753861718161,
+      "p_uncompiled_statevector": 0.326044054062666,
+      "p_compiled_ideal_aer": 0.32604405406266623
+    },
+    {
+      "id": "signal_t1.6_q2",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.3928218367942301,
+      "p_uncompiled_statevector": 0.38357515208700077,
+      "p_compiled_ideal_aer": 0.3835751520870009
+    },
+    {
+      "id": "matched_detuning_t1.6_q1",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.6051586704138274,
+      "p_uncompiled_statevector": 0.5912119890376087,
+      "p_compiled_ideal_aer": 0.5912119890376089
+    },
+    {
+      "id": "reference_t0.8_q2",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 2,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 3.331592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.21994082150885091,
+      "p_uncompiled_statevector": 0.21993456229440742,
+      "p_compiled_ideal_aer": 0.21993456229440791
+    },
+    {
+      "id": "reference_t1.6_q0",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.19,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.03550076253795804,
+      "p_uncompiled_statevector": 0.03395966414733232,
+      "p_compiled_ideal_aer": 0.03395966414733299
+    },
+    {
+      "id": "signal_t0.8_q0",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.2507399544603241,
+      "p_uncompiled_statevector": 0.2503805705841265,
+      "p_compiled_ideal_aer": 0.2503805705841298
+    },
+    {
+      "id": "reference_t1.6_q2",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 3.331592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.5357880426669435,
+      "p_uncompiled_statevector": 0.5261910389040626,
+      "p_compiled_ideal_aer": 0.52619103890406
+    },
+    {
+      "id": "reversed_t1.6_q2",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.601592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.48617696028061713,
+      "p_uncompiled_statevector": 0.4764922641222566,
+      "p_compiled_ideal_aer": 0.47649226412225754
+    },
+    {
+      "id": "reference_t1.6_q1",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.7607963267948965,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.25980040620855904,
+      "p_uncompiled_statevector": 0.25298811962073625,
+      "p_compiled_ideal_aer": 0.2529881196207357
+    },
+    {
+      "id": "signal_t1.2_q2",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.10322339336951245,
+      "p_uncompiled_statevector": 0.1006016455669546,
+      "p_compiled_ideal_aer": 0.10060164556695544
+    },
+    {
+      "id": "reference_t1.2_q2",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 2,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 3.331592653589793,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.1268380374954212,
+      "p_uncompiled_statevector": 0.12373257310737056,
+      "p_compiled_ideal_aer": 0.12373257310737176
+    },
+    {
+      "id": "matched_detuning_t1.6_q0",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.18687375647877072,
+      "p_uncompiled_statevector": 0.18695802486044769,
+      "p_compiled_ideal_aer": 0.18695802486044827
+    },
+    {
+      "id": "reference_t1.6_q3",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.90238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.16298537255708512,
+      "p_uncompiled_statevector": 0.15901787857588162,
+      "p_compiled_ideal_aer": 0.15901787857588293
+    },
+    {
+      "id": "matched_detuning_t1.6_q3",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469,
+      "depth": 20,
+      "two_qubit_gates": 3,
+      "serial_duration_s": 3.86e-06,
+      "unknown_duration_gates": [],
+      "p_exact": 0.15430593235412782,
+      "p_uncompiled_statevector": 0.1554404064938129,
+      "p_compiled_ideal_aer": 0.15544040649381297
+    }
+  ]
+}

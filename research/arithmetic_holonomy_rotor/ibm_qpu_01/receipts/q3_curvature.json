@@ -1,0 +1,263 @@
+{
+  "status": "simulation only",
+  "cochain_ranks": [
+    7,
+    5,
+    1
+  ],
+  "time": 0.4,
+  "short_time": 0.282842712474619,
+  "edge_order": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      5
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      6
+    ],
+    [
+      3,
+      7
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      4,
+      6
+    ],
+    [
+      5,
+      7
+    ],
+    [
+      6,
+      7
+    ]
+  ],
+  "probe_edges": [
+    [
+      0,
+      1
+    ],
+    [
+      2,
+      6
+    ],
+    [
+      5,
+      7
+    ]
+  ],
+  "chord_order": [
+    [
+      2,
+      3
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      4,
+      6
+    ],
+    [
+      5,
+      7
+    ],
+    [
+      6,
+      7
+    ]
+  ],
+  "face_addresses": [
+    {
+      "face": [
+        0,
+        1,
+        0
+      ],
+      "edge": [
+        0,
+        1
+      ],
+      "sign": 1,
+      "start": 2
+    },
+    {
+      "face": [
+        0,
+        1,
+        1
+      ],
+      "edge": [
+        5,
+        7
+      ],
+      "sign": 1,
+      "start": 4
+    },
+    {
+      "face": [
+        0,
+        2,
+        0
+      ],
+      "edge": [
+        0,
+        1
+      ],
+      "sign": 1,
+      "start": 4
+    },
+    {
+      "face": [
+        0,
+        2,
+        1
+      ],
+      "edge": [
+        2,
+        6
+      ],
+      "sign": -1,
+      "start": 3
+    },
+    {
+      "face": [
+        1,
+        2,
+        0
+      ],
+      "edge": [
+        2,
+        6
+      ],
+      "sign": 1,
+      "start": 0
+    },
+    {
+      "face": [
+        1,
+        2,
+        1
+      ],
+      "edge": [
+        5,
+        7
+      ],
+      "sign": -1,
+      "start": 1
+    }
+  ],
+  "true_face_phases": [
+    -1.733532934453368,
+    1.7317538426601544,
+    -0.8553633104176308,
+    -2.8417781373422497,
+    -1.942590775886993,
+    -1.1111070727455488
+  ],
+  "local_face_phases": [
+    -1.732323324445155,
+    1.736715054903586,
+    -0.8583330414814926,
+    -2.828475568025234,
+    -1.9289331258305387,
+    -1.1067267812635952
+  ],
+  "richardson_face_phases": [
+    -1.7333601106610073,
+    1.7323360979042517,
+    -0.8556736561489121,
+    -2.840136337210785,
+    -1.9397829203912427,
+    -1.110394296478115
+  ],
+  "richardson_bias_rad": [
+    0.00017282379236061018,
+    0.000582255244097496,
+    -0.0003103457312811919,
+    0.0016418001314648656,
+    0.0028078554957504664,
+    0.0007127762674334903
+  ],
+  "projected_richardson_face_phases": [
+    -1.7339664096008953,
+    1.7329423968441393,
+    -0.8550673572090242,
+    -2.8407426361506727,
+    -1.9403892193311307,
+    -1.109787997538227
+  ],
+  "projected_bianchi_residual_rad": 0.0,
+  "projected_chord_round_trip_face_error_rad": 8.881784197001252e-16,
+  "true_chord_phases": [
+    1.7335329344533683,
+    0.8553633104176308,
+    1.942590775886993,
+    1.111107072745547,
+    -1.7078742353839678
+  ],
+  "reconstructed_chord_phases": [
+    1.733966409600895,
+    0.8550673572090242,
+    1.9403892193311307,
+    1.109787997538227,
+    -1.708476261428018
+  ],
+  "independent_probabilities_max_error": 1.2212453270876722e-15,
+  "qiskit_probabilities_max_error": 1.2212453270876722e-15,
+  "wrong_corner_complex_error": 0.8488425534701218,
+  "overlapping_cycle_failure_of_unicyclic_identity": 0.0039019783895352204,
+  "gaussian_projection_mse_ratio": 0.8311664507749565,
+  "shot_monte_carlo": {
+    "replicates": 2500,
+    "shots_per_setting": 2048,
+    "raw_rmse_deg": 87.89129413316968,
+    "richardson_rmse_deg": 101.80611921634383,
+    "projected_richardson_rmse_deg": 101.90098003411732
+  },
+  "schedule": {
+    "single_time_simple": 24,
+    "single_time_deduplicated": 23,
+    "two_time_simple": 48,
+    "two_time_deduplicated": 46,
+    "single_time_shots": 47104,
+    "two_time_shots": 94208,
+    "shared_counts_couple_face_errors": true
+  },
+  "planning": {
+    "timing_assumption_per_shot_s": 0.00052,
+    "job_overhead_allowance_s": 60,
+    "single_time_nominal_s": 84.49408,
+    "two_time_nominal_s": 108.98816,
+    "target_phase_sd_deg": 10,
+    "leading_order_shots_for_target_per_face": 1731168,
+    "leading_order_seconds_six_faces": 5461.244159999999,
+    "richardson_short_long_allocation_ratio": 5.656854249492381
+  }
+}

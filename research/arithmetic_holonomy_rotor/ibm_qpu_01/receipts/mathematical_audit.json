@@ -1,0 +1,17 @@
+{
+  "maximum_discrepancies": {
+    "direct_expm": 6.661338147750939e-16,
+    "gauge_invariance": 6.661338147750939e-16,
+    "tree_invariance": 8.881784197001252e-16,
+    "masked_identity": 6.50333926369705e-16
+  },
+  "primary_first_three_cosine_harmonics": [
+    -0.25509419580938053,
+    0.03997757122138626,
+    0.00042753215880181523
+  ],
+  "diagonal_gauge_concurrence_example": {
+    "original": 0.0,
+    "gauge_copy": 0.5145997611506445
+  }
+}

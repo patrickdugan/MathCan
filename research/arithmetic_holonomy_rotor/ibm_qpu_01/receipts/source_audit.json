@@ -1,0 +1,25 @@
+{
+  "base_commit": "cdbbc3100a20ea61036b78ef049306ba507280b8",
+  "all_merge_commits_verified_as_main_ancestors": {
+    "240": "48eef71b918764272029f27c063d0d3e02ae319c",
+    "241": "9c8d45bc2870350a9a87c54f4af1c3bbafb218a4",
+    "242": "7b25dca49fd166738d140a545e6f20cbe0dde0f4",
+    "243": "0d01235cc46f00e1a4f88ac9a433ca525398b43c",
+    "247": "9c32457deca38751184a2272d1eb9981bb384593",
+    "248": "cc55a88ae670db83a780e1862da86ecd97a2c655",
+    "249": "cebae53f4b63e0916f5d0aef3d0d52c813e1f238"
+  },
+  "upstream_replays_in_isolated_copies": {
+    "ahr01_exact_validation.py": "pass",
+    "ahr07_ci.py": "pass",
+    "ahr08_ci.py": "pass"
+  },
+  "independent_checks": "Square exponential and spectral agreement, verified AHR-07 harmonic fixture, AHR-08 corner selection and overlap control, AHR-09 cochain ranks, tree inverse and projection.",
+  "local_environment": {
+    "python": "3.12.10",
+    "logical_cpus": 20,
+    "memory_gib": 47.1
+  },
+  "hardware_submission_authorized": false,
+  "qpu_job_submitted": false
+}
