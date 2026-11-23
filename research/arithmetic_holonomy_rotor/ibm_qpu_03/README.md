@@ -1,13 +1,14 @@
 # AHR-QPU-03: three-prime curvature tomography
 
-The experiment recovers static U(1) face phases on the three-qubit arithmetic cube, then reconstructs the five chord phases in the AHR-09 spanning-tree gauge. The archive includes measured AHR-QPU-01 Q2 counts, a historical Q3 simulation, and a Q3 simulation compiled using IBM calibration metadata obtained through a read-only account check. The Q3 package has no job submission entry point.
+The experiment recovers static U(1) face phases on the three-qubit arithmetic cube, then reconstructs the five chord phases in the AHR-09 spanning-tree gauge. The archive includes measured AHR-QPU-01 Q2 counts, historical and live-calibration Q3 simulations, and the 196,608 counts from the single authorized Q3 IBM pilot. The default reproduction commands run offline.
 
 - [Mathematical specification](Q3_MATHEMATICAL_SPEC.md)
 - [Results and decision](RESULTS.md)
 - [IBM resource and execution gate](HARDWARE_GATE.md)
 - [Simulation and provenance receipts](receipts/)
 - [Live-calibration simulation](LIVE_CALIBRATION_RESULTS.md)
-- [Refreshed circuit manifest for IBM approval](receipts/execution_refresh/q3_candidate_manifest.json)
+- [IBM Q3 hardware results](Q3_HARDWARE_RESULTS.md)
+- [Approved circuit manifest for the completed IBM job](receipts/execution_refresh/q3_candidate_manifest.json)
 - [Original live-calibration manifest](receipts/live/q3_candidate_manifest.json)
 - [Historical FakeFez circuit manifest](receipts/q3_candidate_manifest.json)
 

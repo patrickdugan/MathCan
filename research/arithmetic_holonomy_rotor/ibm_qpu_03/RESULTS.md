@@ -1,6 +1,6 @@
 # AHR-QPU-03 results
 
-This report records the historical FakeFez baseline. Its simulated likelihood design passed the registered precision, coverage, convergence, and circuit thresholds. A separate read-only calibration and Open Plan check supports the current proposal. Q3 remains on HOLD for execution pending separate approval of the exact manifest. [Live-calibration results](LIVE_CALIBRATION_RESULTS.md) · [Execution gate](HARDWARE_GATE.md) · [Historical manifest](receipts/q3_candidate_manifest.json)
+This report records the historical FakeFez baseline. Its simulated likelihood design passed the registered precision, coverage, convergence, and circuit thresholds. The separate live-calibration simulation and completed Q3 hardware pilot are reported in their own receipts. [Live-calibration results](LIVE_CALIBRATION_RESULTS.md) · [Q3 hardware results](Q3_HARDWARE_RESULTS.md) · [Historical manifest](receipts/q3_candidate_manifest.json)
 
 ## Archived Q2 hardware reference
 
@@ -44,4 +44,4 @@ The equal-shot likelihood worst-face RMSE was 3.17°, 2.20°, and 1.56° at 2,04
 
 On the four-phase 4,096-shot design the worst raw face RMSE was 29.74° and the worst projected RMSE was 23.45°. Its raw Bianchi RMS was 54.05° and the projected closure residual fell below 2×10⁻¹³ degrees. The five likelihood chord RMSEs were 1.77° to 2.20°. The likelihood enforces Bianchi compatibility by construction. At the phase seams, the separate Gaussian experiment found roughly 75% coordinate wrapping with reliable local projection at the narrowest noise level. As the noise widened to 1.5 rad, 35.8%–36.4% of draws crossed the local Bianchi branch and joint coverage fell to 64.7%–66.3%. A small projected closure residual alone is insufficient evidence for accurate phase recovery. [Training grid](receipts/time_grid.json) · [Held-out statistics](receipts/statistics.json) · [Branch and control results](receipts/controls.json)
 
-These results concern a programmed finite-dimensional hopping Hamiltonian, the calibrated simulator, and the specified inference procedure. The pilot includes both the full-cube spectral response and separate controls for orientation, gauge invariance, broken cycles, and detuning. No Q3 hardware measurements are available.
+These simulation results concern a programmed finite-dimensional hopping Hamiltonian and the specified inference procedure. The pilot includes the full-cube spectral response and separate controls for orientation, gauge invariance, broken cycles, and detuning. [Q3 hardware results](Q3_HARDWARE_RESULTS.md)

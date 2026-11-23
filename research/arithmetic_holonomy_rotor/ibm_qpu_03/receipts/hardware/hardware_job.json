@@ -1,0 +1,23 @@
+{
+  "tag": "ahr-qpu-03-52bd98145e-0af947f26f",
+  "job_id": "dc25sdmq4uuc73a4pbl0",
+  "submission_requested_utc": "2026-11-23T15:39:30.640763+00:00",
+  "backend": "ibm_kingston",
+  "physical_xyz": [
+    67,
+    68,
+    69
+  ],
+  "approved_manifest_sha256": "52bd98145e5ef2be205f5128097ed9101af3797c8b4662341a39957e6dfa5f6f",
+  "authorization_commit": "93158b3",
+  "shots_per_circuit": 4096,
+  "circuits": 48,
+  "max_execution_time_s": 106,
+  "timestamp_only_refresh_authorized": true,
+  "calibration_timestamp_at_preflight": "2026-11-23T23:20:48+08:00",
+  "free_balance_checked": {
+    "plan": "open",
+    "checked_utc": "2026-11-23T15:39:30.367733+00:00",
+    "remaining_qpu_seconds": 515.0
+  }
+}

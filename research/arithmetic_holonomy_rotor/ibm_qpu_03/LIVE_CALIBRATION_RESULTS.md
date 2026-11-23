@@ -1,6 +1,6 @@
 # AHR-QPU-03 live-calibration simulation
 
-**Design GO. Execution HOLD.** The simulation passed the preregistered native compilation, precision, coverage, and convergence gates on the 22:34:13 `ibm_kingston` snapshot. The proposed 48 circuits at 4,096 shots each have an estimated 70.27-second QPU usage and a 106-second cap. A later read-only preflight found a new calibration identity with equivalent model inputs. No Q3 job was submitted. [Refreshed proposal and execution gate](HARDWARE_GATE.md) · [Original manifest](receipts/live/q3_candidate_manifest.json) · [Original allocation receipt](receipts/live/calibration_recheck.json)
+**Simulation design GO.** The simulation passed the preregistered native compilation, precision, coverage, and convergence gates on the 22:34:13 `ibm_kingston` snapshot. The proposed 48 circuits at 4,096 shots each had an estimated 70.27-second QPU usage and a 106-second cap. Later preflights found new calibration timestamps with equivalent model inputs on the selected qubits. The authorized hardware pilot is reported separately. [Q3 hardware results](Q3_HARDWARE_RESULTS.md) · [Original manifest](receipts/live/q3_candidate_manifest.json) · [Original allocation receipt](receipts/live/calibration_recheck.json)
 
 ## Target and compilation
 
@@ -23,6 +23,6 @@ The training sweep selected 1.225 for four-phase Fourier and Richardson, 1.200 f
 
 The equal-shot likelihood worst-face RMSE was 3.01° at 2,048 shots per setting and 1.52° at 8,192. Doubling the shared perturbation scales gave 2.03° worst-face RMSE and 92.0% joint chord coverage in the separate seeded stress test. These estimates are conditional on the calibrated Aer model and the registered local chart. [Training grid](receipts/live/time_grid.json) · [Monte Carlo results](receipts/live/statistics.json) · [Controls](receipts/live/controls.json)
 
-The proposed workload uses equal shots and budgets another 98,304 shots for zero field, orientation reversal, a tree, a gauge copy, matched detuning, and balanced excitation. The modeled reset and acquisition schedule uses a 250 µs repetition delay. The estimated shot-weighted time is 50.27 seconds before the overhead and cap margin. The budget calculation is provisional and IBM has reported no Q3 usage.
+The proposed workload uses equal shots and budgets another 98,304 shots for zero field, orientation reversal, a tree, a gauge copy, matched detuning, and balanced excitation. The modeled shot schedule uses a 250 µs repetition delay. The estimated shot-weighted time is 50.27 seconds before the overhead and cap margin. IBM's actual Q3 usage appears in the hardware report.
 
-The exact proposal's QPY SHA-256 is `ae9ee11b45b73c6f2ad0bac94d2796661b62f4301c342569e762944d041ea7c8`. Execution requires separate approval of the exact manifest and a new balance and calibration check. [Compiled circuits](receipts/live/q3_candidate_isa.qpy) · [Execution gate](HARDWARE_GATE.md)
+The exact proposal's QPY SHA-256 is `ae9ee11b45b73c6f2ad0bac94d2796661b62f4301c342569e762944d041ea7c8`. The later pilot used these same circuit bytes. [Compiled circuits](receipts/live/q3_candidate_isa.qpy) · [Completed execution and approval scope](HARDWARE_GATE.md)

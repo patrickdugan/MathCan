@@ -21,11 +21,13 @@ from bianchi_reconstruction import project, reconstruct
 from circuit_synthesis import compact_target, measure_map, physical_archive
 from controls import CENTER, exact_controls
 from fisher_design import (allocate, fisher, mirror_reference, nuisance_templates, response)
+from hardware_analysis import analyze
 from noise_benchmark import CalibratedAer, benchmark, quantum_instruction
 from plaquette_estimator import direct_probability, probability, settings, short_time_audit
 from provenance import q2_audit
 from q3_hamiltonian import (BIANCHI, CHORD_COLUMNS, D0, D1, EDGES, audit, chord_field,
                             face_flux, gauge_transform, matrix, phases_from_faces, wrap)
+from run_study import read
 
 
 @pytest.fixture(scope="module")
@@ -199,3 +201,64 @@ def test_archive_q3_receipts(archive):
             snapshot["backend"], include_calibration_identity=False)
         assert comparison["case_order_shots_and_readout_maps_unchanged"]
         assert max(comparison["max_return_probability_changes"].values()) < 1e-12
+
+
+def test_hardware_replay_preserves_case_outcomes_and_recovers_aer_fixture():
+    base = ROOT / "receipts"
+    manifest = json.loads((base / "execution_refresh/q3_candidate_manifest.json").read_text(
+        encoding="utf-8"))
+    statistics = json.loads((base / "live/statistics.json").read_text(
+        encoding="utf-8"))["designs"]["likelihood"]
+    counts = {}
+    for r in manifest["settings"]:
+        start = r["setting"]["start"]
+        shots = r["shots"]
+        returns = round(r["aer"] * shots)
+        counts[r["case_id"]] = {format(start, "03b"): returns,
+                                format(start ^ 1, "03b"): shots - returns}
+    timestamp = manifest["calibration_timestamp"]
+    evidence = {"calibration_preflight": timestamp, "calibration_at_job_start": timestamp,
+                "calibration_at_last_chunk": timestamp}
+    hardware = {"counts": counts, "job_id": "synthetic", "pub_case_ids_match": True}
+    report = analyze(manifest, hardware, statistics, evidence)
+    json.dumps(report, allow_nan=False)
+    assert report["shots"] == 196608
+    assert report["likelihood"]["fit_converged"]
+    assert max(abs(x) for x in report["likelihood"]["face_errors_deg"]) < 3
+    assert abs(report["likelihood"]["wrapped_bianchi_closure_deg"]) < 1e-10
+    assert report["execution_calibration_timestamps_match_preflight"]
+    assert len(report["quadratures"]) == 12
+
+
+def test_recorded_q3_hardware_replays_from_counts():
+    base = ROOT / "receipts"
+    pilot = base / "hardware"
+    manifest_path = base / "execution_refresh/q3_candidate_manifest.json"
+    manifest = read(manifest_path)
+    job = read(pilot / "hardware_job.json")
+    preflight = read(pilot / "preflight.json")
+    raw = read(pilot / "hardware_counts.json")
+    spans = read(pilot / "execution_evidence.json")
+    boundaries = read(pilot / "boundary_calibration.json")
+    prior_calibration = read(base / "execution_refresh/calibration.json")["backend"]
+    assert raw["status"] == "DONE" and raw["qpu_seconds"] == 54
+    assert raw["job_id"] == job["job_id"] == spans["job_id"] == "dc25sdmq4uuc73a4pbl0"
+    assert raw["pub_case_ids"] == [r["case_id"] for r in manifest["settings"]]
+    assert preflight["timestamp_only_change"] and job["timestamp_only_refresh_authorized"]
+    assert job["approved_manifest_sha256"] == sha256(
+        manifest_path.read_text(encoding="utf-8").encode()).hexdigest()
+    assert calibration_fingerprint(preflight["target"], include_calibration_identity=False) == (
+        calibration_fingerprint(prior_calibration, include_calibration_identity=False)
+    )
+    assert read(pilot / "post_run_allocation.json")["remaining_qpu_seconds"] == 461
+    statistics = read(base / "live/statistics.json")["designs"]["likelihood"]
+    replay = analyze(manifest, raw, statistics, spans, boundaries)
+    saved = read(pilot / "hardware_analysis.json")
+    assert replay["shots"] == saved["shots"] == 196608
+    assert replay["selected_numeric_boundary_calibrations_equal"]
+    assert len(boundaries["selected_start_properties"]) == 109
+    assert boundaries["selected_start_properties"] == boundaries["selected_completion_properties"]
+    assert replay["quadratures"]["tree/f0"]["counting_rectangle_contains_origin"]
+    assert not replay["likelihood"]["expected_field_in_local_joint_95_region"]
+    np.testing.assert_allclose(replay["likelihood"]["estimated_faces_deg"],
+                               saved["likelihood"]["estimated_faces_deg"], atol=1e-6)
