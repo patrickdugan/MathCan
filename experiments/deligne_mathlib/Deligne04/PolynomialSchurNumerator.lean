@@ -134,6 +134,10 @@ theorem pivotNumerator_map
     rw [Matrix.map_mul, Matrix.map_mul, hbot, hright, hadj]
   unfold pivotNumerator
   rw [map_sub, map_mul, RingHom.map_det, hprod]
+  have hmatrix : φ.mapMatrix H = H.map φ := by
+    ext i j
+    rfl
+  rw [hmatrix]
 
 /-- The determinant polynomial of a bordered pivot also specializes
 exactly, even at singular pivots. -/
@@ -144,7 +148,13 @@ theorem det_borderedPivot_map
     φ (borderedPivot H b c v).det =
       (borderedPivot (H.map φ) (fun i => φ (b i))
         (fun i => φ (c i)) (φ v)).det := by
-  rw [RingHom.map_det, borderedPivot_map]
+  rw [RingHom.map_det]
+  have hmatrix :
+      φ.mapMatrix (borderedPivot H b c v) =
+        (borderedPivot H b c v).map φ := by
+    ext i j
+    rfl
+  rw [hmatrix, borderedPivot_map]
 
 #print axioms det_borderedPivot_eq_numerator_of_invertible
 #print axioms det_borderedPivot_eq_numerator_of_unit
