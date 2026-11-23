@@ -15,7 +15,7 @@ from tests.test_deligne21g_geometric_fiber import (
     cases, dot, elements, fields, original_jacobian, rank, scheme_equations
 )
 from tests.test_deligne21h_field_towers import (
-    F4_ZERO, GF16, embed, original_jacobian as original_jacobian16
+    F4_ZERO, embed, original_jacobian as original_jacobian16
 )
 
 
@@ -138,7 +138,6 @@ class Deligne22ARelativeCriticalOracle(unittest.TestCase):
                 rank(rows16 + [list(grad16)]) == rank(rows16),
                 mode,
             )
-            self.assertEqual(GF16(0), GF16(0))  # explicit field type retained
 
 
 if __name__ == "__main__":
