@@ -1,5 +1,18 @@
 # RH-26 run ledger
 
+## RH-26E-01 — 2026-11-23 — pinned scalar-transport Lean gym
+
+- **Status: KERNEL PASS.** Six independently authored field-algebra declarations, including three positive nonzero-scalar counterexample fixtures, all compiled under Lean 4.35.0 with approved axiom dependencies. The underlying automorphic assumptions are still external upstream inputs; this does not establish RH/GRH independently.
+- **Source-only registration commit:** `8337e490eb196c08e2e9bfd52c78ceb868f3ff07` ([RH26E01_REGISTRATION.md](RH26E01_REGISTRATION.md)) before executable code or workflow. **Proof + workflow commit:** `f388d2233b96c9e64178910e974c6b67d2a53eb9`. **Report:** [RH26E01_RESULTS.md](RH26E01_RESULTS.md) at `812ec3b5051b616992a4d8f2b7d161e4deb294d2`.
+- **Upstream origin:** `leanprover-community/riemann-hypothesis@c900e67c2fcd1fdb041685820bbd2b867fbc5a4b`, `WeilTensorModels.lean:597-617`, previously read in RH-26B-03. No new upstream source files in this session.
+- **Proof types:** `beta_normalized`: from `u*d=1, c*l=u*c₁` derive `c₁=d*c*l`. `beta_nonzero`: same hypotheses and `c₁≠0` imply `l≠0`. `alpha_nonzero`: `c=d*l*c₁, c≠0` imply `l≠0`. Three explicit witness declarations show that each specified nonzero/invertibility premise matters.
+- **Successful GitHub Actions CPU runs:** [45202634665](https://github.com/patrickdugan/MathCan/actions/runs/45202634665) and [45202651066](https://github.com/patrickdugan/MathCan/actions/runs/45202651066). The first run job `137789840760` published artifact `14831283859` with Lean version, SHA-256, and stdout `#print axioms`.
+- **Compiler / source receipts:** Lean 4.35.0 commit `eb6cafb7290e8bd5f2937522d8d804f58f02bafc`, Mathlib `v4.35.0`; source SHA-256 `4c818cfbc91d425068c2b227e6ac1b6227fae233f58741ca1be4e3d077b91a59`. Main proofs depend on `propext` and `Quot.sound`, with `Classical.choice` additionally on the three counterexample proofs. Axiom gate PASS.
+- **Falsifiers:** explicit cases `c₁=0,l=0` (beta target missing), `u=d=0,c₁=1,l=0` (beta inverse missing), `c=0,l=0` (alpha source missing), all kernel-checked as existential witnesses.
+- **Resources:** GitHub-hosted `ubuntu-22.04` CPU, 25-minute timeout; pinned Mathlib cache; RH-26 file typecheck only. No upstream full build or paid/GPU/QPU compute. Exact runtime and memory metrics were not extracted.
+- **Unresolved:** verify upstream supplied `StepBeta`/`StepAlpha` proofs and `OneConst` mechanism separately, under fresh source-only registration. No quantitative theta multiplicity exponent or `X/m+m` formula established.
+- **Next bounded task:** RH-26B-04 proof-supplier search, working from [RH26B03_ORIGINAL_PREMISES.md](RH26B03_ORIGINAL_PREMISES.md), search exact declaration names and check use sites within 8 files / 1,200 source lines / two hops. Preserve the draft PR and current toolchain.
+
 ## RH-26B-03 — 2026-11-23 — original theta-premise definitions recovered
 
 - **Status:** **PASS** for original `WeilTensorModels.LocalMatching` and `ThetaIntegralsAgree` source declarations. **PASS (paper algebra only)** for conditional alpha/beta scalar transport. Explicit theta-multiplicity exponent and `X/m+m` estimate remain **UNSOURCED**. No new Lean kernel verification.
