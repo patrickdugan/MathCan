@@ -1,0 +1,26 @@
+name: ROC-02A public observer receipts and random-null audit
+on:
+  push:
+    paths:
+      - 'research/observer_calculus/roc02a/**'
+      - 'tests/test_roc02a_public_receipts.py'
+      - '.github/workflows/roc02a-public-audit.yml'
+  pull_request:
+    paths:
+      - 'research/observer_calculus/roc02a/**'
+      - 'tests/test_roc02a_public_receipts.py'
+      - '.github/workflows/roc02a-public-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  oracle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          python -m compileall -q research/observer_calculus/roc02a/roc02a_frozen_rank_causal.py research/observer_calculus/roc02a/roc02a_summarize.py
+          python -m unittest discover -s tests -p 'test_roc02a_public_receipts.py' -v

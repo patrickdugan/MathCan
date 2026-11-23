@@ -1,0 +1,69 @@
+{
+  "checkpoint_binary_files": 12,
+  "depths": [
+    16,
+    32
+  ],
+  "files_sha256": {
+    "roc02a_3d_pareto_by_seed.csv": "5e902744c53297d19354b3ad51c529dac40af581d9b87e6259e62869558c1abe",
+    "roc02a_rank_by_seed.csv": "89de3b182c3e5f409fe4a8e53b76e38fa3954c22970c945e629b0dca15764e8c",
+    "roc02a_rank_null_medians.csv": "4a8d3b74f620b470e5f8774a8dc895525d39d100790a773c5140f0d332812310",
+    "roc02a_rank_nulls_compact.csv.gz": "8c964d1ab8303309246de8922037fd2c119cc6da3969deab7598c2a59f1fc333",
+    "roc02a_rank_observers.csv": "4b5dd4c6c5e6a8f9cd78cb8231bfeb3555758357367c48dd1094fe5446e883ce",
+    "roc02a_rank_summary.csv": "707c4a3421e478988f625e2d55362b77de3a9c747c5fc93f8938699dfd237c9d",
+    "roc02a_retrospective_summary.json": "579c1ef8fd2669b7c99272e8e4ea2beffe7038be83552e3479fe797e808ef4c4"
+  },
+  "full_null_archive_only": "roc02a_rank_nulls.csv",
+  "label": "Retrospective NRF synthetic task only; not prospective ROC-02 delayed-rule task",
+  "model_seeds": [
+    131,
+    137,
+    139,
+    149,
+    151,
+    157
+  ],
+  "n_null_rows": 27648,
+  "n_observer_rows": 480,
+  "null_basis": "SHA256-keyed torch Gaussian QR; projector 16x16 principal submatrix float32 SHA256",
+  "null_seeds": [
+    941001,
+    941128
+  ],
+  "observer_adapter_files": 12,
+  "original_generated_file_sha256": {
+    "roc02a_3d_pareto_by_seed.csv": "532594ab628f8f0f000bb027bf50fce213f3dd7b707bedb9827530167a0d87a6",
+    "roc02a_rank_by_seed.csv": "bd5a29026c9dc190298ad069a4bfeb8e039f1551656cbeae1120538fbaef1858",
+    "roc02a_rank_null_medians.csv": "fa4c512f171d4ed301f8c119587199ebd3c599a22d6f5b34eb046f4144e5c8a2",
+    "roc02a_rank_nulls_compact.csv.gz": "8c964d1ab8303309246de8922037fd2c119cc6da3969deab7598c2a59f1fc333",
+    "roc02a_rank_observers.csv": "4740d692e2f2a1a9571cfe7fd1b6f415132a7e3c24c9dc7ddfe2852a53ef5501",
+    "roc02a_rank_summary.csv": "71f3293c607e7e8061a29e9e3006d17adeef9a7679407b164239ac94c7552130",
+    "roc02a_retrospective_summary.json": "2463411134800c5dae1c047d91797027633a6a8fb7e5cc32d1e100045821e858"
+  },
+  "provenance_files": {
+    "roc02a_rank_nulls.csv": "9c245048a6a9bb508f881cf9d38efc6657112ee12abc0141865f523e151414cf",
+    "roc02a_rank_observers.csv": "4740d692e2f2a1a9571cfe7fd1b6f415132a7e3c24c9dc7ddfe2852a53ef5501",
+    "roc02a_rank_summary.csv": "71f3293c607e7e8061a29e9e3006d17adeef9a7679407b164239ac94c7552130"
+  },
+  "public_compressed_null": "roc02a_rank_nulls_compact.csv.gz",
+  "ranks": [
+    1,
+    2,
+    3,
+    4,
+    7,
+    8,
+    12,
+    16,
+    32
+  ],
+  "registered_shadows": [
+    0,
+    1
+  ],
+  "repository_transport_note": "CSV text blobs in the GitHub connector are normalized to LF without trailing newline; files_sha256 binds the exact public committed byte form. original_generated_file_sha256 binds standalone local csv.writer output (CRLF). Compressed gzip bytes are unchanged.",
+  "source": "Exact NRF-09 checkpoints and NRF-11 frozen adapters, SHA gated",
+  "status": "Retrospective NRF pilot, not prospective ROC02 delayed-rule",
+  "study": "ROC-02A-RETRO-frozen-NRF-rank-causal-pilot-v1",
+  "task_head": "Separate train-fold-1 ridge final-state head, 8 signed-permutation targets"
+}
