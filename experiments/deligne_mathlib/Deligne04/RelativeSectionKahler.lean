@@ -67,42 +67,47 @@ abbrev universalSectionQuotient
   MvPolynomial (Deligne16.Coord k s) (P K k s) ⧸
     universalSectionEquationsIdeal f B
 
-/-- Actual algebra presentation with source-coordinate generators and
-all original rows plus the independent universal section relation. -/
-noncomputable def relativeSectionAlgebraPresentation
-    {K : Type*} [Field K] {k s r : ℕ}
-    (f : Fin r → MvPolynomial (Fin s) K)
-    (B : MvPolynomial (Deligne16.Coord k s) K) :
-    Algebra.Presentation (P K k s)
-      (universalSectionQuotient f B)
-      (Deligne16.Coord k s) (Option (Deligne16.EqCoord k r)) := by
+/-- A finite family of polynomial equations over *any* commutative
+coefficient ring presents its literal ideal quotient as an algebra.
+Abstracting the coefficient ring keeps the nested K[a,c][z] algebra
+instance out of the construction of the generic proof. -/
+noncomputable def finiteRelationsAlgebraPresentation
+    {R : Type*} [CommRing R] {ι σ : Type*}
+    (rel : σ → MvPolynomial ι R) :
+    Algebra.Presentation R
+      (MvPolynomial ι R ⧸ Ideal.span (Set.range rel)) ι σ := by
   classical
-  let I : Ideal (MvPolynomial (Deligne16.Coord k s) (P K k s)) :=
-    universalSectionEquationsIdeal f B
-  let Q : MvPolynomial (Deligne16.Coord k s) (P K k s) →ₐ[P K k s]
-      universalSectionQuotient f B :=
-    Ideal.Quotient.mkₐ (P K k s) I
-  have hQ : Function.Surjective Q := fun x =>
-    Ideal.Quotient.mk_surjective x
-  let G : Algebra.Generators (P K k s) (universalSectionQuotient f B)
-      (Deligne16.Coord k s) := Algebra.Generators.ofAlgHom Q hQ
+  let I : Ideal (MvPolynomial ι R) := Ideal.span (Set.range rel)
+  let Q : MvPolynomial ι R →ₐ[R] (MvPolynomial ι R ⧸ I) :=
+    Ideal.Quotient.mkₐ R I
+  have hQ : Function.Surjective Q :=
+    fun x => Ideal.Quotient.mk_surjective x
+  let G : Algebra.Generators R (MvPolynomial ι R ⧸ I) ι :=
+    Algebra.Generators.ofAlgHom Q hQ
   refine {
     toGenerators := G
-    relation := universalRelation f B
+    relation := rel
     span_range_relation_eq_ker := ?_ }
   change I = G.ker
   rw [show G.ker = RingHom.ker Q.toRingHom from
     Algebra.Generators.ker_ofAlgHom Q hQ]
   exact (Ideal.mk_ker).symm
 
-/-- The real Kähler differential module of T relative to P,
-presented using the *literal original equations plus the section*. -/
+/-- The actual universal section quotient algebra over K[a_i,c],
+using the generic finite-relations presentation on the complete
+original equations and the additional universal section. -/
+noncomputable def relativeSectionAlgebraPresentation
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (B : MvPolynomial (Deligne16.Coord k s) K) :=
+  finiteRelationsAlgebraPresentation (universalRelation f B)
+
+/-- Mathlib's authentic finite presentation of the Kähler module
+of the universal section quotient relative to K[a_i,c]. -/
 noncomputable def relativeSectionKahlerPresentation
     {K : Type*} [Field K] {k s r : ℕ}
     (f : Fin r → MvPolynomial (Fin s) K)
-    (B : MvPolynomial (Deligne16.Coord k s) K) :
-    Module.Presentation (universalSectionQuotient f B)
-      Ω[universalSectionQuotient f B⁄P K k s] :=
+    (B : MvPolynomial (Deligne16.Coord k s) K) :=
   (relativeSectionAlgebraPresentation f B).differentials
 
 /-- The genuinely presented Kähler module has source-coordinate
@@ -165,7 +170,7 @@ theorem relativeSectionKahler_relation_eq_universalJacobian
         (MvPolynomial (Deligne16.Coord k s) (P K k s))
         (universalSectionQuotient f B)
         (Deligne22B.universalAugmentedMatrix f B t i) := by
-  rw [relativeSectionKahlerPresentation]
+  change ((relativeSectionAlgebraPresentation f B).differentials).relation t i = _
   rw [differential_relation_coefficient_relative]
   congr 1
   exact universalRelation_pderiv f B t i
