@@ -1,0 +1,23 @@
+{
+  "job_id": "dc2b0g5s2omc738bn0d0",
+  "method": "post hoc assignment-matrix substitution in Aer",
+  "changed_model_inputs": "single-qubit readout matrices only",
+  "job_start_calibration": "2026-11-24T05:21:04+08:00",
+  "cases": {
+    "signal/AB": {
+      "return": 0.8567158504510637,
+      "joint_correct_and_return": 0.830158021601515,
+      "conditional_correct": 0.9690004231443063,
+      "conditional_Y": -0.9380008462886127,
+      "return_and_positive_Y": 0.02655782884954873
+    },
+    "signal/BA": {
+      "return": 0.8568900748802312,
+      "joint_correct_and_return": 0.8288796146712587,
+      "conditional_correct": 0.9673114895012788,
+      "conditional_Y": 0.9346229790025575,
+      "return_and_positive_Y": 0.8288796146712587
+    }
+  },
+  "primary_joint_mean": 0.8295188181363868
+}

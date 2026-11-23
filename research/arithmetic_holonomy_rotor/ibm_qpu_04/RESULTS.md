@@ -1,6 +1,6 @@
 # AHR-QPU-04 simulation results
 
-**Hardware HOLD.** The calibrated routed circuit reached **82.46%** mean joint success. Its nominal simultaneous 95% lower bound was **78.42%** after the one-point systematic allowance. Every noise scenario missed the 80% lower-bound gate. IBM verified **461 free Open Plan seconds** at 05:06 Singapore time on 24 November 2026. The candidate estimate was 56.00 seconds with a provisional 112-second cap. No IBM job was submitted. [Manifest](receipts/manifest.json) · [Calibration](receipts/calibration.json)
+**The simulation missed the hardware design gate.** The calibrated routed circuit reached **82.46%** mean joint success. Its nominal simultaneous 95% lower bound was **78.42%** after the one-point systematic allowance. Every noise scenario missed the 80% lower-bound gate. IBM verified **461 free Open Plan seconds** at 05:06 Singapore time on 24 November 2026. The candidate estimate was 56.00 seconds with a provisional 112-second cap. A subsequent separately authorized hardware pilot has its own report. [Manifest](receipts/manifest.json) · [Calibration](receipts/calibration.json) · [Hardware pilot](HARDWARE_RESULTS.md)
 
 ## Exact and native checks
 
@@ -49,4 +49,4 @@ The direct sequence and prepared register are comparators with no spatial route.
 
 ## Resource and reproducibility
 
-The ordered candidate has 76 circuits and 155,648 shots, including every control, dwell, held-out, and calibration setting. The estimate sums calibrated critical paths and the backend’s 250 µs repetition delay over the shot ledger. A 15-second fixed assumption and a factor-of-two margin produce the 112-second provisional cap. The allocation can accommodate that figure on paper. The precision gate failed, so the candidate remains simulation-only. [Exact QPY](receipts/q4_candidate_isa.qpy) · [Per-case manifest](receipts/manifest.json) · [Pinned design](../ibm_qpu_03b/AHR_QPU_04_SPEC.md)
+The ordered candidate has 76 circuits and 155,648 shots, including every control, dwell, held-out, and calibration setting. The estimate sums calibrated critical paths and the backend’s 250 µs repetition delay over the shot ledger. A 15-second fixed assumption and a factor-of-two margin produce the 112-second provisional cap. The precision gate missed in simulation. The separately authorized run used these same circuit bytes. [Exact QPY](receipts/q4_candidate_isa.qpy) · [Per-case manifest](receipts/manifest.json) · [Pinned design](../ibm_qpu_03b/AHR_QPU_04_SPEC.md)

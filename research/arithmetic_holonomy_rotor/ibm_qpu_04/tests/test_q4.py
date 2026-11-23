@@ -12,6 +12,7 @@ sys.path.insert(0, str(ROOT))
 
 from circuits import verify_links, verify_paths
 from endpoints import from_counts, model_endpoints, wilson
+from hardware_analysis import replay
 from model import A, B, LABELS, Y, Case, audit, cases, edge_link, oracle, rotation, walk
 
 
@@ -95,3 +96,67 @@ def test_archived_workload_and_scope():
     for arm in s["scenarios"].values():
         assert len(arm["rows"]) == 76
         assert all(sum(row["counts"]) == 2048 for row in arm["rows"].values())
+
+
+def test_hardware_replay_from_synthetic_count_ledger():
+    base = ROOT / "receipts"
+    manifest = json.loads((base / "manifest.json").read_text(encoding="utf-8"))
+    scenario = json.loads((base / "simulation.json").read_text(encoding="utf-8"))["scenarios"]["nominal"]
+    counts = {}
+    for row in manifest["cases"]:
+        identifier = row["case"]["id"]
+        counts[identifier] = {format(k, "04b"): n for k, n in
+                              enumerate(scenario["rows"][identifier]["counts"]) if n}
+    synthetic = {"job_id": "synthetic", "pub_case_ids_match": True, "counts": counts}
+    result = replay(manifest, synthetic)
+    assert result["shots"] == manifest["shots"]
+    assert result["expected_Y_signs"]
+    assert not result["clears_simulation_design_threshold_on_hardware"]
+    np.testing.assert_allclose(result["primary_joint_95_with_allowance"],
+                               scenario["primary_joint_95_with_allowance"])
+    json.dumps(result, allow_nan=False)
+
+
+def test_completed_hardware_job_and_replay():
+    base = ROOT / "receipts"
+    hardware = base / "hardware"
+
+    def read(path):
+        return json.loads(path.read_text(encoding="utf-8"))
+
+    manifest_path = base / "manifest.json"
+    manifest = read(manifest_path)
+    counts = read(hardware / "counts.json")
+    job = read(hardware / "job.json")
+    preflight = read(hardware / "preflight.json")
+    expected_job = "dc2b0g5s2omc738bn0d0"
+    assert counts["status"] == "DONE" and job["job_id"] == counts["job_id"] == expected_job
+    assert counts["qpu_seconds"] == 45 and job["cap_seconds"] == 112
+    assert preflight["account"]["remaining_seconds"] == 461
+    assert read(hardware / "post_allocation.json")["remaining_seconds"] == 416
+    assert counts["pub_case_ids"] == [r["case"]["id"] for r in manifest["cases"]]
+    assert sha256(manifest_path.read_text(encoding="utf-8").encode()).hexdigest() == (
+        job["approved_manifest_sha256"]
+    )
+    assert sha256((hardware / "preflight.json").read_text(encoding="utf-8").encode()).hexdigest() == (
+        job["preflight_sha256"]
+    )
+    assert preflight["approved_qpy_sha256"] == manifest["qpy_sha256"]
+    assert preflight["same_physical_model"] and preflight["exploratory_despite_simulation_gate"]
+    calibration = read(hardware / "calibration_comparison.json")
+    readout = read(hardware / "execution_readout.json")
+    assert calibration["job_id"] == readout["job_id"] == expected_job
+    assert len(calibration["changed_properties"]) == 8
+    assert all(k.startswith("measure/") or k.endswith("/assignment_errors")
+               for k in calibration["changed_properties"])
+    np.testing.assert_allclose(readout["primary_joint_mean"], .829519, atol=1e-6)
+    expected = read(hardware / "analysis.json")
+    actual = replay(manifest, counts)
+    assert actual["shots"] == expected["shots"] == 155648
+    assert {k: row["counts"] for k, row in actual["cases"].items()} == {
+        k: row["counts"] for k, row in expected["cases"].items()
+    }
+    np.testing.assert_allclose(actual["primary_joint_95_with_allowance"],
+                               expected["primary_joint_95_with_allowance"], atol=1e-12)
+    assert actual["expected_Y_signs"]
+    assert not actual["clears_simulation_design_threshold_on_hardware"]
