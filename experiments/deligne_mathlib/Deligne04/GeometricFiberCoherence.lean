@@ -37,4 +37,72 @@ theorem geometricCotangentDualEquivTangent_coord
 
 #print axioms geometricCotangentDualEquivTangent_coord
 
+/-- The dual-defined field-extension tangent equivalence sends the pure
+tensor of an original Jacobian tangent vector to its coordinatewise
+image under the field algebra homomorphism. -/
+theorem geometricJacobianTangentTowerEquiv_one_tmul
+    {K L M : Type*} [Field K] [Field L] [Field M]
+    [Algebra K L] [Algebra K M]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (hu : Deligne21G.onGeometricProduct f u)
+    (φ : L →ₐ[K] M)
+    (v : Deligne21G.geometricJacobianTangent f u) :
+    letI : Algebra L M := φ.toRingHom.toAlgebra
+    (Deligne21H.geometricJacobianTangentTowerEquiv f u hu φ)
+      ((1 : M) ⊗ₜ[L] v) =
+      ⟨fun i => φ ((v : Deligne16.Coord k s → L) i),
+        Deligne21H.geometricJacobianTangent_map_mem f u
+          (v : Deligne16.Coord k s → L) φ v.property⟩ := by
+  letI : Algebra L M := φ.toRingHom.toAlgebra
+  classical
+  let eQ := Deligne21H.geometricCotangentTowerEquiv f u hu φ
+  let j : Deligne21G.geometricCotangentFiber f u →ₗ[L]
+      Deligne21G.geometricCotangentFiber f (fun i => φ (u i)) :=
+    (eQ.toLinearMap.restrictScalars L).comp
+      (TensorProduct.mk L M (Deligne21G.geometricCotangentFiber f u) 1)
+  have hb : IsBaseChange M j :=
+    IsBaseChange.of_equiv eQ (by intro x; rfl)
+  let eL := Deligne21G.geometricCotangentDualEquivTangent f u
+  let eM := Deligne21G.geometricCotangentDualEquivTangent f (fun i => φ (u i))
+  have hcoord (i : Deligne16.Coord k s) :
+      (eL.symm v) (Submodule.Quotient.mk (Pi.single i (1 : L))) =
+        (v : Deligne16.Coord k s → L) i := by
+    have h := geometricCotangentDualEquivTangent_coord f u (eL.symm v) i
+    simpa only [eL, LinearEquiv.apply_symm_apply] using h.symm
+  have hsingle (i : Deligne16.Coord k s) :
+      j (Submodule.Quotient.mk (Pi.single i (1 : L))) =
+        Submodule.Quotient.mk (Pi.single i (1 : M)) := by
+    exact Deligne21H.geometricCotangentTowerEquiv_single f u hu φ i
+  have hdual (i : Deligne16.Coord k s) :
+      (hb.toDualBaseChange ((1 : M) ⊗ₜ[L] (eL.symm v)))
+        (Submodule.Quotient.mk (Pi.single i (1 : M))) =
+          φ ((v : Deligne16.Coord k s → L) i) := by
+    rw [← hsingle i]
+    rw [IsBaseChange.toDualBaseChange_tmul]
+    simp only [one_mul]
+    change φ ((eL.symm v)
+        (Submodule.Quotient.mk (Pi.single i (1 : L)))) =
+          φ ((v : Deligne16.Coord k s → L) i)
+    exact congrArg φ (hcoord i)
+  have htrans :
+      Deligne21H.geometricJacobianTangentTowerEquiv f u hu φ
+        ((1 : M) ⊗ₜ[L] v) =
+          eM (hb.toDualBaseChange ((1 : M) ⊗ₜ[L] (eL.symm v))) := by
+    change ((eL.symm.baseChange L M _ _).trans (hb.toDualBaseChange.trans eM))
+      ((1 : M) ⊗ₜ[L] v) = _
+    simp only [LinearEquiv.trans_apply, LinearEquiv.baseChange_tmul]
+  apply Subtype.ext
+  funext i
+  rw [htrans]
+  change ((eM (hb.toDualBaseChange ((1 : M) ⊗ₜ[L] (eL.symm v))) :
+      Deligne21G.geometricJacobianTangent f (fun i => φ (u i))) :
+        Deligne16.Coord k s → M) i =
+          φ ((v : Deligne16.Coord k s → L) i)
+  rw [geometricCotangentDualEquivTangent_coord]
+  exact hdual i
+
+#print axioms geometricJacobianTangentTowerEquiv_one_tmul
+
 end Deligne21I
