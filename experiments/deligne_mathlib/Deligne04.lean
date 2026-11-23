@@ -38,3 +38,4 @@ import Deligne04.GeometricKahlerFiber
 import Deligne04.GeometricFiberNaturality
 import Deligne04.GeometricFiberCoherence
 import Deligne04.GeometricTowerCoherence
+import Deligne04.GeometricIdentityCoherence
