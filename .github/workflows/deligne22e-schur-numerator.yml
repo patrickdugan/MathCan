@@ -6,6 +6,7 @@ on:
   pull_request:
     paths:
       - 'experiments/deligne_mathlib/Deligne04/PolynomialSchurNumerator.lean'
+      - 'experiments/deligne_mathlib/Deligne04/OriginalPolynomialSchur.lean'
       - 'experiments/deligne_mathlib/Deligne04.lean'
       - 'tests/test_deligne22e_schur_numerator.py'
       - 'research/deligne_sign_audit/DEL22E_*'
@@ -44,7 +45,8 @@ jobs:
           set -euo pipefail
           lake build Deligne04
           lake env lean Deligne04/PolynomialSchurNumerator.lean | tee deligne22e-schur-axioms.txt
-          if grep -Eq 'sorryAx|ofReduceBool' deligne22e-schur-axioms.txt; then
+          lake env lean Deligne04/OriginalPolynomialSchur.lean | tee deligne22e-original-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne22e-schur-axioms.txt deligne22e-original-axioms.txt; then
             echo 'DEL-22E unexpected axiom'
             exit 1
           fi
