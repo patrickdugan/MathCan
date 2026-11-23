@@ -3,7 +3,7 @@
 **Date:** 2026-11-24 (Asia/Manila).  
 **Registration:** [RH26E03_REGISTRATION.md](RH26E03_REGISTRATION.md), `e8dd41174d9a6ff1f2d201261b4ddb64b2d45120`, before executable source.  
 **Implementation:** [RH26E03GrowthBound.lean](lean/RH26E03GrowthBound.lean), initially `71c25b03`, explicit power regrouping at `b4d3b5c7`, workflow commit `108f74fdb2305889c04bd02c02827c76ce711a30`.  
-**Disposition:** IMPLEMENTED; **FIRST KERNEL RUN FAILED; REPAIR IN PROGRESS**. Source inspection found all fourteen preregistered theorem declarations with matching axiom-report commands and no sorry/admit tokens. This does not establish successful elaboration or a kernel pass.
+**Disposition:** IMPLEMENTED; **FOURTEEN CLEAN THEOREM-LEVEL AXIOM REPORTS; MODULE GATE STILL PENDING**. Source inspection found all fourteen preregistered theorem declarations with matching axiom-report commands and no sorry/admit tokens. This does not establish successful elaboration or a kernel pass.
 
 ## Mathematical scope
 
@@ -80,3 +80,7 @@ Literal theorem-level receipt:
 'RH26E03.no_loss_family' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RH26E03.no_uniform_no_loss' depends on axioms: [propext, Classical.choice, Quot.sound]
 ```
+
+## Repair attempt 2
+
+Commit `3a86836dd430a163ea1b46905e40a8605cf2f094` adds the required `noncomputable` modifier to exactly two real-valued definitions, bracket and perSlot. Definition bodies, all proofs, the frozen fourteen theorem contracts, and the workflow acceptance criteria are unchanged. Repaired source Git blob: `f6ce36a63f2938d47cbd737633c8b28d9d562020`. Fresh [CPU run 45280349533](https://github.com/patrickdugan/MathCan/actions/runs/45280349533), at the modifier-only repair commit, is queued. Full registered gate remains pending until the compiler exits successfully and the exact-name audit passes.
