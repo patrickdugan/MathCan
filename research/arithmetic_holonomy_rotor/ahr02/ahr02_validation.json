@@ -1,0 +1,138 @@
+{
+  "cocycle": true,
+  "exact_two_prime_spectrum": {
+    "parameter_combinations": 20,
+    "maximum_absolute_error": 1.7763568394002505e-15
+  },
+  "flux_interaction_compensation": {
+    "kappa": 0.2733333333333333,
+    "results": [
+      {
+        "t": 0.12,
+        "uncompensated_C": 0.00037862193689102596,
+        "compensated_C": 1.8217864734341836e-05,
+        "suppression_factor": 20.78300297055667
+      },
+      {
+        "t": 0.06,
+        "uncompensated_C": 4.7698238702338335e-05,
+        "compensated_C": 1.1327103703161166e-06,
+        "suppression_factor": 42.10982785389942
+      },
+      {
+        "t": 0.03,
+        "uncompensated_C": 5.9739160649676686e-06,
+        "compensated_C": 7.06984289348971e-08,
+        "suppression_factor": 84.49856885035976
+      },
+      {
+        "t": 0.015,
+        "uncompensated_C": 7.471035965791007e-07,
+        "compensated_C": 4.417137637838677e-09,
+        "suppression_factor": 169.13749532710088
+      },
+      {
+        "t": 0.0075,
+        "uncompensated_C": 9.33993309051474e-08,
+        "compensated_C": 2.7604738595207194e-10,
+        "suppression_factor": 338.34528294125425
+      }
+    ],
+    "interpretation": "flux phi=kappa*t held fixed within each duration-t experiment"
+  },
+  "prime_cycle_graph_zeta": {
+    "prime_cycles": [
+      2,
+      3,
+      7,
+      11,
+      13
+    ],
+    "character": "order-four Dirichlet character mod 5",
+    "complex_s": [
+      2.1,
+      0.6
+    ],
+    "max_error": 4.445768331151997e-16,
+    "graph_zeta_inverse_re": 1.0374227026506702,
+    "graph_zeta_inverse_im": -0.0369990443561772
+  },
+  "arithmetic_zero_curvature": true,
+  "clifford_pi_flux": {
+    "2": {
+      "positive_eigenvalue": 1.4142135623730951,
+      "multiplicity": 2,
+      "pi_return_at_t0.53": 0.5358342279237135,
+      "zero_return_at_t0.53": 0.5541850190359253
+    },
+    "3": {
+      "positive_eigenvalue": 1.7320508075688772,
+      "multiplicity": 4,
+      "pi_return_at_t0.53": 0.3689597019259421,
+      "zero_return_at_t0.53": 0.412555301513967
+    },
+    "4": {
+      "positive_eigenvalue": 2.0,
+      "multiplicity": 8,
+      "pi_return_at_t0.53": 0.23899591242264626,
+      "zero_return_at_t0.53": 0.30712103532384893
+    },
+    "5": {
+      "positive_eigenvalue": 2.23606797749979,
+      "multiplicity": 16,
+      "pi_return_at_t0.53": 0.14151857721376607,
+      "zero_return_at_t0.53": 0.2286319676228897
+    },
+    "6": {
+      "positive_eigenvalue": 2.449489742783178,
+      "multiplicity": 32,
+      "pi_return_at_t0.53": 0.07247096963029191,
+      "zero_return_at_t0.53": 0.17020187680728016
+    }
+  },
+  "gauge_invariance": {
+    "max_probability_error": 8.326672684688674e-17
+  },
+  "nonlocal_gauge_entanglement_caveat": {
+    "t": 0.4,
+    "flux_radians": 0.0,
+    "untransformed_concurrence": 0.0,
+    "CZ_gauge_concurrence": 0.5145997611506445,
+    "return_probability_difference": 0.0
+  },
+  "fourth_moment_face_law": {
+    "d": 3,
+    "faces": 6,
+    "predicted_delta_trace_H4": -3.752072529002026,
+    "measured_delta_trace_H4": -3.752072529002021,
+    "origin_prob_short_t": -1.5009806730859054e-09,
+    "leading_t4_prediction": -1.501454357022311e-09
+  },
+  "energetic_delta_concurrence": {
+    "0.015": {
+      "exact_concurrence": 7.471035965791007e-07,
+      "cubic_prediction": 7.472249999999999e-07,
+      "ratio": 0.9998375276243445
+    },
+    "0.01": {
+      "exact_concurrence": 2.213840119754901e-07,
+      "cubic_prediction": 2.2140000000000004e-07,
+      "ratio": 0.9999277867004972
+    },
+    "0.005": {
+      "exact_concurrence": 2.7674500360306892e-08,
+      "cubic_prediction": 2.7675000000000005e-08,
+      "ratio": 0.999981946171884
+    }
+  },
+  "squarefree_euler": {
+    "error": 6.661338147750939e-16,
+    "partition_value_real": 1.3536182720163998
+  },
+  "nonabelian_order_memory": {
+    "alpha": 0.7853981633974483,
+    "beta": 1.5707963267948966,
+    "pure_state_trace_distance": 1.0,
+    "half_trace_group_commutator": 1.895269253967044e-16
+  }
+}
