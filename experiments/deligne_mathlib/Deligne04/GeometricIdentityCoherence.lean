@@ -35,8 +35,25 @@ theorem geometricConormalRelations_identity
         Deligne21G.geometricConormalRelations f u := by
   rw [geometricPoint_identity u]
 
-/-- On each original coordinate class the genuine DEL-21H Kähler
-base-change map along the identity field morphism acts as tensor lid. -/
+/-- In an ordinary self-extension, agreement on unit tensors
+determines a linear equivalence on the whole tensor product. -/
+theorem tensorLid_ext
+    {R V : Type*} [Field R] [AddCommGroup V] [Module R V]
+    (e : R ⊗[R] V ≃ₗ[R] V)
+    (h : ∀ v : V, e ((1 : R) ⊗ₜ[R] v) = v) :
+    e = TensorProduct.lid R V := by
+  apply LinearEquiv.ext
+  intro z
+  calc
+    e z = e ((TensorProduct.lid R V).symm
+        ((TensorProduct.lid R V) z)) := by
+          rw [LinearEquiv.symm_apply_apply]
+    _ = e ((1 : R) ⊗ₜ[R] ((TensorProduct.lid R V) z)) := by
+          rw [TensorProduct.lid_symm_apply]
+    _ = (TensorProduct.lid R V) z := h _
+
+/-- Original Kähler cotangent transport through the identity
+K-algebra morphism agrees on every coordinate quotient class. -/
 theorem geometricCotangentTower_identity_tmul_mk
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     {k s r : ℕ}
@@ -50,12 +67,14 @@ theorem geometricCotangentTower_identity_tmul_mk
         m • (Submodule.Quotient.mk v :
           Deligne21G.geometricCotangentFiber f u) := by
   letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
-  simpa only [AlgHom.id_apply] using
-    (Deligne21J.geometricCotangentTowerEquiv_tmul_mk f u hu
-      (AlgHom.id K L) m v)
+  have h := Deligne21J.geometricCotangentTowerEquiv_tmul_mk f u hu
+    (AlgHom.id K L) m v
+  rw [geometricPoint_identity u] at h
+  rw [geometricPoint_identity v] at h
+  exact h
 
-/-- The dual-defined DEL-21H Jacobian-tangent extension on the identity
-map is scalar multiplication, on every original pure tensor. -/
+/-- The DEL-21H dual-defined tangent identity transport evaluates as
+ordinary scalar multiplication on every pure tensor. -/
 theorem geometricJacobianTangentTower_identity_tmul
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     {k s r : ℕ}
@@ -69,16 +88,14 @@ theorem geometricJacobianTangentTower_identity_tmul
   letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
   have h := Deligne21J.geometricJacobianTangentTowerEquiv_tmul
     f u hu (AlgHom.id K L) m v
+  rw [geometricPoint_identity u] at h
+  rw [h]
   apply Subtype.ext
   funext i
-  simpa only [AlgHom.id_apply, SetLike.val_smul, Pi.smul_apply,
-    smul_eq_mul] using congrArg
-      (fun x : Deligne21G.geometricJacobianTangent f
-        (fun j => (AlgHom.id K L) (u j)) =>
-        (x : Deligne16.Coord k s → L) i) h
+  rfl
 
-/-- Identity-field transport on the *entire* original Kähler cotangent
-quotient is the tensor left-unit equivalence. -/
+/-- The existing DEL-21H Kähler base-change equivalence along the
+identity field morphism is the full tensor left-unit isomorphism. -/
 theorem geometricCotangentTower_identity
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     {k s r : ℕ}
@@ -90,27 +107,15 @@ theorem geometricCotangentTower_identity
       TensorProduct.lid L (Deligne21G.geometricCotangentFiber f u) := by
   letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
   classical
-  apply LinearEquiv.ext
-  intro z
-  induction z using TensorProduct.inductionOn with
-  | add x y hx hy =>
-      calc
-        _ = (Deligne21H.geometricCotangentTowerEquiv f u hu (AlgHom.id K L)) x +
-            (Deligne21H.geometricCotangentTowerEquiv f u hu (AlgHom.id K L)) y :=
-              map_add _ x y
-        _ = (TensorProduct.lid L (Deligne21G.geometricCotangentFiber f u)) x +
-            (TensorProduct.lid L (Deligne21G.geometricCotangentFiber f u)) y :=
-              congrArg₂ (· + ·) hx hy
-        _ = (TensorProduct.lid L (Deligne21G.geometricCotangentFiber f u)) (x+y) :=
-              (map_add _ x y).symm
-  | tmul m q =>
-      obtain ⟨v, rfl⟩ :=
-        Submodule.Quotient.mk_surjective (Deligne21G.geometricConormalRelations f u) q
-      simpa only [TensorProduct.lid_tmul] using
-        (geometricCotangentTower_identity_tmul_mk f u hu m v)
+  apply tensorLid_ext
+  intro q
+  obtain ⟨v, rfl⟩ :=
+    Submodule.Quotient.mk_surjective (Deligne21G.geometricConormalRelations f u) q
+  simpa only [one_smul] using
+    (geometricCotangentTower_identity_tmul_mk f u hu (1 : L) v)
 
-/-- Identity-field transport on the *entire* original Jacobian tangent
-submodule agrees with tensor lid, without choosing a quotient basis. -/
+/-- The existing DEL-21H dual-defined tangent extension agrees
+with tensor lid on the entire original Jacobian tangent submodule. -/
 theorem geometricJacobianTangentTower_identity
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     {k s r : ℕ}
@@ -122,22 +127,10 @@ theorem geometricJacobianTangentTower_identity
       TensorProduct.lid L (Deligne21G.geometricJacobianTangent f u) := by
   letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
   classical
-  apply LinearEquiv.ext
-  intro z
-  induction z using TensorProduct.inductionOn with
-  | add x y hx hy =>
-      calc
-        _ = (Deligne21H.geometricJacobianTangentTowerEquiv f u hu (AlgHom.id K L)) x +
-            (Deligne21H.geometricJacobianTangentTowerEquiv f u hu (AlgHom.id K L)) y :=
-              map_add _ x y
-        _ = (TensorProduct.lid L (Deligne21G.geometricJacobianTangent f u)) x +
-            (TensorProduct.lid L (Deligne21G.geometricJacobianTangent f u)) y :=
-              congrArg₂ (· + ·) hx hy
-        _ = (TensorProduct.lid L (Deligne21G.geometricJacobianTangent f u)) (x+y) :=
-              (map_add _ x y).symm
-  | tmul m v =>
-      simpa only [TensorProduct.lid_tmul] using
-        (geometricJacobianTangentTower_identity_tmul f u hu m v)
+  apply tensorLid_ext
+  intro v
+  simpa only [one_smul] using
+    (geometricJacobianTangentTower_identity_tmul f u hu (1 : L) v)
 
 #print axioms geometricPoint_identity
 #print axioms geometricConormalRelations_identity
