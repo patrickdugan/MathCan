@@ -1,0 +1,385 @@
+{
+  "source": {
+    "mathcan_base": "2efb49fe12b1dfc46434793042efc6daddda16e2",
+    "merge_pr": 262,
+    "original_draft_pr": 254,
+    "status_pr": 264,
+    "calibration_sha256": "df4addccd217d66fcb7524fb5762f1b260b502b9a397d9bc304c46705da99d69",
+    "qpy_sha256": "a0c68c6905894fd44ffd8930dc922196bc734b1193b45c591c2607430e948a45",
+    "exact_primary": [
+      -0.1549379867539567,
+      -0.2031125694356587
+    ],
+    "primary_acceptance_replayed": true,
+    "qpy_layout_verified": true,
+    "job_id": "dc1vksqnj2vs73dfu0n0",
+    "backend": "ibm_fez",
+    "physical_qubits": [
+      9,
+      10
+    ],
+    "circuits": 36,
+    "shots_per_circuit": 2048,
+    "total_shots": 73728,
+    "forward_deg": 38.903662164070035,
+    "reverse_deg": -42.85997335229036,
+    "signal_harmonic": [
+      -0.154296875,
+      -0.19873046875
+    ],
+    "tree_harmonic": [
+      0.003173828125,
+      -0.008056640625
+    ],
+    "free_qpu_seconds": 21,
+    "remaining_seconds_as_reported": 515,
+    "status": "OFFLINE_REPLAY_PASS"
+  },
+  "integer_algebra": {
+    "ranks": [
+      7,
+      5,
+      1
+    ],
+    "d1_smith_diagonal": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        6,
+        7
+      ]
+    ],
+    "faces": [
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        4
+      ],
+      [
+        0,
+        2,
+        0
+      ],
+      [
+        0,
+        2,
+        2
+      ],
+      [
+        1,
+        2,
+        0
+      ],
+      [
+        1,
+        2,
+        1
+      ]
+    ],
+    "tree": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        3,
+        7
+      ]
+    ],
+    "chords": [
+      [
+        2,
+        3
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        6,
+        7
+      ]
+    ],
+    "boundary": [
+      -1,
+      1,
+      1,
+      -1,
+      -1,
+      1
+    ],
+    "chord_inverse": [
+      [
+        -1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        -1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        -1
+      ],
+      [
+        -1,
+        1,
+        1,
+        -1,
+        -1
+      ],
+      [
+        -1,
+        0,
+        0,
+        -1,
+        0
+      ]
+    ]
+  },
+  "short_time": {
+    "selectors": [
+      {
+        "face": 0,
+        "start": 2,
+        "edge": [
+          0,
+          1
+        ],
+        "direction": 1
+      },
+      {
+        "face": 1,
+        "start": 4,
+        "edge": [
+          5,
+          7
+        ],
+        "direction": 1
+      },
+      {
+        "face": 2,
+        "start": 4,
+        "edge": [
+          0,
+          1
+        ],
+        "direction": 1
+      },
+      {
+        "face": 3,
+        "start": 3,
+        "edge": [
+          2,
+          6
+        ],
+        "direction": -1
+      },
+      {
+        "face": 4,
+        "start": 0,
+        "edge": [
+          2,
+          6
+        ],
+        "direction": 1
+      },
+      {
+        "face": 5,
+        "start": 1,
+        "edge": [
+          5,
+          7
+        ],
+        "direction": -1
+      }
+    ],
+    "times": [
+      0.12,
+      0.06,
+      0.03
+    ],
+    "scaled_complex_errors": [
+      [
+        0.07058387064753853,
+        0.12959717699883322,
+        0.08176044081217039,
+        0.10157564101032916,
+        0.09200196914274329,
+        0.10620149915454682
+      ],
+      [
+        0.017903771234173495,
+        0.032895123806838185,
+        0.02073274306201071,
+        0.025760585682773302,
+        0.023329475572653503,
+        0.026956158507006712
+      ],
+      [
+        0.004492241385347536,
+        0.008255110893444176,
+        0.00520167104853146,
+        0.006463315461494001,
+        0.00585314262234116,
+        0.0067646838370588455
+      ]
+    ]
+  },
+  "mathcan_base": "2efb49fe12b1dfc46434793042efc6daddda16e2",
+  "transpiler_seed": 902503,
+  "software": {
+    "numpy": "2.5.5",
+    "scipy": "1.18.1",
+    "qiskit": "2.6.2",
+    "qiskit-aer": "0.18.4",
+    "qiskit-ibm-runtime": "0.52.1"
+  },
+  "compilation_limits": {
+    "max_abs_probability_error": 0.015,
+    "max_two_qubit_gates": 160,
+    "max_circuit_duration_s": 0.00015
+  },
+  "statistical_limits": {
+    "max_face_rmse_deg": 12.0,
+    "min_marginal_coverage": 0.9,
+    "min_joint_chord_coverage": 0.9,
+    "min_converged_fraction": 0.98
+  },
+  "training_chord_configurations": [
+    [
+      0.32,
+      -0.36,
+      0.28,
+      -0.31,
+      0.53
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.17600000000000002,
+      -0.198,
+      0.15400000000000003,
+      -0.1705,
+      0.29150000000000004
+    ],
+    [
+      -0.14400000000000002,
+      0.162,
+      -0.12600000000000003,
+      0.1395,
+      -0.23850000000000002
+    ],
+    [
+      0.14,
+      -0.27999999999999997,
+      0.41000000000000003,
+      -0.16,
+      0.43000000000000005
+    ]
+  ],
+  "nuisance_names": [
+    "readout",
+    "coherent_phase",
+    "common_drift",
+    "coupling"
+  ],
+  "evaluation_seed": 987411
+}
