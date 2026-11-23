@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "n_vertex": 8,
+  "n_edges": 12,
+  "n_faces": 6,
+  "n_cube": 1,
+  "ranks": [
+    7,
+    5,
+    1
+  ],
+  "smith_diagonal": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    0
+  ],
+  "reconstruction_trials": 100,
+  "max_chord_error": 2.6645352591003757e-15,
+  "noise_draws": 20000,
+  "sigma": 0.08,
+  "expected_MSE_ratio": 0.8333333333333334,
+  "actual_MSE_ratio": 0.8348981513492993,
+  "mse_before": 0.038685626602590326,
+  "mse_after": 0.03229855813429194
+}
