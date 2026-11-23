@@ -196,6 +196,71 @@ noncomputable def universalMinorIdeal
         (Fin (d+1) → Deligne16.Coord k s) =>
       universalMinor f B d rc.1 rc.2))
 
+/-- Original DEL-16 product equations embedded, with their full
+nilpotent and redundant scheme structure, into K[a_i,c][z_i]. -/
+noncomputable def universalOriginalIdeal
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K) :
+    Ideal (MvPolynomial (Deligne16.Coord k s)
+      (ParameterRing K (Deligne16.Coord k s))) :=
+  Ideal.span (Set.range
+    (fun t : Deligne16.EqCoord k r =>
+      MvPolynomial.map
+        (MvPolynomial.C : K →+* ParameterRing K (Deligne16.Coord k s))
+        (Deligne16.copyEquation f t)))
+
+/-- The universal affine relative critical ideal before any
+parameter specialization, rank-stratum localization or elimination:
+original scheme relations, universal section and augmented minors. -/
+noncomputable def universalCriticalIdeal
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (B : MvPolynomial (Deligne16.Coord k s) K) (d : ℕ) :
+    Ideal (MvPolynomial (Deligne16.Coord k s)
+      (ParameterRing K (Deligne16.Coord k s))) :=
+  (universalOriginalIdeal f ⊔
+    Ideal.span ({universalSection B} : Set _)) ⊔
+    universalMinorIdeal f B d
+
+/-- Under parameter specialization, every original universal minor
+lands in the genuine fixed-parameter DEL-22A minor ideal. -/
+theorem universalMinorIdeal_le_comap
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (B : MvPolynomial (Deligne16.Coord k s) K)
+    (a : Deligne16.Coord k s → K) (c : K) (d : ℕ) :
+    universalMinorIdeal f B d ≤
+      (Deligne22A.augmentedMinorIdeal f B a c d).comap
+        (MvPolynomial.map (parameterEval a c)) := by
+  rw [universalMinorIdeal, Ideal.span_le]
+  rintro _ ⟨⟨rr, cc⟩, rfl⟩
+  change MvPolynomial.map (parameterEval a c)
+    (universalMinor f B d rr cc) ∈
+    Deligne22A.augmentedMinorIdeal f B a c d
+  rw [universalMinor_specialize]
+  exact Ideal.subset_span (Set.mem_range_self (rr, cc))
+
+/-- The complete original DEL-16 equation ideal survives the
+parameter-ring specialization without taking radicals. -/
+theorem universalOriginalIdeal_le_comap
+    {K : Type*} [Field K] {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (a : Deligne16.Coord k s → K) (c : K) :
+    universalOriginalIdeal f ≤
+      (Deligne16.productIdeal f).comap
+        (MvPolynomial.map (parameterEval a c)) := by
+  rw [universalOriginalIdeal, Ideal.span_le]
+  rintro _ ⟨t, rfl⟩
+  change MvPolynomial.map (parameterEval a c)
+    (MvPolynomial.map
+      (MvPolynomial.C : K →+* ParameterRing K (Deligne16.Coord k s))
+        (Deligne16.copyEquation f t)) ∈ Deligne16.productIdeal f
+  rw [map_C_specialize]
+  exact Ideal.subset_span (Set.mem_range_self t)
+
+#print axioms universalMinorIdeal_le_comap
+#print axioms universalOriginalIdeal_le_comap
+
 #print axioms map_C_specialize
 #print axioms universalSection_specialize
 #print axioms universalSection_pderiv_specialize
