@@ -156,11 +156,10 @@ theorem differential_relation_coefficient_relative
   simp only [Finsupp.mapRange_apply,
     KaehlerDifferential.mvPolynomialBasis_repr_apply]
 
-/-- Every relation coefficient in the genuine Kähler module is the
-universal augmented-Jacobian entry under the *actual presentation*
-algebra map to the section quotient. The subsequent identification
-of that map with the canonical ideal-quotient map is a separate
-naturality lemma. -/
+/-- The relative Kähler relation coefficient is precisely the
+universal augmented-Jacobian polynomial evaluated at the true
+quotient-algebra generators. The explicit evaluation map avoids
+the alternative algebra-instance diamond for polynomial quotients. -/
 theorem relativeSectionKahler_relation_eq_universalJacobian
     {K : Type*} [Field K] {k s r : ℕ}
     (f : Fin r → MvPolynomial (Fin s) K)
@@ -168,11 +167,11 @@ theorem relativeSectionKahler_relation_eq_universalJacobian
     (t : Option (Deligne16.EqCoord k r))
     (i : Deligne16.Coord k s) :
     (relativeSectionKahlerPresentation f B).relation t i =
-      algebraMap (relativeSectionAlgebraPresentation f B).Ring
-        (universalSectionQuotient f B)
+      MvPolynomial.aeval (relativeSectionAlgebraPresentation f B).val
         (Deligne22B.universalAugmentedMatrix f B t i) := by
   change ((relativeSectionAlgebraPresentation f B).differentials).relation t i = _
   rw [differential_relation_coefficient_relative]
+  rw [Algebra.Generators.algebraMap_apply]
   have hr :
       (relativeSectionAlgebraPresentation f B).relation t =
         universalRelation f B t := rfl
