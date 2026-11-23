@@ -139,8 +139,8 @@ theorem universalAugmentedMatrix_specialize
         MvPolynomial.pderiv i (Deligne16.fixedSection B a c)
       rw [← MvPolynomial.pderiv_map]
       simpa only [Deligne16.fixedSection] using
-        (universalSection_specialize B a c).congrArg
-          (MvPolynomial.pderiv i)
+        congrArg (MvPolynomial.pderiv i)
+          (universalSection_specialize B a c)
   | some t =>
       exact map_C_specialize a c
         (MvPolynomial.pderiv i (Deligne16.copyEquation f t))
