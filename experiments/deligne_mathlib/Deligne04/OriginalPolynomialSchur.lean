@@ -157,8 +157,47 @@ theorem aeval_fixedPolynomialPivotMinor_eq_numerator_of_pivot
   rw [aeval_fixedPolynomialPivotMinor]
   exact det_borderedPivot_eq_numerator_of_det_ne_zero _ _ _ _ hdet
 
+/-- On the true original Jacobian rank-d stratum with a genuine
+nonzero d×d original pivot, relative Kähler criticality is equivalent
+to vanishing of every *actual original polynomial* bordered pivot
+minor after evaluation, together with the original scheme and section
+equations. This strengthens DEL-22D's rational interpolation criterion
+to a determinantal converse on an arbitrary-rank chart. -/
+theorem criticalOnTangent_iff_fixedPolynomialPivotMinors_zero
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r d : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (B : MvPolynomial (Deligne16.Coord k s) K)
+    (a : Deligne16.Coord k s → K) (c : K)
+    (u : Deligne16.Coord k s → L)
+    (rr : Fin d → Deligne16.EqCoord k r)
+    (cc : Fin d → Deligne16.Coord k s)
+    (hRank : (Deligne22A.originalJacobianMatrix f u).rank = d)
+    (hdet : (Deligne22D.pivotMatrix
+      (Deligne22D.selectedOriginalRows f u rr) cc).det ≠ 0) :
+    Deligne22A.criticalOnTangent f B a c u ↔
+      Deligne21G.onGeometricProduct f u ∧
+      MvPolynomial.aeval u (Deligne16.fixedSection B a c) = 0 ∧
+      ∀ j : Deligne16.Coord k s,
+        MvPolynomial.aeval u (fixedPolynomialPivotMinor f B a c rr cc j) = 0 := by
+  rw [Deligne22D.criticalOnTangent_iff_rankd_pivot_of_rank
+    f B a c u rr cc hRank hdet]
+  constructor
+  · rintro ⟨hu, hs, hg⟩
+    refine ⟨hu, hs, ?_⟩
+    intro j
+    rw [aeval_fixedPolynomialPivotMinor]
+    exact (det_borderedPivot_zero_iff_interpolation _ _ _ _ hdet).mpr (hg j)
+  · rintro ⟨hu, hs, hm⟩
+    refine ⟨hu, hs, ?_⟩
+    intro j
+    have hj := hm j
+    rw [aeval_fixedPolynomialPivotMinor] at hj
+    exact (det_borderedPivot_zero_iff_interpolation _ _ _ _ hdet).mp hj
+
 #print axioms aeval_fixedPolynomialPivotMinor
 #print axioms aeval_fixedPolynomialPivotNumerator
 #print axioms aeval_fixedPolynomialPivotMinor_eq_numerator_of_pivot
+#print axioms criticalOnTangent_iff_fixedPolynomialPivotMinors_zero
 
 end Deligne22E
