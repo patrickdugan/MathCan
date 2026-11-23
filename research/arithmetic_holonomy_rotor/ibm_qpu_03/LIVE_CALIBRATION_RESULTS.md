@@ -1,6 +1,6 @@
 # AHR-QPU-03 live-calibration simulation
 
-**Design GO. Execution HOLD.** The simulation passed the preregistered native compilation, precision, coverage, and convergence gates on a fresh `ibm_kingston` snapshot. The proposed 48 circuits at 4,096 shots each have an estimated 70.27-second QPU usage and a 106-second cap. IBM reported 515 free Open Plan QPU seconds in both read-only checks, most recently at 22:50 Singapore time on 23 November 2026. No Q3 job was submitted. [Exact proposed manifest](receipts/live/q3_candidate_manifest.json) · [Read-only allocation receipt](receipts/live/calibration_recheck.json)
+**Design GO. Execution HOLD.** The simulation passed the preregistered native compilation, precision, coverage, and convergence gates on the 22:34:13 `ibm_kingston` snapshot. The proposed 48 circuits at 4,096 shots each have an estimated 70.27-second QPU usage and a 106-second cap. A later read-only preflight found a new calibration identity with equivalent model inputs. No Q3 job was submitted. [Refreshed proposal and execution gate](HARDWARE_GATE.md) · [Original manifest](receipts/live/q3_candidate_manifest.json) · [Original allocation receipt](receipts/live/calibration_recheck.json)
 
 ## Target and compilation
 

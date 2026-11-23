@@ -18,10 +18,11 @@ def write_json(path, value):
     path.write_text(json.dumps(value, indent=2, allow_nan=False) + "\n", encoding="utf-8", newline="\n")
 
 
-def calibration_fingerprint(snapshot):
+def calibration_fingerprint(snapshot, *, include_calibration_identity=True):
     """Hash the calibrated simulation inputs independently of Aer-generated IDs."""
-    keys = ("backend", "backend_width", "calibration_timestamp", "calibration_id",
-            "dt_s", "rep_delay_s", "instructions")
+    keys = ("backend", "backend_width", "dt_s", "rep_delay_s", "instructions")
+    if include_calibration_identity:
+        keys = (*keys, "calibration_timestamp", "calibration_id")
     channel = {k: snapshot[k] for k in keys}
     channel["physical_xyz"] = snapshot["selection"]["physical_xyz"]
     channel["instructions"] = sorted(channel["instructions"],

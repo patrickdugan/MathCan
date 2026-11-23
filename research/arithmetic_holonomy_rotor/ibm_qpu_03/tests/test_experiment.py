@@ -1,3 +1,4 @@
+from copy import deepcopy
 from dataclasses import replace
 from datetime import datetime, timedelta, timezone
 from hashlib import sha256
@@ -137,13 +138,23 @@ def test_prior_calibration_is_strictly_earlier():
     assert not errors and record["status"] == "no_distinct_prior_calibration"
 
 
+def test_calibration_identity_and_model_fingerprints(snapshot):
+    new = deepcopy(snapshot)
+    new["calibration_timestamp"] = "2026-11-23T23:19:00+08:00"
+    assert calibration_fingerprint(snapshot) != calibration_fingerprint(new)
+    model = calibration_fingerprint(snapshot, include_calibration_identity=False)
+    assert model == calibration_fingerprint(new, include_calibration_identity=False)
+    new["instructions"][0]["duration_s"] = 1e-3
+    assert model != calibration_fingerprint(new, include_calibration_identity=False)
+
+
 def test_archive_q2_receipt():
     report = q2_audit()
     assert report["forward_deg"] > 0 > report["reverse_deg"]
     assert report["primary_acceptance_replayed"]
 
 
-@pytest.mark.parametrize("archive", ["receipts", "receipts/live"])
+@pytest.mark.parametrize("archive", ["receipts", "receipts/live", "receipts/execution_refresh"])
 def test_archive_q3_receipts(archive):
     receipt = ROOT / archive
     manifest = json.loads((receipt / "q3_candidate_manifest.json").read_text(encoding="utf-8"))
@@ -166,10 +177,25 @@ def test_archive_q3_receipts(archive):
             assert (item.operation.name, qubits) in allowed
     assert sum(row["shots"] for row in manifest["settings"]) == manifest["total_shots"]
     assert not manifest["qpu_submitted"] and not manifest["approval_granted"]
-    if snapshot["mode"] == "live_read_only":
+    if archive == "receipts/live":
         recheck = json.loads((receipt / "calibration_recheck.json").read_text(encoding="utf-8"))
         assert recheck["same_compilation_and_noise_inputs"]
         assert (recheck["repeat_calibration_fingerprint"] ==
                 calibration_fingerprint(snapshot["backend"]))
         assert recheck["repeat_account_check"]["plan"] == "open"
         assert recheck["initial_account_check"] == manifest["current_verified_open_plan"]
+    elif archive == "receipts/execution_refresh":
+        comparison = json.loads((receipt / "refresh_evidence.json").read_text(encoding="utf-8"))
+        manifest_text = (receipt / "q3_candidate_manifest.json").read_text(encoding="utf-8")
+        assert comparison["refreshed_manifest_sha256"] == sha256(manifest_text.encode()).hexdigest()
+        previous = ROOT / "receipts/live"
+        prior_text = (previous / "q3_candidate_manifest.json").read_text(encoding="utf-8")
+        assert comparison["previous_manifest_sha256"] == sha256(prior_text.encode()).hexdigest()
+        statistics = (previous / "statistics.json").read_text(encoding="utf-8")
+        assert comparison["previous_statistics_sha256"] == sha256(statistics.encode()).hexdigest()
+        assert comparison["previous_calibration_timestamp"] != manifest["calibration_timestamp"]
+        assert comparison["refreshed_calibration_timestamp"] == manifest["calibration_timestamp"]
+        assert comparison["simulation_inputs_sha256"] == calibration_fingerprint(
+            snapshot["backend"], include_calibration_identity=False)
+        assert comparison["case_order_shots_and_readout_maps_unchanged"]
+        assert max(comparison["max_return_probability_changes"].values()) < 1e-12

@@ -7,7 +7,8 @@ The experiment recovers static U(1) face phases on the three-qubit arithmetic cu
 - [IBM resource and execution gate](HARDWARE_GATE.md)
 - [Simulation and provenance receipts](receipts/)
 - [Live-calibration simulation](LIVE_CALIBRATION_RESULTS.md)
-- [Proposed circuit manifest for IBM approval](receipts/live/q3_candidate_manifest.json)
+- [Refreshed circuit manifest for IBM approval](receipts/execution_refresh/q3_candidate_manifest.json)
+- [Original live-calibration manifest](receipts/live/q3_candidate_manifest.json)
 - [Historical FakeFez circuit manifest](receipts/q3_candidate_manifest.json)
 
 ## Reproduce
