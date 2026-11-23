@@ -52,9 +52,87 @@ theorem tensorLid_ext
           rw [TensorProduct.lid_symm_apply]
     _ = (TensorProduct.lid R V) z := h _
 
-/-- Original Kähler cotangent transport through the identity
-K-algebra morphism agrees on every coordinate quotient class. -/
-theorem geometricCotangentTower_identity_tmul_mk
+/-- The exact original quotient conormal presentation gives a
+canonical identification of the identity-field target with Q_u. -/
+noncomputable def geometricCotangentIdentityTargetEquiv
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L) :
+    Deligne21G.geometricCotangentFiber f
+      (fun i => (AlgHom.id K L) (u i)) ≃ₗ[L]
+        Deligne21G.geometricCotangentFiber f u :=
+  Submodule.quotEquivOfEq _ _ (geometricConormalRelations_identity f u)
+
+/-- The quotient target identification fixes the class of every
+original finite coordinate representative. -/
+theorem geometricCotangentIdentityTargetEquiv_mk
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u v : Deligne16.Coord k s → L) :
+    geometricCotangentIdentityTargetEquiv f u
+        (Submodule.Quotient.mk v) = Submodule.Quotient.mk v := by
+  exact Submodule.quotEquivOfEq_mk _ _
+    (geometricConormalRelations_identity f u) v
+
+/-- The original Jacobian tangent subspace at the identity-transported
+point is exactly the original subspace, including all scheme relations. -/
+theorem geometricJacobianTangent_identity
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L) :
+    Deligne21G.geometricJacobianTangent f
+      (fun i => (AlgHom.id K L) (u i)) =
+        Deligne21G.geometricJacobianTangent f u := by
+  rw [geometricPoint_identity u]
+
+/-- The canonical equality-of-subspaces equivalence carries the
+identity-field target tangent back to its original representation. -/
+noncomputable def geometricJacobianTangentIdentityTargetEquiv
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L) :
+    Deligne21G.geometricJacobianTangent f
+      (fun i => (AlgHom.id K L) (u i)) ≃ₗ[L]
+        Deligne21G.geometricJacobianTangent f u :=
+  LinearEquiv.ofEq _ _ (geometricJacobianTangent_identity f u)
+
+/-- Normalize DEL-21H's original-ideal Kähler equivalence through
+the proved equality of the identity-field conormal quotients. -/
+noncomputable def geometricCotangentIdentityTransport
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (hu : Deligne21G.onGeometricProduct f u) :
+    letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
+    L ⊗[L] Deligne21G.geometricCotangentFiber f u ≃ₗ[L]
+      Deligne21G.geometricCotangentFiber f u := by
+  letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
+  exact (Deligne21H.geometricCotangentTowerEquiv f u hu (AlgHom.id K L)).trans
+    (geometricCotangentIdentityTargetEquiv f u)
+
+/-- Normalize DEL-21H's actual dual-defined Jacobian tangent equivalence
+via the literal equality of the identity-field tangent subspaces. -/
+noncomputable def geometricJacobianTangentIdentityTransport
+    {K L : Type*} [Field K] [Field L] [Algebra K L]
+    {k s r : ℕ}
+    (f : Fin r → MvPolynomial (Fin s) K)
+    (u : Deligne16.Coord k s → L)
+    (hu : Deligne21G.onGeometricProduct f u) :
+    letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
+    L ⊗[L] Deligne21G.geometricJacobianTangent f u ≃ₗ[L]
+      Deligne21G.geometricJacobianTangent f u := by
+  letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
+  exact (Deligne21H.geometricJacobianTangentTowerEquiv f u hu (AlgHom.id K L)).trans
+    (geometricJacobianTangentIdentityTargetEquiv f u)
+
+/-- On every original quotient class, normalized identity-field Kähler
+transport is the tensor left-unit formula. -/
+theorem geometricCotangentIdentityTransport_tmul_mk
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     {k s r : ℕ}
     (f : Fin r → MvPolynomial (Fin s) K)
@@ -62,20 +140,21 @@ theorem geometricCotangentTower_identity_tmul_mk
     (hu : Deligne21G.onGeometricProduct f u)
     (m : L) (v : Deligne16.Coord k s → L) :
     letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
-    (Deligne21H.geometricCotangentTowerEquiv f u hu (AlgHom.id K L))
+    geometricCotangentIdentityTransport f u hu
       (m ⊗ₜ[L] Submodule.Quotient.mk v) =
         m • (Submodule.Quotient.mk v :
           Deligne21G.geometricCotangentFiber f u) := by
   letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
-  have h := Deligne21J.geometricCotangentTowerEquiv_tmul_mk f u hu
-    (AlgHom.id K L) m v
-  rw [geometricPoint_identity u] at h
-  rw [geometricPoint_identity v] at h
-  exact h
+  change (geometricCotangentIdentityTargetEquiv f u)
+    ((Deligne21H.geometricCotangentTowerEquiv f u hu (AlgHom.id K L))
+      (m ⊗ₜ[L] Submodule.Quotient.mk v)) = _
+  rw [Deligne21J.geometricCotangentTowerEquiv_tmul_mk]
+  rw [map_smul, geometricCotangentIdentityTargetEquiv_mk]
+  rw [geometricPoint_identity v]
 
-/-- The DEL-21H dual-defined tangent identity transport evaluates as
-ordinary scalar multiplication on every pure tensor. -/
-theorem geometricJacobianTangentTower_identity_tmul
+/-- The normalized dual tangent identity transport acts as ordinary
+scalar multiplication, on each pure tensor of original tangent vectors. -/
+theorem geometricJacobianTangentIdentityTransport_tmul
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     {k s r : ℕ}
     (f : Fin r → MvPolynomial (Fin s) K)
@@ -83,19 +162,23 @@ theorem geometricJacobianTangentTower_identity_tmul
     (hu : Deligne21G.onGeometricProduct f u)
     (m : L) (v : Deligne21G.geometricJacobianTangent f u) :
     letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
-    (Deligne21H.geometricJacobianTangentTowerEquiv f u hu (AlgHom.id K L))
+    geometricJacobianTangentIdentityTransport f u hu
       (m ⊗ₜ[L] v) = m • v := by
   letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
-  have h := Deligne21J.geometricJacobianTangentTowerEquiv_tmul
-    f u hu (AlgHom.id K L) m v
-  rw [geometricPoint_identity u] at h
-  rw [h]
+  change (geometricJacobianTangentIdentityTargetEquiv f u)
+    ((Deligne21H.geometricJacobianTangentTowerEquiv f u hu (AlgHom.id K L))
+      (m ⊗ₜ[L] v)) = _
+  rw [Deligne21J.geometricJacobianTangentTowerEquiv_tmul]
+  rw [map_smul]
   apply Subtype.ext
   funext i
-  rfl
+  simp only [geometricJacobianTangentIdentityTargetEquiv,
+    LinearEquiv.coe_ofEq_apply, AlgHom.id_apply, Pi.smul_apply,
+    SetLike.val_smul, smul_eq_mul]
 
-/-- The existing DEL-21H Kähler base-change equivalence along the
-identity field morphism is the full tensor left-unit isomorphism. -/
+/-- The true original-ideal Kähler field-extension equivalence along
+identity, after its canonical target equality, is exactly tensor lid on
+the *entire* quotient. -/
 theorem geometricCotangentTower_identity
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     {k s r : ℕ}
@@ -103,7 +186,7 @@ theorem geometricCotangentTower_identity
     (u : Deligne16.Coord k s → L)
     (hu : Deligne21G.onGeometricProduct f u) :
     letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
-    Deligne21H.geometricCotangentTowerEquiv f u hu (AlgHom.id K L) =
+    geometricCotangentIdentityTransport f u hu =
       TensorProduct.lid L (Deligne21G.geometricCotangentFiber f u) := by
   letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
   classical
@@ -112,10 +195,11 @@ theorem geometricCotangentTower_identity
   obtain ⟨v, rfl⟩ :=
     Submodule.Quotient.mk_surjective (Deligne21G.geometricConormalRelations f u) q
   simpa only [one_smul] using
-    (geometricCotangentTower_identity_tmul_mk f u hu (1 : L) v)
+    (geometricCotangentIdentityTransport_tmul_mk f u hu (1 : L) v)
 
-/-- The existing DEL-21H dual-defined tangent extension agrees
-with tensor lid on the entire original Jacobian tangent submodule. -/
+/-- The dual-defined DEL-21H Jacobian tangent identity map, through
+its canonical target-subspace equality, is tensor lid on the *entire*
+tangent module. -/
 theorem geometricJacobianTangentTower_identity
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     {k s r : ℕ}
@@ -123,14 +207,14 @@ theorem geometricJacobianTangentTower_identity
     (u : Deligne16.Coord k s → L)
     (hu : Deligne21G.onGeometricProduct f u) :
     letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
-    Deligne21H.geometricJacobianTangentTowerEquiv f u hu (AlgHom.id K L) =
+    geometricJacobianTangentIdentityTransport f u hu =
       TensorProduct.lid L (Deligne21G.geometricJacobianTangent f u) := by
   letI : Algebra L L := (AlgHom.id K L).toRingHom.toAlgebra
   classical
   apply tensorLid_ext
   intro v
   simpa only [one_smul] using
-    (geometricJacobianTangentTower_identity_tmul f u hu (1 : L) v)
+    (geometricJacobianTangentIdentityTransport_tmul f u hu (1 : L) v)
 
 #print axioms geometricPoint_identity
 #print axioms geometricConormalRelations_identity
