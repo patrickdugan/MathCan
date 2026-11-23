@@ -37,3 +37,4 @@ import Deligne04.ActualKahlerFiber
 import Deligne04.GeometricKahlerFiber
 import Deligne04.GeometricFiberNaturality
 import Deligne04.GeometricFiberCoherence
+import Deligne04.GeometricTowerCoherence
