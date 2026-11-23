@@ -3,7 +3,7 @@
 **Date:** 2026-11-24 (Asia/Manila).  
 **Registration:** [RH26E03_REGISTRATION.md](RH26E03_REGISTRATION.md), `e8dd41174d9a6ff1f2d201261b4ddb64b2d45120`, before executable source.  
 **Implementation:** [RH26E03GrowthBound.lean](lean/RH26E03GrowthBound.lean), initially `71c25b03`, explicit power regrouping at `b4d3b5c7`, workflow commit `108f74fdb2305889c04bd02c02827c76ce711a30`.  
-**Disposition:** IMPLEMENTED; **FOURTEEN CLEAN THEOREM-LEVEL AXIOM REPORTS; MODULE GATE STILL PENDING**. Source inspection found all fourteen preregistered theorem declarations with matching axiom-report commands and no sorry/admit tokens. This does not establish successful elaboration or a kernel pass.
+**Disposition:** **KERNEL PASS (14/14)**. Both failed attempts retained below; final modifier-only repair passed the full frozen gate.
 
 ## Mathematical scope
 
@@ -84,3 +84,26 @@ Literal theorem-level receipt:
 ## Repair attempt 2
 
 Commit `3a86836dd430a163ea1b46905e40a8605cf2f094` adds the required `noncomputable` modifier to exactly two real-valued definitions, bracket and perSlot. Definition bodies, all proofs, the frozen fourteen theorem contracts, and the workflow acceptance criteria are unchanged. Repaired source Git blob: `f6ce36a63f2938d47cbd737633c8b28d9d562020`. Fresh [CPU run 45280349533](https://github.com/patrickdugan/MathCan/actions/runs/45280349533), at the modifier-only repair commit, is queued. Full registered gate remains pending until the compiler exits successfully and the exact-name audit passes.
+
+## Final kernel receipt: PASS
+
+[Run 45280349533](https://github.com/patrickdugan/MathCan/actions/runs/45280349533), job 138062862899, completed success at checked commit `3a86836dd430a163ea1b46905e40a8605cf2f094`. [Artifact 14869161779](https://github.com/patrickdugan/MathCan/actions/runs/45280349533/artifacts/14869161779). Lean 4.35.0 compiler `eb6cafb7290e8bd5f2937522d8d804f58f02bafc`, Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`, source SHA-256 `d30d0bceea25544c5e8dc75e086595d12e8e01138bf246bb37b46bfe64d38b43`. Isolated Lean invocation elapsed 7.77 s; user CPU 8.48 s; system CPU 2.96 s; maximum RSS 7,020,808 kB. The exact fourteen-name CI audit completed successfully. No registered theorem statement changed through repair; final modifier-only fix changed neither mathematical definitions' bodies nor proofs. Previous pending statements above are historical receipts.
+
+```text
+'RH26E03.window_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.bracket_normalization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.card_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.component_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.bracket_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.two_term_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.density_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.density_normalize' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.growth_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.zero_density_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.zero_volume_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.missing_density_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.no_loss_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.no_uniform_no_loss' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+The full independent scalar real-power consequence and parametric scalar-domain no-loss obstruction now have kernel proofs. The actual analytic input, eligibility/existence of arithmetic families, and upstream RH theorem remain outside the independent module. No independent automorphic proof or unsourced multiplicity theorem is claimed.
