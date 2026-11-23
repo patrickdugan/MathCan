@@ -169,7 +169,19 @@ theorem bracket_bound {x eps n N P m b k a : ℝ}
   rw [bracket_normalization x eps n N P m b k a hx h.n_pos hN hm h.b_pos hk]
   unfold perSlot
   change _ ≤ 10 * Y
-  linarith only [h1, h2, h3, h4, hY1, hxy, hmY, h4Y]
+  calc
+    _ ≤ 2 * x / m + 2 + 4 * m * x ^ (9 * eps / 8) +
+        2 * x ^ ((1 : ℝ) / 2 + 9 * eps / 8) :=
+      add_le_add (add_le_add (add_le_add h1 h2) h3) h4
+    _ = 2 * (x / m) + 2 * 1 + 4 * (m * x ^ (9 * eps / 8)) +
+        2 * x ^ ((1 : ℝ) / 2 + 9 * eps / 8) := by ring
+    _ ≤ 2 * Y + 2 * Y + 4 * Y + 2 * Y :=
+      add_le_add (add_le_add (add_le_add
+        (mul_le_mul_of_nonneg_left hxy (by norm_num))
+        (mul_le_mul_of_nonneg_left hY1 (by norm_num)))
+        (mul_le_mul_of_nonneg_left hmY (by norm_num)))
+        (mul_le_mul_of_nonneg_left h4Y (by norm_num))
+    _ = _ := by ring
 
 theorem two_term_envelope {x eps n N P m b k a : ℝ}
     (h : Window x eps n N P m b k a) (hm1 : 1 ≤ m) :
@@ -185,7 +197,9 @@ theorem two_term_envelope {x eps n N P m b k a : ℝ}
       _ ≤ L * m := le_mul_of_one_le_right (by linarith) hm1
   have ha : 2 * x / m ≤ 2 * (x / m * L) := by
     have hh := le_mul_of_one_le_right (div_nonneg hx.le hm.le) hL1
-    linarith only [hh]
+    calc
+      _ = 2 * (x / m) := by ring
+      _ ≤ _ := mul_le_mul_of_nonneg_left hh (by norm_num)
   have hc : m * x ^ (9 * eps / 8) ≤ m * L :=
     mul_le_mul_of_nonneg_left (Real.rpow_le_rpow_of_exponent_le hx1 (by linarith [h.eps_pos])) hm.le
   have hd : x ^ ((1 : ℝ) / 2 + 9 * eps / 8) ≤ x / m * L := by
@@ -197,7 +211,7 @@ theorem two_term_envelope {x eps n N P m b k a : ℝ}
           rw [pow_join hx, show (1 : ℝ) / 2 + eps / 2 + ((1 : ℝ) / 2 + 9 * eps / 8) =
             1 + 13 * eps / 8 by ring]
         _ = x ^ (1 : ℝ) * x ^ (13 * eps / 8) := (pow_join hx _ _).symm
-        _ = x * L := by rw [Real.rpow_one]; rfl
+        _ = x * L := by rw [Real.rpow_one]
     rw [heq] at hh
     have hh' : x ^ ((1 : ℝ) / 2 + 9 * eps / 8) * m ≤ x * L := by
       simpa only [mul_comm] using hh
@@ -210,7 +224,18 @@ theorem two_term_envelope {x eps n N P m b k a : ℝ}
   rw [bracket_normalization x eps n N P m b k a hx h.n_pos hN hm h.b_pos hk]
   unfold perSlot
   change _ ≤ L * (4 * x / m + 6 * m)
-  linarith only [h1, h2, h3, h4, hLm, ha, hc, hd]
+  calc
+    _ ≤ 2 * x / m + 2 + 4 * m * x ^ (9 * eps / 8) +
+        2 * x ^ ((1 : ℝ) / 2 + 9 * eps / 8) :=
+      add_le_add (add_le_add (add_le_add h1 h2) h3) h4
+    _ = 2 * x / m + 2 * 1 + 4 * (m * x ^ (9 * eps / 8)) +
+        2 * x ^ ((1 : ℝ) / 2 + 9 * eps / 8) := by ring
+    _ ≤ 2 * (x / m * L) + 2 * (L * m) + 4 * (m * L) + 2 * (x / m * L) :=
+      add_le_add (add_le_add (add_le_add ha
+        (mul_le_mul_of_nonneg_left hLm (by norm_num)))
+        (mul_le_mul_of_nonneg_left hc (by norm_num)))
+        (mul_le_mul_of_nonneg_left hd (by norm_num))
+    _ = _ := by ring
 
 theorem density_inverse {x eps delta : ℝ} (hx : 0 < x)
     (hdelta : x ^ (-eps) ≤ delta) : 1 / delta ≤ x ^ eps := by
@@ -250,7 +275,7 @@ theorem growth_bound {x eps n N P m b k a C Err G : ℝ}
   let Y := x ^ ((1 : ℝ) / 2 + 13 * eps / 8)
   let Z := x ^ ((1 : ℝ) / 2 + (C + 21 / 8) * eps)
   let J := x ^ ((1 : ℝ) / 2 + eps)
-  have hQ : 0 < Q := by dsimp [Q]; positivity
+  have hQ : 0 < Q := mul_pos (mul_pos hN hm) h.b_pos
   have hd : 0 < delta := div_pos hP h.n_pos
   have hH : 0 < H := Real.rpow_pos_of_pos hx _
   have hY : 0 < Y := Real.rpow_pos_of_pos hx _
@@ -262,7 +287,7 @@ theorem growth_bound {x eps n N P m b k a C Err G : ℝ}
       _ = 2 * (1 / delta) := by ring
       _ ≤ _ := mul_le_mul_of_nonneg_left hInv (by norm_num)
   have hInput' : Q * (delta / 2) * (G - 4 * J) ≤ H * B + 2 * Q / x :=
-    hInput.trans (add_le_add_right hErr _)
+    hInput.trans (add_le_add hErr (le_refl _))
   have hNorm := density_normalize Q delta x H B J G hQ hd hx hInput'
   have hFirst : (2 / delta) * H * (B / Q) ≤ 20 * Z := by
     calc
@@ -290,7 +315,13 @@ theorem growth_bound {x eps n N P m b k a C Err G : ℝ}
       _ ≤ x ^ eps * (4 / x) := mul_le_mul_of_nonneg_right hInv (by positivity)
       _ ≤ Z * 2 := mul_le_mul heZ h4x (by positivity) hZ.le
       _ = _ := by ring
-  have hSum : G ≤ 26 * Z := by linarith only [hNorm, hFirst, hRem, hJZ]
+  have hSum : G ≤ 26 * Z := by
+    calc
+      G ≤ (2 / delta) * H * (B / Q) + 4 / (delta * x) + 4 * J := hNorm
+      _ ≤ 20 * Z + 2 * Z + 4 * Z :=
+        add_le_add (add_le_add hFirst hRem)
+          (mul_le_mul_of_nonneg_left hJZ (by norm_num))
+      _ = _ := by ring
   calc
     G ≤ 26 * Z := hSum
     _ ≤ x ^ (3 * eps / 8) * Z := mul_le_mul_of_nonneg_right h.absorb hZ.le
@@ -327,7 +358,9 @@ theorem no_loss_family (t : ℕ) (A D : ℝ) (ht : 2 ≤ t)
   let x := z ^ 2
   change Window x 1 x x x z z (x * z) (x * z) ∧
     A * x / z + D * z < bracket x 1 x x x z z (x * z) (x * z) / (x * z * z)
-  have hz2 : 2 ≤ z := by exact_mod_cast ht
+  have hz2 : 2 ≤ z := by
+    change (2 : ℝ) ≤ (t : ℝ)
+    exact_mod_cast ht
   have hz : 0 < z := by linarith
   have hx3 : 3 ≤ x := by
     dsimp [x]
@@ -396,7 +429,9 @@ theorem no_loss_family (t : ℕ) (A D : ℝ) (ht : 2 ≤ t)
   rw [hleft, bracket_normalization x 1 x x x z z (x * z) (x * z) hx hx hx hz hz (mul_pos hx hz)]
   have hBig' : A + D < 2 * x := hBig
   have hlt := mul_lt_mul_of_pos_right hBig' hz
-  exact lt_of_lt_of_le (by nlinarith only [hlt]) hLower
+  exact lt_of_lt_of_le (by calc
+    (A + D) * z < (2 * x) * z := hlt
+    _ = 2 * z * x := by ring) hLower
 
 theorem no_uniform_no_loss (A D : ℝ) (hA : 0 < A) (hD : 0 < D) :
     ∃ t : ℕ, 2 ≤ t ∧
