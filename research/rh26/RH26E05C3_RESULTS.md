@@ -3,7 +3,7 @@
 **Date:** 2026-11-24 (Asia/Manila).  
 **Registration:** [RH26E05C3_REGISTRATION.md](RH26E05C3_REGISTRATION.md), `ba70096624a91e81e12db93a182685836874bd39`, frozen before executable proof.  
 **Implementation:** [RH26E05C3Exceptional.lean](lean/RH26E05C3Exceptional.lean), `5e3d7882b16176eb743564944074688974dacf81`; source/workflow `2fe4079de5801949ac474c9c5be9771eecb61300`.  
-**Disposition:** IMPLEMENTED; **KERNEL RESULT PENDING**. Eighteen public theorem declarations and matching audit commands inspected; no admission/native_decide tokens. E05C2 independently passed 12/12 on its original implementation before this registration.
+**Disposition:** **KERNEL PASS (18/18)** on original implementation.
 
 ## 1. Source connection and scope
 
@@ -102,3 +102,30 @@ The count expression at H=1 is 228, exceeding 58. The other control uses H=2,m=1
 - Isolated CPU Lean 4.35.0 / Mathlib v4.35.0 job, 25-minute cap; no full upstream/Deligne build, GPU/QPU or paid compute.
 
 Next inspect the E05C3 run, preserve any failures and repair without changing frozen contracts. If passed, all three stronger numerical supplier groups for the independently verified E05C1 coefficient 105 have independent scalar certificates. A separate integration experiment must compose their exact contracts with the source five-mask assembly, and a source-compatible upstream theorem must still discharge the actual arithmetic premises. B15 N.linkN_of source inventory remains queued.
+
+## Final kernel receipt
+
+[Run 45357956904](https://github.com/patrickdugan/MathCan/actions/runs/45357956904), job 138320417729, success on original `2fe4079de5801949ac474c9c5be9771eecb61300`. [Artifact 14901969875](https://github.com/patrickdugan/MathCan/actions/runs/45357956904/artifacts/14901969875). Lean 4.35.0 compiler `eb6cafb7290e8bd5f2937522d8d804f58f02bafc`; Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`; source SHA-256 `5c9906aa42bcabd22d25c0f19654ceb4c992077a2df3c4c150eaabc4fc783b81`. Isolated Lean elapsed 7.75 s, user 8.43 s, system 2.94 s, max RSS 7,008,428 kB. Compiler exit and exact eighteen-name audit passed without repair. Earlier pending language is historical.
+
+```text
+'RH26E05C3.cutoff_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C3.denominator_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C3.exceptional_divisions' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C3.ep_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C3.flat_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C3.bb_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C3.split_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C3.inert_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C3.exceptional_gap_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C3.exceptional_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C3.exceptional_integer_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C3.pointwise_assembly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C3.count_mixed_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C3.count_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C3.prime_log_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C3.exceptional_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C3.exceptional_absorption' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C3.missing_scale_controls' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+The exceptional 95 pointwise, 58 cardinality and 11020 weighted-sum numerical certificates are independently verified under their registered scalar premises. All stronger numerical supplier groups for E05C1's conditional 105 assembly have corresponding independent kernel-verified modules (E05C2 and E05C3). A single composition across module contracts and source-compatible realization are separate tasks; no upstream theorem or improved global exponent is claimed. Next preregister the composition or B15 source trace.
