@@ -1,0 +1,3 @@
+# RH26B19 registration
+
+Date 2026-11-24 Asia/Manila. Parent B18 c464778137057e74886074d1d9c6a4c4d33b5445. Frozen upstream c900e67c2fcd1fdb041685820bbd2b867fbc5a4b. Follow exact closed_linkDIVt_of_closed_bridge_kernel in TopShape:74 via LinkBrest, WireSel and explicit bridge imports. Max eight files, 250 lines/window, 1200 lines aggregate. Recover actual DivisionKernelConstantBounds and numerical dependence on DIVinN witness where available. Distinguish existential from explicit coefficients, preserve hypotheses and thresholds; no upstream edits or whole build. Register before new source reads.
