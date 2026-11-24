@@ -149,3 +149,45 @@ jobs:
         with:
           name: qbtc-02-exact
           path: ${{ runner.temp }}/qbtc-02.json
+
+  exact-kqt-interface:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replay QBTC-03 one-time controls and exact reliability budgets
+        shell: bash
+        run: |
+          set -euo pipefail
+          node research/CRYPT_VP/qbtc03_check.mjs | tee "$RUNNER_TEMP/qbtc-03.json"
+          python3 - "$RUNNER_TEMP/qbtc-03.json" <<'PY'
+          import json,sys,math
+          r=json.load(open(sys.argv[1]))
+          assert r["schema"]=="qbtc-03-v1"
+          assert r["fixture"]=={"honest":16,"substitutions":240,"mutations":448,"malformed":64,"reuse":240,"hybrids":800}
+          assert r["budgetCases"]==len(r["budgets"])==18
+          assert len({(x["width"],x["validators"],x["checks"],x["b"]) for x in r["budgets"]})==18
+          def tail(t):
+              return sum(math.comb(t,j)*2**j for j in range((t+1)//2)),3**t
+          for x in r["budgets"]:
+              t=x["repetitions"]
+              assert t>0 and t%2==1 and x["evalCalls"]==x["width"]*t
+              factor=x["width"]*x["validators"]*x["checks"]*2**x["b"]
+              u,v=tail(t)
+              assert (u,v)==(int(x["tailNum"]),int(x["tailDen"]))
+              assert u*factor<=v
+              if t>1:
+                  u,v=tail(t-2)
+                  assert u*factor>v
+          assert len(r["sizes"])==6
+          for x in r["sizes"]:
+              n,L=x["n"],x["messageBits"]
+              assert 8*x["pkBytes"]==3*n+12*L*n
+              assert 8*x["signatureBytes"]==L*n
+              assert 8*x["secretBytes"]==2*L*n
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qbtc-03-exact
+          path: ${{ runner.temp }}/qbtc-03.json
