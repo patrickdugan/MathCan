@@ -35,12 +35,12 @@ jobs:
         run: |
           set -euo pipefail
           cp ../../research/VPVNP/*.lean .
-          lake env bash -c 'set -euo pipefail; export LEAN_PATH="$PWD:$LEAN_PATH"; for m in RankSpectral BinaryWalsh HyperplaneCancellation OrderedFrameFibers SignedFrameTransport MatrixRankCharacter CanonicalRankRecurrence RankOneCharacter ObserverBound; do lean -o "$m.olean" "$m.lean"; done' | tee "$RUNNER_TEMP/vpvnp-complete-axioms.txt"
+          lake env bash -c 'set -euo pipefail; export LEAN_PATH="$PWD:$LEAN_PATH"; for m in RankSpectral BinaryWalsh HyperplaneCancellation OrderedFrameFibers SignedFrameTransport MatrixRankCharacter CanonicalRankRecurrence RankOneCharacter ObserverBound FiveTrackCore; do lean -o "$m.olean" "$m.lean"; done' | tee "$RUNNER_TEMP/vpvnp-complete-axioms.txt"
           python3 - "$RUNNER_TEMP/vpvnp-complete-axioms.txt" <<'PY'
           import re,sys
           from pathlib import Path
           s=Path(sys.argv[1]).read_text()
-          mods="RankSpectral BinaryWalsh HyperplaneCancellation OrderedFrameFibers SignedFrameTransport MatrixRankCharacter CanonicalRankRecurrence RankOneCharacter ObserverBound".split()
+          mods="RankSpectral BinaryWalsh HyperplaneCancellation OrderedFrameFibers SignedFrameTransport MatrixRankCharacter CanonicalRankRecurrence RankOneCharacter ObserverBound FiveTrackCore".split()
           expected=set()
           for mod in mods:
               expected.update(re.findall(r"^#print axioms ([\w.]+)",Path(mod+".lean").read_text(),re.M))
