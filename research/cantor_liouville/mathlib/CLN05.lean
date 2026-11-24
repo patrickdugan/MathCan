@@ -116,10 +116,9 @@ theorem principal_composite_divisibility (D z P : ℕ)
       have H := (Nat.pow_dvd_iff_le_padicValNat hp.ne_one hP).1 hsmall
       omega
   rw [Nat.factorization_mul (Nat.mul_ne_zero hz1 hz2) hP,
-    Nat.factorization_mul hz1 hz2, Finsupp.add_apply, Finsupp.add_apply,
-    Nat.factorization_def _ hp, Nat.factorization_def _ hp,
-    Nat.factorization_def _ hp]
-  exact hval
+    Nat.factorization_mul hz1 hz2, Finsupp.add_apply, Finsupp.add_apply]
+  change D.factorization p ≤ _ at hval
+  simpa only [Nat.factorization_def _ hp] using hval
 
 /-- A fixed principal unit is obtained by raising b to its order
 modulo the source base Q; its constant is independent of k. -/
@@ -145,7 +144,7 @@ theorem source_power_period_bound (Q b k h : ℕ) (hQ : 1 < Q)
   have hgM : g ∣ M := Nat.gcd_dvd_left _ _
   have hgh : g ∣ h := Nat.gcd_dvd_right _ _
   have hgD : g * D = M := Nat.mul_div_cancel' hgM
-  have hDM : D ∣ M := ⟨g, by rw [mul_comm, hgD]⟩
+  have hDM : D ∣ M := ⟨g, by calc M = g * D := hgD.symm; _ = D * g := Nat.mul_comm _ _⟩
   have hD : D ≠ 0 := NeZero.ne _
   have hLmod : 1 ≡ z [MOD Q] := by
     apply (ZMod.natCast_eq_natCast_iff 1 z Q).1
@@ -166,7 +165,7 @@ theorem source_power_period_bound (Q b k h : ℕ) (hQ : 1 < Q)
     exact (hLmod.of_dvd (hp.dvd_of_dvd_pow (hpD.trans hDM))).dvd'
   have hbound := principal_composite_divisibility D z P hD hz hP.ne'
     hprinc hreturn
-  have H : g * D ∣ h * ((z-1)*(z+1)*P) := Nat.mul_dvd_mul hgh hbound
+  have H : g * D ∣ h * ((z-1)*(z+1)*P) := mul_dvd_mul hgh hbound
   simpa [hgD, mul_assoc] using H
 
 /-- The complex Fourier identity and conditional energy estimate
@@ -196,6 +195,31 @@ theorem orbit_second_moment (M N b h K : ℕ)
   exact CLN03.conditional_second_moment N P M K hN hMN hMP mass
     (fun a => ‖F a‖^2) α hα hmass (fun a => sq_nonneg _) henergy
 
+/-- The real Weyl phase is the complex exponential with a real argument
+multiplied by 2*pi*i. -/
+noncomputable def realPhase (x : ℝ) : ℂ :=
+  Complex.exp (2 * (Real.pi : ℂ) * Complex.I * (x : ℂ))
+
+theorem realPhase_norm (x : ℝ) : ‖realPhase x‖ = 1 := by
+  rw [realPhase, Complex.norm_exp]
+  simp [Complex.mul_re, Complex.mul_im]
+
+/-- A genuine real prefix/tail split has exactly the Fourier phase used
+above. The integer frequency can have either sign. -/
+theorem phase_prefix_tail (M : ℕ) [NeZero M] (u a : ℤ) (T : ℝ) :
+    realPhase ((u : ℝ) * ((a : ℝ) / (M : ℝ) + T)) =
+      realPhase ((u : ℝ) * T) *
+        ZMod.stdAddChar (((u : ZMod M) * (a : ZMod M))) := by
+  have hM : (M : ℂ) ≠ 0 := by exact_mod_cast (NeZero.ne M)
+  rw [← Int.cast_mul, ZMod.stdAddChar_coe]
+  unfold realPhase
+  rw [← Complex.exp_add]
+  push_cast
+  congr 1
+  ring
+
+#print axioms realPhase_norm
+#print axioms phase_prefix_tail
 #print axioms gcd_cancel_iff
 #print axioms pow_collision_iff
 #print axioms orbit_collision_iff
