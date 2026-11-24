@@ -1,0 +1,13 @@
+# VPVNP-02E: ordered frame fibers and the uniform hyperplane law
+
+Registered 2026-11-24 before the exact frame-fiber audit. 02C [repaired native kernel run](https://github.com/patrickdugan/MathCan/actions/runs/45333728148) passed, including binary Walsh reconstruction and shift-energy proofs. 02D [run](https://github.com/patrickdugan/MathCan/actions/runs/45333827223) passed the exact checks but its native job reported three local elaboration/simplification errors in pairing_detects_zero and outside_half. This commit repairs those errors.
+
+Let U=F2^n and V=F2^(n+1). Use ordered frames represented by linear equivalences e: U×F2 ≃ V. The last-coordinate functional of e^{-1} is nonzero and has a unique normal b by its values on coordinate unit vectors. In particular ⟨b,e(u,t)⟩=t. For fixed b≠0, let H_b=ker ⟨b,-⟩ and O_b={v:⟨b,v⟩=1}. The frame fiber is characterized by that equation.
+
+E1: every binary linear functional has a coordinate normal and equals its parity pairing; prove normal uniqueness, nonzero frame normal, and the identification of the frame prefix with H_b.
+
+E2: prove finrank H_b=n by surjectivity and rank-nullity. Construct the product equivalence between the frame fiber and pairs (h,v), h:U ≃ H_b a linear equivalence, v∈O_b. Forward: restrict e to U×0, take e(0,1). Reverse: e(u,t)=h(u)+t v; injectivity follows by applying b and h, or explicitly invert by subtracting t v. The product decomposition is the acceptance target, not simply a postulated uniform law.
+
+E3: O_b is a translate of H_b. Using any linear equivalence U ≃ H_b, identify the h-space with GL(U) and the v-space with U. Hence every normal fiber is equinumerous, nonempty, of size |GL(U)|·2^n. This yields uniform normal sampling for a uniform ordered frame. E4 next: express the signed sum as a finite sum over these fibers, apply 02D final-column cancellation, and reduce restricted independent functionals to coordinate representatives using change of basis. E4 must also prove the rank-one count and connect matrix rank to dual coefficient independence before claiming an unconditional all-n rank observer bound.
+
+Exact regression: n=1..4 denotes ambient dimension; enumerate all full binary column frames using span-extension, identify each unique normal of the prefix, check final outside membership and equal fiber counts. Independently evaluate every marked diagonal rank k, check that all off-target fibers cancel and the target fiber equals -2^(n-1) times the signed count in dimension n-1 at k-1. Use all bases, exact integers, include n=1 empty prefix and dimension-zero GL convention. No fitting or selective reporting. Check counts against 02C's signed totals. Native check remains separate from finite validation.

@@ -57,6 +57,7 @@ theorem pairing_zero_left (a : Bits I) : parityPair 0 a = 0 := by
 
 theorem pairing_detects_zero (d : Bits I) (h : ∀ a, parityPair d a = 0) : d=0 := by
   funext i
+  change d i = 0
   simpa only [pairing_unit] using h (unitBit i)
 
 theorem exists_pairing_one (b : Bits I) (hb : b ≠ 0) :
@@ -163,14 +164,14 @@ theorem outside_half (b : Bits I) (hb : b ≠ 0) :
   classical
   have hpoint : ∀ a : Bits I, walsh b a = 1 - 2 * (if a ∈ parityOutside b then (1:ℝ) else 0) := by
     intro a
-    by_cases hz : parityPair b a = 0 <;> simp [walsh, bitSign, hz]
+    by_cases hz : parityPair b a = 0 <;> norm_num [walsh, bitSign, hz]
   have hs := walsh_sum_zero b hb
   simp_rw [hpoint] at hs
   rw [Finset.sum_sub_distrib, ← Finset.mul_sum] at hs
   have hcount : (∑ a : Bits I, if a ∈ parityOutside b then (1:ℝ) else 0) =
       ((parityOutside b).card : ℝ) := by
     rw [← Finset.sum_filter]
-    simp
+    simp [parityOutside]
   rw [hcount] at hs
   simpa using (sub_eq_zero.mp (by simpa using hs)).symm
 
