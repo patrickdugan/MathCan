@@ -3,7 +3,7 @@
 **Date:** 2026-11-24 (Asia/Manila).  
 **Registration:** [RH26E05C1_REGISTRATION.md](RH26E05C1_REGISTRATION.md), `58f1e4787ccdc3319ff338a139509f243043b358`, frozen before executable proof and CI.  
 **Implementation:** [RH26E05C1Assembly.lean](lean/RH26E05C1Assembly.lean), `a0aa8d61463ec9615c0dbba12f807aeac21174f3`; source+workflow at `500295b6e1caf14b8d2e5a4b4db314d036adb462`.  
-**Disposition:** FIRST KERNEL RUN FAILED; proof-only repair in progress. Fourteen clean theorem-level axiom reports; full gate failed.
+**Disposition:** **KERNEL PASS (15/15)** on proof-only repair; all fifteen original theorem signatures preserved.
 
 ## 1. Source connection and scope
 
@@ -89,3 +89,27 @@ Fourteen of fifteen public declarations printed exactly propext, Classical.choic
 ## Proof-only repair
 
 Commit `1ab493564e631fbb14543b6d9e605e4d3180936c`, blob `6326d27a10dc440187718285ab6f6229f74b4225`, explicitly proves Y+V<=K*(X+N)+V by linear arithmetic before multiplying by the nonnegative rank. All fifteen public theorem statements were compared byte-for-byte and are unchanged. [Rerun 45337437416](https://github.com/patrickdugan/MathCan/actions/runs/45337437416) queued; full kernel gate pending.
+
+## Final kernel receipt
+
+[Run 45337437416](https://github.com/patrickdugan/MathCan/actions/runs/45337437416), job 138252739301, success on `1ab493564e631fbb14543b6d9e605e4d3180936c`. [Artifact 14895150209](https://github.com/patrickdugan/MathCan/actions/runs/45337437416/artifacts/14895150209). Lean 4.35.0 compiler `eb6cafb7290e8bd5f2937522d8d804f58f02bafc`; Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`; source SHA-256 `45c959b3882a0fb959d8a75bf2b3c1636256acd79d3910b27b53a45daf445545`. Isolated Lean elapsed 6.92 s, user 5.91 s, system 2.90 s, max RSS 6,991,148 kB. Compiler exit and exact fifteen-name audit passed. First failure preserved; no changes to theorem contracts.
+
+```text
+'RH26E05C1.scale_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C1.original_absorption' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C1.refined_absorption' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C1.original_gap_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C1.original_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C1.original_integer_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C1.refined_gap_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C1.refined_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C1.refined_integer_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C1.original_assembly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C1.refined_assembly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C1.export_propagation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C1.missing_scale_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C1.negative_rank_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C1.negative_padding_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+The original-supplier 1002 and conditional refined-supplier 105 assemblies, integer-minimum controls, and export propagation are independently kernel verified. Stronger arithmetic component suppliers and source integration are separate tasks. E05F is independently registered using a supplied point_bound coefficient and does not depend on this repair.
