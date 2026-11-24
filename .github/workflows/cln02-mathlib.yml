@@ -1,0 +1,38 @@
+name: CLN-02–05 Mathlib kernel
+on:
+  pull_request:
+    paths:
+      - 'research/cantor_liouville/mathlib/**'
+      - '.github/workflows/cln02-mathlib.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: cln-mathlib-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: research/cantor_liouville/mathlib
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Lean via elan
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch Mathlib and cache
+        run: |
+          lake update
+          lake exe cache get Mathlib.NumberTheory.Multiplicity Mathlib.Analysis.SpecialFunctions.Complex.CircleAddChar Mathlib.Algebra.Group.AddChar Mathlib.Data.ZMod.Basic Mathlib.GroupTheory.OrderOfElement Mathlib.Tactic Mathlib.MeasureTheory.Integral.Lebesgue.Add Mathlib.MeasureTheory.Integral.Lebesgue.Markov Mathlib.MeasureTheory.Constructions.BorelSpace.Real Mathlib.Topology.Algebra.InfiniteSum.ENNReal Mathlib.Data.Nat.Factorization.Basic Mathlib.Data.Nat.ModEq Mathlib.FieldTheory.Finite.Basic
+      - name: Kernel and axiom audit
+        run: |
+          set -o pipefail
+          python3 audit.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cln-kernel-logs
+          path: research/cantor_liouville/mathlib/*-kernel.log
