@@ -18,7 +18,9 @@ theorem grid_in_block (Q M J j : ℕ)
     (hj : j < (Q - 1) * J) :
     M ≤ grid M J j ∧ grid M J j < Q * M := by
   have hsplit : (Q - 1) * M + M = Q * M := by
-    rw [← Nat.add_mul, Nat.sub_add_cancel (by omega : 1 ≤ Q)]
+    calc
+      _ = ((Q - 1) + 1) * M := by ring
+      _ = _ := by rw [Nat.sub_add_cancel (by omega : 1 ≤ Q)]
   have hprod : j * M < ((Q - 1) * M) * J := by
     calc
       j * M < ((Q - 1) * J) * M := Nat.mul_lt_mul_of_pos_right hj hM
@@ -43,7 +45,9 @@ theorem grid_cover (Q M J N : ℕ)
     J * (N - (M + q)) < M + J
   have hx : M + x = N := Nat.add_sub_of_le hMN
   have hsplit : (Q - 1) * M + M = Q * M := by
-    rw [← Nat.add_mul, Nat.sub_add_cancel (by omega : 1 ≤ Q)]
+    calc
+      _ = ((Q - 1) + 1) * M := by ring
+      _ = _ := by rw [Nat.sub_add_cancel (by omega : 1 ≤ Q)]
   have hxlt : x < (Q - 1) * M := by omega
   have hj : j < (Q - 1) * J := by
     change J * x / M < (Q - 1) * J
