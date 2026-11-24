@@ -85,3 +85,7 @@ Inspect the exact run first on resumption. Preserve failures and repair within f
 [Run 45336409061](https://github.com/patrickdugan/MathCan/actions/runs/45336409061), job 138249420462, completed failure at `500295b6e1caf14b8d2e5a4b4db314d036adb462`. Source SHA-256 `3001ef846dd2b864d37d0463bb2b88335b735e7f09a2ac4324fe035e64829b66`; [failed audit artifact 14893474885](https://github.com/patrickdugan/MathCan/actions/runs/45336409061/artifacts/14893474885). Toolchain, Mathlib resolution and receipt upload passed.
 
 Fourteen of fifteen public declarations printed exactly propext, Classical.choice, Quot.sound, including both assemblies, both least-integer envelope theorems, the exact absorption identities, and all three adversarial controls. Only export_propagation failed, at source line 167: add_le_add_right elaborated to V+Y<=V+K*(X+N), whereas the multiplication expected Y+V<=K*(X+N)+V. The recovery report for this declaration contains sorryAx. The whole registered gate failed; correct the additive inequality explicitly and rerun with all original theorem types intact.
+
+## Proof-only repair
+
+Commit `1ab493564e631fbb14543b6d9e605e4d3180936c`, blob `6326d27a10dc440187718285ab6f6229f74b4225`, explicitly proves Y+V<=K*(X+N)+V by linear arithmetic before multiplying by the nonnegative rank. All fifteen public theorem statements were compared byte-for-byte and are unchanged. [Rerun 45337437416](https://github.com/patrickdugan/MathCan/actions/runs/45337437416) queued; full kernel gate pending.
