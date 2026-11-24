@@ -198,7 +198,7 @@ theorem sum_rank_cut {J : Type*} [Fintype J] [Nonempty J]
       _ ≤ ∑ _ : J, (2:ℝ)^B := by
         apply Finset.sum_le_sum
         intro j _
-        gcongr <;> exact hB j
+        exact pow_le_pow_right₀ (by norm_num : (1:ℝ) ≤ 2) (hB j)
       _ = _ := by simp
   exact logarithmic_cut r B _ (by exact_mod_cast Fintype.card_pos) (hr.trans hs)
 
@@ -223,6 +223,7 @@ theorem integrated_cut_obstruction {X : Type*} [MeasurableSpace X]
     target ≤ W + (2/c)*L := by
   have hconst : Integrable (fun _ : X => L) μ := integrable_const L
   have hi := integral_mono hr (hb.add hconst) hcut
+  change (∫ x, r x ∂μ) ≤ ∫ x, b x + L ∂μ at hi
   rw [integral_add hb hconst, hR, hB, integral_const, hvol, smul_eq_mul] at hi
   have hd : target - W ≤ (2*L)/c :=
     (le_div_iff₀ hc).2 (by nlinarith)
@@ -241,8 +242,9 @@ theorem coordinate_abs_moment {X : Type*} [MeasurableSpace X]
   intro x
   calc
     (u x)^2 = |u x|^2 := (sq_abs _).symm
-    _ ≤ |u x| := by nlinarith [mul_nonneg (abs_nonneg (u x))
-      (sub_nonneg.mpr (hbounded x))]
+    _ ≤ |u x| := by
+      have hh := mul_nonneg (abs_nonneg (u x)) (sub_nonneg.mpr (hbounded x))
+      nlinarith only [hh]
 
 /-- Numerical endpoint of the common-layout obstruction. -/
 theorem no_strict_shortening (D : ℕ) (c W target L : ℝ)
@@ -251,7 +253,8 @@ theorem no_strict_shortening (D : ℕ) (c W target L : ℝ)
     target ≤ W + 2*(D:ℝ)*L := by
   have hcoef : 2/c ≤ 2*(D:ℝ) :=
     (div_le_iff₀ hc).2 (by nlinarith)
-  exact havg.trans (add_le_add_left (mul_le_mul_of_nonneg_right hcoef hL) W)
+  have hh := mul_le_mul_of_nonneg_right hcoef hL
+  linarith only [havg, hh]
 
 end Geometry
 end VPVNP.Five
