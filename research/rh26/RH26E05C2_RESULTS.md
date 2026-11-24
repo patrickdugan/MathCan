@@ -3,7 +3,7 @@
 **Date:** 2026-11-24 (Asia/Manila).  
 **Registration:** [RH26E05C2_REGISTRATION.md](RH26E05C2_REGISTRATION.md), `beaf0e9306271adfca892d635bf66b9fbd50274c`, frozen before executable proof.  
 **Implementation:** [RH26E05C2SmallRamified.lean](lean/RH26E05C2SmallRamified.lean), `af4b46414642a2a05c309a92258bfa2a099d65dc`; source/workflow `c4af3d063391b5174f849b5c5efc4d7287c2c9e1`.  
-**Disposition:** IMPLEMENTED; **KERNEL RESULT PENDING**. Twelve public theorem names match the twelve audit commands. No admission/native_decide tokens found. E05B independently passed 12/12 on its original implementation before this registration.
+**Disposition:** **KERNEL PASS (12/12)** on original implementation.
 
 ## Scope and exact small-prime envelope
 
@@ -71,3 +71,24 @@ The relaxed real sharpness fixture takes Q=d=t=1,q=exp(g/72),b=exp(g),g>0. The m
 - Isolated CPU Lean 4.35.0 / Mathlib v4.35.0 job, 25-minute cap; no full upstream/Deligne build, GPU/QPU or paid compute.
 
 Next inspect this exact audit. Preserve failures and repair within frozen contracts. E05C3 will separately register the exceptional-prime pointwise, count, mixed-power and finite-sum certificates required for the 11020 supplier. The already kernel-verified E05C1 conditional 105 assembly takes those stronger supplier bounds as premises. Even after independent component proofs, source-compatible integration and arithmetic realization are separate tasks. B15 N.linkN_of source inventory remains queued.
+
+## Final kernel receipt
+
+[Run 45342577776](https://github.com/patrickdugan/MathCan/actions/runs/45342577776), job 138269479691, success on original `c4af3d063391b5174f849b5c5efc4d7287c2c9e1`. [Artifact 14897236304](https://github.com/patrickdugan/MathCan/actions/runs/45342577776/artifacts/14897236304). Lean 4.35.0 compiler `eb6cafb7290e8bd5f2937522d8d804f58f02bafc`; Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`; source SHA-256 `4177c1a7306772c064a373831f1d7369b7dd2025545643c53ce1f3d1a316d1f5`. Isolated Lean elapsed 7.44 s, user 6.84 s, system 3.02 s, max RSS 6,995,928 kB. Exact twelve-name audit and compiler exit passed without repair. Earlier pending language is historical.
+
+```text
+'RH26E05C2.small_polynomial_expand' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C2.small_gap_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C2.small_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C2.small_integer_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C2.small_assembly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C2.row23_assembly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C2.conductor_log_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C2.conductor_pair_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C2.pair_support_log_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C2.ramified_assembly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C2.conductor_sharp_fixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05C2.missing_conductor_factor_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+The independent 104 and factor-two envelopes, original product-power logarithm budget, ramified weighted sum and controls are verified under their registered premises. Source-compatible integration remains external. E05C3 addresses the remaining 11020 exceptional component.
