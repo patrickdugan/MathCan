@@ -11,8 +11,8 @@ Source: user-supplied manuscript, "Binary-normal Liouville numbers in the middle
 | CLN-03 | Residue fiber cardinality, finite-energy bound, max-mass weighting, normalized envelope | awaiting kernel; run 45379088205 canceled by newer head |
 | CLN-04 | Summable expected energies, tail averaging, abstract grid interpolation | source submitted, awaiting kernel |
 | CLN-05 | Actual modular orbit collision iff, composite period divisibility, real exponential phase, composed finite second moment | eight source targets submitted; 2,112 finite composite bound checks and four dependent-tail controls passed; kernel pending |
-| CLN-06 | Independent digit model, prefix mass and tail independence, probability integration; grid and Weyl normality | CLN06A/B seven staged proof targets, no kernel receipt; remaining digit encoding, measurable tail, grid and Weyl bridges open |
-| CLN-07 | Exact Liouville construction, non-atomicity, excluded bases; final theorem and audit | simpler square-growth schedule derived in writing; Lean formalization open |
+| CLN-06 | Independent digit model, prefix mass and tail independence, probability integration; grid and Weyl normality | CLN06A/B/C twelve staged targets, no kernel receipt; digit encoding, measurable tail, a.e. grid assembly and Weyl bridges open |
+| CLN-07 | Exact Liouville construction, non-atomicity, excluded bases; final theorem and audit | CLN07A ten staged schedule/entropy arithmetic targets; summability, real series, Liouville and normality statements open |
 | CLN-08 | Referee pass, source provenance and literature comparison, export proof dependency ledger and reproducible receipts | open |
 
 ## CLN-05 checkpoint
@@ -59,6 +59,50 @@ avoid canceling a queued Mathlib job by pushing repeatedly.
 Integrate the staged files only after resolving upstream failures.
 If still queued, work on independent proof targets on staging.
 Retain all statement and axiom checks.
+
+## CLN06C / CLN07A checkpoint
+
+Upstream PR #274 head remains 5067378b. Run 45379618480, job
+138394938193, was still queued on repeated inspection, with no
+compiler output. Root checks run 45379620225 was also queued.
+No Lean/lake executable is installed in this turn's local sandbox.
+Do not replace the queued PR head merely to incorporate staging.
+
+Staging source CLN06C (bb10ef81, endpoint simplification 1f302e48)
+formalizes the grid index, its range, the integer gap bound, the
+natural logarithm block endpoints and the norm-of-mean interpolation
+bound for any normed additive commutative group. CLN07A (7f53fc4f)
+formalizes the square-growth recurrence, separation of its free
+blocks, completed-block prefix entropy lower bound and integer
+dyadic budget. All 15 targets remain unverified pending compilation.
+Audit now expects 47 Mathlib targets (12 additional verified Init
+targets on CLN01 make 59 source targets overall).
+
+The exact Python controls in mathlib/check_grid_schedule.py were
+executed locally: 1,198,080 grid coverage cases, 250,959 signed-real
+mean inequalities and 14 schedule exponent certificates passed.
+They are finite regressions, not proofs over all indices or phases.
+
+For the next analytic bridge use Mathlib v4.35.0
+Mathlib/Analysis/Fourier/AddCircle.lean:
+span_fourier_closure_eq_top, fourier_neg, fourier_norm,
+orthonormal_fourier and fourier_coe_apply.
+The source was inspected in this turn. It supplies trigonometric
+polynomial density on AddCircle, not a ready-made word normality
+theorem. Prove convergence of empirical averages for the span via
+finite linear combinations, extend to continuous functions by
+uniform approximation and the norm bounds for probability measures,
+then sandwich word intervals between continuous functions with
+arbitrarily small Haar-integral difference. Review the endpoints
+of base-b cylinders, including terminating digit conventions.
+
+Before that bridge, compose grid_cover and mean_interpolation
+with the countable a.e. grid convergence from CLN04/06A. Prove
+Nat.log Q N tends to infinity and the grid error vanishes.
+Convert the dyadic budget in CLN07A into actual summability by
+partitioning k into its disjoint blocks and comparing their sums
+with a geometric series. None of these final bridges has yet been
+kernel-checked. Resume actual CI repairs as soon as logs appear.
 
 ## Verification rules
 
