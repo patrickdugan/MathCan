@@ -220,10 +220,12 @@ theorem unified_point_bound (S A1 A2 A3 A4 A5 : Finset ℕ)
       hD0 hD hs (hsl l hmem) (hl l hmem) hb0 htie u
   have hexc : (∑ l ∈ maskSet S A5, v5 l) ≤ 11020*RH26E05C1.scale C H := by
     rw [Finset.sum_congr rfl h5]
-    exact exceptional_filtered (maskSet S A5) costExc C H m D s b TT Sc eta t
+    unfold RH26E05C1.scale
+    have h := exceptional_filtered (maskSet S A5) costExc C H m D s b TT Sc eta t
       hC hH hm hD0 hD hs (by linarith) htie hTT0 hTT hSc0 hSc heta0 heta
       (by linarith) htH hcount hlogH (fun l hmem => by linarith [hl l hmem])
       htop hc0 hc
+    convert h using 1 <;> ring
   let costs : RH26E05C1.Costs :=
     ⟨∑ l ∈ maskSet S A1, v1 l, ∑ l ∈ maskSet S A2, v2 l,
      ∑ l ∈ maskSet S A3, v3 l, ∑ l ∈ maskSet S A4, v4 l,
