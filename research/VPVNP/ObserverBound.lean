@@ -88,7 +88,7 @@ theorem scalar_energy_spectral (inc : T → Bits I) (hT : 0 < Fintype.card T)
   rw [hs]
   calc
     _ = (∑ b : Bits I, (walshCoeff f b)^2 * ∑ t : T, (walsh b (inc t)-1)^2) /
-        (Fintype.card T : ℝ) := by field_simp [hN,hM]
+        (Fintype.card T : ℝ) := by field_simp [hN,hM] <;> ring
     _ = ∑ b : Bits I, ((walshCoeff f b)^2 * ∑ t : T, (walsh b (inc t)-1)^2) /
         (Fintype.card T : ℝ) := by rw [Finset.sum_div]
     _ = ∑ b : Bits I, 4*((walshCoeff f b)^2 * oddProb inc b) := by
@@ -245,14 +245,10 @@ theorem two_pow_half (n : ℕ) (hn : 0 < n) :
   | zero => omega
   | succ n => simp only [Nat.succ_sub_one,pow_succ]; ring
 
-theorem rank_kernel_half (n k : ℕ) (hk : 0 < k) :
+theorem rank_kernel_half (n k : ℕ) (hn : 0 < n) (hk : 0 < k) :
     (2:ℝ)^(n-k) ≤ (2:ℝ)^n/2 := by
-  by_cases hn : 0 < n
-  · rw [← two_pow_half n hn]
-    exact pow_le_pow_right₀ (by norm_num) (by omega)
-  · have hn0 : n=0 := by omega
-    subst n
-    norm_num at hk ⊢
+  rw [← two_pow_half n hn]
+  exact pow_le_pow_right₀ (by norm_num) (by omega)
 
 theorem rank_kernel_quarter (n k : ℕ) (hk : 2 ≤ k) (hkn : k ≤ n) :
     (2:ℝ)^(n-k) ≤ (2:ℝ)^n/4 := by
@@ -336,7 +332,7 @@ theorem one_prob_pos (n : ℕ) (hn : 0 < n) (b : MatrixBits n) (hb : b ≠ 0) :
     0 < oneProb n b := by
   rw [one_prob_formula n hn]
   exact (VPVNP.floorOne_pos (q_gt_one n hn)).trans_le
-    (VPVNP.rank_one_floor (q_gt_one n hn) (rank_kernel_half n _ (dual_rank_pos b hb)))
+    (VPVNP.rank_one_floor (q_gt_one n hn) (rank_kernel_half n _ hn (dual_rank_pos b hb)))
 
 theorem probability_bound (n : ℕ) (hn : 0 < n) (b : MatrixBits n) :
     fullProb n b ≤ sharpConstant n * oneProb n b := by
@@ -346,7 +342,7 @@ theorem probability_bound (n : ℕ) (hn : 0 < n) (b : MatrixBits n) :
     rw [oddProb_zero _ (full_card_pos n), oddProb_zero _ (one_card_pos n hn),mul_zero]
   · rw [full_prob_formula,one_prob_formula n hn]
     exact VPVNP.rank_pointwise (q_gt_one n hn)
-      (rank_kernel_half n _ (dual_rank_pos b hb))
+      (rank_kernel_half n _ hn (dual_rank_pos b hb))
       (rankValue_lower n _ (dual_rank_pos b hb) (dual_rank_le b))
 
 theorem probability_gap (n : ℕ) (hn : 0 < n) (b : MatrixBits n)
@@ -455,12 +451,12 @@ theorem sharp_observer_attained (n : ℕ) (hn : 0 < n) :
     change (matrixOf b).rank = 1 at hr
     rw [hz,Matrix.rank_zero] at hr
     omega
-  refine ⟨characterObserver b,?_,?_⟩
   have h1 : oneEnergy n (characterObserver b) = 4*oneProb n b :=
     character_energy _ (one_card_pos n hn) b
   have h2 : fullEnergy n (characterObserver b) = 4*fullProb n b :=
     character_energy _ (full_card_pos n) b
   have hp := one_prob_pos n hn b hb
+  refine ⟨characterObserver b,?_,?_⟩
   · rw [h1]
     positivity
   · rw [h1,h2,probability_attains n hn b hr]
