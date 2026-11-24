@@ -1,4 +1,4 @@
-name: CLN-02 Mathlib prime-power and Fourier kernel
+name: CLN-02–04 Mathlib kernel
 on:
   pull_request:
     paths:
@@ -7,6 +7,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+concurrency:
+  group: cln-mathlib-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   kernel:
     runs-on: ubuntu-latest
@@ -23,16 +26,13 @@ jobs:
       - name: Fetch Mathlib and cache
         run: |
           lake update
-          lake exe cache get Mathlib.NumberTheory.Multiplicity Mathlib.Analysis.SpecialFunctions.Complex.CircleAddChar Mathlib.Algebra.Group.AddChar Mathlib.Data.ZMod.Basic Mathlib.GroupTheory.OrderOfElement Mathlib.Tactic
+          lake exe cache get Mathlib.NumberTheory.Multiplicity Mathlib.Analysis.SpecialFunctions.Complex.CircleAddChar Mathlib.Algebra.Group.AddChar Mathlib.Data.ZMod.Basic Mathlib.GroupTheory.OrderOfElement Mathlib.Tactic Mathlib.MeasureTheory.Integral.Lebesgue.Add Mathlib.MeasureTheory.Integral.Lebesgue.Markov Mathlib.MeasureTheory.Constructions.BorelSpace.Real Mathlib.Topology.Algebra.InfiniteSum.ENNReal
       - name: Kernel and axiom audit
         run: |
           set -o pipefail
-          if grep -nE '(^|[^[:alnum:]_])(sorry|admit|axiom)[[:space:]]' CLN02.lean; then exit 1; fi
-          lake env lean CLN02.lean 2>&1 | tee cln02-kernel.log
-          if grep -E 'sorryAx|declaration uses .sorry.' cln02-kernel.log; then exit 1; fi
-          test "$(grep -c 'depends on axioms' cln02-kernel.log)" -eq 8
+          python3 audit.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: cln02-kernel-log
-          path: research/cantor_liouville/mathlib/cln02-kernel.log
+          name: cln-kernel-logs
+          path: research/cantor_liouville/mathlib/*-kernel.log
