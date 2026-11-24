@@ -1,5 +1,29 @@
 # RH-26 run ledger
 
+## RH-26B-26 — 2026-11-24 — complete ChainTied and error-window witness
+
+- **Status:** SOURCE PASS. [Report](RH26B26_ERROR_WINDOW.md) 0dbae727b74aa1c4371bce6a7e9621585a3b1ed1; [registration](RH26B26_REGISTRATION.md) 57d9ff21a33266d5b319450a2d23db3d4025782d. Seven files,967 lines. LossesSmallShares:326 completes linkCore. ErrWindows requires each nonnegative coefficient individually <=K and frame error <=K*x^eps*nT*a, proven by K>=6. Same source witnesses admit Kmax=max(Cd,Cc,Cs,C1,Cl,6) instead of sum; Ksum<=6*Kmax and KBig ratio <36 under fixed positive factors. LargeX uses KBig=200*(1+K)^2*(1+cHH)*(1+eK) <= x^eps; max threshold also replaces sum of fourteen absolute thresholds. E06E planned. Actual growth/zero-free proof still open, no global exponent gain.
+
+## RH-26E-06D — 2026-11-24 — signed rounding and DGam cap
+
+- **Status:** IMPLEMENTED; [CI 45380612520](https://github.com/patrickdugan/MathCan/actions/runs/45380612520) running. [Registration](RH26E06D_REGISTRATION.md) 493db647aec5e75a82beec3018e0d97ebeb59412; [Lean source](lean/RH26E06DSignedRounding.lean) b01f3cb703105371c743f6ca09af80e8602d8f97; workflow 7c3c31591e4557930a90e44d626e51a1c92354f5. Ten declarations: signed floor rounding, support-restricted and strict loss, integral/negative fixtures, product cap 8, DGam log cap, LinkMu witness gain. Wait for actual kernel receipt. No arithmetic realization.
+
+## RH-26B-25 — 2026-11-24 — exact LinkMu and global chain witnesses
+
+- **Status:** SOURCE PASS. [Report](RH26B25_GLOBAL_WITNESSES.md) db6b28109c4908efc481106de3cc3ed94d714f1d; [registration](RH26B25_REGISTRATION.md) 558984ca77956f288e3a89e4814be64319635715. Seven files,1200 lines including boundary repeat. SumLogPrimeFactorsLe:778–833 chooses LinkMu coefficient 2*(log4+5+10*abs(CG)), obtains ZeroAbove from LinkDIV, discards its numeric coefficient. Existing product cap 8 gives conditional 4*abs(CG) gain. LinkMin:750–794 supplies actual LinkGLOBAL7_min/items; LossesSmallShares:68–325 chooses K=max(Cd,0)+Cc+Cs+C1+Cl+6, cHH=CH, eK from WinF, CL=C5, threshold Fm.x1+1+sum of fourteen abs thresholds. LinkDIV witness enters three error inequalities directly and other suppliers; LinkMu enters SlopesNF through placesF_min'. Surrounding witnesses fixed in numerical comparison. B26 finishes constructor.
+
+## RH-26B-24 — 2026-11-24 — signed rounding support
+
+- **Status:** SOURCE PASS for scalar suppliers. [Report](RH26B24_LINKMU_ROUNDING.md) 5ba41c68cdfcdefb1f0075232a7cbf99c00b5e20; [registration](RH26B24_REGISTRATION.md) feac3852442197a4dd7f343789e8c2fd50eec187. Four files,1189 returned lines. Exact rounding E=sum 2*lwP*(floor(ramIdx*sg)-ramIdx*sg)<=0; support only nonintegral indices. SumLogPrimeFactorsLe:716 establishes 8*Xpp then weakens to 10*Xpp. LinkMu family supplier recovered subsequently in B25.
+
+## RH-26B-23 — 2026-11-24 — global closure wrapper
+
+- **Status:** SOURCE PASS. [Report](RH26B23_GLOBAL_WRAPPER.md) 7597f05dd83de1f6e649904b7399dfd1c2dd226e; [registration](RH26B23_REGISTRATION.md) b33a5395485b7517bf7eeff8f9544dfc875cb746. Eight files,938 lines. LinkGl and FamGLmin.link8 supply LinkGLOBAL fixed Cabs=2,C0=3,eD=2,eL=0, plus NuFullF/MuRank. MuTu uses eventual x^(eps/100)>=CTu to yield CT=2. B25/B26 close source-level ChainTied dependency.
+
+## RH-26E-06C — final kernel PASS
+
+- **Status:** 10/10 PASS on original implementation 9004c43dd57fd2e37c2b511a6af1bcd30c700888. [Receipt](RH26E06C_RESULTS.md), [CI 45377305924](https://github.com/patrickdugan/MathCan/actions/runs/45377305924), artifact 14911652739. No repair. Elapsed 7.26s, peak RSS 6980536kB. E05C4+E06A+B+C 81 independent audited declarations. Arithmetic integration remains outstanding.
+
 ## RH-26E-06C — 2026-11-24 — terminal coefficient and split budget
 
 - **Status:** IMPLEMENTED; kernel audit pending. [Registration](RH26E06C_REGISTRATION.md) ff181317254da82d915c30b10b13df97afa9ea8a; [Lean source](lean/RH26E06CFinalDiv.lean) 362c9c604ef0bb61fef621e3dbd3da221dc83e5e; workflow 9004c43dd57fd2e37c2b511a6af1bcd30c700888. Ten registered declarations: exact terminal floor and gain, competing-floor controls, split and exponent-inflation slack, effective coefficient, sharp common coefficient, five-term eventual power absorption. Conditional scalar mathematics only; source arithmetic integration outstanding.
