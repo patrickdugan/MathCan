@@ -28,7 +28,7 @@ theorem tailMark_castSucc (n k : ℕ) (i : Fin n) :
   have h : n+1 ≤ i.castSucc.val+(k+1) ↔ n ≤ i.val+k := by
     simp only [Fin.val_castSucc]
     omega
-  rw [h]
+  simp only [h]
 
 theorem tailMark_last (n k : ℕ) : tailMark (n+1) (k+1) (Fin.last n) = 1 := by
   unfold tailMark
@@ -83,7 +83,16 @@ def joinLast (n : ℕ) :
 theorem joinLast_prefix_unit (n : ℕ) (i : Fin n) :
     joinLast n (unitBit i,0) = unitBit i.castSucc := by
   funext j
-  cases j using Fin.lastCases <;> simp [joinLast, unitBit, Fin.castSucc_inj]
+  cases j using Fin.lastCases with
+  | last =>
+    have h : Fin.last n ≠ i.castSucc := by
+      intro e
+      have he := congrArg Fin.val e
+      simp only [Fin.val_last, Fin.val_castSucc] at he
+      have hi := i.isLt
+      omega
+    simp [joinLast, unitBit, h]
+  | cast j => simp [joinLast, unitBit, Fin.castSucc_inj]
 
 theorem joinLast_last_unit (n : ℕ) :
     joinLast n (0,1) = unitBit (Fin.last n) := by
@@ -111,8 +120,8 @@ def lastKernel (n : ℕ) : BinarySpace n ≃ₗ[ZMod 2]
 
 theorem lastKernel_apply (n : ℕ) (x : BinarySpace n) (i : Fin n) :
     (lastKernel n x).1 i.castSucc = x i := by
-  change Fin.snoc x (0 : ZMod 2) i.castSucc = x i
-  simp
+  change (joinLast n (x,0)) i.castSucc = x i
+  simp [joinLast]
 
 def unitAuto (n : ℕ) : MatUnits (Fin n) ≃
     (BinarySpace n ≃ₗ[ZMod 2] BinarySpace n) :=
@@ -121,7 +130,7 @@ def unitAuto (n : ℕ) : MatUnits (Fin n) ≃
 
 theorem unitAuto_column (n : ℕ) (W : MatUnits (Fin n)) (i j : Fin n) :
     unitAuto n W (unitBit j) i = (W : BinMat (Fin n)) i j := by
-  change (((W : BinMat (Fin n)) *ᵥ unitBit j) i) = _
+  change Matrix.mulVec (W : BinMat (Fin n)) (unitBit j) i = _
   have hu : unitBit j = Pi.single j (1 : ZMod 2) := by
     funext t
     simp [unitBit, Pi.single_apply]
@@ -224,7 +233,8 @@ theorem binary_space_card (n : ℕ) : Fintype.card (BinarySpace n) = 2^n := by
 theorem normal_card_real (n : ℕ) :
     (Fintype.card (NonzeroNormal n) : ℝ) = (2:ℝ)^(n+1)-1 := by
   rw [normal_card, binary_space_card]
-  have h : 1 ≤ (2:ℕ)^(n+1) := by positivity
+  have hp : 0 < (2:ℕ)^(n+1) := pow_pos (by decide) _
+  have h : 1 ≤ (2:ℕ)^(n+1) := by omega
   rw [Nat.cast_sub h]
   norm_cast
 
