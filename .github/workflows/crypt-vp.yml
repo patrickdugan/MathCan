@@ -346,3 +346,55 @@ jobs:
         with:
           name: qbtc-06-exact
           path: ${{ runner.temp }}/qbtc-06.json
+
+  exact-delayed-checkpoint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replay QBTC-07 target timing and collision extraction
+        shell: bash
+        run: |
+          set -euo pipefail
+          node research/CRYPT_VP/qbtc07_check.mjs | tee "$RUNNER_TEMP/qbtc-07.json"
+          python3 - "$RUNNER_TEMP/qbtc-07.json" <<'PY'
+          import json,sys,math,itertools
+          from fractions import Fraction as F
+          r=json.load(open(sys.argv[1]))
+          assert r["schema"]=="qbtc-07-v1"
+          assert len(r["grinding"])==20
+          assert {(x["N"],x["g"]) for x in r["grinding"]}=={(n,g) for n in (8,16,32,64) for g in (1,2,4,8,16)}
+          for x in r["grinding"]:
+              n,g=x["N"],x["g"]
+              p=F(2,n)
+              assert x["keys"]==math.comb(n,2)
+              assert F(*map(int,x["one"]))==p
+              assert F(*map(int,x["grind"]))==1-(1-p)**g<=g*p
+              assert F(*map(int,x["adaptive"]))==1
+          # Independently count accepted roots and paths using histograms.
+          B=list(itertools.product((0,1),repeat=4))
+          def H(k,a,b): return (k>>(2*a+b))&1
+          rc=lower=upper=pa=pf=0
+          for k,l in itertools.product(range(16),repeat=2):
+              C=[(H(k,*x[:2]),H(k,*x[2:])) for x in B]
+              R=[H(l,*c) for c in C]
+              for i in range(16):
+                  rc+=R.count(R[i])-1
+                  lower+=C.count(C[i])-1
+                  upper+=sum(r==R[i] and c!=C[i] for r,c in zip(R,C))
+                  for j in range(4):
+                      for v,a,b in itertools.product((0,1),repeat=3):
+                          h=H(k,a,v) if j%2 else H(k,v,a)
+                          p=H(l,b,h) if j//2 else H(l,h,b)
+                          if p==R[i]:
+                              pa+=1
+                              pf+=v!=B[i][j]
+          assert r["tree"]=={"pairs":65536,"alternate":61440,"rootCollision":rc,"extracted":[lower,upper],"honest":16384,"pathAccept":pa,"pathReject":131072-pa,"pathLeafForge":pf}
+          assert rc==46720 and [lower,upper]==[29184,17536] and pf==43520
+          assert len(r["ledger"])==len(set(r["ledger"]))==13
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qbtc-07-exact
+          path: ${{ runner.temp }}/qbtc-07.json
