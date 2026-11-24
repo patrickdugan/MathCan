@@ -10,7 +10,11 @@ namespace VPVNP.Binary
 abbrev Bits (I : Type*) := I → ZMod 2
 
 theorem bit_cases (x : ZMod 2) : x = 0 ∨ x = 1 := by
-  fin_cases x <;> decide
+  have hx := ZMod.val_lt x
+  have h : x.val = 0 ∨ x.val = 1 := by omega
+  rcases h with h | h
+  · exact Or.inl ((ZMod.val_eq_zero x).1 h)
+  · exact Or.inr ((ZMod.val_eq_one (by decide : 1 < 2) x).1 h)
 
 theorem bit_double (x : ZMod 2) : x+x = 0 := by
   rcases bit_cases x with rfl | rfl <;> decide
@@ -24,7 +28,7 @@ theorem bitSign_add (x y : ZMod 2) :
     bitSign (x+y) = bitSign x * bitSign y := by
   rcases bit_cases x with rfl | rfl <;>
     rcases bit_cases y with rfl | rfl <;>
-    norm_num [bitSign, bit_double]
+    simp only [zero_add, add_zero, bit_double] <;> norm_num [bitSign]
 
 section Walsh
 
@@ -90,7 +94,7 @@ theorem walsh_sum_zero (b : Bits I) (hb : b ≠ 0) :
     simp [walsh, pairing_unit, bitSign, hi]
   have hshift : (∑ a : Bits I, walsh b (a+unitBit i)) =
       ∑ a : Bits I, walsh b a :=
-    (Equiv.addRight (unitBit i)).sum_comp (walsh b)
+    Fintype.sum_equiv (Equiv.addRight (unitBit i)) _ _ (fun _ => rfl)
   simp_rw [walsh_add_right, hsign, mul_neg, mul_one, Finset.sum_neg_distrib] at hshift
   linarith
 
