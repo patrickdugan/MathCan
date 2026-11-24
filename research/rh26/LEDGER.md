@@ -1,5 +1,18 @@
 # RH-26 run ledger
 
+## RH-26E-06A — 2026-11-24 — retained cohomology and eventual delta
+
+- **Status:** IMPLEMENTED; kernel audit pending. [Registration](RH26E06A_REGISTRATION.md) bb78cf2b51798cfe2b30ef7ff4c2c6b7418d1a8c; [Lean source](lean/RH26E06AAnalyticConversion.lean) 63b3ad177966640d38eec1e2feff8570e0e516e8; workflow e6f228b27932c83f6eb9d2b8b4d41d936dcb882b; [CI 45362582281](https://github.com/patrickdugan/MathCan/actions/runs/45362582281). Eight frozen declarations. Under B16 scalar premises, F=f*m, q=sqrt b, W=g*(B0+Nc), z=log², exact slack gives eta<=D0*(|K|W+q-|K|(g-z)*Nc). Added coefficient <=1/(F*g²*q). Explicit eventual threshold x>=max(1,(max(1,1/delta))^(1/eps)) yields |K|+delta. Zero-extra coefficient needs extra slack, with a scalar counterexample. Await actual CI verdict; no arithmetic realization.
+
+## RH-26B-16 — 2026-11-24 — analytic conversion
+
+- **Status:** SOURCE PASS. [Registration](RH26B16_REGISTRATION.md) b1b5561c23c2f520d5760e204326dcbf3bc1e22f; [Report](RH26B16_DIVINN_CONVERSION.md) 148835a3678c1b19259dc6828688c2e28b118be6; upstream c900e67c2fcd1fdb041685820bbd2b867fbc5a4b. Six files, 769 lines. DivinNOfHypV.lean:51–175 recovers HypV, vvRecord, log_sq_le_rpow, divinN_at, divinN_of_hypV. VVle supplies ShaFinOdd, Summable and V<=sqrt b. Source weakens to V<=b, uses dZ0=D0 and B0=f*m*b*g, g=x^eps>=1, log²<=g. Actual coefficient |K|+1, no exponent loss. NandDIVa generic injection also recovered (58–97).
+- **Next B17:** actual VWin-to-HypV and SmallLevelRankEq suppliers; LinkDIVt consumer; keep pinned bounded windows. Global theta exponent unsourced. E05C4 upstream arithmetic integration remains outstanding.
+
+## RH-26E-05C4 — 2026-11-24 — final unified kernel receipt
+
+- **Status:** KERNEL PASS 53/53 on proof-only repair 52c5fa2f11954ca189a2e7e77954eb818e40bf06. [Report](RH26E05C4_RESULTS.md), [run 45362160067](https://github.com/patrickdugan/MathCan/actions/runs/45362160067), job 138334654666, artifact 14905535842. All four modules compiled together; exact 15+12+18+8 reports, allowed axioms only. Original failed run 45359188988 preserved; one multiplication association normalized with ring, all contracts and original supplier bytes unchanged. Conditional coefficient 105 now cross-module verified, upstream arithmetic realization remains open.
+
 ## RH-26B-15 — 2026-11-24 — LinkN adapter
 
 - **Status:** SOURCE PASS for N.linkN_of, exact LinkN quantifiers and coefficient preservation. [Registration](RH26B15_REGISTRATION.md) 5b24c5204ea2d5ff954abe2a1175b80d1988a298; [Report](RH26B15_LINKN_ADAPTER.md) a28e5d1f50cc5ffef3082e54aba23228e206fe37. Frozen upstream c900e67c2fcd1fdb041685820bbd2b867fbc5a4b. Four distinct files, 428 lines (714 including repeated anchor reads); no upstream build.
