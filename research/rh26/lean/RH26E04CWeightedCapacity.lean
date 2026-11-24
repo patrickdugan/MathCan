@@ -61,7 +61,7 @@ theorem dual_gap_identity (m u e : I → ℝ) (R lam : ℝ) :
       lam * (R - ∑ i, m i) + ∑ i, coordSlack (m i) (u i) (e i) lam := by
   classical
   have hsum :
-      (∑ i, u i * pospart (e i - lam) + lam * m i - m i * e i) =
+      (∑ i, (u i * pospart (e i - lam) + lam * m i - m i * e i)) =
         ∑ i, coordSlack (m i) (u i) (e i) lam := by
     apply Finset.sum_congr rfl
     intro i _
@@ -149,12 +149,12 @@ theorem threshold_optimal (m u e : I → ℝ) (R lam : ℝ)
       · by_cases hgt : lam < e i
         · rw [hhigh i hgt, sub_self, zero_mul]
         · have hnonpos : e i - lam ≤ 0 := sub_nonpos.mpr (le_of_not_gt hgt)
-          simp [pospart, max_eq_right hnonpos]
+          rw [pospart, max_eq_right hnonpos, mul_zero]
       · by_cases hlt : e i < lam
         · rw [hlow i hlt, zero_mul]
         · have hnonpos : -(e i - lam) ≤ 0 :=
             neg_nonpos.mpr (sub_nonneg.mpr (le_of_not_gt hlt))
-          simp [negpart, max_eq_right hnonpos]
+          rw [negpart, max_eq_right hnonpos, mul_zero]
   exact (dual_bound m' u e R lam hf' hlam).trans
     (le_of_eq (equality_certificate m u e R lam hc).symm)
 
