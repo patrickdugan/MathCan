@@ -1,3 +1,7 @@
 # E06A analytic conversion results
 
 Original run [45362582281](https://github.com/patrickdugan/MathCan/actions/runs/45362582281), job 138336085595, commit e6f228b27932c83f6eb9d2b8b4d41d936dcb882b: FAIL. [Artifact 14904892934](https://github.com/patrickdugan/MathCan/actions/runs/45362582281/artifacts/14904892934). Lexer token |* at five locations prevented intended absolute value expressions from parsing; dependent recovery errors follow. cohomology_budget, delta_budget, eventual_delta printed clean axiom reports; zero_extra_if_slack's malformed declaration does not count. Preserve all intended registered statements; add whitespace around absolute value delimiters and adjacent operators. Full kernel acceptance pending.
+
+## Second run: 6/8 clean declarations
+
+[Repair run 45365756795](https://github.com/patrickdugan/MathCan/actions/runs/45365756795), job 138346935017, source f863a359a938488c0c81179829b1cb10274e9166, [artifact 14906557738](https://github.com/patrickdugan/MathCan/actions/runs/45365756795/artifacts/14906557738). Compiler FAIL at lines 59 and 95: Lean 4.35 add_le_add_left placed the common addend on the opposite side from the calc goal. exact_slack, cohomology_budget, delta_budget, eventual_delta, zero_extra_if_slack, zero_extra_control have clean allowed-axiom reports. refined_conversion and delta_conversion have sorryAx from compiler recovery. Repair those two proof steps with linarith only [hb], preserving all theorem statements. Full kernel acceptance remains pending.
