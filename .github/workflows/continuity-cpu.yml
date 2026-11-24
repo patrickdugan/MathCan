@@ -1,0 +1,39 @@
+name: SelfModels continuity mathematics (CPU)
+on:
+  push:
+    paths:
+      - 'research/continuity_v1/**'
+      - '.github/workflows/continuity-cpu.yml'
+  pull_request:
+    paths:
+      - 'research/continuity_v1/**'
+      - '.github/workflows/continuity-cpu.yml'
+jobs:
+  exact-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run finite exact suite
+        run: python -m unittest discover -s research/continuity_v1/tests -v
+      - name: Emit deterministic receipt
+        run: python -m research.continuity_v1.core
+
+  lean-core:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: research/continuity_v1/formal
+          use-mathlib-cache: false
+          auto-config: false
+          build: true
+          build-args: "--wfail"

@@ -1,0 +1,33 @@
+{
+  "adapter_counterexample": {
+    "after_composition": "-3/4",
+    "after_update_a_only": "1/4",
+    "after_update_b_only": "1/4",
+    "cumulative_hessian_lower_bound": "-3/4",
+    "margin_start": "1/4"
+  },
+  "persona_reweight": {
+    "after": [
+      "1/4",
+      "3/4"
+    ],
+    "prior": [
+      "3/4",
+      "1/4"
+    ],
+    "sharp_range_bound_for_m1_M9": "1/2",
+    "tv": "1/2"
+  },
+  "sparse_geometry": {
+    "line_sign_flip_sin_squared": "0",
+    "two_atom_min_singular_squared": "2/10001"
+  },
+  "subset_counts": {
+    "continuation_classes": 4096,
+    "count_only_classes": 13,
+    "k": 6,
+    "largest_count_fiber": 924,
+    "n": 12
+  },
+  "trajectory_bound_example": "3439/10000"
+}
