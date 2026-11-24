@@ -1,5 +1,21 @@
 # RH-26 run ledger
 
+## RH-26E-06F — 2026-11-24 — direct split core inequality
+
+- **Status:** IMPLEMENTED; independent kernel audit pending. [Registration](RH26E06F_REGISTRATION.md) f72bf3f572c18c60ae388e3e38171322b64adcb0; [Lean source](lean/RH26E06FSplitCore.lean) 658c142871113cbc28fbde062fd0a886affef903; workflow a42cdabee7e258064d2405600ea63d914afc55a2. Ten exact public declarations; direct adaptation of full upstream core_ineq hypotheses and LHS except removal of hbig. Y=max(y,yL), isolated T2b, explicit H*max(yD,y²,y*yL)*E. H<=53*(1+K)^2*h*g, factor 52 control, real-power envelope max(eD,2,1+eL)+delta after fixed H absorption; source 2,0 gives 2+delta vs 5. Additional final character absorption with arbitrary positive delta. Await actual audit; not upstream realization or global exponent result.
+
+## RH-26B-29 — 2026-11-24 — exact scalar core split
+
+- **Status:** SOURCE PASS for original core_ineq proof and large_x_eventually, stronger scalar proposal pending kernel. [Report](RH26B29_CORE_SPLIT.md) f555834454a78129da321fcf2f00d35616d197cf; [registration](RH26B29_REGISTRATION.md) 82ef0239e2e4dd974c5f77256074b0d6615f9d0e. One file,208 lines. Source T1–T8 bounds inflate to P=yD*yL*y*E; isolated T2b alone depends on yD. Keep it separate; remaining terms bounded using P=max(y,yL)*E. H=5K²+16K+2+8h*(5K²+13K+2Kg+2), H<=(45K²+136K+18)*h*g; universal 53 suffices instead of 200, 52 fails on abstract coefficient fixture. Source logarithms and eventual threshold recovered. E06F direct proof pending; B30 proposition_size_bound and analytic consumers, then lemmaL. Arithmetic integration and SlopesNF dependence remain separate.
+
+## RH-26B-28 — 2026-11-24 — exact analytic suppliers
+
+- **Status:** SOURCE PASS. [Report](RH26B28_GROWTH_PROOFS.md) 559bb9048fb19757070fcff37bf6b5061208702e; [registration](RH26B28_REGISTRATION.md) d1ab3042c9c53886c0981511bf98e5e96450b9ca. Five files,1193 returned lines. ChTop proves gapA<=x^(CErr*eps)*bracket via each_unit_bound_statement and core_ineq. ChCore proves GmA<=x^(1/2+(C+3)*eps)+SigA with explicit eventual character-movement thresholds and proposition_size_bound. B29 recovers core_ineq exact proof. GrowthSizeBound supplier not yet located.
+
+## RH-26E-06E — first audit and repair
+
+- **Status:** original [CI 45381486250](https://github.com/patrickdugan/MathCan/actions/runs/45381486250) FAIL, 9/10 clean reports; only family_threshold failed due to dependent nested induction. [Receipt](RH26E06E_RESULTS.md) 13e737af7752073dbc5e5c6f34c04172c19ca424; repair b2ab6a2c626d5f58087e904a8e3467f97e8d6701 isolates private abs_sum_nonneg; statements unchanged. [Repair CI 45383305777](https://github.com/patrickdugan/MathCan/actions/runs/45383305777) in progress. Maximum K and rpow threshold results already have clean reports; full audit pending.
+
 ## RH-26B-27 — 2026-11-24 — analytic consumer and zero-free windows
 
 - **Status:** SOURCE PASS for exact terminal adapters and window exponent. [Report](RH26B27_ANALYTIC_CONSUMER.md) 4af6fc9a318891ee8800bc95983e874a4e26bc18; [registration](RH26B27_REGISTRATION.md) cf7dd631e8c5cfd11ecc721987faf5d9125385a3. Eight files,700 lines. tiedCore_of_chainTied preserves K and exponent witnesses; core_gm consumes large_x_eventually KBig bound, ch_top with CErr=eDiv+eLoss+3 and ch_core, absorbs finite 1+4*level.o by x^eps, yielding Gm<=x^(1/2+(eD+eL+7)*eps), exactly 1/2+9eps at source 2,0. TopWin selects arbitrarily small eps using positive gap of candidate zero, HasWindows.mono preserves arbitrary late windows, FormB applies zeroFree_of_rpow_window with delta=la-1 and C=1. Actual wrapper chain recovered through lemmaL call; inner ch_top/ch_core/lemmaL and GrowthSizeBound proofs remain open. Numeric gains affect thresholds, no global multiplicity exponent claim. Proposed E06F arbitrary positive final absorption margin and eps witness.
