@@ -3,7 +3,7 @@
 **Date:** 2026-11-24 (Asia/Manila).  
 **Registration:** [RH26E05C1_REGISTRATION.md](RH26E05C1_REGISTRATION.md), `58f1e4787ccdc3319ff338a139509f243043b358`, frozen before executable proof and CI.  
 **Implementation:** [RH26E05C1Assembly.lean](lean/RH26E05C1Assembly.lean), `a0aa8d61463ec9615c0dbba12f807aeac21174f3`; source+workflow at `500295b6e1caf14b8d2e5a4b4db314d036adb462`.  
-**Disposition:** IMPLEMENTED; **KERNEL RESULT PENDING**. Fifteen public theorem declarations and matching axiom-print names verified by source inspection; no sorry/admit/native_decide tokens. Compiler acceptance remains pending.
+**Disposition:** FIRST KERNEL RUN FAILED; proof-only repair in progress. Fourteen clean theorem-level axiom reports; full gate failed.
 
 ## 1. Source connection and scope
 
@@ -79,3 +79,9 @@ The missing-scale fixture uses C=1,H=2,b=X=1, all supplier terms zero except the
 - Isolated Lean 4.35.0 / Mathlib v4.35.0 GitHub CPU job, 25-minute cap; no full upstream/Deligne build, new upstream reads, paid/GPU/QPU compute.
 
 Inspect the exact run first on resumption. Preserve failures and repair within frozen theorem contracts. After closure, continue E05F support-preserving export and padding slack, E05B actual rank/degree-weighted certificate, separate stronger supplier proofs, or B15 source trace of N.linkN_of.
+
+## First-run failure receipt
+
+[Run 45336409061](https://github.com/patrickdugan/MathCan/actions/runs/45336409061), job 138249420462, completed failure at `500295b6e1caf14b8d2e5a4b4db314d036adb462`. Source SHA-256 `3001ef846dd2b864d37d0463bb2b88335b735e7f09a2ac4324fe035e64829b66`; [failed audit artifact 14893474885](https://github.com/patrickdugan/MathCan/actions/runs/45336409061/artifacts/14893474885). Toolchain, Mathlib resolution and receipt upload passed.
+
+Fourteen of fifteen public declarations printed exactly propext, Classical.choice, Quot.sound, including both assemblies, both least-integer envelope theorems, the exact absorption identities, and all three adversarial controls. Only export_propagation failed, at source line 167: add_le_add_right elaborated to V+Y<=V+K*(X+N), whereas the multiplication expected Y+V<=K*(X+N)+V. The recovery report for this declaration contains sorryAx. The whole registered gate failed; correct the additive inequality explicitly and rerun with all original theorem types intact.
