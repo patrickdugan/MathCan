@@ -35,17 +35,18 @@ jobs:
         run: |
           set -euo pipefail
           cp ../../research/VPVNP/*.lean .
-          cp ../../research/CRYPT_VP/QuantumObserver.lean .
-          lake env bash -c 'set -euo pipefail; export LEAN_PATH="$PWD:$LEAN_PATH"; for m in RankSpectral BinaryWalsh HyperplaneCancellation OrderedFrameFibers SignedFrameTransport MatrixRankCharacter CanonicalRankRecurrence RankOneCharacter ObserverBound QuantumObserver; do lean -o "$m.olean" "$m.lean"; done' | tee "$RUNNER_TEMP/crypt-vp-axioms.txt"
+          cp ../../research/CRYPT_VP/QuantumObserver.lean ../../research/CRYPT_VP/Resampling.lean .
+          lake env bash -c 'set -euo pipefail; export LEAN_PATH="$PWD:$LEAN_PATH"; for m in RankSpectral BinaryWalsh HyperplaneCancellation OrderedFrameFibers SignedFrameTransport MatrixRankCharacter CanonicalRankRecurrence RankOneCharacter ObserverBound QuantumObserver Resampling; do lean -o "$m.olean" "$m.lean"; done' | tee "$RUNNER_TEMP/crypt-vp-axioms.txt"
           python3 - "$RUNNER_TEMP/crypt-vp-axioms.txt" <<'PY'
           import re,sys
           from pathlib import Path
           s=Path(sys.argv[1]).read_text()
-          mods="RankSpectral BinaryWalsh HyperplaneCancellation OrderedFrameFibers SignedFrameTransport MatrixRankCharacter CanonicalRankRecurrence RankOneCharacter ObserverBound QuantumObserver".split()
+          mods="RankSpectral BinaryWalsh HyperplaneCancellation OrderedFrameFibers SignedFrameTransport MatrixRankCharacter CanonicalRankRecurrence RankOneCharacter ObserverBound QuantumObserver Resampling".split()
           expected=set()
           for mod in mods:
               expected.update(re.findall(r"^#print axioms ([\w.]+)",Path(mod+".lean").read_text(),re.M))
           required={"VPVNP.Binary."+x for x in ("hs_shift_coords","hs_energy_coords","hs_sharp_bound","hs_sharp_defect","phase_entry_frequency")}
+          required.update("CRYPTVP."+x for x in ("weighted_cost_le","empirical_mixture_le","list_weight_nonneg","product_weight_le","bad_mass_bound","planted_recovery_sum"))
           assert required <= expected
           assert len(expected)>=100
           found=set()
@@ -231,3 +232,49 @@ jobs:
         with:
           name: qbtc-04-exact
           path: ${{ runner.temp }}/qbtc-04.json
+
+  exact-correlated-resampling:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replay QBTC-05 empirical multirow replacement
+        shell: bash
+        run: |
+          set -euo pipefail
+          node research/CRYPT_VP/qbtc05_check.mjs | tee "$RUNNER_TEMP/qbtc-05.json"
+          python3 - "$RUNNER_TEMP/qbtc-05.json" <<'PY'
+          import json,sys,math
+          from fractions import Fraction as F
+          r=json.load(open(sys.argv[1]))
+          assert r["schema"]=="qbtc-05-v1"
+          assert r["contexts"]==18304 and r["conditionalOutcomes"]==216832 and r["checks"]==72
+          cases={(c["N"],c["k"]):c for c in r["cases"]}
+          assert len(r["cases"])==6 and set(cases)=={(n,k) for n in (3,4,5) for k in (1,2)}
+          def frac(x): return F(*map(int,x))
+          for (n,k),c in cases.items():
+              assert c["contexts"]==4**n*math.comb(n,k)
+              assert c["outcomes"]==c["contexts"]*4**k
+              assert {frac(x["delta"]) for x in c["thresholds"]}=={F(1,4),F(1,2),F(1)}
+              assert len(c["costs"])==4 and len(c["thresholds"])==3
+              m=n-k
+              for x in c["thresholds"]:
+                  d=frac(x["delta"])
+                  bad=F(sum(math.comb(m,j) for j in range(m+1) if 2*max(j,m-j)>(1+d)*m),2**m)
+                  assert frac(x["bad"])==bad
+                  for y in c["costs"]:
+                      a,b=frac(y["ind"]),frac(y["copy"])
+                      B=F((3*n*(n+1)//2)**2 if y["name"]=="weighted-euclidean" else 1)
+                      assert 0<=a<=B and 0<=b<=B
+                      assert b<=(1+d)**k*a+B*bad
+              if k==2:
+                  old={y["name"]:frac(y["ind"]) for y in cases[n,1]["costs"]}
+                  for y in c["costs"]: assert frac(y["ind"])<=2*old[y["name"]]
+          assert {x["name"]:frac(x["maxRatio"]) for x in r["negative"]}=={"adaptive-source":F(2),"shared-source-k2":F(2),"physical-copy":F(8)}
+          for x in r["negative"]: assert frac(x["correlated"])/frac(x["ind"])==frac(x["maxRatio"])
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qbtc-05-exact
+          path: ${{ runner.temp }}/qbtc-05.json
