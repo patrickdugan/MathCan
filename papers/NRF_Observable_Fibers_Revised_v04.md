@@ -187,7 +187,7 @@ NRF-10 optimizes the smooth calibration penalty $m^{-1}\sum_j\ell_T(U;h_j)^2$, w
 
 # 4. Pre-optimization context: NRF-04–09
 
-NRF-04 found lower held-out task error but higher dark-to-observed Jacobian leakage in its supervised rank-eight subspaces than in random controls. NRF-07 reproduced the earlier depth-dependent *joint-objective* reversal with new models, though equal 4,096 state visits meant 32 optimizer steps for depth 16 and 16 for depth 32. NRF-08X's frozen-midpoint suffix replay produced a directionally consistent mechanism diagnostic but **failed its strict checkpoint byte-identity gate**, so its outcome is exploratory [5]. NRF-09 then trained six new matched-seed model pairs for equal optimizer steps. At 32 steps, task-supervised observation beat the complete random-arm median in 6/6 depth-16 models and 1/6 depth-32 models. The observed margin contrast obeyed $0.395476=0.215683+0.179793$: the second term measures 45.46% of the equal-visit contrast along one depth-32 update path [9,10]. Post-review step-zero analysis shows large leakage before any model training. At 32 updates the **computed-change dark fraction** of unoptimized supervised observers was 0.9736 at depth 16 and 0.9785 at depth 32, and corresponding random controls were 0.9283 and 0.9126. Absolute observed change gain increased from 0.4278 to 0.8548 for the supervised readout. The main depth trend in this small cohort is **magnitude**, with its fractional composition already strongly represented at initialization; training changes absolute gain and the observed direction geometry.
+NRF-04 found lower held-out task error but higher dark-to-observed Jacobian leakage in its supervised rank-eight subspaces than in random controls. NRF-07 reproduced the earlier depth-dependent *joint-objective* reversal with new models, though equal 4,096 state visits meant 32 optimizer steps for depth 16 and 16 for depth 32. NRF-08X's frozen-midpoint suffix replay produced a directionally consistent mechanism diagnostic but **failed its strict checkpoint byte-identity gate**, so its outcome is exploratory [5]. NRF-09 then trained six new matched-seed model pairs for equal optimizer steps. At 32 steps, task-supervised observation beat the complete random-arm median in 6/6 depth-16 models and 1/6 depth-32 models. The observed margin contrast obeyed $0.395476=0.215683+0.179793$: the second term measures 45.46% of the equal-visit contrast along one depth-32 update path [9,10]. Post-review step-zero analysis shows large leakage before any model training. At 32 updates the **computed-change dark fraction** of unoptimized supervised observers was 0.9736 at depth 16 and 0.9785 at depth 32, and corresponding random controls were 0.9283 and 0.9126. Absolute observed change gain increased from 0.4278 to 0.8548 for the supervised readout. For the matched optimizer-step depth comparison, the dominant observed movement is the **amount of computed change written toward the observer**: supervised \(\bar W_\Delta\) rises from 0.4278 at depth 16 to 0.8548 at depth 32, while the corresponding dark fractions remain 0.9736 and 0.9785. Step-zero measurements already have substantial leakage, so this depth pattern cannot be assigned to learning a new dark channel during training. The sampled dynamics change their absolute gain and direction geometry, with initialized coupling as a major baseline.
 
 # 5. Leakage-aware rank-eight observers (NRF-10)
 
@@ -285,6 +285,33 @@ The penalty's mean absolute leakage advantage arises primarily through lower obs
 
 The selected NRF-11 joint observers use $\gamma=0.2$ in four depth-32 seeds and $\gamma=1$ in seeds 131 and 149. Four $\gamma=0.2$ observers have mean $\rho_\Delta=0.581$; the two $\gamma=1$ observers average 0.698. Seed 131 moves from $\rho_\Delta=0.680$ under task-only to 0.751 with its selected $\gamma=1$ joint observer, so the reduction in this fraction occurs in **5/6 models**, even though the absolute leakage decreases in 6/6. The chosen penalty thus can purchase lower leakage by reducing the total observed write gain rather than improving the proportional partition of the computed change.
 
+### ROC-01 retrospective per-seed write/fraction accounting
+
+To allocate the **measured** change in incoming computed-change leakage between the observed write magnitude and its dark fraction, we use the exact per-state identity \(B_i=W_i\rho_i\). For the task-only observer (0) and selected joint observer (1), define the symmetric algebraic split
+
+\[
+\Delta B_{\rm magnitude}
+=\tfrac12(W_1-W_0)(\rho_0+\rho_1),\qquad
+\Delta B_{\rm fraction}
+=\tfrac12(\rho_1-\rho_0)(W_0+W_1).
+\]
+
+Their sum equals \(B_1-B_0\) **on each shadow state**. We average the two contributions across the same twelve shadow states within each model, then across the six model seeds. Multiplying group-mean \(W\) by group-mean \(\rho\) would give a different number.
+
+| NRF-11 depth-32 seed | Selected \(\gamma\) | Joint − task-only incoming \(B\) | Magnitude contribution | Fraction contribution |
+|:--|--:|--:|--:|--:|
+| 131 | 1.0 | −0.2800 | −0.3173 | +0.0373 |
+| 137 | 0.2 | −0.1366 | −0.0878 | −0.0488 |
+| 139 | 0.2 | −0.1644 | −0.0958 | −0.0686 |
+| 149 | 1.0 | −0.2880 | −0.2691 | −0.0190 |
+| 151 | 0.2 | −0.1377 | −0.0983 | −0.0394 |
+| 157 | 0.2 | −0.1647 | −0.1021 | −0.0626 |
+| **Six-seed mean** | | **−0.1952** | **−0.1617** | **−0.0335** |
+
+**Table 3C (ROC-01).** Retrospective, same NRF-11 fold-13 model/shadow states. Magnitude accounts for 82.8% of the mean absolute incoming reduction under this symmetric decomposition. Incoming \(B\) falls in **6/6** seeds and the magnitude contribution is negative in **6/6**; the fraction contribution is negative in **5/6**. Seed 131's fraction contribution is **positive**, consistent with its \(\rho_\Delta\) increase. The two possible Shapley orderings are averaged symmetrically, so these are **algebraic accounting terms**, not independent evidence that the explicit penalty causally changed a neural mechanism.
+
+Full paired results for **both** depths 16 and 32 are published in \`research/observer_calculus/ROC01_NRF11_PER_SEED_DECOMP.csv\`; the accompanying 1,584-row partial card and its deterministic generator are in the same public folder. The full ROC-01 card needs per-state \(\|D\|_F\), an output-declared Gramian \(H\), per-state task error and at least 100 rank-matched random bases. These fields are recorded as **missing**, and the eight historical random bases do not justify new rank-p inference.
+
 ## 7.3 Penalty frontier as an exchange rate
 
 All $\gamma$ candidates below receive **80** QR-retracted Adam readout updates from a common supervised initialization on depth-32 weights. We calculate their score from NRF-11's already exposed task fold 12 and shadow fold 13, with no fresh model cohort. The penalty $\gamma$ controls the training objective, while $\lambda$ represents the *evaluation exchange rate* between task error and squared mean leakage. To compare arms, define
@@ -305,7 +332,7 @@ The bar means six-model averaging. We report finite positive thresholds only whe
 | Task-free leakage-only, supervised start | 0.3711 | 0.1099 | 0.6756 | 0.3832 | 0.853 |
 | Task-free leakage-only, random start | 0.3959 | 0.1135 | 0.4964 | 0.4088 | 0.954 |
 
-**Table 4.** Post-hoc penalty sweep, six depth-32 models, independent archived input folds within the same task family. The task-free candidates are **locally optimized minima** from two starting points, not global solutions. Thresholds use averages of *per-seed leakage squares*, so numerical results need not match a calculation from the square of column-mean leakage.
+**Table 4.** Retrospective penalty sweep on six depth-32 models from previously examined input folds. The task-free candidates are **locally optimized minima** from two starting points. Break-even penalties are **pairwise against task-only** and use averages of *per-seed squared raw leakage*, distinct from ROC-01's normalized-B card. The actual global lower-envelope switch points are reported in Table 4B and the public exact-rational reproduction file.
 
 The pairwise thresholds in Table 4 concern **only** a candidate versus $\gamma=0$, and several candidates lose to a different penalized arm. The empirical **lower envelope**, computed over all six measured candidates as $\min_\gamma[\overline{E}_\gamma+\lambda\overline{L^2}_\gamma]$, switches as follows:
 
@@ -351,7 +378,7 @@ The next experiment should register a distinct task family or architecture befor
 
 # 9. Conclusion
 
-The exact one-step global quotient obstruction coexists with useful low-rank task decoding, as a task-conditioned observation need not represent a closed dynamical subsystem. In the six short-trained toy networks, the main depth-associated change in ordinary supervised observers is the **magnitude** of computed-change coupling: the incoming fraction remains near 0.974 at depth 16 and 0.978 at depth 32, while observed change gain approximately doubles. Strong coupling is already present at initialization. Equal-budget leakage-aware readout training lowers the reported incoming-channel norm and improves the chosen joint objective at a substantial cost in task MSE, mainly through reduced observed write gain. The additional directional separation beyond task-only refinement is modest, fails in one selected seed, and leaves a large reverse observed-to-hidden channel. The task-accuracy/leakage exchange rate has a piecewise lower frontier whose first switch occurs at $\lambda=0.1365$ and whose later switches are increasingly expensive. The same observer rankings persist across fresh samples from the unchanged synthetic family; cross-task, cross-architecture, and real-language-model validation remains open.
+The exact one-step global quotient obstruction coexists with useful low-rank task decoding: task prediction alone gives little information about whether an observed subspace is dynamically closed. In the six short-trained toy networks, supervised observed change gain roughly doubles between depths 16 and 32 while the incoming fraction remains near 0.974 and 0.978. Substantial dark coupling was present already at initialization. Retrospective paired NRF-11 accounting attributes about 83% of the mean additional leakage decrease from equal-budget task-only to the chosen joint observer to **smaller observed write magnitude**, leaving a smaller directional fraction change and a substantial task-MSE cost. The additional directional separation beyond task-only refinement is modest, fails in one selected seed, and leaves a large reverse observed-to-hidden channel. The task-accuracy/leakage exchange rate has a piecewise lower frontier whose first switch occurs at $\lambda=0.1365$ and whose later switches are increasingly expensive. The same observer rankings persist across fresh samples from the unchanged synthetic family; cross-task, cross-architecture, and real-language-model validation remains open.
 
 # Reproducibility appendix
 
