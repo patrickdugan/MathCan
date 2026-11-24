@@ -18,7 +18,7 @@ function qbtc05(){
  const res={schema:"qbtc-05-v1",cases:[],contexts:0,conditionalOutcomes:0,checks:0,negative:[]};
  for(const N of [3,4,5])for(const k of [1,2]){
    const dests=choose(N,k),sourceN=N-k,sourceDen=4n*BigInt(sourceN),newDen=8n**BigInt(k),copyDen=sourceDen**BigInt(k);
-   const thresholds=[[1n,2n],[1n,1n],[1n,BigInt(k)]];
+   const thresholds=[[1n,4n],[1n,2n],[1n,1n]];
    let ctx=0,outcomes=0,initial=0n;
    let ag=thresholds.map(([a,b])=>({a,b,bad:0n,ind:Array(4).fill(0n),copy:Array(4).fill(0n),goodInd:Array(4).fill(0n),goodCopy:Array(4).fill(0n)}));
    let sumInd=Array(4).fill(0n),sumCopy=Array(4).fill(0n);
@@ -88,17 +88,19 @@ function qbtc05(){
  // Balanced untouched population: adaptive J selects label 1, fresh label uniform.
  // Shared source forces equal replacement labels; independent source indices do not.
  // Copying physical encoding from one fixed source vs fresh D on 8 equiprobable encodings.
- const negative=[
-   {name:"adaptive-source",ind:["1","2"],correlated:["1","1"],maxRatio:["2","1"]},
-   {name:"shared-source-k2",ind:["1","2"],correlated:["1","1"],maxRatio:["2","1"]},
-   {name:"physical-copy",ind:["1","8"],correlated:["1","1"],maxRatio:["8","1"]}
+ const balanced=[0,1], physical=Array.from({length:8},(_,v)=>v);
+ const prob=(xs,p)=>frac(BigInt(xs.filter(p).length),BigInt(xs.length));
+ const experiments=[
+   ["adaptive-source",balanced,[Math.max(...balanced)],v=>v===1],
+   ["shared-source-k2",balanced.flatMap(x=>balanced.map(y=>[x,y])),balanced.map(x=>[x,x]),([x,y])=>x===y],
+   ["physical-copy",physical,[physical[3]],v=>v===3]
  ];
- // Compute these from explicit finite samples rather than only storing expected constants.
- const balanced=[0,1], independentAdaptive=balanced.filter(v=>v===1).length;
- const independentShared=balanced.flatMap(x=>balanced.map(y=>x===y)).filter(Boolean).length;
- const independentPhysical=Array.from({length:8},(_,v)=>v).filter(v=>v===3).length;
- ck(independentAdaptive===1&&independentShared===2&&independentPhysical===1,"negative independent costs");
- ck(balanced[Math.max(...balanced)]===1&&balanced.every(v=>v===v)&&[3].every(v=>v===3),"negative correlated costs");
+ const negative=experiments.map(([name,xs,ys,p])=>{
+   const ind=prob(xs,p),correlated=prob(ys,p);
+   const [a,b]=ind.map(BigInt),[c,d]=correlated.map(BigInt);
+   return {name,ind,correlated,maxRatio:frac(c*b,d*a)};
+ });
+ ck(JSON.stringify(negative.map(x=>x.maxRatio))===JSON.stringify([["2","1"],["2","1"],["8","1"]]),"negative ratios");
  res.negative=negative;
  return res
 }
