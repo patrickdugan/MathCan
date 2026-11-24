@@ -3,7 +3,7 @@
 **Date:** 2026-11-24 (Asia/Manila).  
 **Registration:** [RH26E05F_REGISTRATION.md](RH26E05F_REGISTRATION.md), `16338cea2b60d3336c44a9c1daaaf8370aa9bcae` before executable proof and CI.  
 **Implementation:** [RH26E05FSupportExport.lean](lean/RH26E05FSupportExport.lean), `8a9ca88d32b2766e45d4bac00b289be98fa40780`; source and workflow `d5b29a3aca8d1727c961c0a9ab73438929e6869f`.  
-**Disposition:** FIRST KERNEL RUN FAILED; proof-only repair in progress. Eleven clean axiom reports, full gate failed.
+**Disposition:** **KERNEL PASS (12/12)** on proof-only repair; all twelve original theorem signatures preserved.
 
 ## Source contract and scope
 
@@ -63,3 +63,24 @@ Eleven of twelve declarations printed clean reports with propext, Classical.choi
 ## Proof-only repair
 
 Commit `94c227ffe7e747dcb08533b1f9fc223b52a47b33`, blob `412f7061971d9d60d8d613d9ccdaaec504a434f0`, replaces the missing summability identifier by the finite-type hasSum proof and its summable consequence. All twelve public theorem signatures were compared byte-for-byte and are unchanged. [Rerun 45339984217](https://github.com/patrickdugan/MathCan/actions/runs/45339984217) queued; full kernel gate pending.
+
+## Final kernel receipt
+
+[Run 45339984217](https://github.com/patrickdugan/MathCan/actions/runs/45339984217), job 138261037081, success on `94c227ffe7e747dcb08533b1f9fc223b52a47b33`. [Artifact 14895628524](https://github.com/patrickdugan/MathCan/actions/runs/45339984217/artifacts/14895628524). Lean 4.35.0 compiler `eb6cafb7290e8bd5f2937522d8d804f58f02bafc`; Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`; source SHA-256 `3e2e441c166ae5066dd839b177fb3d82fa0b2c3dd186935f5c0a8a8d757fee90`. Isolated Lean elapsed 6.18 s, user 3.62 s, system 2.69 s, max RSS 6,968,000 kB. Compiler exit and exact twelve-name audit passed. First failure preserved; no theorem contract changes.
+
+```text
+'RH26E05F.finite_aggregation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05F.signature_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05F.finite_support_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05F.finite_export' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05F.nonnegative_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05F.tail_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05F.padding_slack_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05F.padding_slack_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05F.combined_export' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05F.nonnegative_tail_fixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05F.signed_tail_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05F.nonsummable_support_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+The independent finite-support export, exact cohomological-tail and padding slack, and all three controls are kernel verified. The source arithmetic premises and source-compatible integration remain external. No arithmetic family realization or improved global exponent claim.
