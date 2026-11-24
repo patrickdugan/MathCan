@@ -1,0 +1,57 @@
+name: ROC-01 observer card, rational oracle and Lean scope
+on:
+  push:
+    paths:
+      - 'research/observer_calculus/**'
+      - 'tests/test_roc01_*.py'
+      - 'MathCan/ObserverReportCard.lean'
+      - 'MathCan/ObserverChernoff.lean'
+      - 'papers/NRF_v04_*'
+      - '.github/workflows/roc01-observer-calculus.yml'
+  pull_request:
+    paths:
+      - 'research/observer_calculus/**'
+      - 'tests/test_roc01_*.py'
+      - 'MathCan/ObserverReportCard.lean'
+      - 'MathCan/ObserverChernoff.lean'
+      - 'papers/NRF_v04_*'
+      - '.github/workflows/roc01-observer-calculus.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-reference-and-public-receipts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install optional matrix-sweep dependency
+        run: python -m pip install --disable-pip-version-check numpy==2.3.5
+      - name: Run observer card and exact Fraction theorem tests
+        run: |
+          python -m compileall -q research/observer_calculus
+          python -m unittest tests.test_roc01_observer_card tests.test_roc01_theory tests.test_roc01_retrofit tests.test_roc01_closure_sweep tests.test_roc01_closure -v
+          python research/observer_calculus/nrf_retrofit.py --out-dir /tmp/roc01-retrofit
+          python research/observer_calculus/frontier.py > /tmp/roc01-inherited-envelope.json
+      - name: Replay inherited NRF v0.4 source-level public receipts
+        run: python papers/reproduction_v04/test_nrf_v04_public_receipts.py
+  lean-scope:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+      - name: Lean 4 kernel and axiom check for finite ROC lemmas
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/ObserverReportCard.lean | tee /tmp/roc01-lean-axioms.txt
+          lake env lean MathCan/ObserverChernoff.lean | tee -a /tmp/roc01-lean-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' /tmp/roc01-lean-axioms.txt; then exit 1; fi
