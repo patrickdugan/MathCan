@@ -1,5 +1,16 @@
 # RH-26 run ledger
 
+## RH-26E-04C — 2026-11-24 — capped weighted allocation certificates
+
+- **Status:** IMPLEMENTED; **KERNEL RESULT PENDING**. Eleven preregistered declarations match the source audit commands, with no sorry/admit/native_decide tokens. Compiler acceptance pending.
+- **Registration:** [RH26E04C_REGISTRATION.md](RH26E04C_REGISTRATION.md), `fa6d4c316947d25feab2a0f523d5ba0831b5dee2` before implementation. **Source:** [lean/RH26E04CWeightedCapacity.lean](lean/RH26E04CWeightedCapacity.lean), `a0d6e7e0fd22224029e90fc7a10d5806d254f9f2`; source+workflow `41755cb53e82196fb20336820592f6e89555a7d3`; blob `3949b032b957ead0a7f4231128bc5243a22c8c84`, 224 lines. **Report:** [RH26E04C_RESULTS.md](RH26E04C_RESULTS.md), `69045ee169ffbcd4bf0a1deb928fbfbd66d33ab0`.
+- **Scope:** local multiplicity rank budget from B08 motivates a separate finite weighted allocation abstraction. Upstream objective and caps not identified; no new upstream read or copied proof.
+- **Contracts:** hinge split t=t_+-t_-, coordinate slack identity, exact dual gap D-P=lambda*(R-sum m)+sum[(u-m)*(e-lambda)_+ + m*(e-lambda)_-]. Feasibility and nonnegative lambda imply weak duality, equality iff complementary products vanish. Threshold allocation with these conditions dominates every feasible competitor. Arbitrary signed coefficients permitted. Witnessed optimality only, no universal threshold-construction algorithm claimed.
+- **Fixtures:** e=(9,5,1), caps=(2,3,4), budget=4, m=(2,2,0), lambda=5, primal=dual=28<36; all feasible alternatives <=28. Three one-coordinate counterexamples test missing cap, negative multiplier, and negative mass, respectively.
+- **CPU run:** [45319794628](https://github.com/patrickdugan/MathCan/actions/runs/45319794628), job `138195315161`, checked `41755cb5`. Initial checkout and pin checks passed, Lean setup in progress. Require successful compiler exit and eleven exact names, only propext/Classical.choice/Quot.sound, dependency and source hashes, timing/RSS, audit artifact.
+- **Resources:** one isolated GitHub CPU job, 25-minute timeout, pinned Lean 4.35.0 / Mathlib v4.35.0. No upstream/full Deligne build, paid compute, GPU/QPU.
+- **Resume:** inspect 45319794628; preserve failures and repair within frozen contracts or close with receipts. Then B09 source inventory or independent joint duplicate-label/kernel dimension defect theorem.
+
 ## RH-26E-04B — 2026-11-24 — exact and stable block-scalar transport
 
 - **Status:** **KERNEL PASS (11/11)** on the original implementation; all frozen theorem contracts retained, no repairs.
