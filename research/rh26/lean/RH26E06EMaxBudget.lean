@@ -112,6 +112,13 @@ theorem threshold_gain (d c s v l H e eps : ℝ)
 
 def familyMax (base : ℝ) (xs : List ℝ) : ℝ := xs.foldr max base
 
+private theorem abs_sum_nonneg (xs : List ℝ) : 0 ≤ (xs.map abs).sum := by
+  induction xs with
+  | nil => simp
+  | cons a xs ih =>
+    simp only [List.map_cons,List.sum_cons]
+    exact add_nonneg (abs_nonneg a) ih
+
 theorem family_threshold (base : ℝ) (xs : List ℝ) (hb : 1 ≤ base) :
     base ≤ familyMax base xs ∧
     (∀ t ∈ xs, t ≤ familyMax base xs) ∧
@@ -120,10 +127,7 @@ theorem family_threshold (base : ℝ) (xs : List ℝ) (hb : 1 ≤ base) :
   | nil => simp [familyMax]
   | cons a xs ih =>
     obtain ⟨hbase, hall, hupper⟩ := ih
-    have hnonneg : 0 ≤ (xs.map abs).sum := by
-      induction xs with
-      | nil => simp
-      | cons t ts ih' => simp only [List.map_cons,List.sum_cons]; linarith [abs_nonneg t]
+    have hnonneg := abs_sum_nonneg xs
     change base ≤ max a (familyMax base xs) ∧
       (∀ t ∈ a::xs, t ≤ max a (familyMax base xs)) ∧
       max a (familyMax base xs) ≤ base+(abs a+(xs.map abs).sum)
