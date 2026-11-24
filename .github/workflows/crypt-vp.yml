@@ -115,3 +115,37 @@ jobs:
         with:
           name: qbtc-01-exact
           path: ${{ runner.temp }}/qbtc-01.json
+
+  exact-consensus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replay QBTC-02 finite covering and consensus games
+        shell: bash
+        run: |
+          set -euo pipefail
+          node research/CRYPT_VP/qbtc02_check.mjs | tee "$RUNNER_TEMP/qbtc-02.json"
+          python3 - "$RUNNER_TEMP/qbtc-02.json" <<'PY'
+          import json,sys
+          from fractions import Fraction
+          r=json.load(open(sys.argv[1]))
+          assert r["schema"]=="qbtc-02-v1"
+          assert r["cover"]=={"sets":256,"shiftPairChecks":16384,"low":37,"high":37,"gap":182,"gapYes":126}
+          rows=r["consensus"]["rows"]
+          assert r["consensus"]["cases"]==len(rows)==126
+          assert len({(tuple(x["p"]),x["repetitions"],x["nodes"]) for x in rows})==126
+          for x in rows:
+              p=Fraction(*map(int,x["p"]))
+              a=Fraction(*map(int,x["accept"]))
+              s=Fraction(*map(int,x["split"]))
+              n=x["nodes"]
+              assert s==1-a**n-(1-a)**n
+              if p==Fraction(1,2):
+                  assert a==p and s==1-Fraction(2,2**n)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qbtc-02-exact
+          path: ${{ runner.temp }}/qbtc-02.json
