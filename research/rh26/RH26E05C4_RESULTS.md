@@ -1,0 +1,3 @@
+# RH26E05C4 unified export results
+
+First run [45359188988](https://github.com/patrickdugan/MathCan/actions/runs/45359188988), job 138324567850, commit 5b580d7483c2e6fb4090a832191510c124fff286: **FAIL**. [Preserved artifact](https://github.com/patrickdugan/MathCan/actions/runs/45359188988/artifacts/14904440468). C1/C2/C3 compiled and printed their 45 allowed-axiom reports; seven new C4 declarations printed allowed-axiom reports. C4 unified_point_bound at line 223 failed on exceptional sum association: 11020*(C+1)^2*H^18 vs 11020*scale C H. Its error recovery introduced sorryAx, correctly failing compiler acceptance. Repair only the proof body, unfold scale and normalize multiplication with ring. No contract or supplier changes. Full 53-name acceptance remains pending.
