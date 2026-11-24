@@ -3,7 +3,7 @@
 **Date:** 2026-11-24.  
 **Registration:** [RH26E05B_REGISTRATION.md](RH26E05B_REGISTRATION.md), `1cd3ad275f4e76262403a959e56013272126123f`, before proof implementation.  
 **Implementation:** [RH26E05BDegreeCapacity.lean](lean/RH26E05BDegreeCapacity.lean), `bd892f5c92467616ec64c4419bba5e7585454696`; source/workflow commit `5f3dc4471bdd28d9129e7b8ff1dea6f4a1cfe702`.  
-**Disposition:** IMPLEMENTED; **KERNEL RESULT PENDING**. All twelve public names and axiom-print names match the registration. No admission or native_decide tokens found.
+**Disposition:** **KERNEL PASS (12/12)** on original implementation.
 
 ## Source connection and mathematical contract
 
@@ -53,3 +53,24 @@ The fixture sets L=1, D=4, one place of degree mass 2, R=2, U=9, local caps (1,3
 - Isolated CPU Lean 4.35.0 / Mathlib v4.35.0 job, 25-minute timeout; no new upstream reads, full upstream/Deligne build, GPU/QPU or paid compute.
 
 E05F separately passed its twelve-declaration audit during this session. Next inspect the E05B run; after its closure, choose B15 source inventory of N.linkN_of or separate stronger numerical supplier modules (E05C2). No improved RH or theta multiplicity exponent claim.
+
+## Final kernel receipt
+
+[Run 45340215014](https://github.com/patrickdugan/MathCan/actions/runs/45340215014), job 138261787386, success on original `5f3dc4471bdd28d9129e7b8ff1dea6f4a1cfe702`. [Artifact 14894529425](https://github.com/patrickdugan/MathCan/actions/runs/45340215014/artifacts/14894529425). Lean 4.35.0 compiler `eb6cafb7290e8bd5f2937522d8d804f58f02bafc`; Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`; source SHA-256 `d18d9627971f5f6296004a5dbe3268f5d59fd3c95dd39e97b8fa7e4caf21778d`. Isolated Lean elapsed 6.43 s, user 4.07 s, system 2.67 s, max RSS 6,973,796 kB. Compiler exit and exact twelve-name axiom audit passed without repair. Earlier pending language is historical.
+
+```text
+'RH26E05B.local_mass_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05B.finite_dual_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05B.place_capacity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05B.uniform_place_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05B.degree_coverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05B.weight_normalization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05B.coverage_slack_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05B.degree_weighted_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05B.nested_export' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05B.exact_fixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05B.missing_cap_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E05B.excess_coverage_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+The independent nested capacity and degree-weighted export theorem, both exact slack terms, and all three fixtures are kernel verified. Arithmetic realization and source integration remain external. Next E05C2 stronger numerical supplier modules or B15 source inventory.
