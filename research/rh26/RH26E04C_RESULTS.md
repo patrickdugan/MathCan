@@ -3,7 +3,7 @@
 **Date:** 2026-11-24 (Asia/Manila).
 **Registration:** [RH26E04C_REGISTRATION.md](RH26E04C_REGISTRATION.md), `fa6d4c316947d25feab2a0f523d5ba0831b5dee2`, before implementation.
 **Source:** [RH26E04CWeightedCapacity.lean](lean/RH26E04CWeightedCapacity.lean), `a0d6e7e0fd22224029e90fc7a10d5806d254f9f2`; source+workflow `41755cb53e82196fb20336820592f6e89555a7d3`.
-**Disposition:** FIRST KERNEL RUN FAILED; proof-only repair in progress. Five declarations printed clean axiom receipts; the full gate has not passed.
+**Disposition:** **KERNEL PASS (11/11)** on proof-only repair. All eleven original theorem statements preserved.
 
 ## Independent mathematical extension
 
@@ -56,3 +56,23 @@ Clean theorem-level axiom receipts for hinge_split, coordinate_gap, missing_cap_
 ## Proof-only repair
 
 Commit `f01220d6fda6ecb4c20c72b49a5a485faa349172`, source blob `ef9e2c75abb64a94693ba13d34f2f33b76070e01`, fixes finite-sum scoping and explicitly rewrites both hinge terms in the threshold proof. All eleven public theorem signatures were compared byte for byte and are unchanged. Fresh [run 45323347374](https://github.com/patrickdugan/MathCan/actions/runs/45323347374) is queued. Full kernel and exact-name audit pending.
+
+## Final kernel receipt
+
+[Run 45323347374](https://github.com/patrickdugan/MathCan/actions/runs/45323347374), job 138206871422, completed success on `f01220d6fda6ecb4c20c72b49a5a485faa349172`. [Artifact 14888935532](https://github.com/patrickdugan/MathCan/actions/runs/45323347374/artifacts/14888935532). Lean 4.35.0 compiler `eb6cafb7290e8bd5f2937522d8d804f58f02bafc`; Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`; source SHA-256 `442182f26db93b84042a8790a1a73ec1d9fb36eebde8bfd4a62bfe7fab51d941`. Isolated Lean invocation elapsed 7.17 s, user 4.89 s, system 3.14 s, maximum RSS 6,975,180 kB. Compiler exit and exact eleven-name audit passed. First failure retained above. No theorem contract changes.
+
+```text
+'RH26E04C.hinge_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04C.coordinate_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04C.dual_gap_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04C.dual_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04C.equality_certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04C.equality_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04C.threshold_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04C.tight_fixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04C.missing_cap_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04C.negative_multiplier_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04C.negative_mass_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+B09 subsequently identified the exact pointwise local cost and MultLe→adm2 transfer. See [RH26B09_ADMISSIBLE_TABLE.md](RH26B09_ADMISSIBLE_TABLE.md) Section 5 for a separate proposed conditional application of the verified dual bound to the source's actual local and joint rank caps. The weighted residual is independently defined; identification with the actual downstream aggregate is still open.
