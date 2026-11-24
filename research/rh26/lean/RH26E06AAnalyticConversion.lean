@@ -56,7 +56,7 @@ theorem refined_conversion (F q g N z R K V η : ℝ)
   apply mul_le_mul_of_nonneg_left _ hR
   calc
     _ ≤ (abs K)*weight F q g N+q := by linarith only [hsl]
-    _ ≤ (abs K)*weight F q g N+(1/(F*g^2*q))*weight F q g N := add_le_add_left hb _
+    _ ≤ (abs K)*weight F q g N+(1/(F*g^2*q))*weight F q g N := by linarith only [hb]
     _ = _ := by ring
 
 theorem delta_budget (F q g N δ : ℝ)
@@ -92,7 +92,7 @@ theorem delta_conversion (F q g N z R K V η δ : ℝ)
   apply mul_le_mul_of_nonneg_left _ hR
   calc
     _ ≤ (abs K)*weight F q g N+q := by linarith only [hsl]
-    _ ≤ (abs K)*weight F q g N+δ*weight F q g N := add_le_add_left hb _
+    _ ≤ (abs K)*weight F q g N+δ*weight F q g N := by linarith only [hb]
     _ = _ := by ring
 
 theorem eventual_delta (eps δ : ℝ) (he : 0 < eps) (hd : 0 < δ) :
