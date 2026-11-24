@@ -4,16 +4,19 @@ import re
 import subprocess
 import sys
 
-targets = {"CLN02": 8, "CLN03": 6, "CLN04": 3}
+targets = {"CLN02": 8, "CLN03": 6, "CLN04": 3, "CLN05": 8}
 allowed = {"propext", "Classical.choice", "Quot.sound"}
 bad = []
+pathlib.Path(".cln-build").mkdir(exist_ok=True)
 for module, expected in targets.items():
     p = pathlib.Path(module + ".lean")
     # Every theorem must be backed by Lean rather than an explicit postulate.
     src = p.read_text(encoding="utf-8")
     if re.search(r"(?m)^\s*(?:private\s+|protected\s+)?axiom\b|\b(?:sorry|admit)\b", src):
         bad.append(module + ": prohibited source token")
-    run = subprocess.run(["lake", "env", "lean", str(p)],
+    run = subprocess.run(["lake", "env", "bash", "-c",
+                          'export LEAN_PATH="$PWD/.cln-build:$LEAN_PATH"; lean -o ".cln-build/$1.olean" "$1.lean"',
+                          "_", module],
                          text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     out = run.stdout
     pathlib.Path(module + "-kernel.log").write_text(out, encoding="utf-8")
