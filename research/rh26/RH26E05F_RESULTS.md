@@ -59,3 +59,7 @@ Inspect this exact run first on resumption and retain failures before proof-only
 [Run 45337671069](https://github.com/patrickdugan/MathCan/actions/runs/45337671069), job 138253495876, failed on `d5b29a3aca8d1727c961c0a9ab73438929e6869f`. Source SHA-256 `fab642faf4a4a853a427e21128a3b03fde1572a37a977656958831130cbeab57`; [artifact 14894716503](https://github.com/patrickdugan/MathCan/actions/runs/45337671069/artifacts/14894716503). Setup, Mathlib and artifact upload succeeded.
 
 Eleven of twelve declarations printed clean reports with propext, Classical.choice, Quot.sound only. The sole error, at line 128 in signed_tail_control, is an unknown identifier summable_of_finite. The signed control has sorryAx from recovery, while finite_export, padding_slack_nonneg, combined_export and nonsummable_support_control have clean reports. Two unused-variable warnings in the nonsummable control are nonfatal. Repair the summability proof using the finite-type hasSum lemma; retain all theorem contracts.
+
+## Proof-only repair
+
+Commit `94c227ffe7e747dcb08533b1f9fc223b52a47b33`, blob `412f7061971d9d60d8d613d9ccdaaec504a434f0`, replaces the missing summability identifier by the finite-type hasSum proof and its summable consequence. All twelve public theorem signatures were compared byte-for-byte and are unchanged. [Rerun 45339984217](https://github.com/patrickdugan/MathCan/actions/runs/45339984217) queued; full kernel gate pending.
