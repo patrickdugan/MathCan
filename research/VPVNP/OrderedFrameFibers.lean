@@ -58,7 +58,7 @@ theorem parity_surjective (b : Bits I) (hb : b ≠ 0) :
   obtain ⟨v,hv⟩ := exists_pairing_one b hb
   intro t
   rcases bit_cases t with rfl | rfl
-  · exact ⟨0, by simp⟩
+  · exact ⟨0, (parityLinear b).map_zero⟩
   · exact ⟨v,hv⟩
 
 end Forms
@@ -105,12 +105,13 @@ theorem kernel_finrank {n : ℕ} (b : BinarySpace (n+1)) (hb : b ≠ 0) :
     Module.finrank (ZMod 2) (KernelSpace b) = n := by
   have h := (parityLinear b).finrank_range_add_finrank_ker
   rw [LinearMap.range_eq_top.mpr (parity_surjective b hb)] at h
-  simp only [Submodule.finrank_top, Module.finrank_self, Module.finrank_fin_fun] at h
+  simp only [finrank_top, Module.finrank_self, Module.finrank_fin_fun] at h
+  change Module.finrank (ZMod 2) (LinearMap.ker (parityLinear b)) = n
   omega
 
 noncomputable def kernelCoordinates {n : ℕ} (b : BinarySpace (n+1)) (hb : b ≠ 0) :
     BinarySpace n ≃ₗ[ZMod 2] KernelSpace b :=
-  LinearEquiv.ofFinrankEq (by rw [Module.finrank_fin_fun, kernel_finrank b hb])
+  LinearEquiv.ofFinrankEq (BinarySpace n) (KernelSpace b) (by rw [Module.finrank_fin_fun, kernel_finrank b hb])
 
 noncomputable def outsidePoint {n : ℕ} (b : BinarySpace (n+1)) (hb : b ≠ 0) :
     OutsideSpace b :=
@@ -124,14 +125,12 @@ def prefixLinear {n : ℕ} {b : BinarySpace (n+1)} (e : FrameFiber n b) :
     apply Subtype.ext
     change e.1 (x+y,0) = e.1 (x,0) + e.1 (y,0)
     rw [← map_add]
-    congr 1
-    simp
+    congr 1 <;> simp
   map_smul' r x := by
     apply Subtype.ext
     change e.1 (r • x,0) = r • e.1 (x,0)
     rw [← map_smul]
-    congr 1
-    simp
+    congr 1 <;> simp
 
 noncomputable def prefixEquiv {n : ℕ} {b : BinarySpace (n+1)} (e : FrameFiber n b) :
     BinarySpace n ≃ₗ[ZMod 2] KernelSpace b :=
