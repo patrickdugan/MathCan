@@ -125,7 +125,8 @@ theorem signed_tail_control :
     (∑' i, signedFixture i) = -1 ∧
     tail ({0} : Finset (Fin 2)) signedFixture = -3 ∧
     (∑' i, signedFixture i) < ∑ i ∈ ({0} : Finset (Fin 2)), signedFixture i := by
-  refine ⟨summable_of_finite, ?_⟩
+  have hs : Summable signedFixture := (hasSum_fintype signedFixture).summable
+  refine ⟨hs, ?_⟩
   norm_num [tail, signedFixture, tsum_fintype, Fin.sum_univ_two]
 
 theorem nonsummable_support_control :
