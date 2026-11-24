@@ -1,12 +1,8 @@
 name: VPVNP-02D hyperplane cancellation
+# Historical per-stage gate; consolidated proof workflow runs on the PR.
 on:
-  pull_request:
-    paths:
-      - 'research/VPVNP/HyperplaneCancellation.lean'
-      - 'research/VPVNP/hyperplane_check.py'
-      - 'research/VPVNP/BinaryWalsh.lean'
-      - '.github/workflows/vpvnp02d-hyperplanes.yml'
   workflow_dispatch:
+
 permissions:
   contents: read
 concurrency:

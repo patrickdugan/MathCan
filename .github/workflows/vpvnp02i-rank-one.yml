@@ -1,12 +1,8 @@
 name: VPVNP-02I rank one character
+# Historical per-stage gate; consolidated proof workflow runs on the PR.
 on:
-  pull_request:
-    paths:
-      - 'research/VPVNP/RankOneCharacter.lean'
-      - 'research/VPVNP/CanonicalRankRecurrence.lean'
-      - 'research/VPVNP/rank_one_check.py'
-      - '.github/workflows/vpvnp02i-rank-one.yml'
   workflow_dispatch:
+
 permissions:
   contents: read
 concurrency:

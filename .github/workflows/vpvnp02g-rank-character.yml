@@ -1,12 +1,8 @@
 name: VPVNP-02G matrix rank characters
+# Historical per-stage gate; consolidated proof workflow runs on the PR.
 on:
-  pull_request:
-    paths:
-      - 'research/VPVNP/MatrixRankCharacter.lean'
-      - 'research/VPVNP/SignedFrameTransport.lean'
-      - 'research/VPVNP/full_walsh_audit.py'
-      - '.github/workflows/vpvnp02g-rank-character.yml'
   workflow_dispatch:
+
 permissions:
   contents: read
 concurrency:

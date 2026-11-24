@@ -1,17 +1,8 @@
 name: VPVNP-02B spectral proof
+# Historical per-stage gate; consolidated proof workflow runs on the PR.
 on:
-  push:
-    branches: [research/vpvnp-01-spectral-geometry-20261124]
-    paths:
-      - 'research/VPVNP/RankSpectral.lean'
-      - 'research/VPVNP/stability_check.py'
-      - '.github/workflows/vpvnp02b-spectral.yml'
-  pull_request:
-    paths:
-      - 'research/VPVNP/RankSpectral.lean'
-      - 'research/VPVNP/stability_check.py'
-      - '.github/workflows/vpvnp02b-spectral.yml'
   workflow_dispatch:
+
 permissions:
   contents: read
 concurrency:

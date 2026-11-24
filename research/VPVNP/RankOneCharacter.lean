@@ -32,7 +32,7 @@ theorem exists_one_coordinate {n : ℕ} (u : BinarySpace n) (hu : u ≠ 0) :
 theorem matrix_rank_zero_imp_zero {n : ℕ} (W : BinMat (Fin n)) (hr : W.rank = 0) :
     W=0 := by
   rw [Matrix.rank_eq_finrank_span_cols] at hr
-  have hz := (FiniteDimensional.finrank_zero_iff_forall_zero).1 hr
+  have hz := (finrank_zero_iff_forall_zero).1 hr
   ext i j
   let col : Submodule.span (ZMod 2) (Set.range W.col) :=
     ⟨W.col j, Submodule.subset_span ⟨j,rfl⟩⟩
@@ -188,7 +188,11 @@ theorem kernel_vector_card {n : ℕ} (B : BinMat (Fin n)) :
         Module.finrank (ZMod 2) (Fin (n-B.rank) → ZMod 2)
       rw [kernel_dim,Module.finrank_fin_fun])
   calc
-    _ = Fintype.card K := (Fintype.card_of_subtype _ (fun u => by simp [K,LinearMap.mem_ker]; rfl)).symm
+    _ = Fintype.card K := (Fintype.card_of_subtype _ (fun u => by
+      rw [Finset.mem_filter]
+      simp only [Finset.mem_univ, true_and]
+      change Matrix.mulVec B.transpose u = 0 ↔ Matrix.mulVec B.transpose u = 0
+      rfl)).symm
     _ = _ := (Fintype.card_congr e.toEquiv).trans (binary_space_card _)
 
 theorem outer_full_sum {n : ℕ} (B : BinMat (Fin n)) :

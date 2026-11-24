@@ -1,17 +1,8 @@
 name: VPVNP-02C binary Walsh and basis DP
+# Historical per-stage gate; consolidated proof workflow runs on the PR.
 on:
-  push:
-    branches: [research/vpvnp-01-spectral-geometry-20261124]
-    paths:
-      - 'research/VPVNP/BinaryWalsh.lean'
-      - 'research/VPVNP/basis_dp.py'
-      - '.github/workflows/vpvnp02c-binary-walsh.yml'
-  pull_request:
-    paths:
-      - 'research/VPVNP/BinaryWalsh.lean'
-      - 'research/VPVNP/basis_dp.py'
-      - '.github/workflows/vpvnp02c-binary-walsh.yml'
   workflow_dispatch:
+
 permissions:
   contents: read
 concurrency:
