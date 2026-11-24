@@ -1,5 +1,21 @@
 # RH-26 run ledger
 
+## RH-26E-06G — 2026-11-24 — composed scalar growth certificate
+
+- **Status:** IMPLEMENTED; kernel audit pending. [Registration](RH26E06G_REGISTRATION.md) 34b2ea41fa9a7e245132cea7c4f01a7809b530bc; [Lean source](lean/RH26E06GComposedGrowth.lean) 14bb7a453b5f3f0f59db5b6d74dbd964b35ebbaa; workflow 572397bd9302d9ded02a3e660a400655fa5a040b. Ten new declarations, imports exact E06F with byte comparison and two-module audit of 20 names. Direct upstream SZ and proposition_size_bound proof adapted to unabsorbed 26 factor, arbitrary positive margin, exact bracket, E06F.split_absorb and final character absorption. Conditional analytic envelope 1/2+(37/8+alpha+beta+gamma)*eps at eD=2,eL=0; explicit thresholds, 7/5 coefficient controls. Retain arithmetic/host obligations; no upstream integration.
+
+## RH-26B-30 — 2026-11-24 — exact growth-size supplier
+
+- **Status:** SOURCE PASS. [Report](RH26B30_GROWTH_SIZE.md) aa315ff30424425267d2023b634924c3ff1c0238; [registration](RH26B30_REGISTRATION.md) f4a507f15b290385591c815d60727441570a463b. Three files,853 initial returned lines. LipschitzWeightAndMinimum:68–160 gives SZ bounds, 282–367 actual proof first G<=26*x^(1/2+(C+21/8)*eps), uses 26<=x^(3eps/8) only at final absorption. Keep T4 thick density factor for cancellation. E06F verified split core composes conditionally with these source premises; E06G pending. Next B31 terminal lemmaL and SlopesNF numeric dependence or source-compatible analytic integration.
+
+## RH-26E-06F — final kernel PASS
+
+- **Status:** 10/10 PASS on original implementation a42cdabee7e258064d2405600ea63d914afc55a2. [Receipt](RH26E06F_RESULTS.md), [CI 45383682726](https://github.com/patrickdugan/MathCan/actions/runs/45383682726), artifact 14914689311. Elapsed 14.22s, peak RSS 7068144 kB. Full strengthened scalar inequality and all nine supporting results verified with allowed axioms; no repair. Source SHA256 03c8568a09c43536fe7b502e4f059cd40da5a352263175af9e852daf3c959b2f. E05C4/E06A-F 111 audited declarations across independent modules.
+
+## RH-26E-06E — final kernel PASS
+
+- **Status:** 10/10 PASS after private induction repair b2ab6a2c626d5f58087e904a8e3467f97e8d6701. [Receipt](RH26E06E_RESULTS.md), [CI 45383305777](https://github.com/patrickdugan/MathCan/actions/runs/45383305777), artifact 14914068968. Elapsed 7.26s, peak RSS 6985476 kB. All public statements unchanged; maximum budget and exact threshold verified.
+
 ## RH-26E-06F — 2026-11-24 — direct split core inequality
 
 - **Status:** IMPLEMENTED; independent kernel audit pending. [Registration](RH26E06F_REGISTRATION.md) f72bf3f572c18c60ae388e3e38171322b64adcb0; [Lean source](lean/RH26E06FSplitCore.lean) 658c142871113cbc28fbde062fd0a886affef903; workflow a42cdabee7e258064d2405600ea63d914afc55a2. Ten exact public declarations; direct adaptation of full upstream core_ineq hypotheses and LHS except removal of hbig. Y=max(y,yL), isolated T2b, explicit H*max(yD,y²,y*yL)*E. H<=53*(1+K)^2*h*g, factor 52 control, real-power envelope max(eD,2,1+eL)+delta after fixed H absorption; source 2,0 gives 2+delta vs 5. Additional final character absorption with arbitrary positive delta. Await actual audit; not upstream realization or global exponent result.
