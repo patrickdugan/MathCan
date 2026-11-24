@@ -1,5 +1,25 @@
 # RH-26 run ledger
 
+## RH-26E-06B — 2026-11-24 — exact wire gain
+
+- **Status:** IMPLEMENTED; kernel audit pending. [Registration](RH26E06B_REGISTRATION.md) 73ad9f9e3a752591f9a861451e3e83ccbbc9a807; [Lean source](lean/RH26E06BWireGain.lean) 394d3fa9beaf003f02be716d47e0c93b0964be5a; workflow b7036ad3e19856a476b1eb5ac52b678efcab51f2. Ten registered declarations. With fixed C,cD,C0>=28, Cwire=60*max(C0,2*C+Ce+cD+3). Gain is exactly 60 times positive-part difference; maximum 60*(Ce_hi-Ce_lo); threshold gain at most 2*(E_hi-E_lo). For original and refined DIVinN witnesses with same +1, full possible gain 113700*(Ca+1)^3. Floor may mask all improvement. Await actual kernel receipt.
+
+## RH-26B-20 — 2026-11-24 — exact wire constants
+
+- **Status:** SOURCE PASS. [Report](RH26B20_WIRE_CONSTANTS.md) 40449e19bd5f25dfce27d89b320cb6459e1fcc8e; [registration](RH26B20_REGISTRATION.md) 5790dcd544f5ee9c9d4fda1c21a2497609fa87df. ArithClauseRec:49–56 supplies c0F>=28, ceF=max(C0,2*C+Ce+cD+3), x0F=max(B,272+2*ceF). Actual arithClause_rec consumes all threshold branches, C0,ceF,Ce in NumFacts,RecNums,divSize. Wire simplifies to 60*ceF. No downstream global coefficient claim. One source file,104 lines. B21: actual closed_linkDIVt_of_closed_bridge_kernel and remaining frame/divSize/LinkDIV assembly; rank inner theorem and zL supplier remain queued.
+
+## RH-26B-19 — 2026-11-24 — explicit DIVinN witness consumer
+
+- **Status:** SOURCE PASS for wire4F_alt; partial final family bridge. [Report](RH26B19_WIRE_COEFFICIENT.md) b89eebae93bd05c99def8dadf558ffc16e2d46d8; [registration](RH26B19_REGISTRATION.md) 7844db233ef9a842cdad349c73c79b20ace8653f. Eight files,730 lines. Wire4F extracts Ce,x3 from DIVinN; chooses max(0,max(50*C0+10,60*ceF)) and shared threshold including x0F. Separate RemainingDivisionBounds consumes DIVinN via he(hN) in hh_of_lvl. Fixed-row-witness condition needed for scalar comparisons.
+
+## RH-26B-18 — 2026-11-24 — exact rank equality supplier
+
+- **Status:** SOURCE PASS for Closed SmallLevelRankEq and exact LinkDIVt bridge call; inner theorem and final bridge partial. [Report](RH26B18_RANK_BRIDGE.md) c464778137057e74886074d1d9c6a4c4d33b5445; [registration](RH26B18_REGISTRATION.md) ff47a56685ea9153dd866d29744358ee76b8938e. Eight files,601 lines. link_alt_alt_alt invokes rank_zero_of_row_conditions_alt using surjective level-three projections at mu0, shared selected rows and threshold max(max(selection,xr),Fm.x1+1). This yields dZ0(j)=D0 via inner theta theorem and j=k+1. TopShape calls closed_linkDIVt_of_closed_bridge_kernel using hBR DivisionKernelConstantBounds with Cabs=2. No new growth exponent.
+
+## RH-26E-06A — final kernel PASS
+
+- **Status:** 8/8 exact declarations PASS on second proof repair 2a3a64b61726f0e1a0eb88bb835b44c4fa77ea24. [Final receipt](RH26E06A_RESULTS.md), [CI](https://github.com/patrickdugan/MathCan/actions/runs/45375838926), artifact 14910354030. Lean 4.35.0, Mathlib pinned; elapsed 6.05s, peak RSS 6976380kB. Original lexical failure and six-clean-declaration second run preserved. Exact slack, refined cohomology coefficient, eventual delta and control verified under registered premises. Source arithmetic integration remains outstanding.
+
 ## RH-26B-17 — 2026-11-24 — cohomology window and global assembly
 
 - **Status:** SOURCE PASS for VWin-to-HypV and top-level LinkDIVt consumer. [Registration](RH26B17_REGISTRATION.md) 97c11db1a29dcc0340d224b3ac8e8ba2637a0688; [Report](RH26B17_COHOMOLOGY_GLOBAL.md) 4cbf29eec7dce16d622a41c1fe7ddb7f8e305b2e; upstream c900e67c2fcd1fdb041685820bbd2b867fbc5a4b. Eight files, 920 distinct source lines plus 105 repeated.
