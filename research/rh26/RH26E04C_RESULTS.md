@@ -3,7 +3,7 @@
 **Date:** 2026-11-24 (Asia/Manila).
 **Registration:** [RH26E04C_REGISTRATION.md](RH26E04C_REGISTRATION.md), `fa6d4c316947d25feab2a0f523d5ba0831b5dee2`, before implementation.
 **Source:** [RH26E04CWeightedCapacity.lean](lean/RH26E04CWeightedCapacity.lean), `a0d6e7e0fd22224029e90fc7a10d5806d254f9f2`; source+workflow `41755cb53e82196fb20336820592f6e89555a7d3`.
-**Disposition:** IMPLEMENTED; **KERNEL RESULT PENDING**. Eleven public theorem names match the registered audit list. Source admission-token check passed. Compiler verification remains pending.
+**Disposition:** FIRST KERNEL RUN FAILED; proof-only repair in progress. Five declarations printed clean axiom receipts; the full gate has not passed.
 
 ## Independent mathematical extension
 
@@ -46,3 +46,9 @@ These are exact mathematical control contracts, not experimental measurements or
 - Isolated CPU Lean 4.35.0 / Mathlib v4.35.0 workflow, 25-minute timeout. No new upstream reads, upstream build, full Deligne build, paid/GPU/QPU compute.
 
 Next inspect this exact run, preserve failures and repair only within the frozen contracts. After closure, return to source inventory B09 (admissible-table conversion or generic theta injection supplier), or register the combined duplicate-label and kernel-dimension accounting theorem.
+
+## First-run failure receipt
+
+[Run 45319794628](https://github.com/patrickdugan/MathCan/actions/runs/45319794628), job 138195315161, completed failure at `41755cb53e82196fb20336820592f6e89555a7d3`. Source SHA-256 `1ce1b32bfaa636e1e7226c68146bc4b1e7cfedd0c7c634b511e6a2b549670b02`; [artifact 14886499483](https://github.com/patrickdugan/MathCan/actions/runs/45319794628/artifacts/14886499483). Toolchain, Mathlib resolution and artifact upload passed.
+
+Clean theorem-level axiom receipts for hinge_split, coordinate_gap, missing_cap_control, negative_multiplier_control and negative_mass_control, with only propext, Classical.choice, Quot.sound. The finite-sum binder on line 64 of the dual_gap_identity proof requires parentheses around the whole summand (three unknown-i errors and subsequent no-progress simplification). The negative threshold case at lines 155–157 needs an explicit rewrite of negpart at nonpositive argument rather than a general simp call. Six downstream declarations carried sorryAx from compiler recovery. Preserve the failed audit and repair these proof steps without changing definitions or any public theorem type.
