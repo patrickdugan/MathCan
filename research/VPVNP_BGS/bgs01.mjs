@@ -66,6 +66,28 @@ function audit() {
       result.checks.complete_or_tables++;
     }
   }
+  // Tight bounded-ambiguity family: inputs are subsets of size <= d.
+  // Inclusion-exclusion truncates at d; no assumption on characteristic.
+  result.bounded_overlap=[];
+  let boundedChecks=0;
+  for(const p of fields)for(let n=1;n<=7;n++)for(let d=1;d<=Math.min(3,n);d++){
+    const masks=Array.from({length:1<<n},(_,i)=>i).filter(x=>pc(x)<=d);
+    const O=masks.map(x=>masks.map(y=>Number((x&y)!==0)));
+    const C=masks.map(x=>masks.map(y=>pc(x&y)));
+    const ro=rank(O,p),rc=rank(C,p);
+    check(ro===masks.length-1&&rc===n,"bounded-overlap tight ranks");
+    let terms=0;
+    for(const x of masks)for(const y of masks){
+      let a=0;
+      for(let t=x&y;t;t=(t-1)&(x&y)){check(pc(t)<=d,"overlap");a+=pc(t)%2?1:-1;}
+      check(mod(a,p)===Number((x&y)!==0),"bounded-overlap truncated identity");
+      terms++;
+    }
+    boundedChecks+=terms;
+    result.bounded_overlap.push({p,n,d,nondisjoint:ro,count:rc,nonempty_subsets:masks.length-1});
+  }
+  result.checks.bounded_overlap_cases=result.bounded_overlap.length;
+  result.checks.bounded_overlap_entries=boundedChecks;
   return result;
 }
 console.log(JSON.stringify(audit(), null, 2));
