@@ -3,7 +3,7 @@
 **Date:** 2026-11-24 (Asia/Manila).  
 **Registration:** [RH26E04B_REGISTRATION.md](RH26E04B_REGISTRATION.md), commit `723178d20c14f9261e747339f986996c5ba565bf`, frozen before executable proof and CI.  
 **Implementation:** [RH26E04BBlockTransport.lean](lean/RH26E04BBlockTransport.lean), commit `fc3536491c50411ae864313505c8bdde9f16199e`; source+workflow at `9be4158b26896d5904a82211ff1449d89d64b4b1`.  
-**Disposition:** IMPLEMENTED; **KERNEL RESULT PENDING**. All eleven public theorem names and corresponding audit commands match the registration. No sorry/admit/native_decide tokens found. Compiler acceptance remains pending.
+**Disposition:** **KERNEL PASS (11/11)** on original implementation.
 
 ## Source connection and independent extension
 
@@ -64,3 +64,23 @@ The final control is a one-dimensional sharp obstruction; it tests the general g
 - Isolated Lean/Mathlib v4.35.0 GitHub CPU job, 25-minute timeout. No full upstream or Deligne build, new upstream reads, GPU/QPU, or paid compute.
 
 Inspect this run first on resumption. Preserve any failed receipts and repair within frozen theorem contracts. After successful audit, consider E04C capped allocation dual, the joint incidence/kernel defect theorem, or B09 source inventory. Keep exact, numerically certified and conjectural results distinct.
+
+## Final kernel receipt
+
+[Run 45286618247](https://github.com/patrickdugan/MathCan/actions/runs/45286618247), job 138084501274, completed success on `9be4158b26896d5904a82211ff1449d89d64b4b1`. [Artifact 14871832188](https://github.com/patrickdugan/MathCan/actions/runs/45286618247/artifacts/14871832188). Lean 4.35.0 compiler `eb6cafb7290e8bd5f2937522d8d804f58f02bafc`; Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`; source SHA-256 `9f1ce5fb6009febc72ad137deb061e5f5950f1dd1c8c6057ae5018c357795a04`. Isolated Lean invocation elapsed 5.94 s, user 5.11 s, system 1.77 s, maximum RSS 6,978,232 kB. Compiler exit and exact eleven-name audit passed. No repair or frozen contract change. Earlier pending language is historical.
+
+```text
+'RH26E04B.block_scalar_projection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04B.block_scalar_recovery' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04B.block_scalar_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04B.finite_energy_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04B.orthogonal_block_gain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04B.perturbed_composition_gain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04B.forward_gain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04B.perturbed_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04B.conditioned_block_gain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04B.zero_gain_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E04B.threshold_equality_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+All independent block recovery, lower-gain, perturbation and conditioning theorems and both controls are kernel verified. Applicability to particular theta maps or learned operators remains conditional on the specified decomposition, energy and norm certificates. No upstream analytic proof or measured model rank claim.
