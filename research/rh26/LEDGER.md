@@ -1,5 +1,21 @@
 # RH-26 run ledger
 
+## RH-26E-06C — 2026-11-24 — terminal coefficient and split budget
+
+- **Status:** IMPLEMENTED; kernel audit pending. [Registration](RH26E06C_REGISTRATION.md) ff181317254da82d915c30b10b13df97afa9ea8a; [Lean source](lean/RH26E06CFinalDiv.lean) 362c9c604ef0bb61fef621e3dbd3da221dc83e5e; workflow 9004c43dd57fd2e37c2b511a6af1bcd30c700888. Ten registered declarations: exact terminal floor and gain, competing-floor controls, split and exponent-inflation slack, effective coefficient, sharp common coefficient, five-term eventual power absorption. Conditional scalar mathematics only; source arithmetic integration outstanding.
+
+## RH-26B-22 — 2026-11-24 — terminal LinkDIV assembly
+
+- **Status:** SOURCE PASS. [Report](RH26B22_LINKDIV_ASSEMBLY.md) feb18f76f4a43ed5f2f3d3e12ec7c56a6ffb5fab; [registration](RH26B22_REGISTRATION.md) 44516f7ca09f4d0c9e4e6ccdb7a18a47ec32768a. RecBridge:598–637 exact final Cdiv=max(Cwire,C3,C2,0), threshold max of twelve witnesses. Frame supplier adds threshold and fixed-CH inequality; no separate coefficient in final max. HefunFunTop calls arithClause_rec with Ce=0, still uses DIVinN as proposition. RecBridge:289–319 retains distinct RHS terms (50*c0+10)*A and 60*ce*g*B with Cabs>=1 for this lemma; full source fixes Cabs=2. HeightBoundOfComponentBounds uses five terms absorbed by +1 exponent; proposed arbitrary positive delta with threshold x>=5^(1/delta). Six files,1134 returned lines. No source arithmetic replacement or global exponent claim.
+
+## RH-26B-21 — 2026-11-24 — closed family bridge
+
+- **Status:** SOURCE PASS for actual closed_linkDIVt_of_closed_bridge_kernel and adapters. [Report](RH26B21_FINAL_BRIDGE.md) 111c8e8bacd79f306d90497c8f86d9d32c2dd940; [registration](RH26B21_REGISTRATION.md) a00c154ecb99d95f041f7d8ec4b023840e93c0bc. DIVRecBridgeSel:208–249, RecBridgeTied:160–201 carry exact package C,x0 through kernel/column/face. Ten fields, of which pkg and hh consume DIVinN. Seven files,1192 lines. Terminal assembly subsequently recovered in B22.
+
+## RH-26E-06B — final kernel PASS
+
+- **Status:** 10/10 exact declarations PASS on original implementation b7036ad3e19856a476b1eb5ac52b678efcab51f2. [Receipt](RH26E06B_RESULTS.md), [CI 45376401256](https://github.com/patrickdugan/MathCan/actions/runs/45376401256), artifact 14910564470. Elapsed 6.46s, peak RSS 6981028kB. No repair. Conditional wire collapse/gain/threshold theorems verified. E05C4+E06A+E06B independently checked 71 declarations.
+
 ## RH-26E-06B — 2026-11-24 — exact wire gain
 
 - **Status:** IMPLEMENTED; kernel audit pending. [Registration](RH26E06B_REGISTRATION.md) 73ad9f9e3a752591f9a861451e3e83ccbbc9a807; [Lean source](lean/RH26E06BWireGain.lean) 394d3fa9beaf003f02be716d47e0c93b0964be5a; workflow b7036ad3e19856a476b1eb5ac52b678efcab51f2. Ten registered declarations. With fixed C,cD,C0>=28, Cwire=60*max(C0,2*C+Ce+cD+3). Gain is exactly 60 times positive-part difference; maximum 60*(Ce_hi-Ce_lo); threshold gain at most 2*(E_hi-E_lo). For original and refined DIVinN witnesses with same +1, full possible gain 113700*(Ca+1)^3. Floor may mask all improvement. Await actual kernel receipt.
