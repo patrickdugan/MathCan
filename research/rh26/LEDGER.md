@@ -1,5 +1,17 @@
 # RH-26 run ledger
 
+## RH-26B-15 — 2026-11-24 — LinkN adapter
+
+- **Status:** SOURCE PASS for N.linkN_of, exact LinkN quantifiers and coefficient preservation. [Registration](RH26B15_REGISTRATION.md) 5b24c5204ea2d5ff954abe2a1175b80d1988a298; [Report](RH26B15_LINKN_ADAPTER.md) a28e5d1f50cc5ffef3082e54aba23228e206fe37. Frozen upstream c900e67c2fcd1fdb041685820bbd2b867fbc5a4b. Four distinct files, 428 lines (714 including repeated anchor reads); no upstream build.
+- N.export_link_of_family unfolds aux₃ and preserves the same coefficient C and threshold x0, then N.linkN_of applies KudlaFamilyStatement to AdmF. LinkN_at retains ShaFinOdd at the family layer and Summable(vvTerm) at the pointwise layer. Exact target etaSum <= dZ0(j)*(C*(f*m*b*g²+(log x)²*Nc)+tsum vvTerm).
+- Next B16: locate actual LinkN-to-DIVinN conversion; trace rank equality, cohomological assumptions, scale bounds against x^eps*(B0+Nc), and family threshold. E06A conditional scalar proposal coefficient K*a+v under explicit numerator bounds, rank equality and nonnegativity. Global exponent remains unsourced.
+
+## RH-26E-05C4 — 2026-11-24 — unified numerical export
+
+- **Status:** IMPLEMENTED; cross-module kernel audit pending at last observation. [Registration](RH26E05C4_REGISTRATION.md) 2f15d47264254c0b19276f6254e53047a3000d5f; [source](lean/RH26E05C4Unified.lean) 0c9313f7eff0329cbfa143ef8588fdbed9c291a6; workflow 5b580d7483c2e6fb4090a832191510c124fff286.
+- [CI run 45359188988](https://github.com/patrickdugan/MathCan/actions/runs/45359188988), job 138324567850: registration/source and toolchain setup steps passed, Mathlib resolution in progress at last observation. Audit all 45 frozen component declarations plus eight new declarations; check actual compiler result before recording PASS. Preserve any failure and repair proof bodies only.
+- New source composes five priority masks, filtered finite sums, C2 small/3, ramified and generic-small certificates, C3 local exceptional and count/sum certificates, then C1 refined assembly and export propagation. Generator and global correction retain original bounds. Arithmetic source realization remains external; no upstream replacement claimed.
+
 ## RH-26E-05C3 — 2026-11-24 — exceptional-prime numerical supplier
 
 - **Status:** **KERNEL PASS (18/18)** on original implementation; all frozen contracts retained without repair.
