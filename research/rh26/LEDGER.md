@@ -1,5 +1,15 @@
 # RH-26 run ledger
 
+## RH-26B-17 — 2026-11-24 — cohomology window and global assembly
+
+- **Status:** SOURCE PASS for VWin-to-HypV and top-level LinkDIVt consumer. [Registration](RH26B17_REGISTRATION.md) 97c11db1a29dcc0340d224b3ac8e8ba2637a0688; [Report](RH26B17_COHOMOLOGY_GLOBAL.md) 4cbf29eec7dce16d622a41c1fe7ddb7f8e305b2e; upstream c900e67c2fcd1fdb041685820bbd2b867fbc5a4b. Eight files, 920 distinct source lines plus 105 repeated.
+- supplyChi → supplyOfAdmOf: character field, common windows, host and rank admissibility, VVle.mono with t<=floor(x^401), exact unchanged sqrt(b) budget. GChi.cls → HypV projects the cohomology condition at threshold Fm.x1+1. DesWin.topDesWin combines nine Closed contracts before family choice; at line 68 applies LinkDIVt with LinkEta and DIVinN, then LinkMu and LinkGLOBAL at 69–70. Source coefficient existential boundary preserved; no downstream numeric improvement claimed beyond DIVinN.
+- **Next B18:** actual SmallLevelRankEq supplier and LinkDIVt proof, follow TopG proof imports; winPairs and eventual rank cutoff proof remain further supplier targets. No new exponent claim.
+
+## RH-26E-06A — first failed run and lexical repair
+
+- Original [run 45362582281](https://github.com/patrickdugan/MathCan/actions/runs/45362582281) failed on absolute-value delimiter adjacent to multiplication; clean reports for cohomology_budget, delta_budget, eventual_delta. [Preserved receipt](RH26E06A_RESULTS.md). Repair f863a359a938488c0c81179829b1cb10274e9166 replaces intended absolute values with explicit abs K, preserving mathematical contracts. [Repair run 45365756795](https://github.com/patrickdugan/MathCan/actions/runs/45365756795), job 138346935017, setup passed, Mathlib resolution pending. Await actual kernel verdict.
+
 ## RH-26E-06A — 2026-11-24 — retained cohomology and eventual delta
 
 - **Status:** IMPLEMENTED; kernel audit pending. [Registration](RH26E06A_REGISTRATION.md) bb78cf2b51798cfe2b30ef7ff4c2c6b7418d1a8c; [Lean source](lean/RH26E06AAnalyticConversion.lean) 63b3ad177966640d38eec1e2feff8570e0e516e8; workflow e6f228b27932c83f6eb9d2b8b4d41d936dcb882b; [CI 45362582281](https://github.com/patrickdugan/MathCan/actions/runs/45362582281). Eight frozen declarations. Under B16 scalar premises, F=f*m, q=sqrt b, W=g*(B0+Nc), z=log², exact slack gives eta<=D0*(|K|W+q-|K|(g-z)*Nc). Added coefficient <=1/(F*g²*q). Explicit eventual threshold x>=max(1,(max(1,1/delta))^(1/eps)) yields |K|+delta. Zero-extra coefficient needs extra slack, with a scalar counterexample. Await actual CI verdict; no arithmetic realization.
