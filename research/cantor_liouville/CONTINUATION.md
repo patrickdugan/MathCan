@@ -11,8 +11,8 @@ Source: user-supplied manuscript, "Binary-normal Liouville numbers in the middle
 | CLN-03 | Residue fiber cardinality, finite-energy bound, max-mass weighting, normalized envelope | awaiting kernel; run 45379088205 canceled by newer head |
 | CLN-04 | Summable expected energies, tail averaging, abstract grid interpolation | source submitted, awaiting kernel |
 | CLN-05 | Actual modular orbit collision iff, composite period divisibility, real exponential phase, composed finite second moment | eight source targets submitted; 2,112 finite composite bound checks and four dependent-tail controls passed; kernel pending |
-| CLN-06 | Independent digit model, prefix mass and tail independence, probability integration; instantiate the finite grid and countable intersection; Weyl normality | open |
-| CLN-07 | Exact Liouville construction, non-atomicity, excluded bases; final theorem and audit | open |
+| CLN-06 | Independent digit model, prefix mass and tail independence, probability integration; grid and Weyl normality | CLN06A/B seven staged proof targets, no kernel receipt; remaining digit encoding, measurable tail, grid and Weyl bridges open |
+| CLN-07 | Exact Liouville construction, non-atomicity, excluded bases; final theorem and audit | simpler square-growth schedule derived in writing; Lean formalization open |
 | CLN-08 | Referee pass, source provenance and literature comparison, export proof dependency ledger and reproducible receipts | open |
 
 ## CLN-05 checkpoint
@@ -42,6 +42,24 @@ Independent Mathlib modules now compile to local .olean files in
 dependency order, then run exact axiom allowlist audit (25 Mathlib targets).
 The retained Python controls are not asymptotic proofs.
 
+## Staging checkpoint
+
+Branch research/cln06-integration-staging from 5067378b.
+Run 45379618480 was queued, job 138394938193. Keep PR #274 unchanged
+until that job yields a receipt. CLN06A and CLN06B are staged at
+cb0bcaeb and 85d44dc9; audit now expects 32 Mathlib targets, including
+seven new unverified ones. See CLN06_07_INTEGRATION.md for source API
+map, exact grid selection, square-growth schedule and remaining gates.
+The 2112 composite divisibility cases were independently rerun this
+turn. No compiler diagnostics for CLN02–05 were yet available.
+
+The next turn must inspect both PR #274 and the staging branch
+research/cln06-integration-staging. Prioritize actual CI failures;
+avoid canceling a queued Mathlib job by pushing repeatedly.
+Integrate the staged files only after resolving upstream failures.
+If still queued, work on independent proof targets on staging.
+Retain all statement and axiom checks.
+
 ## Verification rules
 
 - Keep root MathCan on Init. Run the isolated Mathlib subproject on Lean 4.35.0.
@@ -54,4 +72,4 @@ The retained Python controls are not asymptotic proofs.
 
 ## Tail prompt
 
-Continue the CLN program on MathCan PR #274, branch research/cantor-liouville-prefix-entropy. Read this ledger and the latest PR head, inspect the actual CI job logs, fix the first failing theorem without weakening its statement, and advance to the next open dependency gate. Keep a precise source/target map and update this ledger with commit/run receipts. If CI is queued, develop independent downstream lemmas, but mark them unverified. Continue until the end-to-end original and generalized statements have complete Lean proofs and a clean axiom audit, or explicitly document the exact remaining blocker. Do not switch to applications until the proof and referee audit are complete.
+Continue the CLN program on MathCan PR #274, branch research/cantor-liouville-prefix-entropy. Read this ledger, the latest PR head and the staging branch research/cln06-integration-staging, inspect the actual CI job logs, fix the first failing theorem without weakening its statement, and advance to the next open dependency gate. Keep a precise source/target map and update this ledger with commit/run receipts. If CI is queued, develop independent downstream lemmas, but mark them unverified. Continue until the end-to-end original and generalized statements have complete Lean proofs and a clean axiom audit, or explicitly document the exact remaining blocker. Do not switch to applications until the proof and referee audit are complete.
