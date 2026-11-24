@@ -1,0 +1,146 @@
+{
+  "experiment": "VPVNP-02A",
+  "method": "exact exhaustive matrix rank and dual rank character representatives",
+  "nonlinear_control": {
+    "H4": true,
+    "rank_metric_triangle_n2": true,
+    "ranks": {
+      "1": {
+        "direct_D_squared": "311/9",
+        "spectral_D_squared": "311/9"
+      },
+      "2": {
+        "direct_D_squared": "287/6",
+        "spectral_D_squared": "287/6"
+      }
+    }
+  },
+  "sizes": [
+    {
+      "H1": true,
+      "H2": true,
+      "H3": true,
+      "constant_observer_ratio": "undefined",
+      "max_ratio_squared": "3/2",
+      "maximizers": [
+        1
+      ],
+      "n": 2,
+      "p_by_dual_rank": {
+        "1": {
+          "1": "4/9",
+          "2": "2/3"
+        },
+        "2": {
+          "1": "2/3",
+          "2": "1/3"
+        }
+      },
+      "rank_counts": [
+        1,
+        9,
+        6
+      ],
+      "rank_metric_ratio_squared": 4,
+      "ratios_squared": {
+        "1": "3/2",
+        "2": "1/2"
+      },
+      "sqrt_rank_metric_ratio_squared": 2
+    },
+    {
+      "H1": true,
+      "H2": true,
+      "H3": true,
+      "constant_observer_ratio": "undefined",
+      "max_ratio_squared": "7/4",
+      "maximizers": [
+        1
+      ],
+      "n": 3,
+      "p_by_dual_rank": {
+        "1": {
+          "1": "16/49",
+          "2": "24/49",
+          "3": "4/7"
+        },
+        "2": {
+          "1": "24/49",
+          "2": "76/147",
+          "3": "10/21"
+        },
+        "3": {
+          "1": "4/7",
+          "2": "10/21",
+          "3": "11/21"
+        }
+      },
+      "rank_counts": [
+        1,
+        49,
+        294,
+        168
+      ],
+      "rank_metric_ratio_squared": 9,
+      "ratios_squared": {
+        "1": "7/4",
+        "2": "35/36",
+        "3": "11/12"
+      },
+      "sqrt_rank_metric_ratio_squared": 3
+    },
+    {
+      "H1": true,
+      "H2": true,
+      "H3": true,
+      "constant_observer_ratio": "undefined",
+      "max_ratio_squared": "15/8",
+      "maximizers": [
+        1
+      ],
+      "n": 4,
+      "p_by_dual_rank": {
+        "1": {
+          "1": "64/225",
+          "2": "32/75",
+          "3": "112/225",
+          "4": "8/15"
+        },
+        "2": {
+          "1": "32/75",
+          "2": "368/735",
+          "3": "88/175",
+          "4": "52/105"
+        },
+        "3": {
+          "1": "112/225",
+          "2": "88/175",
+          "3": "2356/4725",
+          "4": "158/315"
+        },
+        "4": {
+          "1": "8/15",
+          "2": "52/105",
+          "3": "158/315",
+          "4": "157/315"
+        }
+      },
+      "rank_counts": [
+        1,
+        225,
+        7350,
+        37800,
+        20160
+      ],
+      "rank_metric_ratio_squared": 16,
+      "ratios_squared": {
+        "1": "15/8",
+        "2": "65/56",
+        "3": "395/392",
+        "4": "157/168"
+      },
+      "sqrt_rank_metric_ratio_squared": 4
+    }
+  ],
+  "status": "PASS"
+}
