@@ -1,5 +1,17 @@
 # RH-26 run ledger
 
+## RH-26B-27 — 2026-11-24 — analytic consumer and zero-free windows
+
+- **Status:** SOURCE PASS for exact terminal adapters and window exponent. [Report](RH26B27_ANALYTIC_CONSUMER.md) 4af6fc9a318891ee8800bc95983e874a4e26bc18; [registration](RH26B27_REGISTRATION.md) cf7dd631e8c5cfd11ecc721987faf5d9125385a3. Eight files,700 lines. tiedCore_of_chainTied preserves K and exponent witnesses; core_gm consumes large_x_eventually KBig bound, ch_top with CErr=eDiv+eLoss+3 and ch_core, absorbs finite 1+4*level.o by x^eps, yielding Gm<=x^(1/2+(eD+eL+7)*eps), exactly 1/2+9eps at source 2,0. TopWin selects arbitrarily small eps using positive gap of candidate zero, HasWindows.mono preserves arbitrary late windows, FormB applies zeroFree_of_rpow_window with delta=la-1 and C=1. Actual wrapper chain recovered through lemmaL call; inner ch_top/ch_core/lemmaL and GrowthSizeBound proofs remain open. Numeric gains affect thresholds, no global multiplicity exponent claim. Proposed E06F arbitrary positive final absorption margin and eps witness.
+
+## RH-26E-06E — 2026-11-24 — maximum K and threshold
+
+- **Status:** IMPLEMENTED; [CI 45381486250](https://github.com/patrickdugan/MathCan/actions/runs/45381486250) running. [Registration](RH26E06E_REGISTRATION.md) bda8af2f467434e3a5a7e1b8a258233798766e1c; [Lean source](lean/RH26E06EMaxBudget.lean) 20be6976041d4d2a8307edff3fb029b5318d183c; workflow 240a98febe13bf4054b7b154fadda1c009b8878d. Ten exact declarations: sufficient/minimal max budget, sum comparison, frame bound, KBig monotonicity and ratio <36, rpow threshold equivalence and ratio bound, finite-list threshold, controls. Await kernel verdict. Conditional scalar only; no upstream integration.
+
+## RH-26E-06D — final kernel PASS
+
+- **Status:** 10/10 PASS on original implementation 7c3c31591e4557930a90e44d626e51a1c92354f5. [Receipt](RH26E06D_RESULTS.md), [CI 45380612520](https://github.com/patrickdugan/MathCan/actions/runs/45380612520), artifact 14914645160. Elapsed 6.36s, peak RSS 6963140 kB. No repair. E05C4+E06A-D 91 audited declarations across independent modules. Signed rounding, exact support, strict bound and DGam cap certified under registered premises.
+
 ## RH-26B-26 — 2026-11-24 — complete ChainTied and error-window witness
 
 - **Status:** SOURCE PASS. [Report](RH26B26_ERROR_WINDOW.md) 0dbae727b74aa1c4371bce6a7e9621585a3b1ed1; [registration](RH26B26_REGISTRATION.md) 57d9ff21a33266d5b319450a2d23db3d4025782d. Seven files,967 lines. LossesSmallShares:326 completes linkCore. ErrWindows requires each nonnegative coefficient individually <=K and frame error <=K*x^eps*nT*a, proven by K>=6. Same source witnesses admit Kmax=max(Cd,Cc,Cs,C1,Cl,6) instead of sum; Ksum<=6*Kmax and KBig ratio <36 under fixed positive factors. LargeX uses KBig=200*(1+K)^2*(1+cHH)*(1+eK) <= x^eps; max threshold also replaces sum of fourteen absolute thresholds. E06E planned. Actual growth/zero-free proof still open, no global exponent gain.
