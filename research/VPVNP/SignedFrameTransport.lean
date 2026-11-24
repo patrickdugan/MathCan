@@ -35,6 +35,7 @@ def normalPartition (n : ℕ) :
     (by
       constructor
       · rintro ⟨b,e⟩ ⟨c,f⟩ he
+        change e.1 = f.1 at he
         have hbc : b=c := by
           apply Subtype.ext
           have h1 := frame_normal_unique e.1 b.1 e.2
@@ -112,7 +113,9 @@ theorem frame_fiber_sum {n : ℕ} (a : Fin n → BinarySpace (n+1))
 theorem outside_iff {n : ℕ} (b v : BinarySpace (n+1)) :
     v ∈ parityOutside b ↔ parityLinear b v = 1 := by
   rw [mem_parityOutside, parityLinear_apply]
-  rcases bit_cases (parityPair b v) with hz | ho <;> simp [hz,ho]
+  rcases bit_cases (parityPair b v) with hz | ho
+  · simp [hz]
+  · simp [ho]
 
 theorem outside_sum_subtype {n : ℕ} (b c : BinarySpace (n+1)) :
     (∑ v : OutsideSpace b, walsh c v.1) = ∑ v ∈ parityOutside b, walsh c v :=
