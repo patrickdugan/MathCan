@@ -3,7 +3,7 @@
 **Date:** 2026-11-24 (Asia/Manila).  
 **Registration:** [RH26E05F_REGISTRATION.md](RH26E05F_REGISTRATION.md), `16338cea2b60d3336c44a9c1daaaf8370aa9bcae` before executable proof and CI.  
 **Implementation:** [RH26E05FSupportExport.lean](lean/RH26E05FSupportExport.lean), `8a9ca88d32b2766e45d4bac00b289be98fa40780`; source and workflow `d5b29a3aca8d1727c961c0a9ab73438929e6869f`.  
-**Disposition:** IMPLEMENTED; **KERNEL RESULT PENDING**. Twelve theorem declarations and matching axiom-print names inspected. No admission or native_decide tokens. The previous independent E05C1 audit passed 15/15 during this session.
+**Disposition:** FIRST KERNEL RUN FAILED; proof-only repair in progress. Eleven clean axiom reports, full gate failed.
 
 ## Source contract and scope
 
@@ -53,3 +53,9 @@ The finite-sum argument for nonsummability uses arbitrarily large finite cardina
 - Isolated CPU Lean 4.35.0 / Mathlib v4.35.0 job, 25-minute cap. No full upstream/Deligne build, GPU/QPU or paid compute.
 
 Inspect this exact run first on resumption and retain failures before proof-only repairs. Then prioritize E05B degree-weighted rank/capacity certificate, independent stronger E05C suppliers, or B15 source inventory of N.linkN_of. E05C1 15/15 final audit is separately recorded in its own report.
+
+## First-run failure receipt
+
+[Run 45337671069](https://github.com/patrickdugan/MathCan/actions/runs/45337671069), job 138253495876, failed on `d5b29a3aca8d1727c961c0a9ab73438929e6869f`. Source SHA-256 `fab642faf4a4a853a427e21128a3b03fde1572a37a977656958831130cbeab57`; [artifact 14894716503](https://github.com/patrickdugan/MathCan/actions/runs/45337671069/artifacts/14894716503). Setup, Mathlib and artifact upload succeeded.
+
+Eleven of twelve declarations printed clean reports with propext, Classical.choice, Quot.sound only. The sole error, at line 128 in signed_tail_control, is an unknown identifier summable_of_finite. The signed control has sorryAx from recovery, while finite_export, padding_slack_nonneg, combined_export and nonsummable_support_control have clean reports. Two unused-variable warnings in the nonsummable control are nonfatal. Repair the summability proof using the finite-type hasSum lemma; retain all theorem contracts.
