@@ -163,8 +163,9 @@ theorem export_propagation (eta R Y V K X N : ℝ)
     eta ≤ R * (K * (X + N) + V) := by
   have hKN : 0 ≤ K * N := mul_nonneg hK hN
   have hpad : K * X ≤ K * (X + N) := by linarith only [hKN]
-  exact hEta.trans (mul_le_mul_of_nonneg_left
-    (add_le_add_right (hY.trans hpad) V) hR)
+  have hadd : Y + V ≤ K * (X + N) + V := by
+    linarith only [hY, hpad]
+  exact hEta.trans (mul_le_mul_of_nonneg_left hadd hR)
 
 theorem missing_scale_control :
     ∃ (C H b X Y : ℝ) (t : Costs),
