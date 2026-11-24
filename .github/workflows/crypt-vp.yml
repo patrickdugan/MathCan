@@ -278,3 +278,71 @@ jobs:
         with:
           name: qbtc-05-exact
           path: ${{ runner.temp }}/qbtc-05.json
+
+  exact-matched-coupling:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replay QBTC-06 matched coupling and posterior extraction
+        shell: bash
+        run: |
+          set -euo pipefail
+          node research/CRYPT_VP/qbtc06_check.mjs | tee "$RUNNER_TEMP/qbtc-06.json"
+          python3 - "$RUNNER_TEMP/qbtc-06.json" <<'PY'
+          import json,sys,math,itertools
+          from fractions import Fraction as F
+          r=json.load(open(sys.argv[1]))
+          assert r["schema"]=="qbtc-06-v1"
+          assert r["matchedTables"]==29841 and r["conditionalContexts"]==3935 and r["conditionalLabelOutcomes"]==29841
+          def frac(a): return F(*a)
+          def coef(c,k):
+              p=[1]+[0]*k
+              for v in c:
+                  q=[0]*(k+1)
+                  for i,a in enumerate(p):
+                      for j in range(min(v//2,k-i)+1):
+                          q[i+j]+=a*math.factorial(v)//(math.factorial(v-2*j)*2**j*math.factorial(j))
+                  p=q
+              return p[k]
+          cases={(x["N"],x["M"],x["k"]):x for x in r["cases"]}
+          assert len(r["cases"])==18 and set(cases)=={(n,m,k) for n in (4,6,8) for m in (2,3) for k in range(1,n//2+1)}
+          for (n,m,k),x in cases.items():
+              L=n-k
+              num=math.factorial(n)//(math.factorial(n-2*k)*2**k*math.factorial(k))
+              den=num*m**L
+              assert x["L"]==L and x["matchings"]==num and x["total"]==den
+              assert x["tables"]==x["outcomes"]==m**n and x["contexts"]==m**L
+              mass=best=0
+              bad={t:0 for t in (2,3,4)}
+              good={t:0 for t in (2,3,4)}
+              for c in itertools.product(range(n+1),repeat=m):
+                  if sum(c)!=n: continue
+                  count=math.factorial(n)//math.prod(math.factorial(v) for v in c)
+                  W=coef(c,k)
+                  b=max((coef(tuple(v-2 if i==j else v for i,v in enumerate(c)),k-1) for j in range(m) if c[j]>=2),default=0)
+                  mass+=count*W
+                  best+=count*b
+                  for t in bad:
+                      if min(c)<t: bad[t]+=count*W
+                      else: good[t]+=count*b
+              assert mass==den and frac(x["best"])==F(best,den)
+              assert 0<=frac(x["first"])<=frac(x["best"])<=1
+              if k==1: assert frac(x["best"])==frac(x["first"])==F(m,math.comb(n,2))
+              assert {y["t"] for y in x["bad"]}==set(bad)
+              for y in x["bad"]:
+                  t=y["t"]
+                  assert frac(y["mass"])==F(bad[t],den) and frac(y["goodBest"])==F(good[t],den)
+          refresh={(x["N"],x["M"],x["k"]):x for x in r["refresh"]}
+          assert len(r["refresh"])==12 and set(refresh)=={(n,m,k) for n in (4,6,8) for m in (2,3) for k in (1,2)}
+          for (n,m,k),x in refresh.items():
+              assert x["validTables"]==m**n
+              hit=1-F(math.comb(n-2,k),math.comb(n,k))
+              assert frac(x["invalidated"])==hit*(1-F(1,m))
+              assert frac(x["invalidated"])<=frac(x["changedOnValid"])<=1
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qbtc-06-exact
+          path: ${{ runner.temp }}/qbtc-06.json
