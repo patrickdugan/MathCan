@@ -1,0 +1,3 @@
+# RH26B26 registration
+
+2026-11-24 Asia/Manila. Parent B25 db6b28109c4908efc481106de3cc3ed94d714f1d. Frozen upstream c900e67c2fcd1fdb041685820bbd2b867fbc5a4b. Inspect LossesSmallShares:326 onward and direct SChain/ErrWindows dependencies to determine how K and the fourteen thresholds are consumed. Locate actual SlopesNF witness dependence on LinkMu if within bounded read. Maximum eight source files, 250 lines/window, 1200 aggregate lines. Distinguish sufficient max witness for this proof from downstream estimates and from a source-compatible implementation. No full upstream scan/build, edits or claim of global exponent improvement. Register before reading.
