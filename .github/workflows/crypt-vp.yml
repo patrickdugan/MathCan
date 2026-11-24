@@ -191,3 +191,43 @@ jobs:
         with:
           name: qbtc-03-exact
           path: ${{ runner.temp }}/qbtc-03.json
+
+  exact-collision-plant:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replay QBTC-04 collision census and raw references
+        shell: bash
+        run: |
+          set -euo pipefail
+          node research/CRYPT_VP/qbtc04_check.mjs | tee "$RUNNER_TEMP/qbtc-04.json"
+          python3 - "$RUNNER_TEMP/qbtc-04.json" <<'PY'
+          import json,sys,math
+          from fractions import Fraction as F
+          r=json.load(open(sys.argv[1]))
+          assert r["schema"]=="qbtc-04-v1"
+          assert r["tables"]==77595==sum(c["tables"] for c in r["cases"])
+          assert {(c["N"],c["M"]) for c in r["cases"]}=={(n,m) for n in (4,6,8) for m in (2,3,4)}
+          assert len(r["cases"])==9 and len(set(r["ledger"]))==5
+          for c in r["cases"]:
+              n,m=c["N"],c["M"]
+              k=math.comb(n,2)
+              t=m**n
+              h=list(map(int,c["hist"]))
+              assert len(h)==k+1 and sum(h)==t==c["tables"]
+              mu=F(k,m)
+              var=F(k*(m-1),m*m)
+              assert F(sum(i*z for i,z in enumerate(h)),t)==mu
+              assert sum(F(z,t)*(i-mu)**2 for i,z in enumerate(h))==var
+              v=F(sum(abs(m*i-k)*z for i,z in enumerate(h)),2*t*k)
+              assert v==F(*map(int,c["tv"])) and v*v<=F(m-1,4*k)
+              assert F(*map(int,c["recoverPlant"]))==F(t-h[0],t)/mu
+              assert F(*map(int,c["destroyChosen"]))==F(2*(m-1),n*m)
+              assert F(*map(int,c["realCollisionSuccess"]))==F(t-h[0],t)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qbtc-04-exact
+          path: ${{ runner.temp }}/qbtc-04.json
