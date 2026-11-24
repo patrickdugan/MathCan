@@ -1,0 +1,3 @@
+# E06E results
+
+Original [run 45381486250](https://github.com/patrickdugan/MathCan/actions/runs/45381486250), job 138401350701, source commit 240a98febe13bf4054b7b154fadda1c009b8878d, [artifact 14914076648](https://github.com/patrickdugan/MathCan/actions/runs/45381486250/artifacts/14914076648): FAIL. Nine of ten exact registered declarations have clean allowed-axiom reports. family_threshold alone has sorryAx from failed nested list induction at line 126: the inner induction hypothesis inherited dependent hypotheses of the outer induction. Move the absolute-sum nonnegativity proof to a standalone private lemma; preserve all ten registered statements. Full acceptance awaits repair receipt.
