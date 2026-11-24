@@ -59,6 +59,7 @@ theorem indexed_to_gauge {p : Cls K I → ℝ}
   refine ⟨h.1, h.2.1, h.2.2.1, ?_⟩
   intro κ _ t b hb
   let e := (Fintype.equivFin κ).symm
+  change Ten.SumRestr (rep t) (fun j => rep (b j)) at hb
   have hcov : (indexedCover (K := K) (I := I)) (Fintype.card κ) t
       (fun j => b (e j)) := by
     change Ten.SumRestr (rep t) (fun j => rep (b (e j)))
