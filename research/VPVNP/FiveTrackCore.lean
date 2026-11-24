@@ -198,8 +198,7 @@ theorem sum_rank_cut {J : Type*} [Fintype J] [Nonempty J]
       _ ≤ ∑ _ : J, (2:ℝ)^B := by
         apply Finset.sum_le_sum
         intro j _
-        gcongr
-        exact hB j
+        gcongr <;> exact hB j
       _ = _ := by simp
   exact logarithmic_cut r B _ (by exact_mod_cast Fintype.card_pos) (hr.trans hs)
 
