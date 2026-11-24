@@ -4,7 +4,7 @@ import re
 import subprocess
 import sys
 
-targets = {"CLN02": 8, "CLN03": 6, "CLN04": 3, "CLN05": 8}
+targets = {"CLN02": 8, "CLN03": 6, "CLN04": 3, "CLN05": 8, "CLN06A": 4, "CLN06B": 3}
 allowed = {"propext", "Classical.choice", "Quot.sound"}
 bad = []
 pathlib.Path(".cln-build").mkdir(exist_ok=True)
