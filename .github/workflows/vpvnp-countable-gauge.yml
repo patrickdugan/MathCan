@@ -1,0 +1,93 @@
+name: VPVNP countable gauge upstream adapter
+on:
+  pull_request:
+    paths:
+      - 'research/VPVNP/upstream/**'
+      - 'research/VPVNP/FiveTrackCore.lean'
+      - '.github/workflows/vpvnp-countable-gauge.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: vpvnp-countable-gauge-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  pinned-adapter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      ELAN_VERSION: v4.2.3
+      ELAN_SHA256: df0b2b3a439961ffcbb3985214365ffe40f49bc871df04dff268c7d8e21ca8b2
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: anthropics/formal-math
+          ref: 11b6c7e3c927df2658f513b6b68ea7f8929c62c5
+          path: upstream-formal-math
+          persist-credentials: false
+      - name: Verify original upstream blobs
+        run: python3 research/VPVNP/audit_source.py upstream-formal-math --out "$RUNNER_TEMP/source_audit.json"
+      - name: Install pinned elan
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --proto '=https' --tlsv1.2 --output "$RUNNER_TEMP/elan.tar.gz" "https://github.com/leanprover/elan/releases/download/${ELAN_VERSION}/elan-x86_64-unknown-linux-gnu.tar.gz"
+          echo "${ELAN_SHA256}  $RUNNER_TEMP/elan.tar.gz" | sha256sum --check
+          mkdir -p "$RUNNER_TEMP/elan"
+          tar -xzf "$RUNNER_TEMP/elan.tar.gz" -C "$RUNNER_TEMP/elan"
+          "$RUNNER_TEMP/elan/elan-init" -y --no-modify-path --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Prepare independent adapter (leave original files unchanged)
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path("research/VPVNP/FiveTrackCore.lean").read_text()
+          prefix,sep,_=p.partition("\nsection Geometry\n")
+          assert sep and prefix.rstrip().endswith("end Gauge")
+          axioms=[x for x in p.splitlines() if x.startswith("#print axioms VPVNP.Five.")][:8]
+          assert len(axioms)==8 and "gauge_minimal_countable" in axioms[-1]
+          dst=Path("upstream-formal-math/vp-vnp")
+          (dst/"FiveTrackMinimum.lean").write_text(prefix+"\nend VPVNP.Five\n"+"\n".join(axioms)+"\n")
+          (dst/"CountableGauge.lean").write_bytes(Path("research/VPVNP/upstream/CountableGauge.lean").read_bytes())
+          PY
+      - name: Build original gauge dependencies and adapter
+        working-directory: upstream-formal-math/vp-vnp
+        shell: bash
+        run: |
+          set -euo pipefail
+          lean --version
+          lake exe cache get
+          lake build +Paper.Gauges 2>&1 | tee "$RUNNER_TEMP/upstream-gauges-build.log"
+          lake env bash -c 'set -euo pipefail; export LEAN_PATH="$PWD:$LEAN_PATH"; lean -DautoImplicit=false -o FiveTrackMinimum.olean FiveTrackMinimum.lean; lean -DautoImplicit=false CountableGauge.lean' 2>&1 | tee "$RUNNER_TEMP/countable-gauge-axioms.log"
+      - name: Check all 15 named transitive axiom reports
+        working-directory: upstream-formal-math/vp-vnp
+        run: |
+          python3 - "$RUNNER_TEMP/countable-gauge-axioms.log" <<'PY'
+          import re,sys
+          from pathlib import Path
+          s=Path(sys.argv[1]).read_text()
+          expected=set()
+          for p in ["FiveTrackMinimum.lean","CountableGauge.lean"]:
+              expected.update(re.findall(r"^#print axioms ([\w.]+)",Path(p).read_text(),re.M))
+          assert len(expected)==15
+          assert not re.search(r"sorryAx|ofReduceBool|declaration uses 'sorry'|error:",s)
+          found=set()
+          for name,body in re.findall(r"'([\w.]+)' depends on axioms: \[(.*?)\]",s,re.S):
+              found.add(name)
+              assert set(x.strip() for x in body.split(",") if x.strip()) <= {"propext","Classical.choice","Quot.sound"},(name,body)
+          found.update(re.findall(r"'([\w.]+)' does not depend on any axioms",s))
+          assert found==expected,(expected-found,found-expected)
+          print("PASS",len(found),"named reports; classical Lean axioms allowed")
+          PY
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: always()
+        with:
+          name: countable-gauge-upstream
+          path: |
+            ${{ runner.temp }}/source_audit.json
+            ${{ runner.temp }}/upstream-gauges-build.log
+            ${{ runner.temp }}/countable-gauge-axioms.log
+          if-no-files-found: ignore
