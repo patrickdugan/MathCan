@@ -73,6 +73,7 @@ import MathCan.NumericalRangeSwitching
 import MathCan.GraphSwitching
 import MathCan.ObservableQuotient
 import MathCan.AuthorizationQuotient
+import MathCan.ConstructiveObservationAudit
 import MathCan.ObservableFamily
 import MathCan.ObservablePareto
 import MathCan.GateFamilyNoGo
