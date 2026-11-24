@@ -1,0 +1,74 @@
+name: VPVNP-02H canonical full rank recurrence
+on:
+  pull_request:
+    paths:
+      - 'research/VPVNP/CanonicalRankRecurrence.lean'
+      - 'research/VPVNP/MatrixRankCharacter.lean'
+      - 'research/VPVNP/SignedFrameTransport.lean'
+      - 'research/VPVNP/canonical_rank_check.py'
+      - '.github/workflows/vpvnp02h-canonical-rank.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: vpvnp02h-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Native canonical recurrence and axiom gate
+        working-directory: experiments/deligne_mathlib
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp ../../research/VPVNP/{RankSpectral,BinaryWalsh,HyperplaneCancellation,OrderedFrameFibers,SignedFrameTransport,MatrixRankCharacter,CanonicalRankRecurrence}.lean .
+          lake env bash -c 'set -euo pipefail; export LEAN_PATH="$PWD:$LEAN_PATH"; for m in RankSpectral BinaryWalsh HyperplaneCancellation OrderedFrameFibers SignedFrameTransport MatrixRankCharacter; do lean -o "$m.olean" "$m.lean"; done; lean CanonicalRankRecurrence.lean' | tee "$RUNNER_TEMP/vpvnp02h-axioms.txt"
+          python3 - "$RUNNER_TEMP/vpvnp02h-axioms.txt" <<'PY'
+          import re,sys
+          from pathlib import Path
+          s=Path(sys.argv[1]).read_text()
+          expected=set("tailMatrix_rank joinLast unitsFrame unitsKernel frame_tail_sign kernel_tail_sign trace_tail_frame trace_tail_kernel normal_card_real canonical_step canonical_zero rankValue_step canonical_closed full_rank_character full_rank_entry_character".split())
+          found=set()
+          assert not re.search(r"sorryAx|ofReduceBool|declaration uses 'sorry'|^error:",s,re.M),s
+          for name,body in re.findall(r"'VPVNP\.Binary\.([\w]+)' depends on axioms: \[(.*?)\]",s,re.S):
+              found.add(name)
+              assert set(x.strip() for x in body.split(',') if x.strip()) <= {'propext','Classical.choice','Quot.sound'},(name,body)
+          for name in re.findall(r"'VPVNP\.Binary\.([\w]+)' does not depend on any axioms",s):
+              found.add(name)
+          assert expected <= found,(found,expected)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vpvnp02h-native-axioms
+          path: ${{ runner.temp }}/vpvnp02h-axioms.txt
+  exact-canonical:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enumerate every frame and every diagonal mask
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 research/VPVNP/canonical_rank_check.py | tee "$RUNNER_TEMP/vpvnp02h-canonical.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vpvnp02h-exact-canonical
+          path: ${{ runner.temp }}/vpvnp02h-canonical.json
