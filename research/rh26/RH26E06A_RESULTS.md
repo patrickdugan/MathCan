@@ -1,0 +1,3 @@
+# E06A analytic conversion results
+
+Original run [45362582281](https://github.com/patrickdugan/MathCan/actions/runs/45362582281), job 138336085595, commit e6f228b27932c83f6eb9d2b8b4d41d936dcb882b: FAIL. [Artifact 14904892934](https://github.com/patrickdugan/MathCan/actions/runs/45362582281/artifacts/14904892934). Lexer token |* at five locations prevented intended absolute value expressions from parsing; dependent recovery errors follow. cohomology_budget, delta_budget, eventual_delta printed clean axiom reports; zero_extra_if_slack's malformed declaration does not count. Preserve all intended registered statements; add whitespace around absolute value delimiters and adjacent operators. Full kernel acceptance pending.
