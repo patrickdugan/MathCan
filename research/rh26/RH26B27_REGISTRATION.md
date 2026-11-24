@@ -1,0 +1,3 @@
+# RH26B27 registration
+
+2026-11-24 Asia/Manila. Prior B26 0dbae727b74aa1c4371bce6a7e9621585a3b1ed1. Frozen upstream c900e67c2fcd1fdb041685820bbd2b867fbc5a4b. Trace zeroFreeOn_of_tiedWin_cyc from ZeroFreeAllOfTopG direct imports and ChainTied/XLarge to the exact analytic consumer, GrowthSizeBound supplying proof and coefficient dependence. Use targeted directory metadata; maximum eight distinct files, 250 lines/window, 1200 returned lines. Preserve exact source hypotheses, eventual thresholds and exponent roles. No upstream edits or kernel execution. No global theta multiplicity exponent claim. Register before reads.
