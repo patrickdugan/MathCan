@@ -435,7 +435,9 @@ theorem observer_stability (n : ℕ) (hn : 0 < n) (f : MatrixBits n → J → �
   have hmul : sharpConstant n/3 * highRankEnergy n f ≤
       (sharpConstant n/3)*(3*epsilon*oneEnergy n f) := by nlinarith only [hh,hd]
   apply (div_le_iff₀ hp).2
-  exact (mul_le_mul_left₀ (show 0 < sharpConstant n/3 by positivity)).1 hmul
+  by_contra! hbad
+  have hpos : 0 < sharpConstant n/3 := by positivity
+  exact (not_lt_of_ge hmul) (mul_lt_mul_of_pos_left hbad hpos)
 
 end Observer
 
