@@ -1,4 +1,4 @@
-name: CLN-02–05 Mathlib kernel
+name: CLN-02–06 Mathlib kernel
 on:
   pull_request:
     paths:
@@ -26,7 +26,7 @@ jobs:
       - name: Fetch Mathlib and cache
         run: |
           lake update
-          lake exe cache get Mathlib.NumberTheory.Multiplicity Mathlib.Analysis.SpecialFunctions.Complex.CircleAddChar Mathlib.Algebra.Group.AddChar Mathlib.Data.ZMod.Basic Mathlib.GroupTheory.OrderOfElement Mathlib.Tactic Mathlib.MeasureTheory.Integral.Lebesgue.Add Mathlib.MeasureTheory.Integral.Lebesgue.Markov Mathlib.MeasureTheory.Constructions.BorelSpace.Real Mathlib.Topology.Algebra.InfiniteSum.ENNReal Mathlib.Data.Nat.Factorization.Basic Mathlib.Data.Nat.ModEq Mathlib.FieldTheory.Finite.Basic
+          lake exe cache get Mathlib.NumberTheory.Multiplicity Mathlib.Analysis.SpecialFunctions.Complex.CircleAddChar Mathlib.Algebra.Group.AddChar Mathlib.Data.ZMod.Basic Mathlib.GroupTheory.OrderOfElement Mathlib.Tactic Mathlib.MeasureTheory.Integral.Lebesgue.Add Mathlib.MeasureTheory.Integral.Lebesgue.Markov Mathlib.MeasureTheory.Constructions.BorelSpace.Real Mathlib.Topology.Algebra.InfiniteSum.ENNReal Mathlib.Data.Nat.Factorization.Basic Mathlib.Data.Nat.ModEq Mathlib.FieldTheory.Finite.Basic Mathlib.MeasureTheory.Measure.Prod Mathlib.MeasureTheory.Integral.Lebesgue.Map Mathlib.MeasureTheory.Integral.Lebesgue.Countable Mathlib.Probability.Independence.InfinitePi Mathlib.Probability.Independence.Basic Mathlib.MeasureTheory.Constructions.Pi
       - name: Kernel and axiom audit
         run: |
           set -o pipefail
