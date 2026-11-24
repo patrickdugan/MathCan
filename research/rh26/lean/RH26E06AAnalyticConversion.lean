@@ -14,7 +14,7 @@ theorem exact_slack (F q g N z R K V η : ℝ)
     (hN : 0 ≤ N) (hz : 0 ≤ z) (hzg : z ≤ g)
     (hR : 0 ≤ R) (hV : V ≤ q)
     (hη : η ≤ R*(K*(g*base F q g+z*N)+V)) :
-    η ≤ R*(|K|*weight F q g N+q-|K|*(g-z)*N) := by
+    η ≤ R*((abs K)*weight F q g N+q-(abs K)*(g-z)*N) := by
   have hF0 : 0 ≤ F := by linarith
   have hq0 : 0 ≤ q := by linarith
   have hg0 : 0 ≤ g := by linarith
@@ -24,7 +24,7 @@ theorem exact_slack (F q g N z R K V η : ℝ)
   apply hη.trans
   apply mul_le_mul_of_nonneg_left _ hR
   calc
-    _ ≤ |K|*(g*base F q g+z*N)+q := add_le_add hk hV
+    _ ≤ (abs K)*(g*base F q g+z*N)+q := add_le_add hk hV
     _ = _ := by unfold weight; ring
 
 theorem cohomology_budget (F q g N : ℝ)
@@ -47,16 +47,16 @@ theorem refined_conversion (F q g N z R K V η : ℝ)
     (hN : 0 ≤ N) (hz : 0 ≤ z) (hzg : z ≤ g)
     (hR : 0 ≤ R) (hV : V ≤ q)
     (hη : η ≤ R*(K*(g*base F q g+z*N)+V)) :
-    η ≤ R*((|K|+1/(F*g^2*q))*weight F q g N) := by
+    η ≤ R*(((abs K)+1/(F*g^2*q))*weight F q g N) := by
   have hs := exact_slack F q g N z R K V η hF hq hg hN hz hzg hR hV hη
   have hb := cohomology_budget F q g N hF hq hg hN
-  have hsl : 0 ≤ |K|*(g-z)*N := by
+  have hsl : 0 ≤ (abs K)*(g-z)*N := by
     exact mul_nonneg (mul_nonneg (abs_nonneg _) (sub_nonneg.mpr hzg)) hN
   apply hs.trans
   apply mul_le_mul_of_nonneg_left _ hR
   calc
-    _ ≤ |K|*weight F q g N+q := by linarith only [hsl]
-    _ ≤ |K|*weight F q g N+(1/(F*g^2*q))*weight F q g N := add_le_add_left hb _
+    _ ≤ (abs K)*weight F q g N+q := by linarith only [hsl]
+    _ ≤ (abs K)*weight F q g N+(1/(F*g^2*q))*weight F q g N := add_le_add_left hb _
     _ = _ := by ring
 
 theorem delta_budget (F q g N δ : ℝ)
@@ -84,15 +84,15 @@ theorem delta_conversion (F q g N z R K V η δ : ℝ)
     (hR : 0 ≤ R) (hV : V ≤ q)
     (hη : η ≤ R*(K*(g*base F q g+z*N)+V))
     (hδ : 0 ≤ δ) (hδg : 1 ≤ δ*g^2) :
-    η ≤ R*((|K|+δ)*weight F q g N) := by
+    η ≤ R*(((abs K)+δ)*weight F q g N) := by
   have hs := exact_slack F q g N z R K V η hF hq hg hN hz hzg hR hV hη
   have hb := delta_budget F q g N δ hF hq hg hN hδ hδg
-  have hsl : 0 ≤ |K|*(g-z)*N := mul_nonneg (mul_nonneg (abs_nonneg _) (sub_nonneg.mpr hzg)) hN
+  have hsl : 0 ≤ (abs K)*(g-z)*N := mul_nonneg (mul_nonneg (abs_nonneg _) (sub_nonneg.mpr hzg)) hN
   apply hs.trans
   apply mul_le_mul_of_nonneg_left _ hR
   calc
-    _ ≤ |K|*weight F q g N+q := by linarith only [hsl]
-    _ ≤ |K|*weight F q g N+δ*weight F q g N := add_le_add_left hb _
+    _ ≤ (abs K)*weight F q g N+q := by linarith only [hsl]
+    _ ≤ (abs K)*weight F q g N+δ*weight F q g N := add_le_add_left hb _
     _ = _ := by ring
 
 theorem eventual_delta (eps δ : ℝ) (he : 0 < eps) (hd : 0 < δ) :
@@ -123,8 +123,8 @@ theorem zero_extra_if_slack (F q g N z R K V η : ℝ)
     (hN : 0 ≤ N) (hz : 0 ≤ z) (hzg : z ≤ g)
     (hR : 0 ≤ R) (hV : V ≤ q)
     (hη : η ≤ R*(K*(g*base F q g+z*N)+V))
-    (hsl : q ≤ |K|*(g-z)*N) :
-    η ≤ R*(|K|*weight F q g N) := by
+    (hsl : q ≤ (abs K)*(g-z)*N) :
+    η ≤ R*((abs K)*weight F q g N) := by
   apply (exact_slack F q g N z R K V η hF hq hg hN hz hzg hR hV hη).trans
   exact mul_le_mul_of_nonneg_left (by linarith only [hsl]) hR
 
@@ -132,7 +132,7 @@ theorem zero_extra_control :
     ∃ F q g N z R K V η : ℝ,
       1 ≤ F ∧ 1 ≤ q ∧ 1 ≤ g ∧ 0 ≤ N ∧ 0 ≤ z ∧ z ≤ g ∧
       0 ≤ R ∧ V ≤ q ∧ η ≤ R*(K*(g*base F q g+z*N)+V) ∧
-      R*(|K|*weight F q g N) < η := by
+      R*((abs K)*weight F q g N) < η := by
   refine ⟨1, 1, 1, 0, 0, 1, 1, 1, 2, ?_⟩
   norm_num [base, weight]
 
