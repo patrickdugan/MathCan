@@ -592,7 +592,40 @@ function buildE(defs,extended=false){
       })));
       return app(us(ge,f,g,d),al(sf),al(sg),equiv);
     }))))));
-    Object.assign(proofs,{no_two_cycle:noCycle,successor_predecessor_unique:succPredUnique,bounded_induction_coherence:agreeInd,stage_graph_coherence:coherence,bounded_induction_monotonicity:monoInd,stage_graph_monotonicity_conditional:mono,stage_graph_restriction:restrict,ordered_pair_unique:pairUnique,graph_extensionality:graphExt,stage_graph_unique:stageUnique});
+
+    const crossMono=use(coherence,co=>use(mono,mo=>ii(inflation,inf=>{
+      return qs(4,(f,g,d,e)=>{
+        return ii(trans(d),td=>ii(trans(e),te=>ii(SG(f,d),sf=>ii(SG(g,e),sg=>{
+          const eq=app(us(co,f,g,d,e),td,te,sf,sg);
+          const mg=app(us(app(mo,inf),g,e),te,sg);
+          return ui(i=>{
+            return ii(M(i,d),id=>{
+              return ui(b=>{
+                return ii(M(b,e),be=>{
+                  return ii(M(i,b),ib=>{
+                    const ie0=app(ue(app(ue(te,b),be),i),ib);
+                    return ui(r=>{
+                      return ii(Val(f,i,r),vr=>{
+                        return ui(s=>{
+                          return ii(Val(g,b,s),vs=>{
+                            return open(app(ue(ar(sg),i),ie0),(c,cv)=>{
+                              const rc=app(ue(app(ue(app(ue(eq,i),id,ie0),r),vr),c),al(cv));
+                              const cs=app(ue(app(ue(app(ue(app(ue(mg,b),be),i),ib),c),al(cv)),s),vs);
+                              return eqSub(sym(rc),t=>subset(t,s),cs);
+                            });
+                          });
+                        });
+                      });
+                    });
+                  });
+                });
+              });
+            });
+          });
+        }))));
+      });
+    })));
+    Object.assign(proofs,{no_two_cycle:noCycle,successor_predecessor_unique:succPredUnique,bounded_induction_coherence:agreeInd,stage_graph_coherence:coherence,bounded_induction_monotonicity:monoInd,stage_graph_monotonicity_conditional:mono,stage_graph_restriction:restrict,ordered_pair_unique:pairUnique,graph_extensionality:graphExt,stage_graph_unique:stageUnique,cross_graph_monotonicity_conditional:crossMono});
   }
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
