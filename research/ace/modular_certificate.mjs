@@ -19,6 +19,7 @@ function policy(targetTheory,classDef){
 }
 function verifyGraph(nodes,{targetTheory="ZF",classDef=null}={}){
   policy(targetTheory,classDef);
+  classDef=classDef===null?null:JSON.parse(JSON.stringify(classDef));
   if(!nodes||typeof nodes[Symbol.iterator]!=="function")fail("graph iterable");
   const checked=new Map(),receipts=[];
   for(const n of nodes){
@@ -72,6 +73,7 @@ function rewriteAxioms(p,base,axioms,sourceTheory){
 }
 function compileModular(k,ctx,p,{sourceTheory="ZFC",targetTheory="ZF",classDef=null,nodes=[],certificates=[]}={}){
   policy(targetTheory,classDef);
+  classDef=classDef===null?null:JSON.parse(JSON.stringify(classDef));
   if(!Array.isArray(certificates))fail("certificate list");
   const source=kernel(k,ctx,p,false,sourceTheory);
   const verified=verifyGraph(nodes,{targetTheory,classDef});
