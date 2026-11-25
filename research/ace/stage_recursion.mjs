@@ -452,6 +452,34 @@ function buildI(defs,prior,finite){
       return ei(E(f=>C(SG(f,b),A(g=>I(SG(g,b),Q(g,f))))),f,ai(sf,uq));
     });
   }))));
-  const proofs={successor_exists:successorExists,successor_unique:succUnique,value_in_domain:domainLemma,subset_reflexive:reflSub,stage_value_transport:stageTransfer,limit_value_exists:limitValue,stage_value_exists:stageTotal,stage_history_extension:extend,empty_history_exists:emptyGraph,compatible_history_union:glueHistories,successor_history_unique:histUnique,ordinal_member:ordinalMemberProof,history_existence_induction:existInd,successor_history_exists:successorHistoryExistence,ordinal_history_exists:historyExists,ordinal_history_exists_unique:historyExistsUnique};
+
+  const stageWitness=(b,r)=>E(d=>C(Succ(b,d),E(f=>C(SG(f,d),Val(f,b,r)))));
+  const ordinalValueExists=use(successorHistoryExistence,he=>ui(b=>ii(Ord(b),ob=>{
+    return open(app(ue(he,b),ob),(f,fh)=>open(fh,(d,dh)=>{
+      const bd=into(al(dh),b,or(M(b,b),ref(b)));
+      return open(app(ue(ar(al(ar(dh))),b),bd),(r,rp)=>{
+        const witness=stageWitness(b,r),inner=replace(witness[2],witness[1],d)[2];
+        return ei(E(r=>stageWitness(b,r)),r,ei(witness,d,ai(al(dh),ei(inner,f,ai(ar(dh),al(rp))))));
+      });
+    }));
+  })));
+  const ordinalValueUnique=use(coh,co=>use(succTrans,st=>qs(3,(b,r,s)=>ii(Ord(b),ob=>ii(stageWitness(b,r),rw=>ii(stageWitness(b,s),sw=>{
+    return open(rw,(d,dp)=>open(ar(dp),(f,fp)=>open(sw,(e,ep)=>open(ar(ep),(g,gp)=>{
+      const td=app(us(st,b,d),al(ob),al(dp)),te=app(us(st,b,e),al(ob),al(ep));
+      const bd=into(al(dp),b,or(M(b,b),ref(b))),be=into(al(ep),b,or(M(b,b),ref(b)));
+      const eq=app(us(co,f,g,d,e),td,te,al(fp),al(gp));
+      return app(ue(app(ue(app(ue(eq,b),bd,be),r),ar(fp)),s),ar(gp));
+    }))));
+  }))))));
+  const stageMembersL=qs(2,(b,r)=>ii(Ord(b),ob=>ii(stageWitness(b,r),rw=>ui(x=>ii(M(x,r),xr=>{
+    return open(rw,(d,dp)=>open(ar(dp),(f,fp)=>{
+      const goal=form("L",x);
+      const aBody=replace(goal[2],goal[1],b),dGoal=aBody[2];
+      const dBody=replace(dGoal[2],dGoal[1],d),fGoal=dBody[2];
+      const fBody=replace(fGoal[2],fGoal[1],f),rGoal=fBody[2];
+      return ei(goal,b,ai(ob,ei(dGoal,d,ai(al(dp),ei(fGoal,f,ai(al(fp),ei(rGoal,r,ai(ar(fp),xr))))))));
+    }));
+  })))));
+  const proofs={successor_exists:successorExists,successor_unique:succUnique,value_in_domain:domainLemma,subset_reflexive:reflSub,stage_value_transport:stageTransfer,limit_value_exists:limitValue,stage_value_exists:stageTotal,stage_history_extension:extend,empty_history_exists:emptyGraph,compatible_history_union:glueHistories,successor_history_unique:histUnique,ordinal_member:ordinalMemberProof,history_existence_induction:existInd,successor_history_exists:successorHistoryExistence,ordinal_history_exists:historyExists,ordinal_history_exists_unique:historyExistsUnique,ordinal_stage_value_exists:ordinalValueExists,ordinal_stage_value_unique:ordinalValueUnique,stage_members_constructible:stageMembersL};
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
