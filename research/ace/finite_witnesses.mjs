@@ -1,7 +1,7 @@
 import { definition } from './constructible_definition.mjs';
 import { kernel, same, inst, classProofs, compile, rejects } from './zf_interface.mjs';
 import { buildE } from './hierarchy_closure.mjs';
-function buildF(defs){
+function buildF(defs,extended=false){
   let serial=0;
   const fresh=()=>`q${serial++}`,M=(a,b)=>["M",a,b],Q=(a,b)=>["=",a,b],F=["F"],I=(p,q)=>[">",p,q],C=(p,q)=>["&",p,q],N=p=>I(p,F);
   const bind=(op,f)=>{const x=fresh();return [op,x,f(x)];};
@@ -431,6 +431,116 @@ function buildF(defs){
     return ui(x=>ii(M(x,a),xa=>into(dd,x,app(ue(app(ue(ad,a),ta),x),xa))));
   }))));
   const proofs={pair_exists:pairExists,pair_injective:pairInjective,binary_graph_exists:binaryGraph,unary_graph_exists:unaryGraph,omega_exists:omegaExists,finite_ordinals:finiteOrdinals,membership_relation_exists:relationExists,atomic_member_definable:atomicDef,def_inflation:defInflation};
+
+  if(extended){
+    function definableSubset(a,x,d){
+      return ui(y=>ii(M(y,x),mem=>{
+        const goal=M(y,a);
+        function follow(p,path){
+          if(!path.length)return al(ie(al(ue(p,y)),mem));
+          const [step,...tail]=path;
+          if(step==="l")return follow(al(p),tail);
+          if(step==="r")return follow(ar(p),tail);
+          return ee(p,goal,(_,q)=>follow(q,tail));
+        }
+        return oe(d,goal,p=>fe(app(ue(p,y),mem),goal),
+          p=>follow(p,["e","r","e","r","e","r","r","e","r","e","r","r","e","r","e","r","r","e","r"]));
+      }));
+    }
+    function emptyDef(z,o,ez,os){
+      return ui(x=>ai(ii(M(x,o),mx=>{
+        const xz=from(os,x,mx);
+        const ex=eqSub(sym(xz),t=>Empty(t),ez);
+        return ol(ex,D(z,x)[2]);
+      }),ii(D(z,x),dx=>{
+        const sub=definableSubset(z,x,dx);
+        const ex=ui(y=>ii(M(y,x),yx=>app(ue(ez,y),app(ue(sub,y),yx))));
+        return into(os,x,emptyEq(x,z,ex,ez));
+      })));
+    }
+    const defZero=qs(2,(z,o)=>ii(Empty(z),ez=>ii(form("singleton",o,z),os=>emptyDef(z,o,ez,os))));
+    function stageZero(f,z,ez){
+      const st=form("stage",f,z,z),limit=st[2][1],union=st[2][2];
+      const noPred=ii(limit[1],p=>open(p,(_,w)=>app(ue(ez,w.goal[1][1]),al(w))));
+      const limitVal=ui(x=>{
+        const u=replace(union[2],union[1],x),ex=u[2][1];
+        const left=ii(M(x,z),xz=>fe(app(ue(ez,x),xz),ex));
+        const right=ii(ex,p=>open(p,(i,w)=>fe(app(ue(ez,i),al(w)),M(x,z))));
+        return ai(left,right);
+      });
+      return or(st[1],ai(noPred,limitVal));
+    }
+    function stageOne(f,z,o,zo,su0,vz,def0){
+      const st=form("stage",f,o,o),sc=st[1];
+      const sBody=replace(sc[2],sc[1],z),sEx=sBody[2][2];
+      return ol(ei(sc,z,ai(zo,ai(su0,ei(sEx,z,ai(vz,def0))))),st[2]);
+    }
+    function ordOne(z,o,ez,os){
+      const tr=ui(x=>ii(M(x,o),xo=>ui(y=>ii(M(y,x),yx=>{
+        const xz=from(os,x,xo);
+        return fe(app(ue(ez,y),eqSub(xz,t=>M(y,t),yx)),M(y,o));
+      }))));
+      const each=ui(x=>ii(M(x,o),xo=>ui(y=>ii(M(y,x),yx=>ui(v=>ii(M(v,y),vy=>{
+        return fe(app(ue(ez,y),eqSub(from(os,x,xo),t=>M(y,t),yx)),M(v,x));
+      }))))));
+      return ai(tr,each);
+    }
+    function graphZero(z,o,ez,os,inj,fn){
+      return withUnaryGraph(z,z,o,os,inj,(f,g,vz)=>{
+        const s0=stageZero(f,z,ez);
+        const steps=ui(i=>ii(M(i,o),io=>{
+          const iz=from(os,i,io);
+          const goal=E(r=>C(form("val",f,i,r),form("stage",f,i,r)));
+          const pr=eqSub(sym(iz),t=>C(form("val",f,t,z),form("stage",f,t,z)),ai(vz,s0));
+          return ei(goal,z,pr);
+        }));
+        return use(ai(g,steps),sg=>fn(f,sg,vz));
+      });
+    }
+    function graphOne(z,o,n,ez,os,nn,ne,su0,inj,fn){
+      const zo=into(os,z,ref(z)),def0=emptyDef(z,o,ez,os);
+      return withBinaryGraph(z,o,z,o,n,nn,ne,inj,(f,g,vz,vo)=>{
+        return use(def0,d0=>{
+          const s0=stageZero(f,z,ez),s1=stageOne(f,z,o,zo,su0,vz,d0);
+          const steps=ui(i=>ii(M(i,n),inN=>{
+            const goal=E(r=>C(form("val",f,i,r),form("stage",f,i,r)));
+            return oe(from(nn,i,inN),goal,
+              iz=>ei(goal,z,eqSub(sym(iz),t=>C(form("val",f,t,z),form("stage",f,t,z)),ai(vz,s0))),
+              io=>ei(goal,o,eqSub(sym(io),t=>C(form("val",f,t,o),form("stage",f,t,o)),ai(vo,s1))));
+          }));
+          return use(ai(g,steps),sg=>fn(f,sg,vz,vo));
+        });
+      });
+    }
+    const stageZeroProof=qs(2,(f,z)=>ii(Empty(z),ez=>stageZero(f,z,ez)));
+    const graph0=use(pairInjective,inj=>qs(2,(z,o)=>ii(Empty(z),ez=>ii(form("singleton",o,z),os=>{
+      const goal=E(f=>C(form("stageGraph",f,o),form("val",f,z,z)));
+      return graphZero(z,o,ez,os,inj,(f,sg,vz)=>ei(goal,f,ai(sg,vz)));
+    }))));
+    const graph1=use(pairInjective,inj=>qs(3,(z,o,n)=>ii(Empty(z),ez=>ii(form("singleton",o,z),os=>ii(form("unordered",n,z,o),nn=>ii(N(Q(z,o)),ne=>ii(form("successor",z,o),su0=>{
+      const goal=E(f=>C(C(form("stageGraph",f,n),form("val",f,z,z)),form("val",f,o,o)));
+      return graphOne(z,o,n,ez,os,nn,ne,su0,inj,(f,sg,vz,vo)=>ei(goal,f,ai(ai(sg,vz),vo)));
+    })))))));
+    const lEmpty=use(pairInjective,inj=>use(omegaExists,owEx=>ui(x=>ii(Empty(x),ex=>{
+      const goal=form("L",x);
+      return open(owEx,(w,ow)=>withOrdinals(ow,w,a=>{
+        const {z,o,n,zero,ss,tt,ne,su0,su1}=a;
+        const ord=ordOne(z,o,zero,ss);
+        const xo=into(ss,x,emptyEq(x,z,ex,zero));
+        return graphOne(z,o,n,zero,ss,tt,ne,su0,inj,(f,sg,vz,vo)=>{
+          const aBody=replace(goal[2],goal[1],o),dGoal=aBody[2];
+          const dBody=replace(dGoal[2],dGoal[1],n),fGoal=dBody[2];
+          const fBody=replace(fGoal[2],fGoal[1],f),rGoal=fBody[2];
+          return ei(goal,o,ai(ord,ei(dGoal,n,ai(su1,ei(fGoal,f,ai(sg,ei(rGoal,o,ai(vo,xo))))))));
+        });
+      }));
+    }))));
+    const lNonempty=use(lEmpty,le=>open(ax({name:"empty"}),(z,ez)=>{
+      const goal=E(x=>C(form("L",x),Empty(x)));
+      return ei(goal,z,ai(app(ue(le,z),ez),ez));
+    }));
+    Object.assign(proofs,{def_zero_singleton:defZero,zero_stage_rule:stageZeroProof,zero_stage_graph:graph0,one_stage_graph:graph1,L_empty:lEmpty,L_contains_empty:lNonempty});
+  }
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
 
