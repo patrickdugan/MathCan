@@ -192,6 +192,58 @@ function buildK(defs,prior,finite,stages,extended=false){
     });
   }
   const limitStageMembers=qs(2,(b,r)=>ii(Ord(b),ob=>ii(noPred(b),np=>ii(W(b,r),rw=>limitProof(b,r,ob,np,rw)))));
-  const proofs={omega_ordinal:omegaOrdinal,omega_limit:omegaLimit,ordinal_limit_stage_members:limitStageMembers};
+
+  function inductiveStage(w,r,ow,rw,ob,lim){
+    const base=open(al(al(ow)),(z,zp)=>{
+      const zw=al(zp),ez=ar(zp),oz=app(us(om,w,z),ob,zw);
+      return open(app(ue(ar(al(ow)),z),zw),(j,jp)=>{
+        const jw=al(jp),zj=ar(jp),oj=app(us(om,w,j),ob,jw);
+        return open(app(ue(ov,z),oz),(v,vw)=>open(app(ue(ov,j),oj),(s,sw)=>{
+          const df=app(us(sd,z,j,v,s),oz,oj,zj,vw,sw);
+          const zd=ol(ez,D(v,z)[2]),zs=into(df,z,zd);
+          const inc=app(us(mono,j,w,s,r),oj,ob,sw,rw,jw);
+          const zr=app(ue(inc,z),zs);
+          return ei(E(z=>C(M(z,r),Empty(z))),z,ai(zr,ez));
+        }));
+      });
+    });
+    const step=ui(x=>ii(M(x,r),xr=>{
+      return open(from(lim,x,xr),(i,ip)=>open(ar(ip),(a,ap)=>{
+        const iw=al(ip),aw=al(ap),xa=ar(ap),oi=app(us(om,w,i),ob,iw);
+        const ta=app(us(ot,i,a),oi,aw);
+        return open(ue(se,x),(y,xy)=>{
+          const yd=app(us(succD,a,x,y),ta,xa,xy);
+          return open(app(ue(ar(al(ow)),i),iw),(j,jp)=>{
+            const jw=al(jp),ij=ar(jp),oj=app(us(om,w,j),ob,jw);
+            return open(app(ue(ov,j),oj),(b,bw)=>{
+              const df=app(us(sd,i,j,a,b),oi,oj,ij,aw,bw);
+              const yb=into(df,y,yd);
+              const ex=ar(ue(lim,y)).goal[1],inner=replace(ex[2],ex[1],j)[2];
+              const yr=into(lim,y,ei(ex,j,ai(jw,ei(inner,b,ai(bw,yb)))));
+              return ei(E(y=>C(M(y,r),Succ(x,y))),y,ai(yr,xy));
+            });
+          });
+        });
+      }));
+    }));
+    return ai(base,step);
+  }
+  const omegaStageInd=use(omegaOrdinal,oo=>use(omegaLimit,ol0=>use(limitStageMembers,lm=>{
+    return qs(2,(w,r)=>ii(Omega(w),ow=>ii(W(w,r),rw=>{
+      const ob=app(ue(oo,w),ow),np=app(ue(ol0,w),ow);
+      return use(ob,ord=>use(app(us(lm,w,r),ord,np,rw),lim=>inductiveStage(w,r,ow,rw,ord,lim)));
+    })));
+  })));
+  const stageInL=ui(w=>ii(Ord(w),ob=>ui(r=>ii(W(w,r),rw=>app(us(dc,w,r,r),ob,rw,ue(selfD,r))))));
+  const omegaStageInL=use(omegaOrdinal,oo=>use(omegaStageInd,ind=>use(stageInL,sl=>{
+    return open(owEx,(w,ow)=>{
+      const ob=app(ue(oo,w),ow);
+      return use(ob,ord=>open(app(ue(ov,w),ord),(r,rw)=>{
+        const goal=E(r=>C(L(r),Ind(r)));
+        return ei(goal,r,ai(app(ue(app(ue(sl,w),ord),r),rw),app(us(ind,w,r),ow,rw)));
+      }));
+    });
+  })));
+  const proofs={omega_ordinal:omegaOrdinal,omega_limit:omegaLimit,ordinal_limit_stage_members:limitStageMembers,omega_stage_inductive:omegaStageInd,ordinal_stage_constructible:stageInL,constructible_inductive_set:omegaStageInL};
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
