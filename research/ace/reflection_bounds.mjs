@@ -308,3 +308,59 @@ function buildM(defs,prior,stages,ranks,formula,arity,extended=false,only=null){
   }
   return Object.fromEntries(Object.entries(proofs).filter(([name])=>only===null||only.includes(name)).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
+
+
+import { readFileSync } from 'node:fs';
+
+function runM(pinned,part){
+  const defs=definition("v",true);
+  if(!same(defs.L,pinned))throw Error("pinned L mismatch");
+  const cases={
+    membership:{formula:["M",0,1],arity:1,extended:false,only:null},
+    extension:{formula:["M",0,1],arity:1,extended:true,only:["strict_stage_witness_extension"]},
+    two_parameter:{formula:["&",["M",0,1],["M",0,2]],arity:2,extended:false,only:["finite_parameter_witness_bound"]},
+    quantified:{formula:["E",["&",["M",1,0],["M",0,2]]],arity:1,extended:false,only:["finite_parameter_witness_bound"]},
+    closed:{formula:["F"],arity:0,extended:false,only:["finite_parameter_witness_bound"]}
+  };
+  const spec=cases[part];if(!spec)throw Error("unknown replay part");
+  const prior=buildE(defs,true),finite=buildF(defs),stages=buildI(defs,prior,finite,true),ranks=buildL(defs,prior,finite,stages),ps=buildM(defs,prior,stages,ranks,spec.formula,spec.arity,spec.extended,spec.only),out={};
+  for(const [name,p] of Object.entries(ps)){
+    const r=kernel(0,[],p.proof,false,"ZF");if(!same(r.goal,p.goal))throw Error("goal mismatch "+name);
+    out[name]={nodes:r.visits,proof_bytes:JSON.stringify(p.proof).length};
+  }
+  const A=p=>["A",p],E=p=>["E",p],I=(p,q)=>[">",p,q],C=(p,q)=>["&",p,q],M=(a,b)=>["M",a,b];
+  function embed(p,indices,d=0){
+    const [op,a,b]=p;
+    if(op==="F")return p;
+    if(op==="A"||op==="E")return [op,embed(a,indices,d+1)];
+    if(op==="M"||op==="="){const f=i=>i<d?i:indices[i-d]+d;return [op,f(a),f(b)];}
+    return [op,embed(a,indices,d),embed(b,indices,d)];
+  }
+  function rel(p){
+    const [op,a,b]=p;
+    if(op==="A")return A(I(defs.L,rel(a)));
+    if(op==="E")return E(C(defs.L,rel(a)));
+    if(["&","|",">"].includes(op))return [op,rel(a),rel(b)];
+    return p;
+  }
+  const Ord=a=>embed(defs.ordinal,[a]),Succ=(a,b)=>embed(defs.successor,[a,b]),W=(b,r)=>E(C(Succ(b+1,0),E(C(embed(defs.stageGraph,[0,1]),embed(defs.val,[0,b+2,r+2])))));
+  const sub=(a,b)=>A(I(M(0,a+1),M(0,b+1)));
+  const n=spec.arity;
+  const phi=embed(rel(spec.formula),[0,...Array.from({length:n},(_,i)=>n-i)]);
+  let clause=I(E(C(defs.L,phi)),E(C(M(0,n+1),phi)));
+  for(let i=n-1;i>=0;i--)clause=A(I(M(0,3+i),clause));
+  const expected=spec.extended?A(A(I(Ord(1),I(W(1,0),E(E(C(C(C(Ord(1),W(1,0)),M(3,1)),C(sub(2,0),clause)))))))):A(E(E(C(C(Ord(1),W(1,0)),clause))));
+  const p=ps[spec.extended?"strict_stage_witness_extension":"finite_parameter_witness_bound"];
+  if(!same(p.goal,expected))throw Error("independent exact bound mismatch");
+  const controls=[
+    ()=>kernel(0,[],p.proof,false,"CL"),
+    ()=>buildM(defs,prior,stages,ranks,["M",0,n+1],n),
+    ()=>buildM(defs,prior,stages,ranks,spec.formula,4)
+  ];
+  for(const t of controls)if(!rejects(t))throw Error("negative control accepted");
+  return {experiment:"ACE-03M",part,formula:spec.formula,arity:n,proofs:out,independent_goal_checks:1,negative_controls:controls.length,pinned_L_unchanged:true,scope:"one-step finite parameter witness bounds; no limit-stage reflection or full Separation schema"};
+}
+
+const pinned=JSON.parse(readFileSync(new URL('./L_formula.json',import.meta.url),'utf8'));
+const part=process.argv[2];
+console.log(JSON.stringify(runM(pinned,part),null,2));
