@@ -768,7 +768,66 @@ function buildF(defs,extended=false){
         return withNats(ow,6,ns=>pairDefWitness(ns,a,x,y,p,xa,ya,pp,ap,nsf,{eq,neg,and}));
       }))));
     }))))));
-    Object.assign(proofs,{equality_relation_exists:eqExists,negation_relation_exists:negExists,intersection_relation_exists:andExists,existential_relation_exists:exExists,foundation_no_self:noSelf,value_in_domain:valDomain,graph_append_exists:appendExists,ternary_tuple_exists:tuple3,pair_definable:pairDefinable});
+
+    const unionInstructions=[["mem",0,2],["mem",2,1],["and",0,1],["exists",2,2]];
+    function unionDefWitness(ns,a,x,p,ta,xa,pp,ap,nsf,rels){
+      const n=ns.values,k=3,m=unionInstructions.length;
+      return withProgram(ns,a,k,unionInstructions,ap,rels,(f,valid,rs,rps,vs)=>{
+        return withFiniteTuple(ns,a,[x,x,x],[xa,xa,xa],ap,(b,bt,bv)=>{
+          function sliceAt(u){
+            const target=form("slice",p,rs[3],a,n[k],n[0],b);
+            const g=replace(target[2],target[1],u),witness=g[1][2][2];
+            const left=ii(M(u,p),up=>{
+              return open(from(pp,u,up),(v,vp)=>{
+                const vx=al(vp),uv=ar(vp);
+                const va=app(ue(app(ue(ta,x),xa),v),vx);
+                const ua=app(ue(app(ue(ta,v),va),u),uv);
+                return use(va,vA=>use(ua,uA=>{
+                  return withFiniteTuple(ns,a,[u,x,x],[uA,xa,xa],ap,(s,st,sv)=>{
+                    return withFiniteTuple(ns,a,[u,x,v],[uA,xa,vA],ap,(t,tt,tv)=>{
+                      const r0=atomIntro(ns,k,t,0,2,u,v,tt,uA,vA,tv[0],tv[2],uv,rps[0]);
+                      const r1=atomIntro(ns,k,t,2,1,v,x,tt,vA,xa,tv[2],tv[1],vx,rps[1]);
+                      const r2=into(rps[2],t,ai(r0,r1));
+                      const agree=agreeKnown(ns,k,2,s,t,st,tt,[u,x,x],sv,tv,nsf);
+                      const ex=ar(ue(rps[3],s)).goal[1][2];
+                      const sr=into(rps[3],s,ai(st,ei(ex,t,ai(r2,agree))));
+                      const baseAgree=agreeKnown(ns,k,0,s,b,st,bt,[u,x,x],sv,bv,nsf);
+                      return ai(uA,ei(witness,s,ai(sr,ai(sv[0],baseAgree))));
+                    });
+                  });
+                }));
+              });
+            });
+            const right=ii(g[2][1],q=>{
+              return open(ar(q),(s,sw)=>{
+                const sr=al(sw),s0=al(ar(sw)),agree=ar(ar(sw));
+                const cond=from(rps[3],s,sr);
+                const sx=agreementValue(ns,k,0,1,s,b,agree,x,bv[1],nsf,false);
+                return open(ar(cond),(t,tp)=>{
+                  const both=from(rps[2],t,al(tp)),r0=al(both),r1=ar(both),st=al(from(rps[0],t,r0)),ag=ar(tp);
+                  const t0=agreementValue(ns,k,2,0,s,t,ag,u,s0,nsf,true);
+                  const t1=agreementValue(ns,k,2,1,s,t,ag,x,sx,nsf,true);
+                  return open(app(ue(ar(st),n[2]),ns.mem(2,k)),(v,vp)=>{
+                    const t2=ar(vp);
+                    const uv=atomElim(ns,k,t,0,2,u,v,st,t0,t2,r0,rps[0],M);
+                    const vx=atomElim(ns,k,t,2,1,v,x,st,t2,t1,r1,rps[1],M);
+                    return into(pp,u,ei(ar(ue(pp,u)).goal[1],v,ai(vx,uv)));
+                  });
+                });
+              });
+            });
+            return ai(left,right);
+          }
+          return finishDef(ns,a,p,k,m,f,valid,rs,vs,b,bt,ui(sliceAt));
+        });
+      });
+    }
+    const unionDefinable=use(omegaExists,ow=>use(appendExists,ap=>use(noSelf,nsf=>use(relationExists,mem=>use(andExists,and=>use(exExists,exists=>{
+      return qs(3,(a,x,p)=>ii(trans(a),ta=>ii(M(x,a),xa=>ii(UnionSet(x,p),pp=>{
+        return withNats(ow,4,ns=>unionDefWitness(ns,a,x,p,ta,xa,pp,ap,nsf,{mem,and,exists}));
+      }))));
+    }))))));
+    Object.assign(proofs,{equality_relation_exists:eqExists,negation_relation_exists:negExists,intersection_relation_exists:andExists,existential_relation_exists:exExists,foundation_no_self:noSelf,value_in_domain:valDomain,graph_append_exists:appendExists,ternary_tuple_exists:tuple3,pair_definable:pairDefinable,union_definable:unionDefinable});
   }
   if(extended===true){
     function definableSubset(a,x,d){
