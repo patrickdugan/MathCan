@@ -4,7 +4,7 @@ import { buildE } from './hierarchy_closure.mjs';
 import { buildF } from './finite_witnesses.mjs';
 import { buildI } from './stage_recursion.mjs';
 import { buildL } from './constructible_power.mjs';
-function buildM(defs,prior,stages,ranks,formula,arity,extended=false){
+function buildM(defs,prior,stages,ranks,formula,arity,extended=false,only=null){
   let serial=0;
   const fresh=()=>`q${serial++}`,M=(a,b)=>["M",a,b],Q=(a,b)=>["=",a,b],F=["F"],I=(p,q)=>[">",p,q],C=(p,q)=>["&",p,q],N=p=>I(p,F);
   const bind=(op,f)=>{const x=fresh();return [op,x,f(x)];};
@@ -306,5 +306,5 @@ function buildM(defs,prior,stages,ranks,formula,arity,extended=false){
     })))))));
     Object.assign(proofs,{strict_stage_witness_extension:extension});
   }
-  return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
+  return Object.fromEntries(Object.entries(proofs).filter(([name])=>only===null||only.includes(name)).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
