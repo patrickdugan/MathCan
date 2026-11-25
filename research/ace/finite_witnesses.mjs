@@ -316,6 +316,119 @@ function buildF(defs){
     }));
   }
   const relationExists=qs(4,(a,n,i,j)=>withRelation(a,n,i,j,(r,rp)=>ei(E(r=>form("relMem",r,n,a,i,j)),r,rp)));
-  const proofs={pair_exists:pairExists,pair_injective:pairInjective,binary_graph_exists:binaryGraph,unary_graph_exists:unaryGraph,omega_exists:omegaExists,finite_ordinals:finiteOrdinals,membership_relation_exists:relationExists};
+
+  function withTuple(a,n,z,o,u,v,tt,ne,inj,ua,va,fn){
+    return withBinaryGraph(z,o,u,v,n,tt,ne,inj,(s,g,vz,vo)=>{
+      const Val=(i,x)=>form("val",s,i,x);
+      const range=ui(i=>ii(M(i,n),inN=>{
+        const goal=E(x=>C(M(x,a),Val(i,x)));
+        return oe(from(tt,i,inN),goal,
+          iz=>ei(goal,u,ai(ua,eqSub(sym(iz),j=>Val(j,u),vz))),
+          io=>ei(goal,v,ai(va,eqSub(sym(io),j=>Val(j,v),vo))));
+      }));
+      return use(ai(g,range),tu=>fn(s,tu,vz,vo));
+    });
+  }
+  function proveAgree(s,b,n,z,o,x,tt,on,ne,st,bt,so,bo){
+    const S=(i,v)=>form("val",s,i,v),Bv=(i,v)=>form("val",b,i,v);
+    return ui(j=>ii(M(j,n),jn=>ii(N(Q(z,j)),neq=>ui(v=>{
+      const goal=B(S(j,v),Bv(j,v));
+      return oe(from(tt,j,jn),goal,jz=>fe(app(neq,sym(jz)),goal),jo=>{
+        function transfer(st,sp,fromVal,toVal,toP,p){
+          const vo=eqSub(jo,i=>fromVal(i,v),p);
+          const eq=valueUnique(al(st),s,o,on,x,v,sp,vo);
+          return eqSub(sym(jo),i=>toVal(i,v),eqSub(eq,t=>toVal(o,t),toP));
+        }
+        const left=ii(S(j,v),p=>transfer(st,so,S,Bv,bo,p));
+        const right=ii(Bv(j,v),p=>transfer(bt,bo,Bv,S,so,p));
+        return ai(left,right);
+      });
+    }))));
+  }
+  function proveSlice(a,x,r,n,z,o,b,tt,zn,on,ne,ta,xa,bt,bo,rp,inj){
+    return ui(y=>{
+      const target=form("slice",x,r,a,n,z,b);
+      const g=replace(target[2],target[1],y);
+      const witness=g[1][2][2];
+      const left=ii(M(y,x),yx=>{
+        const ya=app(ue(app(ue(ta,x),xa),y),yx);
+        return withTuple(a,n,z,o,y,x,tt,ne,inj,ya,xa,(s,st,sz,so)=>{
+          const atomCond=ar(ue(rp,s)).goal[1];
+          const prop=atomCond[2];
+          const propY=replace(prop[2],prop[1],y);
+          const propX=propY[2];
+          const rel=ei(prop,y,ai(ya,ei(propX,x,ai(xa,ai(ai(sz,so),yx)))));
+          const sr=into(rp,s,ai(st,rel));
+          const ag=proveAgree(s,b,n,z,o,x,tt,on,ne,st,bt,so,bo);
+          return ai(ya,ei(witness,s,ai(sr,ai(sz,ag))));
+        });
+      });
+      const right=ii(g[2][1],p=>{
+        return open(ar(p),(s,sw)=>{
+          const sr=al(sw),sz=al(ar(sw)),ag=ar(ar(sw));
+          const cond=from(rp,s,sr),st=al(cond),pr=ar(cond);
+          return open(pr,(u,up)=>open(ar(up),(v,vp)=>{
+            const zv=al(al(ar(vp))),ov=ar(al(ar(vp))),uv=ar(ar(vp));
+            const uy=valueUnique(al(st),s,z,zn,u,y,zv,sz);
+            const agO=app(ue(ag,o),on,ne);
+            const bv=app(al(ue(agO,v)),ov);
+            const vx=valueUnique(al(bt),b,o,on,v,x,bv,bo);
+            return eqSub(vx,t=>M(y,t),eqSub(uy,t=>M(t,v),uv));
+          }));
+        });
+      });
+      return ai(left,right);
+    });
+  }
+  function entryProof(f,z,r,n,a,o,zn,on,rp){
+    const g=form("entry",f,z,r,n,a),am=g[1][1][1][2];
+    const inn=replace(am[2],am[1],z)[2];
+    const p=ei(am,z,ai(zn,ei(inn,o,ai(on,rp))));
+    return ol(ol(ol(or(g[1][1][1][1],p),g[1][1][2]),g[1][2]),g[2]);
+  }
+  function atomicWitness(a,x,ta,xa,inj,owEx,relEx){
+    return open(owEx,(w,ow)=>withOrdinals(ow,w,ords=>{
+      const {z,o,n,zero,ow0,nw,su0,ss,tt,ne,zo,zn,on,ne0,ne1}=ords;
+      return open(us(relEx,a,n,z,o),(r,rp)=>{
+        return withTuple(a,n,z,o,x,x,tt,ne,inj,xa,xa,(b,bt,bz,bo)=>{
+          return withUnaryGraph(z,r,o,ss,inj,(f,fg,fz)=>{
+            const goal=D(a,x),owGoal=goal[2];
+            const owBody=replace(owGoal[2],owGoal[1],w);
+            const nGoal=owBody[2],nBody=replace(nGoal[2],nGoal[1],n);
+            const mGoal=nBody[2],mBody=replace(mGoal[2],mGoal[1],o);
+            const fGoal=mBody[2][2],fBody=replace(fGoal[2],fGoal[1],f);
+            const ep=entryProof(f,z,r,n,a,o,zn,on,rp);
+            const allK=ui(j=>ii(M(j,o),jo=>{
+              const jz=from(ss,j,jo);
+              const goal=E(r=>C(form("val",f,j,r),form("entry",f,j,r,n,a)));
+              const value=eqSub(sym(jz),k=>C(form("val",f,k,r),form("entry",f,k,r,n,a)),ai(fz,ep));
+              return ei(goal,r,value);
+            }));
+            const valid=ai(fg,allK);
+            const ls=fBody[2],lsBody=replace(ls[2],ls[1],z);
+            const rGoal=lsBody[2][2],rBody=replace(rGoal[2],rGoal[1],r);
+            const zGoal=rBody[2],zBody=replace(zGoal[2],zGoal[1],z);
+            const bGoal=zBody[2][2];
+            const slice=proveSlice(a,x,r,n,z,o,b,tt,zn,on,ne,ta,xa,bt,bo,rp,inj);
+            const base=ei(bGoal,b,ai(bt,slice));
+            const atZero=ei(zGoal,z,ai(zn,ai(zero,base)));
+            const atR=ei(rGoal,r,ai(fz,atZero));
+            const last=ei(ls,z,ai(zo,ai(su0,atR)));
+            const pF=ei(fGoal,f,ai(valid,last));
+            const pM=ei(mGoal,o,ai(ow0,ai(ai(ne1,ne0),pF)));
+            const pN=ei(nGoal,n,ai(nw,pM));
+            return or(goal[1],ei(owGoal,w,ai(ow,pN)));
+          });
+        });
+      });
+    }));
+  }
+  const atomicDef=use(pairInjective,inj=>use(omegaExists,ow=>use(relationExists,re=>{
+    return ui(a=>ii(trans(a),ta=>ui(x=>ii(M(x,a),xa=>atomicWitness(a,x,ta,xa,inj,ow,re)))));
+  })));
+  const defInflation=use(atomicDef,ad=>qs(2,(a,b)=>ii(Def(a,b),dd=>ii(trans(a),ta=>{
+    return ui(x=>ii(M(x,a),xa=>into(dd,x,app(ue(app(ue(ad,a),ta),x),xa))));
+  }))));
+  const proofs={pair_exists:pairExists,pair_injective:pairInjective,binary_graph_exists:binaryGraph,unary_graph_exists:unaryGraph,omega_exists:omegaExists,finite_ordinals:finiteOrdinals,membership_relation_exists:relationExists,atomic_member_definable:atomicDef,def_inflation:defInflation};
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
