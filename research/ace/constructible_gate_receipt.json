@@ -1,0 +1,9 @@
+{
+  "experiment": "ACE-03D-gate",
+  "pinned_formula_matches": true,
+  "class_conversion_checks": 20,
+  "binder_expansion_checks": 5,
+  "wrong_class_certificates_rejected": 4,
+  "missing_axiom_certificates_rejected": 8,
+  "scope": "syntax and certificate separation; no closed L-axiom derivation"
+}
