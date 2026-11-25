@@ -177,7 +177,7 @@ function buildN(defs,prior,stages,ranks,clauses,bounds=[]){
     });
   }))));
   const minUnique=qs(3,(a,b,c)=>ii(Next(a,b),nb=>ii(Next(a,c),nc=>{
-    const cc=app(ue(app(ue(compare,b),al(al(al(nb)))),c),al(al(al(nc)));
+    const cc=app(ue(app(ue(compare,b),al(al(al(nb)))),c),al(al(al(nc))));
     return oe(cc,Q(b,c),bc=>fe(app(app(ue(ar(nc),b),bc),al(nb)),Q(b,c)),rest=>oe(rest,Q(b,c),eq=>eq,cb=>fe(app(app(ue(ar(nb),c),cb),al(nc)),Q(b,c))));
   })));
   const minTotal=use(minExists,me=>use(minUnique,mu=>assumeExts(0,[],exts=>{
