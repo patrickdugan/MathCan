@@ -269,6 +269,79 @@ function buildI(defs,prior,finite){
     const stages=ui(i=>ii(M(i,d),id=>fe(app(ue(ed,i),id),E(y=>C(Val(f,i,y),Stage(f,i,y))))));
     return ei(E(f=>SG(f,d)),f,ai(ai(entries,total),stages));
   })));
-  const proofs={successor_exists:successorExists,successor_unique:succUnique,value_in_domain:domainLemma,subset_reflexive:reflSub,stage_value_transport:stageTransfer,limit_value_exists:limitValue,stage_value_exists:stageTotal,stage_history_extension:extend,empty_history_exists:emptyGraph};
+
+  const good=(h,e,d)=>C(C(trans(e),subset(e,d)),SG(h,e));
+  const goodFamily=(H,d)=>A(h=>I(M(h,H),E(e=>good(h,e,d))));
+  const coverFamily=(H,d)=>A(i=>I(M(i,d),E(h=>C(M(h,H),E(e=>C(good(h,e,d),M(i,e)))))));
+  function glue(H,d,ok,cover,dom,co,tr){
+    return withUnion(H,(u,up)=>{
+      function fromFamily(h,p,hH,ph){
+        return into(up,p,ei(ar(ue(up,p)).goal[1],h,ai(hH,ph)));
+      }
+      function fromValue(h,i,r,hH,v){
+        return open(v,(p,pv)=>ei(Val(u,i,r),p,ai(fromFamily(h,p,hH,al(pv)),ar(pv))));
+      }
+      function openValue(i,r,v,fn){
+        return open(v,(p,pv)=>open(from(up,p,al(pv)),(h,hp)=>{
+          const hv=ei(Val(h,i,r),p,ai(ar(hp),ar(pv)));
+          return open(app(ue(ok,h),al(hp)),(e,ep)=>{
+            const ie=app(us(dom,h,e,i,r),al(ar(ep)),hv);
+            return fn(h,e,al(hp),ep,ie,hv);
+          });
+        }));
+      }
+      // A union value on a member history's domain agrees with that
+      // history. Existence of a value comes from its exact graph.
+      function localEq(h,e,hH,ep){
+        return ui(i=>ii(M(i,e),ie0=>ui(r=>ai(
+          ii(Val(h,i,r),hv=>fromValue(h,i,r,hH,hv)),
+          ii(Val(u,i,r),uv=>openValue(i,r,uv,(j,c,jH,cp,ic,jv)=>{
+            return open(app(ue(ar(ar(ep)),i),ie0),(y,yp)=>{
+              const eqs=app(us(co,j,h,c,e),al(al(cp)),al(al(ep)),ar(cp),ar(ep));
+              const eq=app(ue(app(ue(app(ue(eqs,i),ic,ie0),r),jv),y),al(yp));
+              return eqSub(sym(eq),z=>Val(h,i,z),al(yp));
+            });
+          }))
+        ))));
+      }
+      function covered(i,id,fn){
+        return open(app(ue(cover,i),id),(h,hp)=>open(ar(hp),(e,ep)=>fn(h,e,al(hp),al(ep),ar(ep))));
+      }
+      const entries=ui(p=>ii(M(p,u),pu=>{
+        return open(from(up,p,pu),(h,hp)=>open(app(ue(ok,h),al(hp)),(e,ep)=>{
+          return open(app(ue(al(al(ar(ep))),p),ar(hp)),(i,ip)=>{
+            const id=app(ue(ar(al(ep)),i),al(ip));
+            return ei(E(i=>C(M(i,d),E(y=>form("pair",p,i,y)))),i,ai(id,ar(ip)));
+          });
+        }));
+      }));
+      const total=ui(i=>ii(M(i,d),id=>covered(i,id,(h,e,hH,ep,ie0)=>{
+        const eqv=localEq(h,e,hH,ep);
+        return open(app(ue(ar(al(ar(ep))),i),ie0),(r,rp)=>{
+          return use(app(ue(eqv,i),ie0),at=>{
+            const uv=app(al(ue(at,r)),al(rp));
+            const uniq=ui(y=>ii(Val(u,i,y),yv=>app(ue(ar(rp),y),app(ar(ue(at,y)),yv))));
+            return ei(E(r=>C(Val(u,i,r),A(y=>I(Val(u,i,y),Q(y,r))))),r,ai(uv,uniq));
+          });
+        });
+      })));
+      const steps=ui(i=>ii(M(i,d),id=>covered(i,id,(h,e,hH,ep,ie0)=>{
+        return open(app(ue(ar(ar(ep)),i),ie0),(r,rp)=>{
+          const eqv=localEq(h,e,hH,ep);
+          return use(eqv,ev=>{
+            const uv=app(al(ue(app(ue(ev,i),ie0),r)),al(rp));
+            const sub=ui(j=>ii(M(j,i),ji=>app(ue(ev,j),earlier(al(al(ep)),i,ie0,j,ji))));
+            const st=app(us(tr,h,u,i,r),sub,ar(rp));
+            return ei(E(r=>C(Val(u,i,r),Stage(u,i,r))),r,ai(uv,st));
+          });
+        });
+      })));
+      return ei(E(f=>SG(f,d)),u,ai(ai(entries,total),steps));
+    });
+  }
+  const glueHistories=use(domainLemma,dom=>use(coh,co=>use(stageTransfer,tr=>{
+    return qs(2,(H,d)=>ii(goodFamily(H,d),ok=>ii(coverFamily(H,d),cv=>glue(H,d,ok,cv,dom,co,tr))));
+  })));
+  const proofs={successor_exists:successorExists,successor_unique:succUnique,value_in_domain:domainLemma,subset_reflexive:reflSub,stage_value_transport:stageTransfer,limit_value_exists:limitValue,stage_value_exists:stageTotal,stage_history_extension:extend,empty_history_exists:emptyGraph,compatible_history_union:glueHistories};
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
