@@ -1,0 +1,47 @@
+{
+  "experiment": "ACE-03P",
+  "part": "selector",
+  "spec": {
+    "name": "separation",
+    "params": 0,
+    "body": [
+      "&",
+      [
+        "E",
+        [
+          "M",
+          1,
+          0
+        ]
+      ],
+      [
+        "E",
+        [
+          "M",
+          0,
+          1
+        ]
+      ]
+    ]
+  },
+  "proofs": {
+    "canonical_extension_total_conditional": {
+      "nodes": 13679,
+      "goal_bytes": 1173685,
+      "proof_bytes": 21399083
+    },
+    "canonical_extension_strict": {
+      "nodes": 12,
+      "goal_bytes": 426825,
+      "proof_bytes": 426741
+    },
+    "canonical_total_cut": {
+      "nodes": 5,
+      "dependencies": 2
+    }
+  },
+  "exact_interfaces": 5,
+  "negative_controls": 2,
+  "pinned_L_unchanged": true,
+  "scope": "checked dependency or link for one fixed unbounded Separation instance; unrestricted schema remains open"
+}
