@@ -1,3 +1,4 @@
+import { pathToFileURL } from "node:url";
 // Parameter-free class definition generator; generated AST is in de Bruijn form.
 function definition(prefix="v"){
   let serial=0;
@@ -246,5 +247,7 @@ function runD(){
   return {experiment:"ACE-03D",scope:"pure membership-language definition generator and finite semantic regressions; no formal ZF adequacy proof",formulas,seeds,finite_subset_witnesses:finiteSubsetWitnesses,hf_domain_size:D.length,hf_checks:hfChecks,invalid_programs_rejected:badPrograms.length,alpha_rename_matches:Object.keys(defs).length};
 }
 
+
+
 export { definition };
-console.log(JSON.stringify(runD(),null,2));
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) console.log(JSON.stringify(runD(),null,2));
