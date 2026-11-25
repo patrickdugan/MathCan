@@ -114,6 +114,8 @@ No RH choice-elimination result is claimed at this checkpoint.
 
 Verification update: ACE-01 kernel and axiom report passed in run 45541612790. ACE-02 run 45542048477 failed on a reserved Lean keyword, renamed in 72807b8; fresh verification pending. See ACE-03B note for scope.
 
-ACE-03E: [hierarchy closure and bounded induction certificates](ACE03E_HIERARCHY_CLOSURE.md). Fifteen checked object derivations, including exact Def existence/uniqueness and conditional L transitivity. ACE-03F: [finite witnesses and closed L certificates](ACE03F_FINITE_WITNESSES.md). Def inflation and transitivity of the pinned L predicate checked; closed relativized extensionality and foundation certificates accepted. ACE-03G: nonemptiness and stage recursion existence. Adequacy and checker soundness remain open.
+ACE-03E: [hierarchy closure and bounded induction certificates](ACE03E_HIERARCHY_CLOSURE.md). Fifteen checked object derivations, including exact Def existence/uniqueness and conditional L transitivity. ACE-03F: [finite witnesses and closed L certificates](ACE03F_FINITE_WITNESSES.md). Def inflation and transitivity of the pinned L predicate checked; closed relativized extensionality and foundation certificates accepted. ACE-03G: [initial stages and empty-set closure](ACE03G_INITIAL_STAGES.md), eight checked derivations and three closed relativized axioms. ACE-03H: general stage recursion and coherence. Adequacy and checker soundness remain open.
 
 Verification update: ACE-03E receipt and native Lean workflows both passed (45547032768, 45547032547). ACE-03F adds 14 object derivations and seven rejection controls; new workflow replay remains pending.
+
+ACE-03G verification update: the preceding ACE-03F dedicated replay passed (45551886722). The authoring runtime accepted eight new proofs and nine rejection controls and reproduced the ACE-03D/F receipts. New CI replay remains pending.
