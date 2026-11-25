@@ -290,5 +290,69 @@ function buildL(defs,prior,finite,stages,extended=false){
   }
   const constructibleSetBound=use(rankSuccTotal,rs=>use(ordinalUnionProof,ou=>use(ov,ve=>use(mono,mo=>ui(a=>ii(allL(a),al0=>boundSet(a,al0,rs,ou,ve,mo)))))));
   const proofs={ordinal_comparison_induction:cmpInd,ordinal_comparison:compare,least_constructible_rank:leastRank,least_rank_unique:rankUnique,least_rank_exists_unique:rankExistsUnique,rank_successor_unique:rankSuccUnique,rank_successor_total:rankSuccTotal,ordinal_family_union:ordinalUnionProof,constructible_set_stage_bound:constructibleSetBound};
+  const withSetPair=(a,b,fn)=>open(us(ax({name:"pairing"}),a,b),fn);
+  function withSingleton(a,fn){
+    return withSetPair(a,a,(s,sp)=>{
+      const proof=ui(x=>ai(ii(M(x,s),xs=>oe(from(sp,x,xs),Q(x,a),q=>q,q=>q)),ii(Q(x,a),q=>into(sp,x,ol(q,Q(x,a))))));
+      return use(proof,single=>fn(s,single));
+    });
+  }
+  function withAdjoin(a,b,fn){
+    return withSingleton(b,(s,sp)=>withSetPair(a,s,(t,tp)=>withUnion(t,(u,up)=>{
+      const ta=into(tp,a,ol(ref(a),Q(a,s))),ts=into(tp,s,or(Q(s,a),ref(s)));
+      const proof=ui(x=>{
+        const goal=["|",M(x,a),Q(x,b)];
+        const left=ii(M(x,u),xu=>open(from(up,x,xu),(v,vp)=>oe(from(tp,v,al(vp)),goal,
+          va=>ol(eqSub(va,z=>M(x,z),ar(vp)),Q(x,b)),vs=>or(M(x,a),from(sp,x,eqSub(vs,z=>M(x,z),ar(vp)))))));
+        const right=ii(goal,p=>oe(p,M(x,u),xa=>into(up,x,ei(ar(ue(up,x)).goal[1],a,ai(ta,xa))),xb=>into(up,x,ei(ar(ue(up,x)).goal[1],s,ai(ts,into(sp,x,xb))))));
+        return ai(left,right);
+      });
+      return use(proof,pr=>fn(u,pr));
+    })));
+  }
+
+  if(extended){
+    const relativePower=(a,x,p)=>A(y=>B(M(y,p),C(M(y,a),subset(y,x))));
+    const constructiblePower=(x,p)=>A(y=>B(M(y,p),C(L(y),subset(y,x))));
+    function withRelativePower(x,fn){
+      return open(ue(ax({name:"power"}),x),(p0,p0p)=>{
+        const v=fresh(),spec={name:"separation",params:0,body:db(L(v),[v])};
+        return open(ue(ax(spec),p0),(p,pp)=>{
+          const exact=ui(y=>ai(ii(M(y,p),yp=>{
+            const info=from(pp,y,yp);
+            return ai(ar(info),from(p0p,y,al(info)));
+          }),ii(C(L(y),subset(y,x)),q=>into(pp,y,ai(into(p0p,y,ar(q)),al(q))))));
+          return use(exact,ep=>fn(p,ep));
+        });
+      });
+    }
+    const ambientRelativePower=ui(x=>withRelativePower(x,(p,pp)=>ei(E(p=>constructiblePower(x,p)),p,pp)));
+    const pdef=imported(finite.relative_power_definable);
+    const powerClosure=use(ambientRelativePower,arp=>use(constructibleSetBound,cb=>use(pdef,pd=>{
+      return ui(x=>ii(L(x),lx=>{
+        return open(ue(arp,x),(p,pp)=>{
+          return withAdjoin(p,x,(u,up)=>{
+            const ul=ui(y=>ii(M(y,u),yu=>oe(from(up,y,yu),L(y),yp=>al(from(pp,y,yp)),yx=>eqSub(sym(yx),L,lx))));
+            return open(app(ue(cb,u),ul),(b,bp)=>open(bp,(a,ap)=>{
+              const ob=al(al(ap)),aw=ar(al(ap)),inc=ar(ap);
+              const xa=app(ue(inc,x),into(up,x,or(M(x,p),ref(x))));
+              const ta=app(us(ot,b,a),ob,aw);
+              const ps=ui(y=>ai(ii(M(y,p),yp=>{
+                const ya=app(ue(inc,y),into(up,y,ol(yp,Q(y,x))));
+                return ai(ya,ar(from(pp,y,yp)));
+              }),ii(C(M(y,a),subset(y,x)),q=>{
+                const ly=app(ue(app(us(sm,b,a),ob,aw),y),al(q));
+                return into(pp,y,ai(ly,ar(q)));
+              })));
+              const dp=app(us(pd,a,x,p),ta,xa,ps);
+              const lp=app(us(dc,b,a,p),ob,aw,dp);
+              return ei(E(p=>C(L(p),constructiblePower(x,p))),p,ai(lp,pp));
+            }));
+          });
+        });
+      }));
+    })));
+    Object.assign(proofs,{ambient_relative_powerset_exists:ambientRelativePower,constructible_powerset_closure:powerClosure});
+  }
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
