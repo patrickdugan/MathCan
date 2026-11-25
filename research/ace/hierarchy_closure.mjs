@@ -400,7 +400,64 @@ function buildE(defs,extended=false){
         return ii(trans(d),td=>ii(trans(e),te=>ii(SG(f,d),sf=>ii(SG(g,e),sg=>agreeGraphs(f,g,d,e,td,te,sf,sg,pu)))));
       });
     });
-    Object.assign(proofs,{no_two_cycle:noCycle,successor_predecessor_unique:succPredUnique,bounded_induction_coherence:agreeInd,stage_graph_coherence:coherence});
+
+    const monoAt=(f,b)=>A(i=>I(M(i,b),A(r=>I(Val(f,i,r),A(s=>I(Val(f,b,s),subset(r,s)))))));
+    const fm=fresh(),bm=fresh(),monoInd=boundedInduction(db(monoAt(fm,bm),[bm,fm]),1);
+    function monoGraphs(inf,f,d,td,sf){
+      return use(stageAt(inf,f,d,td,sf),allTrans=>{
+        const step=ui(b=>{
+          return ii(M(b,d),bd=>{
+            return ii(A(j=>I(M(j,b),monoAt(f,j))),ih=>{
+              return ui(i=>{
+                return ii(M(i,b),ib=>{
+                  const inD=(j,jb)=>app(ue(app(ue(td,b),bd),j),jb);
+                  return ui(r=>{
+                    return ii(Val(f,i,r),vr=>{
+                      return ui(s=>{
+                        return ii(Val(f,b,s),vs=>{
+                          return open(app(ue(ar(sf),b),bd),(a,av)=>{
+                            const result=subset(r,a);
+                            const sub=oe(ar(av),result,ss=>{
+                              return open(ss,(j,jp)=>{
+                                return open(ar(ar(jp)),(c,cp)=>{
+                                  const jc=app(ue(app(ue(allTrans,j),inD(j,al(jp))),c),al(cp));
+                                  const ca=app(us(inf,c,a),ar(cp),jc);
+                                  const order=from(al(ar(jp)),i,ib);
+                                  const rc=oe(order,subset(r,c),ij=>{
+                                    const p=app(ue(ih,j),al(jp));
+                                    return app(ue(app(ue(app(ue(p,i),ij),r),vr),c),al(cp));
+                                  },eq=>{
+                                    const vj=eqSub(eq,t=>Val(f,t,r),vr);
+                                    const rc=valUnique(sf,j,inD(j,al(jp)),r,c,vj,al(cp));
+                                    return ui(x=>ii(M(x,r),xr=>eqSub(rc,t=>M(x,t),xr)));
+                                  });
+                                  return ui(x=>ii(M(x,r),xr=>app(ue(ca,x),app(ue(rc,x),xr))));
+                                });
+                              });
+                            },lim=>{
+                              const u=ar(lim);
+                              return ui(x=>ii(M(x,r),xr=>{
+                                const ex=ar(ue(u,x)).goal[1],body=replace(ex[2],ex[1],i);
+                                return into(u,x,ei(ex,i,ai(ib,ei(body[2],r,ai(vr,xr)))));
+                              }));
+                            });
+                            const as=valUnique(sf,b,bd,a,s,al(av),vs);
+                            return eqSub(as,t=>subset(r,t),sub);
+                          });
+                        });
+                      });
+                    });
+                  });
+                });
+              });
+            });
+          });
+        });
+        return app(us(monoInd,f,d),td,step);
+      });
+    }
+    const mono=ii(inflation,inf=>qs(2,(f,d)=>ii(trans(d),td=>ii(SG(f,d),sf=>monoGraphs(inf,f,d,td,sf)))));
+    Object.assign(proofs,{no_two_cycle:noCycle,successor_predecessor_unique:succPredUnique,bounded_induction_coherence:agreeInd,stage_graph_coherence:coherence,bounded_induction_monotonicity:monoInd,stage_graph_monotonicity_conditional:mono});
   }
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
