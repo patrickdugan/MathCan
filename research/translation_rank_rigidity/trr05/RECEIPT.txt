@@ -1,0 +1,8 @@
+Independent execution in current sandbox, 2026-11-25, Node.js v22.16.0.
+node verify.mjs > verification.txt
+Exit 0; 83 [ok] checks; ALL CHECKS PASSED.
+SHA256 of uploaded originals:
+f108a13928ae41033f7cc048d0154caf919fe88d26aaa7403b81d22da6ca01b0  certificate.json
+6e4f755218b79328f0ad1dbed1c3fb1a56f53b8af26c34a85276bc2252ec6f22  verify.mjs
+4e791b70d9dd2ae85af3601cd728bffa07ace5ab9f6c83f5bb3a0455c2b105c5  derive_certificate.py
+The independent PARI search was not rerun. The four generic rational chart identities were recomputed using SymPy. No new Lean check.
