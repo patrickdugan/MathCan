@@ -87,7 +87,7 @@ function definition(prefix="v",internals=false){
     const add=(name,arity,fn)=>{result[name]=compile(fn(...free.slice(0,arity)),free.slice(0,arity));};
     add("singleton",2,singleton);add("unordered",3,unordered);add("inductive",1,ind);add("tuple",3,tuple);add("agree",4,agree);
     add("relMem",5,(r,n,a,i,j)=>relAtom(r,n,a,i,j,M));add("entry",5,entry);add("slice",6,slice);
-    add("validProgram",4,validProgram);add("lastSlice",5,lastSlice);
+    add("validProgram",4,validProgram);add("lastSlice",5,lastSlice);add("stage",3,stage);
     result.stageGraph=compile(stageGraph(free[0],free[1]),free.slice(0,2));
   }
   return result;
