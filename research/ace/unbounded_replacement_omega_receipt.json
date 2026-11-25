@@ -1,0 +1,37 @@
+{
+  "experiment": "ACE-03S",
+  "part": "omega",
+  "spec": {
+    "name": "replacement",
+    "params": 0,
+    "body": [
+      "A",
+      [
+        ">",
+        [
+          "M",
+          2,
+          0
+        ],
+        [
+          "M",
+          1,
+          0
+        ]
+      ]
+    ]
+  },
+  "checks": [
+    {
+      "id": "omega.range",
+      "nodes": 3687,
+      "dependencies": [],
+      "goal_bytes": 961271
+    }
+  ],
+  "exact_node_goals": 1,
+  "negative_controls": 0,
+  "translation": null,
+  "pinned_L_unchanged": true,
+  "scope": "split checked node proofs and exact interfaces for fixed unbounded Replacement; full streamed importer is a separate replay"
+}
