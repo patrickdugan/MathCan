@@ -275,7 +275,7 @@ function buildF(defs,extended=false){
   }
   function withPower(a,fn){return open(ue(ax({name:"power"}),a),fn);}
   function withUnion(a,fn){return open(ue(ax({name:"union"}),a),fn);}
-  function withRelation(a,n,i,j,fn){
+  function withTupleRelation(a,n,name,args,fn){
     return withSetPair(a,n,(an,anp)=>withUnion(an,(b,bp)=>{
       const ain=into(anp,a,ol(ref(a),Q(a,n)));
       const nin=into(anp,n,or(Q(n,a),ref(n)));
@@ -305,10 +305,10 @@ function buildF(defs,extended=false){
         }
         const dummy=fresh();
         function condition(s){
-          const g=form("relMem",dummy,n,a,i,j);
+          const g=form(name,dummy,...args);
           return replace(g[2][1][2],g[1],s);
         }
-        const v=fresh(),ps=[n,a,i,j],spec={name:"separation",params:ps.length,body:db(condition(v),[v,...ps])};
+        const v=fresh(),ps=args,spec={name:"separation",params:ps.length,body:db(condition(v),[v,...ps])};
         const sep=us(ax(spec),...ps.slice().reverse(),p3);
         return open(sep,(r,rp)=>{
           const exact=ui(s=>ai(ii(M(s,r),sr=>ar(from(rp,s,sr))),ii(condition(s),cp=>into(rp,s,ai(bound(s,al(cp)),cp)))));
@@ -317,6 +317,8 @@ function buildF(defs,extended=false){
       })));
     }));
   }
+
+  const withRelation=(a,n,i,j,fn)=>withTupleRelation(a,n,"relMem",[n,a,i,j],fn);
   const relationExists=qs(4,(a,n,i,j)=>withRelation(a,n,i,j,(r,rp)=>ei(E(r=>form("relMem",r,n,a,i,j)),r,rp)));
 
   function withTuple(a,n,z,o,u,v,tt,ne,inj,ua,va,fn){
@@ -433,7 +435,19 @@ function buildF(defs,extended=false){
   }))));
   const proofs={pair_exists:pairExists,pair_injective:pairInjective,binary_graph_exists:binaryGraph,unary_graph_exists:unaryGraph,omega_exists:omegaExists,finite_ordinals:finiteOrdinals,membership_relation_exists:relationExists,atomic_member_definable:atomicDef,def_inflation:defInflation};
 
-  if(extended){
+
+  if(extended==="relations"){
+    function withAnd(p,q,fn){
+      const x=fresh(),spec={name:"separation",params:1,body:db(M(x,q),[x,q])};
+      return open(us(ax(spec),q,p),(r,rp)=>fn(r,rp));
+    }
+    const eqExists=qs(4,(a,n,i,j)=>withTupleRelation(a,n,"relEq",[n,a,i,j],(r,rp)=>ei(E(r=>form("relEq",r,n,a,i,j)),r,rp)));
+    const negExists=qs(3,(a,n,p)=>withTupleRelation(a,n,"relNeg",[p,n,a],(r,rp)=>ei(E(r=>form("relNeg",r,p,n,a)),r,rp)));
+    const andExists=qs(2,(p,q)=>withAnd(p,q,(r,rp)=>ei(E(r=>form("relAnd",r,p,q)),r,rp)));
+    const exExists=qs(4,(a,n,p,i)=>withTupleRelation(a,n,"relEx",[p,n,a,i],(r,rp)=>ei(E(r=>form("relEx",r,p,n,a,i)),r,rp)));
+    Object.assign(proofs,{equality_relation_exists:eqExists,negation_relation_exists:negExists,intersection_relation_exists:andExists,existential_relation_exists:exExists});
+  }
+  if(extended===true){
     function definableSubset(a,x,d){
       return ui(y=>ii(M(y,x),mem=>{
         const goal=M(y,a);
