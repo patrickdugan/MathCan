@@ -265,6 +265,57 @@ function buildF(defs){
     const g1=replace(goal[2],goal[1],w),g2=replace(g1[2],g1[1],z),g3=replace(g2[2],g2[1],o);
     return ei(goal,w,ei(g1,z,ei(g2,o,ei(g3,n,ai(ai(ai(ai(ai(ow,a.zero),a.ss),a.tt),a.ne),ai(a.ow0,a.nw))))));
   })));
-  const proofs={pair_exists:pairExists,pair_injective:pairInjective,binary_graph_exists:binaryGraph,unary_graph_exists:unaryGraph,omega_exists:omegaExists,finite_ordinals:finiteOrdinals};
+
+  function valueUnique(g,s,i,im,x,y,vx,vy){
+    return open(app(ue(ar(g),i),im),(v,uv)=>{
+      return chain(app(ue(ar(uv),x),vx),sym(app(ue(ar(uv),y),vy)));
+    });
+  }
+  function withPower(a,fn){return open(ue(ax({name:"power"}),a),fn);}
+  function withUnion(a,fn){return open(ue(ax({name:"union"}),a),fn);}
+  function withRelation(a,n,i,j,fn){
+    return withSetPair(a,n,(an,anp)=>withUnion(an,(b,bp)=>{
+      const ain=into(anp,a,ol(ref(a),Q(a,n)));
+      const nin=into(anp,n,or(Q(n,a),ref(n)));
+      const intoB=(x,t,tm,xm)=>{
+        const goal=ar(ue(bp,x)).goal[1];
+        return into(bp,x,ei(goal,t,ai(tm,xm)));
+      };
+      return withPower(b,(p1,p1p)=>withPower(p1,(p2,p2p)=>withPower(p2,(p3,p3p)=>{
+        function bound(s,tuple){
+          return into(p3p,s,ui(p=>ii(M(p,s),ps=>{
+            return open(app(ue(al(al(tuple)),p),ps),(l,li)=>{
+              return open(ar(li),(y,py)=>{
+                return open(app(ue(ar(tuple),l),al(li)),(v,vy)=>{
+                  const lv=ei(form("val",s,l,y),p,ai(ps,py));
+                  const eq=valueUnique(al(tuple),s,l,al(li),v,y,ar(vy),lv);
+                  const ya=eqSub(eq,z=>M(z,a),al(vy));
+                  const lb=intoB(l,n,nin,al(li)),yb=intoB(y,a,ain,ya);
+                  return unpack(py,(u,w,up,wp,pp)=>{
+                    const u1=into(p1p,u,ui(z=>ii(M(z,u),zu=>eqSub(sym(from(up,z,zu)),t=>M(t,b),lb))));
+                    const w1=into(p1p,w,ui(z=>ii(M(z,w),zw=>oe(from(wp,z,zw),M(z,b),e=>eqSub(sym(e),t=>M(t,b),lb),e=>eqSub(sym(e),t=>M(t,b),yb)))));
+                    return into(p2p,p,ui(z=>ii(M(z,p),zp=>oe(from(pp,z,zp),M(z,p1),e=>eqSub(sym(e),t=>M(t,p1),u1),e=>eqSub(sym(e),t=>M(t,p1),w1)))));
+                  });
+                });
+              });
+            });
+          })));
+        }
+        const dummy=fresh();
+        function condition(s){
+          const g=form("relMem",dummy,n,a,i,j);
+          return replace(g[2][1][2],g[1],s);
+        }
+        const v=fresh(),ps=[n,a,i,j],spec={name:"separation",params:ps.length,body:db(condition(v),[v,...ps])};
+        const sep=us(ax(spec),...ps.slice().reverse(),p3);
+        return open(sep,(r,rp)=>{
+          const exact=ui(s=>ai(ii(M(s,r),sr=>ar(from(rp,s,sr))),ii(condition(s),cp=>into(rp,s,ai(bound(s,al(cp)),cp)))));
+          return use(exact,re=>fn(r,re));
+        });
+      })));
+    }));
+  }
+  const relationExists=qs(4,(a,n,i,j)=>withRelation(a,n,i,j,(r,rp)=>ei(E(r=>form("relMem",r,n,a,i,j)),r,rp)));
+  const proofs={pair_exists:pairExists,pair_injective:pairInjective,binary_graph_exists:binaryGraph,unary_graph_exists:unaryGraph,omega_exists:omegaExists,finite_ordinals:finiteOrdinals,membership_relation_exists:relationExists};
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
