@@ -128,7 +128,7 @@ function runP(pinned,part){
       const n=buildN(defs,prior,stages,ranks,link.clauses),k=buildK(defs,prior,buildF(defs,"infinity"),stages,false,["ordinal_limit_stage_members"]);
       if(!same(n.nextFormula,link.nextFormula))throw Error("canonical step mismatch");
       exact++;
-      const p=buildLimit(defs,prior,stages,ranks,link.clauses,n.nextFormula,n.proofs.canonical_extension_strict,k.ordinal_limit_stage_members,["range_implies_reflecting_stage"]);
+      const p=buildLimit(defs,prior,stages,ranks,link.clauses,n.nextFormula,n.proofs.canonical_extension_strict,k.ordinal_limit_stage_members,["range_implies_reflecting_stage"],true);
       check("range_implies_reflecting_stage",p.proofs.range_implies_reflecting_stage,"ZF",link.signatures.range_implies_reflecting_stage,false);
     }else throw Error("unknown replay part");
   }
