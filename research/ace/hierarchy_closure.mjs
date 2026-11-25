@@ -457,7 +457,84 @@ function buildE(defs,extended=false){
       });
     }
     const mono=ii(inflation,inf=>qs(2,(f,d)=>ii(trans(d),td=>ii(SG(f,d),sf=>monoGraphs(inf,f,d,td,sf)))));
-    Object.assign(proofs,{no_two_cycle:noCycle,successor_predecessor_unique:succPredUnique,bounded_induction_coherence:agreeInd,stage_graph_coherence:coherence,bounded_induction_monotonicity:monoInd,stage_graph_monotonicity_conditional:mono});
+
+    const form=(name,...args)=>named(defs[name],args);
+    const equivVals=(h,f,e)=>A(i=>I(M(i,e),A(r=>C(I(Val(h,i,r),Val(f,i,r)),I(Val(f,i,r),Val(h,i,r))))));
+    function restriction(f,d,e,td,inc,sf){
+      const qualify=p=>E(i=>C(M(i,e),E(y=>form("pair",p,i,y))));
+      const v=fresh(),spec={name:"separation",params:1,body:db(qualify(v),[v,e])};
+      return open(us(ax(spec),e,f),(h,hp)=>{
+        function toF(i,r,p){
+          return open(p,(w,wp)=>ei(Val(f,i,r),w,ai(al(from(hp,w,al(wp))),ar(wp))));
+        }
+        function toH(i,r,im,p){
+          return open(p,(w,wp)=>{
+            const qual=qualify(w),inner=replace(qual[2],qual[1],i)[2];
+            const wh=into(hp,w,ai(al(wp),ei(qual,i,ai(im,ei(inner,r,ar(wp))))));
+            return ei(Val(h,i,r),w,ai(wh,ar(wp)));
+          });
+        }
+        const eqv=ui(i=>ii(M(i,e),im=>ui(r=>ai(ii(Val(h,i,r),p=>toF(i,r,p)),ii(Val(f,i,r),p=>toH(i,r,im,p))))));
+        return use(eqv,ev=>{
+          const graph=ai(ui(p=>ii(M(p,h),ph=>ar(from(hp,p,ph)))),ui(i=>ii(M(i,e),im=>{
+            const id=app(ue(inc,i),im);
+            return open(app(ue(ar(al(sf)),i),id),(r,rv)=>{
+              const v=app(ar(ue(app(ue(ev,i),im),r)),al(rv));
+              const unique=ui(s=>ii(Val(h,i,s),vs=>app(ue(ar(rv),s),app(al(ue(app(ue(ev,i),im),s)),vs))));
+              const goal=E(y=>C(Val(h,i,y),A(z=>I(Val(h,i,z),Q(z,y)))));
+              return ei(goal,r,ai(v,unique));
+            });
+          })));
+          const steps=ui(b=>{
+            return ii(M(b,e),be=>{
+              const bd=app(ue(inc,b),be);
+              const earlier=(i,ib)=>app(ue(app(ue(td,b),be),i),ib);
+              return open(app(ue(ar(sf),b),bd),(r,rv)=>{
+                const st=form("stage",h,b,r);
+                const hv=app(ar(ue(app(ue(ev,b),be),r)),al(rv));
+                function inLimit(x,u,goal,rev,p){
+                  return open(from(u,x,p),(i,iw)=>open(ar(iw),(s,sv)=>{
+                    const ib=al(iw),ie0=earlier(i,ib);
+                    const eq=ue(app(ue(ev,i),ie0),s);
+                    const v=app(rev?al(eq):ar(eq),al(sv));
+                    const inner=replace(goal[2],goal[1],i)[2];
+                    return ei(goal,i,ai(ib,ei(inner,s,ai(v,ar(sv)))));
+                  }));
+                }
+                const stageH=oe(ar(rv),st,succ=>{
+                  return open(succ,(i,ip)=>open(ar(ar(ip)),(a,ap)=>{
+                    const ie0=earlier(i,al(ip)),av=app(ar(ue(app(ue(ev,i),ie0),a)),al(ap));
+                    const inner=replace(st[1][2],st[1][1],i)[2][2];
+                    return ol(ei(st[1],i,ai(al(ip),ai(al(ar(ip)),ei(inner,a,ai(av,ar(ap)))))),st[2]);
+                  }));
+                },lim=>{
+                  const u=ar(lim),v=st[2][2];
+                  const vv=ui(x=>{
+                    const body=replace(v[2],v[1],x),ex=body[2][1];
+                    const left=ii(M(x,r),xr=>inLimit(x,u,ex,false,xr));
+                    const right=ii(ex,p=>{
+                      const want=ar(ue(u,x)).goal[1];
+                      return into(u,x,open(p,(i,iw)=>open(ar(iw),(s,sv)=>{
+                        const ie0=earlier(i,al(iw)),fv=app(al(ue(app(ue(ev,i),ie0),s)),al(sv));
+                        const inner=replace(want[2],want[1],i)[2];
+                        return ei(want,i,ai(al(iw),ei(inner,s,ai(fv,ar(sv)))));
+                      })));
+                    });
+                    return ai(left,right);
+                  });
+                  return or(st[1],ai(al(lim),vv));
+                });
+                return ei(E(a=>C(Val(h,b,a),form("stage",h,b,a))),r,ai(hv,stageH));
+              });
+            });
+          });
+          const goal=E(x=>C(SG(x,e),equivVals(x,f,e)));
+          return ei(goal,h,ai(ai(graph,steps),ev));
+        });
+      });
+    }
+    const restrict=qs(3,(f,d,e)=>ii(trans(e),te=>ii(subset(e,d),inc=>ii(SG(f,d),sf=>restriction(f,d,e,te,inc,sf)))));
+    Object.assign(proofs,{no_two_cycle:noCycle,successor_predecessor_unique:succPredUnique,bounded_induction_coherence:agreeInd,stage_graph_coherence:coherence,bounded_induction_monotonicity:monoInd,stage_graph_monotonicity_conditional:mono,stage_graph_restriction:restrict});
   }
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
