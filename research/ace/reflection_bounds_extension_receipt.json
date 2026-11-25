@@ -1,0 +1,20 @@
+{
+  "experiment": "ACE-03M",
+  "part": "extension",
+  "formula": [
+    "M",
+    0,
+    1
+  ],
+  "arity": 1,
+  "proofs": {
+    "strict_stage_witness_extension": {
+      "nodes": 18577,
+      "proof_bytes": 33693244
+    }
+  },
+  "independent_goal_checks": 1,
+  "negative_controls": 3,
+  "pinned_L_unchanged": true,
+  "scope": "one-step finite parameter witness bounds; no limit-stage reflection or full Separation schema"
+}
