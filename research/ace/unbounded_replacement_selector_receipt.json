@@ -1,0 +1,52 @@
+{
+  "experiment": "ACE-03S",
+  "part": "selector",
+  "spec": {
+    "name": "replacement",
+    "params": 0,
+    "body": [
+      "A",
+      [
+        ">",
+        [
+          "M",
+          2,
+          0
+        ],
+        [
+          "M",
+          1,
+          0
+        ]
+      ]
+    ]
+  },
+  "checks": [
+    {
+      "id": "selector.conditional",
+      "nodes": 4815,
+      "dependencies": [],
+      "goal_bytes": 800333
+    },
+    {
+      "id": "selector.strict",
+      "nodes": 12,
+      "dependencies": [],
+      "goal_bytes": 320157
+    },
+    {
+      "id": "selector.total",
+      "nodes": 3,
+      "dependencies": [
+        "selector.conditional",
+        "extension"
+      ],
+      "goal_bytes": 640161
+    }
+  ],
+  "exact_node_goals": 3,
+  "negative_controls": 1,
+  "translation": null,
+  "pinned_L_unchanged": true,
+  "scope": "split checked node proofs and exact interfaces for fixed unbounded Replacement; full streamed importer is a separate replay"
+}
