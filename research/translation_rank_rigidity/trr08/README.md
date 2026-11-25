@@ -1,5 +1,9 @@
 # TRR-08: formalizing the geometric obstruction
 
+The current successor is [TRR-09](../trr09/README.md). It proves the actual
+residue eigenvector exclusion and derives both coefficient identities inside
+Lean. This document preserves the original TRR-08 verification boundary.
+
 TRR-08 proves the degree-eight root argument and applies it to Mathlib's
 actual smooth Weierstrass curves. It also constructs the finite decoder
 behind the residue criterion. The global residue and function-field steps

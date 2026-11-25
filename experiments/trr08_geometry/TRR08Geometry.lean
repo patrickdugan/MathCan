@@ -3,3 +3,13 @@ module
 public import TRR08Geometry.MarkedPoints
 public import TRR08Geometry.Obstruction
 public import TRR08Geometry.PointIdeals
+public import TRR08Geometry.NormalizedSlope
+public import TRR08Geometry.DiagonalSlope
+public import TRR08Geometry.FiniteSlopeAverage
+public import TRR08Geometry.LocalCoefficient
+public import TRR08Geometry.BarycentricResidue
+public import TRR08Geometry.TraceCoefficient
+public import TRR08Geometry.ExplicitObstruction
+public import TRR08Geometry.CyclicCoefficient
+public import TRR08Geometry.ResidueEigenvector
+public import TRR08Geometry.TameEigenvector

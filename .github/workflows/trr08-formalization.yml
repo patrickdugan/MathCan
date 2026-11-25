@@ -1,4 +1,4 @@
-name: TRR-08 finite interpolation and Weierstrass geometry
+name: TRR-08/09 finite interpolation and residue geometry
 
 on:
   pull_request:
@@ -8,6 +8,7 @@ on:
       - 'MathCan/TranslationInterpolationEvaluation.lean'
       - 'experiments/trr08_geometry/**'
       - 'research/translation_rank_rigidity/trr08/**'
+      - 'research/translation_rank_rigidity/trr09/**'
       - 'lakefile.toml'
       - 'lean-toolchain'
       - '.github/workflows/trr08-formalization.yml'
@@ -37,13 +38,18 @@ jobs:
           python-version: '3.12'
       - name: Record the checked source revision
         run: |
-          mkdir -p artifacts/trr08
+          mkdir -p artifacts/trr08 artifacts/trr09
           git rev-parse HEAD > artifacts/trr08/checkout.txt
           cp lean-toolchain artifacts/trr08/core-lean-toolchain.txt
           cp experiments/trr08_geometry/lean-toolchain artifacts/trr08/geometry-lean-toolchain.txt
           cp experiments/trr08_geometry/lake-manifest.json artifacts/trr08/committed-lake-manifest.json
+          git rev-parse HEAD > artifacts/trr09/checkout.txt
       - name: Check the verifier's rejection controls
         run: python research/translation_rank_rigidity/trr08/test_verifier.py --output artifacts/trr08/verifier-controls.json
+      - name: Check the finite coefficient identities exactly
+        run: |
+          python research/translation_rank_rigidity/trr09/check_finite_bridge.py \
+            --output artifacts/trr09/finite_bridge_receipt.json
       - uses: leanprover/lean-action@v1
         with:
           auto-config: false
@@ -72,23 +78,42 @@ jobs:
             Mathlib.GroupTheory.OrderOfElement \
             Mathlib.Tactic.LinearCombination \
             Mathlib.Tactic.Ring \
+            Mathlib.Tactic.FieldSimp \
             Mathlib.Data.List.FinRange \
+            Mathlib.LinearAlgebra.Lagrange \
+            Mathlib.Algebra.BigOperators.Group.Finset.Defs \
+            Mathlib.Algebra.BigOperators.Ring.Finset \
+            Mathlib.Algebra.Group.Equiv.Basic \
             2>&1 | tee "$GITHUB_WORKSPACE/artifacts/trr08/mathlib-cache.log"
       - name: Build the complete geometry aggregate
         working-directory: experiments/trr08_geometry
         run: |
           timeout 900s lake build TRR08Geometry 2>&1 | tee "$GITHUB_WORKSPACE/artifacts/trr08/geometry-build.log"
-      - name: Verify theorem reports and dependency hashes
+      - name: Verify the TRR-08 theorem contract
         run: |
           timeout 600s python research/translation_rank_rigidity/trr08/verify_formalization.py \
             --core-root "$GITHUB_WORKSPACE" \
             --geometry-root "$GITHUB_WORKSPACE/experiments/trr08_geometry" \
             --output "$GITHUB_WORKSPACE/artifacts/trr08/formalization_receipt.json" \
             2>&1 | tee artifacts/trr08/verification.log
+      - name: Verify the complete residue theorem and reject a false identity
+        run: |
+          timeout 900s python research/translation_rank_rigidity/trr09/verify_formalization.py \
+            --core-root "$GITHUB_WORKSPACE" \
+            --geometry-root "$GITHUB_WORKSPACE/experiments/trr08_geometry" \
+            --output "$GITHUB_WORKSPACE/artifacts/trr09/formalization_receipt.json" \
+            2>&1 | tee artifacts/trr09/verification.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: trr08-formalization
           path: artifacts/trr08/
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trr09-residue-formalization
+          path: artifacts/trr09/
           if-no-files-found: error
           retention-days: 30
