@@ -131,7 +131,7 @@ function buildReplacement(defs,body,params){
   const global=(y,x,ps)=>Phi(y,x,ps,L);
   const Ltotal=(a,ps)=>A(x=>I(L(x),I(M(x,a),E(y=>C(L(y),C(global(y,x,ps),A(z=>I(L(z),I(global(z,x,ps),Q(z,y))))))))));
   const Limage=(a,b,ps)=>A(y=>I(L(y),B(M(y,b),E(x=>C(L(x),C(M(x,a),global(y,x,ps)))))));
-  const lTrans=A(a=>A(x=>I(L(a),I(M(x,a),L(x)))));
+  const lTrans=A(a=>I(L(a),A(x=>I(M(x,a),L(x)))));
   const bound=A(s=>I(A(x=>I(M(x,s),L(x))),E(c=>E(r=>C(C(Ord(c),W(c,r)),subset(s,r))))));
   const stageTrans=A(c=>A(r=>I(Ord(c),I(W(c,r),trans(r)))));
   const stageMembers=A(c=>A(r=>I(Ord(c),I(W(c,r),A(x=>I(M(x,r),L(x)))))));
@@ -148,7 +148,7 @@ function buildReplacement(defs,body,params){
       // Ambient replacement uses the explicitly class-restricted relation.
       const x0=fresh(),y0=fresh(),spec={name:"replacement",params,body:db(C(L(y0),global(y0,x0,ps)),[y0,x0,...ps])};
       const functional=ui(x=>ii(M(x,a),xa=>{
-        const lx=app(us(tr,a,x),la,xa);
+        const lx=app(ue(app(ue(tr,a),la),x),xa);
         return open(app(ue(total,x),lx,xa),(y,yp)=>{
           const ly=al(yp),phi=al(ar(yp)),uq=ar(ar(yp));
           const u=ui(z=>ii(C(L(z),global(z,x,ps)),zp=>app(ue(uq,z),al(zp),ar(zp))));
@@ -202,7 +202,7 @@ function buildReplacement(defs,body,params){
             const img=ui(y=>ii(L(y),ly=>{
               const ex=E(x=>C(L(x),C(M(x,a),global(y,x,ps))));
               const fw=ii(M(y,b),yb=>open(from(bp,y,yb),(x,xp)=>{
-                const lx=app(us(tr,a,x),la,al(xp));
+                const lx=app(ue(app(ue(tr,a),la),x),al(xp));
                 return ei(ex,x,ai(lx,ai(al(xp),ar(ar(xp)))));
               }));
               const bw=ii(ex,p=>open(p,(x,xp)=>into(bp,y,ei(ar(ue(bp,y)).goal[1],x,ai(al(ar(xp)),ai(ly,ar(ar(xp))))))));
