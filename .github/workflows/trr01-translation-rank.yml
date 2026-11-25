@@ -27,7 +27,8 @@ jobs:
       - name: Regenerate independent exact receipt
         run: |
           python research/translation_rank_rigidity/verify_rigidity.py
-          git diff --exit-code -- research/translation_rank_rigidity/receipt.json
+          python research/translation_rank_rigidity/trr02/verify_min_rank.py
+          git diff --exit-code -- research/translation_rank_rigidity/receipt.json research/translation_rank_rigidity/trr02/receipt.json
       - uses: leanprover/lean-action@v1
         with:
           auto-config: false

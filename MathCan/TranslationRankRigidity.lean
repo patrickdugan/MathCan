@@ -117,7 +117,7 @@ theorem digitPair_injective {q n : Nat} {a a' : Fin q} {b b' : Fin n}
 
 /-- Exact base-q encoding of r coordinates. -/
 def encodeDigits (q : Nat) : (r : Nat) → (Fin r → Fin q) → Fin (q^r)
-  | 0, _ => ⟨0, by decide⟩
+  | 0, _ => ⟨0, Nat.zero_lt_succ 0⟩
   | r+1, v =>
       digitPair q (q^r) (v 0) (encodeDigits q r (fun i => v i.succ))
 
