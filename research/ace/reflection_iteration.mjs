@@ -197,3 +197,5 @@ function buildN(defs,prior,stages,ranks,clauses,bounds=[]){
   }
   return {nextFormula,proofs:Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]))};
 }
+
+export { buildN };
