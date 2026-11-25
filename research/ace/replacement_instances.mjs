@@ -123,7 +123,7 @@ function buildReplacement(defs,body,params){
   }
 
 
-  if(!Number.isInteger(params)||params<0||params>1||!scoped(body,params+2,false))throw Error("replacement scope/arity");
+  if(!Number.isInteger(params)||params<0||params>2||!scoped(body,params+2,false))throw Error("replacement scope/arity");
   const L=x=>form("L",x),W=(a,r)=>E(d=>C(Succ(a,d),E(f=>C(SG(f,d),Val(f,a,r)))));
   function rel(p,guard){const [op,a,b]=p;if(op==="A")return [op,a,I(guard(a),rel(b,guard))];if(op==="E")return [op,a,C(guard(a),rel(b,guard))];if(["&","|",">"].includes(op))return [op,rel(a,guard),rel(b,guard)];return p;}
   const Phi=(y,x,ps,g)=>rel(named(body,[y,x,...ps]),g);
