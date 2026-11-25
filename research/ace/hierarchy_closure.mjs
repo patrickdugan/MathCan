@@ -366,9 +366,12 @@ function buildE(defs,extended=false){
                     ii(M(x,s),xs=>limitIn(x,sf,v,u,xs,true))));
                   return app(us(ax({name:"extensionality"}),r,s),equiv);
                 }
+                function impossible(succ,lim){
+                  return open(succ,(i,ip)=>app(al(lim),ei(al(lim).goal[1],i,ai(al(ip),al(ar(ip))))));
+                }
                 return oe(rf,result,
-                  rfS=>oe(sgp,result,sgS=>bothSucc(rfS,sgS),sgL=>fe(app(al(sgL),rfS),result)),
-                  rfL=>oe(sgp,result,sgS=>fe(app(al(rfL),sgS),result),sgL=>bothLimit(rfL,sgL)));
+                  rfS=>oe(sgp,result,sgS=>bothSucc(rfS,sgS),sgL=>fe(impossible(rfS,sgL),result)),
+                  rfL=>oe(sgp,result,sgS=>fe(impossible(sgS,rfL),result),sgL=>bothLimit(rfL,sgL)));
               }
               return ui(r=>{
                 return ii(Val(f,b,r),vr=>{
