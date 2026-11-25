@@ -534,7 +534,65 @@ function buildE(defs,extended=false){
       });
     }
     const restrict=qs(3,(f,d,e)=>ii(trans(e),te=>ii(subset(e,d),inc=>ii(SG(f,d),sf=>restriction(f,d,e,te,inc,sf)))));
-    Object.assign(proofs,{no_two_cycle:noCycle,successor_predecessor_unique:succPredUnique,bounded_induction_coherence:agreeInd,stage_graph_coherence:coherence,bounded_induction_monotonicity:monoInd,stage_graph_monotonicity_conditional:mono,stage_graph_restriction:restrict});
+
+    const extEq=(a,b,fn)=>app(us(ax({name:"extensionality"}),a,b),ui(fn));
+    function sameMembers(a,b,ap,bp){
+      return extEq(a,b,x=>ai(ii(M(x,a),xa=>into(bp,x,from(ap,x,xa))),ii(M(x,b),xb=>into(ap,x,from(bp,x,xb)))));
+    }
+    function unpackPair(p,fn){
+      return open(p,(u,up)=>open(up,(v,vp)=>fn(u,v,al(al(vp)),ar(al(vp)),ar(vp))));
+    }
+    const pairUnique=qs(4,(a,b,p,q)=>ii(form("pair",p,a,b),pp=>ii(form("pair",q,a,b),qp=>{
+      return unpackPair(pp,(u,v,up,vp,sp)=>{
+        return unpackPair(qp,(w,t,wp,tp,sq)=>{
+          const uw=sameMembers(u,w,up,wp),vt=sameMembers(v,t,vp,tp);
+          const eq=ui(x=>ai(ii(M(x,p),xp=>{
+            const alt=from(sp,x,xp);
+            const want=["|",Q(x,w),Q(x,t)];
+            return into(sq,x,oe(alt,want,
+              xu=>ol(chain(xu,uw),Q(x,t)),xv=>or(Q(x,w),chain(xv,vt))));
+          }),ii(M(x,q),xq=>{
+            const alt=from(sq,x,xq),want=["|",Q(x,u),Q(x,v)];
+            return into(sp,x,oe(alt,want,
+              xw=>ol(chain(xw,sym(uw)),Q(x,v)),xt=>or(Q(x,u),chain(xt,sym(vt)))));
+          })));
+          return app(us(ax({name:"extensionality"}),p,q),eq);
+        });
+      });
+    })));
+    function graphEq(f,g,d,gf,gg,agree,pu){
+      function member(p,m,src,tgt,source,target,reverse){
+        return open(app(ue(al(source),p),m),(i,ip)=>{
+          return open(ar(ip),(y,yp)=>{
+            const fi=ei(Val(src,i,y),p,ai(m,yp));
+            const im=al(ip);
+            const eqv=ue(app(ue(agree,i),im),y);
+            const gi=app(reverse?al(eqv):ar(eqv),fi);
+            return open(gi,(q,qp)=>{
+              const pq=app(us(pu,i,y,p,q),yp,ar(qp));
+              return eqSub(sym(pq),z=>M(z,tgt),al(qp));
+            });
+          });
+        });
+      }
+      return extEq(f,g,p=>ai(ii(M(p,f),pf=>member(p,pf,f,g,gf,gg,true)),ii(M(p,g),pg=>member(p,pg,g,f,gg,gf,false))));
+    }
+    const graphExt=use(pairUnique,pu=>qs(3,(f,g,d)=>ii(form("graph",f,d),gf=>ii(form("graph",g,d),gg=>ii(equivVals(f,g,d),ev=>graphEq(f,g,d,gf,gg,ev,pu))))));
+    const stageUnique=use(coherence,co=>use(graphExt,ge=>qs(3,(f,g,d)=>ii(trans(d),td=>ii(SG(f,d),sf=>ii(SG(g,d),sg=>{
+      const agree=app(us(co,f,g,d,d),td,td,sf,sg);
+      const equiv=ui(i=>ii(M(i,d),id=>ui(r=>{
+        function convert(src,tgt,other,p,reverse){
+          return open(app(ue(ar(other),i),id),(a,av)=>{
+            const common=app(ue(agree,i),id,id);
+            const eq=reverse?app(ue(app(ue(common,a),al(av)),r),p):app(ue(app(ue(common,r),p),a),al(av));
+            return eqSub(reverse?eq:sym(eq),z=>Val(tgt,i,z),al(av));
+          });
+        }
+        return ai(ii(Val(f,i,r),p=>convert(f,g,sg,p,false)),ii(Val(g,i,r),p=>convert(g,f,sf,p,true)));
+      })));
+      return app(us(ge,f,g,d),al(sf),al(sg),equiv);
+    }))))));
+    Object.assign(proofs,{no_two_cycle:noCycle,successor_predecessor_unique:succPredUnique,bounded_induction_coherence:agreeInd,stage_graph_coherence:coherence,bounded_induction_monotonicity:monoInd,stage_graph_monotonicity_conditional:mono,stage_graph_restriction:restrict,ordered_pair_unique:pairUnique,graph_extensionality:graphExt,stage_graph_unique:stageUnique});
   }
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
