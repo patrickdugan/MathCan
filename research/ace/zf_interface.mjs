@@ -1,3 +1,4 @@
+import { pathToFileURL } from "node:url";
 // ACE-03B extended standalone proof kernel; derived from ACE-03A.
 function fail(msg){throw Error(msg);}
 
@@ -608,4 +609,6 @@ function runC(){
     negative_controls:controls.length};
 }
 
-console.log(JSON.stringify({prior_regression:run(),current:runB(),class_closure:runC()},null,2));
+
+export { same, scoped, inst, kernel, expandClass, classProofs, rejects, compile };
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) console.log(JSON.stringify({prior_regression:run(),current:runB(),class_closure:runC()},null,2));
