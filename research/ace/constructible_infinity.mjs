@@ -1,5 +1,5 @@
 import { definition } from './constructible_definition.mjs';
-import { kernel, same, rejects } from './zf_interface.mjs';
+import { kernel, same, rejects, inst, expandClass, classProofs, compile } from './zf_interface.mjs';
 import { buildE } from './hierarchy_closure.mjs';
 import { buildF } from './finite_witnesses.mjs';
 import { buildI } from './stage_recursion.mjs';
@@ -284,3 +284,83 @@ function buildK(defs,prior,finite,stages,extended=false){
   }
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
+
+
+import { readFileSync } from 'node:fs';
+
+function runK(pinned,part){
+  const defs=definition("v",true);
+  if(!same(defs.L,pinned))throw Error("pinned L mismatch");
+  const finite=buildF(defs,"infinity"),out={};
+  function check(name,p,g=false,def=null){
+    const r=kernel(0,[],p.proof,g,"ZF",def);
+    if(!same(r.goal,p.goal))throw Error("goal mismatch "+name);
+    out[name]={nodes:r.visits,proof_bytes:JSON.stringify(p.proof).length};
+  }
+  const A=p=>["A",p],E=p=>["E",p],I=(p,q)=>[">",p,q],C=(p,q)=>["&",p,q],M=(a,b)=>["M",a,b],G=i=>["G",i];
+  function embed(p,indices,d=0){
+    const [op,a,b]=p;
+    if(op==="F")return p;
+    if(op==="A"||op==="E")return [op,embed(a,indices,d+1)];
+    if(op==="M"||op==="="){const f=i=>i<d?i:indices[i-d]+d;return [op,f(a),f(b)];}
+    return [op,embed(a,indices,d),embed(b,indices,d)];
+  }
+  const sub=(a,b)=>A(I(M(0,a+1),M(0,b+1)));
+  const trans=a=>A(I(M(0,a+1),sub(0,a+1)));
+  const D=(a,x)=>embed(defs.definable,[a,x]),Succ=(a,b)=>embed(defs.successor,[a,b]),Ord=a=>embed(defs.ordinal,[a]),L=a=>embed(defs.L,[a]),Ind=a=>embed(defs.inductive,[a]),Omega=a=>embed(defs.omega,[a]);
+  const W=(b,r)=>E(C(Succ(b+1,0),E(C(embed(defs.stageGraph,[0,1]),embed(defs.val,[0,b+2,r+2])))));
+  const imp=(...ps)=>ps.reduceRight((a,b)=>I(b,a));
+  function exact(p,want,name){if(!same(p.goal,want))throw Error("independent goal mismatch "+name);}
+  if(part==="finite"){
+    exact(finite.successor_definable,A(A(A(imp(trans(2),M(1,2),Succ(1,0),D(2,0))))),"successor_definable");
+    exact(finite.self_definable,A(D(0,0)),"self_definable");
+    for(const n of ["successor_definable","self_definable"])check(n,finite[n]);
+    const tests=[()=>kernel(0,[],finite.successor_definable.proof,false,"CL"),()=>kernel(0,[],finite.self_definable.proof,false,"CL")];
+    for(const t of tests)if(!rejects(t))throw Error("negative control accepted");
+    return {proofs:out,independent_goal_checks:2,negative_controls:2};
+  }
+  const prior=buildE(defs,true),stages=buildI(defs,prior,buildF(defs),true),p=buildK(defs,prior,finite,stages,true);
+  if(part==="stage"){
+    exact(p.omega_ordinal,A(I(Omega(0),Ord(0))),"omega_ordinal");
+    exact(p.omega_limit,A(I(Omega(0),I(E(C(M(0,1),Succ(0,1))),["F"]))),"omega_limit");
+    exact(p.omega_stage_inductive,A(A(imp(Omega(1),W(1,0),Ind(0)))),"omega_stage_inductive");
+    exact(p.ordinal_stage_constructible,A(I(Ord(0),A(I(W(1,0),L(0))))),"ordinal_stage_constructible");
+    for(const n of ["omega_ordinal","omega_limit","ordinal_limit_stage_members","omega_stage_inductive","ordinal_stage_constructible"])check(n,p[n]);
+    return {proofs:out,independent_goal_checks:4,negative_controls:0};
+  }
+  if(part!=="infinity")throw Error("bad replay part");
+  const witness=E(C(G(0),Ind(0)));
+  exact(p.constructible_inductive_set,E(C(L(0),Ind(0))),"constructible_inductive_set");
+  const guarded=["conv",witness,["closed",p.constructible_inductive_set.proof]];
+  const tr=prior.L_transitivity_conditional,inf=finite.def_inflation;
+  if(!same(tr.goal[1],inf.goal))throw Error("inflation mismatch");
+  const lP=["iE",tr.proof,inf.proof];
+  const tx=["conv",inst(defs.L,1),["aL",["h",0]]];
+  const sx=["iE",["uE",["closed",lP],1],tx],sy=["iE",["uE",sx,0],["aR",["h",0]]];
+  const tg=["uI",["uI",["iI",C(G(1),M(0,1)),["conv",G(0),sy]]]];
+  const T=classProofs().generic.find(x=>x.name==="union").premises[0];
+  function relLocal(p){
+    const [op,a,b]=p;
+    if(op==="A")return A(I(G(0),relLocal(a)));
+    if(op==="E")return E(C(G(0),relLocal(a)));
+    if(["&","|",">"].includes(op))return [op,relLocal(a),relLocal(b)];
+    return p;
+  }
+  const spec={name:"infinity"},goal=relLocal(kernel(0,[],["axiom",spec],false,"ZF").goal);
+  const generic=p.infinity_from_transitivity_and_inductive_member;
+  exact(generic,I(T,I(witness,goal)),"generic Infinity");
+  check("generic_infinity",generic,true);
+  const proof=["iE",["iE",generic.proof,tg],guarded];
+  const cert={spec,proof},opts={sourceTheory:"ZFC",targetTheory:"ZF",classDef:defs.L,certificates:[cert]};
+  const compiled=compile(0,[],["axiom",spec],opts);
+  if(!same(compiled.target.goal,goal))throw Error("compiler goal mismatch");
+  const tests=[()=>compile(0,[],["axiom",spec],{...opts,certificates:[]}),()=>compile(0,[],["axiom",{name:"choice"}],{...opts,certificates:[]}),()=>kernel(0,[],["conv",witness,["closed",["axiom",{name:"empty"}]]],true,"ZF",defs.L)];
+  for(const t of tests)if(!rejects(t))throw Error("negative control accepted");
+  if(same(expandClass(witness,classProofs().def),p.constructible_inductive_set.goal))throw Error("wrong class expansion matched");
+  return {proofs:{...out,constructible_inductive_set:{proof_bytes:JSON.stringify(p.constructible_inductive_set.proof).length},infinity_axiom:{nodes:compiled.target.visits-1,proof_bytes:JSON.stringify(proof).length}},independent_goal_checks:2,negative_controls:tests.length,closed_L_axiom_certificate:"infinity",source_nodes:compiled.source.visits,target_nodes:compiled.target.visits};
+}
+
+const pinned=JSON.parse(readFileSync(new URL('./L_formula.json',import.meta.url),'utf8'));
+const part=process.argv[2];
+if(!part)throw Error('choose finite, stage or infinity');
+console.log(JSON.stringify(runK(pinned,part),null,2));
