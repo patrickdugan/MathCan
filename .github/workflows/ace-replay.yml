@@ -25,6 +25,26 @@ jobs:
             node "research/ace/$name.mjs" > "/tmp/$name.json"
             diff -u "research/ace/${name}_receipt.json" "/tmp/$name.json"
           done
+  constructible-closure-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [finite, stage, pairing, union]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay class-closure certificate
+        shell: bash
+        env:
+          PART: ${{ matrix.part }}
+        run: |
+          set -euo pipefail
+          node research/ace/constructible_closure.mjs "$PART" > "/tmp/ace-$PART.json"
+          diff -u "research/ace/constructible_closure_${PART}_receipt.json" "/tmp/ace-$PART.json"
   lean-replay:
     runs-on: ubuntu-latest
     steps:
