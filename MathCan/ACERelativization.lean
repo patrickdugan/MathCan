@@ -76,7 +76,12 @@ theorem sat_restrict (E : A → A → Prop) (p : Formula)
     rw [h i, h j]
   | guard i =>
     change True ↔ C (σ i)
-    exact ⟨fun _ => h i ▸ (ρ i).property, fun _ => True.intro⟩
+    constructor
+    · intro _
+      rw [← h i]
+      exact (ρ i).property
+    · intro _
+      exact True.intro
   | conj p q ihp ihq =>
     change (p.sat (subMem E) (fun _ => True) ρ ∧ q.sat (subMem E) (fun _ => True) ρ) ↔
       (p.restrict.sat E C σ ∧ q.restrict.sat E C σ)
