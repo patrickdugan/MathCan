@@ -4,7 +4,7 @@ import { buildE } from './hierarchy_closure.mjs';
 import { buildF } from './finite_witnesses.mjs';
 import { buildI } from './stage_recursion.mjs';
 import { buildL } from './constructible_power.mjs';
-function buildM(defs,prior,stages,ranks,formula,arity){
+function buildM(defs,prior,stages,ranks,formula,arity,extended=false){
   let serial=0;
   const fresh=()=>`q${serial++}`,M=(a,b)=>["M",a,b],Q=(a,b)=>["=",a,b],F=["F"],I=(p,q)=>[">",p,q],C=(p,q)=>["&",p,q],N=p=>I(p,F);
   const bind=(op,f)=>{const x=fresh();return [op,x,f(x)];};
@@ -275,5 +275,36 @@ function buildM(defs,prior,stages,ranks,formula,arity){
     });
   })))));
   const proofs={demand_from_constructible_witness:demandFromL,least_witness_stage:least,least_witness_stage_unique:leastUnique,witness_selector_unique:selUnique,witness_selector_total:selTotal,witness_selector_bounds:selBounds,parameter_aggregate_total:totals[0],finite_parameter_witness_bound:bound};
+
+  if(extended){
+    const ordSucc=imported(stages.ordinal_successor),binUnion=imported(stages.binary_union_exists),ordBin=imported(stages.ordinal_binary_union);
+    const extension=use(bound,bd=>use(se,su0=>use(ordSucc,os0=>use(binUnion,bu=>use(ordBin,ou=>use(ov,ve=>use(mono,mo=>{
+      return qs(2,(a,r)=>ii(Ord(a),oa=>ii(W(a,r),rw=>{
+        return open(ue(bd,r),(c,cp)=>open(cp,(s,sp)=>{
+          const oc=al(al(sp)),sw=ar(al(sp)),wb=ar(sp);
+          return open(ue(su0,a),(d,sd)=>open(ue(su0,c),(e,ss)=>{
+            const od=app(us(os0,a,d),oa,sd),oe0=app(us(os0,c,e),oc,ss);
+            return open(us(bu,d,e),(b,bp)=>{
+              const ob=app(us(ou,d,e,b),od,oe0,bp);
+              const ab=into(bp,a,ol(into(sd,a,or(M(a,a),ref(a))),M(a,e)));
+              const cb=into(bp,c,or(M(c,d),into(ss,c,or(M(c,c),ref(c)))));
+              return open(app(ue(ve,b),ob),(t,tw)=>{
+                const rt=app(us(mo,a,b,r,t),oa,ob,rw,tw,ab);
+                const st0=app(us(mo,c,b,s,t),oc,ob,sw,tw,cb);
+                const liftWitness=boundedParams(r,[],[],(ps,ims)=>ii(existsL(ps),el=>{
+                  let q=wb;
+                  for(let i=0;i<ps.length;i++)q=app(ue(q,ps[i]),ims[i]);
+                  return open(app(q,el),(x,xp)=>ei(existsIn(t,ps),x,ai(app(ue(st0,x),al(xp)),ar(xp))));
+                }));
+                const goal=E(b=>E(t=>C(C(C(Ord(b),W(b,t)),M(a,b)),C(subset(r,t),boundFormula(r,t)))));
+                return ei(goal,b,ei(replace(goal[2],goal[1],b),t,ai(ai(ai(ob,tw),ab),ai(rt,liftWitness))));
+              });
+            });
+          }));
+        }));
+      })));
+    })))))));
+    Object.assign(proofs,{strict_stage_witness_extension:extension});
+  }
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
