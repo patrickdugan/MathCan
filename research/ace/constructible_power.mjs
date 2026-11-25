@@ -223,6 +223,72 @@ function buildL(defs,prior,finite,stages,extended=false){
       return ei(E(a=>C(Rank(x,a),A(b=>I(Rank(x,b),Q(b,a))))),a,ai(ra,uq));
     });
   }))));
-  const proofs={ordinal_comparison_induction:cmpInd,ordinal_comparison:compare,least_constructible_rank:leastRank,least_rank_unique:rankUnique,least_rank_exists_unique:rankExistsUnique};
+
+  const RankSucc=(x,j)=>E(a=>C(Rank(x,a),Succ(a,j)));
+  const rankSuccUnique=use(rankUnique,ru=>qs(3,(x,j,k)=>ii(RankSucc(x,j),rj=>ii(RankSucc(x,k),rk=>{
+    return open(rj,(a,ap)=>open(rk,(b,bp)=>{
+      const ab=app(us(ru,x,a,b),al(ap),al(bp));
+      return app(us(su,b,j,k),eqSub(ab,t=>Succ(t,j),ar(ap)),ar(bp));
+    }));
+  }))));
+  const rankSuccTotal=use(leastRank,lr=>use(rankSuccUnique,ru=>ui(x=>ii(L(x),lx=>{
+    return open(app(ue(lr,x),lx),(a,ra)=>open(ue(se,a),(j,jp)=>{
+      const rj=ei(RankSucc(x,j),a,ai(ra,jp));
+      const uq=ui(k=>ii(RankSucc(x,k),rk=>app(us(ru,x,k,j),rk,rj)));
+      return ei(E(j=>C(RankSucc(x,j),A(k=>I(RankSucc(x,k),Q(k,j))))),j,ai(rj,uq));
+    }));
+  }))));
+  const allL=a=>A(x=>I(M(x,a),L(x)));
+  const ordinalFamily=a=>A(x=>I(M(x,a),Ord(x)));
+  const unionSpec=(a,b)=>A(x=>B(M(x,b),E(y=>C(M(y,a),M(x,y)))));
+  function ordinalUnion(a,b,of,ub){
+    const tr=ui(x=>ii(M(x,b),xb=>ui(y=>ii(M(y,x),yx=>{
+      return open(from(ub,x,xb),(i,ip)=>{
+        const oi=app(ue(of,i),al(ip));
+        const yi=app(ue(app(ue(al(oi),x),ar(ip)),y),yx);
+        return into(ub,y,ei(ar(ue(ub,y)).goal[1],i,ai(al(ip),yi)));
+      });
+    }))));
+    const each=ui(x=>ii(M(x,b),xb=>open(from(ub,x,xb),(i,ip)=>{
+      const oi=app(ue(of,i),al(ip));
+      return app(ue(ar(oi),x),ar(ip));
+    })));
+    return ai(tr,each);
+  }
+  const ordinalUnionProof=qs(2,(a,b)=>ii(ordinalFamily(a),of=>ii(unionSpec(a,b),ub=>ordinalUnion(a,b,of,ub))));
+  const withUnion=(a,fn)=>open(ue(ax({name:"union"}),a),fn);
+  const Bound=(a,c,r)=>C(C(Ord(c),W(c,r)),subset(a,r));
+  function boundSet(a,al0,rs,ou,ve,mo){
+    const x0=fresh(),j0=fresh(),spec={name:"replacement",params:0,body:db(RankSucc(x0,j0),[j0,x0])};
+    const functional=ui(x=>ii(M(x,a),xa=>app(ue(rs,x),app(ue(al0,x),xa))));
+    return open(app(ue(ax(spec),a),functional),(R,Rp)=>{
+      const ords=ui(j=>ii(M(j,R),jr=>open(from(Rp,j,jr),(x,xp)=>open(ar(xp),(i,ip)=>{
+        return app(us(os,i,j),al(al(al(ip))),ar(ip));
+      }))));
+      return withUnion(R,(c,uc)=>{
+        const oc=app(us(ou,R,c),ords,uc);
+        return use(oc,ord=>open(app(ue(ve,c),ord),(r,rw)=>{
+          const inc=ui(x=>ii(M(x,a),xa=>{
+            return open(app(ue(rs,x),app(ue(al0,x),xa)),(j,jp)=>{
+              const jR=into(Rp,j,ei(ar(ue(Rp,j)).goal[1],x,ai(xa,al(jp))));
+              return open(al(jp),(i,ip)=>{
+                const rank=al(ip),succ=ar(ip),oi=al(al(rank));
+                const ij=into(succ,i,or(M(i,i),ref(i)));
+                const ic=into(uc,i,ei(ar(ue(uc,i)).goal[1],j,ai(jR,ij)));
+                return open(ar(al(rank)),(s,sp)=>{
+                  const sr=app(us(mo,i,c,s,r),oi,ord,al(sp),rw,ic);
+                  return app(ue(sr,x),ar(sp));
+                });
+              });
+            });
+          }));
+          const goal=E(c=>E(r=>Bound(a,c,r)));
+          return ei(goal,c,ei(replace(goal[2],goal[1],c),r,ai(ai(ord,rw),inc)));
+        }));
+      });
+    });
+  }
+  const constructibleSetBound=use(rankSuccTotal,rs=>use(ordinalUnionProof,ou=>use(ov,ve=>use(mono,mo=>ui(a=>ii(allL(a),al0=>boundSet(a,al0,rs,ou,ve,mo)))))));
+  const proofs={ordinal_comparison_induction:cmpInd,ordinal_comparison:compare,least_constructible_rank:leastRank,least_rank_unique:rankUnique,least_rank_exists_unique:rankExistsUnique,rank_successor_unique:rankSuccUnique,rank_successor_total:rankSuccTotal,ordinal_family_union:ordinalUnionProof,constructible_set_stage_bound:constructibleSetBound};
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
