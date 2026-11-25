@@ -162,6 +162,115 @@ function buildE(defs){
   const boundedTrans=boundedInduction(["A",[">",["M",0,1],["A",[">",["M",0,1],["M",0,2]]]]],0);
   const boundedMembership=boundedInduction(["M",0,1],1);
   const boundedL=boundedInduction(defs.L,0);
-  const proofs={definable_subset:subsetD,empty_definable:emptyD,def_members_subset:defMembers,empty_in_def:defEmpty,successor_transitivity:defTrans,union_transitivity:unionTrans,def_exists:defExists,def_unique:defUnique,bounded_induction_transitivity:boundedTrans,bounded_induction_membership:boundedMembership,bounded_induction_L:boundedL};
+  const or=(g,p)=>P(["|",g,p.goal],(e,h)=>["oR",db(g,e),p.emit(e,h)]);
+  function eqSub(eq,prop,proof){
+    const v=fresh(),g=prop(v);
+    return P(replace(g,v,eq.goal[2]),(e,h)=>["eqS",db(g,[v,...e]),eq.emit(e,h),proof.emit(e,h)]);
+  }
+  const Val=(f,b,r)=>named(defs.val,[f,b,r]);
+  const SG=(f,d)=>named(defs.stageGraph,[f,d]);
+  const stageProp=(f,b)=>A(r=>I(Val(f,b,r),trans(r)));
+  const inflation=A(a=>A(b=>I(Def(a,b),I(trans(a),subset(a,b)))));
+  const f0=fresh(),b0=fresh(),stageInd=boundedInduction(db(stageProp(f0,b0),[b0,f0]),1);
+  const apply2=(p,a,b)=>ue(ue(p,a),b);
+  const ref=x=>P(Q(x,x),(e,h)=>["refl",e.indexOf(x)]);
+  const qs=(n,fn,vars=[])=>vars.length===n?fn(...vars):ui(x=>qs(n,fn,[...vars,x]));
+  function stageAt(inf,f,d,td,sg){
+    const local=ui(b=>{
+      return ii(M(b,d),bd=>{
+        return ii(A(i=>I(M(i,b),stageProp(f,i))),ih=>{
+          return ui(r=>{
+            return ii(Val(f,b,r),vr=>{
+              const result=trans(r);
+              return ee(ie(ue(ar(al(sg)),b),bd),result,(v,uv)=>{
+                return ee(ie(ue(ar(sg),b),bd),result,(s,vs)=>{
+                  const ts=oe(ar(vs),trans(s),successor=>{
+                    return ee(successor,trans(s),(i,si)=>{
+                      return ee(ar(ar(si)),trans(s),(a,ad)=>{
+                        const ta=ie(ue(ie(ue(ih,i),al(si)),a),al(ad));
+                        const inc=ie(ie(apply2(inf,a,s),ar(ad)),ta);
+                        return ie(ie(apply2(defTrans,a,s),ar(ad)),inc);
+                      });
+                    });
+                  },limit=>{
+                    const u=ar(limit);
+                    return ui(x=>{
+                      return ii(M(x,s),xs=>{
+                        return ui(y=>{
+                          return ii(M(y,x),yx=>{
+                            return ee(ie(al(ue(u,x)),xs),M(y,s),(i,wi)=>{
+                              return ee(ar(wi),M(y,s),(a,wa)=>{
+                                const ta=ie(ue(ie(ue(ih,i),al(wi)),a),al(wa));
+                                const ya=ie(ue(ie(ue(ta,x),ar(wa)),y),yx);
+                                const ex=ar(ue(u,y)).goal[1];
+                                const inner=replace(ex[2],ex[1],i);
+                                return ie(ar(ue(u,y)),ei(ex,i,ai(al(wi),ei(inner[2],a,ai(al(wa),ya)))));
+                              });
+                            });
+                          });
+                        });
+                      });
+                    });
+                  });
+                  const sv=ie(ue(ar(uv),s),al(vs)),rv=ie(ue(ar(uv),r),vr);
+                  const tv=eqSub(sv,trans,ts);
+                  const sym=eqSub(rv,z=>Q(z,r),ref(r));
+                  return eqSub(sym,trans,tv);
+                });
+              });
+            });
+          });
+        });
+      });
+    });
+    return ie(ie(ue(ue(stageInd,f),d),td),local);
+  }
+  const stageTrans=ii(inflation,inf=>qs(2,(f,d)=>ii(trans(d),td=>ii(SG(f,d),sg=>stageAt(inf,f,d,td,sg)))));
+  const successorTrans=qs(2,(a,b)=>{
+    return ii(trans(a),ta=>{
+      return ii(named(defs.successor,[a,b]),su=>{
+        return ui(x=>{
+          return ii(M(x,b),xb=>{
+            return ui(y=>{
+              return ii(M(y,x),yx=>{
+                return oe(ie(al(ue(su,x)),xb),M(y,b),
+                  xa=>ie(ar(ue(su,y)),ol(ie(ue(ie(ue(ta,x),xa),y),yx),Q(y,a))),
+                  eq=>ie(ar(ue(su,y)),ol(eqSub(eq,z=>M(y,z),yx),Q(y,a))));
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+  const classTrans=ii(inflation,inf=>{
+    return ui(x=>{
+      return ii(named(defs.L,[x]),lx=>{
+        return ui(y=>{
+          return ii(M(y,x),yx=>{
+            const goal=named(defs.L,[y]);
+            return ee(lx,goal,(a,oa)=>{
+              return ee(ar(oa),goal,(d,sd)=>{
+                return ee(ar(sd),goal,(f,fg)=>{
+                  return ee(ar(fg),goal,(r,vr)=>{
+                    const td=ie(ie(apply2(successorTrans,a,d),al(al(oa))),al(sd));
+                    const allStages=stageAt(inf,f,d,td,al(fg));
+                    const ad=ie(ar(ue(al(sd),a)),or(M(a,a),ref(a)));
+                    const tr=ie(ue(ie(ue(allStages,a),ad),r),al(vr));
+                    const yr=ie(ue(ie(ue(tr,x),ar(vr)),y),yx);
+                    const g1=replace(goal[2],goal[1],a),g2=replace(g1[2][2],g1[2][1],d);
+                    const g3=replace(g2[2][2],g2[2][1],f);
+                    const witness=ei(g3[2],r,ai(al(vr),yr));
+                    return ei(goal,a,ai(al(oa),ei(g1[2],d,ai(al(sd),ei(g2[2],f,ai(al(fg),witness))))));
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+  const proofs={definable_subset:subsetD,empty_definable:emptyD,def_members_subset:defMembers,empty_in_def:defEmpty,successor_transitivity:defTrans,union_transitivity:unionTrans,def_exists:defExists,def_unique:defUnique,bounded_induction_transitivity:boundedTrans,bounded_induction_membership:boundedMembership,bounded_induction_L:boundedL,bounded_induction_stage:stageInd,stage_transitivity_conditional:stageTrans,ordinal_successor_transitivity:successorTrans,L_transitivity_conditional:classTrans};
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
