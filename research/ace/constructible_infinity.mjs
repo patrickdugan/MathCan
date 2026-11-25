@@ -11,6 +11,7 @@ function buildK(defs,prior,finite,stages,extended=false){
   function named(p,env){
     const [op,a,b]=p;
     if(op==="F")return F;
+    if(op==="G")return [op,env[a]];
     if(op==="M"||op==="=")return [op,env[a],env[b]];
     if(op==="A"||op==="E"){const x=fresh();return [op,x,named(a,[x,...env])];}
     return [op,named(a,env),named(b,env)];
@@ -18,6 +19,7 @@ function buildK(defs,prior,finite,stages,extended=false){
   function db(p,env){
     const [op,a,b]=p;
     if(op==="F")return F;
+    if(op==="G"){const i=env.indexOf(a);if(i<0)throw Error("unbound guard variable");return [op,i];}
     if(op==="M"||op==="="){
       const i=env.indexOf(a),j=env.indexOf(b);if(i<0||j<0)throw Error("unbound proof variable "+a+" "+b);
       return [op,i,j];
@@ -28,6 +30,7 @@ function buildK(defs,prior,finite,stages,extended=false){
   function replace(p,x,y){
     const [op,a,b]=p;
     if(op==="F")return F;
+    if(op==="G")return [op,a===x?y:a];
     if(op==="M"||op==="=")return [op,a===x?y:a,b===x?y:b];
     if(op==="A"||op==="E"){
       if(a===x)return p;
@@ -245,5 +248,39 @@ function buildK(defs,prior,finite,stages,extended=false){
     });
   })));
   const proofs={omega_ordinal:omegaOrdinal,omega_limit:omegaLimit,ordinal_limit_stage_members:limitStageMembers,omega_stage_inductive:omegaStageInd,ordinal_stage_constructible:stageInL,constructible_inductive_set:omegaStageInL};
+
+  if(extended){
+    const G=x=>["G",x];
+    function relN(p){
+      const [op,a,b]=p;
+      if(op==="A")return [op,a,I(G(a),relN(b))];
+      if(op==="E")return [op,a,C(G(a),relN(b))];
+      if(["&","|",">"].includes(op))return [op,relN(a),relN(b)];
+      return p;
+    }
+    const T=A(a=>A(x=>I(C(G(a),M(x,a)),G(x))));
+    const witness=E(a=>C(G(a),Ind(a)));
+    const target=relN(ax({name:"infinity"}).goal);
+    const generic=ii(T,t=>ii(witness,w=>{
+      return open(w,(a,p)=>{
+        const ga=al(p),ind=ar(p),ag=replace(target[2],target[1],a);
+        const base=open(al(ind),(z,zp)=>{
+          const gz=app(us(t,a,z),ai(ga,al(zp)));
+          const er=ui(v=>ii(G(v),_=>ue(ar(zp),v)));
+          return ei(ag[2][1],z,ai(gz,ai(er,al(zp))));
+        });
+        const step=ui(x=>ii(G(x),gx=>ii(M(x,a),xa=>{
+          const xBody=replace(ag[2][2][2],ag[2][2][1],x);
+          return open(app(ue(ar(ind),x),xa),(y,yp)=>{
+            const gy=app(us(t,a,y),ai(ga,al(yp)));
+            const sr=ui(v=>ii(G(v),_=>ue(ar(yp),v)));
+            return ei(xBody[2][2],y,ai(gy,ai(al(yp),sr)));
+          });
+        })));
+        return ei(target,a,ai(ga,ai(base,step)));
+      });
+    }));
+    Object.assign(proofs,{infinity_from_transitivity_and_inductive_member:generic});
+  }
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
