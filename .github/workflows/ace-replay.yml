@@ -119,6 +119,27 @@ jobs:
           set -euo pipefail
           node research/ace/reflection_transport.mjs > /tmp/ace-transport.json
           diff -u research/ace/reflection_transport_receipt.json /tmp/ace-transport.json
+  reflection-omega-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [canonical, omega, limit, base, link, two_clause, recurrence]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay omega reflection module and verify exact interface
+        shell: bash
+        env:
+          PART: ${{ matrix.part }}
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: |
+          set -euo pipefail
+          node research/ace/reflection_omega_replay.mjs "$PART" > "/tmp/ace-omega-$PART.json"
+          diff -u "research/ace/reflection_omega_${PART}_receipt.json" "/tmp/ace-omega-$PART.json"
   lean-replay:
     runs-on: ubuntu-latest
     steps:
