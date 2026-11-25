@@ -274,3 +274,45 @@ function buildE(defs){
   const proofs={definable_subset:subsetD,empty_definable:emptyD,def_members_subset:defMembers,empty_in_def:defEmpty,successor_transitivity:defTrans,union_transitivity:unionTrans,def_exists:defExists,def_unique:defUnique,bounded_induction_transitivity:boundedTrans,bounded_induction_membership:boundedMembership,bounded_induction_L:boundedL,bounded_induction_stage:stageInd,stage_transitivity_conditional:stageTrans,ordinal_successor_transitivity:successorTrans,L_transitivity_conditional:classTrans};
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
+
+
+function runE(){
+  const defs=definition("v",true),proofs=buildE(defs),out={};
+  for(const [name,{goal,proof}] of Object.entries(proofs)){
+    const checked=kernel(0,[],proof,false,"ZF");
+    if(!same(checked.goal,goal))throw Error("goal mismatch "+name);
+    out[name]={nodes:checked.visits,proof_bytes:JSON.stringify(proof).length};
+  }
+  function embed(p,indices,d=0){
+    const [op,a,b]=p;
+    if(op==="F")return p;
+    if(op==="A"||op==="E")return [op,embed(a,indices,d+1)];
+    if(op==="M"||op==="="){
+      const f=i=>i<d?i:indices[i-d]+d;
+      return [op,f(a),f(b)];
+    }
+    return [op,embed(a,indices,d),embed(b,indices,d)];
+  }
+  const M=(a,b)=>["M",a,b],I=(a,b)=>[">",a,b],A=p=>["A",p],E=p=>["E",p];
+  const sub=(a,b)=>A(I(M(0,a+1),M(0,b+1)));
+  const trans=a=>A(I(M(0,a+1),sub(0,a+1)));
+  const exactInflation=A(A(I(embed(defs.Def,[1,0]),I(trans(1),sub(1,0)))));
+  const exactClass=A(I(defs.L,A(I(M(0,1),defs.L))));
+  const exactExists=A(E(embed(defs.Def,[1,0])));
+  const exactUnique=A(A(A(I(embed(defs.Def,[2,1]),I(embed(defs.Def,[2,0]),["=",1,0])))));
+  for(const [name,want] of [["L_transitivity_conditional",I(exactInflation,exactClass)],["def_exists",exactExists],["def_unique",exactUnique]]){
+    if(!same(proofs[name].goal,want))throw Error("independent target mismatch "+name);
+  }
+  const controls=[
+    ()=>kernel(0,[],proofs.L_transitivity_conditional.proof[2],false,"ZF"),
+    ()=>kernel(0,[],proofs.stage_transitivity_conditional.proof[2],false,"ZF"),
+    ()=>kernel(0,[],proofs.def_exists.proof,false,"CL"),
+    ()=>kernel(0,[],proofs.bounded_induction_L.proof,false,"logic"),
+    ()=>kernel(0,[],["iE",proofs.L_transitivity_conditional.proof,proofs.def_exists.proof],false,"ZF")
+  ];
+  for(const fn of controls){let failed=false;try{fn();}catch(e){failed=true;}if(!failed)throw Error("bad proof accepted");}
+  return {experiment:"ACE-03E",scope:"closed pure object-language proofs checked by executable ZF kernel; L transitivity conditional on inflation",proofs:out,independent_exact_goal_checks:3,negative_controls:controls.length,
+    note:"proof byte totals are compact JSON tree bytes with duplicated formulas; no native Lean certification of object checker"};
+}
+
+console.log(JSON.stringify(runE(),null,2));
