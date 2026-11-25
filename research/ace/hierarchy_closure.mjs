@@ -1,3 +1,4 @@
+import { pathToFileURL } from "node:url";
 import { definition } from './constructible_definition.mjs';
 import { kernel, same } from './zf_interface.mjs';
 function buildE(defs){
@@ -315,4 +316,5 @@ function runE(){
     note:"proof byte totals are compact JSON tree bytes with duplicated formulas; no native Lean certification of object checker"};
 }
 
-console.log(JSON.stringify(runE(),null,2));
+export { buildE };
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) console.log(JSON.stringify(runE(),null,2));
