@@ -436,7 +436,7 @@ function buildF(defs,extended=false){
   const proofs={pair_exists:pairExists,pair_injective:pairInjective,binary_graph_exists:binaryGraph,unary_graph_exists:unaryGraph,omega_exists:omegaExists,finite_ordinals:finiteOrdinals,membership_relation_exists:relationExists,atomic_member_definable:atomicDef,def_inflation:defInflation};
 
 
-  if(extended==="relations"){
+  if(extended==="relations"||extended==="infinity"){
     function withAnd(p,q,fn){
       const x=fresh(),spec={name:"separation",params:1,body:db(M(x,q),[x,q])};
       return open(us(ax(spec),q,p),(r,rp)=>fn(r,rp));
@@ -828,6 +828,82 @@ function buildF(defs,extended=false){
       }))));
     }))))));
     Object.assign(proofs,{equality_relation_exists:eqExists,negation_relation_exists:negExists,intersection_relation_exists:andExists,existential_relation_exists:exExists,foundation_no_self:noSelf,value_in_domain:valDomain,graph_append_exists:appendExists,ternary_tuple_exists:tuple3,pair_definable:pairDefinable,union_definable:unionDefinable});
+    if(extended==="infinity"){
+      const succInstructions=[["mem",0,1],["eq",0,1],["neg",0],["neg",1],["and",2,3],["neg",4]];
+      function successorDefWitness(ns,a,x,p,ta,xa,pp,ap,nsf,rels){
+        const n=ns.values,k=2,m=succInstructions.length;
+        return withProgram(ns,a,k,succInstructions,ap,rels,(f,valid,rs,rps,vs)=>{
+          return withFiniteTuple(ns,a,[x,x],[xa,xa],ap,(b,bt,bv)=>{
+            const slice=ui(u=>{
+              const target=form("slice",p,rs[5],a,n[k],n[0],b);
+              const g=replace(target[2],target[1],u),witness=g[1][2][2];
+              const left=ii(M(u,p),up=>{
+                const choices=from(pp,u,up);
+                const ua=oe(choices,M(u,a),ux=>app(ue(app(ue(ta,x),xa),u),ux),eq=>eqSub(sym(eq),t=>M(t,a),xa));
+                return use(ua,uu=>withFiniteTuple(ns,a,[u,x],[uu,xa],ap,(s,st,sv)=>{
+                  const notAnd=ii(M(s,rs[4]),sa=>{
+                    const negs=from(rps[4],s,sa);
+                    return oe(choices,F,ux=>{
+                      const pos=atomIntro(ns,k,s,0,1,u,x,st,uu,xa,sv[0],sv[1],ux,rps[0]);
+                      return app(ar(from(rps[2],s,al(negs))),pos);
+                    },eq=>{
+                      const pos=atomIntro(ns,k,s,0,1,u,x,st,uu,xa,sv[0],sv[1],eq,rps[1]);
+                      return app(ar(from(rps[3],s,ar(negs))),pos);
+                    });
+                  });
+                  const sr=into(rps[5],s,ai(st,notAnd));
+                  const agree=agreeKnown(ns,k,0,s,b,st,bt,[u,x],sv,bv,nsf);
+                  return ai(uu,ei(witness,s,ai(sr,ai(sv[0],agree))));
+                }));
+              });
+              const right=ii(g[2][1],q=>open(ar(q),(s,sw)=>{
+                const sr=al(sw),s0=al(ar(sw)),agree=ar(ar(sw)),cond=from(rps[5],s,sr),st=al(cond);
+                const sx=agreementValue(ns,k,0,1,s,b,agree,x,bv[1],nsf,false);
+                const want=["|",M(u,x),Q(u,x)];
+                const pr=oe(classical(M(s,rs[0])),want,r0=>ol(atomElim(ns,k,s,0,1,u,x,st,s0,sx,r0,rps[0],M),Q(u,x)),nr0=>
+                  oe(classical(M(s,rs[1])),want,r1=>or(M(u,x),atomElim(ns,k,s,0,1,u,x,st,s0,sx,r1,rps[1],Q)),nr1=>{
+                    const r2=into(rps[2],s,ai(st,nr0)),r3=into(rps[3],s,ai(st,nr1));
+                    return fe(app(ar(cond),into(rps[4],s,ai(r2,r3))),want);
+                  }));
+                return into(pp,u,pr);
+              }));
+              return ai(left,right);
+            });
+            return finishDef(ns,a,p,k,m,f,valid,rs,vs,b,bt,slice);
+          });
+        });
+      }
+      const successorDefinable=use(omegaExists,ow=>use(appendExists,ap=>use(noSelf,nsf=>use(relationExists,mem=>use(eqExists,eq=>use(negExists,neg=>use(andExists,and=>{
+        return qs(3,(a,x,p)=>ii(trans(a),ta=>ii(M(x,a),xa=>ii(Succ(x,p),pp=>{
+          return withNats(ow,6,ns=>successorDefWitness(ns,a,x,p,ta,xa,pp,ap,nsf,{mem,eq,neg,and}));
+        }))));
+      })))))));
+      function selfDefWitness(ns,a,x,xa,ap,nsf,eq){
+        const n=ns.values,k=1,m=1;
+        return withProgram(ns,a,k,[["eq",0,0]],ap,{eq},(f,valid,rs,rps,vs)=>{
+          return withFiniteTuple(ns,a,[x],[xa],ap,(b,bt,bv)=>{
+            const slice=ui(u=>{
+              const target=form("slice",a,rs[0],a,n[1],n[0],b),g=replace(target[2],target[1],u),witness=g[1][2][2];
+              const left=ii(M(u,a),ua=>withFiniteTuple(ns,a,[u],[ua],ap,(s,st,sv)=>{
+                const sr=atomIntro(ns,1,s,0,0,u,u,st,ua,ua,sv[0],sv[0],ref(u),rps[0]);
+                const agree=agreeKnown(ns,1,0,s,b,st,bt,[u],sv,bv,nsf);
+                return ai(ua,ei(witness,s,ai(sr,ai(sv[0],agree))));
+              }));
+              return ai(left,ii(g[2][1],p=>al(p)));
+            });
+            return finishDef(ns,a,a,k,m,f,valid,rs,vs,b,bt,slice);
+          });
+        });
+      }
+      const selfDefinable=use(omegaExists,ow=>use(appendExists,ap=>use(noSelf,nsf=>use(eqExists,eq=>ui(a=>{
+        const ex=E(x=>M(x,a)),goal=D(a,a);
+        return oe(classical(ex),goal,
+          some=>open(some,(x,xa)=>withNats(ow,1,ns=>selfDefWitness(ns,a,x,xa,ap,nsf,eq))),
+          none=>ol(ui(x=>ii(M(x,a),xa=>app(none,ei(ex,x,xa)))),goal[2]));
+      })))));
+      Object.assign(proofs,{successor_definable:successorDefinable,self_definable:selfDefinable});
+    }
+
   }
   if(extended===true){
     function definableSubset(a,x,d){
