@@ -97,7 +97,8 @@ theorem greatest_contains {α : Type} (eligible : α → Prop)
 theorem weighted_gap_bound (a d D : Int) (ha : 0 ≤ a) (hd : d ≤ D) :
     d*a ≤ (D-1)*a + (if d = D then a else 0) := by
   by_cases he : d = D
-  · simp only [he, if_pos rfl, Int.sub_mul, Int.one_mul]
+  · subst d
+    rw [if_pos rfl, Int.sub_mul, Int.one_mul]
     omega
   · have hdiff : 0 ≤ D-1-d := by omega
     have hprod := Int.mul_nonneg hdiff ha
