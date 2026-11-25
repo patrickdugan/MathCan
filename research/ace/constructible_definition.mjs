@@ -70,12 +70,12 @@ function definition(prefix="v",internals=false){
     }
     return [op,compile(a,env),compile(b,env)];
   };
-  const free=["arg0","arg1","arg2"];
+  const free=Array.from({length:6},(_,i)=>"arg"+i);
   const result={
     empty:compile(empty(free[0]),[free[0]]),
     ordinal:compile(ord(free[0]),[free[0]]),
     successor:compile(succ(free[0],free[1]),free.slice(0,2)),
-    pair:compile(pair(free[0],free[1],free[2]),free),
+    pair:compile(pair(free[0],free[1],free[2]),free.slice(0,3)),
     omega:compile(omega(free[0]),[free[0]]),
     graph:compile(graph(free[0],free[1]),free.slice(0,2)),
     definable:compile(definable(free[0],free[1]),free.slice(0,2)),
@@ -83,7 +83,11 @@ function definition(prefix="v",internals=false){
     L:compile(l(free[0]),[free[0]])
   };
   if(internals){
-    result.val=compile(val(free[0],free[1],free[2]),free);
+    result.val=compile(val(free[0],free[1],free[2]),free.slice(0,3));
+    const add=(name,arity,fn)=>{result[name]=compile(fn(...free.slice(0,arity)),free.slice(0,arity));};
+    add("singleton",2,singleton);add("unordered",3,unordered);add("inductive",1,ind);add("tuple",3,tuple);add("agree",4,agree);
+    add("relMem",5,(r,n,a,i,j)=>relAtom(r,n,a,i,j,M));add("entry",5,entry);add("slice",6,slice);
+    add("validProgram",4,validProgram);add("lastSlice",5,lastSlice);
     result.stageGraph=compile(stageGraph(free[0],free[1]),free.slice(0,2));
   }
   return result;
