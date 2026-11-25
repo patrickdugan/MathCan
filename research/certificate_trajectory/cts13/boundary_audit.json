@@ -1,0 +1,8 @@
+{
+  "exact_values": 11,
+  "maximum_capacity": 4,
+  "memo_evictions": 5,
+  "memo_hits": 2,
+  "memo_misses": 9,
+  "replaced_receipts_rejected": 10
+}
