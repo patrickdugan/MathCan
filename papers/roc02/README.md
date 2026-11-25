@@ -1,6 +1,10 @@
 # Recurrent observer and source-rule transfer research papers
 
-**Current empirical manuscript:** [ROC-02–05 version 0.4](ROC02_Observer_Causal_Update_v04_20261117.md), 17 November 2026.
+**Current empirical manuscript:** [ROC-02–06 version 0.5](ROC02_Observer_Causal_Update_v05_20261125.md), 25 November 2026.
+
+ROC-06A uses a **train-only counterfactual-gradient rank-seven observer** on the twelve original frozen ROC-05A models. It improves observed-source hidden margin gain by +0.011409 over supervised rank seven across all six high-diversity seeds. The equal-L2 softened-input comparator remains stronger: gradient minus best reference **−0.056644**, 0/6 positive seeds, one-sided exact p=1.0. The registered physical mechanism gate fails, with all 72 local observer cards unclassified. The study uses 256 already exposed development examples per model; ROC-05's 384 reserved test identities remain unopened.
+
+**Earlier empirical manuscript:** [version 0.4](ROC02_Observer_Causal_Update_v04_20261117.md), 17 November 2026. It includes the ROC-05A source-diversity training success and ROC-05B matched physical observer failure. The v0.1–v0.4 manuscripts are preserved as dated historical sources.
 
 Version 0.4 integrates the original ROC-02B/C/E observer-geometry and causal tests, ROC-03A/B competence diagnosis, and both ROC-04A exposed-development and ROC-04B independently reserved-permutation confirmation. The latest follow-ups are:
 
@@ -24,6 +28,14 @@ python papers/roc02/roc02_primary_signflip_v01.py
 python papers/roc02/roc04a_primary_signflip_v01.py
 python papers/roc02/roc04b_reserved_signflip_v01.py
 python papers/roc02/roc05a_b_primary_audit_v01.py
+```
+
+The [ROC-06A six-seed primary CSV](ROC06A_gradient_primary_by_seed_v01.csv) and [exact conservative max-of-two reference verifier](roc06a_gradient_primary_signflip_v01.py) reproduce the registered gradient mechanism FAIL from the original LoopedTransformers Git blob.
+
+Run the ROC-06A verifier from the repository root:
+
+```bash
+python papers/roc02/roc06a_gradient_primary_signflip_v01.py
 ```
 
 The checks use Python's standard library and retain original Git blob SHA-1 provenance for the copied empirical CSVs.
