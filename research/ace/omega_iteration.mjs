@@ -338,3 +338,5 @@ function buildOmega(defs,prior,stages,finite,stepFormula,only=null){
   const proofs={tight_endpoint_is_endpoint:tightEnd,finite_iteration_conditional:iteration,omega_endpoint_total_conditional:endpointTotal,omega_range_exists_conditional:rangeExists,omega_range_closed_conditional:rangeClosed};
   return {stepTotal:db(StepTotal,[]),endpointFormula:(()=>{const a=fresh(),n=fresh(),v=fresh();return db(End(a,n,v),[v,n,a]);})(),proofs:Object.fromEntries(Object.entries(proofs).filter(([n])=>only===null||only.includes(n)).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]))};
 }
+
+export { buildOmega };
