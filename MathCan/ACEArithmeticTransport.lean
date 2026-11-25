@@ -47,24 +47,24 @@ def push {A : Type u} (a : A) (ρ : Nat → A) : Nat → A
   | 0 => a
   | i + 1 => ρ i
 
-def Term.scoped (k : Nat) : Term → Prop
+def Term.wellScoped (k : Nat) : Term → Prop
   | .var i => i < k
   | .zero => True
-  | .succ t => scoped k t
-  | .add t s => scoped k t ∧ scoped k s
-  | .mul t s => scoped k t ∧ scoped k s
+  | .succ t => wellScoped k t
+  | .add t s => wellScoped k t ∧ wellScoped k s
+  | .mul t s => wellScoped k t ∧ wellScoped k s
 
-def Formula.scoped (k : Nat) : Formula → Prop
+def Formula.wellScoped (k : Nat) : Formula → Prop
   | .falsum => True
-  | .eq t s => t.scoped k ∧ s.scoped k
-  | .lt t s => t.scoped k ∧ s.scoped k
-  | .conj p q => scoped k p ∧ scoped k q
-  | .disj p q => scoped k p ∧ scoped k q
-  | .impl p q => scoped k p ∧ scoped k q
-  | .all p => scoped (k + 1) p
-  | .ex p => scoped (k + 1) p
+  | .eq t s => t.wellScoped k ∧ s.wellScoped k
+  | .lt t s => t.wellScoped k ∧ s.wellScoped k
+  | .conj p q => wellScoped k p ∧ wellScoped k q
+  | .disj p q => wellScoped k p ∧ wellScoped k q
+  | .impl p q => wellScoped k p ∧ wellScoped k q
+  | .all p => wellScoped (k + 1) p
+  | .ex p => wellScoped (k + 1) p
 
-def Sentence := {p : Formula // p.scoped 0}
+def Sentence := {p : Formula // p.wellScoped 0}
 
 def Term.eval {A : Type u} (M : Model A) (ρ : Nat → A) : Term → A
   | .var i => ρ i
@@ -180,42 +180,42 @@ theorem push_local (k : Nat) (ρ σ : Nat → A)
   | succ i => exact h i (Nat.lt_of_succ_lt_succ hi)
 
 theorem eval_local (M : Model A) (t : Term) (k : Nat) (ρ σ : Nat → A)
-    (hs : t.scoped k) (h : ∀ i, i < k → ρ i = σ i) :
+    (hs : t.wellScoped k) (h : ∀ i, i < k → ρ i = σ i) :
     t.eval M ρ = t.eval M σ := by
   induction t generalizing k ρ σ with
   | var i => exact h i hs
   | zero => rfl
   | succ t ih => exact congrArg M.succ (ih k ρ σ hs h)
   | add t s iht ihs =>
-    change t.scoped k ∧ s.scoped k at hs
+    change t.wellScoped k ∧ s.wellScoped k at hs
     change M.add (t.eval M ρ) (s.eval M ρ) = M.add (t.eval M σ) (s.eval M σ)
     rw [iht k ρ σ hs.1 h, ihs k ρ σ hs.2 h]
   | mul t s iht ihs =>
-    change t.scoped k ∧ s.scoped k at hs
+    change t.wellScoped k ∧ s.wellScoped k at hs
     change M.mul (t.eval M ρ) (s.eval M ρ) = M.mul (t.eval M σ) (s.eval M σ)
     rw [iht k ρ σ hs.1 h, ihs k ρ σ hs.2 h]
 
-/-- A well-scoped formula sees only the first k assignment entries. -/
+/-- A well-wellScoped formula sees only the first k assignment entries. -/
 theorem sat_local (M : Model A) (p : Formula) (k : Nat) (ρ σ : Nat → A)
-    (hs : p.scoped k) (h : ∀ i, i < k → ρ i = σ i) :
+    (hs : p.wellScoped k) (h : ∀ i, i < k → ρ i = σ i) :
     p.sat M ρ ↔ p.sat M σ := by
   induction p generalizing k ρ σ with
   | falsum => exact Iff.rfl
   | eq t s =>
-    change t.scoped k ∧ s.scoped k at hs
+    change t.wellScoped k ∧ s.wellScoped k at hs
     change (t.eval M ρ = s.eval M ρ) ↔ (t.eval M σ = s.eval M σ)
     rw [eval_local M t k ρ σ hs.1 h, eval_local M s k ρ σ hs.2 h]
   | lt t s =>
-    change t.scoped k ∧ s.scoped k at hs
+    change t.wellScoped k ∧ s.wellScoped k at hs
     change M.lt (t.eval M ρ) (s.eval M ρ) ↔ M.lt (t.eval M σ) (s.eval M σ)
     rw [eval_local M t k ρ σ hs.1 h, eval_local M s k ρ σ hs.2 h]
   | conj p q ihp ihq =>
-    change p.scoped k ∧ q.scoped k at hs
+    change p.wellScoped k ∧ q.wellScoped k at hs
     change (p.sat M ρ ∧ q.sat M ρ) ↔ (p.sat M σ ∧ q.sat M σ)
     exact ⟨fun hpq => ⟨(ihp k ρ σ hs.1 h).mp hpq.1, (ihq k ρ σ hs.2 h).mp hpq.2⟩,
       fun hpq => ⟨(ihp k ρ σ hs.1 h).mpr hpq.1, (ihq k ρ σ hs.2 h).mpr hpq.2⟩⟩
   | disj p q ihp ihq =>
-    change p.scoped k ∧ q.scoped k at hs
+    change p.wellScoped k ∧ q.wellScoped k at hs
     change (p.sat M ρ ∨ q.sat M ρ) ↔ (p.sat M σ ∨ q.sat M σ)
     constructor
     · intro hpq
@@ -227,19 +227,19 @@ theorem sat_local (M : Model A) (p : Formula) (k : Nat) (ρ σ : Nat → A)
       | inl hp => exact Or.inl ((ihp k ρ σ hs.1 h).mpr hp)
       | inr hq => exact Or.inr ((ihq k ρ σ hs.2 h).mpr hq)
   | impl p q ihp ihq =>
-    change p.scoped k ∧ q.scoped k at hs
+    change p.wellScoped k ∧ q.wellScoped k at hs
     change (p.sat M ρ → q.sat M ρ) ↔ (p.sat M σ → q.sat M σ)
     exact ⟨fun hpq hp => (ihq k ρ σ hs.2 h).mp (hpq ((ihp k ρ σ hs.1 h).mpr hp)),
       fun hpq hp => (ihq k ρ σ hs.2 h).mpr (hpq ((ihp k ρ σ hs.1 h).mp hp))⟩
   | all p ih =>
-    change p.scoped (k + 1) at hs
+    change p.wellScoped (k + 1) at hs
     change (∀ a : A, p.sat M (push a ρ)) ↔ (∀ a : A, p.sat M (push a σ))
     exact ⟨fun hp a => (ih (k + 1) (push a ρ) (push a σ) hs
       (push_local k ρ σ h a)).mp (hp a),
       fun hp a => (ih (k + 1) (push a ρ) (push a σ) hs
       (push_local k ρ σ h a)).mpr (hp a)⟩
   | ex p ih =>
-    change p.scoped (k + 1) at hs
+    change p.wellScoped (k + 1) at hs
     change (∃ a : A, p.sat M (push a ρ)) ↔ (∃ a : A, p.sat M (push a σ))
     constructor
     · intro hp
