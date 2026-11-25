@@ -98,7 +98,15 @@ def worker(args):
         checkpoint("residue_coefficients", method="translation_cocycle_recurrence")
     for i in range(1, n):
         pari(f"G[{i}]=(e1[{i+1}]^2-e1[1]^2-N*(X[{i+1}]-X[1]))/2;dG[{i}]=denominator(content(lift(G[{i}])));g[{i}]=lift(G[{i}])*dG[{i}];sd[{i}]=strip(dG[{i}]);")
-        assert pari(f"sd[{i}][1]==1"), "unaccounted denominator"
+        # PARI versions can choose opposite denominator signs. Only the
+        # integer units +/-1 are harmless; normalize both sides together.
+        if pari(f"sd[{i}][1]==-1"):
+            pari(f"dG[{i}]=-dG[{i}];g[{i}]=-g[{i}];sd[{i}]=strip(dG[{i}]);")
+        assert pari(f"sd[{i}][1]==1"), (
+            f"unaccounted denominator at order {order}, equation {i+1}: "
+            f"denominator={pari(f'dG[{i}]')}, residual_unit={pari(f'sd[{i}][1]')}"
+        )
+        assert pari(f"Mod(g[{i}]/dG[{i}],f)==G[{i}]")
     certificate = {"N": order, "n": n, "rank": d,
                    "f": [zp(f"polcoeff(f,{i},r)") for i in range(d+1)],
                    "generic_factorization": model,
