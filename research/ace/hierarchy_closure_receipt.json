@@ -1,0 +1,69 @@
+{
+  "experiment": "ACE-03E",
+  "scope": "closed pure object-language proofs checked by executable ZF kernel; L transitivity conditional on inflation",
+  "proofs": {
+    "definable_subset": {
+      "nodes": 45,
+      "proof_bytes": 25449
+    },
+    "empty_definable": {
+      "nodes": 5,
+      "proof_bytes": 25046
+    },
+    "def_members_subset": {
+      "nodes": 51,
+      "proof_bytes": 50567
+    },
+    "empty_in_def": {
+      "nodes": 11,
+      "proof_bytes": 75169
+    },
+    "successor_transitivity": {
+      "nodes": 60,
+      "proof_bytes": 50681
+    },
+    "union_transitivity": {
+      "nodes": 34,
+      "proof_bytes": 497
+    },
+    "def_exists": {
+      "nodes": 71,
+      "proof_bytes": 200990
+    },
+    "def_unique": {
+      "nodes": 31,
+      "proof_bytes": 100439
+    },
+    "bounded_induction_transitivity": {
+      "nodes": 70,
+      "proof_bytes": 1051
+    },
+    "bounded_induction_membership": {
+      "nodes": 72,
+      "proof_bytes": 847
+    },
+    "bounded_induction_L": {
+      "nodes": 70,
+      "proof_bytes": 267401
+    },
+    "bounded_induction_stage": {
+      "nodes": 72,
+      "proof_bytes": 2637
+    },
+    "stage_transitivity_conditional": {
+      "nodes": 249,
+      "proof_bytes": 158947
+    },
+    "ordinal_successor_transitivity": {
+      "nodes": 34,
+      "proof_bytes": 457
+    },
+    "L_transitivity_conditional": {
+      "nodes": 340,
+      "proof_bytes": 533595
+    }
+  },
+  "independent_exact_goal_checks": 3,
+  "negative_controls": 5,
+  "note": "proof byte totals are compact JSON tree bytes with duplicated formulas; no native Lean certification of object checker"
+}
