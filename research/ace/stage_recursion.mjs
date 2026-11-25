@@ -2,7 +2,7 @@ import { definition } from './constructible_definition.mjs';
 import { kernel, same, rejects } from './zf_interface.mjs';
 import { buildE } from './hierarchy_closure.mjs';
 import { buildF } from './finite_witnesses.mjs';
-function buildI(defs,prior,finite){
+function buildI(defs,prior,finite,extended=false){
   let serial=0;
   const fresh=()=>`q${serial++}`,M=(a,b)=>["M",a,b],Q=(a,b)=>["=",a,b],F=["F"],I=(p,q)=>[">",p,q],C=(p,q)=>["&",p,q],N=p=>I(p,F);
   const bind=(op,f)=>{const x=fresh();return [op,x,f(x)];};
@@ -481,6 +481,134 @@ function buildI(defs,prior,finite){
     }));
   })))));
   const proofs={successor_exists:successorExists,successor_unique:succUnique,value_in_domain:domainLemma,subset_reflexive:reflSub,stage_value_transport:stageTransfer,limit_value_exists:limitValue,stage_value_exists:stageTotal,stage_history_extension:extend,empty_history_exists:emptyGraph,compatible_history_union:glueHistories,successor_history_unique:histUnique,ordinal_member:ordinalMemberProof,history_existence_induction:existInd,successor_history_exists:successorHistoryExistence,ordinal_history_exists:historyExists,ordinal_history_exists_unique:historyExistsUnique,ordinal_stage_value_exists:ordinalValueExists,ordinal_stage_value_unique:ordinalValueUnique,stage_members_constructible:stageMembersL};
+
+  if(extended){
+    const ordinalSucc=use(succTrans,st=>qs(2,(a,d)=>ii(Ord(a),oa=>ii(Succ(a,d),sd=>{
+      const td=app(us(st,a,d),al(oa),sd);
+      const members=ui(x=>ii(M(x,d),xd=>oe(from(sd,x,xd),trans(x),xa=>app(ue(ar(oa),x),xa),eq=>eqSub(sym(eq),trans,al(oa)))));
+      return ai(td,members);
+    }))));
+    const unionSpec=(a,b,c)=>A(x=>B(M(x,c),["|",M(x,a),M(x,b)]));
+    function withBinaryUnion(a,b,fn){
+      return withSetPair(a,b,(p,pp)=>withUnion(p,(c,cp)=>{
+        const ap=into(pp,a,ol(ref(a),Q(a,b))),bp=into(pp,b,or(Q(b,a),ref(b)));
+        const spec=ui(x=>{
+          const left=ii(M(x,c),xc=>open(from(cp,x,xc),(y,yp)=>{
+            const want=["|",M(x,a),M(x,b)];
+            return oe(from(pp,y,al(yp)),want,
+              ya=>ol(eqSub(ya,t=>M(x,t),ar(yp)),M(x,b)),
+              yb=>or(M(x,a),eqSub(yb,t=>M(x,t),ar(yp))));
+          }));
+          const right=ii(["|",M(x,a),M(x,b)],p=>{
+            const ex=ar(ue(cp,x)).goal[1];
+            return oe(p,M(x,c),xa=>into(cp,x,ei(ex,a,ai(ap,xa))),xb=>into(cp,x,ei(ex,b,ai(bp,xb))));
+          });
+          return ai(left,right);
+        });
+        return use(spec,sp=>fn(c,sp));
+      }));
+    }
+    const binaryUnionExists=qs(2,(a,b)=>withBinaryUnion(a,b,(c,cp)=>ei(E(c=>unionSpec(a,b,c)),c,cp)));
+    function ordUnion(a,b,c,oa,ob,cp){
+      const tr=ui(x=>ii(M(x,c),xc=>ui(y=>ii(M(y,x),yx=>{
+        return oe(from(cp,x,xc),M(y,c),
+          xa=>into(cp,y,ol(app(ue(app(ue(al(oa),x),xa),y),yx),M(y,b))),
+          xb=>into(cp,y,or(M(y,a),app(ue(app(ue(al(ob),x),xb),y),yx))));
+      }))));
+      const members=ui(x=>ii(M(x,c),xc=>oe(from(cp,x,xc),trans(x),
+        xa=>app(ue(ar(oa),x),xa),xb=>app(ue(ar(ob),x),xb))));
+      return ai(tr,members);
+    }
+    const ordinalUnion=qs(3,(a,b,c)=>ii(Ord(a),oa=>ii(Ord(b),ob=>ii(unionSpec(a,b,c),cp=>ordUnion(a,b,c,oa,ob,cp)))));
+    function stageW(w,fn){return open(w,(d,dp)=>open(ar(dp),(f,fp)=>fn(d,f,al(dp),al(fp),ar(fp))));}
+    const stageTransP=imported({goal:prior.stage_transitivity_conditional.goal[2],proof:["iE",prior.stage_transitivity_conditional.proof,finite.def_inflation.proof]});
+    const crossMonoP=imported({goal:prior.cross_graph_monotonicity_conditional.goal[2],proof:["iE",prior.cross_graph_monotonicity_conditional.proof,finite.def_inflation.proof]});
+    const ordinalValueTrans=use(stageTransP,st=>use(succTrans,su=>qs(2,(b,r)=>ii(Ord(b),ob=>ii(stageWitness(b,r),rw=>{
+      return stageW(rw,(d,f,sd,sf,vr)=>{
+        const td=app(us(su,b,d),al(ob),sd),bd=into(sd,b,or(M(b,b),ref(b)));
+        const stages=app(us(st,f,d),td,sf);
+        return app(ue(app(ue(stages,b),bd),r),vr);
+      });
+    })))));
+    function stageIncl(a,b,r,s,oa,ob,rw,sw,ab,cm,st){
+      return stageW(rw,(d,f,sd,sf,vr)=>stageW(sw,(e,g,se,sg,vs)=>{
+        const td=app(us(st,a,d),al(oa),sd),te=app(us(st,b,e),al(ob),se);
+        const ad=into(sd,a,or(M(a,a),ref(a))),be=into(se,b,or(M(b,b),ref(b)));
+        const mo=app(us(cm,f,g,d,e),td,te,sf,sg);
+        return app(ue(app(ue(app(ue(app(ue(mo,a),ad),b),be,ab),r),vr),s),vs);
+      }));
+    }
+    const ordinalValueMono=use(crossMonoP,cm=>use(succTrans,st=>qs(4,(a,b,r,s)=>ii(Ord(a),oa=>ii(Ord(b),ob=>ii(stageWitness(a,r),rw=>ii(stageWitness(b,s),sw=>ii(M(a,b),ab=>stageIncl(a,b,r,s,oa,ob,rw,sw,ab,cm,st)))))))));
+    function unpackL(x,lx,fn){
+      return open(lx,(a,ap)=>open(ar(ap),(d,dp)=>open(ar(dp),(f,fp)=>open(ar(fp),(r,rp)=>{
+        const w=stageWitness(a,r),inner=replace(w[2],w[1],d)[2];
+        const wp=ei(w,d,ai(al(dp),ei(inner,f,ai(al(fp),al(rp)))));
+        return fn(a,r,al(ap),wp,ar(rp),d,al(dp));
+      }))));
+    }
+    const lCommon=use(ordinalSucc,os=>use(ordinalValueExists,ov=>use(ordinalValueMono,om=>use(ordinalValueTrans,ot=>{
+      return qs(2,(x,y)=>ii(form("L",x),lx=>ii(form("L",y),ly=>{
+        return unpackL(x,lx,(a,r,oa,rw,xr,d,sd)=>unpackL(y,ly,(b,s,ob,sw,ys,e,se)=>{
+          const od=app(us(os,a,d),oa,sd),oe0=app(us(os,b,e),ob,se);
+          return withBinaryUnion(d,e,(c,cp)=>{
+            const oc=ordUnion(d,e,c,od,oe0,cp);
+            const ac=into(cp,a,ol(into(sd,a,or(M(a,a),ref(a))),M(a,e)));
+            const bc=into(cp,b,or(M(b,d),into(se,b,or(M(b,b),ref(b)))));
+            return open(app(ue(ov,c),oc),(t,tw)=>{
+              const rt=app(us(om,a,c,r,t),oa,oc,rw,tw,ac),st=app(us(om,b,c,s,t),ob,oc,sw,tw,bc);
+              const tt=app(us(ot,c,t),oc,tw);
+              const body=(c,t)=>C(C(C(Ord(c),stageWitness(c,t)),trans(t)),C(M(x,t),M(y,t)));
+              const goal=E(c=>E(t=>body(c,t)));
+              return ei(goal,c,ei(replace(goal[2],goal[1],c),t,ai(ai(ai(oc,tw),tt),ai(app(ue(rt,x),xr),app(ue(st,y),ys)))));
+            });
+          });
+        }));
+      })));
+    }))));
+    const predUnique=imported(prior.successor_predecessor_unique);
+    function valueEq(sg,i,id,x,y,vx,vy){
+      return open(app(ue(ar(al(sg)),i),id),(v,uv)=>{
+        return chain(app(ue(ar(uv),x),vx),sym(app(ue(ar(uv),y),vy)));
+      });
+    }
+    const successorDef=use(coh,co=>use(succTrans,st=>use(predUnique,pu=>{
+      return qs(4,(a,b,r,s)=>ii(Ord(a),oa=>ii(Ord(b),ob=>ii(Succ(a,b),ab=>ii(stageWitness(a,r),rw=>ii(stageWitness(b,s),sw=>{
+        return stageW(rw,(d,f,sd,sf,vr)=>stageW(sw,(e,g,se,sg,vs)=>{
+          const td=app(us(st,a,d),al(oa),sd),te=app(us(st,b,e),al(ob),se);
+          const ad=into(sd,a,or(M(a,a),ref(a))),be=into(se,b,or(M(b,b),ref(b)));
+          const aa=into(ab,a,or(M(a,a),ref(a))),ae=into(se,a,ol(aa,Q(a,b)));
+          const eq=app(us(co,f,g,d,e),td,te,sf,sg);
+          return open(app(ue(ar(sg),b),be),(t,tp)=>{
+            const ts=valueEq(sg,b,be,t,s,al(tp),vs);
+            const goal=Def(r,t),stage=ar(tp);
+            const dr=oe(stage,goal,ss=>open(ss,(i,ip)=>open(ar(ar(ip)),(v,vp)=>{
+              const ia=app(us(pu,i,a,b),al(ar(ip)),ab);
+              const av=eqSub(ia,z=>Val(g,z,v),al(vp));
+              const rv=app(ue(app(ue(app(ue(eq,a),ad,ae),r),vr),v),av);
+              return eqSub(sym(rv),z=>Def(z,t),ar(vp));
+            })),ls=>{
+              const ex=al(ls).goal[1];
+              return fe(app(al(ls),ei(ex,a,ai(aa,ab))),goal);
+            });
+            return eqSub(ts,z=>Def(r,z),dr);
+          });
+        }));
+      }))))));
+    })));
+    const definableConstructible=use(ordinalSucc,os=>use(successorExists,se=>use(ordinalValueExists,ov=>use(successorDef,sd=>use(stageMembersL,ml=>{
+      return qs(3,(a,r,x)=>ii(Ord(a),oa=>ii(stageWitness(a,r),rw=>ii(D(r,x),dx=>{
+        return open(ue(se,a),(b,ab)=>{
+          const ob=app(us(os,a,b),oa,ab);
+          return open(app(ue(ov,b),ob),(s,sw)=>{
+            const df=app(us(sd,a,b,r,s),oa,ob,ab,rw,sw);
+            const xs=into(df,x,dx);
+            return app(ue(app(us(ml,b,s),ob,sw),x),xs);
+          });
+        });
+      }))));
+    })))));
+    Object.assign(proofs,{ordinal_successor:ordinalSucc,binary_union_exists:binaryUnionExists,ordinal_binary_union:ordinalUnion,ordinal_stage_value_transitive:ordinalValueTrans,ordinal_stage_value_monotone:ordinalValueMono,common_constructible_stage:lCommon,successor_stage_def:successorDef,definable_subset_constructible:definableConstructible});
+  }
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
 
