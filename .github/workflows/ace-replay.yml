@@ -21,7 +21,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for name in finite_choice arithmetic_transport relativization zf_interface constructible_definition constructible_gate hierarchy_closure finite_witnesses; do
+          for name in finite_choice arithmetic_transport relativization zf_interface constructible_definition constructible_gate hierarchy_closure finite_witnesses initial_stages; do
             node "research/ace/$name.mjs" > "/tmp/$name.json"
             diff -u "research/ace/${name}_receipt.json" "/tmp/$name.json"
           done
