@@ -1,0 +1,54 @@
+{
+  "arithmetic_sha256": "0c6f1169830e55df469cb3fda9985b59bee80ee6b28f3f26c1c20f0540cfff63",
+  "config": {
+    "baseline": "OLS log(median_period) ~ 1 + log(unit_odd_core_states)",
+    "candidate_rank": "(A+2u,u,A)",
+    "development_d": [
+      5,
+      1025
+    ],
+    "evaluation_d": [
+      1029,
+      8193
+    ],
+    "gcd_d_6": 1,
+    "parameter_step": 4,
+    "slope": 6,
+    "squared_deviation_coefficient": 22,
+    "target": "median full-map period, equal weight per unit cycle"
+  },
+  "core_sha256": "24ff52171aedf890c33439896ab5e71de65d9b05d557ba61d162f3623aa5dbca",
+  "evidence": "finite public parameter extrapolation; rule fixed before evaluation run; no mechanistic or neural claim",
+  "schema": "mathcan.collatz.pilot.v1",
+  "size_baseline": {
+    "intercept": 0.828767710351,
+    "log_slope": 0.599411361298
+  },
+  "source_sha256": "d6c5ace0454d1922107122c374e28f7850dc6223c8e5bbd927163be30ea4d8e2",
+  "summaries": {
+    "development": {
+      "cycles_with_predicted_pair": 364,
+      "lattice_strict_wins_on_covered": 124,
+      "median_relative_absolute_error_lattice_covered": 0.058823529,
+      "median_relative_absolute_error_size_same_covered": 0.387000368,
+      "parameters": 171,
+      "parameters_with_any_predicted_pair_cycle": 127,
+      "parameters_with_prediction": 171,
+      "size_strict_wins_on_covered": 47,
+      "unit_cycles": 465,
+      "unit_cycles_zero_triples": 8
+    },
+    "evaluation": {
+      "cycles_with_predicted_pair": 3488,
+      "lattice_strict_wins_on_covered": 848,
+      "median_relative_absolute_error_lattice_covered": 0.036769891,
+      "median_relative_absolute_error_size_same_covered": 0.499032005,
+      "parameters": 1194,
+      "parameters_with_any_predicted_pair_cycle": 783,
+      "parameters_with_prediction": 1194,
+      "size_strict_wins_on_covered": 346,
+      "unit_cycles": 5369,
+      "unit_cycles_zero_triples": 50
+    }
+  }
+}
