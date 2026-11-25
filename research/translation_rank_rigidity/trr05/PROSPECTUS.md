@@ -1,6 +1,8 @@
 # Strategy V prospectus: uniform translation-interpolation rigidity
 
-Status 2026-11-25. Strong candidate for a uniform restricted-model theorem; cryptographic implications remain unproved. The research goal is to understand the geometry of a translation-coordinate evaluation obstruction, within the existing toy-only scope.
+Update 2026-11-25: [TRR-07](../trr07/README.md) executes the bounded experiment program and supplies a uniform written proof for every prime order N>=19. Together with the existing small-order certificates, this proves the exact interpolation degree for every prime N>=7 in the specified characteristic range. The coefficient classification is checked in Lean; the geometric foundations remain written proofs. The original prospectus below records the earlier decision and acceptance gates. Broader computational implications require a separate transfer theorem.
+
+Original status: strong candidate for a uniform restricted-model theorem. The research goal is to understand the geometry of a translation-coordinate evaluation obstruction, within the existing toy-only scope.
 
 ## What is established
 

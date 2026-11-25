@@ -1,5 +1,11 @@
 # TRR-01: translation-rank rigidity
 
+## Current result: TRR-07
+
+[The uniform interpolation theorem and experiment suite](trr07/README.md) establish the exact affine-block degree `ceil(N/3)` for every prime subgroup order `N>=7` in characteristic zero or greater than three. A degree-eight obstruction closes every order from nineteen onward; the earlier integral certificates cover 7, 11, 13 and 17. The suite includes extension-field sweeps, exact robustness distances, independent certificate replays and fifteen new Lean field-algebra theorems. [The complete uniform argument](trr07/uniform_probe.md) and [independent proof review](trr07/uniform_proof_review.md) state the geometric premises and formalization boundary.
+
+The sections below preserve the earlier research stages and their verification records.
+
 **Evidence status:** written proofs and exact finite computation, with sixteen TRR-01 supporting theorems checked by Lean 4.35.0 in [CI](https://github.com/patrickdugan/MathCan/actions/runs/45600455877) and locally. The TRR-03 extension adds six locally checked finite-witness theorems. The mathematical scope is specified below.
 
 [Corrected audit](AUDIT.md) develops the finite-field counting theorem and its equality case, the sharp cyclic reducibility threshold with the binary rank-two exception, rational-function pole stability with separate degree and rational-pole budgets, Cauchy clean-submatrix stability, the m-sequence aperiodicity radius, and a counterexample to the unrestricted spectral claim. The original user-supplied derivation is audited, not presented as independent peer-reviewed work. The cited character-sum result remains conditional on the required nondegeneracy hypotheses.

@@ -1,0 +1,178 @@
+name: TRR-07 interpolation experiments
+
+on:
+  pull_request:
+    paths:
+      - 'research/translation_rank_rigidity/trr07/**'
+      - 'research/translation_rank_rigidity/trr05/**'
+      - 'MathCan/TranslationInterpolationAlgebra.lean'
+      - 'MathCan/TranslationInterpolationUniform.lean'
+      - '.github/workflows/trr07-experiments.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: trr07-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  certificate-and-proof:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install exact symbolic dependency
+        run: python -m pip install sympy==1.14.0 python-flint==0.9.0
+      - name: Replay baseline and deliberately corrupted certificates
+        run: |
+          mkdir -p results/audit
+          git rev-parse HEAD > results/audit/checkout.txt
+          python research/translation_rank_rigidity/trr07/test_certificate_mutations.py --output results/audit/mutations.json
+          python research/translation_rank_rigidity/trr07/test_symbolic_guards.py --output results/audit/guards.json
+          python research/translation_rank_rigidity/trr07/audit_symbolic.py --output results/audit/symbolic.json
+          python research/translation_rank_rigidity/trr07/uniform_probe.py --output results/audit/uniform.json
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Check general field algebra with Lean
+        run: |
+          lake env python research/translation_rank_rigidity/trr07/proof_check.py --output results/audit/lean.json
+          lake env python research/translation_rank_rigidity/trr07/proof_check_uniform.py --output results/audit/lean-uniform.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trr07-audit
+          path: results/audit/
+          retention-days: 30
+
+  finite-fields:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        include:
+          - cohort: prime-exhaustive
+            arguments: '--prime-max 101 --models 0 --max-order 0'
+          - cohort: extension-exhaustive
+            arguments: '--field 5:2 --field 7:2 --models 0 --max-order 0'
+          - cohort: extension-small
+            arguments: '--field 5:2 --field 7:2 --field 11:2 --field 13:2 --field 17:2 --field 19:2 --field 23:2 --field 29:2 --field 31:2 --field 5:3 --field 7:3 --field 11:3 --field 13:3 --field 17:3 --field 19:3 --field 5:4 --field 7:4 --field 5:5 --models 16 --max-order 127'
+          - cohort: extension-large
+            arguments: '--field 23:3 --field 29:3 --field 31:3 --field 37:3 --field 11:4 --field 13:4 --field 7:5 --field 5:6 --models 8 --max-order 127'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run exact field cohort
+        run: |
+          mkdir -p results/${{ matrix.cohort }}
+          git rev-parse HEAD > results/${{ matrix.cohort }}/checkout.txt
+          python research/translation_rank_rigidity/trr07/finite_sweep.py ${{ matrix.arguments }} --seed 20261125 --direct-max-order 13 --max-seconds-per-field 600 --output results/${{ matrix.cohort }}/receipt.json --cases results/${{ matrix.cohort }}/cases.jsonl
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trr07-${{ matrix.cohort }}
+          path: results/${{ matrix.cohort }}/
+          retention-days: 30
+
+  robustness:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Measure both Hamming metrics and representation controls
+        run: |
+          mkdir -p results/robustness
+          git rev-parse HEAD > results/robustness/checkout.txt
+          python research/translation_rank_rigidity/trr07/robustness.py --out results/robustness/receipt.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trr07-robustness
+          path: results/robustness/
+          retention-days: 30
+
+  symbolic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        order: [19, 23, 29, 31]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install PARI and FLINT
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends pari-gp python3-cypari2 python3-venv
+          /usr/bin/python3 -m venv --system-site-packages .venv-symbolic
+          .venv-symbolic/bin/python -m pip install python-flint==0.9.0
+      - name: Search with explicit wall and PARI memory budgets
+        run: |
+          mkdir -p results/symbolic/${{ matrix.order }}
+          git rev-parse HEAD > results/symbolic/${{ matrix.order }}/checkout.txt
+          .venv-symbolic/bin/python -m pip freeze > results/symbolic/${{ matrix.order }}/packages.txt
+          gp --version > results/symbolic/${{ matrix.order }}/pari-version.txt 2>&1
+          .venv-symbolic/bin/python research/translation_rank_rigidity/trr07/symbolic_search.py --order ${{ matrix.order }} --seconds 900 --memory-mb 768 --output results/symbolic/${{ matrix.order }}
+      - name: Independently replay any complete certificate
+        run: |
+          certificate=results/symbolic/${{ matrix.order }}/certificate${{ matrix.order }}.json
+          if test -f "$certificate"; then
+            timeout 600s .venv-symbolic/bin/python research/translation_rank_rigidity/trr07/symbolic_replay.py "$certificate" --expected-order ${{ matrix.order }} | tee results/symbolic/${{ matrix.order }}/replay.log
+          else
+            echo '::warning title=Symbolic search unresolved::The bounded search produced no complete certificate. See the checkpoint receipt.'
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trr07-symbolic-${{ matrix.order }}
+          path: results/symbolic/${{ matrix.order }}/
+          retention-days: 30
+
+  report:
+    if: always()
+    needs: [certificate-and-proof, finite-fields, robustness, symbolic]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: trr07-*
+          path: collected
+      - name: Write coverage and outstanding proof obligations
+        run: python research/translation_rank_rigidity/trr07/ci_report.py collected --output results/ci-summary.json --markdown results/ci-summary.md
+      - name: Publish run summary
+        if: always()
+        run: cat results/ci-summary.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trr07-summary
+          path: results/ci-summary.*
+          retention-days: 30

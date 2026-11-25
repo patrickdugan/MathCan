@@ -1,0 +1,124 @@
+{
+  "schema": "trr07-certificate-mutations-v1",
+  "status": "passed",
+  "node_version": "v24.22.3",
+  "source_sha256": {
+    "verify.mjs": "6e4f755218b79328f0ad1dbed1c3fb1a56f53b8af26c34a85276bc2252ec6f22",
+    "certificate.json": "f108a13928ae41033f7cc048d0154caf919fe88d26aaa7403b81d22da6ca01b0"
+  },
+  "harness_sha256": "44e5cf18c70c79e8eddb3d900f0bca5a0e2b5749f5aea04db45f8b2203153828",
+  "baseline": {
+    "returncode": 0,
+    "elapsed_seconds": 1.962113,
+    "ok_checks": 83,
+    "failed_checks": []
+  },
+  "mutations": [
+    {
+      "name": "bezout_cofactor",
+      "rejected_as_expected": true,
+      "returncode": 1,
+      "elapsed_seconds": 1.199814,
+      "ok_checks": 18,
+      "failed_checks": [
+        "[FAIL] integral elimination: sum_i W_i(t) P_i(t) = 78608  (deg W_i <= 8)",
+        "[FAIL] ideal membership in R: sum_i c_i g_i = 78608 * t^5 (t-1)^45  with c_i = W_i t^(5-e0_i) (t-1)^(45-e1_i) adj(g_i)",
+        "[FAIL] matrix form: sum_i W_i t^(5-e0_i) (t-1)^(45-e1_i) adj(M_i) M_i = 78608 * t^5 (t-1)^45 * Id_5"
+      ]
+    },
+    {
+      "name": "residue_numerator",
+      "rejected_as_expected": true,
+      "returncode": 1,
+      "elapsed_seconds": 1.11148,
+      "ok_checks": 20,
+      "failed_checks": [
+        "[FAIL] g_i recomputed here agree with the stored (PARI) g_i and denominators"
+      ]
+    },
+    {
+      "name": "order_polynomial",
+      "rejected_as_expected": true,
+      "returncode": 1,
+      "elapsed_seconds": 1.079693,
+      "ok_checks": 20,
+      "failed_checks": [
+        "[FAIL] f built from its definition is monic of degree 5 in r and equals the stored f"
+      ]
+    },
+    {
+      "name": "norm_polynomial",
+      "rejected_as_expected": true,
+      "returncode": 1,
+      "elapsed_seconds": 1.147082,
+      "ok_checks": 20,
+      "failed_checks": [
+        "[FAIL] norms: g_i * adj(g_i) = t^a (t-1)^b P_i(t) in R, and P_i agree with the stored (PARI) P_i"
+      ]
+    },
+    {
+      "name": "localization_exponent",
+      "rejected_as_expected": true,
+      "returncode": 1,
+      "elapsed_seconds": 1.06191,
+      "ok_checks": 20,
+      "failed_checks": [
+        "[FAIL] g_i recomputed here agree with the stored (PARI) g_i and denominators"
+      ]
+    },
+    {
+      "name": "norm_exponent",
+      "rejected_as_expected": true,
+      "returncode": 1,
+      "elapsed_seconds": 1.176788,
+      "ok_checks": 20,
+      "failed_checks": [
+        "[FAIL] norms: g_i * adj(g_i) = t^a (t-1)^b P_i(t) in R, and P_i agree with the stored (PARI) P_i"
+      ]
+    },
+    {
+      "name": "certificate_integer",
+      "rejected_as_expected": true,
+      "returncode": 1,
+      "elapsed_seconds": 1.111267,
+      "ok_checks": 18,
+      "failed_checks": [
+        "[FAIL] integral elimination: sum_i W_i(t) P_i(t) = 157216  (deg W_i <= 8)",
+        "[FAIL] ideal membership in R: sum_i c_i g_i = 157216 * t^5 (t-1)^45  with c_i = W_i t^(5-e0_i) (t-1)^(45-e1_i) adj(g_i)",
+        "[FAIL] matrix form: sum_i W_i t^(5-e0_i) (t-1)^(45-e1_i) adj(M_i) M_i = 157216 * t^5 (t-1)^45 * Id_5"
+      ]
+    },
+    {
+      "name": "factor_multiplicity",
+      "rejected_as_expected": true,
+      "returncode": 1,
+      "elapsed_seconds": 1.210919,
+      "ok_checks": 20,
+      "failed_checks": [
+        "[FAIL] gcd_i(P_i mod 17) has degree 24 and equals the product of the listed irreducible factors"
+      ]
+    },
+    {
+      "name": "fibre_root",
+      "rejected_as_expected": true,
+      "returncode": 1,
+      "elapsed_seconds": 1.16866,
+      "ok_checks": 19,
+      "failed_checks": [
+        "[FAIL] fibre over a root \u03c4 of t + 6 (F_17, t(t-1) != 0: true): gcd_r(f, g_i) = (r - 13)^3",
+        "[FAIL] this common zero has discriminant 0, so it is not on the open locus"
+      ]
+    },
+    {
+      "name": "fibre_multiplicity",
+      "rejected_as_expected": true,
+      "returncode": 1,
+      "elapsed_seconds": 1.064708,
+      "ok_checks": 20,
+      "failed_checks": [
+        "[FAIL] fibre over a root \u03c4 of t + 6 (F_17, t(t-1) != 0: true): gcd_r(f, g_i) = (r - 12)^2"
+      ]
+    }
+  ],
+  "scope": "Proof-bearing certificate fields are tested; explanatory metadata fields are not proof inputs."
+}

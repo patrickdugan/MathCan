@@ -1,0 +1,259 @@
+{
+  "schema": "trr07-symbolic-search-v1",
+  "order": 29,
+  "status": "exclusion_candidate",
+  "stages": [
+    {
+      "stage": "initialization",
+      "elapsed_seconds": 0.00027148800108989235
+    },
+    {
+      "stage": "generic_chart_factorization",
+      "elapsed_seconds": 0.045503389001169126,
+      "degree_r": 14,
+      "degree_t": 21
+    },
+    {
+      "stage": "quotient_coordinates",
+      "elapsed_seconds": 17.667877585001406,
+      "rank": 14,
+      "order_equation_verified": true
+    },
+    {
+      "stage": "residue_coefficients",
+      "elapsed_seconds": 18.22780798200074,
+      "method": "translation_cocycle_recurrence"
+    },
+    {
+      "stage": "compressed_ratios",
+      "elapsed_seconds": 20.15772527000081,
+      "degree_pairs": [
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          55
+        ],
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          56
+        ],
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          57
+        ],
+        [
+          13,
+          54
+        ]
+      ]
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 20.865152395001132,
+      "index": 2,
+      "residual_degree": 70,
+      "max_coefficient_bits": 98
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 21.461626395001076,
+      "index": 3,
+      "residual_degree": 70,
+      "max_coefficient_bits": 136
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 22.076328546001605,
+      "index": 4,
+      "residual_degree": 70,
+      "max_coefficient_bits": 115
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 22.768116836001354,
+      "index": 5,
+      "residual_degree": 70,
+      "max_coefficient_bits": 121
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 23.426483173001543,
+      "index": 6,
+      "residual_degree": 70,
+      "max_coefficient_bits": 110
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 24.163625830000456,
+      "index": 7,
+      "residual_degree": 70,
+      "max_coefficient_bits": 123
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 24.91461144400091,
+      "index": 8,
+      "residual_degree": 70,
+      "max_coefficient_bits": 118
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 25.666821042001175,
+      "index": 9,
+      "residual_degree": 70,
+      "max_coefficient_bits": 115
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 26.590878138000335,
+      "index": 10,
+      "residual_degree": 70,
+      "max_coefficient_bits": 109
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 27.213741575000313,
+      "index": 11,
+      "residual_degree": 70,
+      "max_coefficient_bits": 115
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 28.079410660000576,
+      "index": 12,
+      "residual_degree": 70,
+      "max_coefficient_bits": 118
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 28.967355476001103,
+      "index": 13,
+      "residual_degree": 70,
+      "max_coefficient_bits": 119
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 29.789922060001118,
+      "index": 14,
+      "residual_degree": 70,
+      "max_coefficient_bits": 120
+    },
+    {
+      "stage": "integer_bezout",
+      "elapsed_seconds": 37.51879918200029,
+      "integer": "15506428644",
+      "factorization": "[2, 2; 3, 3; 7, 1; 29, 5]",
+      "cofactor_degree": 6,
+      "lattice_algorithm": "FLINT_HNF_LLL",
+      "lattice": {
+        "rows": 91,
+        "columns": 77,
+        "coefficient_bits_before_reduction": 13010,
+        "coefficient_bits_after_reduction": 453
+      }
+    },
+    {
+      "stage": "exceptional_fibre",
+      "elapsed_seconds": 37.52199613800076,
+      "characteristic": 2,
+      "residue_degree": 1,
+      "fibre_degree": 13,
+      "all_roots_singular": true
+    },
+    {
+      "stage": "exceptional_fibre",
+      "elapsed_seconds": 37.52628588800144,
+      "characteristic": 2,
+      "residue_degree": 14,
+      "fibre_degree": 1,
+      "all_roots_singular": true
+    },
+    {
+      "stage": "exceptional_fibre",
+      "elapsed_seconds": 37.53473013300027,
+      "characteristic": 3,
+      "residue_degree": 1,
+      "fibre_degree": 12,
+      "all_roots_singular": true
+    },
+    {
+      "stage": "exceptional_fibre",
+      "elapsed_seconds": 37.53625805000047,
+      "characteristic": 3,
+      "residue_degree": 1,
+      "fibre_degree": 13,
+      "all_roots_singular": true
+    },
+    {
+      "stage": "exceptional_fibre",
+      "elapsed_seconds": 37.54789693800012,
+      "characteristic": 7,
+      "residue_degree": 7,
+      "fibre_degree": 1,
+      "all_roots_singular": true
+    },
+    {
+      "stage": "exceptional_fibre",
+      "elapsed_seconds": 37.55168586800028,
+      "characteristic": 7,
+      "residue_degree": 7,
+      "fibre_degree": 1,
+      "all_roots_singular": true
+    },
+    {
+      "stage": "exceptional_fibre",
+      "elapsed_seconds": 37.561920182000904,
+      "characteristic": 29,
+      "residue_degree": 1,
+      "fibre_degree": 5,
+      "all_roots_singular": true
+    },
+    {
+      "stage": "search_finished",
+      "elapsed_seconds": 37.57730800400168,
+      "all_exceptional_fibres_singular": true
+    }
+  ],
+  "source_sha256": "eaa025dd9384c38accdae6b4cac9c649c45435f671a559db5dcf18066f2b122c",
+  "proof_obligations": [
+    "independent certificate replay",
+    "chart coverage in every characteristic"
+  ],
+  "last_stage": "search_finished",
+  "wall_budget_seconds": 900
+}

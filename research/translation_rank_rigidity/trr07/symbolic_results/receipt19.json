@@ -1,0 +1,205 @@
+{
+  "schema": "trr07-symbolic-search-v1",
+  "order": 19,
+  "status": "exclusion_candidate",
+  "stages": [
+    {
+      "stage": "initialization",
+      "elapsed_seconds": 0.00021774899869342335
+    },
+    {
+      "stage": "generic_chart_factorization",
+      "elapsed_seconds": 0.00938519999908749,
+      "degree_r": 6,
+      "degree_t": 9
+    },
+    {
+      "stage": "quotient_coordinates",
+      "elapsed_seconds": 0.06357271099841455,
+      "rank": 6,
+      "order_equation_verified": true
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 0.08142602299994905,
+      "index": 1
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 0.09589699299976928,
+      "index": 2
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 0.10783399199863197,
+      "index": 3
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 0.12213438099934137,
+      "index": 4
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 0.13875966299929132,
+      "index": 5
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 0.1564294619984139,
+      "index": 6
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 0.19077570699846547,
+      "index": 7
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 0.23118773099849932,
+      "index": 8
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 0.2773411149992171,
+      "index": 9
+    },
+    {
+      "stage": "compressed_ratios",
+      "elapsed_seconds": 0.3201266559990472,
+      "degree_pairs": [
+        [
+          5,
+          16
+        ],
+        [
+          5,
+          16
+        ],
+        [
+          5,
+          16
+        ],
+        [
+          5,
+          16
+        ],
+        [
+          5,
+          16
+        ],
+        [
+          5,
+          16
+        ],
+        [
+          5,
+          17
+        ],
+        [
+          5,
+          16
+        ]
+      ]
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 0.32378483100001176,
+      "index": 2,
+      "residual_degree": 30,
+      "max_coefficient_bits": 34
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 0.3275597609990655,
+      "index": 3,
+      "residual_degree": 30,
+      "max_coefficient_bits": 49
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 0.3310354149998602,
+      "index": 4,
+      "residual_degree": 30,
+      "max_coefficient_bits": 41
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 0.33519514799991157,
+      "index": 5,
+      "residual_degree": 30,
+      "max_coefficient_bits": 43
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 0.3390040929989482,
+      "index": 6,
+      "residual_degree": 30,
+      "max_coefficient_bits": 37
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 0.3425297089997912,
+      "index": 7,
+      "residual_degree": 30,
+      "max_coefficient_bits": 44
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 0.34601020499940205,
+      "index": 8,
+      "residual_degree": 30,
+      "max_coefficient_bits": 43
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 0.3495994109998719,
+      "index": 9,
+      "residual_degree": 30,
+      "max_coefficient_bits": 43
+    },
+    {
+      "stage": "integer_bezout",
+      "elapsed_seconds": 0.5494421269995655,
+      "integer": "61731",
+      "factorization": "[3, 2; 19, 3]",
+      "cofactor_degree": 9
+    },
+    {
+      "stage": "exceptional_fibre",
+      "elapsed_seconds": 0.5508439649984211,
+      "characteristic": 3,
+      "residue_degree": 1,
+      "fibre_degree": 5,
+      "all_roots_singular": true
+    },
+    {
+      "stage": "exceptional_fibre",
+      "elapsed_seconds": 0.5524847309989127,
+      "characteristic": 3,
+      "residue_degree": 9,
+      "fibre_degree": 1,
+      "all_roots_singular": true
+    },
+    {
+      "stage": "exceptional_fibre",
+      "elapsed_seconds": 0.5550474269984988,
+      "characteristic": 19,
+      "residue_degree": 1,
+      "fibre_degree": 3,
+      "all_roots_singular": true
+    },
+    {
+      "stage": "search_finished",
+      "elapsed_seconds": 0.5590047299992875,
+      "all_exceptional_fibres_singular": true
+    }
+  ],
+  "source_sha256": "d2bc96eb39f00d1a9797e1b43864dd523f7f410eddf52c2c9c8b84744f6ff82b",
+  "proof_obligations": [
+    "independent certificate replay",
+    "chart coverage in every characteristic"
+  ],
+  "last_stage": "search_finished",
+  "wall_budget_seconds": 180
+}

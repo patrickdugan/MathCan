@@ -1,0 +1,63 @@
+{
+  "schema": "trr07-symbolic-guards-v1",
+  "status": "passed",
+  "source_sha256": {
+    "certificate19.json": "b34b27b93800b73e9a72a9759d7a07d942b41788c04d2a855645d53cccdb0a07",
+    "symbolic_replay.py": "6a48f7b8cd90126afa2806fbb832b4b894b8ba9b968b787fcd771fac4c249adc",
+    "symbolic_verify.mjs": "c7619fb4857fb0ac728d8d516dbcb8b8d6d4c444aec240da3ce9a8e518b02cd2",
+    "symbolic_generic.py": "ea19ceb2f2078c6c6b13696822cdc8a6006070837d20da3bcf3983ef27f4bae9"
+  },
+  "harness_sha256": "75ec868f12be39c79bf605cf10e105534060d05635c545b736714678c4aa8b22",
+  "baseline": {
+    "returncode": 0,
+    "ok_checks": 25,
+    "elapsed_seconds": 2.811176
+  },
+  "cases": [
+    {
+      "name": "empty_python",
+      "rejected_as_expected": true,
+      "expected_diagnostic": "nonempty certificate dictionary required",
+      "returncode": 1,
+      "elapsed_seconds": 0.118904
+    },
+    {
+      "name": "empty_node",
+      "rejected_as_expected": true,
+      "expected_diagnostic": "nonempty certificate dictionary required",
+      "returncode": 1,
+      "elapsed_seconds": 0.086243
+    },
+    {
+      "name": "expected_order_mismatch",
+      "rejected_as_expected": true,
+      "expected_diagnostic": "certificate order differs from requested job",
+      "returncode": 1,
+      "elapsed_seconds": 0.088048
+    },
+    {
+      "name": "nonmonic_phi",
+      "rejected_as_expected": true,
+      "expected_diagnostic": "field polynomial must be monic",
+      "returncode": 1,
+      "elapsed_seconds": 4.224136
+    },
+    {
+      "name": "noncanonical_phi",
+      "rejected_as_expected": true,
+      "expected_diagnostic": "coefficient outside prime-field range",
+      "returncode": 1,
+      "elapsed_seconds": 4.637434
+    },
+    {
+      "name": "altered_gamma",
+      "rejected_as_expected": true,
+      "expected_diagnostic": "[FAIL] fibre gcd over F_19^1 matches all stored coefficients",
+      "returncode": 1,
+      "elapsed_seconds": 5.285683
+    }
+  ],
+  "negative_controls_rejected": 6,
+  "sanity_scan_max_prime": 7,
+  "scope": "Full exact order-19 replay plus focused rejection guards; short sanity scan is not proof."
+}

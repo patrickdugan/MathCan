@@ -1,0 +1,70 @@
+{
+  "schema": "trr07-symbolic-search-v1",
+  "order": 29,
+  "status": "interrupted_for_faster_exact_method",
+  "stages": [
+    {
+      "stage": "initialization",
+      "elapsed_seconds": 0.00013744399984716438
+    },
+    {
+      "stage": "generic_chart_factorization",
+      "elapsed_seconds": 0.029391489000772708,
+      "degree_r": 14,
+      "degree_t": 21
+    },
+    {
+      "stage": "quotient_coordinates",
+      "elapsed_seconds": 15.324672251001175,
+      "rank": 14,
+      "order_equation_verified": true
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 26.3957249390005,
+      "index": 1
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 46.77225758200075,
+      "index": 2
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 70.56412190100127,
+      "index": 3
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 87.76510814100038,
+      "index": 4
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 103.13520478100145,
+      "index": 5
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 117.36951761900127,
+      "index": 6
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 138.47513731000072,
+      "index": 7
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 163.33941779100132,
+      "index": 8
+    }
+  ],
+  "source_sha256": "d2bc96eb39f00d1a9797e1b43864dd523f7f410eddf52c2c9c8b84744f6ff82b",
+  "proof_obligations": [
+    "independent certificate replay",
+    "chart coverage in every characteristic"
+  ],
+  "last_stage": "residue_coefficient",
+  "exclusion_proved": false
+}

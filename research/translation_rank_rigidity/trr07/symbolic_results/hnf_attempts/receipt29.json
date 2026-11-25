@@ -1,0 +1,185 @@
+{
+  "schema": "trr07-symbolic-search-v1",
+  "order": 29,
+  "status": "error",
+  "stages": [
+    {
+      "stage": "initialization",
+      "elapsed_seconds": 0.00027583399969444145
+    },
+    {
+      "stage": "generic_chart_factorization",
+      "elapsed_seconds": 0.06565471300018544,
+      "degree_r": 14,
+      "degree_t": 21
+    },
+    {
+      "stage": "quotient_coordinates",
+      "elapsed_seconds": 21.918849368001247,
+      "rank": 14,
+      "order_equation_verified": true
+    },
+    {
+      "stage": "residue_coefficients",
+      "elapsed_seconds": 22.497372597999856,
+      "method": "translation_cocycle_recurrence"
+    },
+    {
+      "stage": "compressed_ratios",
+      "elapsed_seconds": 24.56352791000063,
+      "degree_pairs": [
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          55
+        ],
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          56
+        ],
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          54
+        ],
+        [
+          13,
+          57
+        ],
+        [
+          13,
+          54
+        ]
+      ]
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 25.169928322000487,
+      "index": 2,
+      "residual_degree": 70,
+      "max_coefficient_bits": 98
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 25.73875342500105,
+      "index": 3,
+      "residual_degree": 70,
+      "max_coefficient_bits": 136
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 26.35238490899974,
+      "index": 4,
+      "residual_degree": 70,
+      "max_coefficient_bits": 115
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 26.93996164700002,
+      "index": 5,
+      "residual_degree": 70,
+      "max_coefficient_bits": 121
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 27.505736916000387,
+      "index": 6,
+      "residual_degree": 70,
+      "max_coefficient_bits": 110
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 28.12229286300135,
+      "index": 7,
+      "residual_degree": 70,
+      "max_coefficient_bits": 123
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 28.7149363740009,
+      "index": 8,
+      "residual_degree": 70,
+      "max_coefficient_bits": 118
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 29.30124485200031,
+      "index": 9,
+      "residual_degree": 70,
+      "max_coefficient_bits": 115
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 29.909368304000964,
+      "index": 10,
+      "residual_degree": 70,
+      "max_coefficient_bits": 109
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 30.535648060000312,
+      "index": 11,
+      "residual_degree": 70,
+      "max_coefficient_bits": 115
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 31.1598288840014,
+      "index": 12,
+      "residual_degree": 70,
+      "max_coefficient_bits": 118
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 31.819890517999738,
+      "index": 13,
+      "residual_degree": 70,
+      "max_coefficient_bits": 119
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 32.565136339000674,
+      "index": 14,
+      "residual_degree": 70,
+      "max_coefficient_bits": 120
+    }
+  ],
+  "source_sha256": "5f0f0b8a46e999e6bb8da7c61a42af05aa00e1e8801fb8929e27e4e8f3064ee1",
+  "proof_obligations": [
+    "independent certificate replay",
+    "chart coverage in every characteristic"
+  ],
+  "last_stage": "norm",
+  "wall_budget_seconds": 900,
+  "exclusion_proved": false
+}

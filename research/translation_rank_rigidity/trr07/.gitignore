@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.log
+*.jsonl
+symbolic_results/partial*.json
+symbolic_results/*.tmp
