@@ -1,0 +1,41 @@
+{
+  "experiment": "ACE-03Q",
+  "part": "bounded",
+  "spec": {
+    "name": "separation",
+    "params": 1,
+    "body": [
+      "M",
+      0,
+      1
+    ]
+  },
+  "graph": [
+    {
+      "id": "pure.separation",
+      "dependencies": 0,
+      "nodes": 20159,
+      "guarded": false
+    },
+    {
+      "id": "cert.separation",
+      "dependencies": 1,
+      "nodes": 2,
+      "guarded": true
+    }
+  ],
+  "stats": {
+    "graph_nodes": 2,
+    "graph_kernel_visits": 20161,
+    "rewritten_source_nodes": 7,
+    "translated_nodes": 8,
+    "conditional_nodes": 9,
+    "cut_nodes": 3
+  },
+  "source_nodes": 7,
+  "direct_target_nodes": 40330,
+  "exact_comparisons": 2,
+  "negative_controls": 2,
+  "pinned_L_unchanged": true,
+  "scope": "pinned L bounded Separation DAG imported in a repeated-axiom source proof"
+}
