@@ -85,6 +85,40 @@ jobs:
           set -euo pipefail
           node research/ace/constructible_power.mjs "$PART" > "/tmp/ace-power-$PART.json"
           diff -u "research/ace/constructible_power_${PART}_receipt.json" "/tmp/ace-power-$PART.json"
+  reflection-bounds-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [membership, extension, two_parameter, quantified, closed]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay formula-indexed witness bound
+        shell: bash
+        env:
+          PART: ${{ matrix.part }}
+        run: |
+          set -euo pipefail
+          node research/ace/reflection_bounds.mjs "$PART" > "/tmp/ace-reflection-$PART.json"
+          diff -u "research/ace/reflection_bounds_${PART}_receipt.json" "/tmp/ace-reflection-$PART.json"
+  reflection-transport-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay finite Tarski-Vaught proof objects and semantic controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          node research/ace/reflection_transport.mjs > /tmp/ace-transport.json
+          diff -u research/ace/reflection_transport_receipt.json /tmp/ace-transport.json
   lean-replay:
     runs-on: ubuntu-latest
     steps:
