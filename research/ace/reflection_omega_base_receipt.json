@@ -1,0 +1,30 @@
+{
+  "experiment": "ACE-03N",
+  "part": "base",
+  "proofs": {
+    "omega_exists": {
+      "nodes": 136,
+      "goal_bytes": 447,
+      "proof_bytes": 3741
+    },
+    "omega_ordinal": {
+      "nodes": 394,
+      "goal_bytes": 589,
+      "proof_bytes": 6258
+    },
+    "stage_members_constructible": {
+      "nodes": 27,
+      "goal_bytes": 106659,
+      "proof_bytes": 320027
+    },
+    "conditional_transport": {
+      "nodes": 46,
+      "goal_bytes": 213565,
+      "proof_bytes": 267266
+    }
+  },
+  "exact_interfaces": 4,
+  "negative_controls": 0,
+  "pinned_L_unchanged": true,
+  "scope": "closed proof module for one fixed reflection example"
+}
