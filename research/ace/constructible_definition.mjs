@@ -1,6 +1,6 @@
 import { pathToFileURL } from "node:url";
 // Parameter-free class definition generator; generated AST is in de Bruijn form.
-function definition(prefix="v"){
+function definition(prefix="v",internals=false){
   let serial=0;
   const Q=(a,b)=>["=",a,b],M=(a,b)=>["M",a,b],F=["F"],I=(p,q)=>[">",p,q],C=(...p)=>p.reduce((a,b)=>["&",a,b]),O=(...p)=>p.reduce((a,b)=>["|",a,b]),N=p=>I(p,F),B=(p,q)=>C(I(p,q),I(q,p));
   const bind=(op,body)=>{const v=prefix+(serial++);return [op,v,body(v)];};
@@ -71,7 +71,7 @@ function definition(prefix="v"){
     return [op,compile(a,env),compile(b,env)];
   };
   const free=["arg0","arg1","arg2"];
-  return {
+  const result={
     empty:compile(empty(free[0]),[free[0]]),
     ordinal:compile(ord(free[0]),[free[0]]),
     successor:compile(succ(free[0],free[1]),free.slice(0,2)),
@@ -82,6 +82,11 @@ function definition(prefix="v"){
     Def:compile(defSet(free[0],free[1]),free.slice(0,2)),
     L:compile(l(free[0]),[free[0]])
   };
+  if(internals){
+    result.val=compile(val(free[0],free[1],free[2]),free);
+    result.stageGraph=compile(stageGraph(free[0],free[1]),free.slice(0,2));
+  }
+  return result;
 }
 
 
