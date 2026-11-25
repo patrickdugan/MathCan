@@ -188,6 +188,87 @@ function buildI(defs,prior,finite){
     return open(existence,fn);
   }
   const stageTotal=qs(2,(f,b)=>ii(Graph(f,b),g=>withStageValue(f,b,g,(r,p)=>ei(E(r=>Stage(f,b,r)),r,p))));
-  const proofs={successor_exists:successorExists,successor_unique:succUnique,value_in_domain:domainLemma,subset_reflexive:reflSub,stage_value_transport:stageTransfer,limit_value_exists:limitValue,stage_value_exists:stageTotal};
+
+  function extendHistory(f,b,d,tb,sd,sf,inj,dom,nc,tot,tr){
+    const g0=al(sf),noSelf=ii(M(b,b),bb=>app(us(nc,b,b),bb,bb));
+    return use(noSelf,nb=>open(app(us(tot,f,b),g0),(r,rs)=>{
+      return open(us(pairEx,b,r),(p,pp)=>{
+        return withAdjoin(f,p,(g,gp)=>{
+          const valCases=(i,y,v)=>open(v,(w,wp)=>{
+            const goal=["|",Val(f,i,y),C(Q(i,b),Q(y,r))];
+            return oe(from(gp,w,al(wp)),goal,
+              wf=>ol(ei(Val(f,i,y),w,ai(wf,ar(wp))),goal[2]),
+              eq=>or(goal[1],app(us(inj,p,i,y,b,r),eqSub(eq,t=>form("pair",t,i,y),ar(wp)),pp)));
+          });
+          const oldToNew=(i,y,v)=>open(v,(w,wp)=>{
+            const wg=into(gp,w,ol(al(wp),Q(w,p)));
+            return ei(Val(g,i,y),w,ai(wg,ar(wp)));
+          });
+          const newValue=ei(Val(g,b,r),p,ai(into(gp,p,or(M(p,f),ref(p))),pp));
+          const oldEquiv=ui(i=>ii(M(i,b),ib=>ui(y=>ai(
+            ii(Val(f,i,y),v=>oldToNew(i,y,v)),
+            ii(Val(g,i,y),v=>oe(valCases(i,y,v),Val(f,i,y),q=>q,eq=>fe(app(nb,eqSub(al(eq),t=>M(t,b),ib)),Val(f,i,y))))))));
+          return use(oldEquiv,eqv=>{
+            const entries=ui(w=>ii(M(w,g),wg=>{
+              const goal=E(i=>C(M(i,d),E(y=>form("pair",w,i,y))));
+              return oe(from(gp,w,wg),goal,
+                wf=>open(app(ue(al(g0),w),wf),(i,ip)=>{
+                  const id=into(sd,i,ol(al(ip),Q(i,b)));
+                  return ei(goal,i,ai(id,ar(ip)));
+                }),
+                eq=>{
+                  const bd=into(sd,b,or(M(b,b),ref(b)));
+                  const sub=replace(goal[2],goal[1],b)[2];
+                  return ei(goal,b,ai(bd,ei(sub,r,eqSub(sym(eq),t=>form("pair",t,b,r),pp))));
+                });
+            }));
+            const total=ui(i=>ii(M(i,d),id=>{
+              const goal=E(y=>C(Val(g,i,y),A(z=>I(Val(g,i,z),Q(z,y)))));
+              return oe(from(sd,i,id),goal,
+                ib=>open(app(ue(ar(g0),i),ib),(y,yp)=>{
+                  const v=app(al(ue(app(ue(eqv,i),ib),y)),al(yp));
+                  const u=ui(z=>ii(Val(g,i,z),vz=>app(ue(ar(yp),z),app(ar(ue(app(ue(eqv,i),ib),z)),vz))));
+                  return ei(goal,y,ai(v,u));
+                }),
+                eq=>{
+                  const iv=eqSub(sym(eq),t=>Val(g,t,r),newValue);
+                  const un=ui(y=>ii(Val(g,i,y),vy=>{
+                    const vb=eqSub(eq,t=>Val(g,t,y),vy);
+                    return oe(valCases(b,y,vb),Q(y,r),old=>fe(app(nb,app(us(dom,f,b,b,y),g0,old)),Q(y,r)),both=>ar(both));
+                  }));
+                  return ei(goal,r,ai(iv,un));
+                });
+            }));
+            const steps=ui(i=>ii(M(i,d),id=>{
+              const goal=E(y=>C(Val(g,i,y),Stage(g,i,y)));
+              return oe(from(sd,i,id),goal,
+                ib=>open(app(ue(ar(sf),i),ib),(y,yp)=>{
+                  const v=app(al(ue(app(ue(eqv,i),ib),y)),al(yp));
+                  const local=ui(j=>ii(M(j,i),ji=>app(ue(eqv,j),earlier(tb,i,ib,j,ji))));
+                  const st=app(us(tr,f,g,i,y),local,ar(yp));
+                  return ei(goal,y,ai(v,st));
+                }),
+                eq=>{
+                  const st=app(us(tr,f,g,b,r),eqv,rs);
+                  const v=eqSub(sym(eq),t=>C(Val(g,t,r),Stage(g,t,r)),ai(newValue,st));
+                  return ei(goal,r,v);
+                });
+            }));
+            return ei(E(z=>SG(z,d)),g,ai(ai(entries,total),steps));
+          });
+        });
+      });
+    }));
+  }
+  const extend=use(pairInj,inj=>use(domainLemma,dom=>use(noCycle,nc=>use(stageTotal,tot=>use(stageTransfer,tr=>{
+    return qs(3,(f,b,d)=>ii(trans(b),tb=>ii(Succ(b,d),sd=>ii(SG(f,b),sf=>extendHistory(f,b,d,tb,sd,sf,inj,dom,nc,tot,tr)))));
+  })))));
+  const emptyGraph=ui(d=>ii(Empty(d),ed=>open(ax({name:"empty"}),(f,ef)=>{
+    const entries=ui(p=>ii(M(p,f),pf=>fe(app(ue(ef,p),pf),E(i=>C(M(i,d),E(y=>form("pair",p,i,y)))))));
+    const total=ui(i=>ii(M(i,d),id=>fe(app(ue(ed,i),id),E(y=>C(Val(f,i,y),A(z=>I(Val(f,i,z),Q(z,y))))))));
+    const stages=ui(i=>ii(M(i,d),id=>fe(app(ue(ed,i),id),E(y=>C(Val(f,i,y),Stage(f,i,y))))));
+    return ei(E(f=>SG(f,d)),f,ai(ai(entries,total),stages));
+  })));
+  const proofs={successor_exists:successorExists,successor_unique:succUnique,value_in_domain:domainLemma,subset_reflexive:reflSub,stage_value_transport:stageTransfer,limit_value_exists:limitValue,stage_value_exists:stageTotal,stage_history_extension:extend,empty_history_exists:emptyGraph};
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
