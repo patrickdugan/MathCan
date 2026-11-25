@@ -45,6 +45,26 @@ jobs:
           set -euo pipefail
           node research/ace/constructible_closure.mjs "$PART" > "/tmp/ace-$PART.json"
           diff -u "research/ace/constructible_closure_${PART}_receipt.json" "/tmp/ace-$PART.json"
+  constructible-infinity-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [finite, stage, infinity]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay Infinity certificate
+        shell: bash
+        env:
+          PART: ${{ matrix.part }}
+        run: |
+          set -euo pipefail
+          node research/ace/constructible_infinity.mjs "$PART" > "/tmp/ace-infinity-$PART.json"
+          diff -u "research/ace/constructible_infinity_${PART}_receipt.json" "/tmp/ace-infinity-$PART.json"
   lean-replay:
     runs-on: ubuntu-latest
     steps:
