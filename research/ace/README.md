@@ -95,9 +95,7 @@ Require actual kernel output before marking LEAN-CHECKED.
 ## Registered next gates (not run)
 
 ACE-02: staged in [ACE02_ARITHMETIC_TRANSPORT.md](ACE02_ARITHMETIC_TRANSPORT.md). Explicit first-order syntax with de Bruijn scopes, isomorphism-based semantic transport and assignment locality; 2,304 finite formula checks passed. Lean kernel and standalone CLI replay remain pending.
-ACE-03: explicit first-order ZF/ZFC proof calculus with axiom schema
-validation, proof relativization into L, and independently checked
-arithmetic absoluteness. Keep host axioms and object axioms separate.
+ACE-03A: staged in [ACE03A_RELATIVIZATION.md](ACE03A_RELATIVIZATION.md). Generic class semantics and a restricted proof compiler, 3,840 compiled proofs checked. ACE-03B: explicit ZF/ZFC schemas, verified relativized axiom instances, and construction of L remain due.
 ACE-04: inspect inert Lean exports for choice dependency cones, distinguish
 finite selection from well-ordering, quotient, and classical proof
 dependencies. Prove the universe/background theory requirements for
