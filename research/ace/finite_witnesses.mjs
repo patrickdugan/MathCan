@@ -1,5 +1,6 @@
 import { definition } from './constructible_definition.mjs';
-import { kernel, same } from './zf_interface.mjs';
+import { kernel, same, inst, classProofs, compile, rejects } from './zf_interface.mjs';
+import { buildE } from './hierarchy_closure.mjs';
 function buildF(defs){
   let serial=0;
   const fresh=()=>`q${serial++}`,M=(a,b)=>["M",a,b],Q=(a,b)=>["=",a,b],F=["F"],I=(p,q)=>[">",p,q],C=(p,q)=>["&",p,q],N=p=>I(p,F);
@@ -432,3 +433,59 @@ function buildF(defs){
   const proofs={pair_exists:pairExists,pair_injective:pairInjective,binary_graph_exists:binaryGraph,unary_graph_exists:unaryGraph,omega_exists:omegaExists,finite_ordinals:finiteOrdinals,membership_relation_exists:relationExists,atomic_member_definable:atomicDef,def_inflation:defInflation};
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
+
+
+function runF(){
+  const defs=definition("v",true),proofs=buildF(defs),earlier=buildE(defs),out={};
+  function check(name,p,guard=false,def=null){
+    const checked=kernel(0,[],p.proof,guard,"ZF",def);
+    if(!same(checked.goal,p.goal))throw Error("goal mismatch "+name);
+    out[name]={nodes:checked.visits,proof_bytes:JSON.stringify(p.proof).length};
+  }
+  for(const [name,p] of Object.entries(proofs))check(name,p);
+  const infl=proofs.def_inflation;
+  const conditional=earlier.L_transitivity_conditional;
+  if(!same(infl.goal,conditional.goal[1]))throw Error("inflation target mismatch");
+  const stage=earlier.stage_transitivity_conditional;
+  if(!same(infl.goal,stage.goal[1]))throw Error("stage target mismatch");
+  const stageP={goal:stage.goal[2],proof:["iE",stage.proof,infl.proof]};
+  const lP={goal:conditional.goal[2],proof:["iE",conditional.proof,infl.proof]};
+  const exactL=["A",[">",defs.L,["A",[">",["M",0,1],defs.L]]]];
+  if(!same(exactL,lP.goal))throw Error("exact L transitivity target mismatch");
+  check("stage_transitivity",stageP);
+  check("L_transitivity",lP);
+  const c=classProofs(),T=c.generic.find(x=>x.name==="extensionality").premises[0];
+  const px=["conv",inst(defs.L,1),["aL",["h",0]]];
+  const sx=["iE",["uE",["closed",lP.proof],1],px];
+  const sy=["iE",["uE",sx,0],["aR",["h",0]]];
+  const tP={goal:T,proof:["uI",["uI",["iI",["&",["G",1],["M",0,1]],["conv",["G",0],sy]]]]};
+  check("L_transitivity_guard",tP,true,defs.L);
+  const certs=[];
+  for(const name of ["extensionality","foundation"]){
+    const g=c.generic.find(x=>x.name===name),spec={name};
+    if(g.premises.length!==1||!same(T,g.premises[0]))throw Error("wrong generic closure premise");
+    const proof=["iE",g.proof,tP.proof];
+    check("L_"+name,{goal:c.goal(name),proof},true,defs.L);
+    certs.push({spec,proof});
+  }
+  const opts={sourceTheory:"ZFC",targetTheory:"ZF",classDef:defs.L,certificates:certs};
+  const composite=["aI",...certs.map(c=>["axiom",c.spec])];
+  const compiled=compile(0,[],composite,opts);
+  if(!same(compiled.target.goal,["&",...certs.map(x=>c.goal(x.spec.name))]))throw Error("compiler goal");
+  let rejected=0;
+  const controls=[
+    ()=>kernel(0,[],conditional.proof[2],false,"ZF"),
+    ()=>kernel(0,[],["iE",conditional.proof,proofs.pair_exists.proof],false,"ZF"),
+    ()=>kernel(0,[],infl.proof,false,"CL"),
+    ()=>kernel(0,[],tP.proof,true,c.def),
+    ()=>compile(0,[],["axiom",{name:"choice"}],opts),
+    ()=>compile(0,[],["axiom",{name:"pairing"}],opts),
+    ()=>compile(0,[],["axiom",{name:"empty"}],opts)
+  ];
+  // Wrong class must be checked using ZF policy and the actual alternate definition.
+  controls[3]=()=>kernel(0,[],tP.proof,true,"ZF",c.def);
+  for(const fn of controls){if(!rejects(fn))throw Error("negative control passed");rejected++;}
+  return {experiment:"ACE-03F",scope:"closed object proofs for pinned L predicate, checked by executable ZF kernel",proofs:out,closed_L_axiom_certificates:certs.map(c=>c.spec.name),composite_source_nodes:compiled.source.visits,composite_target_nodes:compiled.target.visits,negative_controls:rejected,remaining:"adequacy, stage recursion and other L axioms; proof checker soundness"};
+}
+
+console.log(JSON.stringify(runF(),null,2));
