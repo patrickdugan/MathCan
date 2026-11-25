@@ -1,0 +1,28 @@
+{
+  "experiment": "ACE-03M",
+  "part": "two_parameter",
+  "formula": [
+    "&",
+    [
+      "M",
+      0,
+      1
+    ],
+    [
+      "M",
+      0,
+      2
+    ]
+  ],
+  "arity": 2,
+  "proofs": {
+    "finite_parameter_witness_bound": {
+      "nodes": 11884,
+      "proof_bytes": 43153155
+    }
+  },
+  "independent_goal_checks": 1,
+  "negative_controls": 3,
+  "pinned_L_unchanged": true,
+  "scope": "one-step finite parameter witness bounds; no limit-stage reflection or full Separation schema"
+}
