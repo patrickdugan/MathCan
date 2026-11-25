@@ -322,10 +322,17 @@ function buildOmega(defs,prior,stages,finite,stepFormula,only=null){
     return ai(ai(allOrd,base),closed);
   }
   const rangeClosed=ii(StepTotal,total=>qs(2,(a,w)=>ii(Ord(a),oa=>ii(Omega(w),ow=>ii(Ord(w),ordw=>{
-    const it=app(us(app(iteration,total),a,w),oa,ow);
-    return open(app(us(app(rangeExists,total),a,w),oa,ow),(R,rp)=>{
-      const prop=rangeProperties(a,w,R,oa,ow,ordw,it,rp);
-      return ei(E(R=>rangeGood(a,w,R)),R,prop);
+    const it0=app(us(app(iteration,total),a,w),oa,ow);
+    return use(it0,it=>{
+      const n=fresh(),v=fresh(),spec={name:"replacement",params:1,body:db(End(a,n,v),[v,n,a])};
+      const functional=ui(n=>ii(M(n,w),nw=>open(app(ue(it,n),nw),(v,vp)=>{
+        const ep=app(us(tightEnd,a,n,v),app(ue(ar(ordw),n),nw),al(vp));
+        return ei(goalEnd(a,n),v,ai(ep,ar(vp)));
+      })));
+      return open(app(us(ax(spec),a,w),functional),(R,rp)=>{
+        const prop=rangeProperties(a,w,R,oa,ow,ordw,it,rp);
+        return ei(E(R=>rangeGood(a,w,R)),R,prop);
+      });
     });
   })))));
   const proofs={tight_endpoint_is_endpoint:tightEnd,finite_iteration_conditional:iteration,omega_endpoint_total_conditional:endpointTotal,omega_range_exists_conditional:rangeExists,omega_range_closed_conditional:rangeClosed};
