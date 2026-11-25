@@ -1,0 +1,305 @@
+{
+  "experiment": "ACE-03W",
+  "part": "exact_finite_sequence_carrier_and_canonical_shortlex",
+  "checks": [
+    {
+      "id": "tuple_values_belong_to_carrier",
+      "nodes": 40,
+      "goal_bytes": 1717,
+      "ambient_axioms": [],
+      "existing_statement": "finite_sequence_order.tuple_value_in_carrier",
+      "identical_existing_proof_tree": false
+    },
+    {
+      "id": "tuple_graph_double_power_bound",
+      "nodes": 183,
+      "goal_bytes": 1725,
+      "ambient_axioms": []
+    },
+    {
+      "id": "finite_sequence_carrier_exists",
+      "nodes": 288,
+      "goal_bytes": 2801,
+      "ambient_axioms": [
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "finite_sequence_carrier_unique",
+      "nodes": 32,
+      "goal_bytes": 5613,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "finite_sequence_carrier_is_family",
+      "nodes": 11,
+      "goal_bytes": 4199,
+      "ambient_axioms": []
+    },
+    {
+      "id": "shortlex_explicit_carrier_guards",
+      "nodes": 110,
+      "goal_bytes": 62531,
+      "ambient_axioms": []
+    },
+    {
+      "id": "finite_sequence_carrier_well_order",
+      "nodes": 6945,
+      "goal_bytes": 37062,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "shortlex_exact_membership_exists",
+      "nodes": 147,
+      "goal_bytes": 9541,
+      "ambient_axioms": [
+        "power",
+        "separation"
+      ]
+    },
+    {
+      "id": "shortlex_exact_membership_unique",
+      "nodes": 34,
+      "goal_bytes": 19089,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "shortlex_exact_membership_pair_only",
+      "nodes": 24,
+      "goal_bytes": 9893,
+      "ambient_axioms": []
+    },
+    {
+      "id": "shortlex_exact_membership_implies_agreement",
+      "nodes": 327,
+      "goal_bytes": 19051,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "shortlex_canonical_unique_relation",
+      "nodes": 205,
+      "goal_bytes": 19085,
+      "ambient_axioms": [
+        "extensionality",
+        "power",
+        "separation"
+      ]
+    },
+    {
+      "id": "shortlex_canonical_well_order_realization",
+      "nodes": 701,
+      "goal_bytes": 62402,
+      "ambient_axioms": [
+        "extensionality",
+        "pairing",
+        "power",
+        "separation"
+      ]
+    },
+    {
+      "id": "shortlex_composed_canonical_well_order",
+      "nodes": 7668,
+      "goal_bytes": 36709,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "finite_sequence_carrier_and_canonical_order",
+      "nodes": 7977,
+      "goal_bytes": 36717,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    }
+  ],
+  "checked_modules": 15,
+  "new_statement_checks": 14,
+  "reused_helper_checks": 0,
+  "reproved_existing_statement_checks": 1,
+  "existing_statement_identity_checks": 1,
+  "independent_exact_goals": 15,
+  "independent_formula_interfaces": 7,
+  "kernel_visits": 24692,
+  "negative_controls": 34,
+  "controls": [
+    "tuple_values_belong_to_carrier:drop_binders",
+    "tuple_graph_double_power_bound:drop_binders",
+    "finite_sequence_carrier_exists:drop_binders",
+    "finite_sequence_carrier_exists:forbid_set_axioms",
+    "finite_sequence_carrier_unique:drop_binders",
+    "finite_sequence_carrier_unique:forbid_set_axioms",
+    "finite_sequence_carrier_is_family:drop_binders",
+    "shortlex_explicit_carrier_guards:drop_binders",
+    "finite_sequence_carrier_well_order:drop_binders",
+    "finite_sequence_carrier_well_order:forbid_set_axioms",
+    "shortlex_exact_membership_exists:drop_binders",
+    "shortlex_exact_membership_exists:forbid_set_axioms",
+    "shortlex_exact_membership_unique:drop_binders",
+    "shortlex_exact_membership_unique:forbid_set_axioms",
+    "shortlex_exact_membership_pair_only:drop_binders",
+    "shortlex_exact_membership_implies_agreement:drop_binders",
+    "shortlex_exact_membership_implies_agreement:forbid_set_axioms",
+    "shortlex_canonical_unique_relation:drop_binders",
+    "shortlex_canonical_unique_relation:forbid_set_axioms",
+    "shortlex_canonical_well_order_realization:drop_binders",
+    "shortlex_canonical_well_order_realization:forbid_set_axioms",
+    "shortlex_composed_canonical_well_order:drop_binders",
+    "shortlex_composed_canonical_well_order:forbid_set_axioms",
+    "finite_sequence_carrier_and_canonical_order:drop_binders",
+    "finite_sequence_carrier_and_canonical_order:forbid_set_axioms",
+    "tuple_graph_double_power_bound:omit_domain_bound",
+    "tuple_graph_double_power_bound:omit_range_bound",
+    "finite_sequence_carrier_well_order:omit_exact_carrier",
+    "finite_sequence_carrier_and_canonical_order:omit_omega",
+    "finite_sequence_carrier_and_canonical_order:omit_alphabet_well_order",
+    "shortlex_exact_membership_implies_agreement:omit_exact_membership",
+    "carrier_exists:corrupt_separation_predicate",
+    "realization:omit_carrier_guards",
+    "choice_axiom_forbidden"
+  ],
+  "pure_logic_checks": [
+    "tuple_values_belong_to_carrier",
+    "tuple_graph_double_power_bound",
+    "finite_sequence_carrier_is_family",
+    "shortlex_explicit_carrier_guards",
+    "shortlex_exact_membership_pair_only"
+  ],
+  "unconditional_carrier_quantifiers": [
+    "w",
+    "A"
+  ],
+  "unconditional_carrier_premises": [],
+  "carrier_membership": "f in S iff exists m in w Tuple(f,m,A)",
+  "carrier_bound": "P^3((union w) union A)",
+  "main_quantifier_order": [
+    "w",
+    "A",
+    "R"
+  ],
+  "main_premises": [
+    "Omega(w)",
+    "WO(A,Val(R))"
+  ],
+  "main_conclusion": "exists S (ExactSeq(S,w,A) and exists T (Exact(T) and Agreement(T) and WO(S,Val(T)) and Unique(T)))",
+  "canonical_order_guards": [
+    "f in S",
+    "g in S"
+  ],
+  "ambient_axiom_instances": [
+    {
+      "name": "union"
+    },
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "power"
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 1369
+    },
+    {
+      "name": "extensionality"
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 1369
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 1347
+    },
+    {
+      "name": "foundation"
+    },
+    {
+      "name": "separation",
+      "params": 0,
+      "body_bytes": 53
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 63
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 41
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 41
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 13029
+    },
+    {
+      "name": "separation",
+      "params": 3,
+      "body_bytes": 3631
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 307
+    },
+    {
+      "name": "separation",
+      "params": 6,
+      "body_bytes": 2607
+    },
+    {
+      "name": "separation",
+      "params": 7,
+      "body_bytes": 2589
+    },
+    {
+      "name": "separation",
+      "params": 4,
+      "body_bytes": 4733
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "unconditional exact tuple-domain carrier existence and uniqueness; supplied omega and alphabet well-order yield a canonical set-coded shortlex well-order on all finite tuples",
+  "open_obligations": [
+    "coding normalized programs and parameter tuples in the description carrier",
+    "internal constructibility of code orders",
+    "exact relativized Choice import",
+    "formal checker soundness"
+  ]
+}

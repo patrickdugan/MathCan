@@ -1,0 +1,358 @@
+{
+  "experiment": "ACE-03W",
+  "part": "uniform_finite_tuple_and_shortlex_well_order",
+  "checks": [
+    {
+      "id": "prefix_graph_exists",
+      "nodes": 119,
+      "goal_bytes": 3357,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "prefix_graph_unique",
+      "nodes": 344,
+      "goal_bytes": 4557,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "prefixes_equal_from_before",
+      "nodes": 388,
+      "goal_bytes": 5229,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "tuple_value_in_carrier",
+      "nodes": 40,
+      "goal_bytes": 1717,
+      "ambient_axioms": []
+    },
+    {
+      "id": "prefix_is_tuple",
+      "nodes": 36,
+      "goal_bytes": 5031,
+      "ambient_axioms": []
+    },
+    {
+      "id": "prefix_last_value_functional",
+      "nodes": 390,
+      "goal_bytes": 6312,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "prefix_last_value_injective",
+      "nodes": 429,
+      "goal_bytes": 7291,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "successor_lex_prefix_last",
+      "nodes": 745,
+      "goal_bytes": 14520,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "empty_length_lex_well_order",
+      "nodes": 385,
+      "goal_bytes": 13077,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "prefix_carrier_exists",
+      "nodes": 287,
+      "goal_bytes": 5517,
+      "ambient_axioms": [
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "prefix_representation_laws",
+      "nodes": 907,
+      "goal_bytes": 11941,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "prefix_lex_agreement",
+      "nodes": 915,
+      "goal_bytes": 21943,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "prefix_order_agreement_transfer",
+      "nodes": 167,
+      "goal_bytes": 80255,
+      "ambient_axioms": []
+    },
+    {
+      "id": "successor_length_lex_well_order",
+      "nodes": 4084,
+      "goal_bytes": 28681,
+      "ambient_axioms": [
+        "extensionality",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "tuple_length_induction",
+      "nodes": 91,
+      "goal_bytes": 52799,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "finite_length_lex_well_order",
+      "nodes": 4754,
+      "goal_bytes": 15951,
+      "ambient_axioms": [
+        "extensionality",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "exact_graph_domain_unique",
+      "nodes": 290,
+      "goal_bytes": 2031,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "finite_tuple_fibres_well_order",
+      "nodes": 4793,
+      "goal_bytes": 17363,
+      "ambient_axioms": [
+        "extensionality",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "shortlex_from_ordered_fibres",
+      "nodes": 912,
+      "goal_bytes": 47418,
+      "ambient_axioms": [
+        "extensionality",
+        "separation"
+      ]
+    },
+    {
+      "id": "finite_shortlex_well_order",
+      "nodes": 6798,
+      "goal_bytes": 35450,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    }
+  ],
+  "checked_modules": 20,
+  "new_statement_checks": 20,
+  "reused_helper_checks": 0,
+  "kernel_visits": 26874,
+  "independent_exact_goals": 20,
+  "independent_formula_interfaces": 17,
+  "independent_product_specification_checks": 1,
+  "pure_logic_checks": [
+    "tuple_value_in_carrier",
+    "prefix_is_tuple",
+    "prefix_order_agreement_transfer"
+  ],
+  "negative_controls": 59,
+  "controls": [
+    "prefix_graph_exists:drop_binders",
+    "prefix_graph_exists:forbid_set_axioms",
+    "prefix_graph_unique:drop_binders",
+    "prefix_graph_unique:forbid_set_axioms",
+    "prefixes_equal_from_before:drop_binders",
+    "prefixes_equal_from_before:forbid_set_axioms",
+    "tuple_value_in_carrier:drop_binders",
+    "prefix_is_tuple:drop_binders",
+    "prefix_last_value_functional:drop_binders",
+    "prefix_last_value_functional:forbid_set_axioms",
+    "prefix_last_value_injective:drop_binders",
+    "prefix_last_value_injective:forbid_set_axioms",
+    "successor_lex_prefix_last:drop_binders",
+    "successor_lex_prefix_last:forbid_set_axioms",
+    "empty_length_lex_well_order:drop_binders",
+    "empty_length_lex_well_order:forbid_set_axioms",
+    "prefix_carrier_exists:drop_binders",
+    "prefix_carrier_exists:forbid_set_axioms",
+    "prefix_representation_laws:drop_binders",
+    "prefix_representation_laws:forbid_set_axioms",
+    "prefix_lex_agreement:drop_binders",
+    "prefix_lex_agreement:forbid_set_axioms",
+    "prefix_order_agreement_transfer:drop_binders",
+    "successor_length_lex_well_order:drop_binders",
+    "successor_length_lex_well_order:forbid_set_axioms",
+    "tuple_length_induction:drop_binders",
+    "tuple_length_induction:forbid_set_axioms",
+    "finite_length_lex_well_order:drop_binders",
+    "finite_length_lex_well_order:forbid_set_axioms",
+    "exact_graph_domain_unique:drop_binders",
+    "exact_graph_domain_unique:forbid_set_axioms",
+    "finite_tuple_fibres_well_order:drop_binders",
+    "finite_tuple_fibres_well_order:forbid_set_axioms",
+    "shortlex_from_ordered_fibres:drop_binders",
+    "shortlex_from_ordered_fibres:forbid_set_axioms",
+    "finite_shortlex_well_order:drop_binders",
+    "finite_shortlex_well_order:forbid_set_axioms",
+    "finite_length_lex_well_order:omit_omega",
+    "finite_length_lex_well_order:omit_alphabet_well_order",
+    "finite_length_lex_well_order:omit_finite_length",
+    "successor_length_lex_well_order:omit_successor",
+    "successor_length_lex_well_order:omit_prefix_domain_transitivity",
+    "successor_length_lex_well_order:omit_alphabet_well_order",
+    "successor_length_lex_well_order:omit_preceding_length_theorem",
+    "finite_shortlex_well_order:omit_omega",
+    "finite_shortlex_well_order:omit_alphabet_well_order",
+    "finite_shortlex_well_order:omit_finite_tuple_family",
+    "shortlex_from_ordered_fibres:omit_length_well_order",
+    "shortlex_from_ordered_fibres:omit_ordered_fibres",
+    "shortlex_from_ordered_fibres:omit_finite_tuple_family",
+    "exact_graph_domain_unique:omit_first_graph",
+    "exact_graph_domain_unique:omit_second_graph",
+    "prefix_carrier_exists:omit_successor",
+    "prefix_carrier_exists:omit_tuple_family",
+    "tuple_length_induction:omit_omega",
+    "tuple_length_induction:omit_empty_base",
+    "tuple_length_induction:omit_successor_step",
+    "prefix_graph_exists:corrupt_restriction_predicate",
+    "choice_axiom_forbidden"
+  ],
+  "ambient_axiom_instances": [
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 307
+    },
+    {
+      "name": "extensionality"
+    },
+    {
+      "name": "union"
+    },
+    {
+      "name": "power"
+    },
+    {
+      "name": "separation",
+      "params": 3,
+      "body_bytes": 3631
+    },
+    {
+      "name": "separation",
+      "params": 6,
+      "body_bytes": 2607
+    },
+    {
+      "name": "separation",
+      "params": 7,
+      "body_bytes": 2589
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 13029
+    },
+    {
+      "name": "separation",
+      "params": 0,
+      "body_bytes": 53
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 1347
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 1369
+    },
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "foundation"
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 63
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 41
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 41
+    }
+  ],
+  "fixed_length_quantifier_order": [
+    "w",
+    "A",
+    "R",
+    "m"
+  ],
+  "fixed_length_premises": [
+    "Omega(w)",
+    "WO(A,Val(R))",
+    "m in w"
+  ],
+  "fixed_length_conclusion": "every set S consisting of exact Tuple(f,m,A) graphs is well-ordered by first-difference lexicographic order",
+  "shortlex_quantifier_order": [
+    "w",
+    "A",
+    "R",
+    "S"
+  ],
+  "shortlex_premises": [
+    "Omega(w)",
+    "WO(A,Val(R))",
+    "every f in S is Tuple(f,m,A) for some m in w"
+  ],
+  "shortlex_conclusion": "WO(S,shortlex), with length compared by membership before the fixed-length lexicographic order",
+  "prefix_carrier_bound": "P(union(S))",
+  "finite_length_induction_discharged": true,
+  "external_length_bound": false,
+  "tuple_history_premise": false,
+  "pinned_L_unchanged": true,
+  "scope": "uniform well-ordering of every finite tuple length and every set of finite tuples over a supplied well-ordered alphabet; exact prefix and graph-domain lemmas discharge the decomposition",
+  "outside_this_replay": [
+    "connection between decoded instruction fields and finite alphabet tuples",
+    "construction of canonical order histories and internal constructibility",
+    "formal checker soundness"
+  ]
+}

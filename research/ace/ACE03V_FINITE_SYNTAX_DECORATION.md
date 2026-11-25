@@ -24,6 +24,13 @@ constructible-order work also needs a coherent transfinite history and
 membership of its restricted orders in L before the exact Choice import.
 Formal soundness of the executable checker remains open.
 
+Follow-up, ACE-03W: the finite descriptions now have an actual well-ordered
+carrier. A functional partial evaluator covers the exact pinned Def,
+including its empty-output branch, and the composed least-code proof
+constructs the successor order from a supplied previous order. See the
+[ACE-03W report](ACE03W_DEFINABLE_STAGE_WELL_ORDER.md) for the complete
+source chain and remaining transfinite and internal-L obligations.
+
 ## 1. The finite decoration theorem
 
 Write P for the ordered list of five syntax fields. `Syntax(P,m,n)` is

@@ -1,0 +1,339 @@
+{
+  "experiment": "ACE-03W",
+  "part": "normalized_instruction_codes_and_canonical_tags",
+  "checks": [
+    {
+      "id": "canonical_first_five_exist",
+      "nodes": 399,
+      "goal_bytes": 1279,
+      "ambient_axioms": [
+        "foundation",
+        "pairing"
+      ]
+    },
+    {
+      "id": "canonical_first_five_unique",
+      "nodes": 150,
+      "goal_bytes": 1022,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "normalized_triple_exists",
+      "nodes": 63,
+      "goal_bytes": 595,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "normalized_triple_unique",
+      "nodes": 236,
+      "goal_bytes": 1195,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "normalized_triple_injective",
+      "nodes": 290,
+      "goal_bytes": 1243,
+      "ambient_axioms": []
+    },
+    {
+      "id": "syntax_row_code_total",
+      "nodes": 192,
+      "goal_bytes": 25944,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "syntax_row_code_functional",
+      "nodes": 1311,
+      "goal_bytes": 31647,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "syntax_empty_domain_selection",
+      "nodes": 36,
+      "goal_bytes": 7114,
+      "ambient_axioms": []
+    },
+    {
+      "id": "syntax_successor_domain_selection",
+      "nodes": 994,
+      "goal_bytes": 25619,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "union"
+      ]
+    },
+    {
+      "id": "syntax_omega_finite_selection_induction",
+      "nodes": 1147,
+      "goal_bytes": 13255,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "syntax_finite_witness_selection",
+      "nodes": 1180,
+      "goal_bytes": 13255,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "selected_syntax_rows_are_exact",
+      "nodes": 1387,
+      "goal_bytes": 40250,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "finite_syntax_has_normalized_code",
+      "nodes": 2825,
+      "goal_bytes": 33727,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "normalized_code_is_triple_tuple",
+      "nodes": 935,
+      "goal_bytes": 36521,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "finite_syntax_code_tuple_exists",
+      "nodes": 3832,
+      "goal_bytes": 36528,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "normalized_graph_instruction_agreement",
+      "nodes": 2255,
+      "goal_bytes": 37272,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "normalized_graph_determines_syntax_fields",
+      "nodes": 3225,
+      "goal_bytes": 66808,
+      "ambient_axioms": [
+        "extensionality",
+        "pairing"
+      ]
+    }
+  ],
+  "checked_modules": 17,
+  "kernel_visits": 20457,
+  "independent_exact_goals": 17,
+  "independent_formula_interfaces": 7,
+  "pure_logic_checks": [
+    "normalized_triple_injective",
+    "syntax_empty_domain_selection"
+  ],
+  "negative_controls": 49,
+  "controls": [
+    "canonical_first_five_exist:free_instantiation",
+    "canonical_first_five_exist:forbid_set_axioms",
+    "canonical_first_five_unique:free_instantiation",
+    "canonical_first_five_unique:forbid_set_axioms",
+    "normalized_triple_exists:free_instantiation",
+    "normalized_triple_exists:forbid_set_axioms",
+    "normalized_triple_unique:free_instantiation",
+    "normalized_triple_unique:forbid_set_axioms",
+    "normalized_triple_injective:free_instantiation",
+    "syntax_row_code_total:free_instantiation",
+    "syntax_row_code_total:forbid_set_axioms",
+    "syntax_row_code_functional:free_instantiation",
+    "syntax_row_code_functional:forbid_set_axioms",
+    "syntax_empty_domain_selection:free_instantiation",
+    "syntax_successor_domain_selection:free_instantiation",
+    "syntax_successor_domain_selection:forbid_set_axioms",
+    "syntax_omega_finite_selection_induction:free_instantiation",
+    "syntax_omega_finite_selection_induction:forbid_set_axioms",
+    "syntax_finite_witness_selection:free_instantiation",
+    "syntax_finite_witness_selection:forbid_set_axioms",
+    "selected_syntax_rows_are_exact:free_instantiation",
+    "selected_syntax_rows_are_exact:forbid_set_axioms",
+    "finite_syntax_has_normalized_code:free_instantiation",
+    "finite_syntax_has_normalized_code:forbid_set_axioms",
+    "normalized_code_is_triple_tuple:free_instantiation",
+    "normalized_code_is_triple_tuple:forbid_set_axioms",
+    "finite_syntax_code_tuple_exists:free_instantiation",
+    "finite_syntax_code_tuple_exists:forbid_set_axioms",
+    "normalized_graph_instruction_agreement:free_instantiation",
+    "normalized_graph_instruction_agreement:forbid_set_axioms",
+    "normalized_graph_determines_syntax_fields:free_instantiation",
+    "normalized_graph_determines_syntax_fields:forbid_set_axioms",
+    "code_tuple:omit_omega",
+    "code_tuple:omit_finite_width",
+    "code_tuple:omit_finite_length",
+    "code_tuple:omit_tag_membership",
+    "code_tuple:omit_triple_carrier",
+    "code_tuple:omit_syntax",
+    "fields_injection:omit_distinct_tags",
+    "fields_injection:omit_left_syntax",
+    "fields_injection:omit_right_syntax",
+    "fields_injection:omit_left_encoding",
+    "fields_injection:omit_right_encoding",
+    "canonical_tags:omit_first_bank",
+    "canonical_tags:omit_second_bank",
+    "finite_syntax_code_tuple_exists:remove_live_separation",
+    "normalized_graph_determines_syntax_fields:remove_live_extensionality",
+    "normalized_triple_exists:remove_live_pairing",
+    "choice_axiom_forbidden"
+  ],
+  "formula_argument_orders": {
+    "triple": [
+      "c",
+      "tag",
+      "i",
+      "j"
+    ],
+    "triple_carrier": [
+      "C",
+      "w"
+    ],
+    "row": [
+      "k",
+      "c",
+      "P0",
+      "P1",
+      "P2",
+      "P3",
+      "P4",
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4"
+    ],
+    "encodes": [
+      "g",
+      "m",
+      "P0",
+      "P1",
+      "P2",
+      "P3",
+      "P4",
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4"
+    ],
+    "first_five": [
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4"
+    ],
+    "tag_members": [
+      "w",
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4"
+    ]
+  },
+  "encoding": "Kuratowski <tag,<i,j>>; negation uses <tag2,<i,i>>",
+  "selector_parameter_count": 10,
+  "main_quantifier_order": [
+    "w",
+    "C",
+    "m",
+    "n",
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "t0",
+    "t1",
+    "t2",
+    "t3",
+    "t4"
+  ],
+  "main_premises": [
+    "Omega(w)",
+    "n in w",
+    "m in w",
+    "all five shared tags in w",
+    "TripleCarrier(C,w)",
+    "Syntax(P,m,n)"
+  ],
+  "main_conclusion": "exists g (Encodes(g,m,P,tags) and Tuple(g,m,C))",
+  "field_injectivity_premises": [
+    "Distinct(tags)",
+    "Syntax(P,m,n)",
+    "Syntax(Q,m,n)",
+    "Encodes(g,m,P,tags)",
+    "Encodes(g,m,Q,tags)"
+  ],
+  "canonical_tags": "FirstFive = Empty(t0) and the left-associated conjunction of Succ(ti,t{i+1}); existence retains membership in w and pairwise distinctness",
+  "ambient_axiom_instances": [
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "foundation"
+    },
+    {
+      "name": "extensionality"
+    },
+    {
+      "name": "union"
+    },
+    {
+      "name": "separation",
+      "params": 10,
+      "body_bytes": 12713
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 31
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "exact finite normalized syntax graph over shared fixed tags, carrier-bounded tuple coverage, and equality of all five exact syntax fields from a shared code graph",
+  "open_obligations": [
+    "partial evaluation with the encoded full base tuple",
+    "single-natural-number coding",
+    "execution existence for arbitrary syntax",
+    "internal constructibility of canonical orders",
+    "formal checker soundness"
+  ]
+}

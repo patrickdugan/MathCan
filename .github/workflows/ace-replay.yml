@@ -335,6 +335,20 @@ jobs:
           set -euo pipefail
           node research/ace/ace03v_replay.mjs > /tmp/ace03v.json
           diff -u research/ace/ace03v_receipt.json /tmp/ace03v.json
+  definable-stage-order-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check syntax description carriers, evaluation and Def well-ordering
+        shell: bash
+        run: |
+          set -euo pipefail
+          node research/ace/ace03w_replay.mjs > /tmp/ace03w.json
+          diff -u research/ace/ace03w_receipt.json /tmp/ace03w.json
   lean-replay:
     runs-on: ubuntu-latest
     steps:

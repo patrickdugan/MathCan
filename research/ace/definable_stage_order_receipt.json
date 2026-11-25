@@ -1,0 +1,382 @@
+{
+  "experiment": "ACE-03W",
+  "part": "least_description_code_order_on_exact_pinned_Def",
+  "checks": [
+    {
+      "id": "evaluation_relation_exists",
+      "nodes": 226,
+      "goal_bytes": 123887,
+      "ambient_axioms": [
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "evaluation_relation_unique",
+      "nodes": 39,
+      "goal_bytes": 247743,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "evaluation_relation_agreement",
+      "nodes": 351,
+      "goal_bytes": 247713,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "evaluation_relation_functional",
+      "nodes": 6360,
+      "goal_bytes": 125282,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "separation"
+      ]
+    },
+    {
+      "id": "evaluation_relation_surjective",
+      "nodes": 15908,
+      "goal_bytes": 183692,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "coded_def_well_order",
+      "nodes": 23903,
+      "goal_bytes": 64398,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "definable_carrier_well_order",
+      "nodes": 40900,
+      "goal_bytes": 55431,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "definable_stage_order_exists",
+      "nodes": 41129,
+      "goal_bytes": 54977,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "infinity",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "definable_successor_end_extension",
+      "nodes": 45099,
+      "goal_bytes": 56681,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "infinity",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    }
+  ],
+  "checked_modules": 9,
+  "new_statement_checks": 9,
+  "reused_helper_checks": 0,
+  "kernel_visits": 173915,
+  "independent_exact_goals": 9,
+  "independent_formula_interfaces": 12,
+  "exact_pinned_Def_schema_comparisons": 1,
+  "pure_logic_checks": [],
+  "negative_controls": 46,
+  "controls": [
+    "evaluation_relation_exists:drop_binders",
+    "evaluation_relation_exists:forbid_set_axioms",
+    "evaluation_relation_unique:drop_binders",
+    "evaluation_relation_unique:forbid_set_axioms",
+    "evaluation_relation_agreement:drop_binders",
+    "evaluation_relation_agreement:forbid_set_axioms",
+    "evaluation_relation_functional:drop_binders",
+    "evaluation_relation_functional:forbid_set_axioms",
+    "evaluation_relation_surjective:drop_binders",
+    "evaluation_relation_surjective:forbid_set_axioms",
+    "coded_def_well_order:drop_binders",
+    "coded_def_well_order:forbid_set_axioms",
+    "definable_carrier_well_order:drop_binders",
+    "definable_carrier_well_order:forbid_set_axioms",
+    "definable_stage_order_exists:drop_binders",
+    "definable_stage_order_exists:forbid_set_axioms",
+    "definable_successor_end_extension:drop_binders",
+    "definable_successor_end_extension:forbid_set_axioms",
+    "definable_stage_order_exists:omit_supplied_alphabet_well_order",
+    "definable_successor_end_extension:omit_exact_Def",
+    "definable_successor_end_extension:omit_transitive_stage",
+    "definable_successor_end_extension:omit_supplied_stage_well_order",
+    "coded_def_well_order:omit_omega",
+    "coded_def_well_order:omit_canonical_tags",
+    "coded_def_well_order:omit_triple_carrier",
+    "coded_def_well_order:omit_raw_carrier",
+    "coded_def_well_order:omit_code_well_order",
+    "coded_def_well_order:omit_exact_Def",
+    "evaluation_relation_functional:omit_omega",
+    "evaluation_relation_functional:omit_distinct_tags",
+    "evaluation_relation_functional:omit_exact_evaluation_graph",
+    "evaluation_relation_surjective:omit_omega",
+    "evaluation_relation_surjective:omit_canonical_tags",
+    "evaluation_relation_surjective:omit_triple_carrier",
+    "evaluation_relation_surjective:omit_raw_carrier",
+    "evaluation_relation_surjective:omit_exact_Def",
+    "evaluation_relation_surjective:omit_exact_evaluation_graph",
+    "definable_carrier_well_order:omit_omega",
+    "definable_carrier_well_order:omit_supplied_alphabet_well_order",
+    "definable_carrier_well_order:omit_exact_Def",
+    "evaluation_relation_agreement:omit_exact_membership_contract",
+    "definable_stage_order_exists:reverse_pinned_Def_arguments",
+    "end_extension:enlarge_restriction_domain_to_B",
+    "end_extension:reverse_initial_segment_direction",
+    "evaluation_relation_exists:corrupt_separation_predicate",
+    "choice_axiom_forbidden"
+  ],
+  "contract_controls_use_verified_conclusions": true,
+  "ambient_axiom_instances": [
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "union"
+    },
+    {
+      "name": "power"
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 323
+    },
+    {
+      "name": "separation",
+      "params": 9,
+      "body_bytes": 61887
+    },
+    {
+      "name": "extensionality"
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 649
+    },
+    {
+      "name": "foundation"
+    },
+    {
+      "name": "separation",
+      "params": 0,
+      "body_bytes": 53
+    },
+    {
+      "name": "separation",
+      "params": 8,
+      "body_bytes": 43143
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 891
+    },
+    {
+      "name": "separation",
+      "params": 10,
+      "body_bytes": 12713
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 31
+    },
+    {
+      "name": "separation",
+      "params": 4,
+      "body_bytes": 2593
+    },
+    {
+      "name": "separation",
+      "params": 4,
+      "body_bytes": 989
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 301
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 339
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 63
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 41
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 41
+    },
+    {
+      "name": "separation",
+      "params": 5,
+      "body_bytes": 1617
+    },
+    {
+      "name": "separation",
+      "params": 6,
+      "body_bytes": 323
+    },
+    {
+      "name": "separation",
+      "params": 7,
+      "body_bytes": 305
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 1369
+    },
+    {
+      "name": "separation",
+      "params": 4,
+      "body_bytes": 4733
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 1369
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 1347
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 13029
+    },
+    {
+      "name": "separation",
+      "params": 3,
+      "body_bytes": 3631
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 307
+    },
+    {
+      "name": "separation",
+      "params": 6,
+      "body_bytes": 2607
+    },
+    {
+      "name": "separation",
+      "params": 7,
+      "body_bytes": 2589
+    },
+    {
+      "name": "infinity"
+    },
+    {
+      "name": "separation",
+      "params": 0,
+      "body_bytes": 217
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 25016
+    },
+    {
+      "name": "separation",
+      "params": 4,
+      "body_bytes": 1071
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 9
+    },
+    {
+      "name": "separation",
+      "params": 4,
+      "body_bytes": 2027
+    }
+  ],
+  "stage_order_quantifier_order": [
+    "A",
+    "R"
+  ],
+  "stage_order_premises": [
+    "WO(A,R)"
+  ],
+  "stage_order_conclusion": "exists B,S (Def(A,B) and WO(B,S))",
+  "end_extension_quantifier_order": [
+    "A",
+    "B",
+    "R"
+  ],
+  "end_extension_premises": [
+    "Def(A,B)",
+    "Trans(A)",
+    "WO(A,R)"
+  ],
+  "end_extension_conclusion": "exists T ((WO(B,T) and order restriction to A equals R) and A is an initial segment of B)",
+  "omega_existence_discharged": true,
+  "Def_set_existence_discharged": true,
+  "evaluation_graph_exact": true,
+  "evaluation_functional": true,
+  "evaluation_onto_pinned_Def": true,
+  "order_relation_is_actual_set": true,
+  "pinned_L_unchanged": true,
+  "scope": "ambient ZF construction of a well-order on the exact pinned Def of every supplied well-ordered set, with a transitive-stage successor end-extension",
+  "outside_this_replay": [
+    "coherent canonical histories across all constructible stages",
+    "constructibility of the resulting restricted orders",
+    "exact relativized Choice import",
+    "formal checker soundness"
+  ]
+}

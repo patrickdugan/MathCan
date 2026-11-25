@@ -1,20 +1,25 @@
 # ACE | Axiom choice elimination
 
-Current checkpoint, 2026-11-25: ACE-03V checks the complete finite
-trace-to-syntax construction and its exact equivalence with the pinned
-definable and Def formulas. Every supplied finite valid trace admits
-five actual instruction-field sets satisfying the existing syntax and
-execution formulas. All outer Def witnesses and the full lastSlice
-clause are preserved.
+Current checkpoint, 2026-11-25: ACE-03W constructs an actual well-order
+of the exact pinned Def(A) from a supplied well-order of A. It supplies
+well-ordered finite description carriers, a functional partial evaluator
+with exact definability coverage, and the least-code relation. The
+reserved zero-width description covers the original empty-output branch.
 
-The 32 proof checks cover 31 new statements and one independently
-reproved existing statement, with 87,128 kernel visits and 89 rejection
-controls. The preceding ACE-03U head passed all 56 ACE CI jobs and both
-mathematical check jobs. Natural-number coding, total execution
-existence, the canonical transfinite order history, membership of its
-orders in L, exact relativized Choice import and checker soundness
-remain open.
+The final theorem discharges omega and Def-set existence. For transitive
+A, the successor construction also preserves A's existing comparisons
+and makes A an initial segment of Def(A).
 
+Ten independent family replays passed: 118 proof checks, comprising
+117 new statements and one independently reproved existing statement,
+with 376,400 kernel visits and 382 rejection controls. The preceding
+ACE-03V head passed all 57 ACE CI jobs and both mathematical checks.
+The uniform transfinite history, internal constructibility of its
+restricted orders, exact relativized Choice import, and formal checker
+soundness remain open.
+
+- [ACE-03W mathematical report](ACE03W_DEFINABLE_STAGE_WELL_ORDER.md)
+- [Combined ACE-03W replay receipt and dependency hashes](ace03w_receipt.json)
 - [ACE-03V mathematical report](ACE03V_FINITE_SYNTAX_DECORATION.md)
 - [Combined ACE-03V replay receipt and source hashes](ace03v_receipt.json)
 - [ACE-03U mathematical report](ACE03U_CANONICAL_SYNTAX_TRACES.md)
