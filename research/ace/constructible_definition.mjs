@@ -83,4 +83,168 @@ function definition(prefix="v"){
   };
 }
 
+
+
+function scopeStats(p,k){
+  const out={nodes:0,atoms:0,quantifiers:0,max_binder_depth:0,free_indices:[]};
+  const free=new Set();
+  function rec(p,d){
+    if(!Array.isArray(p))throw Error("non-array formula");
+    out.nodes++;out.max_binder_depth=Math.max(out.max_binder_depth,d);
+    const [op,a,b]=p;
+    if(op==="F"&&p.length===1)return;
+    if((op==="M"||op==="=")&&p.length===3){
+      out.atoms++;
+      for(const i of [a,b]){
+        if(!Number.isSafeInteger(i)||i<0||i>=k+d)throw Error("scope");
+        if(i>=d)free.add(i-d);
+      }
+      return;
+    }
+    if((op==="A"||op==="E")&&p.length===2){out.quantifiers++;rec(a,d+1);return;}
+    if(["&","|",">"].includes(op)&&p.length===3){rec(a,d);rec(b,d);return;}
+    throw Error("unknown grammar");
+  }
+  rec(p,0);out.free_indices=[...free].sort((a,b)=>a-b);return out;
+}
+
+function insistD(x,msg){if(!x)throw Error(msg);}
+
+function rngD(seed){let s=seed>>>0;return n=>{s^=s<<13;s^=s>>>17;s^=s<<5;return (s>>>0)%n;};}
+
+function assignments(m,n){let t=[[]];for(let i=0;i<n;i++)t=t.flatMap(s=>Array.from({length:m},(_,j)=>[...s,j]));return t;}
+
+function generated(r,n,d){
+  const op=d?r(5):r(2);
+  if(op<2)return [op?"mem":"eq",r(n),r(n)];
+  if(op===2)return ["not",generated(r,n,d-1)];
+  if(op===3)return ["and",generated(r,n,d-1),generated(r,n,d-1)];
+  return ["exists",r(n),generated(r,n,d-1)];
+}
+
+function direct(p,s,m,R){
+  const [op,a,b]=p;
+  if(op==="eq")return s[a]===s[b];
+  if(op==="mem")return R[s[a]][s[b]];
+  if(op==="not")return !direct(a,s,m,R);
+  if(op==="and")return direct(a,s,m,R)&&direct(b,s,m,R);
+  if(op==="exists"){for(let x=0;x<m;x++){const v=s.slice();v[a]=x;if(direct(b,v,m,R))return true;}return false;}
+  throw Error("direct op");
+}
+
+function program(p){
+  const steps=[];
+  function emit(p){
+    const [op,a,b]=p;
+    if(op==="eq"||op==="mem")steps.push([op,a,b]);
+    else if(op==="not"){const j=emit(a);steps.push([op,j]);}
+    else if(op==="and"){const j=emit(a),k=emit(b);steps.push([op,j,k]);}
+    else if(op==="exists"){const j=emit(b);steps.push([op,j,a]);}
+    else throw Error("compile op");
+    return steps.length-1;
+  }
+  emit(p);return steps;
+}
+
+function relationProgram(steps,m,n,R){
+  if(!Number.isSafeInteger(n)||n<=0||!Array.isArray(steps)||!steps.length)throw Error("shape");
+  const tuples=assignments(m,n),rows=[];
+  const idx=(x,k)=>Number.isSafeInteger(x)&&x>=0&&x<k;
+  for(let i=0;i<steps.length;i++){
+    const p=steps[i];if(!Array.isArray(p))throw Error("step");
+    const [op,a,b]=p;
+    if((op==="eq"||op==="mem")&&p.length===3&&idx(a,n)&&idx(b,n)){
+      rows.push(tuples.map(s=>op==="eq"?s[a]===s[b]:R[s[a]][s[b]]));
+    }else if(op==="not"&&p.length===2&&idx(a,i)){
+      rows.push(rows[a].map(x=>!x));
+    }else if(op==="and"&&p.length===3&&idx(a,i)&&idx(b,i)){
+      rows.push(rows[a].map((x,j)=>x&&rows[b][j]));
+    }else if(op==="exists"&&p.length===3&&idx(a,i)&&idx(b,n)){
+      rows.push(tuples.map(s=>tuples.some((t,j)=>rows[a][j]&&s.every((x,k)=>k===b||x===t[k]))));
+    }else throw Error("invalid relation step");
+  }
+  return {tuples,truth:rows.at(-1),rows};
+}
+
+function evalAst(p,env,D,R){
+  const [op,a,b]=p;
+  if(op==="F")return false;
+  if(op==="=")return env[a]===env[b];
+  if(op==="M")return R[env[b]].includes(env[a]);
+  if(op==="A")return D.every(x=>evalAst(a,[x,...env],D,R));
+  if(op==="E")return D.some(x=>evalAst(a,[x,...env],D,R));
+  if(op==="&")return evalAst(a,env,D,R)&&evalAst(b,env,D,R);
+  if(op==="|")return evalAst(a,env,D,R)||evalAst(b,env,D,R);
+  if(op===">")return !evalAst(a,env,D,R)||evalAst(b,env,D,R);
+  throw Error("bad AST");
+}
+
+function runD(){
+  const defs=definition(),alpha=definition("fresh");
+  const arity={empty:1,ordinal:1,successor:2,pair:3,omega:1,graph:2,definable:2,Def:2,L:1},formulas={};
+  for(const [name,p] of Object.entries(defs)){
+    insistD(JSON.stringify(p)===JSON.stringify(alpha[name]),"alpha instability "+name);
+    const s=scopeStats(p,arity[name]);
+    insistD(s.free_indices.length===arity[name],"missing free variable "+name);
+    formulas[name]={...s,bytes:JSON.stringify(p).length};
+  }
+  const seeds={};
+  for(const seed of [109,113,127]){
+    const r=rngD(seed),s={programs:0,tuple_truth_checks:0,slice_checks:0,empty_domain_programs:0};
+    for(let j=0;j<128;j++){
+      const m=j%4,n=1+r(3),R=Array.from({length:m},()=>Array.from({length:m},()=>Boolean(r(2))));
+      const p=generated(r,n,4),pr=relationProgram(program(p),m,n,R);
+      for(let i=0;i<pr.tuples.length;i++){
+        insistD(pr.truth[i]===direct(p,pr.tuples[i],m,R),"relational truth mismatch");s.tuple_truth_checks++;
+      }
+      for(const base of pr.tuples){
+        const got=Array.from({length:m},(_,x)=>pr.tuples.some((t,i)=>pr.truth[i]&&t[0]===x&&t.slice(1).every((v,k)=>v===base[k+1])));
+        const want=Array.from({length:m},(_,x)=>direct(p,[x,...base.slice(1)],m,R));
+        insistD(JSON.stringify(got)===JSON.stringify(want),"parameter slice mismatch");s.slice_checks++;
+      }
+      if(!m)s.empty_domain_programs++;s.programs++;
+    }
+    seeds[seed]=s;
+  }
+  // Each subset of finite A of size m<=4 can be defined by a disjunction
+  // of coordinate-zero equalities to parameters. Negation/conjunction
+  // implement disjunction; the empty subset uses a contradiction.
+  let finiteSubsetWitnesses=0;
+  for(let m=1;m<=4;m++){
+    const R=Array.from({length:m},()=>Array(m).fill(false));
+    for(let mask=0;mask<2**m;mask++){
+      const selected=Array.from({length:m},(_,i)=>i).filter(i=>mask>>i&1);
+      const n=1+selected.length,base=[0,...selected];
+      let formula=["not",["eq",0,0]];
+      for(let j=1;j<n;j++)formula=["not",["and",["not",formula],["not",["eq",0,j]]]];
+      // Avoid enumerating all tuples at m=4,n=5 for the largest witness:
+      // the relation engine is still tractable (1024 tuples, no exists).
+      const o=relationProgram(program(formula),m,n,R);
+      const values=Array.from({length:m},(_,x)=>o.tuples.some((t,i)=>o.truth[i]&&t[0]===x&&t.slice(1).every((v,k)=>v===base[k+1])));
+      insistD(values.every((v,i)=>v===Boolean(mask>>i&1)),"finite subset definition");finiteSubsetWitnesses++;
+    }
+  }
+  // Build a transitive hereditarily finite domain from concrete sets.
+  // This tests actual generated pair, successor, ordinal and graph
+  // formulas on known graph objects, not the full L formula.
+  const R=[],ids=new Map();
+  function set(xs){const a=[...new Set(xs)].sort((x,y)=>x-y),key=a.join(",");if(!ids.has(key)){ids.set(key,R.length);R.push(a);}return ids.get(key);}
+  const z=set([]),one=set([z]),two=set([z,one]),three=set([z,one,two]);
+  const kp=(a,b)=>set([set([a]),set([a,b])]);
+  const p00=kp(z,z),p01=kp(z,one),p10=kp(one,z),p11=kp(one,one);
+  const good=set([p01,p10]),partial=set([p01]),nonfunctional=set([p00,p01,p10]),stray=set([p01,p10,z]);
+  const D=R.map((_,i)=>i);
+  let hfChecks=0;
+  function check(name,args,want){const got=evalAst(defs[name],args,D,R);insistD(got===want,"HF "+name+" "+args);hfChecks++;}
+  for(const a of D)check("empty",[a],R[a].length===0);
+  for(const a of [z,one,two,three,p01])check("ordinal",[a],a!==p01);
+  check("successor",[z,one],true);check("successor",[one,two],true);check("successor",[two,three],true);check("successor",[z,two],false);
+  for(const [p,a,b,w] of [[p00,z,z,true],[p01,z,one,true],[p10,one,z,true],[p11,one,one,true],[p01,one,z,false],[z,z,z,false]])check("pair",[p,a,b],w);
+  for(const [g,w] of [[good,true],[partial,false],[nonfunctional,false],[stray,false]])check("graph",[g,two],w);
+  const badPrograms=[[["not",0]],[["exists",0,1]],[["eq",0,3]],[["eq",0,0],["and",0,1]],[["unknown",0,0]],[]];
+  for(const p of badPrograms){let caught=false;try{relationProgram(p,2,2,[[false,false],[false,false]]);}catch(e){caught=true;}insistD(caught,"bad program accepted");}
+  return {experiment:"ACE-03D",scope:"pure membership-language definition generator and finite semantic regressions; no formal ZF adequacy proof",formulas,seeds,finite_subset_witnesses:finiteSubsetWitnesses,hf_domain_size:D.length,hf_checks:hfChecks,invalid_programs_rejected:badPrograms.length,alpha_rename_matches:Object.keys(defs).length};
+}
+
 export { definition };
+console.log(JSON.stringify(runD(),null,2));
