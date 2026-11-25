@@ -1,3 +1,4 @@
+import { pathToFileURL } from "node:url";
 import { definition } from './constructible_definition.mjs';
 import { kernel, same, rejects } from './zf_interface.mjs';
 import { buildE } from './hierarchy_closure.mjs';
@@ -699,5 +700,5 @@ function runI(pinned){
   return {experiment:"ACE-03I",scope:"closed pure set-language derivations of exact ordinal stage recursion; executable ZF checker",proofs:out,independent_goal_checks:Object.keys(goals).length,negative_controls:controls.length,pinned_L_unchanged:true,remaining:"ordinal comparison, constructible pair and union closure, other L axioms, uniform adequacy and checker soundness"};
 }
 
-const pinned=JSON.parse(readFileSync(new URL('./L_formula.json',import.meta.url),'utf8'));
-console.log(JSON.stringify(runI(pinned),null,2));
+export { buildI };
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) console.log(JSON.stringify(runI(JSON.parse(readFileSync(new URL("./L_formula.json",import.meta.url),"utf8"))),null,2));
