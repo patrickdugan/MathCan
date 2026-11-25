@@ -161,6 +161,27 @@ jobs:
           set -euo pipefail
           node research/ace/separation_replay.mjs "$PART" > "/tmp/ace-separation-$PART.json"
           diff -u "research/ace/separation_${PART}_receipt.json" "/tmp/ace-separation-$PART.json"
+  unbounded-separation-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [left, right, selector, omega, limit, base, separation, links]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay modular unbounded Separation certificate
+        shell: bash
+        env:
+          PART: ${{ matrix.part }}
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: |
+          set -euo pipefail
+          node research/ace/unbounded_separation_replay.mjs "$PART" > "/tmp/ace-p-$PART.json"
+          diff -u "research/ace/unbounded_separation_${PART}_receipt.json" "/tmp/ace-p-$PART.json"
   lean-replay:
     runs-on: ubuntu-latest
     steps:
