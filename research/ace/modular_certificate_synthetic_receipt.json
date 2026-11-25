@@ -1,0 +1,155 @@
+{
+  "experiment": "ACE-03Q",
+  "part": "synthetic",
+  "graph": [
+    {
+      "id": "closure.0",
+      "dependencies": 0,
+      "nodes": 11,
+      "guarded": true
+    },
+    {
+      "id": "closure.1",
+      "dependencies": 0,
+      "nodes": 7,
+      "guarded": true
+    },
+    {
+      "id": "closure.2",
+      "dependencies": 0,
+      "nodes": 24,
+      "guarded": true
+    },
+    {
+      "id": "generic.extensionality",
+      "dependencies": 0,
+      "nodes": 40,
+      "guarded": true
+    },
+    {
+      "id": "cert.extensionality",
+      "dependencies": 2,
+      "nodes": 3,
+      "guarded": true
+    },
+    {
+      "id": "generic.empty",
+      "dependencies": 0,
+      "nodes": 12,
+      "guarded": true
+    },
+    {
+      "id": "cert.empty",
+      "dependencies": 2,
+      "nodes": 3,
+      "guarded": true
+    },
+    {
+      "id": "generic.union",
+      "dependencies": 0,
+      "nodes": 46,
+      "guarded": true
+    },
+    {
+      "id": "cert.union",
+      "dependencies": 3,
+      "nodes": 5,
+      "guarded": true
+    },
+    {
+      "id": "generic.foundation",
+      "dependencies": 0,
+      "nodes": 31,
+      "guarded": true
+    },
+    {
+      "id": "cert.foundation",
+      "dependencies": 2,
+      "nodes": 3,
+      "guarded": true
+    }
+  ],
+  "cases": {
+    "conjunction": {
+      "source_nodes": 3,
+      "direct_target_nodes": 106,
+      "modular_target_nodes": 3,
+      "conditional_nodes": 7,
+      "cut_nodes": 9
+    },
+    "duplicate_leaf": {
+      "source_nodes": 3,
+      "direct_target_nodes": 43,
+      "modular_target_nodes": 3,
+      "conditional_nodes": 7,
+      "cut_nodes": 9
+    },
+    "open_axiom": {
+      "source_nodes": 3,
+      "direct_target_nodes": 46,
+      "modular_target_nodes": 3,
+      "conditional_nodes": 7,
+      "cut_nodes": 9
+    },
+    "local_under_binders": {
+      "source_nodes": 7,
+      "direct_target_nodes": 28,
+      "modular_target_nodes": 8,
+      "conditional_nodes": 12,
+      "cut_nodes": 9
+    },
+    "existential_branch": {
+      "source_nodes": 6,
+      "direct_target_nodes": 113,
+      "modular_target_nodes": 10,
+      "conditional_nodes": 14,
+      "cut_nodes": 9
+    },
+    "disjunction_branch": {
+      "source_nodes": 10,
+      "direct_target_nodes": 50,
+      "modular_target_nodes": 10,
+      "conditional_nodes": 14,
+      "cut_nodes": 9
+    },
+    "equality_substitution": {
+      "source_nodes": 5,
+      "direct_target_nodes": 25,
+      "modular_target_nodes": 5,
+      "conditional_nodes": 9,
+      "cut_nodes": 9
+    },
+    "classical": {
+      "source_nodes": 5,
+      "direct_target_nodes": 25,
+      "modular_target_nodes": 5,
+      "conditional_nodes": 9,
+      "cut_nodes": 9
+    },
+    "universal_elimination": {
+      "source_nodes": 2,
+      "direct_target_nodes": 87,
+      "modular_target_nodes": 4,
+      "conditional_nodes": 8,
+      "cut_nodes": 9
+    },
+    "existential_introduction": {
+      "source_nodes": 4,
+      "direct_target_nodes": 26,
+      "modular_target_nodes": 6,
+      "conditional_nodes": 10,
+      "cut_nodes": 9
+    },
+    "empty_context_no_axioms": {
+      "source_nodes": 2,
+      "direct_target_nodes": 3,
+      "modular_target_nodes": 3,
+      "conditional_nodes": 7,
+      "cut_nodes": 9
+    }
+  },
+  "exact_comparisons": 24,
+  "negative_controls": 21,
+  "pinned_L_unchanged": true,
+  "scope": "singleton-empty-class graph and arbitrary source-rule regression"
+}
