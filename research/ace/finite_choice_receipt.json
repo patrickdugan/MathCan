@@ -1,0 +1,52 @@
+{
+  "experiment": "ACE-01",
+  "scope": "synthetic finite relation; not ZF/ZFC",
+  "exhaustive": {
+    "instances": 689,
+    "satisfiable": 445,
+    "unsatisfiable": 244,
+    "accepted_targets": 445,
+    "rejected_sources": 244,
+    "negative_controls": 6480,
+    "source_probes": 2882,
+    "search_probes": 1924,
+    "target_probes": 1242
+  },
+  "stress": {
+    "109": {
+      "instances": 64,
+      "satisfiable": 48,
+      "unsatisfiable": 16,
+      "accepted_targets": 48,
+      "rejected_sources": 16,
+      "negative_controls": 672,
+      "source_probes": 14965,
+      "search_probes": 13289,
+      "target_probes": 1834
+    },
+    "113": {
+      "instances": 64,
+      "satisfiable": 48,
+      "unsatisfiable": 16,
+      "accepted_targets": 48,
+      "rejected_sources": 16,
+      "negative_controls": 672,
+      "source_probes": 15145,
+      "search_probes": 12092,
+      "target_probes": 1522
+    },
+    "127": {
+      "instances": 64,
+      "satisfiable": 48,
+      "unsatisfiable": 16,
+      "accepted_targets": 48,
+      "rejected_sources": 16,
+      "negative_controls": 672,
+      "source_probes": 18311,
+      "search_probes": 15958,
+      "target_probes": 1625
+    }
+  },
+  "malformed_instance_rejections": 12,
+  "accounting": "relation-validation overhead excluded from predicate probes; source and search charged separately"
+}
