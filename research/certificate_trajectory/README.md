@@ -45,3 +45,7 @@ From the repository root:
     python research/certificate_trajectory/cts11/reproduce.py
 
 The benchmark uses a private SciPy HiGHS interface and the pinned environment. The raw files produced by reproduction should not be treated as identical in byte-level timing fields. See the original report for the full workload, overflow envelope and solver scope.
+
+## CTS-12 update
+
+[Symbolic factor snapshots](cts12/README.md) implements the proposed lazy materialization with an exact solver-input envelope and cached affine vertex map. The original source and audit are byte-identical to the sandbox files. Across 24 synthetic roots, 442 of 1,152 factor updates skip timed-path RHS materialization; all 6,144 policy records agree on exact objective values and replay identically excluding timing. Run `cd research/certificate_trajectory/cts12 && PYTHONPATH=../cts11 python reproduce.py` to regenerate raw results, summaries, audit and replay. The archive manifest includes dependencies in CTS-11 and larger raw records omitted from Git. The timing evidence is descriptive, with independent fixture reconstruction outside the measured policy path.
