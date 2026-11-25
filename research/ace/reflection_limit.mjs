@@ -1,5 +1,5 @@
 import { kernel, same, scoped, rejects } from './zf_interface.mjs';
-function buildLimit(defs,prior,stages,ranks,clauses,nextFormula,strictProof,limitProof,only=null){
+function buildLimit(defs,prior,stages,ranks,clauses,nextFormula,strictProof,limitProof,only=null,composition=null){
   let serial=0;
   const fresh=()=>`q${serial++}`,M=(a,b)=>["M",a,b],Q=(a,b)=>["=",a,b],F=["F"],I=(p,q)=>[">",p,q],C=(p,q)=>["&",p,q],N=p=>I(p,F);
   const bind=(op,f)=>{const x=fresh();return [op,x,f(x)];};
@@ -203,5 +203,38 @@ function buildLimit(defs,prior,stages,ranks,clauses,nextFormula,strictProof,limi
     });
   })));
   const proofs={successor_closed_range_limit:unionLimit,range_implies_reflecting_stage:rangeReflect};
+  if(composition){
+    const {canonical,range,omegaExists,omegaOrdinal,transport,formula,arity}=composition;
+    const can=imported(canonical),rng=imported(range),ox=imported(omegaExists),oo=imported(omegaOrdinal);
+    const Omega=w=>form("omega",w);
+    const stepTotal=ui(a=>ii(Ord(a),oa=>open(app(ue(can,a),oa),(b,bp)=>{
+      const ob=al(app(us(strict,a,b),al(bp)));
+      const goal=E(b=>C(C(Ord(b),Next(a,b)),A(c=>I(Next(a,c),Q(c,b)))));
+      return ei(goal,b,ai(ai(ob,al(bp)),ar(bp)));
+    })));
+    const reflecting=use(stepTotal,total=>use(app(rng,total),rangeEx=>use(rangeReflect,reflect=>{
+      return ui(a=>ii(Ord(a),oa=>open(ox,(w,ow)=>{
+        const ordw=app(ue(oo,w),ow);
+        return open(app(us(rangeEx,a,w),oa,ow,ordw),(R,rg)=>app(us(reflect,a,R),rg));
+      })));
+    })));
+    Object.assign(proofs,{canonical_step_total:stepTotal,closed_reflecting_stage:reflecting});
+    if(transport){
+      const tv=imported(transport),sm=imported(stages.stage_members_constructible);
+      function restrict(p,guard){const [op,a,b]=p;if(op==="A")return [op,a,I(guard(a),restrict(b,guard))];if(op==="E")return [op,a,C(guard(a),restrict(b,guard))];if(["&","|",">"].includes(op))return [op,restrict(a,guard),restrict(b,guard)];return p;}
+      function agreement(r,ps=[]){if(ps.length===arity){const f=named(formula,ps);return B(restrict(f,x=>M(x,r)),restrict(f,L));}return A(x=>I(M(x,r),agreement(r,[...ps,x])));}
+      const transported=use(reflecting,re=>use(tv,tv0=>ui(a=>ii(Ord(a),oa=>{
+        return open(app(ue(re,a),oa),(l,lp)=>open(lp,(r,rp)=>{
+          const ol0=al(al(al(rp))),rw=ar(al(al(rp))),al0=ar(al(rp)),cs=split(ar(rp),clauses.length);
+          const inc=app(us(sm,l,r),ol0,rw);
+          const eq=app(app(ue(tv0,r),inc),...cs);
+          const goal=E(l=>E(r=>C(C(C(Ord(l),W(l,r)),M(a,l)),agreement(r))));
+          return ei(goal,l,ei(replace(goal[2],goal[1],l),r,ai(ai(ai(ol0,rw),al0),eq)));
+        }));
+      }))));
+      Object.assign(proofs,{fixed_formula_reflection:transported});
+    }
+  }
+
   return {proofs:Object.fromEntries(Object.entries(proofs).filter(([n])=>only===null||only.includes(n)).map(([n,p])=>[n,{goal:db(p.goal,[]),proof:p.emit([],[])}]))};
 }
