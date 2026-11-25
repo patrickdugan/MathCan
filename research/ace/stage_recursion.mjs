@@ -608,6 +608,39 @@ function buildI(defs,prior,finite,extended=false){
       }))));
     })))));
     Object.assign(proofs,{ordinal_successor:ordinalSucc,binary_union_exists:binaryUnionExists,ordinal_binary_union:ordinalUnion,ordinal_stage_value_transitive:ordinalValueTrans,ordinal_stage_value_monotone:ordinalValueMono,common_constructible_stage:lCommon,successor_stage_def:successorDef,definable_subset_constructible:definableConstructible});
+    if(finite.pair_definable&&finite.union_definable){
+      const pairD=imported(finite.pair_definable),unionD=imported(finite.union_definable);
+      const pairClosure=use(lCommon,cm=>use(definableConstructible,dc=>use(pairD,pd=>{
+        return qs(2,(x,y)=>ii(C(form("L",x),form("L",y)),lxly=>{
+          const ex=app(us(cm,x,y),al(lxly),ar(lxly));
+          return open(ex,(c,cp)=>open(cp,(r,rp)=>{
+            const oc=al(al(al(rp))),rw=ar(al(al(rp))),xr=al(ar(rp)),yr=ar(ar(rp));
+            return withSetPair(x,y,(p,pp)=>{
+              const dp=app(us(pd,r,x,y,p),xr,yr,pp);
+              const lp=app(us(dc,c,r,p),oc,rw,dp);
+              const goal=E(z=>C(form("L",z),form("unordered",z,x,y)));
+              return ei(goal,p,ai(lp,pp));
+            });
+          }));
+        }));
+      })));
+      const unionClosure=use(ordinalValueTrans,ot=>use(definableConstructible,dc=>use(unionD,ud=>{
+        return ui(x=>ii(form("L",x),lx=>{
+          return unpackL(x,lx,(a,r,oa,rw,xr)=>{
+            const tr=app(us(ot,a,r),oa,rw);
+            return withUnion(x,(p,pp)=>{
+              const dp=app(us(ud,r,x,p),tr,xr,pp);
+              const lp=app(us(dc,a,r,p),oa,rw,dp);
+              const spec=(x,p)=>A(z=>B(M(z,p),E(y=>C(M(y,x),M(z,y)))));
+              const goal=E(p=>C(form("L",p),spec(x,p)));
+              return ei(goal,p,ai(lp,pp));
+            });
+          });
+        }));
+      })));
+      Object.assign(proofs,{constructible_pair_closure:pairClosure,constructible_union_closure:unionClosure});
+    }
+
   }
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
