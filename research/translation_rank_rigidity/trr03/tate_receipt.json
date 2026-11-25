@@ -1,0 +1,66 @@
+{
+  "arithmetic": "sparse integer polynomials and cross-multiplied rational functions; standard library only",
+  "exact_identity_assertions": 77,
+  "exact_identity_assertions_by_family": {
+    "order11": 25,
+    "order5": 27,
+    "order7": 25
+  },
+  "finite_fixture": {
+    "addition_table_pairs_checked": 121,
+    "assertions": 139,
+    "discriminant": 14,
+    "feature_ranks": {
+      "3": 9,
+      "4": 10
+    },
+    "field": 23,
+    "minimum_separate_decoder_degree_for_every_pole_value": 4,
+    "positive_points": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        5,
+        19
+      ],
+      [
+        21,
+        19
+      ],
+      [
+        22,
+        22
+      ]
+    ],
+    "positive_ratios": [
+      13,
+      8,
+      0,
+      19,
+      2
+    ],
+    "positive_residues": [
+      16,
+      9,
+      15,
+      6,
+      21
+    ],
+    "subgroup_order": 11,
+    "tate_b": 1,
+    "tate_c": 5
+  },
+  "order11_exceptional_locus_status": "unresolved; symbolic setup and one nonexceptional fixture verified",
+  "schema": "trr03-tate-certificates-v1",
+  "source_sha256": {
+    "order11_system.json": "b6d2b4f50f19a2533830dfdc20ec7d24fb3b8a65101fdab8ed46608960bfd269",
+    "order7_certificate.json": "5462c6c0e884edf5daba0e6e95a0ddbdf87fb8a8eaf2a9b867760c76c56e6843"
+  },
+  "verifier_sha256": "3d8b73293369f1c31436adff3e815fa65e1549d30501eb99ea4f1a09b9f852f5"
+}

@@ -1,0 +1,663 @@
+{
+  "additive_total_degree": [
+    {
+      "bound": 2,
+      "field_prime": 7,
+      "group_dimension": 2,
+      "group_order": 49,
+      "homogeneous_coefficients": [
+        {
+          "coefficient": 6,
+          "exponent": [
+            0,
+            1
+          ]
+        }
+      ],
+      "rank": 2,
+      "total_degree": 1,
+      "trials": 1
+    },
+    {
+      "bound": 4,
+      "field_prime": 7,
+      "group_dimension": 2,
+      "group_order": 49,
+      "homogeneous_coefficients": [
+        {
+          "coefficient": 2,
+          "exponent": [
+            0,
+            2
+          ]
+        },
+        {
+          "coefficient": 3,
+          "exponent": [
+            1,
+            1
+          ]
+        },
+        {
+          "coefficient": 4,
+          "exponent": [
+            2,
+            0
+          ]
+        }
+      ],
+      "rank": 4,
+      "total_degree": 2,
+      "trials": 1
+    },
+    {
+      "bound": 6,
+      "field_prime": 7,
+      "group_dimension": 2,
+      "group_order": 49,
+      "homogeneous_coefficients": [
+        {
+          "coefficient": 1,
+          "exponent": [
+            0,
+            3
+          ]
+        },
+        {
+          "coefficient": 4,
+          "exponent": [
+            2,
+            1
+          ]
+        },
+        {
+          "coefficient": 3,
+          "exponent": [
+            3,
+            0
+          ]
+        }
+      ],
+      "rank": 6,
+      "total_degree": 3,
+      "trials": 1
+    },
+    {
+      "bound": 9,
+      "field_prime": 7,
+      "group_dimension": 2,
+      "group_order": 49,
+      "homogeneous_coefficients": [
+        {
+          "coefficient": 1,
+          "exponent": [
+            0,
+            4
+          ]
+        },
+        {
+          "coefficient": 5,
+          "exponent": [
+            1,
+            3
+          ]
+        },
+        {
+          "coefficient": 3,
+          "exponent": [
+            2,
+            2
+          ]
+        },
+        {
+          "coefficient": 6,
+          "exponent": [
+            3,
+            1
+          ]
+        }
+      ],
+      "rank": 9,
+      "total_degree": 4,
+      "trials": 1
+    },
+    {
+      "bound": 12,
+      "field_prime": 7,
+      "group_dimension": 2,
+      "group_order": 49,
+      "homogeneous_coefficients": [
+        {
+          "coefficient": 2,
+          "exponent": [
+            0,
+            5
+          ]
+        },
+        {
+          "coefficient": 4,
+          "exponent": [
+            1,
+            4
+          ]
+        },
+        {
+          "coefficient": 3,
+          "exponent": [
+            2,
+            3
+          ]
+        },
+        {
+          "coefficient": 6,
+          "exponent": [
+            3,
+            2
+          ]
+        },
+        {
+          "coefficient": 6,
+          "exponent": [
+            4,
+            1
+          ]
+        }
+      ],
+      "rank": 12,
+      "total_degree": 5,
+      "trials": 1
+    },
+    {
+      "bound": 2,
+      "field_prime": 5,
+      "group_dimension": 3,
+      "group_order": 125,
+      "homogeneous_coefficients": [
+        {
+          "coefficient": 4,
+          "exponent": [
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "coefficient": 2,
+          "exponent": [
+            0,
+            1,
+            0
+          ]
+        }
+      ],
+      "rank": 2,
+      "total_degree": 1,
+      "trials": 1
+    },
+    {
+      "bound": 5,
+      "field_prime": 5,
+      "group_dimension": 3,
+      "group_order": 125,
+      "homogeneous_coefficients": [
+        {
+          "coefficient": 1,
+          "exponent": [
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "coefficient": 2,
+          "exponent": [
+            0,
+            2,
+            0
+          ]
+        },
+        {
+          "coefficient": 3,
+          "exponent": [
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "coefficient": 2,
+          "exponent": [
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": 1,
+          "exponent": [
+            2,
+            0,
+            0
+          ]
+        }
+      ],
+      "rank": 5,
+      "total_degree": 2,
+      "trials": 2
+    },
+    {
+      "bound": 8,
+      "field_prime": 5,
+      "group_dimension": 3,
+      "group_order": 125,
+      "homogeneous_coefficients": [
+        {
+          "coefficient": 2,
+          "exponent": [
+            0,
+            0,
+            3
+          ]
+        },
+        {
+          "coefficient": 2,
+          "exponent": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "coefficient": 2,
+          "exponent": [
+            0,
+            2,
+            1
+          ]
+        },
+        {
+          "coefficient": 4,
+          "exponent": [
+            0,
+            3,
+            0
+          ]
+        },
+        {
+          "coefficient": 2,
+          "exponent": [
+            1,
+            0,
+            2
+          ]
+        },
+        {
+          "coefficient": 2,
+          "exponent": [
+            1,
+            2,
+            0
+          ]
+        },
+        {
+          "coefficient": 4,
+          "exponent": [
+            2,
+            0,
+            1
+          ]
+        },
+        {
+          "coefficient": 3,
+          "exponent": [
+            2,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": 3,
+          "exponent": [
+            3,
+            0,
+            0
+          ]
+        }
+      ],
+      "rank": 8,
+      "total_degree": 3,
+      "trials": 1
+    },
+    {
+      "bound": 14,
+      "field_prime": 5,
+      "group_dimension": 3,
+      "group_order": 125,
+      "homogeneous_coefficients": [
+        {
+          "coefficient": 4,
+          "exponent": [
+            0,
+            3,
+            1
+          ]
+        },
+        {
+          "coefficient": 3,
+          "exponent": [
+            0,
+            4,
+            0
+          ]
+        },
+        {
+          "coefficient": 4,
+          "exponent": [
+            1,
+            0,
+            3
+          ]
+        },
+        {
+          "coefficient": 1,
+          "exponent": [
+            1,
+            1,
+            2
+          ]
+        },
+        {
+          "coefficient": 4,
+          "exponent": [
+            1,
+            2,
+            1
+          ]
+        },
+        {
+          "coefficient": 2,
+          "exponent": [
+            1,
+            3,
+            0
+          ]
+        },
+        {
+          "coefficient": 4,
+          "exponent": [
+            2,
+            0,
+            2
+          ]
+        },
+        {
+          "coefficient": 3,
+          "exponent": [
+            2,
+            1,
+            1
+          ]
+        },
+        {
+          "coefficient": 1,
+          "exponent": [
+            2,
+            2,
+            0
+          ]
+        },
+        {
+          "coefficient": 3,
+          "exponent": [
+            3,
+            0,
+            1
+          ]
+        },
+        {
+          "coefficient": 4,
+          "exponent": [
+            3,
+            1,
+            0
+          ]
+        },
+        {
+          "coefficient": 2,
+          "exponent": [
+            4,
+            0,
+            0
+          ]
+        }
+      ],
+      "rank": 14,
+      "total_degree": 4,
+      "trials": 2
+    }
+  ],
+  "arithmetic": "exact prime-field elimination and binary XOR elimination",
+  "binary_exhaustive": [
+    {
+      "field_prime": 2,
+      "group_dimension": 3,
+      "group_order": 8,
+      "maximizing_word": 68,
+      "maximum_translation_rank": 4,
+      "polynomial_count": 128,
+      "rank_histogram": {
+        "0": 1,
+        "1": 1,
+        "2": 14,
+        "4": 112
+      },
+      "total_degree": 2,
+      "total_degree_bound": 5
+    },
+    {
+      "field_prime": 2,
+      "group_dimension": 4,
+      "group_order": 16,
+      "maximizing_word": 13664,
+      "maximum_translation_rank": 6,
+      "polynomial_count": 2048,
+      "rank_histogram": {
+        "0": 1,
+        "1": 1,
+        "2": 30,
+        "4": 1120,
+        "6": 896
+      },
+      "total_degree": 2,
+      "total_degree_bound": 6
+    },
+    {
+      "field_prime": 2,
+      "group_dimension": 4,
+      "group_order": 16,
+      "maximizing_word": 16448,
+      "maximum_translation_rank": 8,
+      "polynomial_count": 32768,
+      "rank_histogram": {
+        "0": 1,
+        "1": 1,
+        "2": 30,
+        "4": 1120,
+        "6": 896,
+        "8": 30720
+      },
+      "total_degree": 3,
+      "total_degree_bound": 10
+    }
+  ],
+  "counts": {
+    "additive_examples": 9,
+    "cyclic_decoder_pairs": 56600,
+    "cyclic_examples": 8,
+    "exhaustive_binary_polynomials": 34944
+  },
+  "cyclic_separate_degree": [
+    {
+      "degree_per_block": 4,
+      "exponent_weights": [
+        1
+      ],
+      "field_prime": 29,
+      "group_order": 7,
+      "largest_exponent": 4,
+      "latent_dimension": 1,
+      "monomial_bound": 5,
+      "rank": 5,
+      "root": 16,
+      "total_degree": 8,
+      "verified_pairs": 49
+    },
+    {
+      "degree_per_block": 2,
+      "exponent_weights": [
+        1,
+        3
+      ],
+      "field_prime": 53,
+      "group_order": 13,
+      "largest_exponent": 6,
+      "latent_dimension": 2,
+      "monomial_bound": 6,
+      "rank": 6,
+      "root": 16,
+      "total_degree": 4,
+      "verified_pairs": 169
+    },
+    {
+      "degree_per_block": 4,
+      "exponent_weights": [
+        1,
+        5
+      ],
+      "field_prime": 47,
+      "group_order": 23,
+      "largest_exponent": 20,
+      "latent_dimension": 2,
+      "monomial_bound": 15,
+      "rank": 15,
+      "root": 4,
+      "total_degree": 8,
+      "verified_pairs": 529
+    },
+    {
+      "degree_per_block": 2,
+      "exponent_weights": [
+        1,
+        3,
+        9
+      ],
+      "field_prime": 311,
+      "group_order": 31,
+      "largest_exponent": 18,
+      "latent_dimension": 3,
+      "monomial_bound": 10,
+      "rank": 10,
+      "root": 91,
+      "total_degree": 4,
+      "verified_pairs": 961
+    },
+    {
+      "degree_per_block": 3,
+      "exponent_weights": [
+        1,
+        4,
+        16
+      ],
+      "field_prime": 367,
+      "group_order": 61,
+      "largest_exponent": 48,
+      "latent_dimension": 3,
+      "monomial_bound": 20,
+      "rank": 20,
+      "root": 64,
+      "total_degree": 6,
+      "verified_pairs": 3721
+    },
+    {
+      "degree_per_block": 2,
+      "exponent_weights": [
+        1,
+        3,
+        9,
+        27
+      ],
+      "field_prime": 367,
+      "group_order": 61,
+      "largest_exponent": 54,
+      "latent_dimension": 4,
+      "monomial_bound": 15,
+      "rank": 15,
+      "root": 64,
+      "total_degree": 4,
+      "verified_pairs": 3721
+    },
+    {
+      "degree_per_block": 3,
+      "exponent_weights": [
+        1,
+        4,
+        16,
+        64
+      ],
+      "field_prime": 773,
+      "group_order": 193,
+      "largest_exponent": 192,
+      "latent_dimension": 4,
+      "monomial_bound": 35,
+      "rank": 35,
+      "root": 16,
+      "total_degree": 6,
+      "verified_pairs": 37249
+    },
+    {
+      "degree_per_block": 4,
+      "exponent_weights": [
+        1,
+        5,
+        25
+      ],
+      "field_prime": 607,
+      "group_order": 101,
+      "largest_exponent": 100,
+      "latent_dimension": 3,
+      "monomial_bound": 35,
+      "rank": 35,
+      "root": 64,
+      "total_degree": 8,
+      "verified_pairs": 10201
+    }
+  ],
+  "rational_cauchy": [
+    {
+      "a": 2,
+      "denominator_total_degree": 2,
+      "field_prime": 29,
+      "group_order": 7,
+      "latent_dimension_per_block": 1,
+      "rank": 7
+    },
+    {
+      "a": 2,
+      "denominator_total_degree": 2,
+      "field_prime": 53,
+      "group_order": 13,
+      "latent_dimension_per_block": 1,
+      "rank": 13
+    },
+    {
+      "a": 5,
+      "denominator_total_degree": 2,
+      "field_prime": 47,
+      "group_order": 23,
+      "latent_dimension_per_block": 1,
+      "rank": 23
+    }
+  ],
+  "schema": "strategy-v-decoder-sharpness-v1",
+  "source_sha256": "b6d6149e2625485b9fc5e29de4e647a512d13426129ca7495506b0d6286333aa"
+}

@@ -1,15 +1,17 @@
-name: TRR-01 translation rank rigidity
+name: TRR-01 to TRR-03 translation rank
 
 on:
   pull_request:
     paths:
       - 'MathCan/TranslationRankRigidity.lean'
+      - 'MathCan/TranslationPolynomialDecoder.lean'
       - 'research/translation_rank_rigidity/**'
       - '.github/workflows/trr01-translation-rank.yml'
   push:
     branches: [main]
     paths:
       - 'MathCan/TranslationRankRigidity.lean'
+      - 'MathCan/TranslationPolynomialDecoder.lean'
       - 'research/translation_rank_rigidity/**'
   workflow_dispatch:
 
@@ -28,7 +30,11 @@ jobs:
         run: |
           python research/translation_rank_rigidity/verify_rigidity.py
           python research/translation_rank_rigidity/trr02/verify_min_rank.py
-          git diff --exit-code -- research/translation_rank_rigidity/receipt.json research/translation_rank_rigidity/trr02/receipt.json
+          python research/translation_rank_rigidity/trr03/verify_decoder_sharpness.py
+          python research/translation_rank_rigidity/trr03/elliptic_decoder_probe.py
+          python research/translation_rank_rigidity/trr03/elliptic_ratio_exhaust.py --maxp 101
+          python research/translation_rank_rigidity/trr03/verify_tate_certificates.py --write-receipt
+          git diff --exit-code -- research/translation_rank_rigidity/receipt.json research/translation_rank_rigidity/trr02/receipt.json research/translation_rank_rigidity/trr03/*receipt.json
       - uses: leanprover/lean-action@v1
         with:
           auto-config: false
@@ -36,15 +42,18 @@ jobs:
           test: false
           lint: false
           use-mathlib-cache: false
-      - name: Check candidate and transitive axioms
+      - name: Check kernel proofs and transitive axioms
         shell: bash
         run: |
           set -euo pipefail
           lake env lean MathCan/TranslationRankRigidity.lean | tee trr01-axioms.txt
-          if grep -Eq 'sorryAx|ofReduceBool' trr01-axioms.txt; then
+          lake env lean MathCan/TranslationPolynomialDecoder.lean | tee trr03-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' trr01-axioms.txt trr03-axioms.txt; then
             exit 1
           fi
       - uses: actions/upload-artifact@v4
         with:
-          name: trr01-axioms
-          path: trr01-axioms.txt
+          name: trr01-trr03-axioms
+          path: |
+            trr01-axioms.txt
+            trr03-axioms.txt

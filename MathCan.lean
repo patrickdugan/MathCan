@@ -158,3 +158,4 @@ import MathCan.RHSplitTorusCharacter
 import MathCan.RHCyclicExtension
 import MathCan.DCFDecision
 import MathCan.TranslationRankRigidity
+import MathCan.TranslationPolynomialDecoder

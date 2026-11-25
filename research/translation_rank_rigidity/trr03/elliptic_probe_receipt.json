@@ -1,0 +1,4746 @@
+{
+  "counts": {
+    "curves": 54,
+    "fields": 19,
+    "full_groups_of_characteristic_order": 12
+  },
+  "profiles": [
+    {
+      "N": 7,
+      "a": 2,
+      "b": 1,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          5,
+          false
+        ],
+        [
+          3,
+          6,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "5": 2,
+        "7": 4
+      },
+      "min_total_degree_per_block": 3,
+      "p": 5,
+      "rank": 5
+    },
+    {
+      "N": 13,
+      "a": 0,
+      "b": 3,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          11,
+          false
+        ],
+        [
+          5,
+          12,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "13": 12
+      },
+      "min_total_degree_per_block": 5,
+      "p": 7,
+      "rank": 12
+    },
+    {
+      "N": 7,
+      "a": 0,
+      "b": 5,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          5,
+          false
+        ],
+        [
+          3,
+          6,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "7": 6
+      },
+      "min_total_degree_per_block": 3,
+      "p": 7,
+      "rank": 3
+    },
+    {
+      "N": 11,
+      "a": 1,
+      "b": 6,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          10,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "11": 10
+      },
+      "min_total_degree_per_block": 4,
+      "p": 7,
+      "rank": 10
+    },
+    {
+      "N": 11,
+      "a": 1,
+      "b": 5,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          10,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "11": 10
+      },
+      "min_total_degree_per_block": 4,
+      "p": 11,
+      "rank": 10
+    },
+    {
+      "N": 13,
+      "a": 1,
+      "b": 6,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          11,
+          false
+        ],
+        [
+          5,
+          12,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "13": 12
+      },
+      "min_total_degree_per_block": 5,
+      "p": 11,
+      "rank": 12
+    },
+    {
+      "N": 17,
+      "a": 2,
+      "b": 4,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          16,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "15": 4,
+        "17": 12
+      },
+      "min_total_degree_per_block": 6,
+      "p": 11,
+      "rank": 16
+    },
+    {
+      "N": 7,
+      "a": 2,
+      "b": 7,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          5,
+          false
+        ],
+        [
+          3,
+          6,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "7": 6
+      },
+      "min_total_degree_per_block": 3,
+      "p": 11,
+      "rank": 6
+    },
+    {
+      "N": 19,
+      "a": 0,
+      "b": 2,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          17,
+          false
+        ],
+        [
+          7,
+          18,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "19": 18
+      },
+      "min_total_degree_per_block": 7,
+      "p": 13,
+      "rank": 18
+    },
+    {
+      "N": 7,
+      "a": 0,
+      "b": 6,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          5,
+          false
+        ],
+        [
+          3,
+          6,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "7": 6
+      },
+      "min_total_degree_per_block": 3,
+      "p": 13,
+      "rank": 6
+    },
+    {
+      "N": 13,
+      "a": 1,
+      "b": 6,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          11,
+          false
+        ],
+        [
+          5,
+          12,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "11": 2,
+        "13": 10
+      },
+      "min_total_degree_per_block": 5,
+      "p": 13,
+      "rank": 12
+    },
+    {
+      "N": 17,
+      "a": 2,
+      "b": 4,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          16,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "15": 2,
+        "17": 14
+      },
+      "min_total_degree_per_block": 6,
+      "p": 13,
+      "rank": 16
+    },
+    {
+      "N": 17,
+      "a": 1,
+      "b": 3,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          16,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "17": 16
+      },
+      "min_total_degree_per_block": 6,
+      "p": 17,
+      "rank": 16
+    },
+    {
+      "N": 19,
+      "a": 2,
+      "b": 2,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          17,
+          false
+        ],
+        [
+          7,
+          18,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "17": 2,
+        "19": 16
+      },
+      "min_total_degree_per_block": 7,
+      "p": 17,
+      "rank": 18
+    },
+    {
+      "N": 11,
+      "a": 2,
+      "b": 6,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          10,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "11": 10
+      },
+      "min_total_degree_per_block": 4,
+      "p": 17,
+      "rank": 10
+    },
+    {
+      "N": 23,
+      "a": 3,
+      "b": 5,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          22,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "23": 22
+      },
+      "min_total_degree_per_block": 8,
+      "p": 17,
+      "rank": 22
+    },
+    {
+      "N": 13,
+      "a": 0,
+      "b": 2,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          11,
+          false
+        ],
+        [
+          5,
+          12,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "13": 12
+      },
+      "min_total_degree_per_block": 5,
+      "p": 19,
+      "rank": 12
+    },
+    {
+      "N": 19,
+      "a": 1,
+      "b": 4,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          17,
+          false
+        ],
+        [
+          7,
+          18,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "17": 2,
+        "19": 16
+      },
+      "min_total_degree_per_block": 7,
+      "p": 19,
+      "rank": 18
+    },
+    {
+      "N": 29,
+      "a": 1,
+      "b": 4,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          28,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "27": 2,
+        "29": 26
+      },
+      "min_total_degree_per_block": 10,
+      "p": 23,
+      "rank": 28
+    },
+    {
+      "N": 31,
+      "a": 4,
+      "b": 1,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          29,
+          false
+        ],
+        [
+          11,
+          30,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "31": 30
+      },
+      "min_total_degree_per_block": 11,
+      "p": 29,
+      "rank": 30
+    },
+    {
+      "N": 43,
+      "a": 0,
+      "b": 3,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          41,
+          false
+        ],
+        [
+          15,
+          42,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "41": 6,
+        "43": 36
+      },
+      "min_total_degree_per_block": 15,
+      "p": 31,
+      "rank": 42
+    },
+    {
+      "N": 41,
+      "a": 1,
+      "b": 3,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          40,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "41": 40
+      },
+      "min_total_degree_per_block": 14,
+      "p": 31,
+      "rank": 40
+    },
+    {
+      "N": 31,
+      "a": 4,
+      "b": 4,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          29,
+          false
+        ],
+        [
+          11,
+          30,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "31": 30
+      },
+      "min_total_degree_per_block": 11,
+      "p": 31,
+      "rank": 30
+    },
+    {
+      "N": 23,
+      "a": 4,
+      "b": 7,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          22,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "23": 22
+      },
+      "min_total_degree_per_block": 8,
+      "p": 31,
+      "rank": 22
+    },
+    {
+      "N": 37,
+      "a": 0,
+      "b": 5,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          35,
+          false
+        ],
+        [
+          13,
+          36,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "37": 36
+      },
+      "min_total_degree_per_block": 13,
+      "p": 37,
+      "rank": 33
+    },
+    {
+      "N": 43,
+      "a": 3,
+      "b": 7,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          41,
+          false
+        ],
+        [
+          15,
+          42,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "41": 2,
+        "43": 40
+      },
+      "min_total_degree_per_block": 15,
+      "p": 37,
+      "rank": 42
+    },
+    {
+      "N": 47,
+      "a": 1,
+      "b": 5,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          46,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "45": 2,
+        "47": 44
+      },
+      "min_total_degree_per_block": 16,
+      "p": 41,
+      "rank": 46
+    },
+    {
+      "N": 37,
+      "a": 2,
+      "b": 6,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          35,
+          false
+        ],
+        [
+          13,
+          36,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "35": 2,
+        "37": 34
+      },
+      "min_total_degree_per_block": 13,
+      "p": 41,
+      "rank": 36
+    },
+    {
+      "N": 53,
+      "a": 4,
+      "b": 4,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          52,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "51": 2,
+        "53": 50
+      },
+      "min_total_degree_per_block": 18,
+      "p": 41,
+      "rank": 52
+    },
+    {
+      "N": 31,
+      "a": 0,
+      "b": 7,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          29,
+          false
+        ],
+        [
+          11,
+          30,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "29": 6,
+        "31": 24
+      },
+      "min_total_degree_per_block": 11,
+      "p": 43,
+      "rank": 30
+    },
+    {
+      "N": 47,
+      "a": 1,
+      "b": 3,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          46,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "47": 46
+      },
+      "min_total_degree_per_block": 16,
+      "p": 43,
+      "rank": 46
+    },
+    {
+      "N": 37,
+      "a": 1,
+      "b": 5,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          35,
+          false
+        ],
+        [
+          13,
+          36,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "37": 36
+      },
+      "min_total_degree_per_block": 13,
+      "p": 43,
+      "rank": 36
+    },
+    {
+      "N": 43,
+      "a": 3,
+      "b": 6,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          41,
+          false
+        ],
+        [
+          15,
+          42,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "43": 42
+      },
+      "min_total_degree_per_block": 15,
+      "p": 43,
+      "rank": 42
+    },
+    {
+      "N": 59,
+      "a": 1,
+      "b": 4,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          54,
+          false
+        ],
+        [
+          19,
+          57,
+          false
+        ],
+        [
+          20,
+          58,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "59": 58
+      },
+      "min_total_degree_per_block": 20,
+      "p": 47,
+      "rank": 58
+    },
+    {
+      "N": 61,
+      "a": 3,
+      "b": 5,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          54,
+          false
+        ],
+        [
+          19,
+          57,
+          false
+        ],
+        [
+          20,
+          59,
+          false
+        ],
+        [
+          21,
+          60,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "61": 60
+      },
+      "min_total_degree_per_block": 21,
+      "p": 47,
+      "rank": 60
+    },
+    {
+      "N": 41,
+      "a": 4,
+      "b": 2,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          40,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "39": 4,
+        "41": 36
+      },
+      "min_total_degree_per_block": 14,
+      "p": 47,
+      "rank": 40
+    },
+    {
+      "N": 59,
+      "a": 2,
+      "b": 1,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          54,
+          false
+        ],
+        [
+          19,
+          57,
+          false
+        ],
+        [
+          20,
+          58,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "59": 58
+      },
+      "min_total_degree_per_block": 20,
+      "p": 53,
+      "rank": 58
+    },
+    {
+      "N": 43,
+      "a": 4,
+      "b": 4,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          41,
+          false
+        ],
+        [
+          15,
+          42,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "43": 42
+      },
+      "min_total_degree_per_block": 15,
+      "p": 53,
+      "rank": 42
+    },
+    {
+      "N": 53,
+      "a": 4,
+      "b": 7,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          52,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "53": 52
+      },
+      "min_total_degree_per_block": 18,
+      "p": 53,
+      "rank": 52
+    },
+    {
+      "N": 73,
+      "a": 3,
+      "b": 3,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          54,
+          false
+        ],
+        [
+          19,
+          57,
+          false
+        ],
+        [
+          20,
+          60,
+          false
+        ],
+        [
+          21,
+          63,
+          false
+        ],
+        [
+          22,
+          66,
+          false
+        ],
+        [
+          23,
+          69,
+          false
+        ],
+        [
+          24,
+          71,
+          false
+        ],
+        [
+          25,
+          72,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "71": 2,
+        "73": 70
+      },
+      "min_total_degree_per_block": 25,
+      "p": 59,
+      "rank": 72
+    },
+    {
+      "N": 61,
+      "a": 0,
+      "b": 2,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          54,
+          false
+        ],
+        [
+          19,
+          57,
+          false
+        ],
+        [
+          20,
+          59,
+          false
+        ],
+        [
+          21,
+          60,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "61": 60
+      },
+      "min_total_degree_per_block": 21,
+      "p": 61,
+      "rank": 57
+    },
+    {
+      "N": 59,
+      "a": 2,
+      "b": 5,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          54,
+          false
+        ],
+        [
+          19,
+          57,
+          false
+        ],
+        [
+          20,
+          58,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "59": 58
+      },
+      "min_total_degree_per_block": 20,
+      "p": 61,
+      "rank": 58
+    },
+    {
+      "N": 67,
+      "a": 3,
+      "b": 3,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          54,
+          false
+        ],
+        [
+          19,
+          57,
+          false
+        ],
+        [
+          20,
+          60,
+          false
+        ],
+        [
+          21,
+          63,
+          false
+        ],
+        [
+          22,
+          65,
+          false
+        ],
+        [
+          23,
+          66,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "67": 66
+      },
+      "min_total_degree_per_block": 23,
+      "p": 61,
+      "rank": 65
+    },
+    {
+      "N": 73,
+      "a": 0,
+      "b": 2,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          54,
+          false
+        ],
+        [
+          19,
+          57,
+          false
+        ],
+        [
+          20,
+          60,
+          false
+        ],
+        [
+          21,
+          63,
+          false
+        ],
+        [
+          22,
+          66,
+          false
+        ],
+        [
+          23,
+          69,
+          false
+        ],
+        [
+          24,
+          71,
+          false
+        ],
+        [
+          25,
+          72,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "73": 72
+      },
+      "min_total_degree_per_block": 25,
+      "p": 67,
+      "rank": 72
+    },
+    {
+      "N": 79,
+      "a": 0,
+      "b": 7,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          54,
+          false
+        ],
+        [
+          19,
+          57,
+          false
+        ],
+        [
+          20,
+          60,
+          false
+        ],
+        [
+          21,
+          63,
+          false
+        ],
+        [
+          22,
+          66,
+          false
+        ],
+        [
+          23,
+          69,
+          false
+        ],
+        [
+          24,
+          72,
+          false
+        ],
+        [
+          25,
+          75,
+          false
+        ],
+        [
+          26,
+          77,
+          false
+        ],
+        [
+          27,
+          78,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "77": 6,
+        "79": 72
+      },
+      "min_total_degree_per_block": 27,
+      "p": 67,
+      "rank": 78
+    },
+    {
+      "N": 53,
+      "a": 3,
+      "b": 5,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          52,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "53": 52
+      },
+      "min_total_degree_per_block": 18,
+      "p": 67,
+      "rank": 52
+    },
+    {
+      "N": 61,
+      "a": 4,
+      "b": 4,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          54,
+          false
+        ],
+        [
+          19,
+          57,
+          false
+        ],
+        [
+          20,
+          59,
+          false
+        ],
+        [
+          21,
+          60,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "61": 60
+      },
+      "min_total_degree_per_block": 21,
+      "p": 67,
+      "rank": 60
+    },
+    {
+      "N": 59,
+      "a": 4,
+      "b": 7,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          54,
+          false
+        ],
+        [
+          19,
+          57,
+          false
+        ],
+        [
+          20,
+          58,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "59": 58
+      },
+      "min_total_degree_per_block": 20,
+      "p": 67,
+      "rank": 58
+    },
+    {
+      "N": 59,
+      "a": 1,
+      "b": 1,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          54,
+          false
+        ],
+        [
+          19,
+          57,
+          false
+        ],
+        [
+          20,
+          58,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "57": 4,
+        "59": 54
+      },
+      "min_total_degree_per_block": 20,
+      "p": 71,
+      "rank": 58
+    },
+    {
+      "N": 71,
+      "a": 4,
+      "b": 6,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          54,
+          false
+        ],
+        [
+          19,
+          57,
+          false
+        ],
+        [
+          20,
+          60,
+          false
+        ],
+        [
+          21,
+          63,
+          false
+        ],
+        [
+          22,
+          66,
+          false
+        ],
+        [
+          23,
+          69,
+          false
+        ],
+        [
+          24,
+          70,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "71": 70
+      },
+      "min_total_degree_per_block": 24,
+      "p": 71,
+      "rank": 70
+    },
+    {
+      "N": 97,
+      "a": 0,
+      "b": 3,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          54,
+          false
+        ],
+        [
+          19,
+          57,
+          false
+        ],
+        [
+          20,
+          60,
+          false
+        ],
+        [
+          21,
+          63,
+          false
+        ],
+        [
+          22,
+          66,
+          false
+        ],
+        [
+          23,
+          69,
+          false
+        ],
+        [
+          24,
+          72,
+          false
+        ],
+        [
+          25,
+          75,
+          false
+        ],
+        [
+          26,
+          78,
+          false
+        ],
+        [
+          27,
+          81,
+          false
+        ],
+        [
+          28,
+          84,
+          false
+        ],
+        [
+          29,
+          87,
+          false
+        ],
+        [
+          30,
+          90,
+          false
+        ],
+        [
+          31,
+          93,
+          false
+        ],
+        [
+          32,
+          95,
+          false
+        ],
+        [
+          33,
+          96,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "97": 96
+      },
+      "min_total_degree_per_block": 33,
+      "p": 79,
+      "rank": 96
+    },
+    {
+      "N": 67,
+      "a": 0,
+      "b": 6,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          54,
+          false
+        ],
+        [
+          19,
+          57,
+          false
+        ],
+        [
+          20,
+          60,
+          false
+        ],
+        [
+          21,
+          63,
+          false
+        ],
+        [
+          22,
+          65,
+          false
+        ],
+        [
+          23,
+          66,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "67": 66
+      },
+      "min_total_degree_per_block": 23,
+      "p": 79,
+      "rank": 66
+    },
+    {
+      "N": 71,
+      "a": 2,
+      "b": 5,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          54,
+          false
+        ],
+        [
+          19,
+          57,
+          false
+        ],
+        [
+          20,
+          60,
+          false
+        ],
+        [
+          21,
+          63,
+          false
+        ],
+        [
+          22,
+          66,
+          false
+        ],
+        [
+          23,
+          69,
+          false
+        ],
+        [
+          24,
+          70,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "69": 2,
+        "71": 68
+      },
+      "min_total_degree_per_block": 24,
+      "p": 79,
+      "rank": 70
+    },
+    {
+      "N": 79,
+      "a": 2,
+      "b": 6,
+      "degree_profile": [
+        [
+          0,
+          1,
+          false
+        ],
+        [
+          1,
+          3,
+          false
+        ],
+        [
+          2,
+          6,
+          false
+        ],
+        [
+          3,
+          9,
+          false
+        ],
+        [
+          4,
+          12,
+          false
+        ],
+        [
+          5,
+          15,
+          false
+        ],
+        [
+          6,
+          18,
+          false
+        ],
+        [
+          7,
+          21,
+          false
+        ],
+        [
+          8,
+          24,
+          false
+        ],
+        [
+          9,
+          27,
+          false
+        ],
+        [
+          10,
+          30,
+          false
+        ],
+        [
+          11,
+          33,
+          false
+        ],
+        [
+          12,
+          36,
+          false
+        ],
+        [
+          13,
+          39,
+          false
+        ],
+        [
+          14,
+          42,
+          false
+        ],
+        [
+          15,
+          45,
+          false
+        ],
+        [
+          16,
+          48,
+          false
+        ],
+        [
+          17,
+          51,
+          false
+        ],
+        [
+          18,
+          54,
+          false
+        ],
+        [
+          19,
+          57,
+          false
+        ],
+        [
+          20,
+          60,
+          false
+        ],
+        [
+          21,
+          63,
+          false
+        ],
+        [
+          22,
+          66,
+          false
+        ],
+        [
+          23,
+          69,
+          false
+        ],
+        [
+          24,
+          72,
+          false
+        ],
+        [
+          25,
+          75,
+          false
+        ],
+        [
+          26,
+          77,
+          false
+        ],
+        [
+          27,
+          78,
+          true
+        ]
+      ],
+      "min_poles_hist": {
+        "79": 78
+      },
+      "min_total_degree_per_block": 27,
+      "p": 79,
+      "rank": 78
+    }
+  ],
+  "schema": "trr03-affine-degree-profiles-v1",
+  "source_sha256": "c30412ebb62e5ce6620fa414cae1ca7aa23b42e3a86e4fad941a7ef8556c7e54"
+}
