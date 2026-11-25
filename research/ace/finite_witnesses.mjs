@@ -436,7 +436,7 @@ function buildF(defs,extended=false){
   const proofs={pair_exists:pairExists,pair_injective:pairInjective,binary_graph_exists:binaryGraph,unary_graph_exists:unaryGraph,omega_exists:omegaExists,finite_ordinals:finiteOrdinals,membership_relation_exists:relationExists,atomic_member_definable:atomicDef,def_inflation:defInflation};
 
 
-  if(extended==="relations"||extended==="infinity"||extended==="power"){
+  if(extended==="relations"||extended==="infinity"||extended==="power"||(extended&&typeof extended==="object"&&extended.mode==="compiler")){
     function withAnd(p,q,fn){
       const x=fresh(),spec={name:"separation",params:1,body:db(M(x,q),[x,q])};
       return open(us(ax(spec),q,p),(r,rp)=>fn(r,rp));
@@ -829,6 +829,199 @@ function buildF(defs,extended=false){
     }))))));
     Object.assign(proofs,{equality_relation_exists:eqExists,negation_relation_exists:negExists,intersection_relation_exists:andExists,existential_relation_exists:exExists,foundation_no_self:noSelf,value_in_domain:valDomain,graph_append_exists:appendExists,ternary_tuple_exists:tuple3,pair_definable:pairDefinable,union_definable:unionDefinable});
 
+
+    if(extended&&typeof extended==="object"&&extended.mode==="compiler"){
+      const {formula,params}=extended;
+      function well(p,k){
+        if(!Array.isArray(p))return false;const [op,a,b]=p;
+        if(op==="F")return p.length===1;
+        if(op==="="||op==="M")return p.length===3&&[a,b].every(i=>Number.isSafeInteger(i)&&i>=0&&i<k);
+        if(op==="A"||op==="E")return p.length===2&&well(a,k+1);
+        return ["&","|",">"].includes(op)&&p.length===3&&well(a,k)&&well(b,k);
+      }
+      if(!Number.isInteger(params)||params<0||params>3||!well(formula,params+1))throw Error("compiler scope/arity");
+      const instructions=[];let width=params+1;
+      function emit(op,...args){instructions.push([op,...args]);return instructions.length-1;}
+      function lower(p,env,depth=0){
+        const [op,a,b]=p,t={p,env,op};
+        if(op==="F")t.idx=emit("neg",emit("eq",0,0));
+        else if(op==="M"||op==="=")t.idx=emit(op==="M"?"mem":"eq",env[a],env[b]);
+        else if(op==="A"||op==="E"){
+          const slot=params+1+depth;width=Math.max(width,slot+1);t.slot=slot;
+          t.child=lower(a,[slot,...env],depth+1);
+          t.idx=op==="E"?emit("exists",t.child.idx,slot):emit("neg",emit("exists",emit("neg",t.child.idx),slot));
+        }else{
+          t.left=lower(a,env,depth);t.right=lower(b,env,depth);
+          const i=t.left.idx,j=t.right.idx;
+          t.idx=op==="&"?emit("and",i,j):op==="|"?emit("neg",emit("and",emit("neg",i),emit("neg",j))):emit("neg",emit("and",i,emit("neg",j)));
+        }
+        return t;
+      }
+      const tree=lower(formula,Array.from({length:params+1},(_,i)=>i)),k=width,m=instructions.length;
+      if(k>6||m>16)throw Error("compiler finite resource cap");
+      function changed(vs,i,x){return vs.map((v,j)=>j===i?x:v);}
+      function sem(j,a,vals){
+        const [op,i,l]=instructions[j];
+        if(op==="eq")return Q(vals[i],vals[l]);
+        if(op==="mem")return M(vals[i],vals[l]);
+        if(op==="neg")return N(sem(i,a,vals));
+        if(op==="and")return C(sem(i,a,vals),sem(l,a,vals));
+        if(op==="exists")return E(v=>C(M(v,a),sem(i,a,changed(vals,l,v))));
+        throw Error("semantic opcode");
+      }
+      function restrictN(p,a){const [o,x,y]=p;if(o==="A")return [o,x,I(M(x,a),restrictN(y,a))];if(o==="E")return [o,x,C(M(x,a),restrictN(y,a))];if(["&","|",">"].includes(o))return [o,restrictN(x,a),restrictN(y,a)];return p;}
+      function local(t,a,vals){return restrictN(named(t.p,t.env.map(i=>vals[i])),a);}
+      // Check exact local formula equivalence to the instruction semantics.
+      function bridge(t,a,vals){
+        const orig=local(t,a,vals),norm=sem(t.idx,a,vals),op=t.op;
+        if(op==="M"||op==="=")return ai(ii(orig,p=>p),ii(norm,p=>p));
+        if(op==="F")return ai(ii(orig,p=>fe(p,norm)),ii(norm,p=>app(p,ref(vals[0]))));
+        if(op==="A"||op==="E"){
+          const child=(v)=>bridge(t.child,a,changed(vals,t.slot,v));
+          if(op==="E"){
+            return ai(ii(orig,p=>open(p,(v,vp)=>ei(norm,v,ai(al(vp),app(al(child(v)),ar(vp)))))),
+              ii(norm,p=>open(p,(v,vp)=>ei(orig,v,ai(al(vp),app(ar(child(v)),ar(vp)))))));
+          }
+          const fw=ii(orig,p=>ii(norm[1],bad=>open(bad,(v,vp)=>{
+            return app(ar(vp),app(al(child(v)),app(ue(p,v),al(vp))));
+          })));
+          const bw=ii(norm,p=>ui(v=>ii(M(v,a),va=>{
+            const g=local(t.child,a,changed(vals,t.slot,v));
+            return dn(ii(N(g),ng=>{
+              const ns=ii(sem(t.child.idx,a,changed(vals,t.slot,v)),q=>app(ng,app(ar(child(v)),q)));
+              return app(p,ei(norm[1],v,ai(va,ns)));
+            }));
+          })));
+          return ai(fw,bw);
+        }
+        return use(bridge(t.left,a,vals),l=>use(bridge(t.right,a,vals),r=>{
+          if(op==="&")return ai(ii(orig,p=>ai(app(al(l),al(p)),app(al(r),ar(p)))),ii(norm,p=>ai(app(ar(l),al(p)),app(ar(r),ar(p)))));
+          if(op==="|"){
+            const fw=ii(orig,p=>ii(norm[1],bad=>oe(p,F,x=>app(al(bad),app(al(l),x)),y=>app(ar(bad),app(al(r),y)))));
+            const bw=ii(norm,p=>dn(ii(N(orig),no=>{
+              const nl=ii(sem(t.left.idx,a,vals),x=>app(no,ol(app(ar(l),x),orig[2])));
+              const nr=ii(sem(t.right.idx,a,vals),y=>app(no,or(orig[1],app(ar(r),y))));
+              return app(p,ai(nl,nr));
+            })));
+            return ai(fw,bw);
+          }
+          const fw=ii(orig,p=>ii(norm[1],bad=>app(ar(bad),app(al(r),app(p,app(ar(l),al(bad)))))));
+          const bw=ii(norm,p=>ii(orig[1],x=>dn(ii(N(orig[2]),ny=>{
+            const nr=ii(sem(t.right.idx,a,vals),y=>app(ny,app(ar(r),y)));
+            return app(p,ai(app(al(l),x),nr));
+          }))));
+          return ai(fw,bw);
+        }));
+      }
+      function tupleProofs(ns,a,s,st,vals,ins,vs,fn){
+        if(vals.length===k)return fn(vals,ins,vs);
+        const i=vals.length;
+        return open(app(ue(ar(st),ns.values[i]),ns.mem(i,k)),(v,p)=>tupleProofs(ns,a,s,st,[...vals,v],[...ins,al(p)],[...vs,ar(p)],fn));
+      }
+      function withKnown(ns,a,s,st,vals,ins,vs,fn){
+        if(vals.length===k)return fn(vals,ins,vs);
+        const i=vals.length;
+        return ui(v=>ii(M(v,a),va=>ii(Val(s,ns.values[i],v),sv=>withKnown(ns,a,s,st,[...vals,v],[...ins,va],[...vs,sv],fn))));
+      }
+      function instantiate(p,s,st,vals,ins,vs){
+        let q=app(ue(p,s),st);
+        for(let i=0;i<k;i++)q=app(ue(q,vals[i]),ins[i],vs[i]);
+        return q;
+      }
+      function relationTheorems(ns,a,rs,rps,ap,nsf,fn){
+        function loop(j,types,truths){
+          if(j===m)return fn(types,truths);
+          const [op,i,l]=instructions[j],r=rs[j],rp=rps[j];
+          const type=ui(s=>ii(M(s,r),sr=>{
+            const p=from(rp,s,sr);
+            return op==="and"?app(ue(types[i],s),al(p)):al(p);
+          }));
+          const theorem=ui(s=>ii(form("tuple",s,ns.values[k],a),st=>withKnown(ns,a,s,st,[],[],[],(vals,ins,vs)=>{
+            const goal=sem(j,a,vals);
+            if(op==="eq"||op==="mem"){
+              const o=op==="eq"?Q:M;
+              return ai(ii(M(s,r),p=>atomElim(ns,k,s,i,l,vals[i],vals[l],st,vs[i],vs[l],p,rp,o)),
+                ii(goal,p=>atomIntro(ns,k,s,i,l,vals[i],vals[l],st,ins[i],ins[l],vs[i],vs[l],p,rp)));
+            }
+            if(op==="neg"){
+              const ch=instantiate(truths[i],s,st,vals,ins,vs);
+              return ai(ii(M(s,r),p=>ii(goal[1],q=>app(ar(from(rp,s,p)),app(ar(ch),q)))),
+                ii(goal,p=>into(rp,s,ai(st,ii(M(s,rs[i]),q=>app(p,app(al(ch),q)))))));
+            }
+            if(op==="and"){
+              const cl=instantiate(truths[i],s,st,vals,ins,vs),cr=instantiate(truths[l],s,st,vals,ins,vs);
+              return ai(ii(M(s,r),p=>{const both=from(rp,s,p);return ai(app(al(cl),al(both)),app(al(cr),ar(both)));}),
+                ii(goal,p=>into(rp,s,ai(app(ar(cl),al(p)),app(ar(cr),ar(p))))));
+            }
+            const fw=ii(M(s,r),p=>open(ar(from(rp,s,p)),(t,tp)=>{
+              const tt=app(ue(types[i],t),al(tp)),agree=ar(tp);
+              return open(app(ue(ar(tt),ns.values[l]),ns.mem(l,k)),(v,vp)=>{
+                const tv=vals.map((x,c)=>c===l?ar(vp):agreementValue(ns,k,l,c,s,t,agree,x,vs[c],nsf,true));
+                const vls=changed(vals,l,v),is=changed(ins,l,al(vp));
+                const ch=instantiate(truths[i],t,tt,vls,is,tv);
+                return ei(goal,v,ai(al(vp),app(al(ch),al(tp))));
+              });
+            }));
+            const bw=ii(goal,p=>open(p,(v,vp)=>{
+              const vls=changed(vals,l,v),is=changed(ins,l,al(vp));
+              return withFiniteTuple(ns,a,vls,is,ap,(t,tt,tv)=>{
+                const ch=instantiate(truths[i],t,tt,vls,is,tv);
+                const tr=app(ar(ch),ar(vp)),ag=agreeKnown(ns,k,l,s,t,st,tt,vals,vs,tv,nsf);
+                const ex=ar(ue(rp,s)).goal[1][2];
+                return into(rp,s,ai(st,ei(ex,t,ai(tr,ag))));
+              });
+            }));
+            return ai(fw,bw);
+          })));
+          return use(type,ty=>use(theorem,th=>loop(j+1,[...types,ty],[...truths,th])));
+        }
+        return loop(0,[],[]);
+      }
+      function localAt(a,u,ps){return restrictN(named(formula,[u,...ps]),a);}
+      const specSet=(a,p,ps)=>A(u=>B(M(u,p),C(M(u,a),localAt(a,u,ps))));
+      function compiledDef(ns,a,p,ps,pms,seed,seedMem,pp,ap,nsf,rels){
+        return withProgram(ns,a,k,instructions,ap,rels,(f,valid,rs,rps,vs)=>{
+          return relationTheorems(ns,a,rs,rps,ap,nsf,(types,truths)=>{
+            const base=[seed,...ps,...Array(k-params-1).fill(seed)],baseIn=[seedMem,...pms,...Array(k-params-1).fill(seedMem)];
+            return withFiniteTuple(ns,a,base,baseIn,ap,(b,bt,bv)=>{
+              const slice=ui(u=>{
+                const target=form("slice",p,rs[m-1],a,ns.values[k],ns.values[0],b),g=replace(target[2],target[1],u),witness=g[1][2][2];
+                const left=ii(M(u,p),up=>{
+                  const cond=from(pp,u,up),ua=al(cond),loc=ar(cond),vals=changed(base,0,u),ins=changed(baseIn,0,ua);
+                  return withFiniteTuple(ns,a,vals,ins,ap,(s,st,sv)=>{
+                    const br=bridge(tree,a,vals),eq=instantiate(truths[m-1],s,st,vals,ins,sv);
+                    const sr=app(ar(eq),app(al(br),loc)),ag=agreeKnown(ns,k,0,s,b,st,bt,vals,sv,bv,nsf);
+                    return ai(ua,ei(witness,s,ai(sr,ai(sv[0],ag))));
+                  });
+                });
+                const right=ii(g[2][1],q=>open(ar(q),(s,sw)=>{
+                  const sr=al(sw),s0=al(ar(sw)),ag=ar(ar(sw)),st=app(ue(types[m-1],s),sr);
+                  const vals=changed(base,0,u),ins=changed(baseIn,0,al(q));
+                  const sv=[s0,...base.slice(1).map((v,i)=>agreementValue(ns,k,0,i+1,s,b,ag,v,bv[i+1],nsf,false))];
+                  const eq=instantiate(truths[m-1],s,st,vals,ins,sv),br=bridge(tree,a,vals);
+                  return into(pp,u,ai(al(q),app(ar(br),app(al(eq),sr))));
+                }));
+                return ai(left,right);
+              });
+              return finishDef(ns,a,p,k,m,f,valid,rs,vs,b,bt,slice);
+            });
+          });
+        });
+      }
+      function bindParams(a,ps,ms,fn){return ps.length===params?fn(ps,ms):ui(v=>ii(M(v,a),va=>bindParams(a,[...ps,v],[...ms,va],fn)));}
+      const generalDef=use(omegaExists,ow=>use(appendExists,ap=>use(noSelf,nsf=>use(relationExists,mem=>use(eqExists,eq=>use(negExists,neg=>use(andExists,and=>use(exExists,exists=>{
+        return ui(a=>bindParams(a,[],[],(ps,pms)=>ui(p=>ii(specSet(a,p,ps),pp=>{
+          const some=E(x=>M(x,a)),goal=D(a,p);
+          function solve(seed,seedMem){return withNats(ow,Math.max(k,m),ns=>compiledDef(ns,a,p,ps,pms,seed,seedMem,pp,ap,nsf,{mem,eq,neg,and,exists}));}
+          if(params>0)return solve(ps[0],pms[0]);
+          return oe(classical(some),goal,yes=>open(yes,solve),no=>{
+            const empty=ui(x=>ii(M(x,p),xp=>app(no,ei(some,x,al(from(pp,x,xp))))));
+            return ol(empty,goal[2]);
+          });
+        }))));
+      }))))))));
+      Object.assign(proofs,{compiled_formula_definable:generalDef});
+    }
     if(extended==="power"){
       const subsetInstructions=[["mem",2,0],["mem",2,1],["neg",1],["and",0,2],["exists",3,2],["neg",4]];
       const relativePower=(a,x,p)=>A(y=>B(M(y,p),C(M(y,a),subset(y,x))));
