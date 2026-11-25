@@ -1,0 +1,46 @@
+{
+  "proofs": {
+    "equality_relation_exists": {
+      "nodes": 204,
+      "proof_bytes": 39415
+    },
+    "negation_relation_exists": {
+      "nodes": 202,
+      "proof_bytes": 27585
+    },
+    "intersection_relation_exists": {
+      "nodes": 8,
+      "proof_bytes": 313
+    },
+    "existential_relation_exists": {
+      "nodes": 204,
+      "proof_bytes": 50704
+    },
+    "foundation_no_self": {
+      "nodes": 56,
+      "proof_bytes": 630
+    },
+    "value_in_domain": {
+      "nodes": 243,
+      "proof_bytes": 4831
+    },
+    "graph_append_exists": {
+      "nodes": 876,
+      "proof_bytes": 45395
+    },
+    "ternary_tuple_exists": {
+      "nodes": 1252,
+      "proof_bytes": 92566
+    },
+    "pair_definable": {
+      "nodes": 3488,
+      "proof_bytes": 1265951
+    },
+    "union_definable": {
+      "nodes": 3516,
+      "proof_bytes": 1053851
+    }
+  },
+  "independent_goal_checks": 2,
+  "negative_controls": 2
+}
