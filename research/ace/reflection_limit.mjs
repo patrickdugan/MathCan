@@ -1,5 +1,5 @@
 import { kernel, same, scoped, rejects } from './zf_interface.mjs';
-function buildLimit(defs,prior,stages,ranks,clauses,nextFormula,strictProof,limitProof,only=null){
+function buildLimit(defs,prior,stages,ranks,clauses,nextFormula,strictProof,limitProof,only=null,shareImports=false){
   let serial=0;
   const fresh=()=>`q${serial++}`,M=(a,b)=>["M",a,b],Q=(a,b)=>["=",a,b],F=["F"],I=(p,q)=>[">",p,q],C=(p,q)=>["&",p,q],N=p=>I(p,F);
   const bind=(op,f)=>{const x=fresh();return [op,x,f(x)];};
@@ -101,8 +101,9 @@ function buildLimit(defs,prior,stages,ranks,clauses,nextFormula,strictProof,limi
 
 
   if(!scoped(nextFormula,2,false)||!Array.isArray(clauses)||!clauses.length)throw Error("bad limit input");
-  const strict=imported(strictProof),ou=imported(ranks.ordinal_family_union),nc=imported(prior.no_two_cycle);
-  const ov=imported(stages.ordinal_stage_value_exists),mono=imported(stages.ordinal_stage_value_monotone),uniq=imported(stages.ordinal_stage_value_unique),compare=imported(ranks.ordinal_comparison),limMem=imported(limitProof);
+  const depSpecs=[strictProof,ranks.ordinal_family_union,prior.no_two_cycle,stages.ordinal_stage_value_exists,stages.ordinal_stage_value_monotone,stages.ordinal_stage_value_unique,ranks.ordinal_comparison,limitProof,stages.ordinal_member];
+  function makeProofs(deps){
+  const [strict,ou,nc,ov,mono,uniq,compare,limMem,ordMember]=deps;
   const Next=(a,b)=>named(nextFormula,[b,a]),L=x=>form("L",x),W=(a,r)=>E(d=>C(Succ(a,d),E(f=>C(SG(f,d),Val(f,a,r)))));
   const noPred=l=>N(E(i=>C(M(i,l),Succ(i,l))));
   const rangeGood=(a,R)=>C(C(A(v=>I(M(v,R),Ord(v))),M(a,R)),A(v=>I(M(v,R),E(r=>C(M(r,R),Next(v,r))))));
@@ -145,7 +146,7 @@ function buildLimit(defs,prior,stages,ranks,clauses,nextFormula,strictProof,limi
         const il=al(ip),tw=al(tp),xt=ar(tp);
         return open(from(un,i,il),(d,dp)=>{
           const dR=al(dp),id=ar(dp),od=app(ue(ords,d),dR);
-          const oi=app(us(imported(stages.ordinal_member),l,i),al(al(al(lf))),il);
+          const oi=app(us(ordMember,l,i),al(al(al(lf))),il);
           return open(app(ue(ov,d),od),(u,uw)=>{
             const tu=app(us(mono,i,d,t,u),oi,od,tw,uw,id),xu=app(ue(tu,x),xt);
             const goal=E(b=>E(s=>C(C(C(Ord(b),M(b,R)),W(b,s)),conj(ps.slice(0,j+1).map(v=>M(v,s))))));
@@ -202,7 +203,12 @@ function buildLimit(defs,prior,stages,ranks,clauses,nextFormula,strictProof,limi
       });
     });
   })));
-  const proofs={successor_closed_range_limit:unionLimit,range_implies_reflecting_stage:rangeReflect};
+  return {successor_closed_range_limit:unionLimit,range_implies_reflecting_stage:rangeReflect};
+  }
+  const available=depSpecs.map(imported);
+  function bindImports(i,ps,fn){return i===available.length?fn(ps):use(available[i],p=>bindImports(i+1,[...ps,p],fn));}
+  const names=["successor_closed_range_limit","range_implies_reflecting_stage"].filter(n=>only===null||only.includes(n));
+  const proofs=shareImports?Object.fromEntries(names.map(n=>[n,bindImports(0,[],ps=>makeProofs(ps)[n])])):makeProofs(available);
   return {proofs:Object.fromEntries(Object.entries(proofs).filter(([n])=>only===null||only.includes(n)).map(([n,p])=>[n,{goal:db(p.goal,[]),proof:p.emit([],[])}]))};
 }
 
