@@ -1,0 +1,55 @@
+{
+  "experiment": "ACE-03S",
+  "part": "base",
+  "spec": {
+    "name": "replacement",
+    "params": 0,
+    "body": [
+      "A",
+      [
+        ">",
+        [
+          "M",
+          2,
+          0
+        ],
+        [
+          "M",
+          1,
+          0
+        ]
+      ]
+    ]
+  },
+  "checks": [
+    {
+      "id": "omega.exists",
+      "nodes": 136,
+      "dependencies": [],
+      "goal_bytes": 447
+    },
+    {
+      "id": "omega.ordinal",
+      "nodes": 394,
+      "dependencies": [],
+      "goal_bytes": 589
+    },
+    {
+      "id": "stage.members",
+      "nodes": 27,
+      "dependencies": [],
+      "goal_bytes": 106659
+    },
+    {
+      "id": "transport",
+      "nodes": 122,
+      "dependencies": [],
+      "goal_bytes": 213729
+    }
+  ],
+  "exact_node_goals": 4,
+  "negative_controls": 0,
+  "translation": null,
+  "pinned_L_unchanged": true,
+  "scope": "split checked node proofs and exact interfaces for fixed unbounded Replacement; full streamed importer is a separate replay"
+}
