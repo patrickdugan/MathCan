@@ -68,6 +68,22 @@ conversion. This is a public finite extrapolation study. The rule selecting
 a short lattice point remains empirical; realizable branch words require
 further dynamical constraints.
 
+The [tail audit](data/pilot_diagnostics.json) records severe failures:
+
+| Evaluation error statistic | Slope-six lattice | Fitted size baseline |
+| --- | ---: | ---: |
+| Median relative absolute error | 3.677% | 49.903% |
+| Mean relative absolute error | 234.603% | 99.825% |
+| 90th percentile, nearest rank | 414.932% | 220.780% |
+| Largest relative absolute error | 32,250% | 1,805.439% |
+
+At d=4093, the lattice rule predicts 5,176 against a median unit-cycle period
+of 16. The exact family d=2^a-3 has an odd fixed point at 1 with
+(u,A,r)=(1,a,1). For a>=11, the primary slope band excludes that real cycle.
+The [proof](FAILURE_FAMILY.md) establishes an incompleteness of the selection
+rule. Typical-period accuracy and severe tail failures are both part of the
+result. A robust predictor needs a new design and fresh evaluation.
+
 - [Primary results and fitted coefficients](data/resonance_pilot.json)
 - [All 1,365 development/evaluation rows](data/resonance_pilot.csv)
 - [Post-result arithmetic controls](data/pilot_controls.json)
@@ -110,6 +126,7 @@ python3 -m research.collatz_resonance.audit_reference \
 cmp /tmp/collatz-verification.json research/collatz_resonance/data/verification.json
 python3 -m research.collatz_resonance.resonance_pilot
 python3 -m research.collatz_resonance.pilot_controls
+python3 -m research.collatz_resonance.pilot_diagnostics --check
 lake env lean MathCan/CollatzResonance.lean
 ```
 

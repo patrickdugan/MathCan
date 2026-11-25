@@ -1,0 +1,186 @@
+{
+  "family_theorem": "For integer a>=2 and d=2^a-3, F_d(1)=1 with (u,A,r)=(1,a,1). For a>=11 its pair fails (A-6u)^2<=22u.",
+  "fixed_point_family": [
+    {
+      "a": 2,
+      "d": 1,
+      "full_period": 3,
+      "inside_primary_band": true,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 3,
+      "d": 5,
+      "full_period": 4,
+      "inside_primary_band": true,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 4,
+      "d": 13,
+      "full_period": 5,
+      "inside_primary_band": true,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 5,
+      "d": 29,
+      "full_period": 6,
+      "inside_primary_band": true,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 6,
+      "d": 61,
+      "full_period": 7,
+      "inside_primary_band": true,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 7,
+      "d": 125,
+      "full_period": 8,
+      "inside_primary_band": true,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 8,
+      "d": 253,
+      "full_period": 9,
+      "inside_primary_band": true,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 9,
+      "d": 509,
+      "full_period": 10,
+      "inside_primary_band": true,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 10,
+      "d": 1021,
+      "full_period": 11,
+      "inside_primary_band": true,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 11,
+      "d": 2045,
+      "full_period": 12,
+      "inside_primary_band": false,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 12,
+      "d": 4093,
+      "full_period": 13,
+      "inside_primary_band": false,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 13,
+      "d": 8189,
+      "full_period": 14,
+      "inside_primary_band": false,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 14,
+      "d": 16381,
+      "full_period": 15,
+      "inside_primary_band": false,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 15,
+      "d": 32765,
+      "full_period": 16,
+      "inside_primary_band": false,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 16,
+      "d": 65533,
+      "full_period": 17,
+      "inside_primary_band": false,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 17,
+      "d": 131069,
+      "full_period": 18,
+      "inside_primary_band": false,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 18,
+      "d": 262141,
+      "full_period": 19,
+      "inside_primary_band": false,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 19,
+      "d": 524285,
+      "full_period": 20,
+      "inside_primary_band": false,
+      "odd_fixed_point": 1
+    },
+    {
+      "a": 20,
+      "d": 1048573,
+      "full_period": 21,
+      "inside_primary_band": false,
+      "odd_fixed_point": 1
+    }
+  ],
+  "metrics": {
+    "lattice": {
+      "maximum_relative_absolute_error": 322.5,
+      "mean_relative_absolute_error": 2.346030164,
+      "median_relative_absolute_error": 0.036769891,
+      "p90_nearest_rank": 4.149321267,
+      "p95_nearest_rank": 10.054545455,
+      "parameters": 1194,
+      "relative_error_greater_than_one": 235
+    },
+    "size": {
+      "maximum_relative_absolute_error": 18.054389364,
+      "mean_relative_absolute_error": 0.998250576,
+      "median_relative_absolute_error": 0.499032005,
+      "p90_nearest_rank": 2.207799337,
+      "p95_nearest_rank": 4.05670458,
+      "parameters": 1194,
+      "relative_error_greater_than_one": 231
+    }
+  },
+  "pilot_csv_sha256": "71875ba43ca18cc1a1501c9f7152ef40d7cbf6c1f5707649c7dd350bbf5d639e",
+  "sampling_measure": "one equally weighted median-unit-cycle-period target per parameter",
+  "schema": "mathcan.collatz.pilot-tail-audit.v1",
+  "scope": "The family proves exclusion of actual cycles. The finite census separately determines the median-period prediction error.",
+  "source_sha256": "67d05fce8d1c45eda490c82cc31ad0f47b045bf14c9d16e1c47714456facfb52",
+  "status": "descriptive analysis added after the primary pilot",
+  "worst_lattice_case": {
+    "cycles_with_predicted_pair": "0",
+    "d": "4093",
+    "lattice_relative_absolute_error": "322.5",
+    "observed_median_period": "16",
+    "predicted_A": "3852",
+    "predicted_period": "5176",
+    "predicted_u": "662",
+    "size_prediction": "221.066886054",
+    "size_relative_absolute_error": "12.816680378",
+    "split": "evaluation",
+    "unit_cycle_families": [
+      {
+        "A": 12,
+        "cycles": 89,
+        "u": 1
+      }
+    ],
+    "unit_cycles": "89",
+    "unit_cycles_zero_triples": "0",
+    "unit_states": "2046"
+  }
+}

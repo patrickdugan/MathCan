@@ -44,6 +44,7 @@ jobs:
           python3 -m research.collatz_resonance.resonance_pilot
           python3 -m research.collatz_resonance.pilot_controls
           python3 -m research.collatz_resonance.independent_pilot_audit --check
+          python3 -m research.collatz_resonance.pilot_diagnostics --check
           git diff --exit-code -- research/collatz_resonance/data/
   lean-kernel:
     runs-on: ubuntu-latest
