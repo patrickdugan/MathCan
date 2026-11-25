@@ -184,3 +184,110 @@ function buildTV(defs,formula,arity){
   const proof=ui(a=>ii(A(x=>I(M(x,a),L(x))),inc=>assumeClauses(a,[],hs=>paramProof(a,arity,[],[],(env,mem)=>equivalence(formula,env,mem,a,inc,hs,"root")))));
   return {goal:db(proof.goal,[]),proof:proof.emit([],[]),clauses};
 }
+
+
+import { readFileSync } from 'node:fs';
+
+function runTV(pinned){
+  const defs=definition("v",true);
+  if(!same(defs.L,pinned))throw Error("pinned L mismatch");
+  const cases=[
+    {name:"existential",f:["E",["M",0,1]],k:1},
+    {name:"nested",f:["A",[">",["M",0,1],["E",["&",["M",0,1],["M",1,2]]]]],k:1},
+    {name:"mixed",f:[">",["E",["M",0,1]],["A",["|",["=",0,1],["E",["M",0,1]]]]],k:1},
+    {name:"sentence",f:["A",["E",["=",0,1]]],k:0},
+    {name:"atomic",f:["&",["M",0,1],["=",0,1]],k:2}
+  ];
+  const A=p=>["A",p],E=p=>["E",p],I=(p,q)=>[">",p,q],C=(p,q)=>["&",p,q],M=(a,b)=>["M",a,b],B=(p,q)=>C(I(p,q),I(q,p));
+  function embed(p,indices,d=0){
+    const [op,a,b]=p;
+    if(op==="F")return p;
+    if(op==="A"||op==="E")return [op,embed(a,indices,d+1)];
+    if(op==="M"||op==="="){const f=i=>i<d?i:indices[i-d]+d;return [op,f(a),f(b)];}
+    return [op,embed(a,indices,d),embed(b,indices,d)];
+  }
+  function rel(p,domain=null,d=0){
+    const [op,a,b]=p,g=domain===null?defs.L:M(0,domain+d+1);
+    if(op==="A")return A(I(g,rel(a,domain,d+1)));
+    if(op==="E")return E(C(g,rel(a,domain,d+1)));
+    if(["&","|",">"].includes(op))return [op,rel(a,domain,d),rel(b,domain,d)];
+    return p;
+  }
+  function params(n,q){for(let i=n-1;i>=0;i--)q=A(I(M(0,i+1),q));return q;}
+  function expected(f,k,clauses){
+    const reordered=embed(f,Array.from({length:k},(_,i)=>k-1-i));
+    let body=params(k,B(rel(reordered,k),rel(reordered)));
+    for(const c of clauses.slice().reverse()){
+      const n=c.arity,phi=embed(rel(c.body),[0,...Array.from({length:n},(_,i)=>n-i)]);
+      body=I(params(n,I(E(C(defs.L,phi)),E(C(M(0,n+1),phi)))),body);
+    }
+    return A(I(A(I(M(0,1),defs.L)),body));
+  }
+  const proofs={},compiled=[];
+  for(const c of cases){
+    const p=buildTV(defs,c.f,c.k),r=kernel(0,[],p.proof,false,"CL");
+    if(!same(r.goal,p.goal)||!same(p.goal,expected(c.f,c.k,p.clauses)))throw Error("exact transport goal "+c.name);
+    if(!p.clauses.every(c=>scoped(c.body,c.arity+1,false)))throw Error("clause scope");
+    proofs[c.name]={nodes:r.visits,proof_bytes:JSON.stringify(p.proof).length,clauses:p.clauses};
+    compiled.push({...c,clauses:p.clauses});
+  }
+  function evalFormula(p,env,S,R){
+    const [op,a,b]=p;
+    switch(op){
+      case "F":return false;
+      case "=":return env[a]===env[b];
+      case "M":return R[env[a]][env[b]];
+      case "A":return S.every(x=>evalFormula(a,[x,...env],S,R));
+      case "E":return S.some(x=>evalFormula(a,[x,...env],S,R));
+      case "&":return evalFormula(a,env,S,R)&&evalFormula(b,env,S,R);
+      case "|":return evalFormula(a,env,S,R)||evalFormula(b,env,S,R);
+      case ">":return !evalFormula(a,env,S,R)||evalFormula(b,env,S,R);
+      default:throw Error("unknown formula");
+    }
+  }
+  function assignments(S,k){let out=[[]];for(let i=0;i<k;i++)out=out.flatMap(xs=>S.map(x=>[...xs,x]));return out;}
+  let models=0,domainPairs=0,formulaCases=0,satisfied=0,truthChecks=0,failedClauseCounterexamples=0;
+  // Every binary membership relation on domains 1 and 2; 32 seeded
+  // relation masks on domain 3. All inclusions S subset C are tested,
+  // including empty domains as finite semantic regressions.
+  for(let n=1;n<=3;n++){
+    const D=Array.from({length:n},(_,i)=>i);
+    const masks=n<3?Array.from({length:2**(n*n)},(_,i)=>i):Array.from({length:32},(_,i)=>(i*157+43)%512);
+    for(const mask of masks){
+      models++;
+      const R=D.map(i=>D.map(j=>Boolean(mask>>(i*n+j)&1)));
+      for(let cm=0;cm<2**n;cm++)for(let sm=0;sm<2**n;sm++){
+        if((sm&cm)!==sm)continue;
+        domainPairs++;
+        const C0=D.filter(i=>cm>>i&1),S=D.filter(i=>sm>>i&1);
+        for(const c of compiled){
+          formulaCases++;
+          const ok=c.clauses.every(cl=>assignments(S,cl.arity).every(ps=>{
+            const witness=x=>evalFormula(cl.body,[x,...ps],C0,R);
+            return !C0.some(witness)||S.some(witness);
+          }));
+          const envs=assignments(S,c.k);
+          if(ok){
+            satisfied++;
+            for(const env of envs){
+              if(evalFormula(c.f,env,S,R)!==evalFormula(c.f,env,C0,R))throw Error("transport semantic mismatch");
+              truthChecks++;
+            }
+          }else if(envs.some(env=>evalFormula(c.f,env,S,R)!==evalFormula(c.f,env,C0,R)))failedClauseCounterexamples++;
+        }
+      }
+    }
+  }
+  if(!failedClauseCounterexamples)throw Error("missing semantic negative control");
+  const tests=[
+    ()=>buildTV(defs,["M",0,1],1),
+    ()=>buildTV(defs,["F"],7),
+    ()=>kernel(0,[],buildTV(defs,cases[1].f,cases[1].k).proof,false,"logic"),
+    ()=>kernel(0,[],["iE",buildTV(defs,cases[0].f,cases[0].k).proof,["refl",0]],false,"CL")
+  ];
+  for(const t of tests)if(!rejects(t))throw Error("negative control accepted");
+  return {experiment:"ACE-03M-transport",proofs,independent_goal_checks:cases.length,negative_controls:tests.length,finite_relations:models,domain_inclusions:domainPairs,formula_cases:formulaCases,satisfied_witness_clauses:satisfied,truth_checks:truthChecks,missing_clause_counterexamples:failedClauseCounterexamples,scope:"conditional fixed-formula transport; arbitrary finite relation regression, no reflecting-stage existence"};
+}
+
+const pinned=JSON.parse(readFileSync(new URL('./L_formula.json',import.meta.url),'utf8'));
+console.log(JSON.stringify(runTV(pinned),null,2));
