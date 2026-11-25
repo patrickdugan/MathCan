@@ -594,7 +594,181 @@ function buildF(defs,extended=false){
         });
       }))));
     })));
-    Object.assign(proofs,{equality_relation_exists:eqExists,negation_relation_exists:negExists,intersection_relation_exists:andExists,existential_relation_exists:exExists,foundation_no_self:noSelf,value_in_domain:valDomain,graph_append_exists:appendExists,ternary_tuple_exists:tuple3});
+
+    const PairSet=(p,x,y)=>form("unordered",p,x,y);
+    const UnionSet=(a,u)=>A(x=>B(M(x,u),E(y=>C(M(y,a),M(x,y)))));
+    const classical=p=>dn(ii(N(["|",p,N(p)]),h=>app(h,or(p,ii(p,hp=>app(h,ol(hp,N(p))))))));
+    function distinct(ns,i,j,nsf){
+      const n=ns.values;
+      if(i===j)throw Error("distinct same index");
+      return ii(Q(n[i],n[j]),eq=>{
+        const a=Math.min(i,j),b=Math.max(i,j),m=ns.mem(a,b);
+        const ab=i===a?eq:sym(eq);
+        return app(ue(nsf,n[b]),eqSub(ab,t=>M(t,n[b]),m));
+      });
+    }
+    function agreeKnown(ns,k,change,s,b,st,bt,vals,sv,bv,nsf){
+      const n=ns.values;
+      const S=(i,v)=>Val(s,i,v),BV=(i,v)=>Val(b,i,v);
+      return ui(j=>ii(M(j,n[k]),jn=>ii(N(Q(n[change],j)),neq=>ui(v=>{
+        const goal=B(S(j,v),BV(j,v));
+        return ns.split(k,j,jn,goal,(i,eq)=>{
+          if(i===change)return fe(app(neq,sym(eq)),goal);
+          const im=ns.mem(i,k);
+          function move(source,target,sg,knownSrc,knownTgt,p){
+            const at=eqSub(eq,t=>Val(source,t,v),p);
+            const ve=valueUnique(al(sg),source,n[i],im,vals[i],v,knownSrc,at);
+            return eqSub(sym(eq),t=>Val(target,t,v),eqSub(ve,t=>Val(target,n[i],t),knownTgt));
+          }
+          return ai(ii(S(j,v),p=>move(s,b,st,sv[i],bv[i],p)),ii(BV(j,v),p=>move(b,s,bt,bv[i],sv[i],p)));
+        });
+      }))));
+    }
+    function agreementValue(ns,k,change,i,s,b,agree,v,p,nsf,reverse){
+      const n=ns.values,at=app(ue(agree,n[i]),ns.mem(i,k),distinct(ns,change,i,nsf));
+      return app((reverse?al:ar)(ue(at,v)),p);
+    }
+    function atomIntro(ns,k,s,i,j,u,v,st,ua,va,sv,tv,property,rp){
+      const p=ar(ue(rp,s)).goal[1][2],pBody=replace(p[2],p[1],u),q=pBody[2];
+      const cert=ei(p,u,ai(ua,ei(q,v,ai(va,ai(ai(sv,tv),property)))));
+      return into(rp,s,ai(st,cert));
+    }
+    function atomElim(ns,k,s,i,j,u,v,st,sv,tv,sr,rp,op){
+      const cond=from(rp,s,sr);
+      return open(ar(cond),(x,xp)=>open(ar(xp),(y,yp)=>{
+        const vx=al(al(ar(yp))),vy=ar(al(ar(yp))),xy=ar(ar(yp));
+        const xu=valueUnique(al(st),s,ns.values[i],ns.mem(i,k),x,u,vx,sv);
+        const yv=valueUnique(al(st),s,ns.values[j],ns.mem(j,k),y,v,vy,tv);
+        return eqSub(yv,t=>op(u,t),eqSub(xu,t=>op(t,y),xy));
+      }));
+    }
+    function withProgram(ns,a,k,instructions,ap,rels,fn){
+      const n=ns.values,arity=n[k],m=instructions.length;
+      function choose(at,rs,rps){
+        if(at===m){
+          return withFiniteGraph(ns,rs,ap,(f,g,vs)=>{
+            function entryAt(j){
+              const st=form("entry",f,n[j],rs[j],arity,a);
+              const leaves=[st[1][1][1][1],st[1][1][1][2],st[1][1][2],st[1][2],st[2]];
+              const [op,i,t]=instructions[j];
+              let at,pr;
+              if(op==="eq"||op==="mem"){
+                at=op==="eq"?0:1;
+                const leaf=leaves[at],inner=replace(leaf[2],leaf[1],n[i])[2];
+                pr=ei(leaf,n[i],ai(ns.mem(i,k),ei(inner,n[t],ai(ns.mem(t,k),rps[j]))));
+              }else if(op==="neg"){
+                at=2;
+                const leaf=leaves[at],inner=replace(leaf[2],leaf[1],n[i])[2];
+                pr=ei(leaf,n[i],ai(ns.mem(i,j),ei(inner,rs[i],ai(vs[i],rps[j]))));
+              }else if(op==="and"){
+                at=3;
+                const leaf=leaves[at],inner=replace(leaf[2],leaf[1],n[i])[2];
+                const p=replace(inner[2],inner[1],n[t])[2],q=replace(p[2],p[1],rs[i]);
+                pr=ei(leaf,n[i],ai(ns.mem(i,j),ei(inner,n[t],ai(ns.mem(t,j),ei(p,rs[i],ei(q,rs[t],ai(ai(vs[i],vs[t]),rps[j])))))));
+              }else if(op==="exists"){
+                at=4;
+                const leaf=leaves[at],inner=replace(leaf[2],leaf[1],n[i])[2],p=replace(inner[2],inner[1],n[t])[2];
+                pr=ei(leaf,n[i],ai(ns.mem(i,j),ei(inner,n[t],ai(ns.mem(t,k),ei(p,rs[i],ai(vs[i],rps[j]))))));
+              }else throw Error("bad instruction");
+              let branch=at===0?pr:or(leaves.slice(0,at).reduce((a,b)=>["|",a,b]),pr);
+              for(let l=at+1;l<leaves.length;l++)branch=ol(branch,leaves[l]);
+              return branch;
+            }
+            const valid=ui(i=>ii(M(i,n[m]),im=>{
+              const goal=E(r=>C(Val(f,i,r),form("entry",f,i,r,arity,a)));
+              return ns.split(m,i,im,goal,(j,eq)=>{
+                const p=eqSub(sym(eq),t=>C(Val(f,t,rs[j]),form("entry",f,t,rs[j],arity,a)),ai(vs[j],entryAt(j)));
+                return ei(goal,rs[j],p);
+              });
+            }));
+            return use(ai(g,valid),vp=>fn(f,vp,rs,rps,vs));
+          });
+        }
+        const [op,i,j]=instructions[at];
+        let ex;
+        if(op==="eq"||op==="mem")ex=us(rels[op],a,arity,n[i],n[j]);
+        else if(op==="neg")ex=us(rels.neg,a,arity,rs[i]);
+        else if(op==="and")ex=us(rels.and,rs[i],rs[j]);
+        else if(op==="exists")ex=us(rels.exists,a,arity,rs[i],n[j]);
+        else throw Error("bad instruction");
+        return open(ex,(r,rp)=>choose(at+1,[...rs,r],[...rps,rp]));
+      }
+      return choose(0,[],[]);
+    }
+    function finishDef(ns,a,x,k,m,f,valid,rs,vs,b,bt,slice){
+      const n=ns.values,z=n[0],r=rs[m-1],goal=D(a,x),owGoal=goal[2];
+      const owBody=replace(owGoal[2],owGoal[1],ns.w);
+      const nGoal=owBody[2],nBody=replace(nGoal[2],nGoal[1],n[k]);
+      const mGoal=nBody[2],mBody=replace(mGoal[2],mGoal[1],n[m]);
+      const fGoal=mBody[2][2],fBody=replace(fGoal[2],fGoal[1],f);
+      const ls=fBody[2],lsBody=replace(ls[2],ls[1],n[m-1]);
+      const rGoal=lsBody[2][2],rBody=replace(rGoal[2],rGoal[1],r);
+      const zGoal=rBody[2],zBody=replace(zGoal[2],zGoal[1],z),bGoal=zBody[2][2];
+      const base=ei(bGoal,b,ai(bt,slice));
+      const atZero=ei(zGoal,z,ai(ns.mem(0,k),ai(ns.zero,base)));
+      const atR=ei(rGoal,r,ai(vs[m-1],atZero));
+      const last=ei(ls,n[m-1],ai(ns.mem(m-1,m),ai(ns.succ[m-1],atR)));
+      const pF=ei(fGoal,f,ai(valid,last));
+      const nk=ei(E(i=>M(i,n[k])),z,ns.mem(0,k)),nm=ei(E(i=>M(i,n[m])),z,ns.mem(0,m));
+      const pM=ei(mGoal,n[m],ai(ns.inW[m],ai(ai(nk,nm),pF)));
+      const pN=ei(nGoal,n[k],ai(ns.inW[k],pM));
+      return or(goal[1],ei(owGoal,ns.w,ai(ns.ow,pN)));
+    }
+    const pairInstructions=[["eq",0,1],["eq",0,2],["neg",0],["neg",1],["and",2,3],["neg",4]];
+    function pairDefWitness(ns,a,x,y,p,xa,ya,pp,ap,nsf,rels){
+      const n=ns.values,k=3,m=pairInstructions.length;
+      return withProgram(ns,a,k,pairInstructions,ap,rels,(f,valid,rs,rps,vs)=>{
+        return withFiniteTuple(ns,a,[x,x,y],[xa,xa,ya],ap,(b,bt,bv)=>{
+          function sliceAt(u){
+            const target=form("slice",p,rs[5],a,n[k],n[0],b);
+            const g=replace(target[2],target[1],u),witness=g[1][2][2];
+            const left=ii(M(u,p),up=>{
+              const choices=from(pp,u,up);
+              const ua=oe(choices,M(u,a),ux=>eqSub(sym(ux),t=>M(t,a),xa),uy=>eqSub(sym(uy),t=>M(t,a),ya));
+              return use(ua,uu=>withFiniteTuple(ns,a,[u,x,y],[uu,xa,ya],ap,(s,st,sv)=>{
+                const notAnd=ii(M(s,rs[4]),sa=>{
+                  const negs=from(rps[4],s,sa);
+                  const q=oe(choices,F,ux=>{
+                    const pos=atomIntro(ns,k,s,0,1,u,x,st,uu,xa,sv[0],sv[1],ux,rps[0]);
+                    return app(ar(from(rps[2],s,al(negs))),pos);
+                  },uy=>{
+                    const pos=atomIntro(ns,k,s,0,2,u,y,st,uu,ya,sv[0],sv[2],uy,rps[1]);
+                    return app(ar(from(rps[3],s,ar(negs))),pos);
+                  });
+                  return q;
+                });
+                const sr=into(rps[5],s,ai(st,notAnd));
+                const agree=agreeKnown(ns,k,0,s,b,st,bt,[u,x,y],sv,bv,nsf);
+                return ai(uu,ei(witness,s,ai(sr,ai(sv[0],agree))));
+              }));
+            });
+            const right=ii(g[2][1],q=>{
+              return open(ar(q),(s,sw)=>{
+                const sr=al(sw),s0=al(ar(sw)),agree=ar(ar(sw)),cond=from(rps[5],s,sr),st=al(cond);
+                const sx=agreementValue(ns,k,0,1,s,b,agree,x,bv[1],nsf,false);
+                const sy=agreementValue(ns,k,0,2,s,b,agree,y,bv[2],nsf,false);
+                const want=["|",Q(u,x),Q(u,y)];
+                const proof=oe(classical(M(s,rs[0])),want,r0=>ol(atomElim(ns,k,s,0,1,u,x,st,s0,sx,r0,rps[0],Q),Q(u,y)),nr0=>{
+                  return oe(classical(M(s,rs[1])),want,r1=>or(Q(u,x),atomElim(ns,k,s,0,2,u,y,st,s0,sy,r1,rps[1],Q)),nr1=>{
+                    const r2=into(rps[2],s,ai(st,nr0)),r3=into(rps[3],s,ai(st,nr1));
+                    return fe(app(ar(cond),into(rps[4],s,ai(r2,r3))),want);
+                  });
+                });
+                return into(pp,u,proof);
+              });
+            });
+            return ai(left,right);
+          }
+          return finishDef(ns,a,p,k,m,f,valid,rs,vs,b,bt,ui(sliceAt));
+        });
+      });
+    }
+    const pairDefinable=use(omegaExists,ow=>use(appendExists,ap=>use(noSelf,nsf=>use(eqExists,eq=>use(negExists,neg=>use(andExists,and=>{
+      return qs(4,(a,x,y,p)=>ii(M(x,a),xa=>ii(M(y,a),ya=>ii(PairSet(p,x,y),pp=>{
+        return withNats(ow,6,ns=>pairDefWitness(ns,a,x,y,p,xa,ya,pp,ap,nsf,{eq,neg,and}));
+      }))));
+    }))))));
+    Object.assign(proofs,{equality_relation_exists:eqExists,negation_relation_exists:negExists,intersection_relation_exists:andExists,existential_relation_exists:exExists,foundation_no_self:noSelf,value_in_domain:valDomain,graph_append_exists:appendExists,ternary_tuple_exists:tuple3,pair_definable:pairDefinable});
   }
   if(extended===true){
     function definableSubset(a,x,d){
