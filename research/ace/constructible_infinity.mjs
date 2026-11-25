@@ -1,9 +1,10 @@
+import { pathToFileURL } from "node:url";
 import { definition } from './constructible_definition.mjs';
 import { kernel, same, rejects, inst, expandClass, classProofs, compile } from './zf_interface.mjs';
 import { buildE } from './hierarchy_closure.mjs';
 import { buildF } from './finite_witnesses.mjs';
 import { buildI } from './stage_recursion.mjs';
-function buildK(defs,prior,finite,stages,extended=false){
+function buildK(defs,prior,finite,stages,extended=false,only=null){
   let serial=0;
   const fresh=()=>`q${serial++}`,M=(a,b)=>["M",a,b],Q=(a,b)=>["=",a,b],F=["F"],I=(p,q)=>[">",p,q],C=(p,q)=>["&",p,q],N=p=>I(p,F);
   const bind=(op,f)=>{const x=fresh();return [op,x,f(x)];};
@@ -282,7 +283,7 @@ function buildK(defs,prior,finite,stages,extended=false){
     }));
     Object.assign(proofs,{infinity_from_transitivity_and_inductive_member:generic});
   }
-  return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
+  return Object.fromEntries(Object.entries(proofs).filter(([n])=>only===null||only.includes(n)).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
 
 
@@ -360,7 +361,10 @@ function runK(pinned,part){
   return {proofs:{...out,constructible_inductive_set:{proof_bytes:JSON.stringify(p.constructible_inductive_set.proof).length},infinity_axiom:{nodes:compiled.target.visits-1,proof_bytes:JSON.stringify(proof).length}},independent_goal_checks:2,negative_controls:tests.length,closed_L_axiom_certificate:"infinity",source_nodes:compiled.source.visits,target_nodes:compiled.target.visits};
 }
 
-const pinned=JSON.parse(readFileSync(new URL('./L_formula.json',import.meta.url),'utf8'));
-const part=process.argv[2];
-if(!part)throw Error('choose finite, stage or infinity');
-console.log(JSON.stringify(runK(pinned,part),null,2));
+export { buildK };
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const pinned=JSON.parse(readFileSync(new URL('./L_formula.json',import.meta.url),'utf8'));
+  const part=process.argv[2];
+  if(!part)throw Error('choose finite, stage or infinity');
+  console.log(JSON.stringify(runK(pinned,part),null,2));
+}
