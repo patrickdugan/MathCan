@@ -1,0 +1,74 @@
+{
+  "experiment": "ACE-03U",
+  "part": "finite_syntax_trace_bridge",
+  "exhaustive_raw_traces": 4469,
+  "accepted_valid_traces": 314,
+  "rejected_invalid_traces": 4155,
+  "exhaustive_fixtures": [
+    {
+      "carrier": [],
+      "width": 1,
+      "valid_traces": 3,
+      "invalid_traces": 0
+    },
+    {
+      "carrier": [
+        0
+      ],
+      "width": 2,
+      "valid_traces": 14,
+      "invalid_traces": 0
+    },
+    {
+      "carrier": [
+        0,
+        1
+      ],
+      "width": 1,
+      "valid_traces": 14,
+      "invalid_traces": 70
+    },
+    {
+      "carrier": [
+        0,
+        1
+      ],
+      "width": 2,
+      "valid_traces": 283,
+      "invalid_traces": 4085
+    }
+  ],
+  "stress": [
+    {
+      "seed": 109,
+      "programs": 64,
+      "rows": 502
+    },
+    {
+      "seed": 113,
+      "programs": 64,
+      "rows": 554
+    },
+    {
+      "seed": 127,
+      "programs": 64,
+      "rows": 552
+    }
+  ],
+  "source_instruction_counts": {
+    "eq": 250,
+    "mem": 262,
+    "not": 136,
+    "and": 705,
+    "exists": 255
+  },
+  "checked_recovered_rows": 2489,
+  "independent_scalar_truth_checks": 24858,
+  "ambiguous_rows_with_multiple_instructions": 1906,
+  "source_programs_replaced_by_equivalent_decorations": 177,
+  "full_base_tuple_slice_checks": 1261,
+  "malformed_or_corrupt_controls": 27,
+  "pinned_L_sha256": "f6deb563af271469873b44118e8925b30394e1a21ec4c1e9fd8d103d1fdffdc0",
+  "selection_order": "opcode then operand indices at each row; distinct from the full natural-number program-code order",
+  "scope": "finite-carrier exact trace decoration and semantic replay; uniform internal coding and evaluation existence require object-language proofs"
+}

@@ -1,15 +1,22 @@
 # ACE | Axiom choice elimination
 
-Current checkpoint, 2026-11-25: the complete ACE-03S unbounded Replacement
-and ACE-03Q unbounded Separation graphs pass the executable ZF checker,
-including exact repeated source-axiom imports. The new ACE-03T work checks
-33 object-language proof checks with 8,113 kernel visits and 72
-rejection controls, including two reused ordered-pair lemmas. These cover
-least-code order transfer, actual set relations, coherent successor and
-limit orders, and an ambient Choice theorem. The finite
-code model adds 44 rejection controls and 65,554 nonempty-subset checks.
-Formal soundness of the checker and complete choice elimination remain open.
+Current checkpoint, 2026-11-25: ACE-03U adds 35 proof checks, covering
+34 new statements and one reused helper, with 15,053 kernel visits and
+93 rejection controls. Exact relation membership now gives unique
+canonical order sets. Supplied decoded syntax determines at most one
+semantic trace over any transitive instruction domain, and finite induction
+assembles row-wise existential witnesses into a graph. The finite
+trace decoder adds 4,469 exhaustive traces and 27 corruption or
+malformed-input controls.
 
+The preceding ACE-03T head passed all 55 ACE CI jobs, including the
+complete unbounded Replacement and Separation graphs and their exact
+source-axiom imports. Uniform coding adequacy, construction of the
+canonical transfinite history, membership of the orders in L, exact
+relativized Choice import and formal checker soundness remain open.
+
+- [ACE-03U mathematical report](ACE03U_CANONICAL_SYNTAX_TRACES.md)
+- [Combined ACE-03U replay receipt and source hashes](ace03u_receipt.json)
 - [Full streamed replay results](ACE03S_FULL_REPLAY_VERIFICATION.md)
 - [ACE-03T mathematical report and verification ledger](ACE03T_CONSTRUCTIBLE_WELL_ORDER.md)
 - [Full replay source hashes and measurements](full_replay_provenance.json)

@@ -1,0 +1,159 @@
+{
+  "experiment": "ACE-03U",
+  "part": "finite_witness_selection_without_candidate_functionality",
+  "checks": [
+    {
+      "id": "candidate_graph.empty_domain_selection",
+      "nodes": 27,
+      "goal_bytes": 1691,
+      "ambient_axioms": []
+    },
+    {
+      "id": "candidate_graph.successor_domain_selection",
+      "nodes": 985,
+      "goal_bytes": 4089,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "union"
+      ]
+    },
+    {
+      "id": "candidate_graph.omega_finite_selection_induction",
+      "nodes": 1093,
+      "goal_bytes": 2463,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "candidate_graph.finite_witness_selection",
+      "nodes": 1108,
+      "goal_bytes": 2463,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "unbounded_formula.empty_domain_selection",
+      "nodes": 26,
+      "goal_bytes": 1415,
+      "ambient_axioms": []
+    },
+    {
+      "id": "unbounded_formula.successor_domain_selection",
+      "nodes": 984,
+      "goal_bytes": 3003,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "union"
+      ]
+    },
+    {
+      "id": "unbounded_formula.omega_finite_selection_induction",
+      "nodes": 1087,
+      "goal_bytes": 1917,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "unbounded_formula.finite_witness_selection",
+      "nodes": 1100,
+      "goal_bytes": 1917,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "separation",
+        "union"
+      ]
+    }
+  ],
+  "checked_modules": 8,
+  "kernel_visits": 6410,
+  "independent_exact_goals": 8,
+  "candidate_instances": [
+    {
+      "id": "candidate_graph",
+      "formula": "Val(E,i,c)",
+      "parameters": 1,
+      "functionality_required": false
+    },
+    {
+      "id": "unbounded_formula",
+      "formula": "forall z (i in z -> c in z)",
+      "parameters": 0,
+      "functionality_required": false
+    }
+  ],
+  "negative_controls": 26,
+  "controls": [
+    "candidate_graph.empty_domain_selection:drop_binders",
+    "candidate_graph.successor_domain_selection:drop_binders",
+    "candidate_graph.omega_finite_selection_induction:drop_binders",
+    "candidate_graph.finite_witness_selection:drop_binders",
+    "candidate_graph.successor_domain_selection:forbid_set_axioms",
+    "candidate_graph.omega_finite_selection_induction:forbid_set_axioms",
+    "candidate_graph.finite_witness_selection:forbid_set_axioms",
+    "candidate_graph:omit_omega",
+    "candidate_graph:omit_finite_membership",
+    "candidate_graph:omit_all_rows_inhabited",
+    "unbounded_formula.empty_domain_selection:drop_binders",
+    "unbounded_formula.successor_domain_selection:drop_binders",
+    "unbounded_formula.omega_finite_selection_induction:drop_binders",
+    "unbounded_formula.finite_witness_selection:drop_binders",
+    "unbounded_formula.successor_domain_selection:forbid_set_axioms",
+    "unbounded_formula.omega_finite_selection_induction:forbid_set_axioms",
+    "unbounded_formula.finite_witness_selection:forbid_set_axioms",
+    "unbounded_formula:omit_omega",
+    "unbounded_formula:omit_finite_membership",
+    "unbounded_formula:omit_all_rows_inhabited",
+    "free_index_out_of_scope",
+    "class_guard_in_pure_candidate",
+    "noninteger_parameter_count",
+    "parameter_count_beyond_schema_limit",
+    "unknown_candidate_connective",
+    "choice_axiom_forbidden"
+  ],
+  "ambient_axiom_instances": [
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "union"
+    },
+    {
+      "name": "foundation"
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 1981
+    },
+    {
+      "name": "separation",
+      "params": 0,
+      "body_bytes": 1441
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "finite graph selection for each supplied m in omega from row-wise existential witnesses; no functional-candidate or Choice premise",
+  "open_obligations": [
+    "per-instruction syntax-code witnesses for pinned Def",
+    "full syntax-code adequacy",
+    "coherent transfinite order history",
+    "internal constructibility of canonical order sets",
+    "relativized Choice import",
+    "formal checker soundness"
+  ]
+}

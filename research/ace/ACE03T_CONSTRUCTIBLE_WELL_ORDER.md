@@ -1,5 +1,10 @@
 # ACE-03T | Least definition codes and coherent constructible orders
 
+Follow-up: [ACE-03U](ACE03U_CANONICAL_SYNTAX_TRACES.md) adds exact
+relation membership and uniqueness, uniform trace uniqueness for
+supplied decoded syntax, and finite witness assembly. The ACE-03T
+head passed all 55 ACE CI jobs; its original ledger follows.
+
 Status: thirty-three object-language proof checks passed the unchanged
 executable ZF kernel, with 8,113 kernel visits and thirty-three
 independently reconstructed exact conclusions. These checks cover

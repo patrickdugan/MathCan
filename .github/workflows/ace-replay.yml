@@ -307,6 +307,20 @@ jobs:
           diff -u research/ace/coherent_well_order_receipt.json /tmp/ace-t-limit.json
           node research/ace/well_order_codes_replay.mjs > /tmp/ace-t-codes.json
           diff -u research/ace/well_order_codes_receipt.json /tmp/ace-t-codes.json
+  canonical-syntax-trace-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check canonical relations, syntax traces and finite witness selection
+        shell: bash
+        run: |
+          set -euo pipefail
+          node research/ace/ace03u_replay.mjs > /tmp/ace03u.json
+          diff -u research/ace/ace03u_receipt.json /tmp/ace03u.json
   lean-replay:
     runs-on: ubuntu-latest
     steps:
