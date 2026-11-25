@@ -1,0 +1,65 @@
+name: COL arithmetic census and Lean audit
+
+on:
+  pull_request:
+    paths:
+      - 'research/collatz_resonance/**'
+      - 'MathCan/CollatzResonance.lean'
+      - 'tests/test_collatz_resonance.py'
+      - '.github/workflows/collatz-resonance.yml'
+  push:
+    branches: ['research/collatz-audit-20261125']
+    paths:
+      - 'research/collatz_resonance/**'
+      - 'MathCan/CollatzResonance.lean'
+      - 'tests/test_collatz_resonance.py'
+      - '.github/workflows/collatz-resonance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check independent finite oracles
+        run: python3 -m unittest discover -s tests -p test_collatz_resonance.py -v
+      - name: Compare both complete reference enumerations
+        run: |
+          set -euo pipefail
+          c++ -O3 -std=c++17 -Wall -Wextra -Werror research/collatz_resonance/census.cpp -o /tmp/collatz-census
+          /tmp/collatz-census 160833217 path > /tmp/collatz-path.csv
+          /tmp/collatz-census 160833217 peel > /tmp/collatz-peel.csv
+          python3 -m research.collatz_resonance.audit_reference --path-csv /tmp/collatz-path.csv --peel-csv /tmp/collatz-peel.csv --output /tmp/collatz-verification.json
+          cmp /tmp/collatz-verification.json research/collatz_resonance/data/verification.json
+      - name: Replay fixed extrapolation and exploratory controls
+        run: |
+          set -euo pipefail
+          python3 -m research.collatz_resonance.resonance_pilot
+          python3 -m research.collatz_resonance.pilot_controls
+          python3 -m research.collatz_resonance.independent_pilot_audit --check
+          git diff --exit-code -- research/collatz_resonance/data/
+  lean-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Check actual odd-map descent and axiom inventory
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/CollatzResonance.lean | tee /tmp/collatz-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:' /tmp/collatz-axioms.txt; then exit 1; fi
+          cmp /tmp/collatz-axioms.txt research/collatz_resonance/data/lean_axioms.txt

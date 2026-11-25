@@ -1,5 +1,13 @@
 # MathCan
 
+## Collatz resonance
+
+The [Collatz resonance package](research/collatz_resonance/README.md) replays
+the complete 137-cycle census, derives exact branch-count lattices, and checks
+19 Lean declarations for the accelerated map and conserved-observer logic.
+Its finite prediction pilot covers 1,365 parameters, with companion PRs for
+reasoning benchmarks, verified corpora and memory-sensitive research gyms.
+
 ## Riemann Hypothesis proof distillation
 
 The [RH-01 mathematical research program](research/rh_proof_distillation/RESEARCH.md) now lives in MathCan. It contains independent finite exponent certificates in [MathCan/RHWindowExponents.lean](MathCan/RHWindowExponents.lean), exact numeric witness and negative-control oracles, original-source dependency notes, and pinned verification receipts. The companion [EvalMath PR #60](https://github.com/MoralityLabAI/EvalMath/pull/60) owns the scored Lean reconstruction benchmark and the original compiled-module extraction runner.

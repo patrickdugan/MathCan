@@ -1,0 +1,17 @@
+{
+  "checks_passed": true,
+  "dataset_sha256": "ef91328604502c0d9c1e53fce82038f6204de0fa53145c515227ebc2d95dbd0c",
+  "exact_comparisons": 25410,
+  "parameter_roots": 531,
+  "records": 4235,
+  "remote_heads": {
+    "MoralityLabAI/DataGoblin": "5219f55a01cb4ed5ce8b9b4273fed2368c83fdaa",
+    "MoralityLabAI/EvalMath": "bad2dc4ba85fc1538eec3d5a7151b05d21edfa30"
+  },
+  "schema": "COL-cross-repo-contract/v1",
+  "source_sha256": {
+    "repos/DataGoblin/src/datagoblin/training_gym/collatz_corpus.py": "2a3c69cb92aff6050f1155afacdb11213521cbb7f16e931b10f2e10b4b657d59",
+    "repos/DataGoblin/src/datagoblin/training_gym/collatz_verifier.py": "f84acd90ff30c5b1ae49a8295881c3cf50c28ff0ebf5af6cc8e423546fc6acc0",
+    "repos/EvalMath/src/spiral_ln/evaluation_collatz_basin.py": "cccc9a78eaadd96328c0247dfad440ede01336ab3b1ee268a32ca52645159ad1"
+  }
+}

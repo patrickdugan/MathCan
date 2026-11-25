@@ -1,0 +1,49 @@
+{
+  "supplied_artifacts": [
+    {
+      "bytes": 425872,
+      "filename": "HX93ybiWEAAHRSM.jpg",
+      "sha256": "704e281b93f453297ffee7dfeeca477683a2a1d854c32fbeb2d281b936963d73"
+    },
+    {
+      "bytes": 429415,
+      "filename": "HX936GfWwAA0Ocr.jpg",
+      "sha256": "33827062258056d2143e7880b15ab629d450c24cc484584ec479a652ad16215c"
+    },
+    {
+      "bytes": 418334,
+      "filename": "HX93xbDWQAA2G2i.jpg",
+      "sha256": "d8a77dccee65e777cbfd45df6971df84ac4248e7e67415399d7c54b1c7f1dc42"
+    },
+    {
+      "bytes": 403277,
+      "filename": "HX93zqqWIAAqGDP.jpg",
+      "sha256": "a2d28050a8fc16476cb775e1fcb36effd8ab0116db9c78d0c201c083f4bd8fd1"
+    },
+    {
+      "bytes": 653,
+      "filename": "collatz_branch_census.cpp",
+      "sha256": "c22b02eb05ce818f4a73bffde27047cbd70a6f455f26510d241e9de71f4a1f49"
+    },
+    {
+      "bytes": 450887,
+      "filename": "HX933HEWgAAzfkJ.jpg",
+      "sha256": "705e45fcfe132d4c90584d097c7fba5072303171c7fb9acc40427f07f044d479"
+    },
+    {
+      "bytes": 481954,
+      "filename": "HX9347gX0AAuAVs.jpg",
+      "sha256": "56001d6553c4ee56f8289980aa01cf25a76a22efe2957c055a022db358d00fb0"
+    },
+    {
+      "bytes": 519872,
+      "filename": "HX931-DXQAAqa3C.jpg",
+      "sha256": "b77176d3f9f5839969c2954a6e7d870a68aac83ce7581fad4649da21c844e4d6"
+    },
+    {
+      "bytes": 3232,
+      "filename": "collatz_branch_census.csv",
+      "sha256": "f50668dda8731b08a22f726e5d660d16fa142548742f82e21f870f955cb19b17"
+    }
+  ]
+}
