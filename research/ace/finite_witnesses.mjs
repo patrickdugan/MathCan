@@ -445,7 +445,156 @@ function buildF(defs,extended=false){
     const negExists=qs(3,(a,n,p)=>withTupleRelation(a,n,"relNeg",[p,n,a],(r,rp)=>ei(E(r=>form("relNeg",r,p,n,a)),r,rp)));
     const andExists=qs(2,(p,q)=>withAnd(p,q,(r,rp)=>ei(E(r=>form("relAnd",r,p,q)),r,rp)));
     const exExists=qs(4,(a,n,p,i)=>withTupleRelation(a,n,"relEx",[p,n,a,i],(r,rp)=>ei(E(r=>form("relEx",r,p,n,a,i)),r,rp)));
-    Object.assign(proofs,{equality_relation_exists:eqExists,negation_relation_exists:negExists,intersection_relation_exists:andExists,existential_relation_exists:exExists});
+
+    const Graph=(f,d)=>form("graph",f,d),Val=(f,i,r)=>form("val",f,i,r),Succ=(b,d)=>form("successor",b,d);
+    const noSelf=ui(b=>ii(M(b,b),bb=>withSingleton(b,(s,sp)=>{
+      const bs=into(sp,b,ref(b)),nonempty=ei(E(x=>M(x,s)),b,bs);
+      return open(app(ue(ax({name:"foundation"}),s),nonempty),(x,xp)=>{
+        const xb=from(sp,x,al(xp)),bx=eqSub(sym(xb),z=>M(b,z),bb);
+        return app(app(ue(ar(xp),b),bx),bs);
+      });
+    })));
+    const valDomain=use(pairInjective,inj=>qs(4,(f,d,i,r)=>ii(Graph(f,d),g=>ii(Val(f,i,r),v=>open(v,(p,pv)=>{
+      return open(app(ue(al(g),p),al(pv)),(j,jp)=>open(ar(jp),(y,py)=>{
+        const eq=al(app(us(inj,p,i,r,j,y),ar(pv),py));
+        return eqSub(sym(eq),t=>M(t,d),al(jp));
+      }));
+    })))));
+    function withAdjoin(a,b,fn){
+      return withSingleton(b,(s,sp)=>withSetPair(a,s,(t,tp)=>withUnion(t,(u,up)=>{
+        const ta=into(tp,a,ol(ref(a),Q(a,s))),ts=into(tp,s,or(Q(s,a),ref(s)));
+        const proof=ui(x=>{
+          const goal=["|",M(x,a),Q(x,b)];
+          const left=ii(M(x,u),xu=>open(from(up,x,xu),(v,vp)=>oe(from(tp,v,al(vp)),goal,
+            va=>ol(eqSub(va,z=>M(x,z),ar(vp)),Q(x,b)),vs=>or(M(x,a),from(sp,x,eqSub(vs,z=>M(x,z),ar(vp)))))));
+          const right=ii(goal,p=>oe(p,M(x,u),xa=>into(up,x,ei(ar(ue(up,x)).goal[1],a,ai(ta,xa))),xb=>into(up,x,ei(ar(ue(up,x)).goal[1],s,ai(ts,into(sp,x,xb))))));
+          return ai(left,right);
+        });
+        return use(proof,pr=>fn(u,pr));
+      })));
+    }
+    const equiv=(f,g,b)=>A(i=>I(M(i,b),A(y=>B(Val(f,i,y),Val(g,i,y)))));
+    function append(f,b,d,r,sd,g0,inj,dom,ns,fn){
+      const nb=ue(ns,b);
+      return withPair(b,r,(p,pp)=>withAdjoin(f,p,(g,gp)=>{
+        const valCases=(i,y,v)=>open(v,(w,wp)=>{
+          const goal=["|",Val(f,i,y),C(Q(i,b),Q(y,r))];
+          return oe(from(gp,w,al(wp)),goal,
+            wf=>ol(ei(Val(f,i,y),w,ai(wf,ar(wp))),goal[2]),
+            eq=>or(goal[1],app(us(inj,p,i,y,b,r),eqSub(eq,t=>form("pair",t,i,y),ar(wp)),pp)));
+        });
+        const oldToNew=(i,y,v)=>open(v,(w,wp)=>ei(Val(g,i,y),w,ai(into(gp,w,ol(al(wp),Q(w,p))),ar(wp))));
+        const newValue=ei(Val(g,b,r),p,ai(into(gp,p,or(M(p,f),ref(p))),pp));
+        const oldEquiv=ui(i=>ii(M(i,b),ib=>ui(y=>ai(
+          ii(Val(f,i,y),v=>oldToNew(i,y,v)),
+          ii(Val(g,i,y),v=>oe(valCases(i,y,v),Val(f,i,y),q=>q,eq=>fe(app(nb,eqSub(al(eq),t=>M(t,b),ib)),Val(f,i,y))))))));
+        return use(oldEquiv,eqv=>{
+          const entries=ui(w=>ii(M(w,g),wg=>{
+            const goal=E(i=>C(M(i,d),E(y=>form("pair",w,i,y))));
+            return oe(from(gp,w,wg),goal,
+              wf=>open(app(ue(al(g0),w),wf),(i,ip)=>ei(goal,i,ai(into(sd,i,ol(al(ip),Q(i,b))),ar(ip)))),
+              eq=>{
+                const bd=into(sd,b,or(M(b,b),ref(b)));
+                return ei(goal,b,ai(bd,ei(replace(goal[2],goal[1],b)[2],r,eqSub(sym(eq),t=>form("pair",t,b,r),pp))));
+              });
+          }));
+          const total=ui(i=>ii(M(i,d),id=>{
+            const goal=E(y=>C(Val(g,i,y),A(z=>I(Val(g,i,z),Q(z,y)))));
+            return oe(from(sd,i,id),goal,
+              ib=>open(app(ue(ar(g0),i),ib),(y,yp)=>{
+                const v=app(al(ue(app(ue(eqv,i),ib),y)),al(yp));
+                const u=ui(z=>ii(Val(g,i,z),vz=>app(ue(ar(yp),z),app(ar(ue(app(ue(eqv,i),ib),z)),vz))));
+                return ei(goal,y,ai(v,u));
+              }),
+              eq=>{
+                const iv=eqSub(sym(eq),t=>Val(g,t,r),newValue);
+                const un=ui(y=>ii(Val(g,i,y),vy=>{
+                  const vb=eqSub(eq,t=>Val(g,t,y),vy);
+                  return oe(valCases(b,y,vb),Q(y,r),old=>fe(app(nb,app(us(dom,f,b,b,y),g0,old)),Q(y,r)),both=>ar(both));
+                }));
+                return ei(goal,r,ai(iv,un));
+              });
+          }));
+          return use(ai(entries,total),gg=>use(newValue,nv=>fn(g,gg,eqv,nv)));
+        });
+      }));
+    }
+    const appendExists=use(pairInjective,inj=>use(valDomain,dom=>use(noSelf,ns=>{
+      return qs(4,(f,b,d,r)=>ii(Graph(f,b),gf=>ii(Succ(b,d),sd=>{
+        const goal=E(g=>C(C(Graph(g,d),equiv(f,g,b)),Val(g,b,r)));
+        return append(f,b,d,r,sd,gf,inj,dom,ns,(g,gg,eqv,nv)=>ei(goal,g,ai(ai(gg,eqv),nv)));
+      })));
+    })));
+    function withNats(owEx,count,fn){
+      return open(owEx,(w,ow)=>open(al(al(ow)),(z,zp)=>{
+        const values=[z],inW=[al(zp)],succ=[],zero=ar(zp);
+        function next(){
+          if(values.length===count+1){
+            function mem(i,j){
+              if(!(i<j))throw Error("nat membership index");
+              const p=j===i+1?or(M(values[i],values[i]),ref(values[i])):ol(mem(i,j-1),Q(values[i],values[j-1]));
+              return into(succ[j-1],values[i],p);
+            }
+            function split(j,x,m,goal,cases){
+              if(j===0)return fe(app(ue(zero,x),m),goal);
+              return oe(from(succ[j-1],x,m),goal,old=>split(j-1,x,old,goal,cases),eq=>cases(j-1,eq));
+            }
+            return fn({w,ow,values,inW,succ,zero,mem,split});
+          }
+          const i=values.length-1;
+          return open(app(ue(ar(al(ow)),values[i]),inW[i]),(x,xp)=>{
+            values.push(x);inW.push(al(xp));succ.push(ar(xp));
+            return next();
+          });
+        }
+        return next();
+      }));
+    }
+    function withFiniteGraph(ns,vals,ap,fn){
+      const n=ns.values,z=n[0],g0=ai(
+        ui(p=>ii(M(p,z),pz=>fe(app(ue(ns.zero,p),pz),E(i=>C(M(i,z),E(y=>form("pair",p,i,y))))))),
+        ui(i=>ii(M(i,z),iz=>fe(app(ue(ns.zero,i),iz),E(y=>C(Val(z,i,y),A(v=>I(Val(z,i,v),Q(v,y)))))))));
+      return use(g0,g=>{
+        function extend(k,f,fg,vs){
+          if(k===vals.length)return fn(f,fg,vs);
+          return open(app(us(ap,f,n[k],n[k+1],vals[k]),fg,ns.succ[k]),(g,gp)=>{
+            const gg=al(al(gp)),eqv=ar(al(gp)),nv=ar(gp);
+            const next=vs.map((p,i)=>app(al(ue(app(ue(eqv,n[i]),ns.mem(i,k)),vals[i])),p));
+            next.push(nv);
+            function bindVs(j,bs){
+              if(j===next.length)return extend(k+1,g,gg,bs);
+              return use(next[j],v=>bindVs(j+1,[...bs,v]));
+            }
+            return bindVs(0,[]);
+          });
+        }
+        return extend(0,z,g,[]);
+      });
+    }
+    function withFiniteTuple(ns,a,vals,inside,ap,fn){
+      const n=ns.values,arity=vals.length;
+      return withFiniteGraph(ns,vals,ap,(s,g,vs)=>{
+        const range=ui(i=>ii(M(i,n[arity]),im=>{
+          const goal=E(v=>C(M(v,a),Val(s,i,v)));
+          return ns.split(arity,i,im,goal,(j,eq)=>ei(goal,vals[j],ai(inside[j],eqSub(sym(eq),t=>Val(s,t,vals[j]),vs[j]))));
+        }));
+        return use(ai(g,range),tu=>fn(s,tu,vs));
+      });
+    }
+    const tuple3=use(omegaExists,ow=>use(appendExists,ap=>qs(4,(a,x,y,z)=>{
+      return ii(M(x,a),xa=>ii(M(y,a),ya=>ii(M(z,a),za=>withNats(ow,3,ns=>{
+        const n=ns.values;
+        return withFiniteTuple(ns,a,[x,y,z],[xa,ya,za],ap,(s,tu,vs)=>{
+          const body=(n0,n1,n2,n3,s)=>C(C(form("tuple",s,n3,a),C(Val(s,n0,x),Val(s,n1,y))),Val(s,n2,z));
+          const goal=E(n0=>E(n1=>E(n2=>E(n3=>E(s=>body(n0,n1,n2,n3,s))))));
+          // This explicit test theorem also pins the index witnesses to
+          // zero and successive ordinals, via separate graph proofs below.
+          const a1=replace(goal[2],goal[1],n[0]),a2=replace(a1[2],a1[1],n[1]),a3=replace(a2[2],a2[1],n[2]),a4=replace(a3[2],a3[1],n[3]);
+          return ei(goal,n[0],ei(a1,n[1],ei(a2,n[2],ei(a3,n[3],ei(a4,s,ai(ai(tu,ai(vs[0],vs[1])),vs[2]))))));
+        });
+      }))));
+    })));
+    Object.assign(proofs,{equality_relation_exists:eqExists,negation_relation_exists:negExists,intersection_relation_exists:andExists,existential_relation_exists:exExists,foundation_no_self:noSelf,value_in_domain:valDomain,graph_append_exists:appendExists,ternary_tuple_exists:tuple3});
   }
   if(extended===true){
     function definableSubset(a,x,d){
