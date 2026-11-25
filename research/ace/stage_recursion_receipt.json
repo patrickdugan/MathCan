@@ -1,0 +1,86 @@
+{
+  "experiment": "ACE-03I",
+  "scope": "closed pure set-language derivations of exact ordinal stage recursion; executable ZF checker",
+  "proofs": {
+    "successor_exists": {
+      "nodes": 99,
+      "proof_bytes": 1592
+    },
+    "successor_unique": {
+      "nodes": 31,
+      "proof_bytes": 475
+    },
+    "value_in_domain": {
+      "nodes": 243,
+      "proof_bytes": 4831
+    },
+    "subset_reflexive": {
+      "nodes": 4,
+      "proof_bytes": 38
+    },
+    "stage_value_transport": {
+      "nodes": 101,
+      "proof_bytes": 311536
+    },
+    "limit_value_exists": {
+      "nodes": 67,
+      "proof_bytes": 6896
+    },
+    "stage_value_exists": {
+      "nodes": 180,
+      "proof_bytes": 821488
+    },
+    "stage_history_extension": {
+      "nodes": 1241,
+      "proof_bytes": 1892472
+    },
+    "empty_history_exists": {
+      "nodes": 28,
+      "proof_bytes": 158411
+    },
+    "compatible_history_union": {
+      "nodes": 1216,
+      "proof_bytes": 1229791
+    },
+    "successor_history_unique": {
+      "nodes": 1011,
+      "proof_bytes": 758799
+    },
+    "ordinal_member": {
+      "nodes": 24,
+      "proof_bytes": 337
+    },
+    "history_existence_induction": {
+      "nodes": 70,
+      "proof_bytes": 265721
+    },
+    "successor_history_exists": {
+      "nodes": 3940,
+      "proof_bytes": 5790285
+    },
+    "ordinal_history_exists": {
+      "nodes": 4213,
+      "proof_bytes": 6691272
+    },
+    "ordinal_history_exists_unique": {
+      "nodes": 5138,
+      "proof_bytes": 7606763
+    },
+    "ordinal_stage_value_exists": {
+      "nodes": 3976,
+      "proof_bytes": 6162527
+    },
+    "ordinal_stage_value_unique": {
+      "nodes": 623,
+      "proof_bytes": 481606
+    },
+    "stage_members_constructible": {
+      "nodes": 27,
+      "proof_bytes": 320027
+    }
+  },
+  "independent_goal_checks": 8,
+  "negative_controls": 6,
+  "pinned_L_unchanged": true,
+  "remaining": "ordinal comparison, constructible pair and union closure, other L axioms, uniform adequacy and checker soundness"
+}
