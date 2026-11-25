@@ -113,3 +113,5 @@ closed, try the RH arithmetic corollary. No paid compute is requested.
 No RH choice-elimination result is claimed at this checkpoint.
 
 Verification update: ACE-01 kernel and axiom report passed in run 45541612790. ACE-02 run 45542048477 failed on a reserved Lean keyword, renamed in 72807b8; fresh verification pending. See ACE-03B note for scope.
+
+ACE-03E: [hierarchy closure and bounded induction certificates](ACE03E_HIERARCHY_CLOSURE.md). Fifteen checked object derivations, including exact Def existence/uniqueness and conditional L transitivity. ACE-03F: discharge Def inflation with explicit atomic-membership program witnesses; recursion existence and adequacy remain open.
