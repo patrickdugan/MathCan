@@ -243,6 +243,46 @@ jobs:
           set -euo pipefail
           node research/ace/replacement_replay.mjs "$PART" > "/tmp/ace-r-$PART.json"
           diff -u "research/ace/replacement_${PART}_receipt.json" "/tmp/ace-r-$PART.json"
+  unbounded-replacement-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [extension, selector, omega, limit, base, replacement, links]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay exact unbounded Replacement graph module
+        shell: bash
+        env:
+          PART: ${{ matrix.part }}
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: |
+          set -euo pipefail
+          node research/ace/unbounded_replacement_replay.mjs "$PART" > "/tmp/ace-s-$PART.json"
+          diff -u "research/ace/unbounded_replacement_${PART}_receipt.json" "/tmp/ace-s-$PART.json"
+  unbounded-replacement-full-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify full streamed graph and modular source import
+        shell: bash
+        env:
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: |
+          set -euo pipefail
+          node research/ace/unbounded_replacement_replay.mjs full | tee /tmp/ace-s-full.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ace-s-full-receipt
+          path: /tmp/ace-s-full.json
   lean-replay:
     runs-on: ubuntu-latest
     steps:
