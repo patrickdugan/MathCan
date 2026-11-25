@@ -279,6 +279,55 @@ function buildOmega(defs,prior,stages,finite,stepFormula,only=null){
     const fun=app(us(app(endpointTotal,total),a,w),oa,ow);
     return app(us(ax(spec),a,w),fun);
   }))));
-  const proofs={tight_endpoint_is_endpoint:tightEnd,finite_iteration_conditional:iteration,omega_endpoint_total_conditional:endpointTotal,omega_range_exists_conditional:rangeExists};
+
+  const strictFormula=A(a=>A(b=>I(Next(a,b),C(Ord(b),M(a,b)))));
+  const rangeGood=(a,w,R)=>C(C(A(v=>I(M(v,R),Ord(v))),M(a,R)),A(v=>I(M(v,R),E(r=>C(M(r,R),Next(v,r))))));
+  // The conditional theorem uses the exact omega ordinal property.
+  // It avoids any repeated construction of the ambient omega proof.
+  function rangeProperties(a,w,R,oa,ow,ordw,it,rp){
+    const allOrd=ui(v=>ii(M(v,R),vr=>open(from(rp,v,vr),(n,np)=>endOpen(ar(np),(d,f,td,nin,rf,vp)=>al(al(valueRule(a,d,f,n,v,rf,nin,vp)))))));
+    const base=open(al(al(ow)),(z,zp)=>{
+      const zw=al(zp),ez=ar(zp),tz=app(ue(ar(ordw),z),zw);
+      return open(app(ue(it,z),zw),(v,vp)=>{
+        const ep=app(us(tightEnd,a,z,v),tz,al(vp));
+        return endOpen(ep,(d,f,td,zin,rf,vr)=>{
+          const va=app(ar(al(valueRule(a,d,f,z,v,rf,zin,vr))),ez);
+          const ea=eqSub(va,t=>End(a,z,t),ep);
+          return into(rp,a,ei(ar(ue(rp,a)).goal[1],z,ai(zw,ea)));
+        });
+      });
+    });
+    const closed=ui(v=>ii(M(v,R),vr=>open(from(rp,v,vr),(n,np)=>{
+      const nw=al(np),ev=ar(np);
+      return open(app(ue(ar(al(ow)),n),nw),(j,jp)=>{
+        const jw=al(jp),nj=ar(jp),nin=into(nj,n,or(M(n,n),ref(n))),tj=app(ue(ar(ordw),j),jw);
+        return open(app(ue(it,j),jw),(r,rp0)=>tightOpen(al(rp0),(d,f,sd,rf,rv)=>{
+          const td=app(us(st,j,d),tj,sd),jin=into(sd,j,or(M(j,j),ref(j))),nd=into(sd,n,ol(nin,Q(n,j)));
+          return open(app(ue(ar(al(rf)),n),nd),(u,up)=>{
+            const ue0=makeEnd(a,n,u,d,td,nd,f,rf,al(up));
+            const rr=valueRule(a,d,f,j,r,rf,jin,rv);
+            const step=app(ue(app(ue(ar(rr),n),nin,nj),u),al(up));
+            return open(app(ue(it,n),nw),(b,bp)=>{
+              const ub=app(ue(ar(bp),u),ue0),vb=app(ue(ar(bp),v),ev);
+              const uv=chain(ub,sym(vb));
+              const next=eqSub(uv,t=>Next(t,r),step);
+              const endr=makeEnd(a,j,r,d,td,jin,f,rf,rv);
+              const rR=into(rp,r,ei(ar(ue(rp,r)).goal[1],j,ai(jw,endr)));
+              return ei(E(r=>C(M(r,R),Next(v,r))),r,ai(rR,next));
+            });
+          });
+        }));
+      });
+    })));
+    return ai(ai(allOrd,base),closed);
+  }
+  const rangeClosed=ii(StepTotal,total=>qs(2,(a,w)=>ii(Ord(a),oa=>ii(Omega(w),ow=>ii(Ord(w),ordw=>{
+    const it=app(us(app(iteration,total),a,w),oa,ow);
+    return open(app(us(app(rangeExists,total),a,w),oa,ow),(R,rp)=>{
+      const prop=rangeProperties(a,w,R,oa,ow,ordw,it,rp);
+      return ei(E(R=>rangeGood(a,w,R)),R,prop);
+    });
+  })))));
+  const proofs={tight_endpoint_is_endpoint:tightEnd,finite_iteration_conditional:iteration,omega_endpoint_total_conditional:endpointTotal,omega_range_exists_conditional:rangeExists,omega_range_closed_conditional:rangeClosed};
   return {stepTotal:db(StepTotal,[]),endpointFormula:(()=>{const a=fresh(),n=fresh(),v=fresh();return db(End(a,n,v),[v,n,a]);})(),proofs:Object.fromEntries(Object.entries(proofs).filter(([n])=>only===null||only.includes(n)).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]))};
 }
