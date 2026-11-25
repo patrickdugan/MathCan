@@ -170,4 +170,92 @@ theorem sentence_transport {M : Model A} {N : Model B} (e : Iso M N)
 #print axioms sat_transport
 #print axioms sentence_transport
 
+/-- Agreement below the current binder depth survives pushing a value. -/
+theorem push_local (k : Nat) (ρ σ : Nat → A)
+    (h : ∀ i, i < k → ρ i = σ i) (a : A) :
+    ∀ i, i < k + 1 → push a ρ i = push a σ i := by
+  intro i hi
+  cases i with
+  | zero => rfl
+  | succ i => exact h i (Nat.lt_of_succ_lt_succ hi)
+
+theorem eval_local (M : Model A) (t : Term) (k : Nat) (ρ σ : Nat → A)
+    (hs : t.scoped k) (h : ∀ i, i < k → ρ i = σ i) :
+    t.eval M ρ = t.eval M σ := by
+  induction t generalizing k ρ σ with
+  | var i => exact h i hs
+  | zero => rfl
+  | succ t ih => exact congrArg M.succ (ih k ρ σ hs h)
+  | add t s iht ihs =>
+    change t.scoped k ∧ s.scoped k at hs
+    change M.add (t.eval M ρ) (s.eval M ρ) = M.add (t.eval M σ) (s.eval M σ)
+    rw [iht k ρ σ hs.1 h, ihs k ρ σ hs.2 h]
+  | mul t s iht ihs =>
+    change t.scoped k ∧ s.scoped k at hs
+    change M.mul (t.eval M ρ) (s.eval M ρ) = M.mul (t.eval M σ) (s.eval M σ)
+    rw [iht k ρ σ hs.1 h, ihs k ρ σ hs.2 h]
+
+/-- A well-scoped formula sees only the first k assignment entries. -/
+theorem sat_local (M : Model A) (p : Formula) (k : Nat) (ρ σ : Nat → A)
+    (hs : p.scoped k) (h : ∀ i, i < k → ρ i = σ i) :
+    p.sat M ρ ↔ p.sat M σ := by
+  induction p generalizing k ρ σ with
+  | falsum => exact Iff.rfl
+  | eq t s =>
+    change t.scoped k ∧ s.scoped k at hs
+    change (t.eval M ρ = s.eval M ρ) ↔ (t.eval M σ = s.eval M σ)
+    rw [eval_local M t k ρ σ hs.1 h, eval_local M s k ρ σ hs.2 h]
+  | lt t s =>
+    change t.scoped k ∧ s.scoped k at hs
+    change M.lt (t.eval M ρ) (s.eval M ρ) ↔ M.lt (t.eval M σ) (s.eval M σ)
+    rw [eval_local M t k ρ σ hs.1 h, eval_local M s k ρ σ hs.2 h]
+  | conj p q ihp ihq =>
+    change p.scoped k ∧ q.scoped k at hs
+    change (p.sat M ρ ∧ q.sat M ρ) ↔ (p.sat M σ ∧ q.sat M σ)
+    exact ⟨fun hpq => ⟨(ihp k ρ σ hs.1 h).mp hpq.1, (ihq k ρ σ hs.2 h).mp hpq.2⟩,
+      fun hpq => ⟨(ihp k ρ σ hs.1 h).mpr hpq.1, (ihq k ρ σ hs.2 h).mpr hpq.2⟩⟩
+  | disj p q ihp ihq =>
+    change p.scoped k ∧ q.scoped k at hs
+    change (p.sat M ρ ∨ q.sat M ρ) ↔ (p.sat M σ ∨ q.sat M σ)
+    constructor
+    · intro hpq
+      cases hpq with
+      | inl hp => exact Or.inl ((ihp k ρ σ hs.1 h).mp hp)
+      | inr hq => exact Or.inr ((ihq k ρ σ hs.2 h).mp hq)
+    · intro hpq
+      cases hpq with
+      | inl hp => exact Or.inl ((ihp k ρ σ hs.1 h).mpr hp)
+      | inr hq => exact Or.inr ((ihq k ρ σ hs.2 h).mpr hq)
+  | impl p q ihp ihq =>
+    change p.scoped k ∧ q.scoped k at hs
+    change (p.sat M ρ → q.sat M ρ) ↔ (p.sat M σ → q.sat M σ)
+    exact ⟨fun hpq hp => (ihq k ρ σ hs.2 h).mp (hpq ((ihp k ρ σ hs.1 h).mpr hp)),
+      fun hpq hp => (ihq k ρ σ hs.2 h).mpr (hpq ((ihp k ρ σ hs.1 h).mp hp))⟩
+  | all p ih =>
+    change p.scoped (k + 1) at hs
+    change (∀ a : A, p.sat M (push a ρ)) ↔ (∀ a : A, p.sat M (push a σ))
+    exact ⟨fun hp a => (ih (k + 1) (push a ρ) (push a σ) hs
+      (push_local k ρ σ h a)).mp (hp a),
+      fun hp a => (ih (k + 1) (push a ρ) (push a σ) hs
+      (push_local k ρ σ h a)).mpr (hp a)⟩
+  | ex p ih =>
+    change p.scoped (k + 1) at hs
+    change (∃ a : A, p.sat M (push a ρ)) ↔ (∃ a : A, p.sat M (push a σ))
+    constructor
+    · intro hp
+      obtain ⟨a, ha⟩ := hp
+      exact ⟨a, (ih (k + 1) (push a ρ) (push a σ) hs (push_local k ρ σ h a)).mp ha⟩
+    · intro hp
+      obtain ⟨a, ha⟩ := hp
+      exact ⟨a, (ih (k + 1) (push a ρ) (push a σ) hs (push_local k ρ σ h a)).mpr ha⟩
+
+theorem sentence_assignment_independent (M : Model A) (p : Sentence)
+    (ρ σ : Nat → A) : p.val.sat M ρ ↔ p.val.sat M σ :=
+  sat_local M p.val 0 ρ σ p.property (fun i hi => False.elim (Nat.not_lt_zero i hi))
+
+#print axioms push_local
+#print axioms eval_local
+#print axioms sat_local
+#print axioms sentence_assignment_independent
+
 end MathCan.ACE.Arithmetic
