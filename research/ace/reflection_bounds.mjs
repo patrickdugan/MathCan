@@ -1,3 +1,4 @@
+import { pathToFileURL } from "node:url";
 import { definition } from './constructible_definition.mjs';
 import { kernel, same, scoped, rejects } from './zf_interface.mjs';
 import { buildE } from './hierarchy_closure.mjs';
@@ -361,6 +362,9 @@ function runM(pinned,part){
   return {experiment:"ACE-03M",part,formula:spec.formula,arity:n,proofs:out,independent_goal_checks:1,negative_controls:controls.length,pinned_L_unchanged:true,scope:"one-step finite parameter witness bounds; no limit-stage reflection or full Separation schema"};
 }
 
-const pinned=JSON.parse(readFileSync(new URL('./L_formula.json',import.meta.url),'utf8'));
-const part=process.argv[2];
-console.log(JSON.stringify(runM(pinned,part),null,2));
+export { buildM };
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const pinned=JSON.parse(readFileSync(new URL('./L_formula.json',import.meta.url),'utf8'));
+  const part=process.argv[2];
+  console.log(JSON.stringify(runM(pinned,part),null,2));
+}
