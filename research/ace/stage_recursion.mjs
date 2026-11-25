@@ -483,3 +483,60 @@ function buildI(defs,prior,finite){
   const proofs={successor_exists:successorExists,successor_unique:succUnique,value_in_domain:domainLemma,subset_reflexive:reflSub,stage_value_transport:stageTransfer,limit_value_exists:limitValue,stage_value_exists:stageTotal,stage_history_extension:extend,empty_history_exists:emptyGraph,compatible_history_union:glueHistories,successor_history_unique:histUnique,ordinal_member:ordinalMemberProof,history_existence_induction:existInd,successor_history_exists:successorHistoryExistence,ordinal_history_exists:historyExists,ordinal_history_exists_unique:historyExistsUnique,ordinal_stage_value_exists:ordinalValueExists,ordinal_stage_value_unique:ordinalValueUnique,stage_members_constructible:stageMembersL};
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
+
+
+import { readFileSync } from 'node:fs';
+
+function runI(pinned){
+  const defs=definition("v",true),prior=buildE(defs,true),finite=buildF(defs),p=buildI(defs,prior,finite),out={};
+  if(!same(defs.L,pinned))throw Error("pinned L mismatch");
+  for(const [name,v] of Object.entries(p)){
+    const r=kernel(0,[],v.proof,false,"ZF");
+    if(!same(r.goal,v.goal))throw Error("goal mismatch "+name);
+    out[name]={nodes:r.visits,proof_bytes:JSON.stringify(v.proof).length};
+  }
+  function embed(p,indices,d=0){
+    const [op,a,b]=p;
+    if(op==="F")return p;
+    if(op==="A"||op==="E")return [op,embed(a,indices,d+1)];
+    if(op==="M"||op==="="){
+      const f=i=>i<d?i:indices[i-d]+d;
+      return [op,f(a),f(b)];
+    }
+    return [op,embed(a,indices,d),embed(b,indices,d)];
+  }
+  const A=p=>["A",p],E=p=>["E",p],I=(p,q)=>[">",p,q],C=(p,q)=>["&",p,q],M=(a,b)=>["M",a,b],Q=(a,b)=>["=",a,b];
+  const all=(n,p)=>{for(let i=0;i<n;i++)p=A(p);return p;};
+  const imp=(...ps)=>ps.reduceRight((a,b)=>I(b,a));
+  const sub=(a,b)=>A(I(M(0,a+1),M(0,b+1)));
+  const trans=a=>A(I(M(0,a+1),sub(0,a+1)));
+  const SG=(f,d)=>embed(defs.stageGraph,[f,d]),V=(f,i,r)=>embed(defs.val,[f,i,r]);
+  const Succ=(b,d)=>embed(defs.successor,[b,d]),Ord=b=>embed(defs.ordinal,[b]);
+  const Graph=(f,b)=>embed(defs.graph,[f,b]),Stage=(f,b,r)=>embed(defs.stage,[f,b,r]);
+  const Hist=(b,h)=>E(C(Succ(b+1,0),SG(h+1,0)));
+  const W=(b,r)=>E(C(Succ(b+1,0),E(C(SG(0,1),V(0,b+2,r+2)))));
+  const goals={
+    stage_value_exists:all(2,I(Graph(1,0),E(Stage(2,1,0)))),
+    stage_history_extension:all(3,imp(trans(1),Succ(1,0),SG(2,1),E(SG(0,1)))),
+    successor_history_exists:A(I(Ord(0),E(Hist(1,0)))),
+    ordinal_history_exists:A(I(Ord(0),E(SG(0,1)))),
+    ordinal_history_exists_unique:A(I(Ord(0),E(C(SG(0,1),A(I(SG(0,2),Q(0,1))))))),
+    ordinal_stage_value_exists:A(I(Ord(0),E(W(1,0)))),
+    ordinal_stage_value_unique:all(3,imp(Ord(2),W(2,1),W(2,0),Q(1,0))),
+    stage_members_constructible:all(2,imp(Ord(1),W(1,0),A(I(M(0,1),defs.L))))
+  };
+  for(const [name,goal] of Object.entries(goals))if(!same(p[name].goal,goal))throw Error("independent goal mismatch "+name);
+  const controls=[
+    ()=>kernel(0,[],p.ordinal_history_exists_unique.proof,false,"CL"),
+    ()=>kernel(0,[],p.compatible_history_union.proof,false,"CL"),
+    ()=>kernel(0,[],p.limit_value_exists.proof,false,"CL"),
+    ()=>kernel(0,[],p.stage_history_extension.proof,false,"logic"),
+    ()=>kernel(0,[],["iE",p.ordinal_history_exists.proof,p.empty_history_exists.proof],false,"ZF"),
+    ()=>kernel(0,[],["iE",p.ordinal_stage_value_exists.proof,p.successor_exists.proof],false,"ZF")
+  ];
+  for(const t of controls)if(!rejects(t))throw Error("negative control accepted");
+  return {experiment:"ACE-03I",scope:"closed pure set-language derivations of exact ordinal stage recursion; executable ZF checker",proofs:out,independent_goal_checks:Object.keys(goals).length,negative_controls:controls.length,pinned_L_unchanged:true,remaining:"ordinal comparison, constructible pair and union closure, other L axioms, uniform adequacy and checker soundness"};
+}
+
+const pinned=JSON.parse(readFileSync(new URL('./L_formula.json',import.meta.url),'utf8'));
+console.log(JSON.stringify(runI(pinned),null,2));
