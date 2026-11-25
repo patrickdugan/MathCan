@@ -1,0 +1,62 @@
+{
+  "experiment": "ACE-03P",
+  "part": "links",
+  "spec": {
+    "name": "separation",
+    "params": 0,
+    "body": [
+      "&",
+      [
+        "E",
+        [
+          "M",
+          1,
+          0
+        ]
+      ],
+      [
+        "E",
+        [
+          "M",
+          0,
+          1
+        ]
+      ]
+    ]
+  },
+  "proofs": {
+    "reflection_implication": {
+      "nodes": 101,
+      "goal_bytes": 3897203,
+      "proof_bytes": 8220820
+    },
+    "reflection_cut": {
+      "nodes": 17,
+      "dependencies": 8
+    },
+    "separation_implication": {
+      "nodes": 249,
+      "goal_bytes": 1117651,
+      "proof_bytes": 2880374
+    },
+    "separation_cut": {
+      "nodes": 13,
+      "dependencies": 6
+    },
+    "guard_conversion": {
+      "nodes": 2
+    },
+    "compiler_context_translation": {
+      "source_nodes": 1,
+      "target_nodes": 1,
+      "dependencies": 1
+    },
+    "final_guarded_cut": {
+      "nodes": 5
+    }
+  },
+  "exact_interfaces": 9,
+  "negative_controls": 5,
+  "pinned_L_unchanged": true,
+  "scope": "checked modular implication and context-translation links; all closed dependencies checked in other replay parts; no monolithic certificate import"
+}
