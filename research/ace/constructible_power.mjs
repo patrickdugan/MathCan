@@ -11,6 +11,7 @@ function buildL(defs,prior,finite,stages,extended=false){
   function named(p,env){
     const [op,a,b]=p;
     if(op==="F")return F;
+    if(op==="G")return [op,env[a]];
     if(op==="M"||op==="=")return [op,env[a],env[b]];
     if(op==="A"||op==="E"){const x=fresh();return [op,x,named(a,[x,...env])];}
     return [op,named(a,env),named(b,env)];
@@ -18,6 +19,7 @@ function buildL(defs,prior,finite,stages,extended=false){
   function db(p,env){
     const [op,a,b]=p;
     if(op==="F")return F;
+    if(op==="G"){const i=env.indexOf(a);if(i<0)throw Error("unbound guard variable");return [op,i];}
     if(op==="M"||op==="="){
       const i=env.indexOf(a),j=env.indexOf(b);if(i<0||j<0)throw Error("unbound proof variable "+a+" "+b);
       return [op,i,j];
@@ -28,6 +30,7 @@ function buildL(defs,prior,finite,stages,extended=false){
   function replace(p,x,y){
     const [op,a,b]=p;
     if(op==="F")return F;
+    if(op==="G")return [op,a===x?y:a];
     if(op==="M"||op==="=")return [op,a===x?y:a,b===x?y:b];
     if(op==="A"||op==="E"){
       if(a===x)return p;
@@ -353,6 +356,41 @@ function buildL(defs,prior,finite,stages,extended=false){
       }));
     })));
     Object.assign(proofs,{ambient_relative_powerset_exists:ambientRelativePower,constructible_powerset_closure:powerClosure});
+    const G=x=>["G",x];
+    function relN(p){
+      const [op,a,b]=p;
+      if(op==="A")return [op,a,I(G(a),relN(b))];
+      if(op==="E")return [op,a,C(G(a),relN(b))];
+      if(["&","|",">"].includes(op))return [op,relN(a),relN(b)];
+      return p;
+    }
+    const T=A(a=>A(x=>I(C(G(a),M(x,a)),G(x))));
+    const PC=A(x=>I(G(x),E(p=>C(G(p),A(y=>B(M(y,p),C(G(y),subset(y,x))))))));
+    const target=relN(ax({name:"power"}).goal);
+    const generic=ii(T,t=>ii(PC,pc=>ui(x=>ii(G(x),gx=>{
+      return open(app(ue(pc,x),gx),(p,pp)=>{
+        const gp=al(pp),power=ar(pp);
+        const local=ui(y=>ii(G(y),gy=>{
+          const subrel=A(z=>I(G(z),I(M(z,y),M(z,x))));
+          const left=ii(M(y,p),yp=>{
+            const sub=ar(from(power,y,yp));
+            return ui(z=>ii(G(z),gz=>ue(sub,z)));
+          });
+          const right=ii(subrel,sr=>{
+            const sub=ui(z=>ii(M(z,y),zy=>{
+              const gz=app(us(t,y,z),ai(gy,zy));
+              return app(ue(sr,z),gz,zy);
+            }));
+            return into(power,y,ai(gy,sub));
+          });
+          return ai(left,right);
+        }));
+        const want=replace(target[2][2],target[1],x);
+        return ei(want,p,ai(gp,local));
+      });
+    }))));
+    Object.assign(proofs,{power_from_transitivity_and_relative_powerset:generic});
+
   }
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
