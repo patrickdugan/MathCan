@@ -1,0 +1,30 @@
+name: MIC atomic closure kernel audit
+on:
+  pull_request:
+    paths:
+      - 'MathCan/MICAtomicClosure.lean'
+      - '.github/workflows/mic-atomic-closure-lean.yml'
+  push:
+    branches:
+      - research/mic06-atomic-closure-lean-20261125
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  kernel:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Check standalone closure lemmas and axioms
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/MICAtomicClosure.lean | tee mic-axioms.txt
+          if grep -Eq 'sorryAx|^error:|admit' mic-axioms.txt; then exit 1; fi
