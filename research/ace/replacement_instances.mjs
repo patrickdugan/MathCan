@@ -1,5 +1,5 @@
 import { kernel, same, scoped, rejects } from './zf_interface.mjs';
-function buildReplacement(defs,body,params){
+function buildReplacement(defs,body,params,reflected=false){
   let serial=0;
   const fresh=()=>`q${serial++}`,M=(a,b)=>["M",a,b],Q=(a,b)=>["=",a,b],F=["F"],I=(p,q)=>[">",p,q],C=(p,q)=>["&",p,q],N=p=>I(p,F);
   const bind=(op,f)=>{const x=fresh();return [op,x,f(x)];};
@@ -140,10 +140,13 @@ function buildReplacement(defs,body,params){
   const delta=A(r=>I(trans(r),I(A(x=>I(M(x,r),L(x))),paramsAt(r,[],params+2,vs=>B(local(r,vs[0],vs[1],vs.slice(2)),global(vs[0],vs[1],vs.slice(2)))))));
   function compSpec(r,a,ps){return A(b=>I(A(y=>B(M(y,b),C(M(y,r),E(x=>C(M(x,r),C(M(x,a),local(r,y,x,ps))))))),D(r,b)));}
   const compiler=A(r=>A(a=>I(M(a,r),paramsAt(r,[],params,ps=>compSpec(r,a,ps)))));
-  const deps={L_transitivity:lTrans,constructible_set_stage_bound:bound,ordinal_stage_value_transitive:stageTrans,stage_members_constructible:stageMembers,definable_subset_constructible:dc,bounded_absoluteness:delta,image_definability:compiler};
+  const agreement=r=>paramsAt(r,[],params+2,vs=>B(local(r,vs[0],vs[1],vs.slice(2)),global(vs[0],vs[1],vs.slice(2))));
+  const reflection=A(c=>I(Ord(c),E(d=>E(r=>C(C(C(Ord(d),W(d,r)),M(c,d)),agreement(r))))));
+  const stageMono=A(c=>A(d=>A(r=>A(s=>I(Ord(c),I(Ord(d),I(W(c,r),I(W(d,s),I(M(c,d),subset(r,s))))))))));
+  const deps={L_transitivity:lTrans,constructible_set_stage_bound:bound,ordinal_stage_value_transitive:stageTrans,stage_members_constructible:stageMembers,definable_subset_constructible:dc,...(reflected?{reflection}:{bounded_absoluteness:delta}),image_definability:compiler,...(reflected?{ordinal_stage_value_monotone:stageMono}:{})};
   const names=Object.keys(deps);
   function withDeps(i,ps,fn){return i===names.length?fn(ps):ii(deps[names[i]],p=>withDeps(i+1,[...ps,p],fn));}
-  const link=withDeps(0,[],([tr,bd,st,sm,dt,ab,dp])=>{
+  const link=withDeps(0,[],([tr,bd,st,sm,dt,ab,dp,mo])=>{
     function solve(a,la,ps,lps,total){
       // Ambient replacement uses the explicitly class-restricted relation.
       const x0=fresh(),y0=fresh(),spec={name:"replacement",params,body:db(C(L(y0),global(y0,x0,ps)),[y0,x0,...ps])};
@@ -175,8 +178,9 @@ function buildReplacement(defs,body,params){
         return adjoinAll(0,b,all,[],reflex,(u,ul,vals,bin)=>{
           return open(app(ue(bd,u),ul),(c,cp)=>open(cp,(r,rp)=>{
             const oc=al(al(rp)),rw=ar(al(rp)),inc=ar(rp);
+            function finish(c,r,oc,rw,inc,reflectedAgreement=null){
             const ar0=app(ue(inc,a),vals[0]),prs=ps.map((p,i)=>app(ue(inc,p),vals[i+1]));
-            const ta=app(us(st,c,r),oc,rw),allr=app(us(sm,c,r),oc,rw),abs=app(ue(ab,r),ta,allr);
+            const ta=app(us(st,c,r),oc,rw),allr=app(us(sm,c,r),oc,rw),abs=reflectedAgreement===null?app(ue(ab,r),ta,allr):reflectedAgreement;
             function eqAt(y,yr,x,xr){let p=app(ue(app(ue(abs,y),yr),x),xr);for(let i=0;i<ps.length;i++)p=app(ue(p,ps[i]),prs[i]);return p;}
             const slice=ui(y=>{
               const ex=E(x=>C(M(x,r),C(M(x,a),local(r,y,x,ps))));
@@ -209,6 +213,14 @@ function buildReplacement(defs,body,params){
               return ai(fw,bw);
             }));
             return ei(E(b=>C(L(b),Limage(a,b,ps))),b,ai(lb,img));
+            }
+            if(!reflected)return finish(c,r,oc,rw,inc);
+            return open(app(ue(ab,c),oc),(d,dp0)=>open(dp0,(s,sp)=>{
+              const od=al(al(al(sp))),sw=ar(al(al(sp))),cd=ar(al(sp)),eq=ar(sp);
+              const rs=app(us(mo,c,d,r,s),oc,od,rw,sw,cd);
+              const newInc=ui(x=>ii(M(x,u),xu=>app(ue(rs,x),app(ue(inc,x),xu))));
+              return finish(d,s,od,sw,newInc,eq);
+            }));
           }));
         });
       });
