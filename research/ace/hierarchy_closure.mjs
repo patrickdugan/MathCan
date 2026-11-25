@@ -97,6 +97,71 @@ function buildE(defs){
       });
     }))));
   }))));
-  const proofs={definable_subset:subsetD,empty_definable:emptyD,def_members_subset:defMembers,empty_in_def:defEmpty,successor_transitivity:defTrans,union_transitivity:unionTrans};
+  const ax=spec=>P(named(kernel(0,[],["axiom",spec],false,"ZF").goal,[]),()=>["axiom",spec]);
+  const dn=p=>P(p.goal[1][1],(e,h)=>["dne",p.emit(e,h)]);
+  const defExists=ui(a=>{
+    const x=fresh(),spec={name:"separation",params:1,body:db(D(a,x),[x,a])};
+    const goal=E(b=>Def(a,b));
+    return ee(ue(ax({name:"power"}),a),goal,(power,pw)=>{
+      const sep=ue(ue(ax(spec),a),power);
+      return ee(sep,goal,(b,sp)=>{
+        const cert=ui(x=>{
+          const forward=ii(M(x,b),mx=>ar(ie(al(ue(sp,x)),mx)));
+          const backward=ii(D(a,x),dx=>{
+            const sub=definableProof(a,x,dx);
+            return ie(ar(ue(sp,x)),ai(ie(ar(ue(pw,x)),sub),dx));
+          });
+          return ai(forward,backward);
+        });
+        return ei(goal,b,cert);
+      });
+    });
+  });
+  const defUnique=ui(a=>ui(b=>ui(c=>ii(Def(a,b),dbb=>ii(Def(a,c),dcc=>{
+    return ie(ue(ue(ax({name:"extensionality"}),b),c),ui(x=>{
+      return ai(ii(M(x,b),mx=>ie(ar(ue(dcc,x)),ie(al(ue(dbb,x)),mx))),
+        ii(M(x,c),mx=>ie(ar(ue(dbb,x)),ie(al(ue(dcc,x)),mx))));
+    }));
+  })))));
+  // Bounded induction on an arbitrary transitive set, for any fixed pure
+  // set formula P(x, parameters). Use Separation to form the bad set
+  // and Foundation to choose a minimal bad element.
+  function boundedInduction(property,paramCount){
+    function quantify(ps){
+      if(ps.length<paramCount)return ui(p=>quantify([...ps,p]));
+      const PAt=x=>named(property,[x,...ps]);
+      const step=a=>A(y=>I(M(y,a),I(A(z=>I(M(z,y),PAt(z))),PAt(y))));
+      return ui(a=>ii(trans(a),ta=>ii(step(a),st=>ui(x=>ii(M(x,a),xa=>{
+        const v=fresh(),spec={name:"separation",params:paramCount,body:db(N(PAt(v)),[v,...ps])};
+        let sep=ax(spec);
+        for(const p of ps.slice().reverse())sep=ue(sep,p);
+        sep=ue(sep,a);
+        const nn=ii(N(PAt(x)),nx=>{
+          return ee(sep,F,(bad,sb)=>{
+            const xb=ie(ar(ue(sb,x)),ai(xa,nx));
+            const nz=E(y=>M(y,bad));
+            const found=ie(ue(ax({name:"foundation"}),bad),ei(nz,x,xb));
+            return ee(found,F,(y,fy)=>{
+              const by=ie(al(ue(sb,y)),al(fy)),ya=al(by),ny=ar(by);
+              const pred=ui(z=>ii(M(z,y),zy=>{
+                const za=ie(ue(ie(ue(ta,y),ya),z),zy);
+                return dn(ii(N(PAt(z)),nz=>{
+                  const zb=ie(ar(ue(sb,z)),ai(za,nz));
+                  return ie(ie(ue(ar(fy),z),zy),zb);
+                }));
+              }));
+              return ie(ny,ie(ie(ue(st,y),ya),pred));
+            });
+          });
+        });
+        return dn(nn);
+      })))));
+    }
+    return quantify([]);
+  }
+  const boundedTrans=boundedInduction(["A",[">",["M",0,1],["A",[">",["M",0,1],["M",0,2]]]]],0);
+  const boundedMembership=boundedInduction(["M",0,1],1);
+  const boundedL=boundedInduction(defs.L,0);
+  const proofs={definable_subset:subsetD,empty_definable:emptyD,def_members_subset:defMembers,empty_in_def:defEmpty,successor_transitivity:defTrans,union_transitivity:unionTrans,def_exists:defExists,def_unique:defUnique,bounded_induction_transitivity:boundedTrans,bounded_induction_membership:boundedMembership,bounded_induction_L:boundedL};
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
