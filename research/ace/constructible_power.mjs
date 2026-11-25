@@ -1,3 +1,4 @@
+import { pathToFileURL } from "node:url";
 import { definition } from './constructible_definition.mjs';
 import { kernel, same, rejects, inst, expandClass, classProofs, compile } from './zf_interface.mjs';
 import { buildE } from './hierarchy_closure.mjs';
@@ -477,7 +478,10 @@ function runL(pinned,part){
   return {proofs:{...out,constructible_powerset_closure:{proof_bytes:JSON.stringify(pure.proof).length},power_axiom:{nodes:compiled.target.visits-1,proof_bytes:JSON.stringify(proof).length}},independent_goal_checks:3,negative_controls:count,closed_L_axiom_certificate:"power",source_nodes:compiled.source.visits,target_nodes:compiled.target.visits};
 }
 
-const pinned=JSON.parse(readFileSync(new URL('./L_formula.json',import.meta.url),'utf8'));
-const part=process.argv[2];
-if(!part)throw Error('choose finite, ranks or power');
-console.log(JSON.stringify(runL(pinned,part),null,2));
+export { buildL };
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const pinned=JSON.parse(readFileSync(new URL('./L_formula.json',import.meta.url),'utf8'));
+  const part=process.argv[2];
+  if(!part)throw Error('choose finite, ranks or power');
+  console.log(JSON.stringify(runL(pinned,part),null,2));
+}
