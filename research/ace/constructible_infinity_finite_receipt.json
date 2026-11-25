@@ -1,0 +1,14 @@
+{
+  "proofs": {
+    "successor_definable": {
+      "nodes": 3397,
+      "proof_bytes": 1274629
+    },
+    "self_definable": {
+      "nodes": 1647,
+      "proof_bytes": 535012
+    }
+  },
+  "independent_goal_checks": 2,
+  "negative_controls": 2
+}
