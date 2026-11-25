@@ -1,3 +1,4 @@
+import { pathToFileURL } from "node:url";
 import { definition } from './constructible_definition.mjs';
 import { kernel, same, scoped, rejects } from './zf_interface.mjs';
 function buildTV(defs,formula,arity){
@@ -289,5 +290,8 @@ function runTV(pinned){
   return {experiment:"ACE-03M-transport",proofs,independent_goal_checks:cases.length,negative_controls:tests.length,finite_relations:models,domain_inclusions:domainPairs,formula_cases:formulaCases,satisfied_witness_clauses:satisfied,truth_checks:truthChecks,missing_clause_counterexamples:failedClauseCounterexamples,scope:"conditional fixed-formula transport; arbitrary finite relation regression, no reflecting-stage existence"};
 }
 
-const pinned=JSON.parse(readFileSync(new URL('./L_formula.json',import.meta.url),'utf8'));
-console.log(JSON.stringify(runTV(pinned),null,2));
+export { buildTV };
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const pinned=JSON.parse(readFileSync(new URL('./L_formula.json',import.meta.url),'utf8'));
+  console.log(JSON.stringify(runTV(pinned),null,2));
+}
