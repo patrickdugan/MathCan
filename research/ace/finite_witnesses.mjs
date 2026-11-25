@@ -203,6 +203,68 @@ function buildF(defs){
     const goal=E(s=>C(form("graph",s,n),form("val",s,i,x)));
     return withUnaryGraph(i,x,n,nn,inj,(s,g,v)=>ei(goal,s,ai(g,v)));
   })));
-  const proofs={pair_exists:pairExists,pair_injective:pairInjective,binary_graph_exists:binaryGraph,unary_graph_exists:unaryGraph};
+
+  function emptyEq(a,b,ea,eb){
+    return app(us(ax({name:"extensionality"}),a,b),ui(x=>ai(ii(M(x,a),m=>fe(app(ue(ea,x),m),M(x,b))),ii(M(x,b),m=>fe(app(ue(eb,x),m),M(x,a))))));
+  }
+  function extEq(a,b,fn){return app(us(ax({name:"extensionality"}),a,b),ui(fn));}
+  function succUnique(a,b,c,sb,sc){
+    return extEq(b,c,x=>ai(ii(M(x,b),m=>into(sc,x,from(sb,x,m))),ii(M(x,c),m=>into(sb,x,from(sc,x,m)))));
+  }
+  const omegaExists= open(ax({name:"infinity"}),(a,indA)=>{
+    const property=x=>A(b=>I(form("inductive",b),M(x,b)));
+    const v=fresh(),sep={name:"separation",params:0,body:db(property(v),[v])};
+    return open(ue(ax(sep),a),(w,sw)=>{
+      const base=open(al(indA),(z,ez)=>{
+        const all=ui(b=>ii(form("inductive",b),ib=>{
+          return open(al(ib),(y,ey)=>eqSub(emptyEq(y,z,ar(ey),al(ez)),t=>M(t,b),al(ey)));
+        }));
+        const wz=into(sw,z,ai(ar(ez),all));
+        return ei(form("inductive",w)[1],z,ai(wz,al(ez)));
+      });
+      const step=ui(x=>ii(M(x,w),xw=>{
+        const xa=al(from(sw,x,xw)),allX=ar(from(sw,x,xw));
+        return open(app(ue(ar(indA),x),xa),(y,sy)=>{
+          const all=ui(b=>ii(form("inductive",b),ib=>{
+            const xb=app(ue(allX,b),ib);
+            return open(app(ue(ar(ib),x),xb),(z,sz)=>eqSub(succUnique(x,z,y,ar(sz),ar(sy)),t=>M(t,b),al(sz)));
+          }));
+          const yw=into(sw,y,ai(al(sy),all));
+          const st=form("inductive",w)[2];
+          return ei(replace(st[2][2],st[1],x),y,ai(yw,ar(sy)));
+        });
+      }));
+      const least=ui(b=>ii(form("inductive",b),ib=>ui(x=>ii(M(x,w),xw=>app(ue(ar(from(sw,x,xw)),b),ib)))));
+      const goal=E(w=>form("omega",w));
+      return ei(goal,w,ai(ai(base,step),least));
+    });
+  });
+  function withOrdinals(ow,w,fn){
+    return open(al(al(ow)),(z,ez)=>{
+      const zw=al(ez),zero=ar(ez);
+      return open(app(ue(ar(al(ow)),z),zw),(o,so)=>{
+        const ow0=al(so),su0=ar(so);
+        const zo=into(su0,z,or(M(z,z),ref(z)));
+        const single=ui(i=>ai(ii(M(i,o),io=>oe(from(su0,i,io),Q(i,z),iz=>fe(app(ue(zero,i),iz),Q(i,z)),q=>q)),ii(Q(i,z),q=>into(su0,i,or(M(i,z),q)))));
+        const distinct=ii(Q(z,o),eq=>app(ue(zero,z),eqSub(sym(eq),t=>M(z,t),zo)));
+        return open(app(ue(ar(al(ow)),o),ow0),(n,sn)=>{
+          const su1=ar(sn);
+          const two=ui(i=>ai(ii(M(i,n),iv=>oe(from(su1,i,iv),["|",Q(i,z),Q(i,o)],io=>ol(from(single,i,io),Q(i,o)),q=>or(Q(i,z),q))),
+            ii(["|",Q(i,z),Q(i,o)],alt=>into(su1,i,oe(alt,["|",M(i,o),Q(i,o)],q=>ol(into(single,i,q),Q(i,o)),q=>or(M(i,o),q))))));
+          const zn=into(two,z,ol(ref(z),Q(z,o))),on=into(two,o,or(Q(o,z),ref(o)));
+          const ne0=ei(E(i=>M(i,o)),z,zo),ne1=ei(E(i=>M(i,n)),z,zn);
+          return use(single,ss=>use(two,tt=>use(distinct,ne=>fn({w,z,o,n,zero,zw,ow0,nw:al(sn),su0,su1,ss,tt,ne,zo,zn,on,ne0,ne1}))));
+        });
+      });
+    });
+  }
+  const finiteOrdinals=use(omegaExists,owEx=>open(owEx,(w,ow)=>withOrdinals(ow,w,a=>{
+    const {z,o,n}=a;
+    const body=(w,z,o,n)=>C(C(C(C(C(form("omega",w),form("empty",z)),form("singleton",o,z)),form("unordered",n,z,o)),N(Q(z,o))),C(M(o,w),M(n,w)));
+    const goal=E(w=>E(z=>E(o=>E(n=>body(w,z,o,n)))));
+    const g1=replace(goal[2],goal[1],w),g2=replace(g1[2],g1[1],z),g3=replace(g2[2],g2[1],o);
+    return ei(goal,w,ei(g1,z,ei(g2,o,ei(g3,n,ai(ai(ai(ai(ai(ow,a.zero),a.ss),a.tt),a.ne),ai(a.ow0,a.nw))))));
+  })));
+  const proofs={pair_exists:pairExists,pair_injective:pairInjective,binary_graph_exists:binaryGraph,unary_graph_exists:unaryGraph,omega_exists:omegaExists,finite_ordinals:finiteOrdinals};
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
