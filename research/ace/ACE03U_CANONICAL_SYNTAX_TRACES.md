@@ -1,5 +1,10 @@
 # ACE-03U | Canonical relation sets and syntax traces
 
+Follow-up: [ACE-03V](ACE03V_FINITE_SYNTAX_DECORATION.md) proves finite
+reverse decoration and the exact equivalence of decoded syntax with
+the pinned definable and Def formulas. The ACE-03U head passed all
+56 ACE CI jobs. Its original checkpoint ledger follows.
+
 Status, 2026-11-25: all 35 proof checks pass the unchanged executable ZF
 kernel. They cover 34 new theorem statements and one reused graph lemma,
 with 15,053 kernel visits, 35 independently reconstructed conclusions

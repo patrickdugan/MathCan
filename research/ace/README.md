@@ -1,20 +1,22 @@
 # ACE | Axiom choice elimination
 
-Current checkpoint, 2026-11-25: ACE-03U adds 35 proof checks, covering
-34 new statements and one reused helper, with 15,053 kernel visits and
-93 rejection controls. Exact relation membership now gives unique
-canonical order sets. Supplied decoded syntax determines at most one
-semantic trace over any transitive instruction domain, and finite induction
-assembles row-wise existential witnesses into a graph. The finite
-trace decoder adds 4,469 exhaustive traces and 27 corruption or
-malformed-input controls.
+Current checkpoint, 2026-11-25: ACE-03V checks the complete finite
+trace-to-syntax construction and its exact equivalence with the pinned
+definable and Def formulas. Every supplied finite valid trace admits
+five actual instruction-field sets satisfying the existing syntax and
+execution formulas. All outer Def witnesses and the full lastSlice
+clause are preserved.
 
-The preceding ACE-03T head passed all 55 ACE CI jobs, including the
-complete unbounded Replacement and Separation graphs and their exact
-source-axiom imports. Uniform coding adequacy, construction of the
-canonical transfinite history, membership of the orders in L, exact
-relativized Choice import and formal checker soundness remain open.
+The 32 proof checks cover 31 new statements and one independently
+reproved existing statement, with 87,128 kernel visits and 89 rejection
+controls. The preceding ACE-03U head passed all 56 ACE CI jobs and both
+mathematical check jobs. Natural-number coding, total execution
+existence, the canonical transfinite order history, membership of its
+orders in L, exact relativized Choice import and checker soundness
+remain open.
 
+- [ACE-03V mathematical report](ACE03V_FINITE_SYNTAX_DECORATION.md)
+- [Combined ACE-03V replay receipt and source hashes](ace03v_receipt.json)
 - [ACE-03U mathematical report](ACE03U_CANONICAL_SYNTAX_TRACES.md)
 - [Combined ACE-03U replay receipt and source hashes](ace03u_receipt.json)
 - [Full streamed replay results](ACE03S_FULL_REPLAY_VERIFICATION.md)

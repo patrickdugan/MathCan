@@ -1,0 +1,219 @@
+{
+  "experiment": "ACE-03V",
+  "part": "exact_tagged_program_decoding",
+  "checks": [
+    {
+      "id": "pair_coordinates_double_union",
+      "nodes": 70,
+      "goal_bytes": 591,
+      "ambient_axioms": []
+    },
+    {
+      "id": "decoded_field_exists",
+      "nodes": 302,
+      "goal_bytes": 1845,
+      "ambient_axioms": [
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "exact_field_value_agreement",
+      "nodes": 325,
+      "goal_bytes": 3673,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "graph_values_unique",
+      "nodes": 28,
+      "goal_bytes": 1673,
+      "ambient_axioms": []
+    },
+    {
+      "id": "graph_value_in_domain",
+      "nodes": 243,
+      "goal_bytes": 1343,
+      "ambient_axioms": [],
+      "independently_reproved_existing_statement": "finite_witnesses.value_in_domain"
+    },
+    {
+      "id": "eq_decoded_payload",
+      "nodes": 415,
+      "goal_bytes": 27971,
+      "ambient_axioms": []
+    },
+    {
+      "id": "mem_decoded_payload",
+      "nodes": 408,
+      "goal_bytes": 27967,
+      "ambient_axioms": []
+    },
+    {
+      "id": "neg_decoded_payload",
+      "nodes": 415,
+      "goal_bytes": 26667,
+      "ambient_axioms": []
+    },
+    {
+      "id": "and_decoded_payload",
+      "nodes": 405,
+      "goal_bytes": 24588,
+      "ambient_axioms": []
+    },
+    {
+      "id": "exists_decoded_payload",
+      "nodes": 404,
+      "goal_bytes": 29548,
+      "ambient_axioms": []
+    },
+    {
+      "id": "decoded_fields_have_shape",
+      "nodes": 2674,
+      "goal_bytes": 34858,
+      "ambient_axioms": []
+    },
+    {
+      "id": "decoded_fields_have_choices",
+      "nodes": 2080,
+      "goal_bytes": 48939,
+      "ambient_axioms": []
+    },
+    {
+      "id": "decoded_fields_follow_rules",
+      "nodes": 2752,
+      "goal_bytes": 53678,
+      "ambient_axioms": []
+    },
+    {
+      "id": "decoded_fields_syntax_and_trace",
+      "nodes": 7971,
+      "goal_bytes": 74878,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "tagged_program_has_decoded_syntax",
+      "nodes": 8344,
+      "goal_bytes": 65644,
+      "ambient_axioms": [
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    }
+  ],
+  "checked_modules": 15,
+  "new_statement_checks": 14,
+  "reproved_existing_statement_checks": 1,
+  "reused_helper_checks": 0,
+  "existing_statement_identity_checks": 1,
+  "kernel_visits": 26836,
+  "independent_exact_goals": 15,
+  "independent_formula_interfaces": 14,
+  "pure_logic_checks": [
+    "pair_coordinates_double_union",
+    "graph_values_unique",
+    "graph_value_in_domain",
+    "eq_decoded_payload",
+    "mem_decoded_payload",
+    "neg_decoded_payload",
+    "and_decoded_payload",
+    "exists_decoded_payload",
+    "decoded_fields_have_shape",
+    "decoded_fields_have_choices",
+    "decoded_fields_follow_rules"
+  ],
+  "negative_controls": 32,
+  "controls": [
+    "pair_coordinates_double_union:drop_binders",
+    "decoded_field_exists:drop_binders",
+    "decoded_field_exists:forbid_set_axioms",
+    "exact_field_value_agreement:drop_binders",
+    "exact_field_value_agreement:forbid_set_axioms",
+    "graph_values_unique:drop_binders",
+    "graph_value_in_domain:drop_binders",
+    "eq_decoded_payload:drop_binders",
+    "mem_decoded_payload:drop_binders",
+    "neg_decoded_payload:drop_binders",
+    "and_decoded_payload:drop_binders",
+    "exists_decoded_payload:drop_binders",
+    "decoded_fields_have_shape:drop_binders",
+    "decoded_fields_have_choices:drop_binders",
+    "decoded_fields_follow_rules:drop_binders",
+    "decoded_fields_syntax_and_trace:drop_binders",
+    "decoded_fields_syntax_and_trace:forbid_set_axioms",
+    "tagged_program_has_decoded_syntax:drop_binders",
+    "tagged_program_has_decoded_syntax:forbid_set_axioms",
+    "tagged_program_has_decoded_syntax:omit_semantic_graph",
+    "tagged_program_has_decoded_syntax:omit_distinct_tags",
+    "tagged_program_has_decoded_syntax:omit_tagged_selection",
+    "decoded_fields_have_shape:omit_exact_raw_field_membership",
+    "decoded_fields_have_choices:omit_tagged_selection",
+    "decoded_fields_follow_rules:omit_semantic_graph",
+    "eq_decoded_payload:omit_distinct_tags",
+    "mem_decoded_payload:omit_distinct_tags",
+    "neg_decoded_payload:omit_distinct_tags",
+    "and_decoded_payload:omit_distinct_tags",
+    "exists_decoded_payload:omit_distinct_tags",
+    "decoded_field_exists:corrupt_exact_separation_predicate",
+    "choice_axiom_forbidden"
+  ],
+  "ambient_axiom_instances": [
+    {
+      "name": "union"
+    },
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "power"
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 891
+    }
+  ],
+  "main_quantifier_order": [
+    "g",
+    "f",
+    "m",
+    "n",
+    "A",
+    "tag0",
+    "tag1",
+    "tag2",
+    "tag3",
+    "tag4"
+  ],
+  "main_premises": [
+    "Graph(f,m)",
+    "Distinct(tag0,...,tag4)",
+    "Tagged(g,f,m,n,A,tags)"
+  ],
+  "field_order": [
+    "eq",
+    "mem",
+    "neg",
+    "and",
+    "exists"
+  ],
+  "field_membership": "p in Field(tag) iff exists k,d,c (Pair(p,k,d) and Val(g,k,c) and Pair(c,tag,d))",
+  "field_bound": "P(P(U^2(g) union U^4(g)))",
+  "transitive_domain_required": false,
+  "finite_domain_required": false,
+  "pinned_L_unchanged": true,
+  "scope": "a supplied exact tagged selection graph and a semantic graph yield five actual exact syntax fields with the original Syntax and Trace formulas; no Choice axiom is used",
+  "open_obligations": [
+    "single-natural-number program coding",
+    "execution existence for every well-formed program",
+    "canonical order history and internal constructibility",
+    "formal checker soundness"
+  ]
+}

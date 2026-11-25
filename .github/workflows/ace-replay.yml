@@ -321,6 +321,20 @@ jobs:
           set -euo pipefail
           node research/ace/ace03u_replay.mjs > /tmp/ace03u.json
           diff -u research/ace/ace03u_receipt.json /tmp/ace03u.json
+  finite-syntax-decoration-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check finite syntax decoration and the exact Def equivalence
+        shell: bash
+        run: |
+          set -euo pipefail
+          node research/ace/ace03v_replay.mjs > /tmp/ace03v.json
+          diff -u research/ace/ace03v_receipt.json /tmp/ace03v.json
   lean-replay:
     runs-on: ubuntu-latest
     steps:
