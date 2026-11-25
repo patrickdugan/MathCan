@@ -179,6 +179,30 @@ function buildF(defs){
     const goal=E(s=>C(C(form("graph",s,n),form("val",s,i,x)),form("val",s,j,y)));
     return withBinaryGraph(i,j,x,y,n,nn,ne,inj,(s,g,v0,v1)=>ei(goal,s,ai(ai(g,v0),v1)));
   }))));
-  const proofs={pair_exists:pairExists,pair_injective:pairInjective,binary_graph_exists:binaryGraph};
+
+  function withUnaryGraph(i,x,n,nn,inj,fn){
+    return withPair(i,x,(p,pp)=>withSingleton(p,(s,sp)=>{
+      const Val=(a,b)=>form("val",s,a,b);
+      const pv=ei(Val(i,x),p,ai(into(sp,p,ref(p)),pp));
+      function classify(a,b,v){
+        return open(v,(w,ww)=>app(us(inj,p,a,b,i,x),eqSub(from(sp,w,al(ww)),z=>form("pair",z,a,b),ar(ww)),pp));
+      }
+      const graph=ai(ui(w=>ii(M(w,s),ws=>{
+        const goal=E(a=>C(M(a,n),E(b=>form("pair",w,a,b))));
+        return ei(goal,i,ai(into(nn,i,ref(i)),ei(replace(goal[2][2],goal[1],i),x,eqSub(sym(from(sp,w,ws)),z=>form("pair",z,i,x),pp))));
+      })),ui(a=>ii(M(a,n),an=>{
+        const goal=E(b=>C(Val(a,b),A(c=>I(Val(a,c),Q(c,b)))));
+        const av=eqSub(sym(from(nn,a,an)),z=>Val(z,x),pv);
+        const uniq=ui(c=>ii(Val(a,c),vc=>ar(classify(a,c,vc))));
+        return ei(goal,x,ai(av,uniq));
+      })));
+      return use(graph,g=>use(pv,v=>fn(s,g,v)));
+    }));
+  }
+  const unaryGraph=use(pairInjective,inj=>qs(3,(i,x,n)=>ii(form("singleton",n,i),nn=>{
+    const goal=E(s=>C(form("graph",s,n),form("val",s,i,x)));
+    return withUnaryGraph(i,x,n,nn,inj,(s,g,v)=>ei(goal,s,ai(g,v)));
+  })));
+  const proofs={pair_exists:pairExists,pair_injective:pairInjective,binary_graph_exists:binaryGraph,unary_graph_exists:unaryGraph};
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
