@@ -342,6 +342,116 @@ function buildI(defs,prior,finite){
   const glueHistories=use(domainLemma,dom=>use(coh,co=>use(stageTransfer,tr=>{
     return qs(2,(H,d)=>ii(goodFamily(H,d),ok=>ii(coverFamily(H,d),cv=>glue(H,d,ok,cv,dom,co,tr))));
   })));
-  const proofs={successor_exists:successorExists,successor_unique:succUnique,value_in_domain:domainLemma,subset_reflexive:reflSub,stage_value_transport:stageTransfer,limit_value_exists:limitValue,stage_value_exists:stageTotal,stage_history_extension:extend,empty_history_exists:emptyGraph,compatible_history_union:glueHistories};
+  function boundedInduction(property,paramCount){
+    function quantify(ps){
+      if(ps.length<paramCount)return ui(p=>quantify([...ps,p]));
+      const PAt=x=>named(property,[x,...ps]);
+      const step=a=>A(y=>I(M(y,a),I(A(z=>I(M(z,y),PAt(z))),PAt(y))));
+      return ui(a=>ii(trans(a),ta=>ii(step(a),st=>ui(x=>ii(M(x,a),xa=>{
+        const v=fresh(),spec={name:"separation",params:paramCount,body:db(N(PAt(v)),[v,...ps])};
+        let sep=ax(spec);
+        for(const p of ps.slice().reverse())sep=ue(sep,p);
+        sep=ue(sep,a);
+        const nn=ii(N(PAt(x)),nx=>{
+          return ee(sep,F,(bad,sb)=>{
+            const xb=ie(ar(ue(sb,x)),ai(xa,nx));
+            const nz=E(y=>M(y,bad));
+            const found=ie(ue(ax({name:"foundation"}),bad),ei(nz,x,xb));
+            return ee(found,F,(y,fy)=>{
+              const by=ie(al(ue(sb,y)),al(fy)),ya=al(by),ny=ar(by);
+              const pred=ui(z=>ii(M(z,y),zy=>{
+                const za=ie(ue(ie(ue(ta,y),ya),z),zy);
+                return dn(ii(N(PAt(z)),nz=>{
+                  const zb=ie(ar(ue(sb,z)),ai(za,nz));
+                  return ie(ie(ue(ar(fy),z),zy),zb);
+                }));
+              }));
+              return ie(ny,ie(ie(ue(st,y),ya),pred));
+            });
+          });
+        });
+        return dn(nn);
+      })))));
+    }
+    return quantify([]);
+  }
+
+  const Hist=(i,h)=>E(e=>C(Succ(i,e),SG(h,e)));
+  const Prop=i=>I(Ord(i),E(h=>Hist(i,h)));
+  const histUnique=use(succUnique,su=>use(unique,un=>use(succTrans,st=>{
+    return qs(3,(i,h,g)=>ii(trans(i),ti=>ii(Hist(i,h),hh=>ii(Hist(i,g),gg=>{
+      return open(hh,(d,dp)=>open(gg,(e,ep)=>{
+        const de=app(us(su,i,d,e),al(dp),al(ep));
+        const td=app(us(st,i,d),ti,al(dp));
+        return app(us(un,h,g,d),td,ar(dp),eqSub(sym(de),x=>SG(g,x),ar(ep)));
+      }));
+    }))));
+  })));
+  function ordinalMember(b,i,ob,ib){
+    const ti=app(ue(ar(ob),i),ib);
+    const members=ui(j=>ii(M(j,i),ji=>app(ue(ar(ob),j),earlier(al(ob),i,ib,j,ji))));
+    return ai(ti,members);
+  }
+  const ordinalMemberProof=qs(2,(b,i)=>ii(Ord(b),ob=>ii(M(i,b),ib=>ordinalMember(b,i,ob,ib))));
+  function histStep(b,ob,ih,hu,gl,ext,suc,st){
+    function getHist(i,ib){return app(app(ue(ih,i),ib),ordinalMember(b,i,ob,ib));}
+    function histGood(i,ib,h,hh){
+      return open(hh,(e,ep)=>{
+        const ti=app(ue(ar(ob),i),ib);
+        const te=app(us(st,i,e),ti,al(ep));
+        const inc=ui(j=>ii(M(j,e),je=>oe(from(al(ep),j,je),M(j,b),ji=>earlier(al(ob),i,ib,j,ji),eq=>eqSub(sym(eq),z=>M(z,b),ib))));
+        const ie0=into(al(ep),i,or(M(i,i),ref(i)));
+        return ei(E(e=>C(good(h,e,b),M(i,e))),e,ai(ai(ai(te,inc),ar(ep)),ie0));
+      });
+    }
+    const i0=fresh(),h0=fresh(),spec={name:"replacement",params:0,body:db(Hist(i0,h0),[h0,i0])};
+    const total=ui(i=>ii(M(i,b),ib=>open(getHist(i,ib),(h,hh)=>{
+      const ti=app(ue(ar(ob),i),ib);
+      const un=ui(g=>ii(Hist(i,g),gg=>app(us(hu,i,g,h),ti,gg,hh)));
+      return ei(E(h=>C(Hist(i,h),A(g=>I(Hist(i,g),Q(g,h))))),h,ai(hh,un));
+    })));
+    return open(app(ue(ax(spec),b),total),(H,img)=>{
+      const ok=ui(h=>ii(M(h,H),hH=>open(from(img,h,hH),(i,ip)=>{
+        return open(histGood(i,al(ip),h,ar(ip)),(e,ep)=>ei(E(e=>good(h,e,b)),e,al(ep)));
+      })));
+      const cv=ui(i=>ii(M(i,b),ib=>open(getHist(i,ib),(h,hh)=>{
+        const hH=into(img,h,ei(ar(ue(img,h)).goal[1],i,ai(ib,hh)));
+        const hg=histGood(i,ib,h,hh);
+        return ei(E(h=>C(M(h,H),E(e=>C(good(h,e,b),M(i,e))))),h,ai(hH,hg));
+      })));
+      return open(app(us(gl,H,b),ok,cv),(f,sf)=>{
+        return open(ue(suc,b),(d,sd)=>{
+          return open(app(us(ext,f,b,d),al(ob),sd,sf),(g,sg)=>{
+            return ei(E(h=>Hist(b,h)),g,ei(Hist(b,g),d,ai(sd,sg)));
+          });
+        });
+      });
+    });
+  }
+  const b0=fresh(),existInd=boundedInduction(db(Prop(b0),[b0]),0);
+  const successorHistoryExistence=use(histUnique,hu=>use(glueHistories,gl=>use(extend,ext=>use(successorExists,suc=>use(succTrans,st=>{
+    return ui(b=>ii(Ord(b),ob=>{
+      return open(ue(suc,b),(d,sd)=>{
+        const td=app(us(st,b,d),al(ob),sd);
+        const step=ui(i=>ii(M(i,d),id=>ii(A(j=>I(M(j,i),Prop(j))),ih=>ii(Ord(i),oi=>histStep(i,oi,ih,hu,gl,ext,suc,st)))));
+        const all=app(ue(existInd,d),td,step);
+        const bd=into(sd,b,or(M(b,b),ref(b)));
+        return app(app(ue(all,b),bd),ob);
+      });
+    }));
+  })))));
+  const historyExists=use(successorHistoryExistence,he=>use(restrict,re=>ui(b=>ii(Ord(b),ob=>{
+    return open(app(ue(he,b),ob),(g,gh)=>open(gh,(d,dh)=>{
+      const inc=ui(i=>ii(M(i,b),ib=>into(al(dh),i,ol(ib,Q(i,b)))));
+      return open(app(us(re,g,d,b),al(ob),inc,ar(dh)),(f,fp)=>ei(E(f=>SG(f,b)),f,al(fp)));
+    }));
+  }))));
+  const historyExistsUnique=use(historyExists,he=>use(unique,un=>ui(b=>ii(Ord(b),ob=>{
+    return open(app(ue(he,b),ob),(f,sf)=>{
+      const uq=ui(g=>ii(SG(g,b),sg=>app(us(un,g,f,b),al(ob),sg,sf)));
+      return ei(E(f=>C(SG(f,b),A(g=>I(SG(g,b),Q(g,f))))),f,ai(sf,uq));
+    });
+  }))));
+  const proofs={successor_exists:successorExists,successor_unique:succUnique,value_in_domain:domainLemma,subset_reflexive:reflSub,stage_value_transport:stageTransfer,limit_value_exists:limitValue,stage_value_exists:stageTotal,stage_history_extension:extend,empty_history_exists:emptyGraph,compatible_history_union:glueHistories,successor_history_unique:histUnique,ordinal_member:ordinalMemberProof,history_existence_induction:existInd,successor_history_exists:successorHistoryExistence,ordinal_history_exists:historyExists,ordinal_history_exists_unique:historyExistsUnique};
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
