@@ -94,9 +94,7 @@ Require actual kernel output before marking LEAN-CHECKED.
 
 ## Registered next gates (not run)
 
-ACE-02: intrinsic first-order arithmetic syntax and satisfaction,
-formal proof of invariance under embeddings preserving the natural
-number domain and operations; quantifier-binder and scope controls.
+ACE-02: staged in [ACE02_ARITHMETIC_TRANSPORT.md](ACE02_ARITHMETIC_TRANSPORT.md). Explicit first-order syntax with de Bruijn scopes, isomorphism-based semantic transport and assignment locality; 2,304 finite formula checks passed. Lean kernel and standalone CLI replay remain pending.
 ACE-03: explicit first-order ZF/ZFC proof calculus with axiom schema
 validation, proof relativization into L, and independently checked
 arithmetic absoluteness. Keep host axioms and object axioms separate.
