@@ -1,0 +1,59 @@
+{
+  "schema": "trr07-independent-elimination-replay-v1",
+  "status": "passed",
+  "elapsed_seconds": 17.280512960000124,
+  "orders": [
+    {
+      "order": 29,
+      "norms_recomputed": 13,
+      "integer": "15506428644",
+      "fibres": [
+        {
+          "p": 2,
+          "residue_degree": 1,
+          "fibre_degree": 13,
+          "all_roots_singular": true
+        },
+        {
+          "p": 2,
+          "residue_degree": 14,
+          "fibre_degree": 1,
+          "all_roots_singular": true
+        },
+        {
+          "p": 3,
+          "residue_degree": 1,
+          "fibre_degree": 12,
+          "all_roots_singular": true
+        },
+        {
+          "p": 3,
+          "residue_degree": 1,
+          "fibre_degree": 13,
+          "all_roots_singular": true
+        },
+        {
+          "p": 7,
+          "residue_degree": 7,
+          "fibre_degree": 1,
+          "all_roots_singular": true
+        },
+        {
+          "p": 7,
+          "residue_degree": 7,
+          "fibre_degree": 1,
+          "all_roots_singular": true
+        },
+        {
+          "p": 29,
+          "residue_degree": 1,
+          "fibre_degree": 5,
+          "all_roots_singular": true
+        }
+      ]
+    }
+  ],
+  "scope": "stored compressed equations, integral elimination, and every exceptional fibre",
+  "remaining_proof_obligation": "reconstruct stored g_i from H*lambda in the localized integral algebra",
+  "certificate_sha256": "25380c754735ac9cee34525a307d91c12270a57d8a1c73ef9c8417fcdabf2168"
+}

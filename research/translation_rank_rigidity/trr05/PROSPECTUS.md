@@ -12,7 +12,7 @@ TRR-03 bounds the affine-block degree between floor(N/3) and ceil(N/3). TRR-05 e
 
 For every prime N>=7 and every smooth curve with a rational marked point of order N in characteristic >3, the quantities a_Q^2-N x(Q) cannot be constant on G minus O, where a_Q is the regular coefficient of the normalized logarithmic expansion of w=1/Phi(x) at Q. A single exact smooth counterexample, with all denominators checked and direct evaluation-space containment verified, falsifies the conjecture. Matching characteristic is discharged by TRR-06 subject to its proof obligations. No claim of novelty relative to the algebraic geometry literature until reviewed.
 
-## Empirical program (proposed, not completed)
+## Original empirical program and acceptance gates
 
 | Stage | Dataset / method | Acceptance gate |
 |---|---|---|

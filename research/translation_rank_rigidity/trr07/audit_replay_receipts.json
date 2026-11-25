@@ -1,0 +1,98 @@
+{
+  "schema": "trr07-independent-receipt-audit-v1",
+  "status": "passed",
+  "orders": [
+    {
+      "order": 19,
+      "status": "passed",
+      "certificate_sha256": "b34b27b93800b73e9a72a9759d7a07d942b41788c04d2a855645d53cccdb0a07",
+      "receipt": "receipts/flint_replay19.json",
+      "receipt_sha256": "50d132c18413c3d805bbb30d2557534a0b11a8d70cb4692e07d9bd941f319765",
+      "source_sha256": {
+        "flint_replay.py": "4aa5c385bfb4e62e7e738b33a389c9b1d4ef62e8ef112bfb1391fa6f9cce9c1e",
+        "symbolic_generic.py": "ea19ceb2f2078c6c6b13696822cdc8a6006070837d20da3bcf3983ef27f4bae9",
+        "symbolic_norm_replay.py": "877f16b61bed313b50c5aeea08840fd9e38b6f0889af221e76c7c73b801c53fd",
+        "uniform_probe.md": "7ef5c59929e6046037083f4cb07968fa570d8a3fb641123ea9718ad99591219b"
+      },
+      "ratio_identities": 8,
+      "norms_recomputed": 8,
+      "exceptional_characteristics": [
+        3,
+        19
+      ],
+      "residue_field_fibres": 3,
+      "elapsed_seconds": 1.103513
+    },
+    {
+      "order": 23,
+      "status": "passed",
+      "certificate_sha256": "7f74e25c5a275a5dedf2860b4a18867844231a74f883d35d97efbcfc50ed0ceb",
+      "receipt": "receipts/flint_replay23.json",
+      "receipt_sha256": "f158bf380ceb114505c615e219fcc0157baefc7b36a7bcc50b3958aa64dd3b68",
+      "source_sha256": {
+        "flint_replay.py": "4aa5c385bfb4e62e7e738b33a389c9b1d4ef62e8ef112bfb1391fa6f9cce9c1e",
+        "symbolic_generic.py": "ea19ceb2f2078c6c6b13696822cdc8a6006070837d20da3bcf3983ef27f4bae9",
+        "symbolic_norm_replay.py": "877f16b61bed313b50c5aeea08840fd9e38b6f0889af221e76c7c73b801c53fd",
+        "uniform_probe.md": "7ef5c59929e6046037083f4cb07968fa570d8a3fb641123ea9718ad99591219b"
+      },
+      "ratio_identities": 10,
+      "norms_recomputed": 10,
+      "exceptional_characteristics": [
+        2,
+        3,
+        11,
+        23
+      ],
+      "residue_field_fibres": 4,
+      "elapsed_seconds": 6.988894
+    },
+    {
+      "order": 29,
+      "status": "passed",
+      "certificate_sha256": "25380c754735ac9cee34525a307d91c12270a57d8a1c73ef9c8417fcdabf2168",
+      "receipt": "receipts/flint_replay29.json",
+      "receipt_sha256": "1185988034aadbc16bb9c787fffd7afc17e03f68351e154deedc602f608df9b9",
+      "source_sha256": {
+        "flint_replay.py": "4aa5c385bfb4e62e7e738b33a389c9b1d4ef62e8ef112bfb1391fa6f9cce9c1e",
+        "symbolic_generic.py": "ea19ceb2f2078c6c6b13696822cdc8a6006070837d20da3bcf3983ef27f4bae9",
+        "symbolic_norm_replay.py": "877f16b61bed313b50c5aeea08840fd9e38b6f0889af221e76c7c73b801c53fd",
+        "uniform_probe.md": "7ef5c59929e6046037083f4cb07968fa570d8a3fb641123ea9718ad99591219b"
+      },
+      "ratio_identities": 13,
+      "norms_recomputed": 13,
+      "exceptional_characteristics": [
+        2,
+        3,
+        7,
+        29
+      ],
+      "residue_field_fibres": 7,
+      "elapsed_seconds": 199.516693
+    },
+    {
+      "order": 31,
+      "status": "passed",
+      "certificate_sha256": "72df5b44db8a997d59ab708bffbc3b90dacb7ef46bdea0ac71bfecb46aa9027a",
+      "receipt": "receipts/flint_replay31.json",
+      "receipt_sha256": "574fc964a64983f0a10df6c1760bdf2b785da2ed1ccc62c71c1e3eba9a7e8d1a",
+      "source_sha256": {
+        "flint_replay.py": "4aa5c385bfb4e62e7e738b33a389c9b1d4ef62e8ef112bfb1391fa6f9cce9c1e",
+        "symbolic_generic.py": "ea19ceb2f2078c6c6b13696822cdc8a6006070837d20da3bcf3983ef27f4bae9",
+        "symbolic_norm_replay.py": "877f16b61bed313b50c5aeea08840fd9e38b6f0889af221e76c7c73b801c53fd",
+        "uniform_probe.md": "7ef5c59929e6046037083f4cb07968fa570d8a3fb641123ea9718ad99591219b"
+      },
+      "ratio_identities": 14,
+      "norms_recomputed": 14,
+      "exceptional_characteristics": [
+        2,
+        3,
+        5,
+        31
+      ],
+      "residue_field_fibres": 10,
+      "elapsed_seconds": 572.512239
+    }
+  ],
+  "checks": "Completed residue bridge plus independent integral elimination and all exceptional fibres, bound to the current certificate and source hashes.",
+  "proof_boundary": "Residue and chart lemmas remain written geometry; this receipt does not convert prior timed-out direct Node runs into successful runs."
+}

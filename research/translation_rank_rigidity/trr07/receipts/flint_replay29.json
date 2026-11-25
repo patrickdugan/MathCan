@@ -1,0 +1,359 @@
+{
+  "schema": "trr07-flint-certificate-replay-v1",
+  "order": 29,
+  "status": "passed",
+  "certificate_sha256": "25380c754735ac9cee34525a307d91c12270a57d8a1c73ef9c8417fcdabf2168",
+  "stages": [
+    {
+      "stage": "generic_order_chart",
+      "elapsed_seconds": 0.033356,
+      "rank": 14
+    },
+    {
+      "stage": "generic_coordinates",
+      "elapsed_seconds": 0.084784,
+      "original_denominators": "generic recurrence denominators; nonzero on the specified exact-order open locus"
+    },
+    {
+      "stage": "local_laurent_coefficient",
+      "elapsed_seconds": 0.119628,
+      "index": 1,
+      "numerator_degrees": [
+        34,
+        52
+      ],
+      "denominator_degrees": [
+        32,
+        50
+      ]
+    },
+    {
+      "stage": "local_laurent_coefficient",
+      "elapsed_seconds": 0.147563,
+      "index": 2,
+      "numerator_degrees": [
+        40,
+        62
+      ],
+      "denominator_degrees": [
+        38,
+        60
+      ]
+    },
+    {
+      "stage": "residue_ratio_identity",
+      "elapsed_seconds": 0.173102,
+      "index": 2,
+      "exact_integer_remainder_zero": true
+    },
+    {
+      "stage": "local_laurent_coefficient",
+      "elapsed_seconds": 0.243735,
+      "index": 3,
+      "numerator_degrees": [
+        50,
+        76
+      ],
+      "denominator_degrees": [
+        48,
+        74
+      ]
+    },
+    {
+      "stage": "residue_ratio_identity",
+      "elapsed_seconds": 0.327028,
+      "index": 3,
+      "exact_integer_remainder_zero": true
+    },
+    {
+      "stage": "local_laurent_coefficient",
+      "elapsed_seconds": 0.440942,
+      "index": 4,
+      "numerator_degrees": [
+        58,
+        86
+      ],
+      "denominator_degrees": [
+        56,
+        84
+      ]
+    },
+    {
+      "stage": "residue_ratio_identity",
+      "elapsed_seconds": 0.656257,
+      "index": 4,
+      "exact_integer_remainder_zero": true
+    },
+    {
+      "stage": "local_laurent_coefficient",
+      "elapsed_seconds": 0.82999,
+      "index": 5,
+      "numerator_degrees": [
+        70,
+        104
+      ],
+      "denominator_degrees": [
+        68,
+        102
+      ]
+    },
+    {
+      "stage": "residue_ratio_identity",
+      "elapsed_seconds": 1.304438,
+      "index": 5,
+      "exact_integer_remainder_zero": true
+    },
+    {
+      "stage": "local_laurent_coefficient",
+      "elapsed_seconds": 1.820455,
+      "index": 6,
+      "numerator_degrees": [
+        80,
+        118
+      ],
+      "denominator_degrees": [
+        78,
+        116
+      ]
+    },
+    {
+      "stage": "residue_ratio_identity",
+      "elapsed_seconds": 2.676264,
+      "index": 6,
+      "exact_integer_remainder_zero": true
+    },
+    {
+      "stage": "local_laurent_coefficient",
+      "elapsed_seconds": 3.772353,
+      "index": 7,
+      "numerator_degrees": [
+        92,
+        138
+      ],
+      "denominator_degrees": [
+        90,
+        136
+      ]
+    },
+    {
+      "stage": "residue_ratio_identity",
+      "elapsed_seconds": 5.471943,
+      "index": 7,
+      "exact_integer_remainder_zero": true
+    },
+    {
+      "stage": "local_laurent_coefficient",
+      "elapsed_seconds": 8.705898,
+      "index": 8,
+      "numerator_degrees": [
+        104,
+        156
+      ],
+      "denominator_degrees": [
+        102,
+        154
+      ]
+    },
+    {
+      "stage": "residue_ratio_identity",
+      "elapsed_seconds": 12.553252,
+      "index": 8,
+      "exact_integer_remainder_zero": true
+    },
+    {
+      "stage": "local_laurent_coefficient",
+      "elapsed_seconds": 18.329682,
+      "index": 9,
+      "numerator_degrees": [
+        122,
+        182
+      ],
+      "denominator_degrees": [
+        120,
+        180
+      ]
+    },
+    {
+      "stage": "residue_ratio_identity",
+      "elapsed_seconds": 23.810713,
+      "index": 9,
+      "exact_integer_remainder_zero": true
+    },
+    {
+      "stage": "local_laurent_coefficient",
+      "elapsed_seconds": 31.712784,
+      "index": 10,
+      "numerator_degrees": [
+        134,
+        202
+      ],
+      "denominator_degrees": [
+        132,
+        200
+      ]
+    },
+    {
+      "stage": "residue_ratio_identity",
+      "elapsed_seconds": 36.466772,
+      "index": 10,
+      "exact_integer_remainder_zero": true
+    },
+    {
+      "stage": "local_laurent_coefficient",
+      "elapsed_seconds": 47.785941,
+      "index": 11,
+      "numerator_degrees": [
+        154,
+        232
+      ],
+      "denominator_degrees": [
+        152,
+        230
+      ]
+    },
+    {
+      "stage": "residue_ratio_identity",
+      "elapsed_seconds": 54.507011,
+      "index": 11,
+      "exact_integer_remainder_zero": true
+    },
+    {
+      "stage": "local_laurent_coefficient",
+      "elapsed_seconds": 76.688481,
+      "index": 12,
+      "numerator_degrees": [
+        170,
+        258
+      ],
+      "denominator_degrees": [
+        168,
+        256
+      ]
+    },
+    {
+      "stage": "residue_ratio_identity",
+      "elapsed_seconds": 84.323957,
+      "index": 12,
+      "exact_integer_remainder_zero": true
+    },
+    {
+      "stage": "local_laurent_coefficient",
+      "elapsed_seconds": 111.494597,
+      "index": 13,
+      "numerator_degrees": [
+        192,
+        290
+      ],
+      "denominator_degrees": [
+        190,
+        288
+      ]
+    },
+    {
+      "stage": "residue_ratio_identity",
+      "elapsed_seconds": 123.761614,
+      "index": 13,
+      "exact_integer_remainder_zero": true
+    },
+    {
+      "stage": "local_laurent_coefficient",
+      "elapsed_seconds": 165.370404,
+      "index": 14,
+      "numerator_degrees": [
+        212,
+        318
+      ],
+      "denominator_degrees": [
+        210,
+        316
+      ]
+    },
+    {
+      "stage": "residue_ratio_identity",
+      "elapsed_seconds": 184.219037,
+      "index": 14,
+      "exact_integer_remainder_zero": true
+    },
+    {
+      "stage": "residue_bridge_verified",
+      "elapsed_seconds": 184.22197,
+      "ratio_identities": 13
+    },
+    {
+      "stage": "complete_certificate_verified",
+      "elapsed_seconds": 199.518426,
+      "all_candidate_characteristics_accounted_for": true
+    }
+  ],
+  "method": "Direct kernel-polynomial Laurent coefficients in free Z[r,t], final integer remainders modulo f, followed by independent elimination and all exceptional fibres; uses the proved residue identity and no PARI arithmetic",
+  "ratio_identities": 13,
+  "exact_integer_normalizations": 2214,
+  "open_locus_justification": "All input coordinate denominators are retained; extra divisions are by2, x_i-x_j and xprime_i. On a smooth odd-order subgroup, distinct pairs have distinct x, and xprime_i=2y_i+a1x_i+a3 is nonzero. Generic polynomial gcd cancellation only cancels factors of these nonzero products. Claimed ratio denominators t and t-1 are original open-locus units.",
+  "proof_dependency": "Residue theorem identifying ratio differences with local Laurent b_i-b_1, proved in uniform_probe.md",
+  "elapsed_seconds": 199.516693,
+  "elimination_and_fibres": {
+    "schema": "trr07-independent-elimination-replay-v1",
+    "status": "passed",
+    "elapsed_seconds": 15.289911746000143,
+    "orders": [
+      {
+        "order": 29,
+        "norms_recomputed": 13,
+        "integer": "15506428644",
+        "fibres": [
+          {
+            "p": 2,
+            "residue_degree": 1,
+            "fibre_degree": 13,
+            "all_roots_singular": true
+          },
+          {
+            "p": 2,
+            "residue_degree": 14,
+            "fibre_degree": 1,
+            "all_roots_singular": true
+          },
+          {
+            "p": 3,
+            "residue_degree": 1,
+            "fibre_degree": 12,
+            "all_roots_singular": true
+          },
+          {
+            "p": 3,
+            "residue_degree": 1,
+            "fibre_degree": 13,
+            "all_roots_singular": true
+          },
+          {
+            "p": 7,
+            "residue_degree": 7,
+            "fibre_degree": 1,
+            "all_roots_singular": true
+          },
+          {
+            "p": 7,
+            "residue_degree": 7,
+            "fibre_degree": 1,
+            "all_roots_singular": true
+          },
+          {
+            "p": 29,
+            "residue_degree": 1,
+            "fibre_degree": 5,
+            "all_roots_singular": true
+          }
+        ]
+      }
+    ],
+    "scope": "stored compressed equations, integral elimination, and every exceptional fibre",
+    "remaining_proof_obligation": "discharged by the independently reconstructed local Laurent coefficients and the written residue identity",
+    "certificate_sha256": "25380c754735ac9cee34525a307d91c12270a57d8a1c73ef9c8417fcdabf2168"
+  },
+  "source_sha256": {
+    "flint_replay.py": "4aa5c385bfb4e62e7e738b33a389c9b1d4ef62e8ef112bfb1391fa6f9cce9c1e",
+    "symbolic_generic.py": "ea19ceb2f2078c6c6b13696822cdc8a6006070837d20da3bcf3983ef27f4bae9",
+    "symbolic_norm_replay.py": "877f16b61bed313b50c5aeea08840fd9e38b6f0889af221e76c7c73b801c53fd",
+    "uniform_probe.md": "7ef5c59929e6046037083f4cb07968fa570d8a3fb641123ea9718ad99591219b"
+  }
+}

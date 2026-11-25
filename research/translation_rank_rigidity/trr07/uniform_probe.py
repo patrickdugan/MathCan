@@ -128,6 +128,7 @@ def main():
                             for p in [Path(__file__),Path(__file__).with_name('finite_fields.py')]}
     result['total_doubling_checks']=sum(f['doubling_checks'] for f in result['fixtures'])
     result['elapsed_seconds']=round(time.monotonic()-started,6)
+    result['status']='passed'
     args.output.parent.mkdir(parents=True,exist_ok=True)
     args.output.write_text(json.dumps(result,indent=2,sort_keys=True)+'\n')
     print(json.dumps(dict(integer_identities=result['certificate']['identity_count'],

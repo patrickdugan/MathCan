@@ -1,0 +1,77 @@
+{
+  "schema": "trr07-independent-elimination-replay-v1",
+  "status": "passed",
+  "elapsed_seconds": 65.15742906000014,
+  "orders": [
+    {
+      "order": 31,
+      "norms_recomputed": 14,
+      "integer": "46379224620",
+      "fibres": [
+        {
+          "p": 2,
+          "residue_degree": 1,
+          "fibre_degree": 15,
+          "all_roots_singular": true
+        },
+        {
+          "p": 3,
+          "residue_degree": 1,
+          "fibre_degree": 15,
+          "all_roots_singular": true
+        },
+        {
+          "p": 3,
+          "residue_degree": 1,
+          "fibre_degree": 15,
+          "all_roots_singular": true
+        },
+        {
+          "p": 3,
+          "residue_degree": 15,
+          "fibre_degree": 1,
+          "all_roots_singular": true
+        },
+        {
+          "p": 5,
+          "residue_degree": 3,
+          "fibre_degree": 1,
+          "all_roots_singular": true
+        },
+        {
+          "p": 5,
+          "residue_degree": 3,
+          "fibre_degree": 1,
+          "all_roots_singular": true
+        },
+        {
+          "p": 5,
+          "residue_degree": 3,
+          "fibre_degree": 1,
+          "all_roots_singular": true
+        },
+        {
+          "p": 5,
+          "residue_degree": 3,
+          "fibre_degree": 1,
+          "all_roots_singular": true
+        },
+        {
+          "p": 5,
+          "residue_degree": 3,
+          "fibre_degree": 1,
+          "all_roots_singular": true
+        },
+        {
+          "p": 31,
+          "residue_degree": 1,
+          "fibre_degree": 5,
+          "all_roots_singular": true
+        }
+      ]
+    }
+  ],
+  "scope": "stored compressed equations, integral elimination, and every exceptional fibre",
+  "remaining_proof_obligation": "reconstruct stored g_i from H*lambda in the localized integral algebra",
+  "certificate_sha256": "72df5b44db8a997d59ab708bffbc3b90dacb7ef46bdea0ac71bfecb46aa9027a"
+}

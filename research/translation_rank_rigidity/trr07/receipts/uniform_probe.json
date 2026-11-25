@@ -41,7 +41,7 @@
     "polynomial_degree": 8,
     "ring": "Z[n,c,A,B,X]"
   },
-  "elapsed_seconds": 0.340564,
+  "elapsed_seconds": 0.804471,
   "fixtures": [
     {
       "A": 2,
@@ -1151,8 +1151,9 @@
   "schema": "trr07-uniform-exclusion-v1",
   "source_sha256": {
     "finite_fields.py": "79bc89d225604b978a22c16abfbb1508c2b30dcb0b9c8396547b98ce0fa6a635",
-    "uniform_probe.py": "4e86d0a289163d15a5909102684589f472a2ff7b0a33c1b665ad13a655a9c63b"
+    "uniform_probe.py": "9168c8114a4f136c3a4791c7a18c312f5d13bb00dbdeac29d7c5bcbb24756cdb"
   },
+  "status": "passed",
   "sympy": "1.14.0",
   "total_doubling_checks": 288
 }

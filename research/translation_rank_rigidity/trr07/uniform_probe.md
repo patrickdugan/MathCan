@@ -43,7 +43,7 @@ w(P+Z)=\frac{\lambda_P}{z(Z)}
 \left(1+a_Pz(Z)+b_Pz(Z)^2+O(z(Z)^3)\right).
 $$
 
-Every nonidentity point has $y$P$\ne0$, since $G$ has odd order. Its distinct pairs $\{P,-P\}$ have distinct $x$-coordinates. Thus every displayed residue denominator is nonzero.
+Every nonidentity point has $y(P)\ne0$, since $G$ has odd order. Its distinct pairs $\{P,-P\}$ have distinct $x$-coordinates. Thus every displayed residue denominator is nonzero.
 
 The function $w$ is even, so
 
@@ -137,7 +137,7 @@ $$
 a_P^2=n(x(P)+c).
 $$
 
-For $x=x$P$$, $y=y$P$$, and $m=(3x^2+A)/(2y)$, the usual doubling formula is $x(2P)=m^2-2x$. Substitute (6) into (4) at $2P$, then subtract the equation at $P$. After division by $n$, this yields
+For $x=x(P)$, $y=y(P)$, and $m=(3x^2+A)/(2y)$, the usual doubling formula is $x(2P)=m^2-2x$. Substitute (6) into (4) at $2P$, then subtract the equation at $P$. After division by $n$, this yields
 
 $$
 4a_Pm+6x+3c+(n-1)m^2=0.
@@ -221,7 +221,7 @@ $$
 [K(E):K(E)^p]=p:
 $$
 
-the extension $K(E)/K$x$$ has degree two, as does $K(E)^p/K(x^p)$, whereas $[K(x):K(x^p)]=p$. The derivation kills $K(E)^p$ and has $\partial x=2y\ne0$, so its kernel is exactly $K(E)^p$.
+the extension $K(E)/K(x)$ has degree two, as does $K(E)^p/K(x^p)$, whereas $[K(x):K(x^p)]=p$. The derivation kills $K(E)^p$ and has $\partial x=2y\ne0$, so its kernel is exactly $K(E)^p$.
 
 Consequently $R_P=v^p$ for a rational function $v$. Its divisor must be
 

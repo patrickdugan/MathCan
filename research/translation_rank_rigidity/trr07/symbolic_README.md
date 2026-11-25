@@ -14,17 +14,19 @@ checkpoint; exclusion requires the later elimination and fibre checks.
 
 ## Search and replay
 
-The search requires PARI/cypari2 and `python-flint==0.9.0`. Replay requires
-Python with that FLINT version and Node 22. For example:
+The search requires PARI/cypari2 and `python-flint==0.9.0`. The Laurent
+replay requires Python with that FLINT version. The direct H-lambda replay
+also requires Node 22. For example:
 
 ```sh
 python symbolic_search.py --order 19 --seconds 900 --memory-mb 768 --output results
-python symbolic_replay.py results/certificate19.json
+python flint_replay.py results/certificate19.json --expected-order 19 --output results/flint-replay.json
+python symbolic_replay.py results/certificate19.json --expected-order 19
 ```
 
 The search writes a receipt after each completed stage and retains a partial
 certificate. The parent process kills the worker at the specified budget.
-`timeout` and `error` receipts leave the mathematical case unresolved.
+`timeout` and `error` receipts record unfinished certificate computations.
 A successful search status is `exclusion_candidate` until replay succeeds.
 
 The search uses the written residue identity to compress the equations,
@@ -52,6 +54,29 @@ premise. A successful run establishes the exclusion within this model.
 
 The original supplied TRR-05 files are unchanged. The adapted replay has
 passed against the original certificates at orders 7, 11, 13, and 17.
+
+## Laurent replay for the larger algebras
+
+`flint_replay.py` computes local Laurent coefficients directly from the
+kernel polynomial. It carries rational fractions in the free ring Z[r,t]
+and reduces the final cross-products modulo the order equation. This
+avoids constructing large quotient-algebra inverses. Each compressed
+equation, including its localization denominator, is checked against the
+resulting integer identity. The written residue theorem identifies those
+coefficient differences with the original H-lambda ratio differences.
+
+The same process then calls `symbolic_norm_replay.py` to independently
+recompute all resultants, the integer Bezout identity, the complete list of
+candidate characteristics and every residue-field fibre. A receipt receives
+status `passed` only after both stages succeed for the same certificate
+SHA-256. `flint_replay.md` and `replay_review.md` give the denominator and
+geometric arguments, including the constant shift in Tate coordinates.
+
+Orders 19 and 23 also pass direct Node replay. The recorded Node attempts
+at 29 and 31 reached a timeout and SIGKILL respectively; their receipts
+remain available. CI gives each FLINT replay a 1,200-second limit and also
+requires direct Node replay for 19 and 23. Nine deliberate corruptions test
+the elimination checks; two further corruptions test the residue bridge.
 
 ## Interpretation of the stored data
 

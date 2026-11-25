@@ -37,6 +37,8 @@ jobs:
           git rev-parse HEAD > results/audit/checkout.txt
           python research/translation_rank_rigidity/trr07/test_certificate_mutations.py --output results/audit/mutations.json
           python research/translation_rank_rigidity/trr07/test_symbolic_guards.py --output results/audit/guards.json
+          python research/translation_rank_rigidity/trr07/symbolic_norm_controls.py research/translation_rank_rigidity/trr07/symbolic_results/certificate19.json --output results/audit/elimination-controls.json
+          python research/translation_rank_rigidity/trr07/test_flint_bridge.py --output results/audit/residue-controls.json
           python research/translation_rank_rigidity/trr07/audit_symbolic.py --output results/audit/symbolic.json
           python research/translation_rank_rigidity/trr07/uniform_probe.py --output results/audit/uniform.json
       - uses: leanprover/lean-action@v1
@@ -112,7 +114,7 @@ jobs:
 
   symbolic:
     runs-on: ubuntu-24.04
-    timeout-minutes: 35
+    timeout-minutes: 45
     strategy:
       fail-fast: false
       max-parallel: 4
@@ -137,10 +139,14 @@ jobs:
           gp --version > results/symbolic/${{ matrix.order }}/pari-version.txt 2>&1
           .venv-symbolic/bin/python research/translation_rank_rigidity/trr07/symbolic_search.py --order ${{ matrix.order }} --seconds 900 --memory-mb 768 --output results/symbolic/${{ matrix.order }}
       - name: Independently replay any complete certificate
+        shell: bash
         run: |
           certificate=results/symbolic/${{ matrix.order }}/certificate${{ matrix.order }}.json
           if test -f "$certificate"; then
-            timeout 600s .venv-symbolic/bin/python research/translation_rank_rigidity/trr07/symbolic_replay.py "$certificate" --expected-order ${{ matrix.order }} | tee results/symbolic/${{ matrix.order }}/replay.log
+            timeout 1200s .venv-symbolic/bin/python research/translation_rank_rigidity/trr07/flint_replay.py "$certificate" --expected-order ${{ matrix.order }} --output results/symbolic/${{ matrix.order }}/flint-replay.json | tee results/symbolic/${{ matrix.order }}/flint-replay.log
+            if test ${{ matrix.order }} -le 23; then
+              timeout 600s .venv-symbolic/bin/python research/translation_rank_rigidity/trr07/symbolic_replay.py "$certificate" --expected-order ${{ matrix.order }} | tee results/symbolic/${{ matrix.order }}/replay.log
+            fi
           else
             echo '::warning title=Symbolic search unresolved::The bounded search produced no complete certificate. See the checkpoint receipt.'
           fi

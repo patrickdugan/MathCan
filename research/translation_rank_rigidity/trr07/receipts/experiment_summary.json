@@ -1,6 +1,6 @@
 {
   "schema": "trr07-experiment-summary-v1",
-  "uniform_result": "Every prime N>=7 has affine-block minimum degree ceil(N/3), in characteristic0 orp>3.",
+  "uniform_result": "Every prime N >= 7 has minimum degree ceil(N/3) in each affine coordinate block, in characteristic zero or p > 3.",
   "evidence": {
     "written_geometric_proof": true,
     "uniform_integer_identities": 10,
@@ -207,7 +207,7 @@
     "cases": 32,
     "exact_function_distances": 32,
     "arbitrary_cell_bound": "N-1",
-    "input_metric": "Function Hamming distance onS with free value atO; table metric independently charges SxS entries."
+    "input_metric": "Function Hamming distance on S with a free value at O; the table metric separately counts entries of S x S."
   },
   "symbolic": [
     {
@@ -219,7 +219,18 @@
       "independent_replay": "passed",
       "certificate_sha256": "b34b27b93800b73e9a72a9759d7a07d942b41788c04d2a855645d53cccdb0a07",
       "certificate": "symbolic_results/certificate19.json",
-      "search_receipt": "symbolic_results/receipt19.json"
+      "search_receipt": "symbolic_results/receipt19.json",
+      "replay_method": "Independent FLINT Laurent reconstruction and complete integral elimination",
+      "replay_receipt": "receipts/flint_replay19.json",
+      "replay_seconds": 1.103513,
+      "direct_Node_attempt": {
+        "order": 19,
+        "status": "passed",
+        "checks_passed": 25,
+        "algebra_replay_milliseconds": 2675,
+        "certificate_sha256": "b34b27b93800b73e9a72a9759d7a07d942b41788c04d2a855645d53cccdb0a07"
+      },
+      "direct_Node_receipt": "symbolic_results/replay_receipt19.json"
     },
     {
       "order": 23,
@@ -230,7 +241,18 @@
       "independent_replay": "passed",
       "certificate_sha256": "7f74e25c5a275a5dedf2860b4a18867844231a74f883d35d97efbcfc50ed0ceb",
       "certificate": "symbolic_results/certificate23.json",
-      "search_receipt": "symbolic_results/receipt23.json"
+      "search_receipt": "symbolic_results/receipt23.json",
+      "replay_method": "Independent FLINT Laurent reconstruction and complete integral elimination",
+      "replay_receipt": "receipts/flint_replay23.json",
+      "replay_seconds": 6.988894,
+      "direct_Node_attempt": {
+        "order": 23,
+        "status": "passed",
+        "checks_passed": 30,
+        "algebra_replay_milliseconds": 70763,
+        "certificate_sha256": "7f74e25c5a275a5dedf2860b4a18867844231a74f883d35d97efbcfc50ed0ceb"
+      },
+      "direct_Node_receipt": "symbolic_results/replay_receipt23.json"
     },
     {
       "order": 29,
@@ -238,10 +260,23 @@
       "integer": "15506428644",
       "factorization": "[2, 2; 3, 3; 7, 1; 29, 5]",
       "search_status": "exclusion_candidate",
-      "independent_replay": "pending",
+      "independent_replay": "passed",
       "certificate_sha256": "25380c754735ac9cee34525a307d91c12270a57d8a1c73ef9c8417fcdabf2168",
       "certificate": "symbolic_results/certificate29.json",
-      "search_receipt": "symbolic_results/receipt29.json"
+      "search_receipt": "symbolic_results/receipt29.json",
+      "replay_method": "Independent FLINT Laurent reconstruction and complete integral elimination",
+      "replay_receipt": "receipts/flint_replay29.json",
+      "replay_seconds": 199.516693,
+      "direct_Node_attempt": {
+        "order": 29,
+        "status": "timeout",
+        "exit_code": 124,
+        "elapsed_seconds": 600.0079817040005,
+        "budget_seconds": 600,
+        "checks_passed": 2,
+        "certificate_sha256": "25380c754735ac9cee34525a307d91c12270a57d8a1c73ef9c8417fcdabf2168"
+      },
+      "direct_Node_receipt": "symbolic_results/replay_receipt29.json"
     },
     {
       "order": 31,
@@ -249,15 +284,29 @@
       "integer": "46379224620",
       "factorization": "[2, 2; 3, 4; 5, 1; 31, 5]",
       "search_status": "exclusion_candidate",
-      "independent_replay": "pending",
+      "independent_replay": "passed",
       "certificate_sha256": "72df5b44db8a997d59ab708bffbc3b90dacb7ef46bdea0ac71bfecb46aa9027a",
       "certificate": "symbolic_results/certificate31.json",
-      "search_receipt": "symbolic_results/receipt31.json"
+      "search_receipt": "symbolic_results/receipt31.json",
+      "direct_Node_attempt": {
+        "order": 31,
+        "status": "failed",
+        "exit_code": 1,
+        "elapsed_seconds": 471.72980192999967,
+        "budget_seconds": 600,
+        "checks_passed": 2,
+        "certificate_sha256": "72df5b44db8a997d59ab708bffbc3b90dacb7ef46bdea0ac71bfecb46aa9027a"
+      },
+      "direct_Node_receipt": "symbolic_results/replay_receipt31.json",
+      "replay_method": "Independent FLINT Laurent reconstruction and complete integral elimination",
+      "replay_receipt": "receipts/flint_replay31.json",
+      "replay_seconds": 572.512239
     }
   ],
   "remaining": [
     "Formalize the geometric premises in a suitable Lean library.",
-    "Independent higher-order replay statuses are tracked separately.",
     "A broader computation model requires its own transfer theorem."
-  ]
+  ],
+  "independent_replay_complete": true,
+  "ci_prior_attempts": "receipts/ci_prior_attempts.json"
 }

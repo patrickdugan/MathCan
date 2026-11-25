@@ -1,0 +1,36 @@
+{
+  "schema": "trr07-flint-bridge-guards-v1",
+  "status": "passed",
+  "source_sha256": {
+    "certificate19.json": "b34b27b93800b73e9a72a9759d7a07d942b41788c04d2a855645d53cccdb0a07",
+    "flint_replay.py": "4aa5c385bfb4e62e7e738b33a389c9b1d4ef62e8ef112bfb1391fa6f9cce9c1e",
+    "symbolic_generic.py": "ea19ceb2f2078c6c6b13696822cdc8a6006070837d20da3bcf3983ef27f4bae9",
+    "symbolic_norm_replay.py": "877f16b61bed313b50c5aeea08840fd9e38b6f0889af221e76c7c73b801c53fd"
+  },
+  "harness_sha256": "ab68596a8df11776f4d948d0994f445832ff431b69ba8733bba8fdc70df53763",
+  "cases": [
+    {
+      "case": "positive_control",
+      "expected_result_observed": true,
+      "returncode": 0,
+      "status": "passed",
+      "elapsed_seconds": 0.693537
+    },
+    {
+      "case": "residue_numerator",
+      "expected_result_observed": true,
+      "returncode": 1,
+      "status": "failed",
+      "elapsed_seconds": 0.120725
+    },
+    {
+      "case": "residue_denominator",
+      "expected_result_observed": true,
+      "returncode": 1,
+      "status": "failed",
+      "elapsed_seconds": 0.120623
+    }
+  ],
+  "negative_controls_rejected": 2,
+  "scope": "The numerator and localization denominator must match independent local Laurent reconstruction; elimination-only replay cannot verify the denominator."
+}
