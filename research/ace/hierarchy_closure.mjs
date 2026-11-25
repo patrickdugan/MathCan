@@ -1,7 +1,7 @@
 import { pathToFileURL } from "node:url";
 import { definition } from './constructible_definition.mjs';
 import { kernel, same } from './zf_interface.mjs';
-function buildE(defs){
+function buildE(defs,extended=false){
   let serial=0;
   const fresh=()=>`q${serial++}`,M=(a,b)=>["M",a,b],Q=(a,b)=>["=",a,b],F=["F"],I=(p,q)=>[">",p,q],C=(p,q)=>["&",p,q],N=p=>I(p,F);
   const bind=(op,f)=>{const x=fresh();return [op,x,f(x)];};
@@ -273,6 +273,132 @@ function buildE(defs){
     });
   });
   const proofs={definable_subset:subsetD,empty_definable:emptyD,def_members_subset:defMembers,empty_in_def:defEmpty,successor_transitivity:defTrans,union_transitivity:unionTrans,def_exists:defExists,def_unique:defUnique,bounded_induction_transitivity:boundedTrans,bounded_induction_membership:boundedMembership,bounded_induction_L:boundedL,bounded_induction_stage:stageInd,stage_transitivity_conditional:stageTrans,ordinal_successor_transitivity:successorTrans,L_transitivity_conditional:classTrans};
+
+  if(extended){
+    const app=(p,...args)=>args.reduce((q,a)=>ie(q,a),p);
+    const us=(p,...xs)=>xs.reduce((q,x)=>ue(q,x),p);
+    const sym=p=>eqSub(p,z=>Q(z,p.goal[1]),ref(p.goal[1]));
+    const chain=(p,q)=>eqSub(q,z=>Q(p.goal[1],z),p);
+    const from=(p,x,px)=>app(al(ue(p,x)),px);
+    const into=(p,x,px)=>app(ar(ue(p,x)),px);
+    const Succ=(a,b)=>named(defs.successor,[a,b]);
+    function open(p,fn){
+      if(p.goal[0]!=="E")throw Error("expected exists "+p.goal[0]);
+      const x=fresh(),a=assume(replace(p.goal[2],p.goal[1],x)),q=fn(x,a.p);
+      return P(q.goal,(e,h)=>["eE",p.emit(e,h),db(q.goal,e),q.emit([x,...e],[...h,a.id])]);
+    }
+    function use(p,fn){return ie(ii(p.goal,fn),p);}
+    const noCycle=qs(2,(a,b)=>{
+      return ii(M(a,b),ab=>ii(M(b,a),ba=>{
+        return open(us(ax({name:"pairing"}),a,b),(s,sp)=>{
+          const as=into(sp,a,ol(ref(a),Q(a,b))),bs=into(sp,b,or(Q(b,a),ref(b)));
+          const nonempty=ei(E(x=>M(x,s)),a,as);
+          return open(app(ue(ax({name:"foundation"}),s),nonempty),(z,zp)=>{
+            return oe(from(sp,z,al(zp)),F,
+              za=>app(app(ue(ar(zp),b),eqSub(sym(za),t=>M(b,t),ba)),bs),
+              zb=>app(app(ue(ar(zp),a),eqSub(sym(zb),t=>M(a,t),ab)),as));
+          });
+        });
+      }));
+    });
+    const succPredUnique=use(noCycle,nc=>{
+      return qs(3,(a,b,c)=>{
+        return ii(Succ(a,c),ac=>ii(Succ(b,c),bc=>{
+          const am=into(ac,a,or(M(a,a),ref(a))),bm=into(bc,b,or(M(b,b),ref(b)));
+          return oe(from(bc,a,am),Q(a,b),ab=>oe(from(ac,b,bm),Q(a,b),
+            ba=>fe(app(us(nc,a,b),ab,ba),Q(a,b)),ba=>sym(ba)),eq=>eq);
+        }));
+      });
+    });
+    function valUnique(sg,i,im,x,y,vx,vy){
+      return open(app(ue(ar(al(sg)),i),im),(v,uv)=>{
+        return chain(app(ue(ar(uv),x),vx),sym(app(ue(ar(uv),y),vy)));
+      });
+    }
+    const agreeAt=(f,g,e,b)=>I(M(b,e),A(r=>I(Val(f,b,r),A(s=>I(Val(g,b,s),Q(r,s))))));
+    const f0=fresh(),g0=fresh(),e0=fresh(),b0=fresh();
+    const agreeInd=boundedInduction(db(agreeAt(f0,g0,e0,b0),[b0,f0,g0,e0]),3);
+    function agreeGraphs(f,g,d,e,td,te,sf,sg,pu){
+      const step=ui(b=>{
+        return ii(M(b,d),bd=>{
+          return ii(A(i=>I(M(i,b),agreeAt(f,g,e,i))),ih=>{
+            return ii(M(b,e),be=>{
+              const inD=(i,ib)=>app(ue(app(ue(td,b),bd),i),ib);
+              const inE=(i,ib)=>app(ue(app(ue(te,b),be),i),ib);
+              function equalPrev(i,ib,a,c,va,vc){
+                const p=app(ue(ih,i),ib,inE(i,ib));
+                return app(ue(app(ue(p,a),va),c),vc);
+              }
+              function limitIn(x,other,lim1,lim2,member,reverse){
+                return open(from(lim1,x,member),(i,iw)=>{
+                  return open(ar(iw),(a,aw)=>{
+                    const ib=al(iw),dom=reverse?inD(i,ib):inE(i,ib);
+                    return open(app(ue(ar(other),i),dom),(c,cw)=>{
+                      const eq=reverse?sym(equalPrev(i,ib,c,a,al(cw),al(aw))):equalPrev(i,ib,a,c,al(aw),al(cw));
+                      const xc=eqSub(eq,z=>M(x,z),ar(aw));
+                      const ex=ar(ue(lim2,x)).goal[1],body=replace(ex[2],ex[1],i);
+                      return into(lim2,x,ei(ex,i,ai(ib,ei(body[2],c,ai(al(cw),xc)))));
+                    });
+                  });
+                });
+              }
+              function sameStage(r,s,rf,sgp){
+                const result=Q(r,s);
+                function bothSucc(rfS,sgS){
+                  return open(rfS,(i,ip)=>{
+                    return open(sgS,(j,jp)=>{
+                      const ij=app(us(pu,i,j,b),al(ar(ip)),al(ar(jp)));
+                      return open(ar(ar(ip)),(a,ap)=>{
+                        return open(ar(ar(jp)),(c,cp)=>{
+                          const gic=eqSub(sym(ij),t=>Val(g,t,c),al(cp));
+                          const ac=equalPrev(i,al(ip),a,c,al(ap),gic);
+                          const cd=eqSub(ac,t=>Def(t,r),ar(ap));
+                          return app(us(defUnique,c,r,s),cd,ar(cp));
+                        });
+                      });
+                    });
+                  });
+                }
+                function bothLimit(rfL,sgL){
+                  const u=ar(rfL),v=ar(sgL);
+                  const equiv=ui(x=>ai(
+                    ii(M(x,r),xr=>limitIn(x,sg,u,v,xr,false)),
+                    ii(M(x,s),xs=>limitIn(x,sf,v,u,xs,true))));
+                  return app(us(ax({name:"extensionality"}),r,s),equiv);
+                }
+                return oe(rf,result,
+                  rfS=>oe(sgp,result,sgS=>bothSucc(rfS,sgS),sgL=>fe(app(al(sgL),rfS),result)),
+                  rfL=>oe(sgp,result,sgS=>fe(app(al(rfL),sgS),result),sgL=>bothLimit(rfL,sgL)));
+              }
+              return ui(r=>{
+                return ii(Val(f,b,r),vr=>{
+                  return ui(s=>{
+                    return ii(Val(g,b,s),vs=>{
+                      return open(app(ue(ar(sf),b),bd),(a,af)=>{
+                        return open(app(ue(ar(sg),b),be),(c,cg)=>{
+                          const ac=sameStage(a,c,ar(af),ar(cg));
+                          const ra=valUnique(sf,b,bd,r,a,vr,al(af));
+                          const cs=valUnique(sg,b,be,c,s,al(cg),vs);
+                          return chain(chain(ra,ac),cs);
+                        });
+                      });
+                    });
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+      return app(us(agreeInd,f,g,e,d),td,step);
+    }
+    const coherence=use(succPredUnique,pu=>{
+      return qs(4,(f,g,d,e)=>{
+        return ii(trans(d),td=>ii(trans(e),te=>ii(SG(f,d),sf=>ii(SG(g,e),sg=>agreeGraphs(f,g,d,e,td,te,sf,sg,pu)))));
+      });
+    });
+    Object.assign(proofs,{no_two_cycle:noCycle,successor_predecessor_unique:succPredUnique,bounded_induction_coherence:agreeInd,stage_graph_coherence:coherence});
+  }
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
 
