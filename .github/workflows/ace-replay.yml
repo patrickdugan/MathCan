@@ -1,0 +1,51 @@
+name: ACE certificate and kernel replay
+on:
+  pull_request:
+    paths:
+      - 'MathCan/ACE*.lean'
+      - 'research/ace/**'
+      - 'lean-toolchain'
+      - '.github/workflows/ace-replay.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  finite-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay pinned receipts
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in finite_choice arithmetic_transport relativization zf_interface; do
+            node "research/ace/$name.mjs" > "/tmp/$name.json"
+            diff -u "research/ace/${name}_receipt.json" "/tmp/$name.json"
+          done
+  lean-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          build: false
+      - name: Replay standalone modules and reject unexpected choice or sorry
+        shell: bash
+        run: |
+          set -euo pipefail
+          for module in ACEFiniteChoice ACEArithmeticTransport ACERelativization; do
+            lake env lean "MathCan/$module.lean" | tee "/tmp/$module.log"
+            if grep -F 'sorryAx' "/tmp/$module.log"; then exit 1; fi
+          done
+          grep -F "'MathCan.ACE.globalViaChoice' depends on axioms: [Classical.choice]" /tmp/ACEFiniteChoice.log
+          grep -F "'MathCan.ACE.globalWithoutChoice' does not depend on any axioms" /tmp/ACEFiniteChoice.log
+          grep -F "'MathCan.ACE.finiteChoice' does not depend on any axioms" /tmp/ACEFiniteChoice.log
+          grep -F "'MathCan.ACE.alignedMap' does not depend on any axioms" /tmp/ACEFiniteChoice.log
+          if grep -v 'globalViaChoice' /tmp/ACEFiniteChoice.log | grep -F 'Classical.choice'; then exit 1; fi
+          if grep -F 'Classical.choice' /tmp/ACEArithmeticTransport.log /tmp/ACERelativization.log; then exit 1; fi
+          grep -F "'MathCan.ACE.Arithmetic.sat_transport'" /tmp/ACEArithmeticTransport.log
+          grep -F "'MathCan.ACE.Arithmetic.sentence_assignment_independent'" /tmp/ACEArithmeticTransport.log
+          grep -F "'MathCan.ACE.Relativization.sat_restrict'" /tmp/ACERelativization.log
