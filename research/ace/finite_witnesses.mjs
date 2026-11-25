@@ -858,7 +858,7 @@ function buildF(defs,extended=false){
         return t;
       }
       const tree=lower(formula,Array.from({length:params+1},(_,i)=>i)),k=width,m=instructions.length;
-      if(k>6||m>16)throw Error("compiler finite resource cap");
+      if(k>6||m>20)throw Error("compiler finite resource cap");
       function changed(vs,i,x){return vs.map((v,j)=>j===i?x:v);}
       function sem(j,a,vals){
         const [op,i,l]=instructions[j];
