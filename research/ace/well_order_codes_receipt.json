@@ -1,0 +1,203 @@
+{
+  "experiment": "ACE-03T",
+  "part": "finite_code_and_coherence",
+  "syntax_programs": 548,
+  "syntax_roundtrips": 548,
+  "independent_truth_checks": 33804,
+  "presented_codes": 9862,
+  "selected_outputs": 23,
+  "exhaustive_nonempty_subsets_and_choice_checks": 65554,
+  "incoming_stage_orders": 24,
+  "stage_runs": [
+    {
+      "stage_size": 0,
+      "presented_codes": 1,
+      "successor_order": [
+        0
+      ]
+    },
+    {
+      "stage_size": 1,
+      "presented_codes": 551,
+      "successor_order": [
+        0,
+        1
+      ]
+    },
+    {
+      "stage_size": 2,
+      "presented_codes": 1953,
+      "successor_order": [
+        0,
+        1,
+        3,
+        2
+      ]
+    },
+    {
+      "stage_size": 4,
+      "presented_codes": 7357,
+      "successor_order": [
+        0,
+        1,
+        2,
+        3,
+        15,
+        4,
+        8,
+        10,
+        12,
+        14,
+        13,
+        11,
+        7,
+        5,
+        9,
+        6
+      ]
+    }
+  ],
+  "coherent_chain_sizes": [
+    0,
+    1,
+    2,
+    4,
+    16
+  ],
+  "negative_controls": 44,
+  "adversarial_examples": {
+    "old_order_resorting": {
+      "old": [
+        0,
+        1
+      ],
+      "resorted": [
+        1,
+        0,
+        2
+      ]
+    },
+    "coherent_reverse_orders": [
+      [],
+      [
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1,
+        0
+      ],
+      [
+        3,
+        2,
+        1,
+        0
+      ],
+      [
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      [
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      [
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ]
+    ],
+    "variable_width_lex_descent": [
+      [
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    ]
+  },
+  "pinned_L_sha256": "f6deb563af271469873b44118e8925b30394e1a21ec4c1e9fd8d103d1fdffdc0",
+  "scope": "finite explicit syntax carriers and HF stages; infinite well-order proofs and pinned-Def adequacy require object-language derivations"
+}

@@ -1,6 +1,22 @@
-# ACE-01 | Axiom choice elimination
+# ACE | Axiom choice elimination
 
-Status: ACE-01 native Lean proof checked; ACE-03F executable ZF proof objects checked. Full conservativity and checker soundness remain open.
+Current checkpoint, 2026-11-25: the complete ACE-03S unbounded Replacement
+and ACE-03Q unbounded Separation graphs pass the executable ZF checker,
+including exact repeated source-axiom imports. The new ACE-03T work checks
+33 object-language proof checks with 8,113 kernel visits and 72
+rejection controls, including two reused ordered-pair lemmas. These cover
+least-code order transfer, actual set relations, coherent successor and
+limit orders, and an ambient Choice theorem. The finite
+code model adds 44 rejection controls and 65,554 nonempty-subset checks.
+Formal soundness of the checker and complete choice elimination remain open.
+
+- [Full streamed replay results](ACE03S_FULL_REPLAY_VERIFICATION.md)
+- [ACE-03T mathematical report and verification ledger](ACE03T_CONSTRUCTIBLE_WELL_ORDER.md)
+- [Full replay source hashes and measurements](full_replay_provenance.json)
+
+The chronological notes below retain the scope and verification state
+of each earlier checkpoint.
+
 Base: f326fb3d1731f575dc6086e93f1bfa226445450c. Companion: research/rh_proof_distillation.
 
 ## Mathematical scope

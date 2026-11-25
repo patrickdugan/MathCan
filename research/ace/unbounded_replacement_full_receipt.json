@@ -1,0 +1,164 @@
+{
+  "experiment": "ACE-03S",
+  "part": "full",
+  "spec": {
+    "name": "replacement",
+    "params": 0,
+    "body": [
+      "A",
+      [
+        ">",
+        [
+          "M",
+          2,
+          0
+        ],
+        [
+          "M",
+          1,
+          0
+        ]
+      ]
+    ]
+  },
+  "graph": [
+    {
+      "id": "extension",
+      "dependencies": 0,
+      "nodes": 20133,
+      "guarded": false
+    },
+    {
+      "id": "selector.conditional",
+      "dependencies": 0,
+      "nodes": 4815,
+      "guarded": false
+    },
+    {
+      "id": "selector.strict",
+      "dependencies": 0,
+      "nodes": 12,
+      "guarded": false
+    },
+    {
+      "id": "selector.total",
+      "dependencies": 2,
+      "nodes": 3,
+      "guarded": false
+    },
+    {
+      "id": "omega.range",
+      "dependencies": 0,
+      "nodes": 3687,
+      "guarded": false
+    },
+    {
+      "id": "limit.reflection",
+      "dependencies": 0,
+      "nodes": 18476,
+      "guarded": false
+    },
+    {
+      "id": "omega.exists",
+      "dependencies": 0,
+      "nodes": 136,
+      "guarded": false
+    },
+    {
+      "id": "omega.ordinal",
+      "dependencies": 0,
+      "nodes": 394,
+      "guarded": false
+    },
+    {
+      "id": "stage.members",
+      "dependencies": 0,
+      "nodes": 27,
+      "guarded": false
+    },
+    {
+      "id": "transport",
+      "dependencies": 0,
+      "nodes": 122,
+      "guarded": false
+    },
+    {
+      "id": "L_transitivity",
+      "dependencies": 0,
+      "nodes": 2897,
+      "guarded": false
+    },
+    {
+      "id": "constructible_set_stage_bound",
+      "dependencies": 0,
+      "nodes": 8882,
+      "guarded": false
+    },
+    {
+      "id": "ordinal_stage_value_transitive",
+      "dependencies": 0,
+      "nodes": 2882,
+      "guarded": false
+    },
+    {
+      "id": "definable_subset_constructible",
+      "dependencies": 0,
+      "nodes": 5053,
+      "guarded": false
+    },
+    {
+      "id": "ordinal_stage_value_monotone",
+      "dependencies": 0,
+      "nodes": 3750,
+      "guarded": false
+    },
+    {
+      "id": "image_definability",
+      "dependencies": 0,
+      "nodes": 9586,
+      "guarded": false
+    },
+    {
+      "id": "reflection.imp",
+      "dependencies": 0,
+      "nodes": 96,
+      "guarded": false
+    },
+    {
+      "id": "reflection",
+      "dependencies": 9,
+      "nodes": 17,
+      "guarded": false
+    },
+    {
+      "id": "replacement.imp",
+      "dependencies": 0,
+      "nodes": 614,
+      "guarded": false
+    },
+    {
+      "id": "replacement.pure",
+      "dependencies": 9,
+      "nodes": 17,
+      "guarded": false
+    },
+    {
+      "id": "replacement.guard",
+      "dependencies": 1,
+      "nodes": 2,
+      "guarded": true
+    }
+  ],
+  "stats": {
+    "graph_nodes": 21,
+    "graph_kernel_visits": 81601,
+    "rewritten_source_nodes": 5,
+    "translated_nodes": 8,
+    "conditional_nodes": 9,
+    "cut_nodes": 3
+  },
+  "source_nodes": 5,
+  "exact_target": true,
+  "pinned_L_unchanged": true,
+  "scope": "complete streamed modular import of fixed unbounded Replacement"
+}

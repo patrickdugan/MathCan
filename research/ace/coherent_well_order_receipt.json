@@ -1,0 +1,77 @@
+{
+  "experiment": "ACE-03T",
+  "part": "directed_initial_segment_limit",
+  "checks": [
+    {
+      "id": "directed_irreflexive",
+      "nodes": 36,
+      "goal_bytes": 2987,
+      "ambient_axioms": []
+    },
+    {
+      "id": "directed_transitive",
+      "nodes": 54,
+      "goal_bytes": 3635,
+      "ambient_axioms": []
+    },
+    {
+      "id": "directed_total",
+      "nodes": 40,
+      "goal_bytes": 3321,
+      "ambient_axioms": []
+    },
+    {
+      "id": "initial_segment_minima",
+      "nodes": 111,
+      "goal_bytes": 3465,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "directed_initial_segment_well_order",
+      "nodes": 280,
+      "goal_bytes": 5473,
+      "ambient_axioms": [
+        "separation"
+      ]
+    }
+  ],
+  "checked_modules": 5,
+  "kernel_visits": 521,
+  "independent_exact_goals": 5,
+  "independent_formula_interfaces": 4,
+  "negative_controls": 10,
+  "controls": [
+    "directed_irreflexive:drop_binders",
+    "directed_transitive:drop_binders",
+    "directed_total:drop_binders",
+    "initial_segment_minima:drop_binders",
+    "directed_initial_segment_well_order:drop_binders",
+    "initial_segment_minima:forbid_separation",
+    "directed_initial_segment_well_order:forbid_separation",
+    "limit:omit_triple_capture",
+    "limit:omit_local_well_orders",
+    "limit:omit_initial_segments"
+  ],
+  "ambient_schema_instances": [
+    {
+      "name": "separation",
+      "params": 1,
+      "body": [
+        "M",
+        0,
+        1
+      ]
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "conditional ZF well-order transfer from a triple-covering family of initial segments of one set-coded relation",
+  "open_obligations": [
+    "existence of a coherent stage history and union relation",
+    "syntax-code adequacy for pinned Def",
+    "internal constructibility of the canonical order",
+    "relativized Choice import",
+    "formal checker soundness"
+  ]
+}

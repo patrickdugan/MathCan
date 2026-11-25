@@ -218,6 +218,7 @@ jobs:
         run: |
           set -euo pipefail
           node research/ace/modular_unbounded_replay.mjs | tee /tmp/ace-q-unbounded.json
+          diff -u research/ace/modular_unbounded_receipt.json /tmp/ace-q-unbounded.json
       - uses: actions/upload-artifact@v4
         with:
           name: ace-q-unbounded-receipt
@@ -279,10 +280,33 @@ jobs:
         run: |
           set -euo pipefail
           node research/ace/unbounded_replacement_replay.mjs full | tee /tmp/ace-s-full.json
+          diff -u research/ace/unbounded_replacement_full_receipt.json /tmp/ace-s-full.json
       - uses: actions/upload-artifact@v4
         with:
           name: ace-s-full-receipt
           path: /tmp/ace-s-full.json
+  constructible-well-order-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check least codes, conditional Choice, coherent stages and finite code controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          node research/ace/constructible_well_order_replay.mjs > /tmp/ace-t-order.json
+          diff -u research/ace/constructible_well_order_receipt.json /tmp/ace-t-order.json
+          node research/ace/relation_realization_replay.mjs > /tmp/ace-t-relations.json
+          diff -u research/ace/relation_realization_receipt.json /tmp/ace-t-relations.json
+          node research/ace/successor_well_order_replay.mjs > /tmp/ace-t-successor.json
+          diff -u research/ace/successor_well_order_receipt.json /tmp/ace-t-successor.json
+          node research/ace/coherent_well_order_replay.mjs > /tmp/ace-t-limit.json
+          diff -u research/ace/coherent_well_order_receipt.json /tmp/ace-t-limit.json
+          node research/ace/well_order_codes_replay.mjs > /tmp/ace-t-codes.json
+          diff -u research/ace/well_order_codes_receipt.json /tmp/ace-t-codes.json
   lean-replay:
     runs-on: ubuntu-latest
     steps:

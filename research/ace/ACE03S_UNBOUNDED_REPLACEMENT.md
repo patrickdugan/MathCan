@@ -1,5 +1,15 @@
 # ACE-03S | Unbounded Replacement via two-parameter reflection
 
+Verification update, 2026-11-25: the complete streamed Replacement graph
+and exact repeated source-axiom import passed at source commit
+`0456b5981235db8ba1faf154b8bbd4744f256868`. The measured result is 21 graph
+nodes and 81,601 kernel visits. The complete unbounded Separation graph
+also passed, with 21 graph nodes and 103,182 visits. Stable full receipts
+are now pinned in CI. See [the full replay record](ACE03S_FULL_REPLAY_VERIFICATION.md)
+and [source-hash provenance](full_replay_provenance.json).
+
+The following account records the earlier split-replay checkpoint.
+
 Status: seven split replays for a fixed unbounded Replacement instance
 passed the executable ZF checker. Every dependency formula matches the
 generated graph interface, and every cut and the exact source translation

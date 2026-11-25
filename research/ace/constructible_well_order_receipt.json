@@ -1,0 +1,129 @@
+{
+  "experiment": "ACE-03T",
+  "part": "least_code_and_induced_order",
+  "checks": [
+    {
+      "id": "least_code_total",
+      "nodes": 60,
+      "goal_bytes": 3809,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "least_code_unique",
+      "nodes": 52,
+      "goal_bytes": 2669,
+      "ambient_axioms": []
+    },
+    {
+      "id": "least_code_injective",
+      "nodes": 25,
+      "goal_bytes": 2659,
+      "ambient_axioms": []
+    },
+    {
+      "id": "induced_irreflexive",
+      "nodes": 101,
+      "goal_bytes": 4789,
+      "ambient_axioms": []
+    },
+    {
+      "id": "induced_transitive",
+      "nodes": 142,
+      "goal_bytes": 9421,
+      "ambient_axioms": []
+    },
+    {
+      "id": "induced_total",
+      "nodes": 84,
+      "goal_bytes": 8783,
+      "ambient_axioms": []
+    },
+    {
+      "id": "induced_minima",
+      "nodes": 169,
+      "goal_bytes": 5879,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "induced_well_order",
+      "nodes": 606,
+      "goal_bytes": 19855,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "well_order_minimum_unique",
+      "nodes": 46,
+      "goal_bytes": 1469,
+      "ambient_axioms": []
+    },
+    {
+      "id": "choice_from_carrier_well_order",
+      "nodes": 150,
+      "goal_bytes": 2795,
+      "ambient_axioms": [
+        "separation"
+      ]
+    }
+  ],
+  "checked_modules": 10,
+  "kernel_visits": 1435,
+  "independent_exact_goals": 10,
+  "exact_choice_source_comparisons": 2,
+  "negative_controls": 21,
+  "controls": [
+    "least_code_total:drop_binders",
+    "least_code_unique:drop_binders",
+    "least_code_injective:drop_binders",
+    "induced_irreflexive:drop_binders",
+    "induced_transitive:drop_binders",
+    "induced_total:drop_binders",
+    "induced_minima:drop_binders",
+    "induced_well_order:drop_binders",
+    "well_order_minimum_unique:drop_binders",
+    "choice_from_carrier_well_order:drop_binders",
+    "least_code_total:forbid_separation",
+    "induced_minima:forbid_separation",
+    "induced_well_order:forbid_separation",
+    "choice_from_carrier_well_order:forbid_separation",
+    "injection:unavailable_hypothesis",
+    "source_choice_forbidden",
+    "choice:omit_carrier_premise",
+    "choice:omit_well_order_premise",
+    "choice:omit_family_premise",
+    "choice:omit_disjointness",
+    "choice:omit_nonemptiness"
+  ],
+  "ambient_schema_instances": [
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 301
+    },
+    {
+      "name": "separation",
+      "params": 4,
+      "body_bytes": 989
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 373
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "conditional ZF theorems for arbitrary set-coded code order and evaluation; formula-level induced well-order; ambient Choice body from a well-ordered carrier",
+  "set_realization_verified_by": "relation_realization_replay.mjs",
+  "open_obligations": [
+    "pinned Def syntax-code adequacy",
+    "coherent constructible recursion",
+    "internal constructibility of the canonical order",
+    "relativized Choice import",
+    "formal checker soundness"
+  ]
+}

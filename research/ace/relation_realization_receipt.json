@@ -1,0 +1,188 @@
+{
+  "experiment": "ACE-03T",
+  "part": "ambient_order_relation_set_realization",
+  "checks": [
+    {
+      "id": "ordered_pair_exists",
+      "nodes": 45,
+      "goal_bytes": 297,
+      "ambient_axioms": [
+        "pairing"
+      ],
+      "reused_existing_helper": true
+    },
+    {
+      "id": "ordered_pair_injective",
+      "nodes": 206,
+      "goal_bytes": 627,
+      "ambient_axioms": [],
+      "reused_existing_helper": true
+    },
+    {
+      "id": "ordered_pair_double_power_bound",
+      "nodes": 77,
+      "goal_bytes": 591,
+      "ambient_axioms": [],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "induced.exact_relation_realization",
+      "nodes": 441,
+      "goal_bytes": 5251,
+      "ambient_axioms": [
+        "pairing",
+        "power",
+        "separation"
+      ],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "induced.well_order_agreement_transfer",
+      "nodes": 131,
+      "goal_bytes": 24079,
+      "ambient_axioms": [],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "induced.well_order_set_realization",
+      "nodes": 594,
+      "goal_bytes": 24071,
+      "ambient_axioms": [
+        "pairing",
+        "power",
+        "separation"
+      ],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "induced.composed_well_order_realization",
+      "nodes": 1222,
+      "goal_bytes": 11145,
+      "ambient_axioms": [
+        "pairing",
+        "power",
+        "separation"
+      ],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "successor.exact_relation_realization",
+      "nodes": 441,
+      "goal_bytes": 2211,
+      "ambient_axioms": [
+        "pairing",
+        "power",
+        "separation"
+      ],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "successor.well_order_agreement_transfer",
+      "nodes": 131,
+      "goal_bytes": 10391,
+      "ambient_axioms": [],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "successor.well_order_set_realization",
+      "nodes": 594,
+      "goal_bytes": 10391,
+      "ambient_axioms": [
+        "pairing",
+        "power",
+        "separation"
+      ],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "successor.composed_well_order_realization",
+      "nodes": 1162,
+      "goal_bytes": 9563,
+      "ambient_axioms": [
+        "pairing",
+        "power",
+        "separation"
+      ],
+      "reused_existing_helper": false
+    }
+  ],
+  "checked_modules": 11,
+  "new_statement_checks": 9,
+  "reused_helper_checks": 2,
+  "kernel_visits": 5044,
+  "independent_exact_goals": 11,
+  "independent_order_predicates": 2,
+  "shared_helper_identity_checks": 3,
+  "negative_controls": 27,
+  "controls": [
+    "ordered_pair_exists:drop_binders",
+    "ordered_pair_injective:drop_binders",
+    "ordered_pair_double_power_bound:drop_binders",
+    "induced.exact_relation_realization:drop_binders",
+    "induced.well_order_agreement_transfer:drop_binders",
+    "induced.well_order_set_realization:drop_binders",
+    "induced.composed_well_order_realization:drop_binders",
+    "induced.exact_relation_realization:forbid_set_axioms",
+    "induced.well_order_set_realization:forbid_set_axioms",
+    "induced.composed_well_order_realization:forbid_set_axioms",
+    "induced:remove_explicit_carrier_guards",
+    "induced:omit_source_premise_0",
+    "induced:omit_source_premise_1",
+    "induced:omit_source_premise_2",
+    "successor.exact_relation_realization:drop_binders",
+    "successor.well_order_agreement_transfer:drop_binders",
+    "successor.well_order_set_realization:drop_binders",
+    "successor.composed_well_order_realization:drop_binders",
+    "successor.exact_relation_realization:forbid_set_axioms",
+    "successor.well_order_set_realization:forbid_set_axioms",
+    "successor.composed_well_order_realization:forbid_set_axioms",
+    "successor:remove_explicit_carrier_guards",
+    "successor:omit_source_premise_0",
+    "successor:omit_source_premise_1",
+    "successor:omit_source_premise_2",
+    "pair_exists:forbid_pairing",
+    "choice_axiom_forbidden"
+  ],
+  "ambient_axiom_instances": [
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "power"
+    },
+    {
+      "name": "separation",
+      "params": 4,
+      "body_bytes": 2593
+    },
+    {
+      "name": "separation",
+      "params": 4,
+      "body_bytes": 989
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 301
+    },
+    {
+      "name": "separation",
+      "params": 4,
+      "body_bytes": 1071
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 9
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "actual ambient set relations for both exact order predicates, with pointwise equivalence and composed well-order proofs under the original premises",
+  "open_obligations": [
+    "syntax-code adequacy for pinned Def",
+    "existence of the coherent transfinite history",
+    "internal constructibility of the realized order sets",
+    "relativized Choice import",
+    "formal checker soundness"
+  ]
+}
