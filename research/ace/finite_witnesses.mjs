@@ -1,3 +1,4 @@
+import { pathToFileURL } from "node:url";
 import { definition } from './constructible_definition.mjs';
 import { kernel, same, inst, classProofs, compile, rejects } from './zf_interface.mjs';
 import { buildE } from './hierarchy_closure.mjs';
@@ -598,4 +599,5 @@ function runF(){
   return {experiment:"ACE-03F",scope:"closed object proofs for pinned L predicate, checked by executable ZF kernel",proofs:out,closed_L_axiom_certificates:certs.map(c=>c.spec.name),composite_source_nodes:compiled.source.visits,composite_target_nodes:compiled.target.visits,negative_controls:rejected,remaining:"adequacy, stage recursion and other L axioms; proof checker soundness"};
 }
 
-console.log(JSON.stringify(runF(),null,2));
+export { buildF };
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) console.log(JSON.stringify(runF(),null,2));
