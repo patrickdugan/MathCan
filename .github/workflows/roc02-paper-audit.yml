@@ -29,6 +29,7 @@ jobs:
           python papers/roc02/roc04a_primary_signflip_v01.py
           python papers/roc02/roc04b_reserved_signflip_v01.py
           python papers/roc02/roc05a_b_primary_audit_v01.py
+          python papers/roc02/roc06a_gradient_primary_signflip_v01.py
           python - <<'PY'
           from pathlib import Path
           import csv
@@ -64,4 +65,13 @@ jobs:
           index=Path("papers/roc02/README.md").read_text()
           assert "ROC02_Observer_Causal_Update_v04_20261117.md" in index
           assert "unopened" in index or "ungenerated" in index
+          v05=Path("papers/roc02/ROC02_Observer_Causal_Update_v05_20261125.md").read_text()
+          assert "version 0.5" in v05
+          assert "−0.0566440431951681" in v05
+          assert "0.01140925" in v05 and "0/6" in v05
+          assert "3,072" in v05 and "72/72" in v05
+          assert "unopened" in v05
+          assert len(list(csv.DictReader(open("papers/roc02/ROC06A_gradient_primary_by_seed_v01.csv"))))==6
+          updated=Path("papers/roc02/README.md").read_text()
+          assert "ROC02_Observer_Causal_Update_v05_20261125.md" in updated
           PY
