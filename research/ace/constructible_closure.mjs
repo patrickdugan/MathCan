@@ -69,9 +69,9 @@ function runJ(pinned,part){
   const compiled=compile(0,[],["axiom",spec],opts);
   if(!same(compiled.target.goal,c.goal(part)))throw Error("compiler goal mismatch");
   const tests=[()=>compile(0,[],["axiom",spec],{...opts,certificates:[]}),()=>kernel(0,[],["conv",closure,["closed",["axiom",{name:"empty"}]]],true,"ZF",defs.L)];
-  // The class binding control uses only the pure closed statement in its own
-  // checked conversion. It rejects an alternative definition of G.
-  if(!same(expandClass(closure,c.def),pure.goal))tests.push(()=>kernel(0,[],["conv",closure,["closed",["axiom",{name:"empty"}]]],true,"ZF",c.def));
+  // Independent syntax check: a different class abbreviation must expand to a different goal.
+  if(same(expandClass(closure,c.def),pure.goal))throw Error("wrong class expansion matched");
+  tests.push(()=>kernel(0,[],["conv",closure,["closed",["axiom",{name:"empty"}]]],true,"ZF",c.def));
   if(part==="union")tests.push(()=>compile(0,[],["axiom",{name:"choice"}],{...opts,certificates:[]}));
   for(const t of tests)if(!rejects(t))throw Error("negative control accepted");
   return {proofs:{[part==="pairing"?"constructible_pair_closure":"constructible_union_closure"]:{proof_bytes:JSON.stringify(pure.proof).length},[part+"_axiom"]:{nodes:compiled.target.visits-1,proof_bytes:JSON.stringify(proof).length}},independent_goal_checks:1,negative_controls:tests.length,closed_L_axiom_certificate:part,source_nodes:compiled.source.visits,target_nodes:compiled.target.visits};
