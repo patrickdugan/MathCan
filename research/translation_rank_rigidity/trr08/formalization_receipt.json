@@ -1,0 +1,295 @@
+{
+  "schema": "trr08-formalization-v1",
+  "status": "passed",
+  "checked_at_utc": "2026-11-25T16:34:11.466706+00:00",
+  "proof_boundary": {
+    "full_interpolation_theorem_formalized": false,
+    "actual_curve_tame_theorem": "TRR08Geometry.tame_coefficient_exclusion",
+    "actual_curve_hypotheses": [
+      "K is a field; W is an actual Mathlib smooth short Weierstrass curve.",
+      "N = addOrderOf T >= 19; n = (N : K) is nonzero.",
+      "The images of 2 and 3 in K are nonzero.",
+      "a(k)^2 = n*(x(kT)+c) at every nonidentity multiple.",
+      "a(2k) = 2*a(k)+n*(3*x(kT)^2+A)/(2*y(kT)) when kT and 2kT are nonidentity."
+    ],
+    "tame_conclusion": "The hypotheses imply False.",
+    "remaining_obligations": [
+      "Construct the coefficients a from the rational function 1/Phi(x).",
+      "Derive the square identity from the eigenvector condition via residues.",
+      "Prove the logarithmic-derivative addition identity giving the doubling cocycle.",
+      "Identify the geometric evaluation image with the residue hyperplane.",
+      "Interpret finite feature tensors as coordinate polynomials with the stated block degree.",
+      "Transfer generalized Weierstrass models to short form with degree preservation.",
+      "Prove the function-field differential kernel and global-divisor-to-affine-ideal step in matching characteristic.",
+      "Integrate the small-order certificates with the geometric theorem in Lean."
+    ]
+  },
+  "modules": [
+    {
+      "project": "core",
+      "path": "MathCan/TranslationInterpolationUniform.lean",
+      "source_sha256": "f8a6e09ad56e3fb39fd9b26aec0bfe4916351a7024883a234af5f7c92c12890e",
+      "principal_report_count": 6,
+      "transitive_axioms": {
+        "MathCan.TranslationInterpolationUniform.product_nonzero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationUniform.power_nonzero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationUniform.cancel_nonzero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationUniform.normalized_singular": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationUniform.second_branch_five_nonzero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationUniform.leading_coefficients_force_singularity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "core",
+      "path": "MathCan/TranslationInterpolationRootBound.lean",
+      "source_sha256": "7580ca70f468757145b4090c09b10e92ffe4261c0ede0bb4bf676ceece73daf4",
+      "principal_report_count": 11,
+      "transitive_axioms": {
+        "MathCan.TranslationInterpolationRootBound.evaluate_quotient_cons": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.synthetic_division": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.quotient_length": [],
+        "MathCan.TranslationInterpolationRootBound.zero_of_quotient": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.coefficients_zero_of_distinct_roots": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.obstruction_evaluation": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.obstruction_roots_force_singularity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.nonsingular_obstruction_root_exclusion": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.doubling_implies_obstruction": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.doubling_data_force_singularity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.nonsingular_doubling_data_exclusion": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "core",
+      "path": "MathCan/TranslationInterpolationEvaluation.lean",
+      "source_sha256": "49cf856484d420dae1ed9eb9691c17c0e326383035e0fa27ee0de0cb778990f0",
+      "principal_report_count": 12,
+      "transitive_axioms": {
+        "MathCan.TranslationInterpolationEvaluation.span_iff_annihilated": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.symmetric_decoder_reconstruction": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.symmetric_decoder_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.decoder_coefficients_unique": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.dot_pointMass": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.assigned_row_iff_eigenvector": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.pole_decoder_iff_eigenvector": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.assigned_value_unique": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.feature_tensor_annihilated": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.evaluation_hyperplane_decoder_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.evaluation_columns_decoder_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.evaluation_pole_decoder_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/MarkedPoints.lean",
+      "source_sha256": "d48028516fc4eff14be79d2056760b24d3a70306d0060fa8fdce255056373df3",
+      "principal_report_count": 11,
+      "transitive_axioms": {
+        "TRR08Geometry.affineX_eq_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.firstNine_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.firstNine_injective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.firstNine_ne_neg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.firstNine_x_injective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.tangent_denominator_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.firstNine_tangent_denominator_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.short_curve_equation": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.short_discriminant_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.short_y_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.short_doubling_x": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/Obstruction.lean",
+      "source_sha256": "430bfb8e428877782709e8c81befc560d32fb76c128dbd403614c7cbe4de89ac",
+      "principal_report_count": 1,
+      "transitive_axioms": {
+        "TRR08Geometry.tame_coefficient_exclusion": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/PointIdeals.lean",
+      "source_sha256": "564d729afad01bae5ec1c16d6df880eec52e1a4e4f310ee2d6a570cea8d7296c",
+      "principal_report_count": 2,
+      "transitive_axioms": {
+        "TRR08Geometry.nonidentity_point_class_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.point_ideal_ne_single_generator": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    }
+  ],
+  "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+  "geometry_manifest_sha256": "4a7d8d320f89f6d51e00966bcf391deb9042bf7d9defa298696a0093386444b6",
+  "verifier_sha256": "6c60529fd8cd547b59f9b4f4635bf7b48989b108edeac7eb7d1d22e33aa299a7",
+  "principal_report_count": 43,
+  "new_principal_report_count": 37,
+  "elapsed_seconds": 465.940068
+}

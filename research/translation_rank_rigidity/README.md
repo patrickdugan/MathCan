@@ -1,6 +1,10 @@
 # TRR-01: translation-rank rigidity
 
-## Current result: TRR-07
+## Current formalization: TRR-08
+
+[TRR-08](trr08/README.md) formalizes the distinct-root bound and applies the degree-eight obstruction to Mathlib's actual smooth Weierstrass curves. It constructs the finite decoder criterion and proves an affine point-ideal corollary for the matching-characteristic argument. The local coefficient identities, geometric evaluation image and remaining function-field steps are explicit in the [proof review](trr08/proof_review.md).
+
+## Uniform result and experiments: TRR-07
 
 [The uniform interpolation theorem and experiment suite](trr07/README.md) establish the exact affine-block degree `ceil(N/3)` for every prime subgroup order `N>=7` in characteristic zero or greater than three. A degree-eight obstruction closes every order from nineteen onward; the earlier integral certificates cover 7, 11, 13 and 17. The suite includes extension-field sweeps, exact robustness distances, independent certificate replays and fifteen new Lean field-algebra theorems. [The complete uniform argument](trr07/uniform_probe.md) and [independent proof review](trr07/uniform_proof_review.md) state the geometric premises and formalization boundary.
 

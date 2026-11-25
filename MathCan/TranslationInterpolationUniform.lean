@@ -1,4 +1,6 @@
-import Init
+module
+
+public import Init
 
 /-!
 # TRR-07: algebraic classification of the degree-eight obstruction
@@ -8,6 +10,8 @@ identity. This module proves that those coefficients force a singular short
 Weierstrass cubic. The root count, slope cocycle, and passage from a decoder to
 these coefficient hypotheses remain explicit geometric proof obligations.
 -/
+
+@[expose] public section
 
 namespace MathCan.TranslationInterpolationUniform
 
