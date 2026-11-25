@@ -1,0 +1,41 @@
+{
+  "experiment": "ACE-02",
+  "scope": "finite cyclic operation structures, not models of PA or ZF",
+  "seeds": {
+    "109": {
+      "structures": 3,
+      "closed": 384,
+      "open": 384,
+      "true": 288,
+      "false": 480,
+      "transport_pass": 768,
+      "scope_locality_pass": 768
+    },
+    "113": {
+      "structures": 3,
+      "closed": 384,
+      "open": 384,
+      "true": 314,
+      "false": 454,
+      "transport_pass": 768,
+      "scope_locality_pass": 768
+    },
+    "127": {
+      "structures": 3,
+      "closed": 384,
+      "open": 384,
+      "true": 275,
+      "false": 493,
+      "transport_pass": 768,
+      "scope_locality_pass": 768
+    }
+  },
+  "controls": {
+    "invalid_scope": 10,
+    "known_binder": 63,
+    "non_surjective_truth_flips": 2,
+    "broken_iso_rejections": 36,
+    "broken_operation_truth_flips": 9
+  },
+  "note": "truth preservation and scope locality checked against a direct modular evaluator and a relabeled table evaluator; synthetic deterministic tests only"
+}
