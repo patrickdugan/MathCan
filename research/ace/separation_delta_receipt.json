@@ -1,0 +1,30 @@
+{
+  "experiment": "ACE-03O",
+  "part": "delta",
+  "proofs": {
+    "atom": {
+      "nodes": 12,
+      "proof_bytes": 53525
+    },
+    "existential": {
+      "nodes": 60,
+      "proof_bytes": 214122
+    },
+    "universal": {
+      "nodes": 123,
+      "proof_bytes": 161627
+    },
+    "false": {
+      "nodes": 10,
+      "proof_bytes": 53493
+    },
+    "nested": {
+      "nodes": 153,
+      "proof_bytes": 535235
+    }
+  },
+  "exact_goals": 5,
+  "rejections": 3,
+  "pinned_L_unchanged": true,
+  "scope": "bounded quantifier absoluteness"
+}
