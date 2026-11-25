@@ -95,7 +95,7 @@ Require actual kernel output before marking LEAN-CHECKED.
 ## Registered next gates (not run)
 
 ACE-02: staged in [ACE02_ARITHMETIC_TRANSPORT.md](ACE02_ARITHMETIC_TRANSPORT.md). Explicit first-order syntax with de Bruijn scopes, isomorphism-based semantic transport and assignment locality; 2,304 finite formula checks passed. Lean kernel and standalone CLI replay remain pending.
-ACE-03A: staged in [ACE03A_RELATIVIZATION.md](ACE03A_RELATIVIZATION.md). Generic class semantics and a restricted proof compiler, 3,840 compiled proofs checked. ACE-03B: explicit ZF/ZFC schemas, verified relativized axiom instances, and construction of L remain due.
+ACE-03A: staged in [ACE03A_RELATIVIZATION.md](ACE03A_RELATIVIZATION.md). Generic class semantics and a restricted proof compiler, 3,840 compiled proofs checked. ACE-03B: staged in [ACE03B_ZF_INTERFACE.md](ACE03B_ZF_INTERFACE.md). ZF/ZFC schema encodings and certificate-gated proof translation; 1,920 axiom encoding comparisons passed. ACE-03C: actual constructible-class definition and relativized axiom proofs remain due.
 ACE-04: inspect inert Lean exports for choice dependency cones, distinguish
 finite selection from well-ordering, quotient, and classical proof
 dependencies. Prove the universe/background theory requirements for
@@ -111,3 +111,5 @@ ACE-07: only after the translation and equivalence obligations are
 closed, try the RH arithmetic corollary. No paid compute is requested.
 
 No RH choice-elimination result is claimed at this checkpoint.
+
+Verification update: ACE-01 kernel and axiom report passed in run 45541612790. ACE-02 run 45542048477 failed on a reserved Lean keyword, renamed in 72807b8; fresh verification pending. See ACE-03B note for scope.
