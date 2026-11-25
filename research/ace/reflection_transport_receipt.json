@@ -1,0 +1,182 @@
+{
+  "experiment": "ACE-03M-transport",
+  "proofs": {
+    "existential": {
+      "nodes": 46,
+      "proof_bytes": 267266,
+      "clauses": [
+        {
+          "path": "root",
+          "arity": 1,
+          "body": [
+            "M",
+            0,
+            1
+          ],
+          "kind": "witness"
+        }
+      ]
+    },
+    "nested": {
+      "nodes": 333,
+      "proof_bytes": 1231763,
+      "clauses": [
+        {
+          "path": "root",
+          "arity": 1,
+          "body": [
+            ">",
+            [
+              ">",
+              [
+                "M",
+                0,
+                1
+              ],
+              [
+                "E",
+                [
+                  "&",
+                  [
+                    "M",
+                    0,
+                    1
+                  ],
+                  [
+                    "M",
+                    1,
+                    2
+                  ]
+                ]
+              ]
+            ],
+            [
+              "F"
+            ]
+          ],
+          "kind": "counterexample"
+        },
+        {
+          "path": "rootbr",
+          "arity": 2,
+          "body": [
+            "&",
+            [
+              "M",
+              0,
+              1
+            ],
+            [
+              "M",
+              1,
+              2
+            ]
+          ],
+          "kind": "witness"
+        }
+      ]
+    },
+    "mixed": {
+      "nodes": 274,
+      "proof_bytes": 2084255,
+      "clauses": [
+        {
+          "path": "rootl",
+          "arity": 1,
+          "body": [
+            "M",
+            0,
+            1
+          ],
+          "kind": "witness"
+        },
+        {
+          "path": "rootr",
+          "arity": 1,
+          "body": [
+            ">",
+            [
+              "|",
+              [
+                "=",
+                0,
+                1
+              ],
+              [
+                "E",
+                [
+                  "M",
+                  0,
+                  1
+                ]
+              ]
+            ],
+            [
+              "F"
+            ]
+          ],
+          "kind": "counterexample"
+        },
+        {
+          "path": "rootrbr",
+          "arity": 2,
+          "body": [
+            "M",
+            0,
+            1
+          ],
+          "kind": "witness"
+        }
+      ]
+    },
+    "sentence": {
+      "nodes": 122,
+      "proof_bytes": 908191,
+      "clauses": [
+        {
+          "path": "root",
+          "arity": 0,
+          "body": [
+            ">",
+            [
+              "E",
+              [
+                "=",
+                0,
+                1
+              ]
+            ],
+            [
+              "F"
+            ]
+          ],
+          "kind": "counterexample"
+        },
+        {
+          "path": "rootb",
+          "arity": 1,
+          "body": [
+            "=",
+            0,
+            1
+          ],
+          "kind": "witness"
+        }
+      ]
+    },
+    "atomic": {
+      "nodes": 45,
+      "proof_bytes": 53900,
+      "clauses": []
+    }
+  },
+  "independent_goal_checks": 5,
+  "negative_controls": 4,
+  "finite_relations": 50,
+  "domain_inclusions": 1014,
+  "formula_cases": 5070,
+  "satisfied_witness_clauses": 4717,
+  "truth_checks": 5040,
+  "missing_clause_counterexamples": 262,
+  "scope": "conditional fixed-formula transport; arbitrary finite relation regression, no reflecting-stage existence"
+}
