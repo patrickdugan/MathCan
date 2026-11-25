@@ -1,0 +1,37 @@
+{
+  "experiment": "ACE-03S",
+  "part": "extension",
+  "spec": {
+    "name": "replacement",
+    "params": 0,
+    "body": [
+      "A",
+      [
+        ">",
+        [
+          "M",
+          2,
+          0
+        ],
+        [
+          "M",
+          1,
+          0
+        ]
+      ]
+    ]
+  },
+  "checks": [
+    {
+      "id": "extension",
+      "nodes": 20133,
+      "dependencies": [],
+      "goal_bytes": 160165
+    }
+  ],
+  "exact_node_goals": 1,
+  "negative_controls": 1,
+  "translation": null,
+  "pinned_L_unchanged": true,
+  "scope": "split checked node proofs and exact interfaces for fixed unbounded Replacement; full streamed importer is a separate replay"
+}
