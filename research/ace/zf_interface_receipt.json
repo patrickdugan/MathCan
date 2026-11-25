@@ -96,5 +96,66 @@
     "choice_form": "choice set for disjoint nonempty family",
     "target_policy": "ZF only, no AC; class predicate definition supplied separately",
     "note": "finite structures need not satisfy ZF; no L certificates"
+  },
+  "class_closure": {
+    "experiment": "ACE-03C",
+    "scope": "conditional class closure derivations and closed singleton-empty-class controls; no definition of L",
+    "generic": {
+      "extensionality": {
+        "nodes": 40,
+        "premises": 1
+      },
+      "empty": {
+        "nodes": 12,
+        "premises": 1
+      },
+      "pairing": {
+        "nodes": 22,
+        "premises": 1
+      },
+      "union": {
+        "nodes": 46,
+        "premises": 2
+      },
+      "foundation": {
+        "nodes": 31,
+        "premises": 1
+      }
+    },
+    "closed": {
+      "extensionality": {
+        "nodes": 52,
+        "compiler_nodes": 53
+      },
+      "empty": {
+        "nodes": 20,
+        "compiler_nodes": 21
+      },
+      "union": {
+        "nodes": 83,
+        "compiler_nodes": 84
+      },
+      "foundation": {
+        "nodes": 43,
+        "compiler_nodes": 44
+      }
+    },
+    "closure_proofs": [
+      11,
+      7,
+      24
+    ],
+    "composite_source_nodes": 3,
+    "composite_target_nodes": 106,
+    "open_imports": 4,
+    "finite_structures": 530,
+    "finite_subclasses": 4164,
+    "conditional_checks": 16194,
+    "conditional_nonvacuous": 4836,
+    "closed_checks": 2120,
+    "closed_nonvacuous": 1181,
+    "pairing_counterexamples": 133,
+    "nontransitive_extensionality_counterexamples": 144,
+    "negative_controls": 7
   }
 }
