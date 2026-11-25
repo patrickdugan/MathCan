@@ -119,11 +119,24 @@ theorem sat_transport {M : Model A} {N : Model B} (e : Iso M N)
     rw [← eval_transport e ρ σ h t, ← eval_transport e ρ σ h s]
     exact e.lt_iff _ _
   | conj p q ihp ihq =>
-    simp only [Formula.sat, ihp ρ σ h, ihq ρ σ h]
+    change (p.sat M ρ ∧ q.sat M ρ) ↔ (p.sat N σ ∧ q.sat N σ)
+    exact ⟨fun hpq => ⟨(ihp ρ σ h).mp hpq.1, (ihq ρ σ h).mp hpq.2⟩,
+      fun hpq => ⟨(ihp ρ σ h).mpr hpq.1, (ihq ρ σ h).mpr hpq.2⟩⟩
   | disj p q ihp ihq =>
-    simp only [Formula.sat, ihp ρ σ h, ihq ρ σ h]
+    change (p.sat M ρ ∨ q.sat M ρ) ↔ (p.sat N σ ∨ q.sat N σ)
+    constructor
+    · intro hpq
+      cases hpq with
+      | inl hp => exact Or.inl ((ihp ρ σ h).mp hp)
+      | inr hq => exact Or.inr ((ihq ρ σ h).mp hq)
+    · intro hpq
+      cases hpq with
+      | inl hp => exact Or.inl ((ihp ρ σ h).mpr hp)
+      | inr hq => exact Or.inr ((ihq ρ σ h).mpr hq)
   | impl p q ihp ihq =>
-    simp only [Formula.sat, ihp ρ σ h, ihq ρ σ h]
+    change (p.sat M ρ → q.sat M ρ) ↔ (p.sat N σ → q.sat N σ)
+    exact ⟨fun hpq hp => (ihq ρ σ h).mp (hpq ((ihp ρ σ h).mpr hp)),
+      fun hpq hp => (ihq ρ σ h).mpr (hpq ((ihp ρ σ h).mp hp))⟩
   | all p ih =>
     change (∀ a : A, p.sat M (push a ρ)) ↔ (∀ b : B, p.sat N (push b σ))
     constructor
