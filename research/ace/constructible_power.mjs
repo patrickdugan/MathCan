@@ -1,5 +1,5 @@
 import { definition } from './constructible_definition.mjs';
-import { kernel, same, rejects } from './zf_interface.mjs';
+import { kernel, same, rejects, inst, expandClass, classProofs, compile } from './zf_interface.mjs';
 import { buildE } from './hierarchy_closure.mjs';
 import { buildF } from './finite_witnesses.mjs';
 import { buildI } from './stage_recursion.mjs';
@@ -394,3 +394,90 @@ function buildL(defs,prior,finite,stages,extended=false){
   }
   return Object.fromEntries(Object.entries(proofs).map(([name,p])=>[name,{goal:db(p.goal,[]),proof:p.emit([],[])}]));
 }
+
+
+import { readFileSync } from 'node:fs';
+
+function runL(pinned,part){
+  const defs=definition("v",true);
+  if(!same(defs.L,pinned))throw Error("pinned L mismatch");
+  const finite=buildF(defs,part==="ranks"?false:"power"),out={};
+  function check(name,p,g=false,def=null){
+    const r=kernel(0,[],p.proof,g,"ZF",def);
+    if(!same(r.goal,p.goal))throw Error("goal mismatch "+name);
+    out[name]={nodes:r.visits,proof_bytes:JSON.stringify(p.proof).length};
+  }
+  const A=p=>["A",p],E=p=>["E",p],I=(p,q)=>[">",p,q],C=(p,q)=>["&",p,q],M=(a,b)=>["M",a,b],Q=(a,b)=>["=",a,b],G=i=>["G",i],N=p=>I(p,["F"]);
+  function embed(p,indices,d=0){
+    const [op,a,b]=p;
+    if(op==="F")return p;
+    if(op==="A"||op==="E")return [op,embed(a,indices,d+1)];
+    if(op==="M"||op==="="){const f=i=>i<d?i:indices[i-d]+d;return [op,f(a),f(b)];}
+    return [op,embed(a,indices,d),embed(b,indices,d)];
+  }
+  const sub=(a,b)=>A(I(M(0,a+1),M(0,b+1)));
+  const trans=a=>A(I(M(0,a+1),sub(0,a+1)));
+  const B=(p,q)=>C(I(p,q),I(q,p));
+  const D=(a,x)=>embed(defs.definable,[a,x]),Succ=(a,b)=>embed(defs.successor,[a,b]),Ord=a=>embed(defs.ordinal,[a]),L=a=>embed(defs.L,[a]);
+  const W=(b,r)=>E(C(Succ(b+1,0),E(C(embed(defs.stageGraph,[0,1]),embed(defs.val,[0,b+2,r+2])))));
+  const Appears=(x,a)=>C(Ord(a),E(C(W(a+1,0),M(x+1,0))));
+  const Rank=(x,a)=>C(Appears(x,a),A(I(M(0,a+1),N(Appears(x+1,0)))));
+  const RankSucc=(x,j)=>E(C(Rank(x+1,0),Succ(0,j+1)));
+  const imp=(...ps)=>ps.reduceRight((a,b)=>I(b,a));
+  const RP=(guard,x,p)=>A(B(M(0,p+1),C(guard(0),sub(0,x+1))));
+  function exact(p,want,name){if(!same(p.goal,want))throw Error("independent goal mismatch "+name);}
+  function rejectsAll(tests){for(const t of tests)if(!rejects(t))throw Error("negative control accepted");return tests.length;}
+  if(part==="finite"){
+    const v=finite.relative_power_definable;
+    exact(v,A(A(A(imp(trans(2),M(1,2),RP(y=>M(y,3),1,0),D(2,0))))),"relative_power_definable");
+    check("relative_power_definable",v);
+    return {proofs:out,independent_goal_checks:1,negative_controls:rejectsAll([()=>kernel(0,[],v.proof,false,"CL")])};
+  }
+  const prior=buildE(defs,true),stages=buildI(defs,prior,buildF(defs),true),p=buildL(defs,prior,finite,stages,part==="power");
+  if(part==="ranks"){
+    const names=["ordinal_comparison_induction","ordinal_comparison","least_constructible_rank","least_rank_unique","least_rank_exists_unique","rank_successor_unique","rank_successor_total","ordinal_family_union","constructible_set_stage_bound"];
+    for(const n of names)check(n,p[n]);
+    exact(p.ordinal_comparison,A(I(Ord(0),A(I(Ord(0),["|",M(1,0),["|",Q(1,0),M(0,1)]])))),"ordinal_comparison");
+    exact(p.least_rank_exists_unique,A(I(L(0),E(C(Rank(1,0),A(I(Rank(2,0),Q(0,1))))))),"least_rank_exists_unique");
+    exact(p.rank_successor_total,A(I(L(0),E(C(RankSucc(1,0),A(I(RankSucc(2,0),Q(0,1))))))),"rank_successor_total");
+    exact(p.constructible_set_stage_bound,A(I(A(I(M(0,1),L(0))),E(E(C(C(Ord(1),W(1,0)),sub(2,0)))))),"constructible_set_stage_bound");
+    return {proofs:out,independent_goal_checks:4,negative_controls:rejectsAll([()=>kernel(0,[],p.least_rank_exists_unique.proof,false,"CL"),()=>kernel(0,[],p.constructible_set_stage_bound.proof,false,"CL")])};
+  }
+  if(part!=="power")throw Error("bad replay part");
+  const pure=p.constructible_powerset_closure,generic=p.power_from_transitivity_and_relative_powerset;
+  const PC=A(I(G(0),E(C(G(0),RP(G,1,0)))));
+  const T=classProofs().generic.find(x=>x.name==="union").premises[0];
+  exact(p.ambient_relative_powerset_exists,A(E(RP(L,1,0))),"ambient_relative_powerset_exists");
+  exact(pure,expandClass(PC,defs.L),"constructible_powerset_closure");
+  const spec={name:"power"};
+  function relLocal(p){
+    const [op,a,b]=p;
+    if(op==="A")return A(I(G(0),relLocal(a)));
+    if(op==="E")return E(C(G(0),relLocal(a)));
+    if(["&","|",">"].includes(op))return [op,relLocal(a),relLocal(b)];
+    return p;
+  }
+  const goal=relLocal(kernel(0,[],["axiom",spec],false,"ZF").goal);
+  exact(generic,I(T,I(PC,goal)),"generic Power Set");
+  check("ambient_relative_powerset_exists",p.ambient_relative_powerset_exists);
+  check("generic_power",generic,true);
+  const guarded=["conv",PC,["closed",pure.proof]];
+  const tr=prior.L_transitivity_conditional,inf=finite.def_inflation;
+  if(!same(tr.goal[1],inf.goal))throw Error("inflation mismatch");
+  const lp=["iE",tr.proof,inf.proof];
+  const tx=["conv",inst(defs.L,1),["aL",["h",0]]];
+  const sx=["iE",["uE",["closed",lp],1],tx],sy=["iE",["uE",sx,0],["aR",["h",0]]];
+  const tg=["uI",["uI",["iI",C(G(1),M(0,1)),["conv",G(0),sy]]]];
+  const proof=["iE",["iE",generic.proof,tg],guarded],cert={spec,proof};
+  const opts={sourceTheory:"ZFC",targetTheory:"ZF",classDef:defs.L,certificates:[cert]};
+  const compiled=compile(0,[],["axiom",spec],opts);
+  if(!same(compiled.target.goal,goal))throw Error("compiler goal mismatch");
+  const count=rejectsAll([()=>compile(0,[],["axiom",spec],{...opts,certificates:[]}),()=>compile(0,[],["axiom",{name:"choice"}],{...opts,certificates:[]}),()=>kernel(0,[],["conv",PC,["closed",["axiom",{name:"empty"}]]],true,"ZF",defs.L)]);
+  if(same(expandClass(PC,classProofs().def),pure.goal))throw Error("wrong class expansion matched");
+  return {proofs:{...out,constructible_powerset_closure:{proof_bytes:JSON.stringify(pure.proof).length},power_axiom:{nodes:compiled.target.visits-1,proof_bytes:JSON.stringify(proof).length}},independent_goal_checks:3,negative_controls:count,closed_L_axiom_certificate:"power",source_nodes:compiled.source.visits,target_nodes:compiled.target.visits};
+}
+
+const pinned=JSON.parse(readFileSync(new URL('./L_formula.json',import.meta.url),'utf8'));
+const part=process.argv[2];
+if(!part)throw Error('choose finite, ranks or power');
+console.log(JSON.stringify(runL(pinned,part),null,2));
