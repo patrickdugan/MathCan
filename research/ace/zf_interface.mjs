@@ -467,4 +467,145 @@ function runB(){
     negative_controls:controls.length,parameter_limit:32,choice_form:"choice set for disjoint nonempty family",target_policy:"ZF only, no AC; class predicate definition supplied separately",note:"finite structures need not satisfy ZF; no L certificates"};
 }
 
-console.log(JSON.stringify({prior_regression:run(),current:runB()},null,2));
+
+function classProofs(){
+  const A=p=>["A",p],E=p=>["E",p],I=(p,q)=>[">",p,q],C=(p,q)=>["&",p,q],O=(p,q)=>["|",p,q],F=["F"],N=p=>I(p,F),B=(p,q)=>C(I(p,q),I(q,p)),G=i=>["G",i],M=(i,j)=>["M",i,j],Q=(i,j)=>["=",i,j];
+  const h=hyp,ii=(p,q)=>["iI",p,q],ie=(p,q)=>["iE",p,q],ai=(p,q)=>["aI",p,q],al=p=>["aL",p],ar=p=>["aR",p],ui=p=>["uI",p],ue=(p,...args)=>args.reduce((q,i)=>["uE",q,i],p),ei=(body,x,p)=>["eI",body,x,p],ee=(p,g,b)=>["eE",p,g,b],fe=(p,q)=>["fE",p,q],ax=name=>["axiom",{name}],cv=(p,q)=>["conv",p,q];
+  const ag=p=>ui(ii(G(0),p));
+  const goal=name=>rel(axiomFormula({name},"ZF"));
+  const T=A(A(I(C(G(1),M(0,1)),G(0))));
+  const E0=A(N(M(0,1))), EC=E(C(G(0),E0));
+  const pairBody=A(B(M(0,1),O(Q(0,3),Q(0,2))));
+  const PC=A(A(I(C(G(1),G(0)),E(C(G(0),pairBody)))));
+  const unionBody=A(B(M(0,1),E(C(M(0,3),M(1,0)))));
+  const UC=A(I(G(0),E(C(G(0),unionBody))));
+  const H=A(I(G(0),B(M(0,2),M(0,1))));
+  const lr=(x,g,proj)=>ii(M(0,x),ie(proj(ie(ue(h(3),0),ie(ue(h(0),x,0),ai(h(g),h(4))))),h(4)));
+  const extInner=ie(ue(ax("extensionality"),1,0),ui(ai(lr(2,1,al),lr(1,2,ar))));
+  const ext=ii(T,ag(ag(ii(H,extInner))));
+  const emptyWitness=ei(lift(goal("empty")[1],1),0,ai(al(h(1)),ag(ue(ar(h(1)),0))));
+  const empty=ii(EC,ee(h(0),goal("empty"),emptyWitness));
+  const pg=goal("pairing")[1][2][1][2];
+  const pairWitness=ei(lift(pg[1],1),0,ai(al(h(3)),ag(ue(ar(h(3)),0))));
+  const pairing=ii(PC,ag(ag(ee(ie(ue(h(0),1,0),ai(h(1),h(2))),pg,pairWitness))));
+  const ug=goal("union")[1][2];
+  const ambEx=E(C(M(0,3),M(1,0))),guardEx=E(C(G(0),ambEx[1]));
+  const guardY=ie(ue(h(0),3,0),ai(h(2),al(h(6))));
+  const inL=ii(M(0,1),ee(ie(al(ue(ar(h(3)),0)),h(5)),guardEx,
+    ei(lift(guardEx[1],1),0,ai(guardY,h(6)))));
+  const inR=ii(guardEx,ie(ar(ue(ar(h(3)),0)),ee(h(5),ambEx,ei(lift(ambEx[1],1),0,ar(h(6))))));
+  const unionWitness=ei(lift(ug[1],1),0,ai(al(h(3)),ag(ai(inL,inR))));
+  const union=ii(T,ii(UC,ag(ee(ie(ue(h(1),0),h(2)),ug,unionWitness))));
+  const nonempty=E(C(G(0),M(0,1)));
+  const fg=goal("foundation")[1][2][2];
+  const ambientNonempty=E(M(0,1));
+  const ambientFound=ie(ue(ax("foundation"),0),ee(h(2),ambientNonempty,ei(lift(ambientNonempty[1],1),0,ar(h(3)))));
+  const foundGuard=ie(ue(h(0),1,0),ai(h(1),al(h(3))));
+  const foundWitness=ei(lift(fg[1],1),0,ai(foundGuard,ai(al(h(3)),ag(ue(ar(h(3)),0)))));
+  const foundation=ii(T,ag(ii(nonempty,ee(ambientFound,fg,foundWitness))));
+  const generic=[{name:"extensionality",premises:[T],proof:ext},{name:"empty",premises:[EC],proof:empty},{name:"pairing",premises:[PC],proof:pairing},{name:"union",premises:[T,UC],proof:union},{name:"foundation",premises:[T],proof:foundation}];
+  const def=E0;
+  const tContradiction=ie(ue(cv(lift(def,0),al(h(0))),0),ar(h(0)));
+  const tProof=ui(ui(ii(C(G(1),M(0,1)),fe(tContradiction,G(0)))));
+  const eProof=ee(ax("empty"),EC,ei(lift(EC[1],1),0,ai(cv(G(0),h(0)),h(0))));
+  const noMem=ie(ue(cv(lift(def,0),h(0)),0),h(1));
+  const rightFalse=ee(h(1),M(0,1),fe(ie(ue(cv(lift(lift(def,0),0),h(0)),0),al(h(2))),M(1,2)));
+  const unionLeft=ii(M(0,1),fe(noMem,E(C(M(0,2),M(1,0)))));
+  const unionRight=ii(E(C(M(0,2),M(1,0))),rightFalse);
+  const unionClosure=ag(ei(UC[1][2][1],0,ai(h(0),ui(ai(unionLeft,unionRight)))));
+  return {generic,def,closures:[{goal:T,proof:tProof},{goal:EC,proof:eProof},{goal:UC,proof:unionClosure}],goal};
+}
+
+function runC(){
+  const p=classProofs();
+  const generic={},closed={},certificates=[];
+  for(const g of p.generic){
+    const o=kernel(0,[],g.proof,true,"ZF");
+    const want=g.premises.reduceRight((q,r)=>[">",r,q],p.goal(g.name));
+    requireOk(same(o.goal,want),"conditional class theorem "+g.name);
+    generic[g.name]={nodes:o.visits,premises:g.premises.length};
+  }
+  for(const c of p.closures){
+    const o=kernel(0,[],c.proof,true,"ZF",p.def);
+    requireOk(same(o.goal,c.goal),"closure proof mismatch");
+  }
+  for(const g of p.generic){
+    const obligations=g.premises.map(x=>p.closures.find(c=>same(c.goal,x)));
+    if(obligations.some(x=>!x))continue;
+    const proof=obligations.reduce((q,c)=>["iE",q,c.proof],g.proof);
+    const o=kernel(0,[],proof,true,"ZF",p.def);
+    requireOk(same(o.goal,p.goal(g.name)),"discharged proof "+g.name);
+    const cert={spec:{name:g.name},proof};certificates.push(cert);
+    const r=compile(0,[],["axiom",cert.spec],{sourceTheory:"ZF",targetTheory:"ZF",classDef:p.def,certificates:[cert]});
+    requireOk(same(r.target.goal,p.goal(g.name)),"compiler use "+g.name);
+    closed[g.name]={nodes:o.visits,compiler_nodes:r.target.visits};
+  }
+  const opts={sourceTheory:"ZF",targetTheory:"ZF",classDef:p.def,certificates};
+  for(const cert of certificates){
+    const r=compile(2,[],["axiom",cert.spec],opts);
+    requireOk(same(r.target.goal,p.goal(cert.spec.name)),"open import");
+  }
+  // A derivation of a conjunction of two distinct ZF axioms.
+  const multi=["aI",["axiom",{name:"empty"}],["axiom",{name:"union"}]];
+  const compiled=compile(0,[],multi,opts);
+  requireOk(same(compiled.target.goal,["&",p.goal("empty"),p.goal("union")]),"composite source");
+  // Exhaustive finite relations on domains 1..3 and all subclasses.
+  // Verify semantic truth of each conditional class theorem whenever ambient
+  // axioms used by that derivation are true. Also check closed proof goals
+  // against the actual empty-object predicate.
+  let structures=0,classes=0,conditionalChecks=0,conditionalNonvacuous=0,closedChecks=0,closedNonvacuous=0;
+  let pairingCounterexamples=0,nontransitiveExtCounterexamples=0;
+  const ambientNeeded={extensionality:["extensionality"],empty:[],pairing:[],union:[],foundation:["foundation"]};
+  for(let n=1;n<=3;n++){
+    const D=Array.from({length:n},(_,i)=>i);
+    for(let mask=0;mask<2**(n*n);mask++){
+      const R=D.map(i=>D.map(j=>Boolean((mask>>(i*n+j))&1)));
+      structures++;
+      const fixed=Object.fromEntries(["extensionality","empty","foundation","pairing","union"].map(x=>[x,expectedFixed(x,D,R)]));
+      const S0=D.filter(x=>D.every(y=>!R[y][x]));
+      for(const cert of certificates){
+        const needed=[...ambientNeeded[cert.spec.name]];
+        if(cert.spec.name==="empty")needed.push("empty");
+        if(needed.every(x=>fixed[x])){
+          closedNonvacuous++;
+          requireOk(satAmbient(p.goal(cert.spec.name),[],D,S0,R),"closed semantic failure "+cert.spec.name);
+        }
+        closedChecks++;
+      }
+      if(fixed.extensionality&&fixed.empty&&S0.length===1&&!satAmbient(p.goal("pairing"),[],D,S0,R))pairingCounterexamples++;
+      for(let sm=0;sm<2**n;sm++){
+        const S=D.filter(i=>(sm>>i)&1);classes++;
+        for(const g of p.generic){
+          if(!ambientNeeded[g.name].every(x=>fixed[x]))continue;
+          conditionalChecks++;
+          const premise=g.premises.every(x=>satAmbient(x,[],D,S,R));
+          if(premise){
+            conditionalNonvacuous++;
+            requireOk(satAmbient(p.goal(g.name),[],D,S,R),"conditional semantic failure "+g.name);
+          }
+        }
+        if(fixed.extensionality&&!satAmbient(p.generic[0].premises[0],[],D,S,R)&&!satAmbient(p.goal("extensionality"),[],D,S,R))nontransitiveExtCounterexamples++;
+      }
+    }
+  }
+  requireOk(pairingCounterexamples>0&&nontransitiveExtCounterexamples>0,"missing control counterexamples");
+  const controls=[
+    ()=>compile(0,[],["axiom",{name:"pairing"}],opts),
+    ()=>compile(0,[],["axiom",{name:"choice"}],{...opts,sourceTheory:"ZFC"}),
+    ()=>compile(0,[],["axiom",{name:"empty"}],{...opts,classDef:["=",0,0]}),
+    ()=>compile(0,[],["axiom",{name:"extensionality"}],{...opts,certificates:[{spec:{name:"extensionality"},proof:p.generic[0].proof}]}),
+    ()=>compile(0,[],["axiom",{name:"union"}],{...opts,certificates:[{spec:{name:"union"},proof:p.closures[2].proof}]}),
+    ()=>compile(0,[],["axiom",{name:"empty"}],{...opts,certificates:[{spec:{name:"empty"},proof:["axiom",{name:"empty"}]}]}),
+    ()=>kernel(0,[],["iE",p.generic[0].proof,p.closures[1].proof],true,"ZF",p.def)
+  ];
+  for(const [i,x] of controls.entries())requireOk(rejects(x),"bad class certificate accepted "+i);
+  return {experiment:"ACE-03C",scope:"conditional class closure derivations and closed singleton-empty-class controls; no definition of L",
+    generic,closed,closure_proofs:p.closures.map(c=>kernel(0,[],c.proof,true,"ZF",p.def).visits),
+    composite_source_nodes:compiled.source.visits,composite_target_nodes:compiled.target.visits,
+    open_imports:certificates.length,finite_structures:structures,finite_subclasses:classes,conditional_checks:conditionalChecks,
+    conditional_nonvacuous:conditionalNonvacuous,closed_checks:closedChecks,closed_nonvacuous:closedNonvacuous,
+    pairing_counterexamples:pairingCounterexamples,nontransitive_extensionality_counterexamples:nontransitiveExtCounterexamples,
+    negative_controls:controls.length};
+}
+
+console.log(JSON.stringify({prior_regression:run(),current:runB(),class_closure:runC()},null,2));
