@@ -182,6 +182,46 @@ jobs:
           set -euo pipefail
           node research/ace/unbounded_separation_replay.mjs "$PART" > "/tmp/ace-p-$PART.json"
           diff -u "research/ace/unbounded_separation_${PART}_receipt.json" "/tmp/ace-p-$PART.json"
+  modular-certificate-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [synthetic, bounded]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay modular certificate import and compare pinned receipt
+        shell: bash
+        env:
+          PART: ${{ matrix.part }}
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: |
+          set -euo pipefail
+          node research/ace/modular_certificate_replay.mjs "$PART" > "/tmp/ace-q-$PART.json"
+          diff -u "research/ace/modular_certificate_${PART}_receipt.json" "/tmp/ace-q-$PART.json"
+  modular-unbounded-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check complete streamed unbounded proof DAG and translate repeated axiom
+        shell: bash
+        env:
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: |
+          set -euo pipefail
+          node research/ace/modular_unbounded_replay.mjs | tee /tmp/ace-q-unbounded.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ace-q-unbounded-receipt
+          path: /tmp/ace-q-unbounded.json
   lean-replay:
     runs-on: ubuntu-latest
     steps:
