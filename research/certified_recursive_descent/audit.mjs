@@ -1,3 +1,4 @@
+import { pathToFileURL } from "node:url";
 // CRD-01: exact rational certificate checks and synthetic proof obligations.
 // Run: node audit.mjs; node audit.mjs --dataset > cases.jsonl
 // No claim of validating Cogentic's factorization theorem.
@@ -89,9 +90,12 @@ function audit(){
   return {status:"PASS",scope:"conditional arithmetic and bounded examples only",certificateCases:rows.length,splits,outcomes,squareAudit:squareAudit(),fixedPoint:21.15/(1-Math.cbrt(0.5)),crossoverBits:(hi+lo)/(2*Math.LN2)};
 }
 
-export {verify, cases, squareAudit, audit};
+export {verify, upperRoot, cases, squareAudit, audit};
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
 if (process.argv.includes('--dataset')) {
   for(const {expected,...row} of cases()) console.log(JSON.stringify({...row,expected}));
 } else {
   console.log(JSON.stringify(audit(),null,2));
+}
+
 }
