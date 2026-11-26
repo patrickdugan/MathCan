@@ -1,0 +1,38 @@
+name: PGC-01 operational identifiability
+
+on:
+  push:
+    branches:
+      - research/pgc01-operational-identifiability-20261126
+    paths:
+      - 'MathCan/OperationalIdentifiability.lean'
+      - 'research/pregeometric_identifiability/**'
+      - '.github/workflows/pgc01-operational-identifiability.yml'
+  pull_request:
+    paths:
+      - 'MathCan/OperationalIdentifiability.lean'
+      - 'research/pregeometric_identifiability/**'
+      - '.github/workflows/pgc01-operational-identifiability.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  kernel-check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Check the four proofs and their empty axiom reports
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/OperationalIdentifiability.lean | tee /tmp/pgc01-axioms.log
+          diff -u research/pregeometric_identifiability/lean_validation.log /tmp/pgc01-axioms.log
