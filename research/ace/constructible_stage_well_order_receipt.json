@@ -1,0 +1,112 @@
+{
+  "experiment": "ACE-03X",
+  "part": "actual_pinned_L_stage_and_ambient_well_order_link_all",
+  "checks": [
+    {
+      "id": "well_order_on_subset",
+      "nodes": 85,
+      "goal_bytes": 4925,
+      "goal_sha256": "c96a7637ab19b253022acd53ff6eab1cf89b31db7af99fac2ae93549210bfee4",
+      "ambient_axioms": []
+    },
+    {
+      "id": "ordinal_history_with_pinned_projection",
+      "nodes": 59045,
+      "goal_bytes": 309069,
+      "goal_sha256": "1be69c0b15dfd83de4e126d5528a0bc05537e05dd7faf9f23f9c96753f0aadb8",
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "infinity",
+        "pairing",
+        "power",
+        "replacement",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "all_pinned_stage_values_well_ordered",
+      "nodes": 59631,
+      "goal_bytes": 55725,
+      "goal_sha256": "8fc6b3fa50b972a7df641cbc4a7a12c558a8e8b32151d3ecd6d61650f15c7c76",
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "infinity",
+        "pairing",
+        "power",
+        "replacement",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "every_constructible_set_has_ambient_well_order",
+      "nodes": 60299,
+      "goal_bytes": 56125,
+      "goal_sha256": "259706765c737f6f264e56a216cc73e1b92a91cda986fd5e16ed6d9c8d7358b5",
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "infinity",
+        "pairing",
+        "power",
+        "replacement",
+        "separation",
+        "union"
+      ]
+    }
+  ],
+  "checked_modules": 4,
+  "new_statement_checks": 4,
+  "kernel_visits": 179060,
+  "independent_exact_goals": 4,
+  "independent_formula_interfaces": 10,
+  "exact_pinned_L_schema_comparisons": 1,
+  "negative_controls": 15,
+  "kernel_rejection_controls": 7,
+  "contract_rejection_controls": 8,
+  "contract_controls_use_verified_conclusions": true,
+  "controls": [
+    "well_order_on_subset:changed_conclusion",
+    "ordinal_history_with_pinned_projection:forbid_set_axioms",
+    "ordinal_history_with_pinned_projection:replace_live_axiom_with_choice",
+    "ordinal_history_with_pinned_projection:changed_conclusion",
+    "all_pinned_stage_values_well_ordered:forbid_set_axioms",
+    "all_pinned_stage_values_well_ordered:replace_live_axiom_with_choice",
+    "all_pinned_stage_values_well_ordered:changed_conclusion",
+    "every_constructible_set_has_ambient_well_order:forbid_set_axioms",
+    "every_constructible_set_has_ambient_well_order:replace_live_axiom_with_choice",
+    "every_constructible_set_has_ambient_well_order:changed_conclusion",
+    "every_constructible_set_has_ambient_well_order:without_constructibility",
+    "every_constructible_set_has_ambient_well_order:internal_order_membership",
+    "every_constructible_set_has_ambient_well_order:reverse_relation_support",
+    "all_stage_values:omit_pinned_stage_graph",
+    "choice_axiom_forbidden"
+  ],
+  "logic_only_checks": 1,
+  "ambient_axioms": [
+    "extensionality",
+    "foundation",
+    "infinity",
+    "pairing",
+    "power",
+    "replacement",
+    "separation",
+    "union"
+  ],
+  "pinned_L_unchanged": true,
+  "final_goal_sha256": "259706765c737f6f264e56a216cc73e1b92a91cda986fd5e16ed6d9c8d7358b5",
+  "final_goal": "forall x (L(x) -> exists R (WO(x,R) and every member of R is a Kuratowski pair of members of x))",
+  "order_relation_is_actual_set": true,
+  "relation_pairs_within_carrier": true,
+  "Choice_imported": false,
+  "scope": "ambient ZF well-orderability of every set in the exact pinned constructible class, obtained from canonical ordinal histories, their carrier projection and actual pair-relation restriction",
+  "outside_this_replay": [
+    "membership of the constructed order relation in L",
+    "exact relativized Choice import",
+    "unrestricted schema coverage",
+    "formal checker soundness"
+  ]
+}

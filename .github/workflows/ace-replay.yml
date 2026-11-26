@@ -349,6 +349,20 @@ jobs:
           set -euo pipefail
           node research/ace/ace03w_replay.mjs > /tmp/ace03w.json
           diff -u research/ace/ace03w_receipt.json /tmp/ace03w.json
+  canonical-order-history-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check unique order histories and the exact pinned L-stage projection
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACE_REPLAY_PROGRESS=1 node research/ace/ace03x_replay.mjs > /tmp/ace03x.json
+          diff -u research/ace/ace03x_receipt.json /tmp/ace03x.json
   lean-replay:
     runs-on: ubuntu-latest
     steps:

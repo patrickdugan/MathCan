@@ -1,0 +1,45 @@
+{
+  "experiment": "ACE-03X",
+  "part": "constructible_order_history_coherence",
+  "checks": [
+    {
+      "id": "ordinal_order_history_coherence",
+      "nodes": 3593,
+      "goal_bytes": 501943,
+      "goal_sha256": "f0f24d71f649d686c12973263fbd18a2f8eba1c54f8b6485a0fd03f00d26e666",
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "separation"
+      ]
+    }
+  ],
+  "checked_modules": 1,
+  "kernel_visits": 3593,
+  "independent_exact_goals": 1,
+  "independent_formula_interfaces": 13,
+  "negative_controls": 4,
+  "kernel_rejections": 1,
+  "contract_rejections": 3,
+  "logic_only_checks": 0,
+  "controls": [
+    "ordinal_order_history_coherence:unbound_dependency",
+    "ordinal_order_history_coherence:false_conclusion",
+    "ordinal_order_history_coherence:drop_outer_quantifier",
+    "ordinal_order_history_coherence:changed_mathematical_contract"
+  ],
+  "ambient_axioms": [
+    "extensionality",
+    "foundation",
+    "pairing",
+    "separation"
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "canonical packed constructible-stage histories using the actual least-description successor order and exact limit union; every recursive value carries a transitive well-ordered carrier and embeds all earlier values",
+  "open_obligations": [
+    "internal constructibility of the canonical order",
+    "relativized Choice import",
+    "formal checker soundness"
+  ]
+}

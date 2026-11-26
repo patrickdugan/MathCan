@@ -1,23 +1,34 @@
 # ACE | Axiom choice elimination
 
-Current checkpoint, 2026-11-25: ACE-03W constructs an actual well-order
-of the exact pinned Def(A) from a supplied well-order of A. It supplies
-well-ordered finite description carriers, a functional partial evaluator
-with exact definability coverage, and the least-code relation. The
-reserved zero-width description covers the original empty-output branch.
+Current checkpoint, 2026-11-26: ACE-03X constructs unique canonical
+order histories on every ordinal and proves coherence across histories.
+Their carrier projection satisfies the exact pinned `stageGraph` equations.
+The final closed theorem gives every set in the pinned constructible class
+an ambient well-order relation whose pairs lie in that set's square.
 
-The final theorem discharges omega and Def-set existence. For transitive
-A, the successor construction also preserves A's existing comparisons
-and makes A an initial segment of Def(A).
+The successor recipe retains exact membership contracts for every auxiliary,
+which makes its output unique. An exact union of earlier comparisons supplies
+the limit order. The pure-formula recursion generator is instantiated with
+this actual step, and every recursive contract is discharged. A separate
+restriction proof supplies the final relation as a set by Separation.
 
-Ten independent family replays passed: 118 proof checks, comprising
-117 new statements and one independently reproved existing statement,
-with 376,400 kernel visits and 382 rejection controls. The preceding
-ACE-03V head passed all 57 ACE CI jobs and both mathematical checks.
-The uniform transfinite history, internal constructibility of its
-restricted orders, exact relativized Choice import, and formal checker
+Fifteen family/part receipts record 114 proof checks, 513,363 kernel visits
+and 422 rejection controls. The strict combined replay reproduced all fifteen
+receipts, including the complete unique-history tree and the final pinned-class
+theorem. Its ledger includes 200 formula-interface comparisons and 44 checks
+in pure logic mode. The kernel, pinned `L`, and preceding
+proof-source and receipt bytes are preserved. The ACE-03W head passed all
+58 ACE CI jobs and both mathematical-check jobs.
+
+Internal constructibility of a suitable order and selector remains to be
+proved before the exact relativized Choice import. A separately stated
+global class well-order, unrestricted schema coverage, and formal checker
 soundness remain open.
 
+- [ACE-03X mathematical report](ACE03X_CANONICAL_ORDER_HISTORIES.md)
+- [Combined ACE-03X replay receipt and source hashes](ace03x_receipt.json)
+- [Actual unique ordinal history receipt](constructible_order_history_existence_receipt.json)
+- [Final well-orderability theorem receipt](constructible_stage_well_order_receipt.json)
 - [ACE-03W mathematical report](ACE03W_DEFINABLE_STAGE_WELL_ORDER.md)
 - [Combined ACE-03W replay receipt and dependency hashes](ace03w_receipt.json)
 - [ACE-03V mathematical report](ACE03V_FINITE_SYNTAX_DECORATION.md)

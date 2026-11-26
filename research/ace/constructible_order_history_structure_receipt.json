@@ -1,0 +1,64 @@
+{
+  "experiment": "ACE-03X",
+  "part": "constructible_order_history_structure",
+  "checks": [
+    {
+      "id": "history_value_step",
+      "nodes": 37,
+      "goal_bytes": 499963,
+      "goal_sha256": "a2822c1447179bd4eb3defb123d6e4075aa30950f3f852234557e26d84bd1223",
+      "ambient_axioms": []
+    },
+    {
+      "id": "history_pointwise",
+      "nodes": 58,
+      "goal_bytes": 253617,
+      "goal_sha256": "74f1ed2d94823ec2752549c7cbb040dcf27463a11284a8a5156059947f65e1f0",
+      "ambient_axioms": []
+    },
+    {
+      "id": "history_forward_embeddings",
+      "nodes": 70,
+      "goal_bytes": 253451,
+      "goal_sha256": "37bedd4736bd10e015836773bfa979eac7ac0a88325b887084ae6cc0153186c2",
+      "ambient_axioms": []
+    },
+    {
+      "id": "step_prefix_local",
+      "nodes": 136,
+      "goal_bytes": 499561,
+      "goal_sha256": "3620fc5aa8d20660beaeba6787af92b8b4753a0facd9d790f4a3d1bf9c2d337b",
+      "ambient_axioms": []
+    }
+  ],
+  "checked_modules": 4,
+  "kernel_visits": 301,
+  "independent_exact_goals": 4,
+  "independent_formula_interfaces": 13,
+  "negative_controls": 12,
+  "kernel_rejections": 4,
+  "contract_rejections": 8,
+  "logic_only_checks": 4,
+  "controls": [
+    "history_value_step:unbound_dependency",
+    "history_value_step:false_conclusion",
+    "history_value_step:drop_outer_quantifier",
+    "history_pointwise:unbound_dependency",
+    "history_pointwise:false_conclusion",
+    "history_pointwise:drop_outer_quantifier",
+    "history_forward_embeddings:unbound_dependency",
+    "history_forward_embeddings:false_conclusion",
+    "history_forward_embeddings:drop_outer_quantifier",
+    "step_prefix_local:unbound_dependency",
+    "step_prefix_local:false_conclusion",
+    "step_prefix_local:drop_outer_quantifier"
+  ],
+  "ambient_axioms": [],
+  "pinned_L_unchanged": true,
+  "scope": "canonical packed constructible-stage histories using the actual least-description successor order and exact limit union; every recursive value carries a transitive well-ordered carrier and embeds all earlier values",
+  "open_obligations": [
+    "internal constructibility of the canonical order",
+    "relativized Choice import",
+    "formal checker soundness"
+  ]
+}

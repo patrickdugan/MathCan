@@ -1,0 +1,348 @@
+{
+  "experiment": "ACE-03X",
+  "part": "canonical_limit_order_sets",
+  "checks": [
+    {
+      "id": "limit_relation_exists",
+      "nodes": 143,
+      "goal_bytes": 2029,
+      "ambient_axioms": [
+        "power",
+        "separation"
+      ]
+    },
+    {
+      "id": "limit_relation_unique",
+      "nodes": 32,
+      "goal_bytes": 4069,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "limit_relation_agreement",
+      "nodes": 325,
+      "goal_bytes": 4041,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "family_coordinates_double_union",
+      "nodes": 73,
+      "goal_bytes": 591,
+      "ambient_axioms": []
+    },
+    {
+      "id": "carrier_family_exists",
+      "nodes": 115,
+      "goal_bytes": 671,
+      "ambient_axioms": [
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "union_carrier_exists",
+      "nodes": 164,
+      "goal_bytes": 715,
+      "ambient_axioms": [
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "union_carrier_unique",
+      "nodes": 31,
+      "goal_bytes": 1447,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "stage_is_subset_of_union",
+      "nodes": 17,
+      "goal_bytes": 1073,
+      "ambient_axioms": []
+    },
+    {
+      "id": "union_carrier_transitive",
+      "nodes": 38,
+      "goal_bytes": 1155,
+      "ambient_axioms": []
+    },
+    {
+      "id": "union_order_restriction",
+      "nodes": 131,
+      "goal_bytes": 7688,
+      "ambient_axioms": []
+    },
+    {
+      "id": "union_order_initial",
+      "nodes": 102,
+      "goal_bytes": 6780,
+      "ambient_axioms": []
+    },
+    {
+      "id": "bounded_order_agreement_transfer",
+      "nodes": 164,
+      "goal_bytes": 6163,
+      "ambient_axioms": []
+    },
+    {
+      "id": "directed_union_capture",
+      "nodes": 106,
+      "goal_bytes": 2559,
+      "ambient_axioms": []
+    },
+    {
+      "id": "union_local_well_orders",
+      "nodes": 364,
+      "goal_bytes": 12020,
+      "ambient_axioms": []
+    },
+    {
+      "id": "union_stages_initial",
+      "nodes": 134,
+      "goal_bytes": 7154,
+      "ambient_axioms": []
+    },
+    {
+      "id": "union_order_well_order",
+      "nodes": 1054,
+      "goal_bytes": 11287,
+      "ambient_axioms": [
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "limit_state_exists",
+      "nodes": 318,
+      "goal_bytes": 2739,
+      "ambient_axioms": [
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "limit_state_unique",
+      "nodes": 135,
+      "goal_bytes": 5515,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "limit_state_well_order",
+      "nodes": 1405,
+      "goal_bytes": 11293,
+      "ambient_axioms": [
+        "pairing",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "limit_state_extensions",
+      "nodes": 635,
+      "goal_bytes": 8099,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "canonical_limit_complete",
+      "nodes": 2391,
+      "goal_bytes": 13295,
+      "ambient_axioms": [
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "packed_limit_value_exists",
+      "nodes": 377,
+      "goal_bytes": 3031,
+      "ambient_axioms": [
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "packed_limit_value_unique",
+      "nodes": 521,
+      "goal_bytes": 6083,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    }
+  ],
+  "checked_modules": 23,
+  "new_statement_checks": 23,
+  "kernel_visits": 8775,
+  "independent_exact_goals": 23,
+  "independent_formula_interfaces": 16,
+  "shared_well_order_layout_checks": 1,
+  "logic_only_checks": 9,
+  "negative_controls": 81,
+  "kernel_rejection_controls": 40,
+  "contract_rejection_controls": 41,
+  "controls": [
+    "limit_relation_exists:changed_outer_binder",
+    "limit_relation_exists:dropped_binders",
+    "limit_relation_exists:forbid_set_axioms",
+    "limit_relation_unique:changed_outer_binder",
+    "limit_relation_unique:dropped_binders",
+    "limit_relation_unique:forbid_set_axioms",
+    "limit_relation_agreement:changed_outer_binder",
+    "limit_relation_agreement:dropped_binders",
+    "limit_relation_agreement:forbid_set_axioms",
+    "family_coordinates_double_union:changed_outer_binder",
+    "family_coordinates_double_union:dropped_binders",
+    "carrier_family_exists:changed_outer_binder",
+    "carrier_family_exists:dropped_binders",
+    "carrier_family_exists:forbid_set_axioms",
+    "union_carrier_exists:changed_outer_binder",
+    "union_carrier_exists:dropped_binders",
+    "union_carrier_exists:forbid_set_axioms",
+    "union_carrier_unique:changed_outer_binder",
+    "union_carrier_unique:dropped_binders",
+    "union_carrier_unique:forbid_set_axioms",
+    "stage_is_subset_of_union:changed_outer_binder",
+    "stage_is_subset_of_union:dropped_binders",
+    "union_carrier_transitive:changed_outer_binder",
+    "union_carrier_transitive:dropped_binders",
+    "union_order_restriction:changed_outer_binder",
+    "union_order_restriction:dropped_binders",
+    "union_order_initial:changed_outer_binder",
+    "union_order_initial:dropped_binders",
+    "bounded_order_agreement_transfer:changed_outer_binder",
+    "bounded_order_agreement_transfer:dropped_binders",
+    "directed_union_capture:changed_outer_binder",
+    "directed_union_capture:dropped_binders",
+    "union_local_well_orders:changed_outer_binder",
+    "union_local_well_orders:dropped_binders",
+    "union_stages_initial:changed_outer_binder",
+    "union_stages_initial:dropped_binders",
+    "union_order_well_order:changed_outer_binder",
+    "union_order_well_order:dropped_binders",
+    "union_order_well_order:forbid_set_axioms",
+    "limit_state_exists:changed_outer_binder",
+    "limit_state_exists:dropped_binders",
+    "limit_state_exists:forbid_set_axioms",
+    "limit_state_unique:changed_outer_binder",
+    "limit_state_unique:dropped_binders",
+    "limit_state_unique:forbid_set_axioms",
+    "limit_state_well_order:changed_outer_binder",
+    "limit_state_well_order:dropped_binders",
+    "limit_state_well_order:forbid_set_axioms",
+    "limit_state_extensions:changed_outer_binder",
+    "limit_state_extensions:dropped_binders",
+    "limit_state_extensions:forbid_set_axioms",
+    "canonical_limit_complete:changed_outer_binder",
+    "canonical_limit_complete:dropped_binders",
+    "canonical_limit_complete:forbid_set_axioms",
+    "packed_limit_value_exists:changed_outer_binder",
+    "packed_limit_value_exists:dropped_binders",
+    "packed_limit_value_exists:forbid_set_axioms",
+    "packed_limit_value_unique:changed_outer_binder",
+    "packed_limit_value_unique:dropped_binders",
+    "packed_limit_value_unique:forbid_set_axioms",
+    "union_order_well_order:omitted_premise_0",
+    "union_order_well_order:omitted_premise_1",
+    "union_order_well_order:omitted_premise_2",
+    "union_order_well_order:omitted_premise_3",
+    "union_order_well_order:omitted_premise_4",
+    "limit_state_well_order:omitted_premise_0",
+    "limit_state_well_order:omitted_premise_1",
+    "limit_state_well_order:omitted_premise_2",
+    "limit_state_well_order:omitted_premise_3",
+    "limit_state_extensions:omitted_premise_0",
+    "limit_state_extensions:omitted_premise_1",
+    "limit_state_extensions:omitted_premise_2",
+    "canonical_limit_complete:omitted_premise_0",
+    "canonical_limit_complete:omitted_premise_1",
+    "canonical_limit_complete:omitted_premise_2",
+    "union_carrier_transitive:omitted_premise_0",
+    "union_carrier_transitive:omitted_premise_1",
+    "limit_relation_unique:Val_only_membership",
+    "carrier_family_exists:corrupt_union",
+    "carrier_family_exists:corrupt_separation",
+    "choice_axiom_forbidden"
+  ],
+  "finite_history_controls": [
+    {
+      "omitted": "local",
+      "premises": {
+        "local": false,
+        "directed": true,
+        "extends": true
+      },
+      "union_well_order": false,
+      "carrier_size": 1
+    },
+    {
+      "omitted": "directed",
+      "premises": {
+        "local": true,
+        "directed": false,
+        "extends": true
+      },
+      "union_well_order": false,
+      "carrier_size": 2
+    },
+    {
+      "omitted": "extends",
+      "premises": {
+        "local": true,
+        "directed": true,
+        "extends": false
+      },
+      "union_well_order": false,
+      "carrier_size": 3
+    }
+  ],
+  "ambient_axiom_instances": [
+    {
+      "name": "power"
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 983
+    },
+    {
+      "name": "extensionality"
+    },
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "union"
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 307
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 9
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "unconditional exact carrier and canonical relation sets from any set of packed states; unique packed output; transitivity and coherent limit well-order with restriction and initiality under explicit history hypotheses",
+  "open_obligations": [
+    "the indexed constructible history must supply local well-orders, directedness and initial-segment coherence",
+    "internal constructibility of the canonical relation sets",
+    "relativized Choice import",
+    "formal checker soundness"
+  ]
+}

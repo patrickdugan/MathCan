@@ -1,0 +1,232 @@
+{
+  "experiment": "ACE-03X",
+  "part": "canonical_raw_description_order",
+  "checks": [
+    {
+      "id": "canonical_description_auxiliaries_unique",
+      "nodes": 876,
+      "goal_bytes": 83169,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "canonical_description_recipe_unique",
+      "nodes": 980,
+      "goal_bytes": 82939,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "canonical_description_order_unique",
+      "nodes": 1006,
+      "goal_bytes": 104029,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "canonical_description_order_exists",
+      "nodes": 12441,
+      "goal_bytes": 54871,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    }
+  ],
+  "checked_modules": 4,
+  "new_statement_checks": 4,
+  "kernel_visits": 15303,
+  "independent_exact_goals": 4,
+  "independent_formula_interfaces": 11,
+  "logic_only_checks": 0,
+  "negative_controls": 15,
+  "controls": [
+    "canonical_description_auxiliaries_unique:drop_binders",
+    "canonical_description_auxiliaries_unique:forbid_set_axioms",
+    "canonical_description_recipe_unique:drop_binders",
+    "canonical_description_recipe_unique:forbid_set_axioms",
+    "canonical_description_order_unique:drop_binders",
+    "canonical_description_order_unique:forbid_set_axioms",
+    "canonical_description_order_exists:drop_binders",
+    "canonical_description_order_exists:forbid_set_axioms",
+    "canonical_description_order_exists:omit_omega",
+    "canonical_description_order_exists:omit_alphabet_order",
+    "canonical_description_recipe_unique:omit_first_recipe",
+    "canonical_description_recipe_unique:omit_second_recipe",
+    "canonical_description_order_unique:wrong_carrier_coordinate",
+    "canonical_description_auxiliaries_unique:corrupt_equality_transport",
+    "choice_axiom_forbidden"
+  ],
+  "public_formula_parameters": [
+    "w",
+    "A",
+    "R",
+    "I",
+    "C",
+    "T"
+  ],
+  "auxiliary_order": [
+    "rw",
+    "p",
+    "rp",
+    "I",
+    "ri",
+    "sg",
+    "rg",
+    "sb",
+    "rb",
+    "q",
+    "rq",
+    "C",
+    "T"
+  ],
+  "hidden_auxiliary_indices": [
+    0,
+    1,
+    2,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "exact_recipe_nodes": 13,
+  "existence_quantifiers": [
+    "w",
+    "A",
+    "R"
+  ],
+  "existence_premises": [
+    "Omega(w)",
+    "WO(A,R)"
+  ],
+  "existence_conclusion": "exists I,C,T (Recipe and ((TripleCarrier and RawCarrier) and WO(C,T)))",
+  "uniqueness_conclusion": "((J=I and D=C) and U=T)",
+  "all_thirteen_auxiliaries_unique": true,
+  "ambient_choice_used": false,
+  "ambient_axiom_instances": [
+    {
+      "name": "extensionality"
+    },
+    {
+      "name": "power"
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 339
+    },
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "foundation"
+    },
+    {
+      "name": "separation",
+      "params": 0,
+      "body_bytes": 53
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 63
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 41
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 41
+    },
+    {
+      "name": "union"
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 1369
+    },
+    {
+      "name": "separation",
+      "params": 4,
+      "body_bytes": 4733
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 1369
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 1347
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 13029
+    },
+    {
+      "name": "separation",
+      "params": 3,
+      "body_bytes": 3631
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 307
+    },
+    {
+      "name": "separation",
+      "params": 6,
+      "body_bytes": 2607
+    },
+    {
+      "name": "separation",
+      "params": 7,
+      "body_bytes": 2589
+    },
+    {
+      "name": "separation",
+      "params": 5,
+      "body_bytes": 1617
+    },
+    {
+      "name": "separation",
+      "params": 6,
+      "body_bytes": 323
+    },
+    {
+      "name": "separation",
+      "params": 7,
+      "body_bytes": 305
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 323
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "supplied omega and alphabet order determine a unique exact raw-description carrier and relation through thirteen exact construction steps",
+  "open_obligations": [
+    "uniform successor order on Def(A)",
+    "coherent transfinite order histories",
+    "internal constructibility of the canonical order",
+    "exact relativized Choice import",
+    "formal checker soundness"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "experiment": "ACE-03X",
+  "part": "constructible_order_history_range",
+  "checks": [
+    {
+      "id": "prefix_range_exists",
+      "nodes": 9,
+      "goal_bytes": 1711,
+      "goal_sha256": "5a68f4c95a5844e9d841b28ce6b552df77108c951c58c81138398802240646be",
+      "ambient_axioms": [
+        "replacement"
+      ]
+    },
+    {
+      "id": "prefix_range_unique",
+      "nodes": 32,
+      "goal_bytes": 1429,
+      "goal_sha256": "ddee2a9613db6de6d46adbd4380ca23c32fe8692c134577f1af762dfefc455f7",
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "prefix_range_transport",
+      "nodes": 50,
+      "goal_bytes": 2673,
+      "goal_sha256": "263fa077b9eae122641b32325b7b38110e79272a26851e4acf0568e170a34b26",
+      "ambient_axioms": []
+    }
+  ],
+  "checked_modules": 3,
+  "kernel_visits": 91,
+  "independent_exact_goals": 3,
+  "independent_formula_interfaces": 13,
+  "negative_controls": 9,
+  "kernel_rejections": 3,
+  "contract_rejections": 6,
+  "logic_only_checks": 1,
+  "controls": [
+    "prefix_range_exists:unbound_dependency",
+    "prefix_range_exists:false_conclusion",
+    "prefix_range_exists:drop_outer_quantifier",
+    "prefix_range_unique:unbound_dependency",
+    "prefix_range_unique:false_conclusion",
+    "prefix_range_unique:drop_outer_quantifier",
+    "prefix_range_transport:unbound_dependency",
+    "prefix_range_transport:false_conclusion",
+    "prefix_range_transport:drop_outer_quantifier"
+  ],
+  "ambient_axioms": [
+    "extensionality",
+    "replacement"
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "canonical packed constructible-stage histories using the actual least-description successor order and exact limit union; every recursive value carries a transitive well-ordered carrier and embeds all earlier values",
+  "open_obligations": [
+    "internal constructibility of the canonical order",
+    "relativized Choice import",
+    "formal checker soundness"
+  ]
+}
