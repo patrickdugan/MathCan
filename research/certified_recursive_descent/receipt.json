@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-26",
+  "status": "PASS",
+  "scope": "bounded JS execution in tool; independent recheck of matched triplets after removing a=0 shortcut; Lean compilation pending",
+  "certificateCases": 1008,
+  "development": 336,
+  "validation": 192,
+  "heldout": 480,
+  "valid": 336,
+  "slack": 336,
+  "contraction": 336,
+  "squareAudit": {
+    "moduli": 33,
+    "unitPairs": 105364,
+    "congruent": 6044,
+    "degenerate": 3276,
+    "nontrivial": 2768
+  },
+  "fixedPoint": 102.52086245440401,
+  "crossoverBits": 60648398040636.48,
+  "crossoverScope": "leading expressions only; not a finite-size runtime bound",
+  "modelTraining": "not run"
+}
