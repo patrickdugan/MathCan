@@ -1,0 +1,52 @@
+name: TRR-13C sparse rigidity audit
+on:
+  pull_request:
+    paths:
+      - 'research/translation_rank_rigidity/trr13c/**'
+      - '.github/workflows/trr13c-sparse-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  default:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay original and independent exact checks
+        run: |
+          set -o pipefail
+          cd research/translation_rank_rigidity/trr13c
+          node verify.js | tee /tmp/trr13c-default.log
+          grep -q '56 checks passed, 0 failed' /tmp/trr13c-default.log
+          node independent.mjs > /tmp/trr13c-independent.json
+          cmp independent_receipt.json /tmp/trr13c-independent.json
+          node harden.mjs /tmp/trr13c-guarded.cjs
+          node /tmp/trr13c-guarded.cjs > /tmp/trr13c-guarded.log
+          cmp /tmp/trr13c-default.log /tmp/trr13c-guarded.log
+      - uses: actions/upload-artifact@v4
+        with:
+          name: trr13c-default
+          path: /tmp/trr13c-*
+  full:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run guarded full sweep
+        run: |
+          set -o pipefail
+          cd research/translation_rank_rigidity/trr13c
+          node harden.mjs /tmp/trr13c-full.cjs
+          node /tmp/trr13c-full.cjs --full | tee /tmp/trr13c-full.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trr13c-full
+          path: /tmp/trr13c-full.log
