@@ -1,0 +1,42 @@
+name: PGC Q3 curl rank and minimal observation
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'MathCan/Pregeometry/Q3Curl.lean'
+      - 'research/pregeometric_identifiability/q3_minimal_observation.py'
+      - 'research/pregeometric_identifiability/q3_minimal_observation.json'
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_01/q3_curvature.py'
+      - '.github/workflows/pgc-q3-curl.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  q3:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Kernel-check the finite Q3 curl facts
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/Pregeometry/Q3Curl.lean | tee /tmp/q3curl.log
+          ! grep -q "sorry" /tmp/q3curl.log
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Replay exact rank, subset, orientation and Bianchi-projection studies
+        run: |
+          python -m pip install numpy scipy
+          python research/pregeometric_identifiability/q3_minimal_observation.py
