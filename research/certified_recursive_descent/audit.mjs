@@ -39,7 +39,7 @@ function cases(){
         // C and a share hundredth units. Exact rational comparisons decide labels.
         rows.push({split,pair,certificate:base,expected:"valid"});
         rows.push({split,pair,certificate:{...base,a:a+1},expected:"slack"});
-        rows.push({split,pair,certificate:{...base,rNum:rNum-1,a:0},expected:"contraction"});
+        rows.push({split,pair,certificate:{...base,rNum:rNum-1},expected:"contraction"});
       }
     }
   }
