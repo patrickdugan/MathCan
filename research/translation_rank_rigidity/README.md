@@ -1,5 +1,17 @@
 # TRR-01: translation-rank rigidity
 
+## Security evaluation: TRR-12
+
+[TRR-12](trr12/README.md) connects the interpolation results to a concrete
+ECDSA risk assessment and a preregistered evaluation program. Its exact
+control gives an O(log q)-gate circuit for the forward decoder despite the
+large minimum ordinary polynomial degree. All 130,464 circuit evaluations
+pass on six toy curves, including every assigned identity value. The
+[risk assessment](trr12/ECDSA_RISK_ASSESSMENT.md) states the missing
+resource-preserving reduction, separates recovery and signer risks, and
+reviews current quantum and migration evidence. New circuit identities
+retain a written proof and finite verification boundary.
+
 ## Current formalization: TRR-11
 
 [TRR-11](trr11/README.md) proves the exact ordinary degree `ceil(N/3)` for actual four-variable coordinate decoders on arbitrary smooth generalized Weierstrass models with finite odd marked order `N>=19`, when `2`, `3`, and `N` are nonzero in the field. The theorem covers arbitrary fields, including finite extensions and odd composite orders. The combined Lean audit checks 217 principal reports. Exact coordinate controls cover 22,186 generalized models and retain 106 decoder coefficient witnesses. The [proof review](trr11/proof_review.md) records the remaining matching-characteristic and small-order formal work.

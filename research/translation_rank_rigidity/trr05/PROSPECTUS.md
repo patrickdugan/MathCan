@@ -1,5 +1,14 @@
 # Strategy V prospectus: uniform translation-interpolation rigidity
 
+Update 2026-11-26: [TRR-11](../trr11/README.md) completes the tame,
+large-order theorem for generalized Weierstrass coordinates in Lean.
+[TRR-12](../trr12/ECDSA_RISK_ASSESSMENT.md) supplies the ECDSA risk
+assessment and the next evaluation contract. Its checked O(log q)-gate
+decoder makes the difference between ordinary degree and evaluation cost
+explicit. The security-facing next task is a cost-preserving reduction
+for a specified recovery candidate; the original order-by-order experiment
+plan below is retained as research history.
+
 Update 2026-11-25: [TRR-07](../trr07/README.md) executes the bounded experiment program and supplies a uniform written proof for every prime order N>=19. Together with the existing small-order certificates, this proves the exact interpolation degree for every prime N>=7 in the specified characteristic range. The coefficient classification is checked in Lean; the geometric foundations remain written proofs. The original prospectus below records the earlier decision and acceptance gates. Broader computational implications require a separate transfer theorem.
 
 Original status: strong candidate for a uniform restricted-model theorem. The research goal is to understand the geometry of a translation-coordinate evaluation obstruction, within the existing toy-only scope.
