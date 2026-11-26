@@ -1,0 +1,23 @@
+{
+  "schema": "MATHCAN-DETFACT-AUDIT-02",
+  "composite_bound": 511,
+  "prime_bound": 251,
+  "base_bounds": [
+    3,
+    5,
+    7,
+    11,
+    13,
+    17,
+    19,
+    23
+  ],
+  "composites": 147,
+  "repeated_prime_factor_inputs": 35,
+  "composite_fixtures": 3133,
+  "prime_fixtures": 424,
+  "local_prime_checks": 7035,
+  "monomial_witnesses": 19966,
+  "strict_cap_improvements": 3509,
+  "negative_controls": 4
+}
