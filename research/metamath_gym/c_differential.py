@@ -9,6 +9,18 @@ def digest(path):
     with path.open("rb") as f:
         return hashlib.file_digest(f, "sha256").hexdigest()
 
+def classify(returncode, log):
+    verified = "All proofs in the database were verified" in log
+    explicit = "?Error" in log
+    contradiction = verified and explicit
+    if returncode not in (0, 1):
+        return "inconclusive", contradiction
+    if explicit:
+        return "rejected", contradiction
+    if returncode == 0 and verified:
+        return "accepted", contradiction
+    return "inconclusive", contradiction
+
 def check(exe, path, expect, timeout=30):
     path = path.resolve()
     if any(c in str(path) for c in ('"', '\n', '\r')):
@@ -19,14 +31,12 @@ def check(exe, path, expect, timeout=30):
         stdin=subprocess.DEVNULL,
     )
     log = proc.stdout + proc.stderr
-    verified = "All proofs in the database were verified" in log
-    explicit = "?Error" in log
-    if expect:
-        if proc.returncode != 0 or not verified or explicit:
-            raise RuntimeError(f"C verifier rejected {path}: {log[-2000:]}")
-    elif proc.returncode not in (0, 1) or not explicit or verified:
-        raise RuntimeError(f"C verifier did not explicitly reject {path}: {log[-2000:]}")
-    return {"sha256": digest(path), "verified": expect}
+    status, contradiction = classify(proc.returncode, log)
+    if status != ("accepted" if expect else "rejected"):
+        raise RuntimeError(f"C verifier status {status}, expected {expect}, {path}: {log[-2000:]}")
+    return {"sha256": digest(path), "verified": expect,
+            "contradictory_summary": contradiction,
+            "diagnostic": log[-4000:] if contradiction else None}
 
 def main():
     exe, root, upstream = map(Path, sys.argv[1:])
@@ -42,9 +52,9 @@ def main():
         "negative_rejections": {},
     }
     for path in negatives:
-        result["negative_rejections"][path.name] = check(exe, path, False)["sha256"]
+        result["negative_rejections"][path.name] = check(exe, path, False)
     (root / "c-receipt.json").write_text(json.dumps(result, indent=2) + "\n")
-    print(json.dumps({"positive_fixture_proofs": local["masked_valid_candidates"] + 1, "negative_cases": len(negatives), "set_mm_baseline": result["set_mm_baseline"]}))
+    print(json.dumps({"positive_fixture_proofs": local["masked_valid_candidates"] + 1, "negative_cases": len(negatives), "contradictory_summaries": sum(x["contradictory_summary"] for x in result["negative_rejections"].values()), "set_mm_baseline": result["set_mm_baseline"]}))
 
 if __name__ == "__main__":
     main()
