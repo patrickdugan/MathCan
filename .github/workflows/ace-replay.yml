@@ -401,3 +401,17 @@ jobs:
           set -euo pipefail
           node research/ace/internal_choice_bridge.mjs > /tmp/ace03y-01.json
           diff -u research/ace/internal_choice_bridge_receipt.json /tmp/ace03y-01.json
+
+  bounded-choice-transport-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Replay bounded selector and order transport
+        run: |
+          set -euo pipefail
+          node research/ace/bounded_choice_transport.mjs > /tmp/ace03y-02.json
+          diff -u research/ace/bounded_choice_transport_receipt.json /tmp/ace03y-02.json
