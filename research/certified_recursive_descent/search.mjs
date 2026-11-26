@@ -1,3 +1,4 @@
+import { pathToFileURL } from "node:url";
 // CRD-02 synthetic search and exact receipt replay. Node >=18.
 import { verify, upperRoot } from "./audit.mjs";
 function check(ok,msg){if(!ok)throw Error(msg)}
@@ -138,4 +139,5 @@ function experiment(){
  return {status:"PASS",scope:"synthetic exact search; no neural training",roots,replays,checkedCalls,depthHistogram,phase,rows};
 }
 
-console.log(JSON.stringify(experiment(),null,2));
+export {rng, shuffle, makeRoot};
+if(process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href) console.log(JSON.stringify(experiment(),null,2));
