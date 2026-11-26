@@ -2,7 +2,7 @@
 import { verify, upperRoot } from "./audit.mjs";
 function check(ok,msg){if(!ok)throw Error(msg)}
 
-function rng(seed){let s=seed>>>0;return ()=>{s^=s<<13;s^=s>>>17;s^=s<<5;return (s>>>0)/4294967296}}
+function rng(seed){let s=seed>>>0;return ()=>{s=(s+0x6D2B79F5)>>>0;let t=s;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return ((t^(t>>>14))>>>0)/4294967296}}
 
 function shuffle(xs,rand){const a=xs.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(rand()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 
@@ -55,10 +55,11 @@ function independentCheck(root,result,budget,capacity){
  check(result.calls===result.trace.length&&result.calls<=budget,"call count");
  check(result.peakDeferred<=capacity,"capacity");
  const reached=new Set(["start"]);
- let invalid=0,duplicates=0,hit=false;
+ let invalid=0,duplicates=0,hit=false; const attempted=new Set();
  const valid=c=>BigInt(c.rNum)**3n*BigInt(c.pDen)>=BigInt(c.pNum)*BigInt(c.rDen)**3n&&BigInt(c.a)*BigInt(c.rDen)<BigInt(c.c)*BigInt(c.rDen-c.rNum);
  for(const t of result.trace){
   check(!hit&&reached.has(t.src),"invalid frontier");
+  const key=t.src+"->"+t.dst;check(!attempted.has(key),"repeated edge");attempted.add(key);
   const e=(root.adj[t.src]||[]).find(e=>e.dst===t.dst);check(!!e,"unknown edge");
   const ok=valid(e.cert);check(ok===(t.result==="valid"),"independent arithmetic");
   if(!ok){invalid++;continue}
@@ -93,30 +94,48 @@ function phaseCertificate(){
   return edges.every(e=>BigInt(e.rNum)**3n*BigInt(e.pDen)>=BigInt(e.pNum)*BigInt(e.rDen)**3n&&BigInt(e.a)*BigInt(e.rDen)+BigInt(constants[e.j])*BigInt(e.rNum)<BigInt(constants[e.i])*BigInt(e.rDen));
  }
  check(validate(C),"coupled phase certificate");
- check(!validate([1600,1550]),"reject equality at upper-envelope fixed point");
+ check(!validate([1600,1500]),"reject equality at upper-envelope fixed point");
  check(!validate([1700,1500]),"reject insufficient phase constant");
  return {strictCertificate:C,upperEnvelopeFixedPoint:[1600,1500],note:"Exact rational upper-envelope fixed point is [1600,1500]; strict slack tested independently."};
 }
 
+function restart(root,budget){
+ let total=0,invalid=0,duplicates=0,dropped=0,attempts=0,success=false;
+ while(total<budget){
+  const rand=rng((root.seed+Math.imul(attempts+1,0x9E3779B9))>>>0);
+  const variant=attempts===0?root:{...root,adj:Object.fromEntries(Object.entries(root.adj).map(([k,v])=>[k,shuffle(v,rand)]))};
+  const remaining=budget-total,x=run(variant,remaining,0);
+  independentCheck(variant,x,remaining,0);
+  check(x.calls>0,"empty restart");
+  total+=x.calls;invalid+=x.invalid;duplicates+=x.duplicates;dropped+=x.dropped;attempts++;
+  if(x.success){success=true;break}
+ }
+ return {success,calls:total,invalid,duplicates,dropped,attempts,peakDeferred:0};
+}
+
 function experiment(){
  const splits=[["development",110001,96],["validation",220001,48],["heldout",330001,96]],budgets=[8,16,32,64,128],capacities=[0,4,16,64,Infinity],rows=[];
- let roots=0,replays=0,checkedCalls=0;
+ let roots=0,replays=0,checkedCalls=0; const depthHistogram={};
  for(const [split,start,count] of splits){
   const rs=Array.from({length:count},(_,i)=>makeRoot(start+i,split));roots+=count;
-  for(const r of rs)check(shortest(r)===r.depth,"unreachable root");
+  depthHistogram[split]={}; for(const r of rs){check(shortest(r)===r.depth,"unreachable root");depthHistogram[split][r.depth]=(depthHistogram[split][r.depth]||0)+1;}
   for(const budget of budgets){
    let baseline=null;
+   const restarts=rs.map(r=>restart(r,budget));
+   replays+=restarts.reduce((n,r)=>n+r.attempts,0);checkedCalls+=restarts.reduce((n,r)=>n+r.calls,0);
+   const sr=restarts.filter(r=>r.success);
    for(const cap of capacities){
     const results=rs.map(r=>{const x=run(r,budget,cap);independentCheck(r,x,budget,cap);replays++;checkedCalls+=x.calls;return x;});
     if(!baseline)baseline=results;
-    let gain=0,loss=0,success=0,calls=0,successCalls=0,peak=0,drop=0;
-    results.forEach((r,i)=>{success+=Number(r.success);calls+=r.calls;successCalls+=r.success?r.calls:0;peak=Math.max(peak,r.peakDeferred);drop+=r.dropped;gain+=Number(r.success&&!baseline[i].success);loss+=Number(!r.success&&baseline[i].success)});
-    rows.push({split,budget,capacity:Number.isFinite(cap)?cap:"unbounded",roots:count,success,gain,loss,totalCalls:calls,meanCalls:calls/count,meanSuccessCalls:success?successCalls/success:null,peakDeferred:peak,dropped:drop});
+    let gain=0,loss=0,gainRestart=0,lossRestart=0,success=0,calls=0,successCalls=0,peak=0,drop=0;
+    results.forEach((r,i)=>{success+=Number(r.success);calls+=r.calls;successCalls+=r.success?r.calls:0;peak=Math.max(peak,r.peakDeferred);drop+=r.dropped;gain+=Number(r.success&&!baseline[i].success);loss+=Number(!r.success&&baseline[i].success);gainRestart+=Number(r.success&&!restarts[i].success);lossRestart+=Number(!r.success&&restarts[i].success)});
+    rows.push({split,budget,capacity:Number.isFinite(cap)?cap:"unbounded",roots:count,success,gain,loss,gainRestart,lossRestart,totalCalls:calls,meanCalls:calls/count,meanSuccessCalls:success?successCalls/success:null,peakDeferred:peak,dropped:drop});
    }
+   rows.push({split,budget,capacity:"random-restart",roots:count,success:sr.length,totalCalls:restarts.reduce((n,r)=>n+r.calls,0),meanCalls:restarts.reduce((n,r)=>n+r.calls,0)/count,meanSuccessCalls:sr.length?sr.reduce((n,r)=>n+r.calls,0)/sr.length:null,peakDeferred:0,attempts:restarts.reduce((n,r)=>n+r.attempts,0)});
   }
  }
  const phase=phaseCertificate();
- return {status:"PASS",scope:"synthetic exact search; no neural training",roots,replays,checkedCalls,phase,rows};
+ return {status:"PASS",scope:"synthetic exact search; no neural training",roots,replays,checkedCalls,depthHistogram,phase,rows};
 }
 
 console.log(JSON.stringify(experiment(),null,2));
