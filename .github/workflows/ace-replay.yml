@@ -387,3 +387,17 @@ jobs:
           grep -F "'MathCan.ACE.Arithmetic.sat_transport'" /tmp/ACEArithmeticTransport.log
           grep -F "'MathCan.ACE.Arithmetic.sentence_assignment_independent'" /tmp/ACEArithmeticTransport.log
           grep -F "'MathCan.ACE.Relativization.sat_restrict'" /tmp/ACERelativization.log
+
+  internal-choice-bridge-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Replay exact conditional Choice bridge
+        run: |
+          set -euo pipefail
+          node research/ace/internal_choice_bridge.mjs > /tmp/ace03y-01.json
+          diff -u research/ace/internal_choice_bridge_receipt.json /tmp/ace03y-01.json

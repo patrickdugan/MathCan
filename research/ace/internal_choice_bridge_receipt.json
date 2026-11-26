@@ -1,0 +1,211 @@
+{
+  "experiment": "ACE-03Y-01",
+  "scope": "conditional exact relativized disjoint-family Choice; selector Separation, Union and internal well-orderability remain explicit premises",
+  "pinned_L_unchanged": true,
+  "source_axiom_leaves": 1,
+  "distinct_source_axioms": 1,
+  "selector_schema": {
+    "name": "separation",
+    "params": 2,
+    "body": [
+      "E",
+      [
+        "&",
+        [
+          "M",
+          0,
+          2
+        ],
+        [
+          "&",
+          [
+            "M",
+            1,
+            0
+          ],
+          [
+            "A",
+            [
+              ">",
+              [
+                "M",
+                0,
+                1
+              ],
+              [
+                ">",
+                [
+                  "E",
+                  [
+                    "&",
+                    [
+                      "M",
+                      0,
+                      5
+                    ],
+                    [
+                      "E",
+                      [
+                        "E",
+                        [
+                          "&",
+                          [
+                            "&",
+                            [
+                              "A",
+                              [
+                                "&",
+                                [
+                                  ">",
+                                  [
+                                    "M",
+                                    0,
+                                    2
+                                  ],
+                                  [
+                                    "=",
+                                    0,
+                                    4
+                                  ]
+                                ],
+                                [
+                                  ">",
+                                  [
+                                    "=",
+                                    0,
+                                    4
+                                  ],
+                                  [
+                                    "M",
+                                    0,
+                                    2
+                                  ]
+                                ]
+                              ]
+                            ],
+                            [
+                              "A",
+                              [
+                                "&",
+                                [
+                                  ">",
+                                  [
+                                    "M",
+                                    0,
+                                    1
+                                  ],
+                                  [
+                                    "|",
+                                    [
+                                      "=",
+                                      0,
+                                      4
+                                    ],
+                                    [
+                                      "=",
+                                      0,
+                                      6
+                                    ]
+                                  ]
+                                ],
+                                [
+                                  ">",
+                                  [
+                                    "|",
+                                    [
+                                      "=",
+                                      0,
+                                      4
+                                    ],
+                                    [
+                                      "=",
+                                      0,
+                                      6
+                                    ]
+                                  ],
+                                  [
+                                    "M",
+                                    0,
+                                    1
+                                  ]
+                                ]
+                              ]
+                            ]
+                          ],
+                          [
+                            "A",
+                            [
+                              "&",
+                              [
+                                ">",
+                                [
+                                  "M",
+                                  0,
+                                  3
+                                ],
+                                [
+                                  "|",
+                                  [
+                                    "=",
+                                    0,
+                                    2
+                                  ],
+                                  [
+                                    "=",
+                                    0,
+                                    1
+                                  ]
+                                ]
+                              ],
+                              [
+                                ">",
+                                [
+                                  "|",
+                                  [
+                                    "=",
+                                    0,
+                                    2
+                                  ],
+                                  [
+                                    "=",
+                                    0,
+                                    1
+                                  ]
+                                ],
+                                [
+                                  "M",
+                                  0,
+                                  3
+                                ]
+                              ]
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "F"
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  },
+  "checks": {
+    "prior_ambient_choice": 150,
+    "axiom_abstracted_choice": 151,
+    "source_bridge": 184,
+    "relativized_bridge": 287,
+    "exact_choice_cut": 7,
+    "expanded_choice_conversion": 2
+  },
+  "negative_controls": 7,
+  "source_theory": "CL",
+  "target_theory": "CL",
+  "external_context_count_for_conditional": 0,
+  "choice_imports": 0
+}
