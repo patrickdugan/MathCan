@@ -1,0 +1,26 @@
+name: TRR-13 inverse representation bounds
+on:
+  pull_request:
+    paths:
+      - 'research/translation_rank_rigidity/trr13/**'
+      - '.github/workflows/trr13-inverse-bounds.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recompute synthetic rank, height and path controls
+        run: |
+          node research/translation_rank_rigidity/trr13/verify.mjs > /tmp/trr13-receipt.json
+          cmp research/translation_rank_rigidity/trr13/receipt.json /tmp/trr13-receipt.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: trr13-exact-receipt
+          path: /tmp/trr13-receipt.json

@@ -1,0 +1,444 @@
+{
+  "schema": "trr13-restricted-inverse-bounds-v1",
+  "status": "passed",
+  "totals": {
+    "cyclicWords": 39111,
+    "nontrivialRankBounds": 4113,
+    "tightRankBounds": 6,
+    "fullErrorMasks": 262136,
+    "puncturedErrorMasks": 131068,
+    "sharpPredicateFields": 24,
+    "genericPathTrees": 149656,
+    "exceptionChecks": 74828,
+    "constantLeaves": 74828,
+    "nonconstantLeaves": 74828,
+    "nonconstantTwoSuccessLeaves": 70346,
+    "curveExpressions": 1536,
+    "curveShiftChecks": 1536,
+    "curveRawGuardChecks": 1536,
+    "curveBinaryChecks": 1532
+  },
+  "rankCohorts": [
+    {
+      "p": 2,
+      "n": 3,
+      "checks": 8,
+      "exactRank": 3,
+      "nontrivial": 1,
+      "tight": 0,
+      "minMargin": 1
+    },
+    {
+      "p": 2,
+      "n": 5,
+      "checks": 32,
+      "exactRank": 4,
+      "nontrivial": 6,
+      "tight": 1,
+      "minMargin": 0
+    },
+    {
+      "p": 2,
+      "n": 7,
+      "checks": 128,
+      "exactRank": 7,
+      "nontrivial": 29,
+      "tight": 0,
+      "minMargin": 1
+    },
+    {
+      "p": 2,
+      "n": 9,
+      "checks": 512,
+      "exactRank": 8,
+      "nontrivial": 130,
+      "tight": 1,
+      "minMargin": 0
+    },
+    {
+      "p": 2,
+      "n": 11,
+      "checks": 2048,
+      "exactRank": 11,
+      "nontrivial": 562,
+      "tight": 0,
+      "minMargin": 1
+    },
+    {
+      "p": 2,
+      "n": 13,
+      "checks": 8192,
+      "exactRank": 12,
+      "nontrivial": 2380,
+      "tight": 1,
+      "minMargin": 0
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "checks": 81,
+      "exactRank": 3,
+      "nontrivial": 9,
+      "tight": 1,
+      "minMargin": 0
+    },
+    {
+      "p": 3,
+      "n": 5,
+      "checks": 243,
+      "exactRank": 5,
+      "nontrivial": 11,
+      "tight": 0,
+      "minMargin": 1
+    },
+    {
+      "p": 3,
+      "n": 7,
+      "checks": 2187,
+      "exactRank": 6,
+      "nontrivial": 99,
+      "tight": 1,
+      "minMargin": 0
+    },
+    {
+      "p": 3,
+      "n": 8,
+      "checks": 6561,
+      "exactRank": 8,
+      "nontrivial": 577,
+      "tight": 0,
+      "minMargin": 1
+    },
+    {
+      "p": 5,
+      "n": 3,
+      "checks": 125,
+      "exactRank": 3,
+      "nontrivial": 1,
+      "tight": 0,
+      "minMargin": 1
+    },
+    {
+      "p": 5,
+      "n": 4,
+      "checks": 625,
+      "exactRank": 4,
+      "nontrivial": 17,
+      "tight": 0,
+      "minMargin": 1
+    },
+    {
+      "p": 5,
+      "n": 6,
+      "checks": 15625,
+      "exactRank": 5,
+      "nontrivial": 265,
+      "tight": 1,
+      "minMargin": 0
+    },
+    {
+      "p": 7,
+      "n": 3,
+      "checks": 343,
+      "exactRank": 3,
+      "nontrivial": 1,
+      "tight": 0,
+      "minMargin": 1
+    },
+    {
+      "p": 7,
+      "n": 4,
+      "checks": 2401,
+      "exactRank": 4,
+      "nontrivial": 25,
+      "tight": 0,
+      "minMargin": 1
+    }
+  ],
+  "sharp": [
+    {
+      "p": 5,
+      "points": 4,
+      "zeros": 2,
+      "ones": 2,
+      "degree": 2,
+      "binaryPowerMultiplications": 1
+    },
+    {
+      "p": 7,
+      "points": 6,
+      "zeros": 3,
+      "ones": 3,
+      "degree": 3,
+      "binaryPowerMultiplications": 2
+    },
+    {
+      "p": 11,
+      "points": 10,
+      "zeros": 5,
+      "ones": 5,
+      "degree": 5,
+      "binaryPowerMultiplications": 3
+    },
+    {
+      "p": 13,
+      "points": 12,
+      "zeros": 6,
+      "ones": 6,
+      "degree": 6,
+      "binaryPowerMultiplications": 3
+    },
+    {
+      "p": 17,
+      "points": 16,
+      "zeros": 8,
+      "ones": 8,
+      "degree": 8,
+      "binaryPowerMultiplications": 3
+    },
+    {
+      "p": 19,
+      "points": 18,
+      "zeros": 9,
+      "ones": 9,
+      "degree": 9,
+      "binaryPowerMultiplications": 4
+    },
+    {
+      "p": 23,
+      "points": 22,
+      "zeros": 11,
+      "ones": 11,
+      "degree": 11,
+      "binaryPowerMultiplications": 5
+    },
+    {
+      "p": 29,
+      "points": 28,
+      "zeros": 14,
+      "ones": 14,
+      "degree": 14,
+      "binaryPowerMultiplications": 5
+    },
+    {
+      "p": 31,
+      "points": 30,
+      "zeros": 15,
+      "ones": 15,
+      "degree": 15,
+      "binaryPowerMultiplications": 6
+    },
+    {
+      "p": 37,
+      "points": 36,
+      "zeros": 18,
+      "ones": 18,
+      "degree": 18,
+      "binaryPowerMultiplications": 5
+    },
+    {
+      "p": 41,
+      "points": 40,
+      "zeros": 20,
+      "ones": 20,
+      "degree": 20,
+      "binaryPowerMultiplications": 5
+    },
+    {
+      "p": 43,
+      "points": 42,
+      "zeros": 21,
+      "ones": 21,
+      "degree": 21,
+      "binaryPowerMultiplications": 6
+    },
+    {
+      "p": 47,
+      "points": 46,
+      "zeros": 23,
+      "ones": 23,
+      "degree": 23,
+      "binaryPowerMultiplications": 7
+    },
+    {
+      "p": 53,
+      "points": 52,
+      "zeros": 26,
+      "ones": 26,
+      "degree": 26,
+      "binaryPowerMultiplications": 6
+    },
+    {
+      "p": 59,
+      "points": 58,
+      "zeros": 29,
+      "ones": 29,
+      "degree": 29,
+      "binaryPowerMultiplications": 7
+    },
+    {
+      "p": 61,
+      "points": 60,
+      "zeros": 30,
+      "ones": 30,
+      "degree": 30,
+      "binaryPowerMultiplications": 7
+    },
+    {
+      "p": 67,
+      "points": 66,
+      "zeros": 33,
+      "ones": 33,
+      "degree": 33,
+      "binaryPowerMultiplications": 6
+    },
+    {
+      "p": 71,
+      "points": 70,
+      "zeros": 35,
+      "ones": 35,
+      "degree": 35,
+      "binaryPowerMultiplications": 7
+    },
+    {
+      "p": 73,
+      "points": 72,
+      "zeros": 36,
+      "ones": 36,
+      "degree": 36,
+      "binaryPowerMultiplications": 6
+    },
+    {
+      "p": 79,
+      "points": 78,
+      "zeros": 39,
+      "ones": 39,
+      "degree": 39,
+      "binaryPowerMultiplications": 8
+    },
+    {
+      "p": 83,
+      "points": 82,
+      "zeros": 41,
+      "ones": 41,
+      "degree": 41,
+      "binaryPowerMultiplications": 7
+    },
+    {
+      "p": 89,
+      "points": 88,
+      "zeros": 44,
+      "ones": 44,
+      "degree": 44,
+      "binaryPowerMultiplications": 7
+    },
+    {
+      "p": 97,
+      "points": 96,
+      "zeros": 48,
+      "ones": 48,
+      "degree": 48,
+      "binaryPowerMultiplications": 6
+    },
+    {
+      "p": 101,
+      "points": 100,
+      "zeros": 50,
+      "ones": 50,
+      "degree": 50,
+      "binaryPowerMultiplications": 7
+    }
+  ],
+  "curveRows": [
+    {
+      "p": 17,
+      "A": 2,
+      "B": 2,
+      "T": [
+        0,
+        6
+      ],
+      "N": 19,
+      "tests": 256,
+      "shiftChecks": 256,
+      "rawGuardChecks": 256,
+      "bitChecks": 256
+    },
+    {
+      "p": 19,
+      "A": 2,
+      "B": 9,
+      "T": [
+        0,
+        3
+      ],
+      "N": 23,
+      "tests": 256,
+      "shiftChecks": 256,
+      "rawGuardChecks": 256,
+      "bitChecks": 254
+    },
+    {
+      "p": 23,
+      "A": 1,
+      "B": 4,
+      "T": [
+        0,
+        2
+      ],
+      "N": 29,
+      "tests": 256,
+      "shiftChecks": 256,
+      "rawGuardChecks": 256,
+      "bitChecks": 255
+    },
+    {
+      "p": 29,
+      "A": 1,
+      "B": 12,
+      "T": [
+        2,
+        14
+      ],
+      "N": 23,
+      "tests": 256,
+      "shiftChecks": 256,
+      "rawGuardChecks": 256,
+      "bitChecks": 255
+    },
+    {
+      "p": 31,
+      "A": 0,
+      "B": 3,
+      "T": [
+        1,
+        2
+      ],
+      "N": 43,
+      "tests": 256,
+      "shiftChecks": 256,
+      "rawGuardChecks": 256,
+      "bitChecks": 256
+    },
+    {
+      "p": 37,
+      "A": 1,
+      "B": 12,
+      "T": [
+        0,
+        7
+      ],
+      "N": 29,
+      "tests": 256,
+      "shiftChecks": 256,
+      "rawGuardChecks": 256,
+      "bitChecks": 256
+    }
+  ],
+  "removableGuard": {
+    "reducedHeight": 0,
+    "rawUndefinedAtZero": true,
+    "explicitGuardHeight": 1
+  },
+  "scope": "Public synthetic sequences, fixed rational-expression controls, and abstract decision-tree bounds. No recovery candidate, real keys, or cryptographic-size curve search."
+}
