@@ -13,9 +13,13 @@ const mulv=(a,b)=>a.map((v,i)=>v*b[i]),quant=x=>Math.round(x*1e12)/1e12;
 const dep=id=>Math.floor(Math.log2(id));
 function gmul(a,b){const k=a%3,s=a>=3?1:0,l=b%3,t=b>=3?1:0;return 3*(s^t)+(k+(s?-l:l)+3)%3}
 const TRUE=[1,3].map(g=>I.map((_,i)=>LABEL[gmul(INV[i],g)]));
+const OPERATORS=new Map();
 function op(model,a,c){
+ const k=model+":"+a+":"+c;
+ if(OPERATORS.has(k))return OPERATORS.get(k);
  const perm=(model==="known"?TRUE:EST)[a],z=model==="known"?c:Math.max(0,Math.min(1,C[a]*c/.15));
- return I.map((_,i)=>zeros().map((_,j)=>z/6+(1-z)*Number(perm[i]===j)));
+ const T=I.map((_,i)=>zeros().map((_,j)=>z/6+(1-z)*Number(perm[i]===j)));
+ OPERATORS.set(k,T);return T;
 }
 const levels=(regime,d,depth)=>regime==="independent"&&d===depth?[1]:d===1?[.60,.80]:[0,.05,.15];
 function meanOp(model,regime,d,depth){
@@ -273,6 +277,6 @@ function experiment09(){
  const begin=Date.now(),audit=Array.from({length:4},(_,i)=>exactEnumeration(tree(1540001+i,i<2?"correlated":"independent",2)));
  const probe={},adaptive={};
  for(const regime of ["correlated","independent"]){probe[regime]=terminalExperiment(regime);adaptive[regime]=adaptiveExperiment(regime)}
- return {status:"PASS",scope:"synthetic shared-prefix tree inference and search, not factoring",audit,probe,adaptive,elapsedMs:Date.now()-begin};
+ return {status:"PASS",scope:"synthetic shared-prefix tree inference and search, not factoring",audit,probe,adaptive,sharedTransitionSlots:36*OPERATORS.size,elapsedMs:Date.now()-begin};
 }
 console.log(JSON.stringify(experiment09(),null,2));
