@@ -1,0 +1,380 @@
+{
+  "schema": "MATHCAN-DETFACT-AUDIT-07",
+  "measurement": "exact operation counts and integer width proxies; not wall time or RSS",
+  "pipeline_fixtures": 72,
+  "matching_split_results": 216,
+  "matching_modular_outputs": 1728,
+  "group_order_coverage_checks": 156,
+  "edge_fixtures": 240,
+  "edge_outputs": 5040,
+  "negative_controls": 5,
+  "pipeline_stats": {
+    "explicit": {
+      "calls": 654,
+      "modular_multiplications": 2504471,
+      "prime_trial_divisions": 0,
+      "prime_powers": 0,
+      "exponentiations": 654,
+      "max_exponent_operand_bits": 7445,
+      "max_two_factor_product_bound_bits": 0,
+      "chain_squarings": 98,
+      "chain_gcds": 176
+    },
+    "individual": {
+      "calls": 654,
+      "modular_multiplications": 2430536,
+      "prime_trial_divisions": 3764699,
+      "prime_powers": 173809,
+      "exponentiations": 174463,
+      "max_exponent_operand_bits": 19,
+      "max_two_factor_product_bound_bits": 0,
+      "chain_squarings": 98,
+      "chain_gcds": 176
+    },
+    "chunk64": {
+      "calls": 654,
+      "modular_multiplications": 2502537,
+      "prime_trial_divisions": 3764699,
+      "prime_powers": 173809,
+      "exponentiations": 29419,
+      "max_exponent_operand_bits": 64,
+      "max_two_factor_product_bound_bits": 64,
+      "chain_squarings": 98,
+      "chain_gcds": 176
+    },
+    "chunk256": {
+      "calls": 654,
+      "modular_multiplications": 2506672,
+      "prime_trial_divisions": 3764699,
+      "prime_powers": 173809,
+      "exponentiations": 7625,
+      "max_exponent_operand_bits": 256,
+      "max_two_factor_product_bound_bits": 256,
+      "chain_squarings": 98,
+      "chain_gcds": 176
+    }
+  },
+  "edge_stats": {
+    "explicit": {
+      "calls": 1680,
+      "modular_multiplications": 48468,
+      "prime_trial_divisions": 0,
+      "prime_powers": 0,
+      "exponentiations": 1680,
+      "max_exponent_operand_bits": 51,
+      "max_two_factor_product_bound_bits": 0,
+      "chain_squarings": 0,
+      "chain_gcds": 0
+    },
+    "individual": {
+      "calls": 1680,
+      "modular_multiplications": 44772,
+      "prime_trial_divisions": 8400,
+      "prime_powers": 7840,
+      "exponentiations": 8848,
+      "max_exponent_operand_bits": 9,
+      "max_two_factor_product_bound_bits": 0,
+      "chain_squarings": 0,
+      "chain_gcds": 0
+    },
+    "chunk64": {
+      "calls": 1680,
+      "modular_multiplications": 48272,
+      "prime_trial_divisions": 8400,
+      "prime_powers": 7840,
+      "exponentiations": 2408,
+      "max_exponent_operand_bits": 43,
+      "max_two_factor_product_bound_bits": 43,
+      "chain_squarings": 0,
+      "chain_gcds": 0
+    },
+    "chunk256": {
+      "calls": 1680,
+      "modular_multiplications": 48272,
+      "prime_trial_divisions": 8400,
+      "prime_powers": 7840,
+      "exponentiations": 2408,
+      "max_exponent_operand_bits": 43,
+      "max_two_factor_product_bound_bits": 43,
+      "chain_squarings": 0,
+      "chain_gcds": 0
+    }
+  },
+  "stress": [
+    {
+      "K": 1024,
+      "N_bits": 20,
+      "Mstar_bits": 26,
+      "odd_exponent_bits": 1486,
+      "full_exponent_bits": 1506,
+      "two_adic_valuation": 20,
+      "stats": {
+        "explicit": {
+          "calls": 3,
+          "modular_multiplications": 6651,
+          "prime_trial_divisions": 0,
+          "prime_powers": 0,
+          "exponentiations": 3,
+          "max_exponent_operand_bits": 1486,
+          "max_two_factor_product_bound_bits": 0,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        },
+        "individual": {
+          "calls": 3,
+          "modular_multiplications": 6501,
+          "prime_trial_divisions": 7311,
+          "prime_powers": 513,
+          "exponentiations": 516,
+          "max_exponent_operand_bits": 17,
+          "max_two_factor_product_bound_bits": 0,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        },
+        "chunk64": {
+          "calls": 3,
+          "modular_multiplications": 6684,
+          "prime_trial_divisions": 7311,
+          "prime_powers": 513,
+          "exponentiations": 78,
+          "max_exponent_operand_bits": 64,
+          "max_two_factor_product_bound_bits": 64,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        },
+        "chunk256": {
+          "calls": 3,
+          "modular_multiplications": 6636,
+          "prime_trial_divisions": 7311,
+          "prime_powers": 513,
+          "exponentiations": 21,
+          "max_exponent_operand_bits": 254,
+          "max_two_factor_product_bound_bits": 255,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        }
+      },
+      "matching_outputs": 9
+    },
+    {
+      "K": 4096,
+      "N_bits": 20,
+      "Mstar_bits": 26,
+      "odd_exponent_bits": 5930,
+      "full_exponent_bits": 5952,
+      "two_adic_valuation": 22,
+      "stats": {
+        "explicit": {
+          "calls": 3,
+          "modular_multiplications": 26733,
+          "prime_trial_divisions": 0,
+          "prime_powers": 0,
+          "exponentiations": 3,
+          "max_exponent_operand_bits": 5930,
+          "max_two_factor_product_bound_bits": 0,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        },
+        "individual": {
+          "calls": 3,
+          "modular_multiplications": 26082,
+          "prime_trial_divisions": 49257,
+          "prime_powers": 1689,
+          "exponentiations": 1692,
+          "max_exponent_operand_bits": 17,
+          "max_two_factor_product_bound_bits": 0,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        },
+        "chunk64": {
+          "calls": 3,
+          "modular_multiplications": 26601,
+          "prime_trial_divisions": 49257,
+          "prime_powers": 1689,
+          "exponentiations": 309,
+          "max_exponent_operand_bits": 64,
+          "max_two_factor_product_bound_bits": 64,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        },
+        "chunk256": {
+          "calls": 3,
+          "modular_multiplications": 26652,
+          "prime_trial_divisions": 49257,
+          "prime_powers": 1689,
+          "exponentiations": 75,
+          "max_exponent_operand_bits": 255,
+          "max_two_factor_product_bound_bits": 256,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        }
+      },
+      "matching_outputs": 9
+    },
+    {
+      "K": 16384,
+      "N_bits": 20,
+      "Mstar_bits": 26,
+      "odd_exponent_bits": 23675,
+      "full_exponent_bits": 23699,
+      "two_adic_valuation": 24,
+      "stats": {
+        "explicit": {
+          "calls": 3,
+          "modular_multiplications": 106566,
+          "prime_trial_divisions": 0,
+          "prime_powers": 0,
+          "exponentiations": 3,
+          "max_exponent_operand_bits": 23675,
+          "max_two_factor_product_bound_bits": 0,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        },
+        "individual": {
+          "calls": 3,
+          "modular_multiplications": 104520,
+          "prime_trial_divisions": 331227,
+          "prime_powers": 5697,
+          "exponentiations": 5700,
+          "max_exponent_operand_bits": 17,
+          "max_two_factor_product_bound_bits": 0,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        },
+        "chunk64": {
+          "calls": 3,
+          "modular_multiplications": 106404,
+          "prime_trial_divisions": 331227,
+          "prime_powers": 5697,
+          "exponentiations": 1269,
+          "max_exponent_operand_bits": 64,
+          "max_two_factor_product_bound_bits": 64,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        },
+        "chunk256": {
+          "calls": 3,
+          "modular_multiplications": 106296,
+          "prime_trial_divisions": 331227,
+          "prime_powers": 5697,
+          "exponentiations": 288,
+          "max_exponent_operand_bits": 256,
+          "max_two_factor_product_bound_bits": 256,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        }
+      },
+      "matching_outputs": 9
+    },
+    {
+      "K": 32768,
+      "N_bits": 20,
+      "Mstar_bits": 26,
+      "odd_exponent_bits": 47231,
+      "full_exponent_bits": 47256,
+      "two_adic_valuation": 25,
+      "stats": {
+        "explicit": {
+          "calls": 3,
+          "modular_multiplications": 212388,
+          "prime_trial_divisions": 0,
+          "prime_powers": 0,
+          "exponentiations": 3,
+          "max_exponent_operand_bits": 47231,
+          "max_two_factor_product_bound_bits": 0,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        },
+        "individual": {
+          "calls": 3,
+          "modular_multiplications": 208860,
+          "prime_trial_divisions": 859407,
+          "prime_powers": 10533,
+          "exponentiations": 10536,
+          "max_exponent_operand_bits": 17,
+          "max_two_factor_product_bound_bits": 0,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        },
+        "chunk64": {
+          "calls": 3,
+          "modular_multiplications": 211392,
+          "prime_trial_divisions": 859407,
+          "prime_powers": 10533,
+          "exponentiations": 2484,
+          "max_exponent_operand_bits": 64,
+          "max_two_factor_product_bound_bits": 64,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        },
+        "chunk256": {
+          "calls": 3,
+          "modular_multiplications": 212568,
+          "prime_trial_divisions": 859407,
+          "prime_powers": 10533,
+          "exponentiations": 573,
+          "max_exponent_operand_bits": 256,
+          "max_two_factor_product_bound_bits": 256,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        }
+      },
+      "matching_outputs": 9
+    },
+    {
+      "K": 65536,
+      "N_bits": 20,
+      "Mstar_bits": 26,
+      "odd_exponent_bits": 94449,
+      "full_exponent_bits": 94475,
+      "two_adic_valuation": 26,
+      "stats": {
+        "explicit": {
+          "calls": 3,
+          "modular_multiplications": 426285,
+          "prime_trial_divisions": 0,
+          "prime_powers": 0,
+          "exponentiations": 3,
+          "max_exponent_operand_bits": 94449,
+          "max_two_factor_product_bound_bits": 0,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        },
+        "individual": {
+          "calls": 3,
+          "modular_multiplications": 418068,
+          "prime_trial_divisions": 2243253,
+          "prime_powers": 19623,
+          "exponentiations": 19626,
+          "max_exponent_operand_bits": 17,
+          "max_two_factor_product_bound_bits": 0,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        },
+        "chunk64": {
+          "calls": 3,
+          "modular_multiplications": 423873,
+          "prime_trial_divisions": 2243253,
+          "prime_powers": 19623,
+          "exponentiations": 4761,
+          "max_exponent_operand_bits": 64,
+          "max_two_factor_product_bound_bits": 64,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        },
+        "chunk256": {
+          "calls": 3,
+          "modular_multiplications": 424434,
+          "prime_trial_divisions": 2243253,
+          "prime_powers": 19623,
+          "exponentiations": 1143,
+          "max_exponent_operand_bits": 256,
+          "max_two_factor_product_bound_bits": 256,
+          "chain_squarings": 0,
+          "chain_gcds": 0
+        }
+      },
+      "matching_outputs": 9
+    }
+  ]
+}
