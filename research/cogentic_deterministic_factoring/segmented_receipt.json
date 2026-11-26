@@ -1,0 +1,220 @@
+{
+  "schema": "MATHCAN-DETFACT-AUDIT-08",
+  "runtime": "3.13.5",
+  "checks": {
+    "edge_residue_checks": 1344,
+    "checkpoint_resume": true,
+    "checksum_mutation_rejected": true,
+    "forged_prefix_replay_rejected": true
+  },
+  "benchmarks": [
+    {
+      "mode": "explicit",
+      "k": 16384,
+      "span": 8192,
+      "width": 256,
+      "batch": 4,
+      "seconds": 0.011074,
+      "peak_rss_kib": 96280,
+      "result_sha256": "3cbf9e4988480673a17e871de1c2ca942690e57d3c02561930c46a405f24fd6f",
+      "sieve_payload_bytes": 8431,
+      "max_exponent_bits": 23675,
+      "prime_powers": 1899,
+      "mark_writes": 10277,
+      "segments": 1,
+      "pow_calls": 4,
+      "seconds_runs": [
+        0.009886,
+        0.011099,
+        0.011074
+      ],
+      "rss_runs": [
+        96280,
+        96280,
+        96280
+      ]
+    },
+    {
+      "mode": "stream",
+      "k": 16384,
+      "span": 512,
+      "width": 64,
+      "batch": 4,
+      "seconds": 0.011759,
+      "peak_rss_kib": 96280,
+      "result_sha256": "3cbf9e4988480673a17e871de1c2ca942690e57d3c02561930c46a405f24fd6f",
+      "sieve_payload_bytes": 752,
+      "max_exponent_bits": 64,
+      "prime_powers": 1899,
+      "mark_writes": 10277,
+      "segments": 16,
+      "pow_calls": 1708,
+      "seconds_runs": [
+        0.011832,
+        0.011759,
+        0.011642
+      ],
+      "rss_runs": [
+        96280,
+        96280,
+        96280
+      ]
+    },
+    {
+      "mode": "stream",
+      "k": 16384,
+      "span": 8192,
+      "width": 256,
+      "batch": 4,
+      "seconds": 0.010743,
+      "peak_rss_kib": 96280,
+      "result_sha256": "3cbf9e4988480673a17e871de1c2ca942690e57d3c02561930c46a405f24fd6f",
+      "sieve_payload_bytes": 8431,
+      "max_exponent_bits": 256,
+      "prime_powers": 1899,
+      "mark_writes": 10277,
+      "segments": 1,
+      "pow_calls": 384,
+      "seconds_runs": [
+        0.010743,
+        0.01029,
+        0.011
+      ],
+      "rss_runs": [
+        96280,
+        96280,
+        96280
+      ]
+    },
+    {
+      "mode": "stream",
+      "k": 16384,
+      "span": 16384,
+      "width": 256,
+      "batch": 4,
+      "seconds": 0.010818,
+      "peak_rss_kib": 96280,
+      "result_sha256": "3cbf9e4988480673a17e871de1c2ca942690e57d3c02561930c46a405f24fd6f",
+      "sieve_payload_bytes": 8431,
+      "max_exponent_bits": 256,
+      "prime_powers": 1899,
+      "mark_writes": 10277,
+      "segments": 1,
+      "pow_calls": 384,
+      "seconds_runs": [
+        0.010818,
+        0.009929,
+        0.010917
+      ],
+      "rss_runs": [
+        96280,
+        96280,
+        96280
+      ]
+    },
+    {
+      "mode": "explicit",
+      "k": 65536,
+      "span": 8192,
+      "width": 256,
+      "batch": 4,
+      "seconds": 0.038971,
+      "peak_rss_kib": 96280,
+      "result_sha256": "3c7c528246273ae5d83e9742758eb014cc7bd81678320f28b00b344aa944ec54",
+      "sieve_payload_bytes": 8616,
+      "max_exponent_bits": 94449,
+      "prime_powers": 6541,
+      "mark_writes": 45605,
+      "segments": 4,
+      "pow_calls": 4,
+      "seconds_runs": [
+        0.038154,
+        0.038971,
+        0.039453
+      ],
+      "rss_runs": [
+        96280,
+        96280,
+        96280
+      ]
+    },
+    {
+      "mode": "stream",
+      "k": 65536,
+      "span": 512,
+      "width": 64,
+      "batch": 4,
+      "seconds": 0.049438,
+      "peak_rss_kib": 96280,
+      "result_sha256": "3c7c528246273ae5d83e9742758eb014cc7bd81678320f28b00b344aa944ec54",
+      "sieve_payload_bytes": 936,
+      "max_exponent_bits": 64,
+      "prime_powers": 6541,
+      "mark_writes": 45605,
+      "segments": 64,
+      "pow_calls": 6432,
+      "seconds_runs": [
+        0.052173,
+        0.049438,
+        0.048447
+      ],
+      "rss_runs": [
+        96280,
+        96280,
+        96280
+      ]
+    },
+    {
+      "mode": "stream",
+      "k": 65536,
+      "span": 8192,
+      "width": 256,
+      "batch": 4,
+      "seconds": 0.040717,
+      "peak_rss_kib": 96280,
+      "result_sha256": "3c7c528246273ae5d83e9742758eb014cc7bd81678320f28b00b344aa944ec54",
+      "sieve_payload_bytes": 8616,
+      "max_exponent_bits": 256,
+      "prime_powers": 6541,
+      "mark_writes": 45605,
+      "segments": 4,
+      "pow_calls": 1532,
+      "seconds_runs": [
+        0.043052,
+        0.040717,
+        0.039437
+      ],
+      "rss_runs": [
+        96280,
+        96280,
+        96280
+      ]
+    },
+    {
+      "mode": "stream",
+      "k": 65536,
+      "span": 16384,
+      "width": 256,
+      "batch": 4,
+      "seconds": 0.040206,
+      "peak_rss_kib": 96280,
+      "result_sha256": "3c7c528246273ae5d83e9742758eb014cc7bd81678320f28b00b344aa944ec54",
+      "sieve_payload_bytes": 16808,
+      "max_exponent_bits": 256,
+      "prime_powers": 6541,
+      "mark_writes": 45605,
+      "segments": 2,
+      "pow_calls": 1524,
+      "seconds_runs": [
+        0.041772,
+        0.040206,
+        0.040082
+      ],
+      "rss_runs": [
+        96280,
+        96280,
+        96280
+      ]
+    }
+  ]
+}
