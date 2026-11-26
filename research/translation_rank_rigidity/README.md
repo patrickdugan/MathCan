@@ -1,8 +1,10 @@
 # TRR-01: translation-rank rigidity
 
-## Current formalization: TRR-08
+## Current formalization: TRR-10
 
-[TRR-08](trr08/README.md) formalizes the distinct-root bound and applies the degree-eight obstruction to Mathlib's actual smooth Weierstrass curves. It constructs the finite decoder criterion and proves an affine point-ideal corollary for the matching-characteristic argument. The local coefficient identities, geometric evaluation image and remaining function-field steps are explicit in the [proof review](trr08/proof_review.md).
+[TRR-10](trr10/README.md) proves the exact ordinary degree `ceil(N/3)` for actual four-variable coordinate decoders on smooth short Weierstrass models with finite odd marked order `N>=19`, when `2`, `3`, and `N` are nonzero in the field. The theorem covers arbitrary fields, including finite extensions and odd composite orders. The combined Lean audit checks 180 principal reports. Its explicit point-mass construction also produces 106 finite-field decoder witnesses. The [proof review](trr10/proof_review.md) records the remaining generalized-model, matching-characteristic and small-order formal work.
+
+[TRR-09](trr09/README.md) supplies the actual residue eigenvector exclusion. The earlier [TRR-08](trr08/README.md) layer connects the degree-eight obstruction to Mathlib's curve points and supplies the finite tensor and affine point-ideal groundwork.
 
 ## Uniform result and experiments: TRR-07
 

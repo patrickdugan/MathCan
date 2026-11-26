@@ -1,5 +1,10 @@
 # TRR-09: the actual residue eigenvector is excluded in tame characteristic
 
+**Successor:** [TRR-10](../trr10/README.md) proves the exact ordinary
+coordinate-block degree in the tame short-model regime. It supplies the
+polynomial-to-residue connection and the matching polynomial construction.
+The record below describes the TRR-09 stage and its original proof boundary.
+
 TRR-09 proves the residue eigenvector exclusion on actual smooth short
 Weierstrass curves in Lean. The main theorem starts with the concrete
 weights from the interpolation reduction. Every coefficient identity used

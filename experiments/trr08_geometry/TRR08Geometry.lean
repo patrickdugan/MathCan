@@ -13,3 +13,14 @@ public import TRR08Geometry.ExplicitObstruction
 public import TRR08Geometry.CyclicCoefficient
 public import TRR08Geometry.ResidueEigenvector
 public import TRR08Geometry.TameEigenvector
+public import TRR08Geometry.RootCardinality
+public import TRR08Geometry.CubicMonomials
+public import TRR08Geometry.ResidueAnnihilation
+public import TRR08Geometry.PolynomialDegree
+public import TRR08Geometry.ResidueMonomials
+public import TRR08Geometry.BlockPolynomial
+public import TRR08Geometry.TameDecoder
+public import TRR08Geometry.PolynomialLift
+public import TRR08Geometry.PointInterpolation
+public import TRR08Geometry.BlockTensor
+public import TRR08Geometry.DecoderDegree

@@ -1,4 +1,4 @@
-name: TRR-08/09 finite interpolation and residue geometry
+name: TRR-08 to TRR-10 exact interpolation degree
 
 on:
   pull_request:
@@ -9,6 +9,7 @@ on:
       - 'experiments/trr08_geometry/**'
       - 'research/translation_rank_rigidity/trr08/**'
       - 'research/translation_rank_rigidity/trr09/**'
+      - 'research/translation_rank_rigidity/trr10/**'
       - 'lakefile.toml'
       - 'lean-toolchain'
       - '.github/workflows/trr08-formalization.yml'
@@ -38,18 +39,24 @@ jobs:
           python-version: '3.12'
       - name: Record the checked source revision
         run: |
-          mkdir -p artifacts/trr08 artifacts/trr09
+          mkdir -p artifacts/trr08 artifacts/trr09 artifacts/trr10
           git rev-parse HEAD > artifacts/trr08/checkout.txt
           cp lean-toolchain artifacts/trr08/core-lean-toolchain.txt
           cp experiments/trr08_geometry/lean-toolchain artifacts/trr08/geometry-lean-toolchain.txt
           cp experiments/trr08_geometry/lake-manifest.json artifacts/trr08/committed-lake-manifest.json
           git rev-parse HEAD > artifacts/trr09/checkout.txt
+          git rev-parse HEAD > artifacts/trr10/checkout.txt
       - name: Check the verifier's rejection controls
         run: python research/translation_rank_rigidity/trr08/test_verifier.py --output artifacts/trr08/verifier-controls.json
       - name: Check the finite coefficient identities exactly
         run: |
           python research/translation_rank_rigidity/trr09/check_finite_bridge.py \
             --output artifacts/trr09/finite_bridge_receipt.json
+      - name: Check ordinary-degree interpolation and explicit decoder coefficients
+        run: |
+          timeout 600s python research/translation_rank_rigidity/trr10/check_interpolation.py \
+            --output artifacts/trr10/interpolation_receipt.json \
+            --witness-output artifacts/trr10/decoder_witnesses.json
       - uses: leanprover/lean-action@v1
         with:
           auto-config: false
@@ -84,6 +91,11 @@ jobs:
             Mathlib.Algebra.BigOperators.Group.Finset.Defs \
             Mathlib.Algebra.BigOperators.Ring.Finset \
             Mathlib.Algebra.Group.Equiv.Basic \
+            Mathlib.Algebra.MvPolynomial.Degrees \
+            Mathlib.Algebra.MvPolynomial.Eval \
+            Mathlib.Algebra.MvPolynomial.CommRing \
+            Mathlib.Algebra.BigOperators.Fin \
+            Mathlib.Algebra.Polynomial.Eval.Degree \
             2>&1 | tee "$GITHUB_WORKSPACE/artifacts/trr08/mathlib-cache.log"
       - name: Build the complete geometry aggregate
         working-directory: experiments/trr08_geometry
@@ -103,6 +115,13 @@ jobs:
             --geometry-root "$GITHUB_WORKSPACE/experiments/trr08_geometry" \
             --output "$GITHUB_WORKSPACE/artifacts/trr09/formalization_receipt.json" \
             2>&1 | tee artifacts/trr09/verification.log
+      - name: Verify the exact block degree and reject changed threshold and sign
+        run: |
+          timeout 1200s python research/translation_rank_rigidity/trr10/verify_formalization.py \
+            --core-root "$GITHUB_WORKSPACE" \
+            --geometry-root "$GITHUB_WORKSPACE/experiments/trr08_geometry" \
+            --output "$GITHUB_WORKSPACE/artifacts/trr10/formalization_receipt.json" \
+            2>&1 | tee artifacts/trr10/verification.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -115,5 +134,12 @@ jobs:
         with:
           name: trr09-residue-formalization
           path: artifacts/trr09/
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trr10-polynomial-interpolation
+          path: artifacts/trr10/
           if-no-files-found: error
           retention-days: 30

@@ -1,0 +1,115 @@
+{
+  "schema": "trr08-verifier-controls-v1",
+  "status": "passed",
+  "checked_at_utc": "2026-11-26T01:39:50.227103+00:00",
+  "scope": "Python parser, source contract and mocked source-guard controls only",
+  "lean_invocations": 0,
+  "verifier_sha256": "6c60529fd8cd547b59f9b4f4635bf7b48989b108edeac7eb7d1d22e33aa299a7",
+  "test_sha256": "242dba9252f9b60178139955f0f25b78d0f248cfdbd9c3453dcd0f74e6d128d4",
+  "principal_report_count": 43,
+  "new_principal_report_count": 37,
+  "source_contract": [
+    {
+      "project": "core",
+      "path": "MathCan/TranslationInterpolationUniform.lean",
+      "report_count": 6,
+      "source_sha256": "f8a6e09ad56e3fb39fd9b26aec0bfe4916351a7024883a234af5f7c92c12890e"
+    },
+    {
+      "project": "core",
+      "path": "MathCan/TranslationInterpolationRootBound.lean",
+      "report_count": 11,
+      "source_sha256": "7580ca70f468757145b4090c09b10e92ffe4261c0ede0bb4bf676ceece73daf4"
+    },
+    {
+      "project": "core",
+      "path": "MathCan/TranslationInterpolationEvaluation.lean",
+      "report_count": 12,
+      "source_sha256": "49cf856484d420dae1ed9eb9691c17c0e326383035e0fa27ee0de0cb778990f0"
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/MarkedPoints.lean",
+      "report_count": 11,
+      "source_sha256": "d48028516fc4eff14be79d2056760b24d3a70306d0060fa8fdce255056373df3"
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/Obstruction.lean",
+      "report_count": 1,
+      "source_sha256": "430bfb8e428877782709e8c81befc560d32fb76c128dbd403614c7cbe4de89ac"
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/PointIdeals.lean",
+      "report_count": 2,
+      "source_sha256": "564d729afad01bae5ec1c16d6df880eec52e1a4e4f310ee2d6a570cea8d7296c"
+    }
+  ],
+  "cases": [
+    {
+      "name": "exact_source_report_contract_6_plus_37",
+      "status": "passed"
+    },
+    {
+      "name": "parse_multiline_and_axiom_free_reports",
+      "status": "passed"
+    },
+    {
+      "name": "reject_missing_report",
+      "status": "passed"
+    },
+    {
+      "name": "reject_extra_report",
+      "status": "passed"
+    },
+    {
+      "name": "reject_duplicate_report",
+      "status": "passed"
+    },
+    {
+      "name": "reject_admitted_proof_axiom",
+      "status": "passed"
+    },
+    {
+      "name": "reject_custom_axiom",
+      "status": "passed"
+    },
+    {
+      "name": "reject_unchecked_reduction_axiom",
+      "status": "passed"
+    },
+    {
+      "name": "reject_wrong_declaration_name",
+      "status": "passed"
+    },
+    {
+      "name": "reject_malformed_axiom_separator",
+      "status": "passed"
+    },
+    {
+      "name": "reject_unclosed_axiom_list",
+      "status": "passed"
+    },
+    {
+      "name": "reject_empty_output",
+      "status": "passed"
+    },
+    {
+      "name": "source_guard_rejects_all_four_tokens",
+      "status": "passed"
+    },
+    {
+      "name": "source_guard_rejects_string_comment_masking",
+      "status": "passed"
+    },
+    {
+      "name": "source_guard_conservatively_scans_comments",
+      "status": "passed"
+    },
+    {
+      "name": "source_guard_accepts_clean_source",
+      "status": "passed"
+    }
+  ]
+}

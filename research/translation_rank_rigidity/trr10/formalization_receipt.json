@@ -1,0 +1,1210 @@
+{
+  "schema": "trr10-formalization-v1",
+  "status": "passed",
+  "checked_at_utc": "2026-11-26T01:34:40.916401+00:00",
+  "proof_boundary": {
+    "full_interpolation_theorem_formalized": false,
+    "tame_short_model_interpolation_theorem_formalized": true,
+    "actual_residue_eigenvector_exclusion_formalized": true,
+    "main_theorem": "TRR08Geometry.tame_polynomialDecoder_degree_iff",
+    "hypotheses": [
+      "K is a field; W is an actual Mathlib smooth short Weierstrass curve.",
+      "T has finite odd order N >= 19; the image of N in K is nonzero.",
+      "The images of 2 and 3 in K are nonzero.",
+      "u is any element of K; d is any natural number."
+    ],
+    "conclusion": "An actual polynomial D in K[X1,Y1,X2,Y2] with total degree at most d in each coordinate pair represents f_u(P+Q) on nonidentity subgroup inputs if and only if ceil(N/3) <= d.",
+    "derived_in_lean": [
+      "The distinct x-roots have cardinality (N-1)/2.",
+      "The actual residue sum is the leading coefficient of the odd Lagrange normal form.",
+      "Every monomial of weight 2*a+3*b <= N-1 is annihilated.",
+      "Actual block-bounded multivariate polynomials supply those moments when 3*d <= N-1.",
+      "The assigned value at the identity contributes minus u times the residue.",
+      "A bounded decoder forces the already excluded actual residue eigenvector.",
+      "Cubic compression produces actual ordinary-degree point-mass polynomials.",
+      "A finite tensor sum of those polynomials constructs every target matrix at degree ceil(N/3)."
+    ],
+    "remaining_obligations": [
+      "Transfer generalized Weierstrass models to short form with degree preservation.",
+      "Formalize the remaining function-field and divisor argument when the characteristic divides the marked order.",
+      "Integrate the small-order integral certificates with the geometric interpolation theorem in Lean."
+    ],
+    "model_limits": [
+      "This theorem concerns ordinary total degree in each affine coordinate pair on S times S.",
+      "It supplies no general circuit, discrete-logarithm or signature-security lower bound."
+    ]
+  },
+  "modules": [
+    {
+      "project": "core",
+      "path": "MathCan/TranslationInterpolationUniform.lean",
+      "source_sha256": "f8a6e09ad56e3fb39fd9b26aec0bfe4916351a7024883a234af5f7c92c12890e",
+      "principal_report_count": 6,
+      "transitive_axioms": {
+        "MathCan.TranslationInterpolationUniform.product_nonzero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationUniform.power_nonzero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationUniform.cancel_nonzero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationUniform.normalized_singular": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationUniform.second_branch_five_nonzero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationUniform.leading_coefficients_force_singularity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "core",
+      "path": "MathCan/TranslationInterpolationRootBound.lean",
+      "source_sha256": "7580ca70f468757145b4090c09b10e92ffe4261c0ede0bb4bf676ceece73daf4",
+      "principal_report_count": 11,
+      "transitive_axioms": {
+        "MathCan.TranslationInterpolationRootBound.evaluate_quotient_cons": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.synthetic_division": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.quotient_length": [],
+        "MathCan.TranslationInterpolationRootBound.zero_of_quotient": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.coefficients_zero_of_distinct_roots": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.obstruction_evaluation": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.obstruction_roots_force_singularity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.nonsingular_obstruction_root_exclusion": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.doubling_implies_obstruction": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.doubling_data_force_singularity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationRootBound.nonsingular_doubling_data_exclusion": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "core",
+      "path": "MathCan/TranslationInterpolationEvaluation.lean",
+      "source_sha256": "49cf856484d420dae1ed9eb9691c17c0e326383035e0fa27ee0de0cb778990f0",
+      "principal_report_count": 12,
+      "transitive_axioms": {
+        "MathCan.TranslationInterpolationEvaluation.span_iff_annihilated": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.symmetric_decoder_reconstruction": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.symmetric_decoder_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.decoder_coefficients_unique": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.dot_pointMass": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.assigned_row_iff_eigenvector": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.pole_decoder_iff_eigenvector": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.assigned_value_unique": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.feature_tensor_annihilated": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.evaluation_hyperplane_decoder_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.evaluation_columns_decoder_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "MathCan.TranslationInterpolationEvaluation.evaluation_pole_decoder_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/MarkedPoints.lean",
+      "source_sha256": "d48028516fc4eff14be79d2056760b24d3a70306d0060fa8fdce255056373df3",
+      "principal_report_count": 11,
+      "transitive_axioms": {
+        "TRR08Geometry.affineX_eq_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.firstNine_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.firstNine_injective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.firstNine_ne_neg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.firstNine_x_injective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.tangent_denominator_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.firstNine_tangent_denominator_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.short_curve_equation": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.short_discriminant_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.short_y_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.short_doubling_x": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/Obstruction.lean",
+      "source_sha256": "430bfb8e428877782709e8c81befc560d32fb76c128dbd403614c7cbe4de89ac",
+      "principal_report_count": 1,
+      "transitive_axioms": {
+        "TRR08Geometry.tame_coefficient_exclusion": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/PointIdeals.lean",
+      "source_sha256": "564d729afad01bae5ec1c16d6df880eec52e1a4e4f310ee2d6a570cea8d7296c",
+      "principal_report_count": 2,
+      "transitive_axioms": {
+        "TRR08Geometry.nonidentity_point_class_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.point_ideal_ne_single_generator": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/NormalizedSlope.lean",
+      "source_sha256": "f38bd1ea88502f175fb5b48d53118c6313fce108f5cbfd53249421cdc145e6f2",
+      "principal_report_count": 14,
+      "transitive_axioms": {
+        "TRR08Geometry.normalizedSlope_of_x_ne": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.normalizedSlope_comm": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.affineX_neg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.affineY_neg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.normalizedSlope_self": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.normalizedSlope_add_x": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.normalizedSlope_add_y": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.normalizedSlope_line": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.normalizedSlope_chord": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.normalizedSlope_neg_both": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.normalizedSlope_rotate": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.normalizedSlope_sum_neg": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.normalizedSlope_diagonal_generic": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.normalizedSlope_diagonal_double": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/DiagonalSlope.lean",
+      "source_sha256": "b7f649e66ea425af38f5cef4c8ca20e01e1618437f7a4c1a9e907ea1eca58dff",
+      "principal_report_count": 2,
+      "transitive_axioms": {
+        "TRR08Geometry.normalizedSlope_of_add_eq_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.normalizedSlope_diagonal": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/FiniteSlopeAverage.lean",
+      "source_sha256": "ce371bcca8d3244639145a0439eee3991dd3e3d0cfc6bc1f10337877c16e10ef",
+      "principal_report_count": 15,
+      "transitive_axioms": {
+        "TRR08Geometry.FiniteSlopeAverage.translate_row_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.FiniteSlopeAverage.rowSum_add_of_identity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.FiniteSlopeAverage.rowSum_add": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.FiniteSlopeAverage.coefficient_add_nsmul_of_identity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.FiniteSlopeAverage.coefficient_add_nsmul": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.FiniteSlopeAverage.coefficient_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.FiniteSlopeAverage.coefficient_add": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.FiniteSlopeAverage.coefficient_double": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.FiniteSlopeAverage.coefficient_double_of_diagonal": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.FiniteSlopeAverage.coefficientSequence_add": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.FiniteSlopeAverage.coefficientSequence_double": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.FiniteSlopeAverage.cyclic_card": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.FiniteSlopeAverage.cyclicCoefficient_add": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.FiniteSlopeAverage.cyclicCoefficient_double": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.FiniteSlopeAverage.cyclicCoefficient_double_of_diagonal": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/LocalCoefficient.lean",
+      "source_sha256": "c74c6c4cf9cc293cc0f60a0e612ae5cf79c963d0a4f0dd8b2a7602bbbe0f0a5e",
+      "principal_report_count": 6,
+      "transitive_axioms": {
+        "TRR08Geometry.normalizedSlope_pair": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.slopeCoefficient_eq_unpaired": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.coefficientOthers_image": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.coefficientOthers_fiber": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.coefficientOthers_sum_by_roots": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.localCoefficient_eq_slopeCoefficient": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/BarycentricResidue.lean",
+      "source_sha256": "4d9626c0268824d1253cada3b63f81ee98006fabaf9be72747765fda4aa42b22",
+      "principal_report_count": 7,
+      "transitive_axioms": {
+        "TRR08Geometry.BarycentricResidue.cofactor_value_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.BarycentricResidue.basis_derivative_at_other": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.BarycentricResidue.weighted_reciprocal_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.BarycentricResidue.weighted_reciprocal_square_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.BarycentricResidue.nodal_derivative_eval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.BarycentricResidue.nodal_second_derivative_eval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.BarycentricResidue.finite_residue_identity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/TraceCoefficient.lean",
+      "source_sha256": "41b612557d0b3329565a7d5f744f0d7499c113438037eda1af277be7853b474b",
+      "principal_report_count": 7,
+      "transitive_axioms": {
+        "TRR08Geometry.coefficient_sum_split": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.coefficientOthers_card_cast": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.paired_add_x": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.subgroupXTrace_translate": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.subgroupXTrace_translate_others": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.subgroupXTrace_eq_reciprocal": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.localSecondCoefficient_relation": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/ExplicitObstruction.lean",
+      "source_sha256": "c500632810afd03e5ebf737960771ea7c9745f4ef87ffecaf223245cdbc8013d",
+      "principal_report_count": 6,
+      "transitive_axioms": {
+        "TRR08Geometry.slopeCoefficient_double": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.slopeCoefficient_double_tangent": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.localCoefficient_double": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.cyclicSlopeCoefficient_double": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.cyclicSlopeCoefficient_double_tangent": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.tame_cyclicSlopeCoefficient_exclusion": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/CyclicCoefficient.lean",
+      "source_sha256": "dfc859d9cfb7e28438d4f7ab1a2c5e153843287c72da0721d411e0a3cc6c19ce",
+      "principal_report_count": 2,
+      "transitive_axioms": {
+        "TRR08Geometry.cyclic_ne_neg_of_odd_order": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.localCoefficient_cyclic_eq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/ResidueEigenvector.lean",
+      "source_sha256": "2d3765c8be01d4255a4a10a829534cf42ae155ee4d7cee8836e5bff35826e23a",
+      "principal_report_count": 9,
+      "transitive_axioms": {
+        "TRR08Geometry.subgroupResidue_eq_inverse_product": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.subgroupResidue_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.paired_add_x_difference": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.residue_summand_pair": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.residueMatrixRow_by_roots": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.residueMatrixRow_eq_localSecondCoefficient": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.residue_eigenvector_localSecondCoefficient": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.residue_eigenvector_square": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.residue_eigenvector_explicit_square": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/TameEigenvector.lean",
+      "source_sha256": "7a89a929243a73a7eb71b9fc835f87d9e01f3f69549d86036bf86bdf5d449004",
+      "principal_report_count": 2,
+      "transitive_axioms": {
+        "TRR08Geometry.tame_cyclicResidue_eigenvector_exclusion": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.tame_no_cyclicResidue_eigenvector": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/RootCardinality.lean",
+      "source_sha256": "dbf95a6059985df6fa7de0e80bd31b0dbfca055881143d6c4bcd5a7dcd804fd4",
+      "principal_report_count": 3,
+      "transitive_axioms": {
+        "TRR08Geometry.subgroupNonzero_x_fiber": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.subgroupNonzero_sum_by_roots": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.subgroupXRoots_card": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/CubicMonomials.lean",
+      "source_sha256": "994158fe623899b63d40dc1f88de3132f737aa5311a03bbc4bfe7da67f517a61",
+      "principal_report_count": 6,
+      "transitive_axioms": {
+        "TRR08Geometry.shortCubic_natDegree_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.cubicMonomial_natDegree_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.shortCubic_eval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.cubicMonomial_eval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.even_monomial_on_curve": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.odd_monomial_on_curve": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/ResidueAnnihilation.lean",
+      "source_sha256": "d78818491b8ab91a5b32a192052cd11cefa887406181e57279f44645f4efa9de",
+      "principal_report_count": 9,
+      "transitive_axioms": {
+        "TRR08Geometry.residueSum_add": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.residueSum_const_mul": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.residueSum_congr_nonzero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.residueSum_xFunction": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.residueSum_yFunction": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.residueSum_normalForm": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.subgroupNodalWeight_eval_sum_eq_coeff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.residueSum_normalForm_eq_coeff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.residueSum_normalForm_eq_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/PolynomialDegree.lean",
+      "source_sha256": "8afb55db28007e685cac3c09818b1d94a055a8b83dd25f3ba5e1c342560709db",
+      "principal_report_count": 6,
+      "transitive_axioms": {
+        "TRR08Geometry.bivariate_exponent_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.bivariate_support_totalDegree": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.bivariate_support_weight_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.bivariateEval_eq_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.sum_bivariateEval_eq_zero_of_moments": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.sum_bivariateEval_eq_zero_of_weighted_moments": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/ResidueMonomials.lean",
+      "source_sha256": "60fc0582374e5199d73f37bcc10f6e5b7d2428f45508c1a6030881cf13e5f91c",
+      "principal_report_count": 6,
+      "transitive_axioms": {
+        "TRR08Geometry.residueSum_even_monomial": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.residueSum_odd_monomial": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.residueSum_monomial_eq_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.sum_residue_monomial_eq_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.sum_residue_ordinary_monomial_eq_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.residue_bivariateEval_eq_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/BlockPolynomial.lean",
+      "source_sha256": "1bcab15c0bfd2c36c27ff9990e76fdf17c82fa975f76dfeea2cf29f932455792",
+      "principal_report_count": 3,
+      "transitive_axioms": {
+        "TRR08Geometry.blockEval_eq_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.sum_blockEval_right_eq_zero_of_moments": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.sum_blockEval_left_eq_zero_of_moments": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/TameDecoder.lean",
+      "source_sha256": "d7bc92c02db247d5c8e5a4c8b6dbf70df4799e301d2072c94b6c264f147b2a60",
+      "principal_report_count": 7,
+      "transitive_axioms": {
+        "TRR08Geometry.assignedX_add": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.assignedX_residue_row": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.polynomialDecoder_eigenvector_of_moments": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.polynomialDecoder_residue_eigenvector": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.tame_polynomialDecoder_exclusion": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.tame_no_polynomialDecoder": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.tame_polynomialDecoder_degree_lower_bound": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/PolynomialLift.lean",
+      "source_sha256": "6909a2fa80c0ebe9244d9b0ba0db19ae2b27ea66752302ecea4ca97b0b85ac69",
+      "principal_report_count": 12,
+      "transitive_axioms": {
+        "TRR08Geometry.cubicLiftBase_eval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.cubicLiftBase_totalDegree": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.monomialLift_eval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.monomialLift_totalDegree_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.oddMonomialLift_eval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.oddMonomialLift_totalDegree_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.polynomialLift_eval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.oddPolynomialLift_eval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.polynomialLift_totalDegree_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.oddPolynomialLift_totalDegree_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.normalFormLift_eval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.normalFormLift_totalDegree_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/PointInterpolation.lean",
+      "source_sha256": "f1c465637c847c2280b587a8899661eb70fe45ea0c3d26d050153b5f77093609",
+      "principal_report_count": 4,
+      "transitive_axioms": {
+        "TRR08Geometry.subgroupPointInterpolator_eval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.subgroupPointInterpolator_totalDegree_le_roots": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.subgroupPointInterpolator_totalDegree_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.nonidentity_point_polynomial_family": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/BlockTensor.lean",
+      "source_sha256": "52b6561b9d3dbaa7070bf90fd058b2ff84d43c942b6a1384a57f353ce2386579",
+      "principal_report_count": 8,
+      "transitive_axioms": {
+        "TRR08Geometry.BlockDegreeLE_monomial": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.BlockDegreeLE_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.BlockDegreeLE_smul": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.blockEval_tensor_monomial": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.blockTensor_degree": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.blockTensor_eval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.matrixPolynomial_degree": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.matrixPolynomial_eval": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    },
+    {
+      "project": "geometry",
+      "path": "TRR08Geometry/DecoderDegree.lean",
+      "source_sha256": "3bd27c80dc98483f46c866efdedbed243595a4e3374874defdaa94177dc1b7c1",
+      "principal_report_count": 3,
+      "transitive_axioms": {
+        "TRR08Geometry.exists_polynomialDecoder_of_card_le": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.exists_cyclic_polynomialDecoder": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "TRR08Geometry.tame_polynomialDecoder_degree_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      }
+    }
+  ],
+  "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "geometry_lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+  "geometry_manifest_sha256": "4a7d8d320f89f6d51e00966bcf391deb9042bf7d9defa298696a0093386444b6",
+  "verifier_sha256": "f5a9ef1de8f1993897cc36f905e7a4b31c88424184dfc8de29f8a6b278bf57fb",
+  "trr09_verifier_sha256": "794abbcffe454c3598ed83e34371020312993162183114e43da63b2b90224c3f",
+  "trr08_verifier_sha256": "6c60529fd8cd547b59f9b4f4635bf7b48989b108edeac7eb7d1d22e33aa299a7",
+  "principal_report_count": 180,
+  "new_principal_report_count": 67,
+  "mathematical_mutation_controls": [
+    {
+      "name": "residue_leading_factor_2_changed_to_3",
+      "status": "rejected",
+      "compiler_exit_code": 1,
+      "source_sha256": "4d9626c0268824d1253cada3b63f81ee98006fabaf9be72747765fda4aa42b22",
+      "mutated_sha256": "b5bebf987b683881c012f1edab4a3007533c228d202beb862bec1e0a4e8819a9",
+      "changed_theorem_line_interval": [
+        227,
+        245
+      ],
+      "compiler_error_lines": [
+        244
+      ],
+      "elapsed_seconds": 2.276658
+    },
+    {
+      "name": "reject-one-higher-residue-weight",
+      "status": "rejected",
+      "compiler_exit_code": 1,
+      "source_sha256": "60fc0582374e5199d73f37bcc10f6e5b7d2428f45508c1a6030881cf13e5f91c",
+      "mutated_sha256": "a1c9d4ac9b1416023cd4e48ae1303c38eb4ebeec18561d38fa9e256c6f939a28",
+      "changed_theorem_line_interval": [
+        58,
+        67
+      ],
+      "compiler_error_lines": [
+        66,
+        72
+      ],
+      "elapsed_seconds": 1.959175
+    },
+    {
+      "name": "reject-assigned-value-sign",
+      "status": "rejected",
+      "compiler_exit_code": 1,
+      "source_sha256": "d7bc92c02db247d5c8e5a4c8b6dbf70df4799e301d2072c94b6c264f147b2a60",
+      "mutated_sha256": "60c6ca4a5b1e7af064c505c452e0a15408a44a847cb943c451c45211e6ebd0e3",
+      "changed_theorem_line_interval": [
+        56,
+        77
+      ],
+      "compiler_error_lines": [
+        59,
+        105
+      ],
+      "elapsed_seconds": 1.954862
+    }
+  ],
+  "elapsed_seconds": 65.290963
+}
