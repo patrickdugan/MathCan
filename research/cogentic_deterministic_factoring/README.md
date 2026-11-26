@@ -1,0 +1,74 @@
+# DETFACT-AUDIT-01: deterministic factoring and exponent certificates
+
+Status: theorem-interface audit; conditional splitting lemma proved below; finite replay passed. Upstream construction and asymptotic complexity remain unverified.
+
+## Source and scope
+
+Google Research, Cogentic, *Unconditional Deterministic Subexponential Integer Factoring and Quadratic Nonresidue Construction*, 2026-11-25.
+- [Pinned source folder](https://github.com/google-research/google-research/tree/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/deterministic_factoring_l34)
+- [Pinned theorem statements](https://github.com/google-research/google-research/blob/4a7bc8ab0bc770e71a259b7966c500496b99010a/cogentic_research_papers/deterministic_factoring_l34/README.md) (Git blob 0ace537853fa19ebe20edca585a27197d3f6a4a4).
+- Upstream PDF blob 973002e0eb92acf3964fc020ca52ba6f1ac384ac. Raw retrieval failed; the proof text was unavailable for this audit. The claimed Mathlib-only Lean 4.33.0 companion has not been retrieved.
+- [Independent certificate project](https://github.com/lluiseriksson/cogentic-deterministic-factoring-certificates): its README reports selected finite certificates and Lean sublemmas, not a verification of the entire asymptotic theorem.
+
+The upstream work claims deterministic worst-case bit time O(exp(3 (ln N)^(3/4))) to find one proper divisor of every composite N. Theorem 1.3 (algExp) either finds a factor or produces an even M with every p-1 dividing M for primes p|N and ln M <= exp((ln N)^0.65). Theorem 1.2 (algSplit) claims splitting under that promise, and algQnr claims prime quadratic nonresidue construction. These are upstream claims, not MathCan theorems.
+
+## Independent result: separating two-adic signatures
+
+**Proposition.** Let N be odd with at least two distinct prime divisors. Let S be a generating set of the unit group (Z/NZ)^*. Suppose M>0 is even and p-1|M for every prime p|N. Then some a in S, and some j between 0 and v2(M), give a proper divisor gcd(a^(u*2^j)-1,N), where u=M/2^v2(M).
+
+Proof: Fix distinct odd primes p,q dividing N, and define s_p=v2(p-1), s_q=v2(q-1). For a unit a write t_p(a)=v2(ord_p(a)). The quadratic character of a modulo p is -1 exactly when t_p(a)=s_p, because F_p^* is cyclic. The map from units modulo N onto F_p^* x F_q^* is surjective by CRT (also for repeated prime factors).
+
+If every a in S had t_p(a)=t_q(a) and s_p>s_q, every generator would be a square modulo p. The quadratic character at p would therefore vanish on the whole generating group, contradicting surjectivity. The case s_q>s_p is symmetric. If s_p=s_q, equality of signatures on S implies equality of the two quadratic characters on S. Since both are homomorphisms, they agree on the generated group, again contradicting CRT. Thus a generator with unequal signatures exists.
+
+The odd part of each local order divides u, by the promise on M. For j=min(t_p(a),t_q(a)), a^(u*2^j) is 1 modulo the prime with smaller signature and is not 1 modulo the other. Its gcd with N after subtracting 1 is divisible by one prime and not the other, hence strictly between 1 and N. This proves the proposition. The same reasoning holds if S projects surjectively only onto the pair of quadratic-character coordinates; full generation is sufficient but stronger than needed.
+
+Corollary: for a prime p, any generating set of F_p^* contains a quadratic nonresidue; otherwise its generated group would be contained in the proper subgroup of squares. Euler's criterion checks a proposed witness exactly.
+
+Scope: the proposition is an independent conditional argument. It neither constructs S efficiently nor establishes algExp. A polynomial-time witness verifier does not imply a polynomial-time witness finder.
+
+### Certificate semantics
+
+- A divisor certificate checks 1<d<N and N mod d=0.
+- A QNR certificate checks the prime-input precondition and z^((p-1)/2) mod p=p-1; primality needs independent certification when not promised.
+- An exponent promise requires every p-1|M. Checking a^M=1 modulo N for a few bases is insufficient. Example N=15, a=4, M=2 passes the modular test while 5-1 does not divide M.
+- For nonsquarefree N the promise concerns reductions modulo distinct primes. It need not annihilate every unit modulo N itself; the gcd argument still works.
+- The set S={1,14} for N=15 and M=4 has insufficient character coverage. The splitting scan returns no factor on those bases even though M satisfies the exponent promise.
+
+## Asymptotic interface audit
+
+Set L=ln N. If algExp returns M within the published bound and algSplit really has the published bit complexity exp(O(sqrt(L) ln L)) * ln M * L^2, then
+ln T_split <= L^0.65 + O(sqrt(L) ln L) + O(ln L) = o(L^0.75).
+Therefore its time is asymptotically subordinate to algExp. Ordinary even and perfect-power preprocessing can be done in polynomial bit time. A primality test and recursive calls recover complete factorization with at most O(log N) nontrivial splits, preserving the exponent class N^{o(1)}; the same explicit O(exp(3 L^0.75)) bound for complete factorization needs separate accounting.
+
+Under the README definition L_x(alpha,c)=exp(c (ln x)^alpha (ln ln x)^(1-alpha)):
+- O(exp(3 L^0.75)) has L_N[3/4,o(1)] scaling.
+- exp(O(sqrt(ln p) ln ln p)) yields L_p[1/2,O(sqrt(ln ln p))] from the displayed bound alone. The stated L_p[1/2,O(1)] classification requires a stronger bound or a clarification. This is a notation/implication discrepancy, not a demonstrated failure of the theorem.
+- The bound is subexponential in bit length and superpolynomial as a displayed cost expression. It gives no lower bound on actual execution time.
+- Complexity classes alone do not imply a practical factoring speedup at cryptographic sizes. The result concerns integer factoring; it supplies no reduction from prime-order elliptic-curve discrete logarithms.
+
+## Next proof gates (unresolved)
+
+| Gate | Required evidence |
+|---|---|
+| E1 | Reconstruct the exact algExp state, transition, and termination measure from the source PDF. |
+| E2 | Prove the output exponent covers all prime-factor group orders without already knowing the factorization. Include the direct-factor branch and nonsquarefree inputs. |
+| E3 | Bound the explicit bit length of M and every intermediate integer. Distinguish compressed exponent descriptions from expanded integers. |
+| E4 | Prove efficient deterministic construction of the splitting/character witnesses. Identify where subgroup saturation, analytic estimates, or class-group arithmetic enter; do not substitute the conditional lemma for this gate. |
+| E5 | Account for all arithmetic, enumeration, loop bounds, uniformity and constants; resolve the QNR L-notation issue. |
+| E6 | When the upstream Lean source appears, pin its toolchain/dependencies and audit theorem statements, axiom dependencies and the computational cost model. |
+
+## Exact replay
+
+Run from this directory: node audit.mjs
+
+The JavaScript uses BigInt and deterministic enumeration of tiny groups. The toy generator oracle enumerates all units; it is deliberately not an efficient construction of S. Its scope is finite verification of the independent proposition and its certificate boundaries. The checked receipt records the run of the same audit function in the authoring JavaScript runtime. The Node entry point has not separately been executed here.
+
+## Formal reasoning gym handoff
+
+Use small synthetic moduli, independently generated exact prime factorizations, common exponents, and character signatures to construct tasks:
+1. Verify a purported divisor or nonresidue, with incorrect witnesses interleaved.
+2. Given M and S, reason about signature separation and emit a gcd certificate.
+3. Identify false implications from sampled modular identities, insufficient generating sets, and hidden exponent expansion costs.
+4. Translate the conditional proposition to Lean using MathCan's pinned Lean 4.35.0. Separate algebra, CRT, algorithm soundness, termination and bit-cost theorems. Require kernel compilation and audit of axioms before marking a proof formalized.
+
+Use only small generated examples for training. Keep group sizes and prime-factor families separate across train and held-out splits. A solved toy instance is not evidence for the upstream general factoring bound.
