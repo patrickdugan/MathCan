@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-10: bounded evidence arena, certified stale ranking, finite information oracle.
 import {verify,upperRoot} from "./audit.mjs";
 import {rng} from "./search.mjs";
@@ -359,4 +360,5 @@ function experiment10(){
  const start=Date.now(),arena=experimentA(),decision=experimentB();
  return {status:"PASS",scope:"logical persistent arena and synthetic adaptive information oracle",arena,decision,elapsedMs:Date.now()-start};
 }
-console.log(JSON.stringify(experiment10(),null,2));
+export {tree,run,experiment10};
+if(process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href) console.log(JSON.stringify(experiment10(),null,2));
