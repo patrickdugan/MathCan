@@ -1,0 +1,32 @@
+'MathCan.Pregeometry.classRecord_observeClass' does not depend on any axioms
+'MathCan.Pregeometry.observeClass_eq_iff' depends on axioms: [Quot.sound]
+'MathCan.Pregeometry.classRecord_injective' depends on axioms: [Quot.sound]
+'MathCan.Pregeometry.observedClass_representative' does not depend on any axioms
+'MathCan.Pregeometry.classRecord_image_iff' does not depend on any axioms
+'MathCan.Pregeometry.classDecoder_correct' does not depend on any axioms
+'MathCan.Pregeometry.classDecoder_unique' depends on axioms: [Quot.sound]
+'MathCan.Pregeometry.fiberConstant_iff_unique_classDecoder' depends on axioms: [Quot.sound]
+'MathCan.Pregeometry.decoderWithDefault_correct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.Pregeometry.totalDecoder_exists_iff_fiberConstant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'MathCan.Pregeometry.empty_world_fiberConstant' does not depend on any axioms
+'MathCan.Pregeometry.empty_world_no_totalDecoder' does not depend on any axioms
+'MathCan.Pregeometry.diamond_two_step_cancellation' depends on axioms: [propext]
+'MathCan.Pregeometry.source_reaches_middle' depends on axioms: [propext]
+'MathCan.Pregeometry.middle_reaches_target' depends on axioms: [propext]
+'MathCan.Pregeometry.middle_clamp_restores_source' depends on axioms: [propext]
+'MathCan.Pregeometry.source_event_affects_middle' depends on axioms: [propext]
+'MathCan.Pregeometry.middle_event_affects_target' depends on axioms: [propext]
+'MathCan.Pregeometry.source_event_target_response_absent' depends on axioms: [propext]
+'MathCan.Pregeometry.event_response_not_transitive' depends on axioms: [propext]
+'MathCan.Pregeometry.dependence_excludes_independence' depends on axioms: [propext]
+'MathCan.Pregeometry.flipping_independent_entry_creates_dependence' depends on axioms: [propext, Quot.sound]
+'MathCan.Pregeometry.flip_preserves_incomplete_record' depends on axioms: [propext]
+'MathCan.Pregeometry.incomplete_record_has_dependent_completion' depends on axioms: [propext, Quot.sound]
+'MathCan.Pregeometry.independence_certificate_requires_every_query' depends on axioms: [propext, Quot.sound]
+'MathCan.Pregeometry.independence_certificate_requires_four_queries' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'MathCan.Pregeometry.all_zero_world_independent' depends on axioms: [propext]
+'MathCan.Pregeometry.final_entry_world_dependent' depends on axioms: [propext, Quot.sound]
+'MathCan.Pregeometry.first_three_queries_indistinguishable' depends on axioms: [propext]
+'MathCan.Pregeometry.fourth_query_separates' depends on axioms: [propext]

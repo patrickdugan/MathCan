@@ -1,0 +1,122 @@
+{
+  "axiom_dependencies": {
+    "MathCan.Pregeometry.all_zero_world_independent": [
+      "propext"
+    ],
+    "MathCan.Pregeometry.classDecoder_correct": [],
+    "MathCan.Pregeometry.classDecoder_unique": [
+      "Quot.sound"
+    ],
+    "MathCan.Pregeometry.classRecord_image_iff": [],
+    "MathCan.Pregeometry.classRecord_injective": [
+      "Quot.sound"
+    ],
+    "MathCan.Pregeometry.classRecord_observeClass": [],
+    "MathCan.Pregeometry.decoderWithDefault_correct": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MathCan.Pregeometry.dependence_excludes_independence": [
+      "propext"
+    ],
+    "MathCan.Pregeometry.diamond_two_step_cancellation": [
+      "propext"
+    ],
+    "MathCan.Pregeometry.empty_world_fiberConstant": [],
+    "MathCan.Pregeometry.empty_world_no_totalDecoder": [],
+    "MathCan.Pregeometry.event_response_not_transitive": [
+      "propext"
+    ],
+    "MathCan.Pregeometry.fiberConstant_iff_unique_classDecoder": [
+      "Quot.sound"
+    ],
+    "MathCan.Pregeometry.final_entry_world_dependent": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MathCan.Pregeometry.first_three_queries_indistinguishable": [
+      "propext"
+    ],
+    "MathCan.Pregeometry.flip_preserves_incomplete_record": [
+      "propext"
+    ],
+    "MathCan.Pregeometry.flipping_independent_entry_creates_dependence": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MathCan.Pregeometry.fourth_query_separates": [
+      "propext"
+    ],
+    "MathCan.Pregeometry.incomplete_record_has_dependent_completion": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MathCan.Pregeometry.independence_certificate_requires_every_query": [
+      "propext",
+      "Quot.sound"
+    ],
+    "MathCan.Pregeometry.independence_certificate_requires_four_queries": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MathCan.Pregeometry.middle_clamp_restores_source": [
+      "propext"
+    ],
+    "MathCan.Pregeometry.middle_event_affects_target": [
+      "propext"
+    ],
+    "MathCan.Pregeometry.middle_reaches_target": [
+      "propext"
+    ],
+    "MathCan.Pregeometry.observeClass_eq_iff": [
+      "Quot.sound"
+    ],
+    "MathCan.Pregeometry.observedClass_representative": [],
+    "MathCan.Pregeometry.source_event_affects_middle": [
+      "propext"
+    ],
+    "MathCan.Pregeometry.source_event_target_response_absent": [
+      "propext"
+    ],
+    "MathCan.Pregeometry.source_reaches_middle": [
+      "propext"
+    ],
+    "MathCan.Pregeometry.totalDecoder_exists_iff_fiberConstant": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "axiom_dependency_counts": {
+    "(empty)": 6,
+    "Quot.sound": 4,
+    "propext": 13,
+    "propext, Classical.choice, Quot.sound": 3,
+    "propext, Quot.sound": 4
+  },
+  "compiler_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "modules": [
+    "MathCan/Pregeometry/ObservationFactorization.lean",
+    "MathCan/Pregeometry/OperationalCounterexamples.lean"
+  ],
+  "public_theorems": 30,
+  "schema": "pgc-lean-extension-v1",
+  "scope": {
+    "adaptive_execution_and_expected_cost": "Companion Python/prose only.",
+    "event_response": "Separately resettable contexts at each source event; directed clock and registers supplied.",
+    "observation_classes": "Fiber constancy iff a unique decoder on the quotient of worlds by equal observations exists.",
+    "physical_geometry_and_gravity": "Open targets.",
+    "query_lower_bound": "Any completed query list certifying independence over all Boolean truth tables has length at least four.",
+    "total_decoder": "Explicit default supplied; classical representative selection."
+  },
+  "source_sha256": {
+    "MathCan/Pregeometry.lean": "83748a2d7872f632a77bf2be46ae8f11ddc167b3e5a147cc65b0efeb56778c28",
+    "MathCan/Pregeometry/ObservationFactorization.lean": "d12d129c7d1055fffca47008f48eb290b66e0a641fae4407d4a164f082357d12",
+    "MathCan/Pregeometry/OperationalCounterexamples.lean": "4cae7687d90acf351490322d56a767c383ecba7104f715935000c7646b88aacd",
+    "research/pregeometric_identifiability/verify_lean_extension.py": "aa310fc5cde42670fa43187d3b8e746605cdff31f57e80a60a263d56992eb0c5"
+  },
+  "status": "PASS",
+  "toolchain": "leanprover/lean4:v4.35.0"
+}
