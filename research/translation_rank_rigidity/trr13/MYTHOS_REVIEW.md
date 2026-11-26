@@ -1,70 +1,76 @@
-# Independent mathematical review: inverse-label rigidity
+# Mythos review: sparse-edit inverse-label rank
 
-Context: this is Strategy V of a defensive ECDSA security assessment.
-The objective is restricted-model lower bounds and explicit
-counterexamples to overbroad complexity claims. Do not design or optimize
-a key-recovery or signature-forgery method. No deployed keys, real-system
-targets or production-curve experiments.
+Context: Strategy V of a defensive ECDSA security assessment.
+We seek precise restricted-model lower bounds and counterexamples
+to unsupported security claims. Work on synthetic cyclic functions
+and the stated mathematics. Do not develop or optimize scalar-recovery
+or signature-forgery algorithms.
 
-Let E/K be a smooth elliptic curve, G=<T> of odd prime order N, N nonzero
-in K. Write ell(jT)=j*1_K for 0<=j<N. Distinguish this residue-valued
-label from an injective bit encoding of the scalar.
+Let N be prime and K a field of characteristic not dividing N.
+Let ell(j)=j*1_K for j=0,...,N-1, with cyclic indexing.
+For g=ell+e, support(e)<=k, define rank(g) as the rank of the
+N by N sum-translation matrix g(i+j). Over a splitting field,
+for nontrivial z^N=1 the missing Fourier modes are precisely
+the roots of
 
-Established written arguments in TRR-13:
-(1) If a rational R agrees with ell except k failures, then
-2 H(R)>=N-1-2k, H the geometric pole degree. Indeed
-F=R(P+T)-R(P)-1 is nonzero by telescoping N shifts and has at least
-N-1-2k distinct regular zeros. On G minus O replace N-1 by N-2.
-(2) For g=ell+e with |supp e|<=k,
-h=(tau-I)g-1=(tau-I)e-N delta_{-T} has nonzero sum -N and support <=2k+1.
-Rank(h)*|supp h|>=N by the translated-basis cover argument;
-rank(g)>=ceil(N/(2k+1))-1. Exact rank is N-1 or N according to
-whether the sum of ell vanishes. One edit at O loses at most one
-nontrivial Fourier frequency.
-(3) In a rational formula, H(R)<=2Lx+3Ly. For arbitrary shared
-DAGs, height can grow exponentially per number of gates.
-(4) A rational equality decision tree, on its generic path, has
-at most B+2 sum H(test_i) exceptional inputs, including raw
-division guards B. An injective binary output has at most
-max(1,2 max_j H(output_j)) successes on that path.
+    H(z)=N+(z-1)sum_i e(i)z^i.
 
-Please audit these proofs, including extension fields, finite
-characteristic, arbitrary fixed constants, pole cancellation and
-raw guards. Preserve the distinction between a rational function
-and the expression computing it.
+The proof of the exact rank is rank(ell)=N-1 or N according
+to whether sum ell is zero. Rank is invariant under extension.
+TRR-13 gives the bound ceil(N/(2k+1))-1 via the nonzero
+difference support and the translate-basis cover.
 
-The specific unresolved algebra problem is:
+TRR-13B gives two sharper written results:
+1. For one edit at i, each fibre of z^i(z-1) on mu_N has
+m(m-1)<=N-1: two distinct roots with ratio t determine
+w=(t^i-1)/(t^(i+1)-1) uniquely; the zero-denominator
+case cannot occur. This even holds for composite N.
+2. For k edits and prime N, any B with B^(k+1)<N yields
+m<=3*(ceil(N/B)-1). Pigeonhole the residue vectors
+(j,j*i_1,...,j*i_k), using B equal-width blocks per coordinate;
+two in the same box give a nonzero invertible multiplier,
+and a Laurent polynomial N+sum e(i)z^b_i(z^a-1) with
+exponent span <=3*(ceil(N/B)-1) and value N at z=1.
+Thus fixed k implies rank(g)>=N-O(N^(k/(k+1))) uniformly
+over all tame characteristics.
 
-For prime N and tame characteristic, determine useful sharp
-lower bounds on the rank of the cyclic translation matrix of
-ell+e for k=1,2 and general small k. Investigate whether the
-special structure h=(tau-I)e-N delta_{-T}, with sum h=-N,
-forces stronger rank bounds than ceil(N/(2k+1))-1 uniformly
-over finite fields, or produce exact synthetic counterexamples.
-The characteristic-zero additive uncertainty bound cannot be
-imported into positive characteristic without proof. Record
-which field hypotheses are indispensable. A proof for a restricted
-class of error supports or field sizes is useful; do not claim
-a general result without checking all cases.
+Review both proofs, especially the fibre with zero denominator,
+dilation with signed exponents, changes of fields, the trivial
+frequency, and the actual support size. The specific open
+problem is:
 
-Then assess whether any *proved* stronger rank statement gives
-a resource-preserving lower bound in a precisely specified linear
-feature or formula model. A generic shared circuit lower bound
-remains open here. Required controls:
-- A point-mass function has full translation rank but easy finite
-  field zero selectors.
-- On F_p*, (1-X^((p-1)/2))/2 has optimal rational height
-  (p-1)/2 and O(log p) shared evaluation cost.
-- TRR-12's forward group-law decoder has a small circuit despite
-  the exact high interpolation degree.
+Determine the maximum possible size of a fibre of z^i(z-1)
+on mu_N in arbitrary tame finite characteristic, with N prime.
+Does it remain bounded independently of N? If not, prove a
+growth lower bound by explicit finite-field examples or obtain
+a stronger uniform upper bound. For k=2, study the analogous
+root set of N+(z-1)(c*z^i+d*z^j). Can the special difference
+structure imply N-O(k) translation rank, or is the power-law
+loss unavoidable? A rigorous restricted-field result is useful.
+Any proposed counterexample should include exact field, N,
+coefficients and the gcd with X^N-1, so extension-field roots
+are counted. Compare with characteristic zero without
+assuming the complex Fourier-minor theorem in finite fields.
 
-If a stronger lower-bound model is proposed, write its exact
-assumptions and account for sharing, evaluation domains, guard
-costs, randomization and any precomputed data. Prove a concrete
-lemma or give a counterexample; distinguish mathematical evidence
-from a security reduction. Do not infer a general scalar recovery
-complexity theorem from these controls.
+Separately audit the inverse-label rational pole bound
+2H(R)>=N-1-2k, the formula leaf bound 4Lx+6Ly>=N-1-2k,
+and the generic rational equality-path bound with binary
+outputs in TRR-13/README.md. The latter must charge raw
+division guards; X/X reduces to a constant yet is undefined
+as an expression at X=0.
 
-Return a proof review with the strongest supported statement,
-an exact finite verification plan for synthetic functions, and
-a specific remaining proof obligation.
+The computational limitation is explicit: rank and pole
+height can be very large for small shared circuits. For
+example a point mass has full translation rank; the
+quadratic-residue predicate on F_p* has optimal rational
+height (p-1)/2 and O(log p) arithmetic evaluation cost.
+TRR-12's forward decoder is a further control. No direct
+resource-preserving conversion to general bit-RAM or
+shared circuit cost has been established. If proposing
+any strengthened restricted complexity result, state
+all assumptions, including sharing, preprocessing,
+guards and the success model. Do not infer a general
+ECDLP or ECDSA result from the rank theorem alone.
+
+Return an independent proof, a sharp counterexample or
+the precise remaining mathematical obstruction.

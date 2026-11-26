@@ -210,3 +210,7 @@ All mathematical statements here are written proofs, pending
 independent review and Lean formalization. The exact checks
 are limited to the recorded finite cohorts; they do not certify
 a general arithmetic-circuit or ECDSA security theorem.
+
+## TRR-13B update
+
+[SPARSE_RANK.md](SPARSE_RANK.md) improves the sparse-error rank bound uniformly across tame fields: one arbitrary edit loses at most O(sqrt(N)) nontrivial modes, and k fixed edits at prime order lose O(N^(k/(k+1))) via simultaneous exponent dilation. These are written proofs and exact cyclic controls; the sharp fibre-size problem and resource transfer remain open. The revised [Mythos review](MYTHOS_REVIEW.md) targets that question.
