@@ -1,0 +1,33 @@
+# CRD-04 result | Counterfactual utility recovers the heuristic but adds no gain
+2026-11-26. Protocol committed e5e7862ec831d6b092fdc97308c96fe9e9f19d85 before outcomes; source committed ecf0df23f9e0e060aeaaf877d90e038bb6ecc152. Receipt 4fd4d54e0968418eddc91da4d7adc93a75dd10a5. Status: FAIL for improvement over depth; PASS for bounded verifier/replay. This is a new, disjoint test set; direct paired comparisons with CRD-03 are invalid.
+
+## Registered outcome
+384 development roots, 1,536 behavior episodes, 4,424 sampled contexts. 14,042 forced-action rollouts, 132,722 incremental teacher calls. Every forced rollout was checked by replay, including its already observed prefix; incremental teacher calls exclude that prefix. 18,268 pair labels: 672 prefer the first candidate, 1,062 prefer the second, 16,534 tied. Of the ties, 14,390 are both-success and 2,144 both-failure. Of 5,418 same-depth pairs, 472 disagree (8.71%). Training is pairwise logistic SGD for 16 epochs with tied residual-input recurrence (137 parameters) and linear control (8 parameters). Gradient finite-difference maximum absolute error 4.44e-11. Every registered checkpoint of both scorers gives 125/128 validation successes and 3,253 calls, so earliest epoch 1 selected under the frozen rule. No tuning after test.
+
+| Cap 4, solved / 256 | 32 calls | 64 calls | 128 calls |
+|---|---:|---:|---:|
+| Depth/latest | 20 | 197 | 214 |
+| Depth/random ties | 23 | 212 | 226 |
+| FIFO | 0 | 3 | 203 |
+| Random priority | 4 | 111 | 217 |
+| Linear residual | 20 | 197 | 214 |
+| Recurrent residual | 20 | 197 | 214 |
+| Recurrent unrestricted | 9 | 192 | 218 |
+
+Primary comparison recurrent residual vs depth/latest: zero wins, zero losses, p=1; same mean 45.1602 calls. Against depth/random ties: 25 wins, 40 losses, exact two-sided paired p=.0816815. Against unrestricted recurrent: 28 wins, 23 losses, p=.575849. These are descriptive paired tests in this synthetic generator. At cap 16 and 64 calls, depth/latest, recurrent residual, and linear residual each solve 215; random ties solve 227. At cap 16 and 128 calls, depth/latest and both residuals solve all 256; depth/random ties 255. Full receipt includes all 42 configurations, 10,752 test episodes and 515,394 charged test calls. Exact replay passed; zero false accepts. Tool-isolate elapsed 15.443 s covers training, generation and verification, not isolated CPU/RSS. Standalone Node invocation remains untested. Candidate cap counts pending destinations, not physical RAM.
+
+## Post-hoc diagnostic (development/validation only)
+On 3,723 scheduling states from baseline episodes (1,782 development, 1,941 validation), the selected linear and recurrent residuals make exactly the same top choice, retained set and full bank order as depth/latest. Among those states, 2,088 have multiple candidates at the greatest depth. Complete traces of both learned residuals match depth/latest on all 640 diagnostic episodes. In contrast, randomized depth ties change the top choice in 1,164 states and the retained set in 25. Thus the result is a policy-equivalence failure, not evidence of an independently useful learned residual.
+
+Teacher tie rate is 90.51% overall; 78.77% of all pairs are both-success. Disagreement is concentrated at low remaining budgets: 448/1,905 with 0-7 calls remaining, 783/3,791 with 8-15, versus 73/3,262 with 24-31. This is consistent with insufficient action-dependent signal in the training distribution. The static reachability objective in CRD-03 strongly favored shallow nodes; the new budget objective has no comparable catastrophic failure on these new roots, but changing both objective and roots prevents causal attribution from cross-experiment numbers.
+
+## Mathematical observation: observable action symmetry
+For a finite action set A, let F(s,e) be policy-visible features and Q(s,e) be the conditional continuation-success probability at fixed remaining budget. If candidates e and e' are exchangeable conditional on the complete observation and the continuation rule is equivariant under their swap, then Q(s,e)=Q(s,e'). Proof: the conditional distribution of the continuation outcome is invariant under the swap, so the expectations are equal. Any deterministic feature-only scorer assigns equal scores when F(s,e)=F(s,e'), regardless of model depth. If a class of indistinguishable actions has unequal realized hindsight utilities, those differences are label noise conditional on the observation unless additional predictive information is supplied. This theorem is conditional; CRD-04 has not established conditional exchangeability for its graph generator. In particular recency, observed indegree and planting may break symmetry.
+
+## CRD-05 proposed (unexecuted, requires separate registration)
+1. Diagnose observability before scaling compute: on fresh development roots estimate pair discrimination conditioned on equal-depth, remaining calls, parent and observation signature. Report label disagreement and irreducible ties. Restrict supervised emphasis to near-budget, same-depth disagreements while keeping a representative validation sample; use symmetric orientation and explicit tie weighting.
+2. Estimate Q with multiple common-random-number continuation rollouts under depth/random ties, not a single depth/latest fallback. Use uncertainty intervals and keep ties. Include fixed fallback-policy comparisons, random ties mandatory. Avoid claiming that a teacher's realized advantage is a predictable feature.
+3. Add graph features only available at the observed frontier (parent histories, local valid-rate estimates, multiplicity of observed independent paths, branch coverage and remaining-call-to-depth ratio). Evaluate an observation-shuffled control. Design a separate synthetic regime with planted, observable typed relation structure and an identically distributed scrambled-label control to test learnable signal; the original exchangeable-ish random graph remains a negative/control regime. No future graph data at inference. Separate training/validation/test seeds and freeze hyperparameters.
+4. Test ranking, then retention separately. A learned policy must change actions before a task-level benefit can be attributed to it. Report top-choice/retained-set changes, success/calls, paired wins/losses and actual memory/time. Full TRM or BPD integration only after beating both depth/latest and depth/random within a matched budget on a fresh test set.
+
+No direct Cogentic PDF or companion Lean formalization inspection succeeded in prior steps. CRD-01 Lean ledger remains uncompiled. This package studies search scheduling on synthetic certificate DAGs; no factorization or ECDLP result follows.
