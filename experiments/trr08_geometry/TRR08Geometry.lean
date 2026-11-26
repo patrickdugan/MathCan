@@ -24,3 +24,8 @@ public import TRR08Geometry.PolynomialLift
 public import TRR08Geometry.PointInterpolation
 public import TRR08Geometry.BlockTensor
 public import TRR08Geometry.DecoderDegree
+public import TRR08Geometry.AffinePolynomial
+public import TRR08Geometry.GeneralCoordinates
+public import TRR08Geometry.ShortModelTransport
+public import TRR08Geometry.DecoderTransport
+public import TRR08Geometry.GeneralDecoder

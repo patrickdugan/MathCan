@@ -1,4 +1,4 @@
-name: TRR-08 to TRR-10 exact interpolation degree
+name: TRR-08 to TRR-11 generalized interpolation degree
 
 on:
   pull_request:
@@ -10,6 +10,7 @@ on:
       - 'research/translation_rank_rigidity/trr08/**'
       - 'research/translation_rank_rigidity/trr09/**'
       - 'research/translation_rank_rigidity/trr10/**'
+      - 'research/translation_rank_rigidity/trr11/**'
       - 'lakefile.toml'
       - 'lean-toolchain'
       - '.github/workflows/trr08-formalization.yml'
@@ -39,13 +40,14 @@ jobs:
           python-version: '3.12'
       - name: Record the checked source revision
         run: |
-          mkdir -p artifacts/trr08 artifacts/trr09 artifacts/trr10
+          mkdir -p artifacts/trr08 artifacts/trr09 artifacts/trr10 artifacts/trr11
           git rev-parse HEAD > artifacts/trr08/checkout.txt
           cp lean-toolchain artifacts/trr08/core-lean-toolchain.txt
           cp experiments/trr08_geometry/lean-toolchain artifacts/trr08/geometry-lean-toolchain.txt
           cp experiments/trr08_geometry/lake-manifest.json artifacts/trr08/committed-lake-manifest.json
           git rev-parse HEAD > artifacts/trr09/checkout.txt
           git rev-parse HEAD > artifacts/trr10/checkout.txt
+          git rev-parse HEAD > artifacts/trr11/checkout.txt
       - name: Check the verifier's rejection controls
         run: python research/translation_rank_rigidity/trr08/test_verifier.py --output artifacts/trr08/verifier-controls.json
       - name: Check the finite coefficient identities exactly
@@ -57,6 +59,11 @@ jobs:
           timeout 600s python research/translation_rank_rigidity/trr10/check_interpolation.py \
             --output artifacts/trr10/interpolation_receipt.json \
             --witness-output artifacts/trr10/decoder_witnesses.json
+      - name: Check generalized coordinate changes and transported decoder coefficients
+        run: |
+          timeout 600s python research/translation_rank_rigidity/trr11/check_coordinate_change.py \
+            --output artifacts/trr11/coordinate_change_receipt.json \
+            --witness-output artifacts/trr11/generalized_decoder_witnesses.json
       - uses: leanprover/lean-action@v1
         with:
           auto-config: false
@@ -122,6 +129,13 @@ jobs:
             --geometry-root "$GITHUB_WORKSPACE/experiments/trr08_geometry" \
             --output "$GITHUB_WORKSPACE/artifacts/trr10/formalization_receipt.json" \
             2>&1 | tee artifacts/trr10/verification.log
+      - name: Verify generalized interpolation and reject incorrect coordinate transport
+        run: |
+          timeout 1200s python research/translation_rank_rigidity/trr11/verify_formalization.py \
+            --core-root "$GITHUB_WORKSPACE" \
+            --geometry-root "$GITHUB_WORKSPACE/experiments/trr08_geometry" \
+            --output "$GITHUB_WORKSPACE/artifacts/trr11/formalization_receipt.json" \
+            2>&1 | tee artifacts/trr11/verification.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -141,5 +155,12 @@ jobs:
         with:
           name: trr10-polynomial-interpolation
           path: artifacts/trr10/
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trr11-generalized-interpolation
+          path: artifacts/trr11/
           if-no-files-found: error
           retention-days: 30

@@ -1,5 +1,10 @@
 # TRR-10: exact ordinary interpolation degree in tame odd order
 
+**Successor:** [TRR-11](../trr11/README.md) removes the short-form hypothesis
+through a checked point-group equivalence and polynomial coordinate
+transport. The record below preserves the TRR-10 theorem and its original
+formal scope.
+
 TRR-10 completes the coordinate-polynomial theorem on smooth short
 Weierstrass models with tame odd marked order at least nineteen. Lean checks
 both the obstruction below the threshold and an explicit polynomial

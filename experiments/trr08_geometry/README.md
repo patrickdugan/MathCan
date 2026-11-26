@@ -1,4 +1,4 @@
-# TRR-08 to TRR-10: exact interpolation on actual Weierstrass points
+# TRR-08 to TRR-11: exact interpolation on actual Weierstrass points
 
 This separate Lean project connects the polynomial obstruction in the root
 MathCan library to Mathlib's nonsingular affine Weierstrass points. It pins
@@ -6,22 +6,24 @@ Mathlib **v4.35.0** (commit
 `56a005855ea17e0b0958f73ec801ae140b0a1679`) and uses the root MathCan package
 through the path `../..`.
 
-## Current endpoint: TRR-10
+## Current endpoint: TRR-11
 
-`TRR08Geometry.tame_polynomialDecoder_degree_iff` proves that the exact
+`TRR08Geometry.tame_general_polynomialDecoder_degree_iff` proves that the exact
 ordinary total-degree bound in each input coordinate pair is `ceil(N/3)`.
-It applies to every smooth short model with finite odd marked order
+It applies to every smooth generalized Weierstrass model with finite odd marked order
 `N >= 19`, when `2`, `3`, and `N` are nonzero in the field, and to every
 assigned identity value `u`. Its decoder is an actual four-variable
 polynomial evaluated on the nonidentity subgroup points. Arbitrary fields,
 finite extensions and odd composite orders are included.
 
-The combined audit checks 180 principal reports. TRR-10 adds the actual
-polynomial residue moments, the assigned-value row identity, explicit
-bivariate point masses and their four-variable tensor construction. See the
-[TRR-10 overview](../../research/translation_rank_rigidity/trr10/README.md),
-[proof review](../../research/translation_rank_rigidity/trr10/proof_review.md),
-and [kernel receipt](../../research/translation_rank_rigidity/trr10/formalization_receipt.json).
+The combined audit checks 217 principal reports. TRR-11 proves the actual
+point-group equivalence with a short model and transports the polynomial
+degree and assigned identity value in both directions. See the
+[TRR-11 overview](../../research/translation_rank_rigidity/trr11/README.md),
+[proof review](../../research/translation_rank_rigidity/trr11/proof_review.md),
+and [kernel receipt](../../research/translation_rank_rigidity/trr11/formalization_receipt.json).
+The [TRR-10 construction](../../research/translation_rank_rigidity/trr10/README.md)
+provides polynomial residue moments and the matching point-mass decoder.
 The [TRR-09 finite derivation](../../research/translation_rank_rigidity/trr09/FINITE_DERIVATION.md)
 supplies the underlying residue eigenvector exclusion. The sections below
 describe the original TRR-08 layer used by these theorems.
@@ -70,8 +72,8 @@ the actual residue eigenvector. TRR-10 derives that eigenvector equation
 from the actual coordinate degree bound and supplies a polynomial at the
 matching upper bound.
 
-General Weierstrass models need a degree
-preserving change to short form. In matching characteristic, the connection
+TRR-11 supplies the degree-preserving change from generalized models to
+short form. In matching characteristic, the connection
 from a p-th-power function and its global divisor to the concrete affine point
 ideal still requires a formal proof. Small-order certificates also need their
 Lean interpolation interface.
