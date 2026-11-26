@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-03 registered experiment. Node >=18.
 import {verify} from "./audit.mjs";
 import {rng, makeRoot} from "./search.mjs";
@@ -136,4 +137,5 @@ function experiment03(){
  return {status:"PASS",scope:"synthetic recurrent scorer; no factoring result",gradientError,training:{roots:dev.length,episodes:trainingEpisodes,examples:data.length,positives,epochs:16,batchesPerEpoch:64,batchSize:32,learningRate:.08,parameters:{linear:8,recurrent:137}},validationRoots:validation.length,learning,choices,testRoots:test.length,testEpisodes,checkedCalls,rows,paired,falseAccepts:0,elapsedMs:Date.now()-start};
 }
 
-console.log(JSON.stringify(experiment03(),null,2));
+export {ok, dep, sigmoid, features, replay, init, forward, grad, gradientCheck, exactPaired};
+if(process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href) console.log(JSON.stringify(experiment03(),null,2));
