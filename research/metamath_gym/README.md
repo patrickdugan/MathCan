@@ -56,3 +56,7 @@ Keep existing LEAN-CHECKED evidence labels. Introduce MM-REPLAYED for a proof ch
 - MM-07: cross-verifier mutation and parser tests, certificate substitution attacks, and supply-chain pinning. Keep invalid proofs in the adversarial corpus with explicit rejection reasons.
 
 This PR deliberately changes no existing MathCan declarations, proof status, or cross-repository production workflow. The next phase must be registered separately.
+
+## Second external verifier and upstream baseline
+
+The additional C workflow builds [metamath-exe at 580b4bd5ae6f2a0d746398b0033cddccba1b418b](https://github.com/metamath/metamath-exe/tree/580b4bd5ae6f2a0d746398b0033cddccba1b418b), verifies the same positive and negative fixture files, and independently replays the full pinned set.mm with both C and Python. The two jobs must agree; require explicit positive completion and explicit negative errors rather than relying on the C program's exit status. Receipts include SHA-256 for the upstream database, verifier source/binary, positive fixture databases and rejected candidates. This is an upstream baseline, not a translation of the MathCan research corpus. The new workflow's result is pending at source registration.
