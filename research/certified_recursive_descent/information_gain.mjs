@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-11A: exact finite decision teacher and learned action advantage heads.
 import {rng} from "./search.mjs";
 const D=6,F=20;
@@ -334,4 +335,5 @@ function experiment11(){
  const evaluation=test(trained);
  return {status:"PASS",scope:"finite independent-branch decision model with explicit abandonment; no factoring result",gradients,teacher:data.stat,training:{validationRoots:96,epochs:16,batchesPerEpoch:64,batchSize:32,learningRate:.08,parameters:{linear:21,mlp:177,recurrent:136},...trained},evaluation,elapsedMs:Date.now()-start};
 }
-console.log(JSON.stringify(experiment11(),null,2));
+export {D,F,ok,sum,zeros,fixture,Problem,Engine,teacher,modelKinds,init,grad,predict,forwardWorld,bootstrap,experiment11};
+if(process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href) console.log(JSON.stringify(experiment11(),null,2));
