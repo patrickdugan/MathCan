@@ -2,6 +2,15 @@
 
 The module [OperationalIdentifiability.lean](../../MathCan/OperationalIdentifiability.lean) proves four elementary statements about an observation map. Lean 4.35.0 checks every declaration with an empty axiom dependency list. Its only import is `Std`.
 
+The [Pregeometry proof folder](../../MathCan/Pregeometry) extends this with exact factorization and finite operational witnesses. Its modules are collected by `MathCan.Pregeometry`; the [extension receipt](extension_validation.json) lists each additional theorem and its printed axiom dependencies.
+
+```sh
+lake build MathCan.Pregeometry
+python3 research/pregeometric_identifiability/verify_lean_extension.py
+```
+
+The extension proves unique decoding on observation classes, handles total decoding with a default, and formalizes both XOR cancellation and the four-query necessity for an independence certificate. Its quotient and classical dependencies are recorded per theorem. Adaptive execution semantics and the expected query optimum remain in the companion Python experiment.
+
 ## Mathematical claim
 
 Let `observe : World → Record` and `property : World → Property`. If two worlds have the same accessible record and different property values, every decoder from those records fails on at least one of the worlds. Formally:

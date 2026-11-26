@@ -6,11 +6,15 @@ on:
       - research/pgc01-operational-identifiability-20261126
     paths:
       - 'MathCan/OperationalIdentifiability.lean'
+      - 'MathCan/Pregeometry.lean'
+      - 'MathCan/Pregeometry/**'
       - 'research/pregeometric_identifiability/**'
       - '.github/workflows/pgc01-operational-identifiability.yml'
   pull_request:
     paths:
       - 'MathCan/OperationalIdentifiability.lean'
+      - 'MathCan/Pregeometry.lean'
+      - 'MathCan/Pregeometry/**'
       - 'research/pregeometric_identifiability/**'
       - '.github/workflows/pgc01-operational-identifiability.yml'
   workflow_dispatch:
@@ -31,8 +35,12 @@ jobs:
           test: false
           lint: false
           use-mathlib-cache: false
+      - name: Build the pregeometry entry point and its proof modules
+        run: lake build MathCan.Pregeometry
       - name: Check the four proofs and their empty axiom reports
         run: |
           set -euo pipefail
           lake env lean MathCan/OperationalIdentifiability.lean | tee /tmp/pgc01-axioms.log
           diff -u research/pregeometric_identifiability/lean_validation.log /tmp/pgc01-axioms.log
+      - name: Verify extension sources and replay every axiom report
+        run: python3 research/pregeometric_identifiability/verify_lean_extension.py

@@ -4,9 +4,9 @@
 
 ## 1. Operational influence
 
-Given declared subsystem factors A and B, a preparation rho, allowed local trace-preserving channels Phi and Psi, and a subsequent evolution T_t, define I(A -> B;t) as the supremum of half the trace norm of the difference between the two reduced B states after evolution. The supremum ranges over the admitted preparations and interventions. At t=0, disjoint factors and unconditional local trace-preserving channels imply zero influence. Later evolution can produce nonzero influence. This definition presupposes subsystem access, a dynamical parameter, and the relevant operations; none of these is derived by the definition.
+Given declared subsystem factors A and B, a preparation rho, allowed local completely positive trace-preserving channels Phi and Psi, and a subsequent completely positive trace-preserving evolution T_t with T_0 equal to the identity, define I(A -> B;t) as the supremum of half the trace norm of the difference between the two reduced B states after evolution. The supremum ranges over the admitted preparations and interventions. At t=0, disjoint factors and unconditional local trace-preserving channels imply zero influence. Later evolution can produce nonzero influence. This definition presupposes subsystem access, a dynamical parameter, and the relevant operations; none of these is derived by the definition.
 
-For an affine Boolean update x -> Mx+b over F_2, a single-coordinate flip produces the exact difference M^t e_i after t updates. The cancellation fixture F(x0,x1,x2,x3)=(0,x0,x0,x1 XOR x2) exhibits influence along each of two routes but zero net source-to-target response after two steps. An intervention on an intermediate register changes the experiment and can restore the response. Consequently, transitive closure of measured dependence cannot automatically be identified with operational influence.
+For an affine Boolean update x -> Mx+b over F_2, a single-coordinate flip produces the exact difference M^t e_i after t updates. The cancellation fixture F(x0,x1,x2,x3)=(0,x0,x0,x1 XOR x2) exhibits influence along each of two routes while its net source-to-target response after two steps is zero. An intervention on an intermediate register changes the experiment and can restore the response. Consequently, transitive closure of measured dependence cannot automatically be identified with operational influence.
 
 The exact experiment reports 4,164 affine systems, 443,916 paired response comparisons and 111,372 independent matrix-power influence checks, alongside nonlinear fixtures and permutation checks.
 
@@ -16,7 +16,7 @@ Evidence: [Compactification Theory PGC-01](https://github.com/MoralityLabAI/Comp
 
 For admissible worlds W, observation map o:W -> R and property p:W -> P, exact decoding requires p to be constant on every fiber of o. If o(w)=o(v) and p(w) differs from p(v), every deterministic decoder of the record fails on at least one of the two worlds. Deterministic postprocessing preserves this witness. Conversely, if p is constant on fibers, it defines a unique map on the image of o; extending to all R requires suitable defaults outside that image.
 
-The Lean module MathCan/OperationalIdentifiability.lean checks four related statements with empty printed axiom dependency lists. The converse on the image is a mathematical observation here, with no additional Lean verification claimed.
+The original Lean module MathCan/OperationalIdentifiability.lean checks four obstruction statements with empty printed axiom dependency lists. The extension [ObservationFactorization.lean](../../MathCan/Pregeometry/ObservationFactorization.lean) proves the converse as unique decoding on observation classes, which embed injectively into records with precisely the reachable image. That equivalence uses Quot.sound. Extending to all ambient records uses an explicit default and classical representative choice; its printed dependencies include propext, Classical.choice and Quot.sound. An Empty-world/Unit-record/Empty-property example proves why unrestricted total extension needs a further condition.
 
 The finite observer task asks whether a Boolean response f(x,z) depends on x in some context z. Twelve of the sixteen truth tables are dependent, so the uniform prior yields 75% accuracy even at zero queries. Four queries are necessary in the worst case for certainty, since any unqueried entry of an independent truth table can be flipped to yield a dependent completion. Querying the two entries for one context first detects dependence if they differ; otherwise the second context is queried. This yields three queries in expectation under the uniform prior. The experiment reports eight sufficient observer states, with external query access and transition-program costs accounted for separately. It checks 81 partial truth tables and compares against adaptive policy enumeration.
 
@@ -24,7 +24,7 @@ Evidence: [SelfModels PGC-01](https://github.com/MoralityLabAI/SelfModels/tree/a
 
 ## 3. Null-cone trace argument
 
-For a positive operator W on a Hilbert space H, if W >= m I for m>0 and Tr(W)=Z is finite, any orthonormal family of N vectors obeys Nm <= Z. Thus dim H <= floor(Z/m). The key requirement is a uniform strictly positive lower bound, or another justified argument excluding arbitrarily small weights. Finite entropy or charge matching alone supplies no such bound. For instance, a diagonal density operator with entries 2^(-n), n>=1, has unit trace and finite entropy (2 log 2 in nats) yet infinite rank.
+For a bounded positive operator W on a Hilbert space H, if W >= m I for m>0 and its ordinary Hilbert-space trace Tr(W)=Z is finite, any orthonormal family of N vectors obeys Nm <= Z. Thus dim H <= floor(Z/m). The key requirement is a uniform strictly positive lower bound, or another justified argument excluding arbitrarily small weights. Finite entropy or charge matching alone supplies no such bound. For instance, a diagonal density operator with entries 2^(-n), n>=1, has unit trace and finite entropy (2 log 2 in nats) yet infinite rank.
 
 The NCG-01 audit provides rational countermodels and Lean finite-sum lemmas for scaled natural weights. Its four Lean lemmas carry the printed dependencies propext and Quot.sound; the full operator theorem is presented in prose.
 
@@ -47,3 +47,16 @@ The observation-fiber theorem gives a precise way to audit each proposed bridge:
 ## 5. Proposed next experiment (unrun)
 
 PGC-02: compare coordinate-free records of finite event structures across candidate effective dimensions, using matched-size and matched-degree controls. Freeze the observation map and dimension estimator before evaluation. Include indistinguishable model pairs where possible, report the set of compatible dimensions and certificate coverage, and test stability as the observation horizon grows. Any geometry used in generating reference examples must be marked as supplied. Treat a four-dimensional preference as a separate hypothesis requiring a justified dynamics or ensemble, rather than as a consequence of the classifier.
+
+## 6. Lean extension and build
+
+The [Pregeometry folder](../../MathCan/Pregeometry) contains the factorization proof and [OperationalCounterexamples.lean](../../MathCan/Pregeometry/OperationalCounterexamples.lean). The latter formalizes the XOR diamond, event-response nontransitivity under explicitly resettable contexts, restoration by a middle-register clamp, and dependent completions of every incomplete record from an independent Boolean truth table. It also proves that a query list supporting an independence certificate has length at least four, allowing repetitions.
+
+Build the entry point from the repository root:
+
+```sh
+lake build MathCan.Pregeometry
+python3 research/pregeometric_identifiability/verify_lean_extension.py
+```
+
+The [extension receipt](extension_validation.json) records each theorem's exact printed axiom dependencies and source hashes. Its [axiom log](extension_axioms.log) is replayed in CI. The finite query-list lower bound is formalized; adaptive execution semantics and the expected-three-query optimum remain in the companion Python experiment and its mathematical argument. Recovering a quotient class from an arbitrary raw record also requires a separate algorithm and resource account.
