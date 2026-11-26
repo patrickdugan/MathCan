@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-07: noncommutative compositional memory. Node >=18.
 import {verify,upperRoot} from "./audit.mjs";
 import {rng,shuffle} from "./search.mjs";
@@ -281,4 +282,5 @@ function experiment07(){
  const cost={direct:{transitionProducts:36,adds:36},fourier:{transitionProducts:9,adds:4},learned:{transitionProducts:9,adds:4},hard:{groupTableLookups:1},last:{assignments:1},uniform:{},rnn:{transitionProducts:60,tanh:5,readProducts:30},window:{shiftSlots:14,readProducts:100,tanhRead:5},full:{shiftSlots:112,readProducts:236,tanhRead:2}};
  return {status:"PASS",scope:"synthetic S3 latent process and exact arithmetic certificates; no factoring theorem",audit,gradients,training:{train:8192,validation:1024,testPerRegime:2048,epochs:12,batchesPerEpoch:64,batchSize:32,lr:.08,...trained},channel,sequence,byLength,equivalence,search,cost,elapsedMs:Date.now()-begin};
 }
-console.log(JSON.stringify(experiment07(),null,2));
+export {K0,K1,sum,ft,mix,kernels,prep07,predict07,root07,terminal07,experiment07};
+if(process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href) console.log(JSON.stringify(experiment07(),null,2));
