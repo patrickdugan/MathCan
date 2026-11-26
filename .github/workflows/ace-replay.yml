@@ -415,3 +415,17 @@ jobs:
           set -euo pipefail
           node research/ace/bounded_choice_transport.mjs > /tmp/ace03y-02.json
           diff -u research/ace/bounded_choice_transport_receipt.json /tmp/ace03y-02.json
+
+  composed-internal-choice-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Replay composed conditional Choice
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=3072 research/ace/composed_internal_choice.mjs > /tmp/ace03y-03.json
+          diff -u research/ace/composed_internal_choice_receipt.json /tmp/ace03y-03.json

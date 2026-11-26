@@ -1,10 +1,11 @@
 // ACE-03Y-01: exact conditional Choice bridge; the original kernel is unchanged.
 import { readFileSync } from "node:fs";
+import { pathToFileURL } from "node:url";
 import { kernel, same, scoped, compile, expandClass, rejects } from "./zf_interface.mjs";
 import { definition } from "./constructible_definition.mjs";
 import { buildWellOrder } from "./constructible_well_order.mjs";
 
-function runInternalChoiceBridge({kernel,same,scoped,compile,expandClass,rejects,definition,buildWellOrder,pinned}) {
+function runInternalChoiceBridge({kernel,same,scoped,compile,expandClass,rejects,definition,buildWellOrder,pinned}, emitProofs=false) {
   const defs=definition("v",true);
   const require=(p,m)=>{if(!p)throw Error(m);};
   require(same(defs.L,pinned),"pinned L mismatch");
@@ -128,8 +129,10 @@ function runInternalChoiceBridge({kernel,same,scoped,compile,expandClass,rejects
   ];
   for(const f of controls)require(rejects(f),"negative control accepted");
   require(scoped(target,0,true)&&scoped(expanded,0,false),"endpoint scope");
-  return {experiment:"ACE-03Y-01",scope:"conditional exact relativized disjoint-family Choice; selector Separation, Union and internal well-orderability remain explicit premises",pinned_L_unchanged:true,source_axiom_leaves:axiomLeaves,distinct_source_axioms:specs.size,selector_schema:sepSpec,checks:{prior_ambient_choice:originalCheck.visits,axiom_abstracted_choice:lemma.visits,source_bridge:source.visits,relativized_bridge:compiled.target.visits,exact_choice_cut:checkedCut.visits,expanded_choice_conversion:converted.visits},negative_controls:controls.length,source_theory:"CL",target_theory:"CL",external_context_count_for_conditional:compiled.targetCtx.length,choice_imports:0};
+  const receipt={experiment:"ACE-03Y-01",scope:"conditional exact relativized disjoint-family Choice; selector Separation, Union and internal well-orderability remain explicit premises",pinned_L_unchanged:true,source_axiom_leaves:axiomLeaves,distinct_source_axioms:specs.size,selector_schema:sepSpec,checks:{prior_ambient_choice:originalCheck.visits,axiom_abstracted_choice:lemma.visits,source_bridge:source.visits,relativized_bridge:compiled.target.visits,exact_choice_cut:checkedCut.visits,expanded_choice_conversion:converted.visits},negative_controls:controls.length,source_theory:"CL",target_theory:"CL",external_context_count_for_conditional:compiled.targetCtx.length,choice_imports:0};  return emitProofs ? {receipt, bridge:{goal:target,proof:compiled.proof}} : receipt;
 }
 
+export { runInternalChoiceBridge };
+
 const pinned=JSON.parse(readFileSync(new URL("./L_formula.json",import.meta.url),"utf8"));
-console.log(JSON.stringify(runInternalChoiceBridge({kernel,same,scoped,compile,expandClass,rejects,definition,buildWellOrder,pinned}),null,2));
+if(process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href) console.log(JSON.stringify(runInternalChoiceBridge({kernel,same,scoped,compile,expandClass,rejects,definition,buildWellOrder,pinned}),null,2));

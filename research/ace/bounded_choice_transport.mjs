@@ -1,9 +1,10 @@
 // ACE-03Y-02: bounded selector and transitive-class order transport.
 import { readFileSync } from "node:fs";
+import { pathToFileURL } from "node:url";
 import { kernel, same, scoped, compile, expandClass, rejects } from "./zf_interface.mjs";
 import { definition } from "./constructible_definition.mjs";
 import { buildWellOrder } from "./constructible_well_order.mjs";
-function runBoundedChoice({kernel,same,scoped,compile,expandClass,rejects,definition,buildWellOrder,pinned,prior}) {
+function runBoundedChoice({kernel,same,scoped,compile,expandClass,rejects,definition,buildWellOrder,pinned,prior}, emitProofs=false) {
   const defs=definition("v",true),w=buildWellOrder(defs);
   const req=(p,m)=>{if(!p)throw Error(m);};
   req(same(defs.L,pinned),"pinned L mismatch");
@@ -206,7 +207,9 @@ function runBoundedChoice({kernel,same,scoped,compile,expandClass,rejects,defini
     ()=>kernel(0,[sepLink.goal],["conv",expandClass(sepLink.goal,defs.L),["h",0]],true,"logic",["=",0,0])
   ];
   for(const f of controls)req(rejects(f),"negative control accepted");
-  return {experiment:"ACE-03Y-02",scope:"bounded selector equivalence and transitive-class ambient-to-internal well-order transport; conditional closure only",pinned_L_unchanged:true,raw_selector_schema:rawSpec,bounded_selector_schema:boundedSpec,checks,negative_controls:controls.length,choice_imports:0,proof_theory:"logic"};
+  const receipt={experiment:"ACE-03Y-02",scope:"bounded selector equivalence and transitive-class ambient-to-internal well-order transport; conditional closure only",pinned_L_unchanged:true,raw_selector_schema:rawSpec,bounded_selector_schema:boundedSpec,checks,negative_controls:controls.length,choice_imports:0,proof_theory:"logic"};  return emitProofs ? {receipt, sepLink, allProof} : receipt;
 }
+
+export { runBoundedChoice };
 const read=n=>JSON.parse(readFileSync(new URL(n,import.meta.url),"utf8"));
-console.log(JSON.stringify(runBoundedChoice({kernel,same,scoped,compile,expandClass,rejects,definition,buildWellOrder,pinned:read("./L_formula.json"),prior:read("./internal_choice_bridge_receipt.json")}),null,2));
+if(process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href) console.log(JSON.stringify(runBoundedChoice({kernel,same,scoped,compile,expandClass,rejects,definition,buildWellOrder,pinned:read("./L_formula.json"),prior:read("./internal_choice_bridge_receipt.json")}),null,2));
