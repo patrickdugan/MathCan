@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import re
 import sys
+import textwrap
 
 PIN = "806509385370b29fe8b1723804777ac21b1ce194"
 BLOB = "141813b90eb65b4c3c0d68dc02bd18ff9e2dc953"
@@ -140,6 +141,29 @@ def source_prefix(source, names, replacements):
     out.append(source[pos:stop])
     out.append("\n" + "$}\n"*depth)
     return "".join(out)
+
+def strip_comments(source):
+    """Discard comment tokens, including C's inline include marker metadata.
+
+    Re-emit precisely the remaining whitespace-delimited mathematical tokens.
+    This avoids unbalanced Begin/End pseudo-includes when a prefix ends inside
+    an originally inlined file. Actual include directives remain prohibited.
+    """
+    tokens, comment = [], False
+    for tok in source.split():
+        if comment:
+            if tok == "$)":
+                comment = False
+            elif tok == "$(":
+                raise ValueError("nested comment")
+        elif tok == "$(":
+            comment = True
+        else:
+            require(tok not in ("$)", "$[", "$]"), "unexpected comment or include delimiter")
+            tokens.append(tok)
+    require(not comment, "unterminated comment")
+    return textwrap.fill(" ".join(tokens), width=100, break_long_words=False,
+                         break_on_hyphens=False) + "\n"
 
 def load_verifier(path):
     spec = importlib.util.spec_from_file_location("pinned_mmverify", path)
@@ -287,8 +311,8 @@ def main():
     a.out.mkdir(parents=True, exist_ok=True)
     for name, rows in (("inputs", c.inputs), ("oracle", c.oracle), ("proofs", c.proofs)):
         (a.out/(name+".jsonl")).write_bytes(b"".join(canonical(row)+b"\n" for row in rows))
-    (a.out/"expanded-prefix.mm").write_text(source_prefix(raw.decode("ascii"), c.names,
-                                                        c.replacements), encoding="ascii")
+    (a.out/"expanded-prefix.mm").write_text(strip_comments(source_prefix(raw.decode("ascii"), c.names,
+                                                        c.replacements)), encoding="ascii")
     splits = {s: sum(x["split"] == s for x in c.inputs)
               for s in ("train", "dev", "public_challenge")}
     require(all(splits.values()), "empty split")

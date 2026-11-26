@@ -1,6 +1,6 @@
 import unittest
 from c_differential import classify
-from setmm_corpus import decode, source_prefix
+from setmm_corpus import decode, source_prefix, strip_comments
 
 class Controls(unittest.TestCase):
     def test_reuse(self):
@@ -26,6 +26,14 @@ class Controls(unittest.TestCase):
         source = "$c wff $. "+start+" $( $p fake $) x $p wff $= ( a ) A $. y $p wff $= a $. $}"
         self.assertEqual(source_prefix(source, ["x"], {"x": ["a"]}),
                          "$c wff $. "+start+" $( $p fake $) x $p wff $= a $.\n$}\n")
+
+    def test_inline_include_comment(self):
+        src = "$c wff $. $( Begin $[ set-pred.mm $] $) x $p wff $= a $."
+        self.assertEqual(strip_comments(src).split(), "$c wff $. x $p wff $= a $.".split())
+        with self.assertRaises(ValueError):
+            strip_comments("$[ other.mm $]")
+        with self.assertRaises(ValueError):
+            strip_comments("$( unfinished")
 
     def test_c_logs(self):
         ok = "All proofs in the database were verified"
