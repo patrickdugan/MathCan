@@ -1,0 +1,159 @@
+{
+  "counts": {
+    "exception_curve_isomorphism_classes": 0,
+    "field_arithmetic_checks": 512,
+    "field_isomorphism_classes": 0,
+    "generator_invariance_checks": 0,
+    "order5_controls_outside_prime_field": 0,
+    "order5_positive_controls": 2
+  },
+  "errors": [],
+  "fields": [
+    {
+      "by_stratum": {},
+      "by_subgroup_order": {},
+      "complete": false,
+      "counts": {
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 0,
+        "generator_invariance_checks": 0,
+        "order5_controls_outside_prime_field": 0,
+        "order5_positive_controls": 2
+      },
+      "elapsed_seconds": 0.001379,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 1,
+        "modulus_low_first": [
+          0,
+          1
+        ],
+        "p": 101,
+        "primitive_element": null,
+        "q": 101,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {},
+      "order5_controls": [
+        {
+          "a": 48,
+          "annihilator": [
+            0,
+            80,
+            43,
+            58,
+            21
+          ],
+          "assigned_value": 23,
+          "b": 55,
+          "curve_order": 120,
+          "direct_matrix_verified": true,
+          "discriminant": 29,
+          "parameter": 23,
+          "parameter_outside_prime_field": false,
+          "point": [
+            100,
+            39
+          ],
+          "ratios": [
+            23,
+            23,
+            23,
+            23
+          ],
+          "subgroup": [
+            null,
+            [
+              100,
+              39
+            ],
+            [
+              22,
+              12
+            ],
+            [
+              22,
+              89
+            ],
+            [
+              100,
+              62
+            ]
+          ]
+        },
+        {
+          "a": 59,
+          "annihilator": [
+            0,
+            24,
+            54,
+            47,
+            77
+          ],
+          "assigned_value": 22,
+          "b": 89,
+          "curve_order": 120,
+          "direct_matrix_verified": true,
+          "discriminant": 94,
+          "parameter": 79,
+          "parameter_outside_prime_field": false,
+          "point": [
+            43,
+            11
+          ],
+          "ratios": [
+            22,
+            22,
+            22,
+            22
+          ],
+          "subgroup": [
+            null,
+            [
+              43,
+              11
+            ],
+            [
+              21,
+              40
+            ],
+            [
+              21,
+              61
+            ],
+            [
+              43,
+              90
+            ]
+          ]
+        }
+      ],
+      "sampling": {
+        "coefficient_pairs_requested": 10201,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "all_short_models",
+        "seed": 20261125
+      },
+      "stratum_examples": {},
+      "timeouts": [
+        {
+          "limit_seconds": 0.001,
+          "next_a": 0,
+          "next_b": 0,
+          "stage": "between_models"
+        }
+      ]
+    }
+  ],
+  "python": "3.12.14",
+  "schema": "trr07-finite-sweep-v1",
+  "scope": "exact finite calculations; sampled fields do not establish an algebraic-closure exclusion",
+  "source_sha256": {
+    "finite_fields.py": "79bc89d225604b978a22c16abfbb1508c2b30dcb0b9c8396547b98ce0fa6a635",
+    "finite_sweep.py": "39b0cefcbaa49ea1a1485c7af01aa5d9946e819bc80a164cbaf3e499f28e121c"
+  }
+}

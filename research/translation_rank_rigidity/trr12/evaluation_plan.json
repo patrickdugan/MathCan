@@ -1,0 +1,79 @@
+{
+  "schema": "trr12-ecdsa-risk-evaluation-plan-v1",
+  "date": "2026-11-26",
+  "strategy": "V: representation-to-computation transfer audit",
+  "executed_curve_scope": "Synthetic small prime fields only; large public parameters are used only to build and count a symbolic gate list.",
+  "experiments": [
+    {
+      "id": "V-R1",
+      "name": "Forward decoder circuit scope control",
+      "status": "executed_passed",
+      "entrypoint": "circuit_scope_control.py",
+      "receipt": "circuit_scope_receipt.json",
+      "independent_review": "independent_review.json",
+      "fields": [17, 19, 23, 29, 31, 37],
+      "success": "Complete S x S table agrees with independent rational addition for every assigned u; corrupted selector fails; recorded circuit contains only charged field gates.",
+      "interpretation": "High minimum ordinary polynomial degree is compatible with O(log q) arithmetic evaluation cost."
+    },
+    {
+      "id": "V-R2",
+      "name": "Cost-preserving transfer statement",
+      "status": "awaiting_specified_recovery_candidate",
+      "required": [
+        "Exact algorithm class and public feature interface",
+        "Conversion from successful recovery to the constrained representation",
+        "Explicit representation bounds in charged cost",
+        "Preprocessing, sharing, auxiliary variables, extensions, rational functions and error model accounted for",
+        "V-R1 circuit remains inexpensive under the proposed cost model"
+      ]
+    },
+    {
+      "id": "V-R3",
+      "name": "Blind toy scalar-recovery comparison",
+      "status": "planned_requires_candidate_and_preregistered_seeds",
+      "proposed_smoke_subgroup_bits": [16, 20],
+      "proposed_later_pilot_subgroup_bits": [24, 28],
+      "curves_per_size": 2,
+      "uniform_targets_per_curve": 8,
+      "algorithm_seeds_per_target": 2,
+      "candidate_access": ["field model", "curve coefficients", "subgroup order", "generator", "public target point", "declared public preprocessing"],
+      "verifier_only": ["uniform scalar", "reference multiplication table", "hidden generation state"],
+      "required_baseline": "Competent rho on the same arithmetic backend with applicable automorphism controls; baseline source and configuration frozen before evaluation.",
+      "proposed_per_job_wall_seconds": 600,
+      "proposed_per_job_memory_bytes": 2147483648,
+      "status_on_budget_exhaustion": "timeout_or_resource_limit_retained",
+      "success": "Independent verification of recovered d by [d]G=Q, with full population and all costs retained."
+    },
+    {
+      "id": "RISK-SIGNER",
+      "name": "Controlled signer assurance",
+      "status": "planned_requires_implementation_and_hardware_selection",
+      "measurements": ["known-answer vectors", "cross-implementation behavior", "nonce and restart behavior", "timing sensitivity", "fault output handling", "domain separation"],
+      "interpretation": "Applies to the pinned implementation and declared leakage or fault model."
+    },
+    {
+      "id": "RISK-QUANTUM",
+      "name": "Quantum resources and exposure ledger",
+      "status": "primary_sources_reviewed_hardware_and_exposure_experiments_unrun",
+      "required": ["logical circuit resources", "sequential depth", "physical error model", "connectivity", "code distance", "magic-state throughput", "control reaction time", "success probability and restarts", "preprocessing and prepared-state lifetime", "public-key exposure and remaining authorization window"],
+      "interpretation": "Architecture-conditioned resource estimates; no inferred machine-arrival date."
+    },
+    {
+      "id": "RISK-MIGRATION",
+      "name": "Synthetic authorization and migration fixtures",
+      "status": "planned_requires_protocol_and_signature_selection",
+      "measurements": ["public-key disclosure", "all consensus spending paths", "NUMS/key-path control", "serialized transaction sizes", "verification cost", "malformed input rejection", "hybrid AND/OR policy", "recovery and key rotation"],
+      "interpretation": "Protocol assumptions and implementation costs; proposal status is separate from consensus activation."
+    }
+  ],
+  "required_recovery_record_fields": [
+    "source_revision", "protocol_version", "development_or_evaluation_split", "field", "curve", "subgroup_order", "cofactor", "automorphisms", "public_generator", "public_target", "candidate_seed", "precomputation_scope", "amortization_target_count", "setup_work", "relation_work", "linear_algebra_work", "individual_target_work", "verification_work", "group_operations", "field_operations", "cpu_seconds", "accelerator_seconds", "peak_rss_bytes", "storage_bytes", "communication_bytes", "success", "independent_verification", "timeout", "failure_reason"
+  ],
+  "promotion_gates": ["functional", "full_cost_comparative", "held_out_predictive", "structural_argument", "deployment_resource_assessment"],
+  "outstanding_proof_obligations": [
+    "Universal TRR-12 circuit identity and cost bound in Lean",
+    "Candidate-specific resource-preserving reduction for a security claim",
+    "Inherited TRR-11 characteristic-dividing-order lower bound",
+    "Inherited small-order certificate interfaces in Lean"
+  ]
+}

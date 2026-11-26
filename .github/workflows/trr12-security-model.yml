@@ -1,0 +1,63 @@
+name: TRR-12 decoder circuit and security model
+
+on:
+  pull_request:
+    paths:
+      - 'research/translation_rank_rigidity/trr12/**'
+      - '.github/workflows/trr12-security-model.yml'
+  push:
+    branches:
+      - 'research/trr01-translation-rank-rigidity'
+    paths:
+      - 'research/translation_rank_rigidity/trr12/**'
+      - '.github/workflows/trr12-security-model.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-circuit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Reproduce every circuit evaluation and mutation
+        run: |
+          mkdir -p results/trr12
+          python research/translation_rank_rigidity/trr12/circuit_scope_control.py --output results/trr12/circuit_scope_receipt.json
+          cmp research/translation_rank_rigidity/trr12/circuit_scope_receipt.json results/trr12/circuit_scope_receipt.json
+      - name: Check source binding and assertion guard
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          import subprocess
+          import sys
+          from pathlib import Path
+          root = Path('research/translation_rank_rigidity/trr12')
+          source = root / 'circuit_scope_control.py'
+          receipt = json.loads((root / 'circuit_scope_receipt.json').read_text())
+          review = json.loads((root / 'independent_review.json').read_text())
+          assert receipt['source_sha256'] == hashlib.sha256(source.read_bytes()).hexdigest()
+          assert review['status'] == 'passed' and review['source_sha256'] == receipt['source_sha256']
+          assert review['receipt_sha256'] == hashlib.sha256((root / 'circuit_scope_receipt.json').read_bytes()).hexdigest()
+          assert review['validated_totals'] == receipt['totals']
+          target = Path('results/trr12/optimized-must-not-exist.json')
+          run = subprocess.run([sys.executable, '-O', str(source), '--output', str(target)], capture_output=True, text=True)
+          assert run.returncode != 0 and not target.exists()
+          assert 'Run without -O' in run.stdout + run.stderr
+          plan = json.loads((root / 'evaluation_plan.json').read_text())
+          assert [e['id'] for e in plan['experiments'] if e['status'] == 'executed_passed'] == ['V-R1']
+          Path('results/trr12/guard_receipt.json').write_text(json.dumps({'status': 'passed', 'assertion_guard': True, 'source_binding': True, 'executed_plan_ids': ['V-R1']}, indent=2) + '\n')
+          print('Source binding, optimization rejection and experiment-status controls passed.')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trr12-security-model
+          path: results/trr12/
+          retention-days: 30

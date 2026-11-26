@@ -1,0 +1,1755 @@
+{
+  "counts": {
+    "coefficient_pairs_visited": 3026,
+    "curve_generic_j": 2808,
+    "curve_j0": 72,
+    "curve_j1728": 72,
+    "curve_ordinary": 2880,
+    "curve_supersingular": 72,
+    "direct_matrix_checks": 1718,
+    "exception_curve_isomorphism_classes": 1,
+    "exceptions": 24,
+    "field_arithmetic_checks": 1024,
+    "field_isomorphism_classes": 160,
+    "generator_invariance_checks": 2552,
+    "order5_controls_outside_prime_field": 2,
+    "order5_positive_controls": 2,
+    "singular_models_skipped": 74,
+    "smooth_models": 2952,
+    "subgroup_instances": 2552,
+    "subgroups_full_prime_group": 372,
+    "subgroups_generic_j": 2460,
+    "subgroups_j0": 56,
+    "subgroups_j1728": 36,
+    "subgroups_matching_characteristic": 506,
+    "subgroups_ordinary": 2512,
+    "subgroups_proper_subgroup": 2180,
+    "subgroups_supersingular": 40,
+    "subgroups_tame_nontransitive": 1282,
+    "subgroups_tame_transitive": 764
+  },
+  "errors": [],
+  "fields": [
+    {
+      "by_stratum": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": 132,
+        "matching_characteristic|j1728|ordinary|proper_subgroup": 6,
+        "tame_nontransitive|generic_j|ordinary|full_prime_group": 36,
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 24,
+        "tame_nontransitive|j0|supersingular|full_prime_group": 8,
+        "tame_nontransitive|j1728|ordinary|proper_subgroup": 6,
+        "tame_transitive|generic_j|ordinary|full_prime_group": 48,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 156,
+        "tame_transitive|j0|supersingular|proper_subgroup": 8
+      },
+      "by_subgroup_order": {
+        "11": 72,
+        "17": 42,
+        "19": 24,
+        "23": 24,
+        "29": 24,
+        "31": 8,
+        "5": 138,
+        "7": 92
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 625,
+        "curve_generic_j": 552,
+        "curve_j0": 24,
+        "curve_j1728": 24,
+        "curve_ordinary": 576,
+        "curve_supersingular": 24,
+        "direct_matrix_checks": 302,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 56,
+        "generator_invariance_checks": 424,
+        "order5_controls_outside_prime_field": 0,
+        "order5_positive_controls": 0,
+        "singular_models_skipped": 25,
+        "smooth_models": 600,
+        "subgroup_instances": 424,
+        "subgroups_full_prime_group": 92,
+        "subgroups_generic_j": 396,
+        "subgroups_j0": 16,
+        "subgroups_j1728": 12,
+        "subgroups_matching_characteristic": 138,
+        "subgroups_ordinary": 408,
+        "subgroups_proper_subgroup": 332,
+        "subgroups_supersingular": 16,
+        "subgroups_tame_nontransitive": 74,
+        "subgroups_tame_transitive": 212
+      },
+      "elapsed_seconds": 0.207858,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 2,
+        "modulus_low_first": [
+          2,
+          0,
+          1
+        ],
+        "p": 5,
+        "primitive_element": 6,
+        "q": 25,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {},
+      "order5_controls": [],
+      "sampling": {
+        "coefficient_pairs_requested": 625,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": "all",
+        "mode": "all_short_models",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": {
+          "a": 2,
+          "b": 1,
+          "generator": [
+            2,
+            5
+          ],
+          "n": 5,
+          "order": 35
+        },
+        "matching_characteristic|j1728|ordinary|proper_subgroup": {
+          "a": 2,
+          "b": 0,
+          "generator": [
+            2,
+            10
+          ],
+          "n": 5,
+          "order": 20
+        },
+        "tame_nontransitive|generic_j|ordinary|full_prime_group": {
+          "a": 1,
+          "b": 10,
+          "generator": [
+            11,
+            11
+          ],
+          "n": 17,
+          "order": 17
+        },
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 6,
+          "b": 8,
+          "generator": [
+            0,
+            14
+          ],
+          "n": 17,
+          "order": 34
+        },
+        "tame_nontransitive|j0|supersingular|full_prime_group": {
+          "a": 0,
+          "b": 6,
+          "generator": [
+            1,
+            8
+          ],
+          "n": 31,
+          "order": 31
+        },
+        "tame_nontransitive|j1728|ordinary|proper_subgroup": {
+          "a": 6,
+          "b": 0,
+          "generator": [
+            1,
+            8
+          ],
+          "n": 17,
+          "order": 34
+        },
+        "tame_transitive|generic_j|ordinary|full_prime_group": {
+          "a": 5,
+          "b": 7,
+          "generator": [
+            0,
+            8
+          ],
+          "n": 23,
+          "order": 23
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 1,
+          "b": 7,
+          "generator": [
+            0,
+            8
+          ],
+          "n": 11,
+          "order": 22
+        },
+        "tame_transitive|j0|supersingular|proper_subgroup": {
+          "a": 0,
+          "b": 7,
+          "generator": [
+            5,
+            7
+          ],
+          "n": 7,
+          "order": 21
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": 360,
+        "matching_characteristic|j0|ordinary|proper_subgroup": 8,
+        "tame_nontransitive|generic_j|ordinary|full_prime_group": 168,
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 984,
+        "tame_nontransitive|j0|ordinary|full_prime_group": 16,
+        "tame_nontransitive|j0|ordinary|proper_subgroup": 16,
+        "tame_nontransitive|j1728|supersingular|proper_subgroup": 24,
+        "tame_transitive|generic_j|ordinary|full_prime_group": 96,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 456
+      },
+      "by_subgroup_order": {
+        "11": 264,
+        "13": 232,
+        "17": 96,
+        "19": 48,
+        "23": 144,
+        "29": 96,
+        "31": 48,
+        "37": 32,
+        "41": 48,
+        "47": 48,
+        "5": 552,
+        "53": 48,
+        "59": 48,
+        "61": 56,
+        "7": 368
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 2401,
+        "curve_generic_j": 2256,
+        "curve_j0": 48,
+        "curve_j1728": 48,
+        "curve_ordinary": 2304,
+        "curve_supersingular": 48,
+        "direct_matrix_checks": 1416,
+        "exception_curve_isomorphism_classes": 1,
+        "exceptions": 24,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 104,
+        "generator_invariance_checks": 2128,
+        "order5_controls_outside_prime_field": 2,
+        "order5_positive_controls": 2,
+        "singular_models_skipped": 49,
+        "smooth_models": 2352,
+        "subgroup_instances": 2128,
+        "subgroups_full_prime_group": 280,
+        "subgroups_generic_j": 2064,
+        "subgroups_j0": 40,
+        "subgroups_j1728": 24,
+        "subgroups_matching_characteristic": 368,
+        "subgroups_ordinary": 2104,
+        "subgroups_proper_subgroup": 1848,
+        "subgroups_supersingular": 24,
+        "subgroups_tame_nontransitive": 1208,
+        "subgroups_tame_transitive": 552
+      },
+      "elapsed_seconds": 1.523913,
+      "exceptions": [
+        {
+          "a": 8,
+          "annihilator": [
+            0,
+            34,
+            24,
+            32,
+            22
+          ],
+          "b": 9,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 43,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            4,
+            13
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              4,
+              13
+            ],
+            [
+              48,
+              41
+            ],
+            [
+              48,
+              15
+            ],
+            [
+              4,
+              43
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 8,
+          "annihilator": [
+            0,
+            11,
+            31,
+            25,
+            45
+          ],
+          "b": 47,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 43,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            3,
+            8
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              3,
+              8
+            ],
+            [
+              8,
+              12
+            ],
+            [
+              8,
+              44
+            ],
+            [
+              3,
+              48
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 13,
+          "annihilator": [
+            0,
+            5,
+            22,
+            34,
+            2
+          ],
+          "b": 15,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 48,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            8,
+            15
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              8,
+              15
+            ],
+            [
+              21,
+              28
+            ],
+            [
+              21,
+              21
+            ],
+            [
+              8,
+              41
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 13,
+          "annihilator": [
+            0,
+            11,
+            14,
+            35,
+            45
+          ],
+          "b": 41,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 48,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            28,
+            3
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              28,
+              3
+            ],
+            [
+              48,
+              44
+            ],
+            [
+              48,
+              12
+            ],
+            [
+              28,
+              4
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 16,
+          "annihilator": [
+            0,
+            12,
+            48,
+            8,
+            44
+          ],
+          "b": 9,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 43,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            2,
+            13
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              2,
+              13
+            ],
+            [
+              24,
+              41
+            ],
+            [
+              24,
+              15
+            ],
+            [
+              2,
+              43
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 16,
+          "annihilator": [
+            0,
+            15,
+            13,
+            43,
+            41
+          ],
+          "b": 47,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 43,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            5,
+            8
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              5,
+              8
+            ],
+            [
+              32,
+              12
+            ],
+            [
+              32,
+              44
+            ],
+            [
+              5,
+              48
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 19,
+          "annihilator": [
+            0,
+            3,
+            44,
+            12,
+            4
+          ],
+          "b": 15,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 48,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            32,
+            15
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              32,
+              15
+            ],
+            [
+              35,
+              28
+            ],
+            [
+              35,
+              21
+            ],
+            [
+              32,
+              41
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 19,
+          "annihilator": [
+            0,
+            15,
+            28,
+            21,
+            41
+          ],
+          "b": 41,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 48,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            14,
+            3
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              14,
+              3
+            ],
+            [
+              24,
+              44
+            ],
+            [
+              24,
+              12
+            ],
+            [
+              14,
+              4
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 24,
+          "annihilator": [
+            0,
+            42,
+            33,
+            23,
+            7
+          ],
+          "b": 20,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 13,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            19,
+            9
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              19,
+              9
+            ],
+            [
+              42,
+              4
+            ],
+            [
+              42,
+              3
+            ],
+            [
+              19,
+              47
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 24,
+          "annihilator": [
+            0,
+            18,
+            1,
+            6,
+            38
+          ],
+          "b": 36,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 13,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            7,
+            21
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              7,
+              21
+            ],
+            [
+              37,
+              20
+            ],
+            [
+              37,
+              36
+            ],
+            [
+              7,
+              28
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 25,
+          "annihilator": [
+            0,
+            33,
+            16,
+            40,
+            23
+          ],
+          "b": 12,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 8,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            6,
+            13
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              6,
+              13
+            ],
+            [
+              37,
+              9
+            ],
+            [
+              37,
+              47
+            ],
+            [
+              6,
+              43
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 25,
+          "annihilator": [
+            0,
+            18,
+            37,
+            19,
+            38
+          ],
+          "b": 44,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 8,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            1,
+            8
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              1,
+              8
+            ],
+            [
+              19,
+              36
+            ],
+            [
+              19,
+              20
+            ],
+            [
+              1,
+              48
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 31,
+          "annihilator": [
+            0,
+            6,
+            39,
+            17,
+            1
+          ],
+          "b": 15,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 48,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            16,
+            15
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              16,
+              15
+            ],
+            [
+              42,
+              28
+            ],
+            [
+              42,
+              21
+            ],
+            [
+              16,
+              41
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 31,
+          "annihilator": [
+            0,
+            30,
+            7,
+            42,
+            26
+          ],
+          "b": 41,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 48,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            7,
+            3
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              7,
+              3
+            ],
+            [
+              40,
+              44
+            ],
+            [
+              40,
+              12
+            ],
+            [
+              7,
+              4
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 32,
+          "annihilator": [
+            0,
+            17,
+            40,
+            16,
+            39
+          ],
+          "b": 9,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 43,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            1,
+            13
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              1,
+              13
+            ],
+            [
+              40,
+              41
+            ],
+            [
+              40,
+              15
+            ],
+            [
+              1,
+              43
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 32,
+          "annihilator": [
+            0,
+            30,
+            19,
+            37,
+            26
+          ],
+          "b": 47,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 43,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            6,
+            8
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              6,
+              8
+            ],
+            [
+              16,
+              12
+            ],
+            [
+              16,
+              44
+            ],
+            [
+              6,
+              48
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 37,
+          "annihilator": [
+            0,
+            20,
+            8,
+            48,
+            36
+          ],
+          "b": 12,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 8,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            5,
+            13
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              5,
+              13
+            ],
+            [
+              25,
+              9
+            ],
+            [
+              25,
+              47
+            ],
+            [
+              5,
+              43
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 37,
+          "annihilator": [
+            0,
+            9,
+            43,
+            13,
+            47
+          ],
+          "b": 44,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 8,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            2,
+            8
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              2,
+              8
+            ],
+            [
+              31,
+              36
+            ],
+            [
+              31,
+              20
+            ],
+            [
+              2,
+              48
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 40,
+          "annihilator": [
+            0,
+            21,
+            20,
+            36,
+            28
+          ],
+          "b": 20,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 13,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            31,
+            9
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              31,
+              9
+            ],
+            [
+              35,
+              4
+            ],
+            [
+              35,
+              3
+            ],
+            [
+              31,
+              47
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 40,
+          "annihilator": [
+            0,
+            9,
+            4,
+            3,
+            47
+          ],
+          "b": 36,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 13,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            14,
+            21
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              14,
+              21
+            ],
+            [
+              25,
+              20
+            ],
+            [
+              25,
+              36
+            ],
+            [
+              14,
+              28
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 43,
+          "annihilator": [
+            0,
+            10,
+            32,
+            24,
+            46
+          ],
+          "b": 12,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 8,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            3,
+            13
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              3,
+              13
+            ],
+            [
+              43,
+              9
+            ],
+            [
+              43,
+              47
+            ],
+            [
+              3,
+              43
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 43,
+          "annihilator": [
+            0,
+            29,
+            25,
+            31,
+            27
+          ],
+          "b": 44,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 8,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            4,
+            8
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              4,
+              8
+            ],
+            [
+              13,
+              36
+            ],
+            [
+              13,
+              20
+            ],
+            [
+              4,
+              48
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 48,
+          "annihilator": [
+            0,
+            35,
+            10,
+            46,
+            14
+          ],
+          "b": 20,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 13,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            13,
+            9
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              13,
+              9
+            ],
+            [
+              21,
+              4
+            ],
+            [
+              21,
+              3
+            ],
+            [
+              13,
+              47
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        },
+        {
+          "a": 48,
+          "annihilator": [
+            0,
+            29,
+            2,
+            5,
+            27
+          ],
+          "b": 36,
+          "curve_order": 40,
+          "degree": 2,
+          "direct_matrix_verified": true,
+          "discriminant": 13,
+          "first_ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "generator": [
+            28,
+            21
+          ],
+          "j": 5,
+          "lower_degree_exists": true,
+          "p": 7,
+          "pole_value": 0,
+          "q": 49,
+          "signed_frobenius_orbit_size": 2,
+          "stratum": "tame_nontransitive|generic_j|ordinary|proper_subgroup",
+          "subgroup": [
+            null,
+            [
+              28,
+              21
+            ],
+            [
+              43,
+              20
+            ],
+            [
+              43,
+              36
+            ],
+            [
+              28,
+              28
+            ]
+          ],
+          "subgroup_order": 5,
+          "trace": 10
+        }
+      ],
+      "failures": [],
+      "field": {
+        "degree": 2,
+        "modulus_low_first": [
+          1,
+          0,
+          1
+        ],
+        "p": 7,
+        "primitive_element": 9,
+        "q": 49,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {},
+      "order5_controls": [
+        {
+          "a": 25,
+          "annihilator": [
+            0,
+            40,
+            33,
+            23,
+            16
+          ],
+          "assigned_value": 0,
+          "b": 12,
+          "curve_order": 40,
+          "direct_matrix_verified": true,
+          "discriminant": 8,
+          "parameter": 18,
+          "parameter_outside_prime_field": true,
+          "point": [
+            37,
+            47
+          ],
+          "ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "subgroup": [
+            null,
+            [
+              37,
+              47
+            ],
+            [
+              6,
+              13
+            ],
+            [
+              6,
+              43
+            ],
+            [
+              37,
+              9
+            ]
+          ]
+        },
+        {
+          "a": 32,
+          "annihilator": [
+            0,
+            19,
+            26,
+            30,
+            37
+          ],
+          "assigned_value": 0,
+          "b": 47,
+          "curve_order": 40,
+          "direct_matrix_verified": true,
+          "discriminant": 43,
+          "parameter": 39,
+          "parameter_outside_prime_field": true,
+          "point": [
+            16,
+            12
+          ],
+          "ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "subgroup": [
+            null,
+            [
+              16,
+              12
+            ],
+            [
+              6,
+              48
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              16,
+              44
+            ]
+          ]
+        }
+      ],
+      "sampling": {
+        "coefficient_pairs_requested": 2401,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": "all",
+        "mode": "all_short_models",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": {
+          "a": 1,
+          "b": 14,
+          "generator": [
+            14,
+            25
+          ],
+          "n": 7,
+          "order": 63
+        },
+        "matching_characteristic|j0|ordinary|proper_subgroup": {
+          "a": 0,
+          "b": 2,
+          "generator": [
+            1,
+            14
+          ],
+          "n": 7,
+          "order": 63
+        },
+        "tame_nontransitive|generic_j|ordinary|full_prime_group": {
+          "a": 8,
+          "b": 8,
+          "generator": [
+            0,
+            11
+          ],
+          "n": 53,
+          "order": 53
+        },
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 1,
+          "b": 1,
+          "generator": [
+            0,
+            1
+          ],
+          "n": 5,
+          "order": 55
+        },
+        "tame_nontransitive|j0|ordinary|full_prime_group": {
+          "a": 0,
+          "b": 9,
+          "generator": [
+            3,
+            11
+          ],
+          "n": 61,
+          "order": 61
+        },
+        "tame_nontransitive|j0|ordinary|proper_subgroup": {
+          "a": 0,
+          "b": 3,
+          "generator": [
+            1,
+            2
+          ],
+          "n": 13,
+          "order": 39
+        },
+        "tame_nontransitive|j1728|supersingular|proper_subgroup": {
+          "a": 9,
+          "b": 0,
+          "generator": [
+            19,
+            9
+          ],
+          "n": 5,
+          "order": 50
+        },
+        "tame_transitive|generic_j|ordinary|full_prime_group": {
+          "a": 1,
+          "b": 15,
+          "generator": [
+            5,
+            18
+          ],
+          "n": 47,
+          "order": 47
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 1,
+          "b": 1,
+          "generator": [
+            1,
+            14
+          ],
+          "n": 11,
+          "order": 55
+        }
+      },
+      "timeouts": []
+    }
+  ],
+  "python": "3.12.14",
+  "schema": "trr07-finite-sweep-v1",
+  "scope": "exact finite calculations; sampled fields do not establish an algebraic-closure exclusion",
+  "source_sha256": {
+    "finite_fields.py": "79bc89d225604b978a22c16abfbb1508c2b30dcb0b9c8396547b98ce0fa6a635",
+    "finite_sweep.py": "39b0cefcbaa49ea1a1485c7af01aa5d9946e819bc80a164cbaf3e499f28e121c"
+  }
+}

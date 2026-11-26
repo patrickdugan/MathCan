@@ -1,0 +1,63 @@
+{
+  "schema": "trr07-lean-algebra-v1",
+  "status": "passed",
+  "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "elapsed_seconds": 1.696272,
+  "module": "MathCan.TranslationInterpolationAlgebra",
+  "theorem_count": 9,
+  "transitive_axioms": {
+    "MathCan.TranslationInterpolationAlgebra.residue_difference": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MathCan.TranslationInterpolationAlgebra.matching_characteristic_difference": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MathCan.TranslationInterpolationAlgebra.matching_characteristic_exclusion": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MathCan.TranslationInterpolationAlgebra.residue_constancy_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MathCan.TranslationInterpolationAlgebra.pole_assignment_eigenvector": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MathCan.TranslationInterpolationAlgebra.eigenvector_scaling": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MathCan.TranslationInterpolationAlgebra.diagonal_correction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "MathCan.TranslationInterpolationAlgebra.symmetric_row_column": [
+      "Quot.sound"
+    ],
+    "MathCan.TranslationInterpolationAlgebra.cocycle_double": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "source_sha256": "281c3f867319f0314bd01dc77de642c8891d6e89235cb799bac63dd43f5a2ee9",
+  "scope": "General field-algebra consequences of explicit residue and cocycle hypotheses.",
+  "geometry_formalized": false,
+  "remaining_obligations": [
+    "Construct function fields, invariant differentials, and local expansions.",
+    "Prove global residue and genus-one principal-divisor facts in the chosen formal library.",
+    "Identify the kernel of a nonzero derivation with pth powers over perfect constants.",
+    "Prove the Riemann-Roch evaluation hyperplane and its polynomial decoder interpretation.",
+    "Prove complete geometric Tate chart coverage."
+  ]
+}

@@ -1,0 +1,708 @@
+{
+  "command_working_directory": "research/translation_rank_rigidity/trr07",
+  "datasets": {
+    "extensions_exhaustive": {
+      "command": "python3 finite_sweep.py --field 5:2 --field 7:2 --models 0 --max-order 0 --output receipts/finite_extensions_exhaustive.json --cases finite_logs/finite_extensions_exhaustive_cases.jsonl",
+      "counts": {
+        "coefficient_pairs_visited": 3026,
+        "curve_generic_j": 2808,
+        "curve_j0": 72,
+        "curve_j1728": 72,
+        "curve_ordinary": 2880,
+        "curve_supersingular": 72,
+        "direct_matrix_checks": 1718,
+        "exception_curve_isomorphism_classes": 1,
+        "exceptions": 24,
+        "field_arithmetic_checks": 1024,
+        "field_isomorphism_classes": 160,
+        "generator_invariance_checks": 2552,
+        "order5_controls_outside_prime_field": 2,
+        "order5_positive_controls": 2,
+        "singular_models_skipped": 74,
+        "smooth_models": 2952,
+        "subgroup_instances": 2552,
+        "subgroups_full_prime_group": 372,
+        "subgroups_generic_j": 2460,
+        "subgroups_j0": 56,
+        "subgroups_j1728": 36,
+        "subgroups_matching_characteristic": 506,
+        "subgroups_ordinary": 2512,
+        "subgroups_proper_subgroup": 2180,
+        "subgroups_supersingular": 40,
+        "subgroups_tame_nontransitive": 1282,
+        "subgroups_tame_transitive": 764
+      },
+      "field_model_counts": [
+        {
+          "coefficient_pairs_requested": 625,
+          "coefficient_pairs_visited": 625,
+          "degree": 2,
+          "p": 5,
+          "q": 25,
+          "smooth_models": 600,
+          "subgroup_instances": 424
+        },
+        {
+          "coefficient_pairs_requested": 2401,
+          "coefficient_pairs_visited": 2401,
+          "degree": 2,
+          "p": 7,
+          "q": 49,
+          "smooth_models": 2352,
+          "subgroup_instances": 2128
+        }
+      ],
+      "fields": [
+        25,
+        49
+      ],
+      "ledger_rows": 2552,
+      "ledger_sha256": "3270b7f8542dc2355b86b0a596743466579b03d055a9fccb55b164dd08693587",
+      "omitted_curve_prime_factor_instances": 0,
+      "receipt": "receipts/finite_extensions_exhaustive.json",
+      "receipt_sha256": "fb23693bd73a3d6854ee013578b23c54a23386a941ec80bbde0365e34231fd47",
+      "source_sha256_matches": true,
+      "total_seconds": 1.7317710000000002
+    },
+    "extensions_large": {
+      "command": "python3 finite_sweep.py --field 23:3 --field 29:3 --field 31:3 --field 37:3 --field 11:4 --field 13:4 --field 7:5 --field 5:6 --models 8 --output receipts/finite_extensions_large.json --cases finite_logs/finite_extensions_large_cases.jsonl",
+      "counts": {
+        "coefficient_pairs_visited": 64,
+        "curve_generic_j": 32,
+        "curve_j0": 16,
+        "curve_j1728": 16,
+        "curve_ordinary": 48,
+        "curve_supersingular": 16,
+        "direct_matrix_checks": 104,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 4096,
+        "field_isomorphism_classes": 55,
+        "generator_invariance_checks": 129,
+        "order5_controls_outside_prime_field": 2,
+        "order5_positive_controls": 8,
+        "smooth_models": 64,
+        "subgroup_instances": 129,
+        "subgroups_generic_j": 24,
+        "subgroups_j0": 51,
+        "subgroups_j1728": 54,
+        "subgroups_matching_characteristic": 5,
+        "subgroups_ordinary": 77,
+        "subgroups_proper_subgroup": 129,
+        "subgroups_supersingular": 52,
+        "subgroups_tame_nontransitive": 109,
+        "subgroups_tame_transitive": 15
+      },
+      "field_model_counts": [
+        {
+          "coefficient_pairs_requested": 8,
+          "coefficient_pairs_visited": 8,
+          "degree": 3,
+          "p": 23,
+          "q": 12167,
+          "smooth_models": 8,
+          "subgroup_instances": 7
+        },
+        {
+          "coefficient_pairs_requested": 8,
+          "coefficient_pairs_visited": 8,
+          "degree": 3,
+          "p": 29,
+          "q": 24389,
+          "smooth_models": 8,
+          "subgroup_instances": 19
+        },
+        {
+          "coefficient_pairs_requested": 8,
+          "coefficient_pairs_visited": 8,
+          "degree": 3,
+          "p": 31,
+          "q": 29791,
+          "smooth_models": 8,
+          "subgroup_instances": 9
+        },
+        {
+          "coefficient_pairs_requested": 8,
+          "coefficient_pairs_visited": 8,
+          "degree": 3,
+          "p": 37,
+          "q": 50653,
+          "smooth_models": 8,
+          "subgroup_instances": 15
+        },
+        {
+          "coefficient_pairs_requested": 8,
+          "coefficient_pairs_visited": 8,
+          "degree": 4,
+          "p": 11,
+          "q": 14641,
+          "smooth_models": 8,
+          "subgroup_instances": 28
+        },
+        {
+          "coefficient_pairs_requested": 8,
+          "coefficient_pairs_visited": 8,
+          "degree": 4,
+          "p": 13,
+          "q": 28561,
+          "smooth_models": 8,
+          "subgroup_instances": 21
+        },
+        {
+          "coefficient_pairs_requested": 8,
+          "coefficient_pairs_visited": 8,
+          "degree": 5,
+          "p": 7,
+          "q": 16807,
+          "smooth_models": 8,
+          "subgroup_instances": 7
+        },
+        {
+          "coefficient_pairs_requested": 8,
+          "coefficient_pairs_visited": 8,
+          "degree": 6,
+          "p": 5,
+          "q": 15625,
+          "smooth_models": 8,
+          "subgroup_instances": 23
+        }
+      ],
+      "fields": [
+        12167,
+        24389,
+        29791,
+        50653,
+        14641,
+        28561,
+        16807,
+        15625
+      ],
+      "ledger_rows": 129,
+      "ledger_sha256": "908c438cb27105b1a563a9f225eb2c01f8988205231315c812b735cb871decf2",
+      "omitted_curve_prime_factor_instances": 33,
+      "receipt": "receipts/finite_extensions_large.json",
+      "receipt_sha256": "578387dd927fe3475e21d1bdf41e691039f1f37ccfb88198f09a64c3d0d63cdc",
+      "source_sha256_matches": true,
+      "total_seconds": 19.788169
+    },
+    "extensions_small": {
+      "command": "python3 finite_sweep.py --field 5:2 --field 7:2 --field 11:2 --field 13:2 --field 17:2 --field 19:2 --field 23:2 --field 29:2 --field 31:2 --field 5:3 --field 7:3 --field 11:3 --field 13:3 --field 17:3 --field 19:3 --field 5:4 --field 7:4 --field 5:5 --models 16 --output receipts/finite_extensions_small.json --cases finite_logs/finite_extensions_small_cases.jsonl",
+      "counts": {
+        "coefficient_pairs_visited": 288,
+        "curve_generic_j": 213,
+        "curve_j0": 37,
+        "curve_j1728": 37,
+        "curve_ordinary": 248,
+        "curve_supersingular": 39,
+        "direct_matrix_checks": 206,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 9216,
+        "field_isomorphism_classes": 263,
+        "generator_invariance_checks": 315,
+        "order5_controls_outside_prime_field": 10,
+        "order5_positive_controls": 22,
+        "singular_models_skipped": 1,
+        "smooth_models": 287,
+        "subgroup_instances": 315,
+        "subgroups_full_prime_group": 5,
+        "subgroups_generic_j": 237,
+        "subgroups_j0": 37,
+        "subgroups_j1728": 41,
+        "subgroups_matching_characteristic": 41,
+        "subgroups_ordinary": 275,
+        "subgroups_proper_subgroup": 310,
+        "subgroups_supersingular": 40,
+        "subgroups_tame_nontransitive": 174,
+        "subgroups_tame_transitive": 100
+      },
+      "field_model_counts": [
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 2,
+          "p": 5,
+          "q": 25,
+          "smooth_models": 16,
+          "subgroup_instances": 10
+        },
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 2,
+          "p": 7,
+          "q": 49,
+          "smooth_models": 16,
+          "subgroup_instances": 13
+        },
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 2,
+          "p": 11,
+          "q": 121,
+          "smooth_models": 16,
+          "subgroup_instances": 11
+        },
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 2,
+          "p": 13,
+          "q": 169,
+          "smooth_models": 16,
+          "subgroup_instances": 12
+        },
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 2,
+          "p": 17,
+          "q": 289,
+          "smooth_models": 16,
+          "subgroup_instances": 18
+        },
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 2,
+          "p": 19,
+          "q": 361,
+          "smooth_models": 16,
+          "subgroup_instances": 27
+        },
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 2,
+          "p": 23,
+          "q": 529,
+          "smooth_models": 16,
+          "subgroup_instances": 15
+        },
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 2,
+          "p": 29,
+          "q": 841,
+          "smooth_models": 16,
+          "subgroup_instances": 30
+        },
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 2,
+          "p": 31,
+          "q": 961,
+          "smooth_models": 16,
+          "subgroup_instances": 14
+        },
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 3,
+          "p": 5,
+          "q": 125,
+          "smooth_models": 15,
+          "subgroup_instances": 16
+        },
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 3,
+          "p": 7,
+          "q": 343,
+          "smooth_models": 16,
+          "subgroup_instances": 13
+        },
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 3,
+          "p": 11,
+          "q": 1331,
+          "smooth_models": 16,
+          "subgroup_instances": 14
+        },
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 3,
+          "p": 13,
+          "q": 2197,
+          "smooth_models": 16,
+          "subgroup_instances": 22
+        },
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 3,
+          "p": 17,
+          "q": 4913,
+          "smooth_models": 16,
+          "subgroup_instances": 17
+        },
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 3,
+          "p": 19,
+          "q": 6859,
+          "smooth_models": 16,
+          "subgroup_instances": 24
+        },
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 4,
+          "p": 5,
+          "q": 625,
+          "smooth_models": 16,
+          "subgroup_instances": 24
+        },
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 4,
+          "p": 7,
+          "q": 2401,
+          "smooth_models": 16,
+          "subgroup_instances": 22
+        },
+        {
+          "coefficient_pairs_requested": 16,
+          "coefficient_pairs_visited": 16,
+          "degree": 5,
+          "p": 5,
+          "q": 3125,
+          "smooth_models": 16,
+          "subgroup_instances": 13
+        }
+      ],
+      "fields": [
+        25,
+        49,
+        121,
+        169,
+        289,
+        361,
+        529,
+        841,
+        961,
+        125,
+        343,
+        1331,
+        2197,
+        4913,
+        6859,
+        625,
+        2401,
+        3125
+      ],
+      "ledger_rows": 315,
+      "ledger_sha256": "f3a7635a4b2b1d704a0c18850ed7c55f53b690b30a06a458f22422a5877b924a",
+      "omitted_curve_prime_factor_instances": 62,
+      "receipt": "receipts/finite_extensions_small.json",
+      "receipt_sha256": "287595edf127b1074e482a59805ff095af272ce5d887d5726df056a44291a016",
+      "source_sha256_matches": true,
+      "total_seconds": 2.015481
+    },
+    "prime_full": {
+      "command": "python3 finite_sweep.py --prime-max 101 --output receipts/finite_prime_full.json --cases finite_logs/finite_prime_full_cases.jsonl",
+      "counts": {
+        "coefficient_pairs_visited": 75984,
+        "curve_generic_j": 72564,
+        "curve_j0": 1132,
+        "curve_j1728": 1132,
+        "curve_ordinary": 70216,
+        "curve_supersingular": 4612,
+        "direct_matrix_checks": 42498,
+        "exception_curve_isomorphism_classes": 11,
+        "exceptions": 290,
+        "field_arithmetic_checks": 12288,
+        "field_isomorphism_classes": 2380,
+        "generator_invariance_checks": 70652,
+        "order5_controls_outside_prime_field": 0,
+        "order5_positive_controls": 22,
+        "singular_models_skipped": 1156,
+        "smooth_models": 74828,
+        "subgroup_instances": 70652,
+        "subgroups_full_prime_group": 8720,
+        "subgroups_generic_j": 68527,
+        "subgroups_j0": 974,
+        "subgroups_j1728": 1151,
+        "subgroups_matching_characteristic": 1800,
+        "subgroups_ordinary": 67134,
+        "subgroups_proper_subgroup": 61932,
+        "subgroups_supersingular": 3518,
+        "subgroups_tame_nontransitive": 27298,
+        "subgroups_tame_transitive": 41554
+      },
+      "field_model_counts": [
+        {
+          "coefficient_pairs_requested": 25,
+          "coefficient_pairs_visited": 25,
+          "degree": 1,
+          "p": 5,
+          "q": 5,
+          "smooth_models": 20,
+          "subgroup_instances": 5
+        },
+        {
+          "coefficient_pairs_requested": 49,
+          "coefficient_pairs_visited": 49,
+          "degree": 1,
+          "p": 7,
+          "q": 7,
+          "smooth_models": 42,
+          "subgroup_instances": 17
+        },
+        {
+          "coefficient_pairs_requested": 121,
+          "coefficient_pairs_visited": 121,
+          "degree": 1,
+          "p": 11,
+          "q": 11,
+          "smooth_models": 110,
+          "subgroup_instances": 50
+        },
+        {
+          "coefficient_pairs_requested": 169,
+          "coefficient_pairs_visited": 169,
+          "degree": 1,
+          "p": 13,
+          "q": 13,
+          "smooth_models": 156,
+          "subgroup_instances": 84
+        },
+        {
+          "coefficient_pairs_requested": 289,
+          "coefficient_pairs_visited": 289,
+          "degree": 1,
+          "p": 17,
+          "q": 17,
+          "smooth_models": 272,
+          "subgroup_instances": 164
+        },
+        {
+          "coefficient_pairs_requested": 361,
+          "coefficient_pairs_visited": 361,
+          "degree": 1,
+          "p": 19,
+          "q": 19,
+          "smooth_models": 342,
+          "subgroup_instances": 219
+        },
+        {
+          "coefficient_pairs_requested": 529,
+          "coefficient_pairs_visited": 529,
+          "degree": 1,
+          "p": 23,
+          "q": 23,
+          "smooth_models": 506,
+          "subgroup_instances": 319
+        },
+        {
+          "coefficient_pairs_requested": 841,
+          "coefficient_pairs_visited": 841,
+          "degree": 1,
+          "p": 29,
+          "q": 29,
+          "smooth_models": 812,
+          "subgroup_instances": 574
+        },
+        {
+          "coefficient_pairs_requested": 961,
+          "coefficient_pairs_visited": 961,
+          "degree": 1,
+          "p": 31,
+          "q": 31,
+          "smooth_models": 930,
+          "subgroup_instances": 710
+        },
+        {
+          "coefficient_pairs_requested": 1369,
+          "coefficient_pairs_visited": 1369,
+          "degree": 1,
+          "p": 37,
+          "q": 37,
+          "smooth_models": 1332,
+          "subgroup_instances": 1095
+        },
+        {
+          "coefficient_pairs_requested": 1681,
+          "coefficient_pairs_visited": 1681,
+          "degree": 1,
+          "p": 41,
+          "q": 41,
+          "smooth_models": 1640,
+          "subgroup_instances": 1340
+        },
+        {
+          "coefficient_pairs_requested": 1849,
+          "coefficient_pairs_visited": 1849,
+          "degree": 1,
+          "p": 43,
+          "q": 43,
+          "smooth_models": 1806,
+          "subgroup_instances": 1554
+        },
+        {
+          "coefficient_pairs_requested": 2209,
+          "coefficient_pairs_visited": 2209,
+          "degree": 1,
+          "p": 47,
+          "q": 47,
+          "smooth_models": 2162,
+          "subgroup_instances": 1794
+        },
+        {
+          "coefficient_pairs_requested": 2809,
+          "coefficient_pairs_visited": 2809,
+          "degree": 1,
+          "p": 53,
+          "q": 53,
+          "smooth_models": 2756,
+          "subgroup_instances": 2366
+        },
+        {
+          "coefficient_pairs_requested": 3481,
+          "coefficient_pairs_visited": 3481,
+          "degree": 1,
+          "p": 59,
+          "q": 59,
+          "smooth_models": 3422,
+          "subgroup_instances": 2929
+        },
+        {
+          "coefficient_pairs_requested": 3721,
+          "coefficient_pairs_visited": 3721,
+          "degree": 1,
+          "p": 61,
+          "q": 61,
+          "smooth_models": 3660,
+          "subgroup_instances": 3430
+        },
+        {
+          "coefficient_pairs_requested": 4489,
+          "coefficient_pairs_visited": 4489,
+          "degree": 1,
+          "p": 67,
+          "q": 67,
+          "smooth_models": 4422,
+          "subgroup_instances": 4125
+        },
+        {
+          "coefficient_pairs_requested": 5041,
+          "coefficient_pairs_visited": 5041,
+          "degree": 1,
+          "p": 71,
+          "q": 71,
+          "smooth_models": 4970,
+          "subgroup_instances": 4655
+        },
+        {
+          "coefficient_pairs_requested": 5329,
+          "coefficient_pairs_visited": 5329,
+          "degree": 1,
+          "p": 73,
+          "q": 73,
+          "smooth_models": 5256,
+          "subgroup_instances": 5208
+        },
+        {
+          "coefficient_pairs_requested": 6241,
+          "coefficient_pairs_visited": 6241,
+          "degree": 1,
+          "p": 79,
+          "q": 79,
+          "smooth_models": 6162,
+          "subgroup_instances": 6123
+        },
+        {
+          "coefficient_pairs_requested": 6889,
+          "coefficient_pairs_visited": 6889,
+          "degree": 1,
+          "p": 83,
+          "q": 83,
+          "smooth_models": 6806,
+          "subgroup_instances": 6478
+        },
+        {
+          "coefficient_pairs_requested": 7921,
+          "coefficient_pairs_visited": 7921,
+          "degree": 1,
+          "p": 89,
+          "q": 89,
+          "smooth_models": 7832,
+          "subgroup_instances": 7480
+        },
+        {
+          "coefficient_pairs_requested": 9409,
+          "coefficient_pairs_visited": 9409,
+          "degree": 1,
+          "p": 97,
+          "q": 97,
+          "smooth_models": 9312,
+          "subgroup_instances": 9408
+        },
+        {
+          "coefficient_pairs_requested": 10201,
+          "coefficient_pairs_visited": 10201,
+          "degree": 1,
+          "p": 101,
+          "q": 101,
+          "smooth_models": 10100,
+          "subgroup_instances": 10525
+        }
+      ],
+      "fields": [
+        5,
+        7,
+        11,
+        13,
+        17,
+        19,
+        23,
+        29,
+        31,
+        37,
+        41,
+        43,
+        47,
+        53,
+        59,
+        61,
+        67,
+        71,
+        73,
+        79,
+        83,
+        89,
+        97,
+        101
+      ],
+      "ledger_rows": 70652,
+      "ledger_sha256": "44e3b108a963fe6afe6e8262de58545c3add61ecd13c17725a6a58a6e4bc175f",
+      "omitted_curve_prime_factor_instances": 0,
+      "receipt": "receipts/finite_prime_full.json",
+      "receipt_sha256": "d77d9a11732a2f5230c45db21f3ff914bca434ff7e13648ab350b95ce67008b7",
+      "source_sha256_matches": true,
+      "total_seconds": 27.698481
+    }
+  },
+  "defaults": {
+    "direct_matrix_check_through_order": 13,
+    "max_seconds_per_field": 600,
+    "max_subgroup_order": 127,
+    "models_include_fixed_special_j_coefficients": 4,
+    "seed": 20261125
+  },
+  "known_positive_controls": "Order-five Tate parameter roots t^2-t-1=0, including parameters outside the prime field.",
+  "schema": "trr07-finite-summary-v1",
+  "scope": "Prime models and two extension fields are exhaustive as specified; the other extension cohorts sample equations. Datasets overlap at F25/F49 and must not be added as disjoint coverage.",
+  "source_sha256": {
+    "finite_fields.py": "79bc89d225604b978a22c16abfbb1508c2b30dcb0b9c8396547b98ce0fa6a635",
+    "finite_sweep.py": "39b0cefcbaa49ea1a1485c7af01aa5d9946e819bc80a164cbaf3e499f28e121c"
+  },
+  "timeout_control": "A forced 0.001-second field budget exits1 and saves complete:false with a timeout entry."
+}

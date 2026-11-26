@@ -1,0 +1,196 @@
+{
+  "schema": "trr07-symbolic-search-v1",
+  "order": 31,
+  "status": "error",
+  "stages": [
+    {
+      "stage": "initialization",
+      "elapsed_seconds": 0.0001679599990893621
+    },
+    {
+      "stage": "generic_chart_factorization",
+      "elapsed_seconds": 0.03938465399915003,
+      "degree_r": 16,
+      "degree_t": 24
+    },
+    {
+      "stage": "quotient_coordinates",
+      "elapsed_seconds": 40.34602887800065,
+      "rank": 16,
+      "order_equation_verified": true
+    },
+    {
+      "stage": "residue_coefficients",
+      "elapsed_seconds": 41.08547948699925,
+      "method": "translation_cocycle_recurrence"
+    },
+    {
+      "stage": "compressed_ratios",
+      "elapsed_seconds": 44.259043611999004,
+      "degree_pairs": [
+        [
+          15,
+          65
+        ],
+        [
+          15,
+          65
+        ],
+        [
+          15,
+          65
+        ],
+        [
+          15,
+          65
+        ],
+        [
+          15,
+          65
+        ],
+        [
+          15,
+          65
+        ],
+        [
+          15,
+          66
+        ],
+        [
+          15,
+          65
+        ],
+        [
+          15,
+          65
+        ],
+        [
+          15,
+          67
+        ],
+        [
+          15,
+          65
+        ],
+        [
+          15,
+          65
+        ],
+        [
+          15,
+          68
+        ],
+        [
+          15,
+          65
+        ]
+      ]
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 45.95585012099946,
+      "index": 2,
+      "residual_degree": 80,
+      "max_coefficient_bits": 116
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 47.64030047099914,
+      "index": 3,
+      "residual_degree": 80,
+      "max_coefficient_bits": 158
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 49.3754103859992,
+      "index": 4,
+      "residual_degree": 80,
+      "max_coefficient_bits": 137
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 51.12575674800064,
+      "index": 5,
+      "residual_degree": 80,
+      "max_coefficient_bits": 140
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 52.80432255499909,
+      "index": 6,
+      "residual_degree": 80,
+      "max_coefficient_bits": 128
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 54.66830981400017,
+      "index": 7,
+      "residual_degree": 80,
+      "max_coefficient_bits": 146
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 56.735534440000265,
+      "index": 8,
+      "residual_degree": 80,
+      "max_coefficient_bits": 140
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 58.47782768700017,
+      "index": 9,
+      "residual_degree": 80,
+      "max_coefficient_bits": 142
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 60.27458511400073,
+      "index": 10,
+      "residual_degree": 80,
+      "max_coefficient_bits": 128
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 62.03234979199988,
+      "index": 11,
+      "residual_degree": 80,
+      "max_coefficient_bits": 139
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 63.78292720799982,
+      "index": 12,
+      "residual_degree": 80,
+      "max_coefficient_bits": 134
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 65.51987862699934,
+      "index": 13,
+      "residual_degree": 80,
+      "max_coefficient_bits": 137
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 67.27834421899934,
+      "index": 14,
+      "residual_degree": 80,
+      "max_coefficient_bits": 137
+    },
+    {
+      "stage": "norm",
+      "elapsed_seconds": 68.99018484800035,
+      "index": 15,
+      "residual_degree": 80,
+      "max_coefficient_bits": 139
+    }
+  ],
+  "source_sha256": "5f0f0b8a46e999e6bb8da7c61a42af05aa00e1e8801fb8929e27e4e8f3064ee1",
+  "proof_obligations": [
+    "independent certificate replay",
+    "chart coverage in every characteristic"
+  ],
+  "last_stage": "norm",
+  "wall_budget_seconds": 900,
+  "exclusion_proved": false
+}

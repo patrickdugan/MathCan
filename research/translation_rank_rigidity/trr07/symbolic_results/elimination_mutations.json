@@ -1,0 +1,54 @@
+{
+  "schema": "trr07-elimination-mutations-v1",
+  "status": "passed",
+  "positive_control": "order19",
+  "mutations": [
+    {
+      "case": "norm_coefficient",
+      "rejected": true,
+      "error_type": "AssertionError"
+    },
+    {
+      "case": "bezout_coefficient",
+      "rejected": true,
+      "error_type": "AssertionError"
+    },
+    {
+      "case": "integer_constant",
+      "rejected": true,
+      "error_type": "AssertionError"
+    },
+    {
+      "case": "missing_characteristic",
+      "rejected": true,
+      "error_type": "AssertionError"
+    },
+    {
+      "case": "wrong_norm_factor",
+      "rejected": true,
+      "error_type": "AssertionError"
+    },
+    {
+      "case": "wrong_fibre_gcd",
+      "rejected": true,
+      "error_type": "AssertionError"
+    },
+    {
+      "case": "wrong_discriminant_power",
+      "rejected": true,
+      "error_type": "AssertionError"
+    },
+    {
+      "case": "wrong_compressed_equation",
+      "rejected": true,
+      "error_type": "AssertionError"
+    },
+    {
+      "case": "empty_certificate",
+      "rejected": true,
+      "error_type": "AssertionError"
+    }
+  ],
+  "elapsed_seconds": 0.4593551069992827,
+  "certificate_sha256": "b34b27b93800b73e9a72a9759d7a07d942b41788c04d2a855645d53cccdb0a07"
+}

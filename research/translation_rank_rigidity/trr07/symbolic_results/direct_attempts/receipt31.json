@@ -1,0 +1,35 @@
+{
+  "schema": "trr07-symbolic-search-v1",
+  "order": 31,
+  "status": "interrupted_for_faster_exact_method",
+  "stages": [
+    {
+      "stage": "initialization",
+      "elapsed_seconds": 0.001046548000886105
+    },
+    {
+      "stage": "generic_chart_factorization",
+      "elapsed_seconds": 0.06773270099984074,
+      "degree_r": 16,
+      "degree_t": 24
+    },
+    {
+      "stage": "quotient_coordinates",
+      "elapsed_seconds": 49.48329476800063,
+      "rank": 16,
+      "order_equation_verified": true
+    },
+    {
+      "stage": "residue_coefficient",
+      "elapsed_seconds": 99.7630879920016,
+      "index": 1
+    }
+  ],
+  "source_sha256": "d2bc96eb39f00d1a9797e1b43864dd523f7f410eddf52c2c9c8b84744f6ff82b",
+  "proof_obligations": [
+    "independent certificate replay",
+    "chart coverage in every characteristic"
+  ],
+  "last_stage": "residue_coefficient",
+  "exclusion_proved": false
+}

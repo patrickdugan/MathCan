@@ -1,0 +1,2106 @@
+{
+  "degree_tracking": "The syntactic formal block-degree upper bounds are (4q-2,3q-3); they are upper bounds before cancellation. TRR11 gives a separate minimum degree among all representatives under its hypotheses.",
+  "fixtures": [
+    {
+      "A": 2,
+      "B": 2,
+      "N": 19,
+      "T": [
+        0,
+        6
+      ],
+      "assigned_values_checked": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "circuit": {
+        "circuit_sha256": "ac60b650791a5370a0f60c907b453c8fa2eb7a46bbfb4277bb0986705c9aa37a",
+        "degree_bound_semantics": "Syntactic gate-level upper bounds; cancellation and reduction modulo the curve or field equations are not performed.",
+        "formal_block_degree_upper_bounds": [
+          66,
+          48
+        ],
+        "multiplicative_depth": 10,
+        "nodes": 50,
+        "operations": {
+          "add": 3,
+          "constant": 3,
+          "input": 5,
+          "mul": 30,
+          "sub": 9
+        },
+        "output_node": 49,
+        "power_calls": [
+          {
+            "exponent": "15",
+            "multiplications": 6
+          },
+          {
+            "exponent": "16",
+            "multiplications": 4
+          },
+          {
+            "exponent": "15",
+            "multiplications": 6
+          }
+        ]
+      },
+      "coefficient_evaluations": 5508,
+      "discriminant": 4,
+      "gate_trace": [
+        [
+          "input",
+          "x1"
+        ],
+        [
+          "input",
+          "y1"
+        ],
+        [
+          "input",
+          "x2"
+        ],
+        [
+          "input",
+          "y2"
+        ],
+        [
+          "input",
+          "u"
+        ],
+        [
+          "constant",
+          1
+        ],
+        [
+          "constant",
+          2
+        ],
+        [
+          "constant",
+          3
+        ],
+        [
+          "sub",
+          2,
+          0
+        ],
+        [
+          "sub",
+          3,
+          1
+        ],
+        [
+          "mul",
+          8,
+          8
+        ],
+        [
+          "mul",
+          10,
+          8
+        ],
+        [
+          "mul",
+          11,
+          11
+        ],
+        [
+          "mul",
+          12,
+          8
+        ],
+        [
+          "mul",
+          13,
+          13
+        ],
+        [
+          "mul",
+          14,
+          8
+        ],
+        [
+          "mul",
+          9,
+          9
+        ],
+        [
+          "mul",
+          16,
+          16
+        ],
+        [
+          "mul",
+          17,
+          17
+        ],
+        [
+          "mul",
+          18,
+          18
+        ],
+        [
+          "mul",
+          6,
+          1
+        ],
+        [
+          "mul",
+          20,
+          20
+        ],
+        [
+          "mul",
+          21,
+          20
+        ],
+        [
+          "mul",
+          22,
+          22
+        ],
+        [
+          "mul",
+          23,
+          20
+        ],
+        [
+          "mul",
+          24,
+          24
+        ],
+        [
+          "mul",
+          25,
+          20
+        ],
+        [
+          "mul",
+          8,
+          15
+        ],
+        [
+          "sub",
+          5,
+          27
+        ],
+        [
+          "sub",
+          5,
+          19
+        ],
+        [
+          "mul",
+          9,
+          15
+        ],
+        [
+          "mul",
+          30,
+          30
+        ],
+        [
+          "sub",
+          31,
+          0
+        ],
+        [
+          "sub",
+          32,
+          2
+        ],
+        [
+          "mul",
+          0,
+          0
+        ],
+        [
+          "mul",
+          7,
+          34
+        ],
+        [
+          "add",
+          35,
+          6
+        ],
+        [
+          "mul",
+          36,
+          26
+        ],
+        [
+          "mul",
+          37,
+          37
+        ],
+        [
+          "mul",
+          6,
+          0
+        ],
+        [
+          "sub",
+          38,
+          39
+        ],
+        [
+          "sub",
+          5,
+          28
+        ],
+        [
+          "mul",
+          41,
+          33
+        ],
+        [
+          "mul",
+          28,
+          29
+        ],
+        [
+          "mul",
+          43,
+          40
+        ],
+        [
+          "sub",
+          5,
+          29
+        ],
+        [
+          "mul",
+          28,
+          45
+        ],
+        [
+          "mul",
+          46,
+          4
+        ],
+        [
+          "add",
+          42,
+          44
+        ],
+        [
+          "add",
+          48,
+          47
+        ]
+      ],
+      "input_pairs": 324,
+      "minimum_decoder_degree_from_TRR11": 7,
+      "p": 17,
+      "pair_kinds": {
+        "inverse": 18,
+        "secant": 288,
+        "tangent": 18
+      },
+      "point_enumeration": "All affine points plus O; subgroup verified equal to the full prime-order point group.",
+      "wrong_identity_selector_failures_at_u_1": {
+        "inverse": 18,
+        "tangent": 18
+      }
+    },
+    {
+      "A": 2,
+      "B": 9,
+      "N": 23,
+      "T": [
+        0,
+        3
+      ],
+      "assigned_values_checked": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "circuit": {
+        "circuit_sha256": "a890c91e2c40e31fcefe1a0657d3121a5862dab019e99ea9dc1eebf97ecf54a6",
+        "degree_bound_semantics": "Syntactic gate-level upper bounds; cancellation and reduction modulo the curve or field equations are not performed.",
+        "formal_block_degree_upper_bounds": [
+          74,
+          54
+        ],
+        "multiplicative_depth": 9,
+        "nodes": 49,
+        "operations": {
+          "add": 3,
+          "constant": 3,
+          "input": 5,
+          "mul": 29,
+          "sub": 9
+        },
+        "output_node": 48,
+        "power_calls": [
+          {
+            "exponent": "17",
+            "multiplications": 5
+          },
+          {
+            "exponent": "18",
+            "multiplications": 5
+          },
+          {
+            "exponent": "17",
+            "multiplications": 5
+          }
+        ]
+      },
+      "coefficient_evaluations": 9196,
+      "discriminant": 7,
+      "gate_trace": [
+        [
+          "input",
+          "x1"
+        ],
+        [
+          "input",
+          "y1"
+        ],
+        [
+          "input",
+          "x2"
+        ],
+        [
+          "input",
+          "y2"
+        ],
+        [
+          "input",
+          "u"
+        ],
+        [
+          "constant",
+          1
+        ],
+        [
+          "constant",
+          2
+        ],
+        [
+          "constant",
+          3
+        ],
+        [
+          "sub",
+          2,
+          0
+        ],
+        [
+          "sub",
+          3,
+          1
+        ],
+        [
+          "mul",
+          8,
+          8
+        ],
+        [
+          "mul",
+          10,
+          10
+        ],
+        [
+          "mul",
+          11,
+          11
+        ],
+        [
+          "mul",
+          12,
+          12
+        ],
+        [
+          "mul",
+          13,
+          8
+        ],
+        [
+          "mul",
+          9,
+          9
+        ],
+        [
+          "mul",
+          15,
+          15
+        ],
+        [
+          "mul",
+          16,
+          16
+        ],
+        [
+          "mul",
+          17,
+          9
+        ],
+        [
+          "mul",
+          18,
+          18
+        ],
+        [
+          "mul",
+          6,
+          1
+        ],
+        [
+          "mul",
+          20,
+          20
+        ],
+        [
+          "mul",
+          21,
+          21
+        ],
+        [
+          "mul",
+          22,
+          22
+        ],
+        [
+          "mul",
+          23,
+          23
+        ],
+        [
+          "mul",
+          24,
+          20
+        ],
+        [
+          "mul",
+          8,
+          14
+        ],
+        [
+          "sub",
+          5,
+          26
+        ],
+        [
+          "sub",
+          5,
+          19
+        ],
+        [
+          "mul",
+          9,
+          14
+        ],
+        [
+          "mul",
+          29,
+          29
+        ],
+        [
+          "sub",
+          30,
+          0
+        ],
+        [
+          "sub",
+          31,
+          2
+        ],
+        [
+          "mul",
+          0,
+          0
+        ],
+        [
+          "mul",
+          7,
+          33
+        ],
+        [
+          "add",
+          34,
+          6
+        ],
+        [
+          "mul",
+          35,
+          25
+        ],
+        [
+          "mul",
+          36,
+          36
+        ],
+        [
+          "mul",
+          6,
+          0
+        ],
+        [
+          "sub",
+          37,
+          38
+        ],
+        [
+          "sub",
+          5,
+          27
+        ],
+        [
+          "mul",
+          40,
+          32
+        ],
+        [
+          "mul",
+          27,
+          28
+        ],
+        [
+          "mul",
+          42,
+          39
+        ],
+        [
+          "sub",
+          5,
+          28
+        ],
+        [
+          "mul",
+          27,
+          44
+        ],
+        [
+          "mul",
+          45,
+          4
+        ],
+        [
+          "add",
+          41,
+          43
+        ],
+        [
+          "add",
+          47,
+          46
+        ]
+      ],
+      "input_pairs": 484,
+      "minimum_decoder_degree_from_TRR11": 8,
+      "p": 19,
+      "pair_kinds": {
+        "inverse": 22,
+        "secant": 440,
+        "tangent": 22
+      },
+      "point_enumeration": "All affine points plus O; subgroup verified equal to the full prime-order point group.",
+      "wrong_identity_selector_failures_at_u_1": {
+        "inverse": 22,
+        "tangent": 22
+      }
+    },
+    {
+      "A": 1,
+      "B": 4,
+      "N": 29,
+      "T": [
+        0,
+        2
+      ],
+      "assigned_values_checked": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "circuit": {
+        "circuit_sha256": "ecc20432501214ffccf1ab5434b5d1f511b991f78ae9b25132a332b3ff4fa66f",
+        "degree_bound_semantics": "Syntactic gate-level upper bounds; cancellation and reduction modulo the curve or field equations are not performed.",
+        "formal_block_degree_upper_bounds": [
+          90,
+          66
+        ],
+        "multiplicative_depth": 10,
+        "nodes": 52,
+        "operations": {
+          "add": 3,
+          "constant": 3,
+          "input": 5,
+          "mul": 32,
+          "sub": 9
+        },
+        "output_node": 51,
+        "power_calls": [
+          {
+            "exponent": "21",
+            "multiplications": 6
+          },
+          {
+            "exponent": "22",
+            "multiplications": 6
+          },
+          {
+            "exponent": "21",
+            "multiplications": 6
+          }
+        ]
+      },
+      "coefficient_evaluations": 18032,
+      "discriminant": 16,
+      "gate_trace": [
+        [
+          "input",
+          "x1"
+        ],
+        [
+          "input",
+          "y1"
+        ],
+        [
+          "input",
+          "x2"
+        ],
+        [
+          "input",
+          "y2"
+        ],
+        [
+          "input",
+          "u"
+        ],
+        [
+          "constant",
+          1
+        ],
+        [
+          "constant",
+          2
+        ],
+        [
+          "constant",
+          3
+        ],
+        [
+          "sub",
+          2,
+          0
+        ],
+        [
+          "sub",
+          3,
+          1
+        ],
+        [
+          "mul",
+          8,
+          8
+        ],
+        [
+          "mul",
+          10,
+          10
+        ],
+        [
+          "mul",
+          11,
+          8
+        ],
+        [
+          "mul",
+          12,
+          12
+        ],
+        [
+          "mul",
+          13,
+          13
+        ],
+        [
+          "mul",
+          14,
+          8
+        ],
+        [
+          "mul",
+          9,
+          9
+        ],
+        [
+          "mul",
+          16,
+          16
+        ],
+        [
+          "mul",
+          17,
+          9
+        ],
+        [
+          "mul",
+          18,
+          18
+        ],
+        [
+          "mul",
+          19,
+          9
+        ],
+        [
+          "mul",
+          20,
+          20
+        ],
+        [
+          "mul",
+          6,
+          1
+        ],
+        [
+          "mul",
+          22,
+          22
+        ],
+        [
+          "mul",
+          23,
+          23
+        ],
+        [
+          "mul",
+          24,
+          22
+        ],
+        [
+          "mul",
+          25,
+          25
+        ],
+        [
+          "mul",
+          26,
+          26
+        ],
+        [
+          "mul",
+          27,
+          22
+        ],
+        [
+          "mul",
+          8,
+          15
+        ],
+        [
+          "sub",
+          5,
+          29
+        ],
+        [
+          "sub",
+          5,
+          21
+        ],
+        [
+          "mul",
+          9,
+          15
+        ],
+        [
+          "mul",
+          32,
+          32
+        ],
+        [
+          "sub",
+          33,
+          0
+        ],
+        [
+          "sub",
+          34,
+          2
+        ],
+        [
+          "mul",
+          0,
+          0
+        ],
+        [
+          "mul",
+          7,
+          36
+        ],
+        [
+          "add",
+          37,
+          5
+        ],
+        [
+          "mul",
+          38,
+          28
+        ],
+        [
+          "mul",
+          39,
+          39
+        ],
+        [
+          "mul",
+          6,
+          0
+        ],
+        [
+          "sub",
+          40,
+          41
+        ],
+        [
+          "sub",
+          5,
+          30
+        ],
+        [
+          "mul",
+          43,
+          35
+        ],
+        [
+          "mul",
+          30,
+          31
+        ],
+        [
+          "mul",
+          45,
+          42
+        ],
+        [
+          "sub",
+          5,
+          31
+        ],
+        [
+          "mul",
+          30,
+          47
+        ],
+        [
+          "mul",
+          48,
+          4
+        ],
+        [
+          "add",
+          44,
+          46
+        ],
+        [
+          "add",
+          50,
+          49
+        ]
+      ],
+      "input_pairs": 784,
+      "minimum_decoder_degree_from_TRR11": 10,
+      "p": 23,
+      "pair_kinds": {
+        "inverse": 28,
+        "secant": 728,
+        "tangent": 28
+      },
+      "point_enumeration": "All affine points plus O; subgroup verified equal to the full prime-order point group.",
+      "wrong_identity_selector_failures_at_u_1": {
+        "inverse": 28,
+        "tangent": 28
+      }
+    },
+    {
+      "A": 1,
+      "B": 12,
+      "N": 23,
+      "T": [
+        2,
+        14
+      ],
+      "assigned_values_checked": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "circuit": {
+        "circuit_sha256": "99d04f40d7242d893f00cf65f4235aeaf457a8ed864154216fd33f73d9a347b2",
+        "degree_bound_semantics": "Syntactic gate-level upper bounds; cancellation and reduction modulo the curve or field equations are not performed.",
+        "formal_block_degree_upper_bounds": [
+          114,
+          84
+        ],
+        "multiplicative_depth": 11,
+        "nodes": 54,
+        "operations": {
+          "add": 3,
+          "constant": 3,
+          "input": 5,
+          "mul": 34,
+          "sub": 9
+        },
+        "output_node": 53,
+        "power_calls": [
+          {
+            "exponent": "27",
+            "multiplications": 7
+          },
+          {
+            "exponent": "28",
+            "multiplications": 6
+          },
+          {
+            "exponent": "27",
+            "multiplications": 7
+          }
+        ]
+      },
+      "coefficient_evaluations": 14036,
+      "discriminant": 20,
+      "gate_trace": [
+        [
+          "input",
+          "x1"
+        ],
+        [
+          "input",
+          "y1"
+        ],
+        [
+          "input",
+          "x2"
+        ],
+        [
+          "input",
+          "y2"
+        ],
+        [
+          "input",
+          "u"
+        ],
+        [
+          "constant",
+          1
+        ],
+        [
+          "constant",
+          2
+        ],
+        [
+          "constant",
+          3
+        ],
+        [
+          "sub",
+          2,
+          0
+        ],
+        [
+          "sub",
+          3,
+          1
+        ],
+        [
+          "mul",
+          8,
+          8
+        ],
+        [
+          "mul",
+          10,
+          8
+        ],
+        [
+          "mul",
+          11,
+          11
+        ],
+        [
+          "mul",
+          12,
+          12
+        ],
+        [
+          "mul",
+          13,
+          8
+        ],
+        [
+          "mul",
+          14,
+          14
+        ],
+        [
+          "mul",
+          15,
+          8
+        ],
+        [
+          "mul",
+          9,
+          9
+        ],
+        [
+          "mul",
+          17,
+          9
+        ],
+        [
+          "mul",
+          18,
+          18
+        ],
+        [
+          "mul",
+          19,
+          9
+        ],
+        [
+          "mul",
+          20,
+          20
+        ],
+        [
+          "mul",
+          21,
+          21
+        ],
+        [
+          "mul",
+          6,
+          1
+        ],
+        [
+          "mul",
+          23,
+          23
+        ],
+        [
+          "mul",
+          24,
+          23
+        ],
+        [
+          "mul",
+          25,
+          25
+        ],
+        [
+          "mul",
+          26,
+          26
+        ],
+        [
+          "mul",
+          27,
+          23
+        ],
+        [
+          "mul",
+          28,
+          28
+        ],
+        [
+          "mul",
+          29,
+          23
+        ],
+        [
+          "mul",
+          8,
+          16
+        ],
+        [
+          "sub",
+          5,
+          31
+        ],
+        [
+          "sub",
+          5,
+          22
+        ],
+        [
+          "mul",
+          9,
+          16
+        ],
+        [
+          "mul",
+          34,
+          34
+        ],
+        [
+          "sub",
+          35,
+          0
+        ],
+        [
+          "sub",
+          36,
+          2
+        ],
+        [
+          "mul",
+          0,
+          0
+        ],
+        [
+          "mul",
+          7,
+          38
+        ],
+        [
+          "add",
+          39,
+          5
+        ],
+        [
+          "mul",
+          40,
+          30
+        ],
+        [
+          "mul",
+          41,
+          41
+        ],
+        [
+          "mul",
+          6,
+          0
+        ],
+        [
+          "sub",
+          42,
+          43
+        ],
+        [
+          "sub",
+          5,
+          32
+        ],
+        [
+          "mul",
+          45,
+          37
+        ],
+        [
+          "mul",
+          32,
+          33
+        ],
+        [
+          "mul",
+          47,
+          44
+        ],
+        [
+          "sub",
+          5,
+          33
+        ],
+        [
+          "mul",
+          32,
+          49
+        ],
+        [
+          "mul",
+          50,
+          4
+        ],
+        [
+          "add",
+          46,
+          48
+        ],
+        [
+          "add",
+          52,
+          51
+        ]
+      ],
+      "input_pairs": 484,
+      "minimum_decoder_degree_from_TRR11": 8,
+      "p": 29,
+      "pair_kinds": {
+        "inverse": 22,
+        "secant": 440,
+        "tangent": 22
+      },
+      "point_enumeration": "All affine points plus O; subgroup verified equal to the full prime-order point group.",
+      "wrong_identity_selector_failures_at_u_1": {
+        "inverse": 22,
+        "tangent": 22
+      }
+    },
+    {
+      "A": 0,
+      "B": 3,
+      "N": 43,
+      "T": [
+        1,
+        2
+      ],
+      "assigned_values_checked": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "circuit": {
+        "circuit_sha256": "22eb7211270649e080b9d96347c8e3f4584aa26d941f01f0dc556b288fb7af55",
+        "degree_bound_semantics": "Syntactic gate-level upper bounds; cancellation and reduction modulo the curve or field equations are not performed.",
+        "formal_block_degree_upper_bounds": [
+          122,
+          90
+        ],
+        "multiplicative_depth": 11,
+        "nodes": 56,
+        "operations": {
+          "add": 3,
+          "constant": 4,
+          "input": 5,
+          "mul": 35,
+          "sub": 9
+        },
+        "output_node": 55,
+        "power_calls": [
+          {
+            "exponent": "29",
+            "multiplications": 7
+          },
+          {
+            "exponent": "30",
+            "multiplications": 7
+          },
+          {
+            "exponent": "29",
+            "multiplications": 7
+          }
+        ]
+      },
+      "coefficient_evaluations": 54684,
+      "discriminant": 18,
+      "gate_trace": [
+        [
+          "input",
+          "x1"
+        ],
+        [
+          "input",
+          "y1"
+        ],
+        [
+          "input",
+          "x2"
+        ],
+        [
+          "input",
+          "y2"
+        ],
+        [
+          "input",
+          "u"
+        ],
+        [
+          "constant",
+          1
+        ],
+        [
+          "constant",
+          2
+        ],
+        [
+          "constant",
+          3
+        ],
+        [
+          "constant",
+          0
+        ],
+        [
+          "sub",
+          2,
+          0
+        ],
+        [
+          "sub",
+          3,
+          1
+        ],
+        [
+          "mul",
+          9,
+          9
+        ],
+        [
+          "mul",
+          11,
+          9
+        ],
+        [
+          "mul",
+          12,
+          12
+        ],
+        [
+          "mul",
+          13,
+          9
+        ],
+        [
+          "mul",
+          14,
+          14
+        ],
+        [
+          "mul",
+          15,
+          15
+        ],
+        [
+          "mul",
+          16,
+          9
+        ],
+        [
+          "mul",
+          10,
+          10
+        ],
+        [
+          "mul",
+          18,
+          10
+        ],
+        [
+          "mul",
+          19,
+          19
+        ],
+        [
+          "mul",
+          20,
+          10
+        ],
+        [
+          "mul",
+          21,
+          21
+        ],
+        [
+          "mul",
+          22,
+          10
+        ],
+        [
+          "mul",
+          23,
+          23
+        ],
+        [
+          "mul",
+          6,
+          1
+        ],
+        [
+          "mul",
+          25,
+          25
+        ],
+        [
+          "mul",
+          26,
+          25
+        ],
+        [
+          "mul",
+          27,
+          27
+        ],
+        [
+          "mul",
+          28,
+          25
+        ],
+        [
+          "mul",
+          29,
+          29
+        ],
+        [
+          "mul",
+          30,
+          30
+        ],
+        [
+          "mul",
+          31,
+          25
+        ],
+        [
+          "mul",
+          9,
+          17
+        ],
+        [
+          "sub",
+          5,
+          33
+        ],
+        [
+          "sub",
+          5,
+          24
+        ],
+        [
+          "mul",
+          10,
+          17
+        ],
+        [
+          "mul",
+          36,
+          36
+        ],
+        [
+          "sub",
+          37,
+          0
+        ],
+        [
+          "sub",
+          38,
+          2
+        ],
+        [
+          "mul",
+          0,
+          0
+        ],
+        [
+          "mul",
+          7,
+          40
+        ],
+        [
+          "add",
+          41,
+          8
+        ],
+        [
+          "mul",
+          42,
+          32
+        ],
+        [
+          "mul",
+          43,
+          43
+        ],
+        [
+          "mul",
+          6,
+          0
+        ],
+        [
+          "sub",
+          44,
+          45
+        ],
+        [
+          "sub",
+          5,
+          34
+        ],
+        [
+          "mul",
+          47,
+          39
+        ],
+        [
+          "mul",
+          34,
+          35
+        ],
+        [
+          "mul",
+          49,
+          46
+        ],
+        [
+          "sub",
+          5,
+          35
+        ],
+        [
+          "mul",
+          34,
+          51
+        ],
+        [
+          "mul",
+          52,
+          4
+        ],
+        [
+          "add",
+          48,
+          50
+        ],
+        [
+          "add",
+          54,
+          53
+        ]
+      ],
+      "input_pairs": 1764,
+      "minimum_decoder_degree_from_TRR11": 15,
+      "p": 31,
+      "pair_kinds": {
+        "inverse": 42,
+        "secant": 1680,
+        "tangent": 42
+      },
+      "point_enumeration": "All affine points plus O; subgroup verified equal to the full prime-order point group.",
+      "wrong_identity_selector_failures_at_u_1": {
+        "inverse": 42,
+        "tangent": 42
+      }
+    },
+    {
+      "A": 1,
+      "B": 12,
+      "N": 29,
+      "T": [
+        0,
+        7
+      ],
+      "assigned_values_checked": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36
+      ],
+      "circuit": {
+        "circuit_sha256": "b6e00bceef0e0e1507dafcf42ef62f1c7da987a04edb54ec7ffb7f8e6a87e945",
+        "degree_bound_semantics": "Syntactic gate-level upper bounds; cancellation and reduction modulo the curve or field equations are not performed.",
+        "formal_block_degree_upper_bounds": [
+          146,
+          108
+        ],
+        "multiplicative_depth": 11,
+        "nodes": 54,
+        "operations": {
+          "add": 3,
+          "constant": 3,
+          "input": 5,
+          "mul": 34,
+          "sub": 9
+        },
+        "output_node": 53,
+        "power_calls": [
+          {
+            "exponent": "35",
+            "multiplications": 7
+          },
+          {
+            "exponent": "36",
+            "multiplications": 6
+          },
+          {
+            "exponent": "35",
+            "multiplications": 7
+          }
+        ]
+      },
+      "coefficient_evaluations": 29008,
+      "discriminant": 36,
+      "gate_trace": [
+        [
+          "input",
+          "x1"
+        ],
+        [
+          "input",
+          "y1"
+        ],
+        [
+          "input",
+          "x2"
+        ],
+        [
+          "input",
+          "y2"
+        ],
+        [
+          "input",
+          "u"
+        ],
+        [
+          "constant",
+          1
+        ],
+        [
+          "constant",
+          2
+        ],
+        [
+          "constant",
+          3
+        ],
+        [
+          "sub",
+          2,
+          0
+        ],
+        [
+          "sub",
+          3,
+          1
+        ],
+        [
+          "mul",
+          8,
+          8
+        ],
+        [
+          "mul",
+          10,
+          10
+        ],
+        [
+          "mul",
+          11,
+          11
+        ],
+        [
+          "mul",
+          12,
+          12
+        ],
+        [
+          "mul",
+          13,
+          8
+        ],
+        [
+          "mul",
+          14,
+          14
+        ],
+        [
+          "mul",
+          15,
+          8
+        ],
+        [
+          "mul",
+          9,
+          9
+        ],
+        [
+          "mul",
+          17,
+          17
+        ],
+        [
+          "mul",
+          18,
+          18
+        ],
+        [
+          "mul",
+          19,
+          9
+        ],
+        [
+          "mul",
+          20,
+          20
+        ],
+        [
+          "mul",
+          21,
+          21
+        ],
+        [
+          "mul",
+          6,
+          1
+        ],
+        [
+          "mul",
+          23,
+          23
+        ],
+        [
+          "mul",
+          24,
+          24
+        ],
+        [
+          "mul",
+          25,
+          25
+        ],
+        [
+          "mul",
+          26,
+          26
+        ],
+        [
+          "mul",
+          27,
+          23
+        ],
+        [
+          "mul",
+          28,
+          28
+        ],
+        [
+          "mul",
+          29,
+          23
+        ],
+        [
+          "mul",
+          8,
+          16
+        ],
+        [
+          "sub",
+          5,
+          31
+        ],
+        [
+          "sub",
+          5,
+          22
+        ],
+        [
+          "mul",
+          9,
+          16
+        ],
+        [
+          "mul",
+          34,
+          34
+        ],
+        [
+          "sub",
+          35,
+          0
+        ],
+        [
+          "sub",
+          36,
+          2
+        ],
+        [
+          "mul",
+          0,
+          0
+        ],
+        [
+          "mul",
+          7,
+          38
+        ],
+        [
+          "add",
+          39,
+          5
+        ],
+        [
+          "mul",
+          40,
+          30
+        ],
+        [
+          "mul",
+          41,
+          41
+        ],
+        [
+          "mul",
+          6,
+          0
+        ],
+        [
+          "sub",
+          42,
+          43
+        ],
+        [
+          "sub",
+          5,
+          32
+        ],
+        [
+          "mul",
+          45,
+          37
+        ],
+        [
+          "mul",
+          32,
+          33
+        ],
+        [
+          "mul",
+          47,
+          44
+        ],
+        [
+          "sub",
+          5,
+          33
+        ],
+        [
+          "mul",
+          32,
+          49
+        ],
+        [
+          "mul",
+          50,
+          4
+        ],
+        [
+          "add",
+          46,
+          48
+        ],
+        [
+          "add",
+          52,
+          51
+        ]
+      ],
+      "input_pairs": 784,
+      "minimum_decoder_degree_from_TRR11": 10,
+      "p": 37,
+      "pair_kinds": {
+        "inverse": 28,
+        "secant": 728,
+        "tangent": 28
+      },
+      "point_enumeration": "All affine points plus O; subgroup verified equal to the full prime-order point group.",
+      "wrong_identity_selector_failures_at_u_1": {
+        "inverse": 28,
+        "tangent": 28
+      }
+    }
+  ],
+  "formula": "D=(1-Za)*Xsec+Za*Zb*Xdbl+Za*(1-Zb)*u; a=x2-x1; b=y2-y1; Za=1-a*a^(q-2); Zb=1-b^(q-1); Xsec=(b*a^(q-2))^2-x1-x2; Xdbl=((3*x1^2+A)*(2*y1)^(q-2))^2-2*x1",
+  "gate_bound": "Two powers q-2 and one power q-1, plus 14 multiplications and 12 additions/subtractions. Binary powering uses bit_length(e)+popcount(e)-2 multiplication gates for e>=1, proving O(log q) total gates.",
+  "remaining_proof_obligations": [
+    "The universal finite-field circuit identity and its arithmetic complexity are proved in the accompanying mathematics, with exact small-field controls here; the new circuit construction is not yet formalized in Lean.",
+    "TRR11 certifies the minimum polynomial degree under its own field and subgroup hypotheses. The circuit controls establish no DLP or ECDSA attack lower bound."
+  ],
+  "schema": "trr12-circuit-scope-v1",
+  "secp256k1_cost_only": {
+    "A": 0,
+    "B": 7,
+    "circuit_sha256": "4dfc722d81fc89a3139108aabf10973ec9c56aff4c21415e51b34175fc0f8c84",
+    "cost_model": "Binary field multiplication gates, including multiplication by constants; addition and subtraction each cost one separate field gate. Bit costs and coordinate conversion are excluded.",
+    "degree_bound_semantics": "Syntactic gate-level upper bounds; cancellation and reduction modulo the curve or field equations are not performed.",
+    "formal_block_degree_upper_bounds": [
+      "463168356949264781694283940034751631413079938662562256157830336031635338686650",
+      "347376267711948586270712955026063723559809953996921692118372752023726504014986"
+    ],
+    "minimum_degree_if_TRR11_hypotheses_hold": "38597363079105398474523661669562635950945854759691634794201721047172720498113",
+    "multiplicative_depth": 507,
+    "multiplicative_depth_lower_bound_from_degree": 255,
+    "n": "115792089237316195423570985008687907852837564279074904382605163141518161494337",
+    "nodes": 1544,
+    "operations": {
+      "add": 3,
+      "constant": 4,
+      "input": 5,
+      "mul": 1523,
+      "sub": 9
+    },
+    "output_node": 1543,
+    "p": "115792089237316195423570985008687907853269984665640564039457584007908834671663",
+    "parameter_source": "https://www.secg.org/sec2-v2.pdf",
+    "power_calls": [
+      {
+        "exponent": "115792089237316195423570985008687907853269984665640564039457584007908834671661",
+        "multiplications": 503
+      },
+      {
+        "exponent": "115792089237316195423570985008687907853269984665640564039457584007908834671662",
+        "multiplications": 503
+      },
+      {
+        "exponent": "115792089237316195423570985008687907853269984665640564039457584007908834671661",
+        "multiplications": 503
+      }
+    ],
+    "scope": "Cost and degree bookkeeping from public parameters only. This check does not prove parameter primality, recover a scalar, or run a key attack."
+  },
+  "source_sha256": "31dd73ff60500422f549cd8a53ef15d0f05142d0ac240a6ca491123c479da0fb",
+  "status": "passed",
+  "theoretical_scope": "Any finite field F_q of characteristic >3, smooth short Weierstrass equation, and nonidentity inputs in an odd-order subgroup. Odd order ensures y1 != 0. Fermat zero indicators cover secants, tangents and inverse pairs.",
+  "totals": {
+    "coefficient_evaluations": 130464,
+    "fixtures": 6,
+    "input_pairs": 4624,
+    "inverse_pairs": 160,
+    "tangent_pairs": 160,
+    "wrong_identity_selector_failures": 320
+  }
+}

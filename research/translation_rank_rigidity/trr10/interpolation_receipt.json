@@ -1,0 +1,2758 @@
+{
+  "schema": "trr10-interpolation-controls-v1",
+  "status": "passed",
+  "checked_at_utc": "2026-11-26T01:35:46.871773+00:00",
+  "source_sha256": "fce572a26def61444d8def98da4bc7f4a8047b2fcefe6aa49aa60ffd30e28421",
+  "curve_table_source_sha256": "e55d67a2b81594fb222849ff00c2236cabf2ac32d69722919d3453c3a5b3c62a",
+  "primes": [
+    5,
+    7,
+    11,
+    13,
+    17,
+    19
+  ],
+  "coverage": "Every nonsingular short model and every distinct nontrivial odd cyclic subgroup over each listed prime field.",
+  "rank_rule": "rank(0)=1; rank(d)=min(3*d,N-1)-int(3*d==N-1) for 1<=d<=ceil(N/3).",
+  "decoder_fixture_rule": "First subgroup encountered for each (p,N), ordered by A,B and point coordinates; both u=0 and u=1.",
+  "totals": {
+    "smooth_models": 942,
+    "odd_cyclic_subgroups": 1229,
+    "matching_characteristic_subgroups": 53,
+    "order_residue_mod_3_0": 664,
+    "root_cardinality_checks": 1229,
+    "annihilated_monomial_checks": 10091,
+    "evaluation_rank_checks": 4864,
+    "point_mass_degree_checks": 8860,
+    "point_mass_evaluation_checks": 111336,
+    "leading_coefficient_checks": 1229,
+    "explicit_decoder_fixtures": 106,
+    "decoder_coefficient_evaluation_checks": 17432,
+    "order_residue_mod_3_1": 251,
+    "order_residue_mod_3_2": 314
+  },
+  "by_prime": {
+    "5": {
+      "smooth_models": 20,
+      "odd_cyclic_subgroups": 15,
+      "matching_characteristic_subgroups": 3,
+      "order_residue_mod_3_0": 10,
+      "root_cardinality_checks": 15,
+      "annihilated_monomial_checks": 41,
+      "evaluation_rank_checks": 41,
+      "point_mass_degree_checks": 56,
+      "point_mass_evaluation_checks": 280,
+      "leading_coefficient_checks": 15,
+      "explicit_decoder_fixtures": 8,
+      "decoder_coefficient_evaluation_checks": 240,
+      "order_residue_mod_3_1": 2,
+      "order_residue_mod_3_2": 3
+    },
+    "7": {
+      "smooth_models": 42,
+      "odd_cyclic_subgroups": 38,
+      "matching_characteristic_subgroups": 4,
+      "order_residue_mod_3_0": 21,
+      "root_cardinality_checks": 38,
+      "annihilated_monomial_checks": 132,
+      "evaluation_rank_checks": 112,
+      "point_mass_degree_checks": 162,
+      "point_mass_evaluation_checks": 996,
+      "leading_coefficient_checks": 38,
+      "explicit_decoder_fixtures": 12,
+      "decoder_coefficient_evaluation_checks": 728,
+      "order_residue_mod_3_1": 5,
+      "order_residue_mod_3_2": 12
+    },
+    "11": {
+      "smooth_models": 110,
+      "odd_cyclic_subgroups": 125,
+      "matching_characteristic_subgroups": 5,
+      "order_residue_mod_3_0": 75,
+      "root_cardinality_checks": 125,
+      "annihilated_monomial_checks": 670,
+      "evaluation_rank_checks": 430,
+      "point_mass_degree_checks": 720,
+      "point_mass_evaluation_checks": 6480,
+      "leading_coefficient_checks": 125,
+      "explicit_decoder_fixtures": 16,
+      "decoder_coefficient_evaluation_checks": 1632,
+      "order_residue_mod_3_1": 20,
+      "order_residue_mod_3_2": 30
+    },
+    "13": {
+      "smooth_models": 156,
+      "odd_cyclic_subgroups": 188,
+      "matching_characteristic_subgroups": 12,
+      "order_residue_mod_3_0": 104,
+      "root_cardinality_checks": 188,
+      "annihilated_monomial_checks": 1210,
+      "evaluation_rank_checks": 684,
+      "point_mass_degree_checks": 1180,
+      "point_mass_evaluation_checks": 12200,
+      "leading_coefficient_checks": 188,
+      "explicit_decoder_fixtures": 20,
+      "decoder_coefficient_evaluation_checks": 3080,
+      "order_residue_mod_3_1": 36,
+      "order_residue_mod_3_2": 48
+    },
+    "17": {
+      "smooth_models": 272,
+      "odd_cyclic_subgroups": 380,
+      "matching_characteristic_subgroups": 8,
+      "order_residue_mod_3_0": 208,
+      "root_cardinality_checks": 380,
+      "annihilated_monomial_checks": 3244,
+      "evaluation_rank_checks": 1536,
+      "point_mass_degree_checks": 2848,
+      "point_mass_evaluation_checks": 36576,
+      "leading_coefficient_checks": 380,
+      "explicit_decoder_fixtures": 24,
+      "decoder_coefficient_evaluation_checks": 5200,
+      "order_residue_mod_3_2": 104,
+      "order_residue_mod_3_1": 68
+    },
+    "19": {
+      "smooth_models": 342,
+      "odd_cyclic_subgroups": 483,
+      "matching_characteristic_subgroups": 21,
+      "order_residue_mod_3_0": 246,
+      "root_cardinality_checks": 483,
+      "annihilated_monomial_checks": 4794,
+      "evaluation_rank_checks": 2061,
+      "point_mass_degree_checks": 3894,
+      "point_mass_evaluation_checks": 54804,
+      "leading_coefficient_checks": 483,
+      "explicit_decoder_fixtures": 26,
+      "decoder_coefficient_evaluation_checks": 6552,
+      "order_residue_mod_3_1": 120,
+      "order_residue_mod_3_2": 117
+    }
+  },
+  "decoder_fixtures": [
+    {
+      "p": 5,
+      "A": 0,
+      "B": 1,
+      "N": 3,
+      "T": [
+        0,
+        1
+      ],
+      "u": 0,
+      "degree_bound": 1,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        2
+      ],
+      "decoder_terms": 0,
+      "decoder_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "left_degree": 0,
+      "right_degree": 0,
+      "verified_target_entries": 4
+    },
+    {
+      "p": 5,
+      "A": 0,
+      "B": 1,
+      "N": 3,
+      "T": [
+        0,
+        1
+      ],
+      "u": 1,
+      "degree_bound": 1,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        2
+      ],
+      "decoder_terms": 2,
+      "decoder_sha256": "451a61f45f9c0a828c94dbe3a0848dc1faa1632410f307cc24a7c671cd7a543f",
+      "left_degree": 1,
+      "right_degree": 1,
+      "verified_target_entries": 4
+    },
+    {
+      "p": 5,
+      "A": 1,
+      "B": 1,
+      "N": 9,
+      "T": [
+        0,
+        1
+      ],
+      "u": 0,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "decoder_terms": 19,
+      "decoder_sha256": "6098e51385e0f12921d4c53f879a3178392c3e55291ffebc7d792c2050f8756f",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 64
+    },
+    {
+      "p": 5,
+      "A": 1,
+      "B": 1,
+      "N": 9,
+      "T": [
+        0,
+        1
+      ],
+      "u": 1,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "decoder_terms": 30,
+      "decoder_sha256": "7fd1fb0c428c10bdb67b61d8ab0da6f9d94e1a414fa056501207d6e3906cd2d0",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 64
+    },
+    {
+      "p": 5,
+      "A": 2,
+      "B": 1,
+      "N": 7,
+      "T": [
+        0,
+        1
+      ],
+      "u": 0,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "decoder_terms": 13,
+      "decoder_sha256": "1a4e87cfe1421ae67788f61b205a21220b4a97ef63b0c8f14cd4cd95e1bd072b",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 36
+    },
+    {
+      "p": 5,
+      "A": 2,
+      "B": 1,
+      "N": 7,
+      "T": [
+        0,
+        1
+      ],
+      "u": 1,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "decoder_terms": 15,
+      "decoder_sha256": "0e22bc5b0b06d317ebcb41948d680392c7336451b7b67754646ef7d84177468b",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 36
+    },
+    {
+      "p": 5,
+      "A": 3,
+      "B": 0,
+      "N": 5,
+      "T": [
+        1,
+        2
+      ],
+      "u": 0,
+      "degree_bound": 2,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        4
+      ],
+      "decoder_terms": 3,
+      "decoder_sha256": "1f3290fb9802507a9f7d51c24ad3f53b45e7ec11a2cad2d2afbe935659f6ef7c",
+      "left_degree": 2,
+      "right_degree": 2,
+      "verified_target_entries": 16
+    },
+    {
+      "p": 5,
+      "A": 3,
+      "B": 0,
+      "N": 5,
+      "T": [
+        1,
+        2
+      ],
+      "u": 1,
+      "degree_bound": 2,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        4
+      ],
+      "decoder_terms": 7,
+      "decoder_sha256": "18456ca133b0d75058838d94339734e09069a0f8d433e141765e235c45ae39e2",
+      "left_degree": 2,
+      "right_degree": 2,
+      "verified_target_entries": 16
+    },
+    {
+      "p": 7,
+      "A": 0,
+      "B": 1,
+      "N": 3,
+      "T": [
+        0,
+        1
+      ],
+      "u": 0,
+      "degree_bound": 1,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        2
+      ],
+      "decoder_terms": 0,
+      "decoder_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "left_degree": 0,
+      "right_degree": 0,
+      "verified_target_entries": 4
+    },
+    {
+      "p": 7,
+      "A": 0,
+      "B": 1,
+      "N": 3,
+      "T": [
+        0,
+        1
+      ],
+      "u": 1,
+      "degree_bound": 1,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        2
+      ],
+      "decoder_terms": 2,
+      "decoder_sha256": "7bf8181fa4cdb175901d40c1643e6353bddec42b299b4cf33c816cd683396ec8",
+      "left_degree": 1,
+      "right_degree": 1,
+      "verified_target_entries": 4
+    },
+    {
+      "p": 7,
+      "A": 0,
+      "B": 3,
+      "N": 13,
+      "T": [
+        1,
+        2
+      ],
+      "u": 0,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        11,
+        12
+      ],
+      "decoder_terms": 23,
+      "decoder_sha256": "6cfa62a486c60d9a6643c9acc8747e4dc03a73bfa6684145a0a9f76c0ae901ca",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 144
+    },
+    {
+      "p": 7,
+      "A": 0,
+      "B": 3,
+      "N": 13,
+      "T": [
+        1,
+        2
+      ],
+      "u": 1,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        11,
+        12
+      ],
+      "decoder_terms": 43,
+      "decoder_sha256": "ab37426f30bf52ac47d94fc24d46938789225113c0da56a235a1ed6d3f8730a2",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 144
+    },
+    {
+      "p": 7,
+      "A": 0,
+      "B": 5,
+      "N": 7,
+      "T": [
+        3,
+        2
+      ],
+      "u": 0,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "decoder_terms": 3,
+      "decoder_sha256": "a6fd156e21858bc81efbb6eab5730d80eb43dc2a1f4c5d9c617bb481aa8b62b3",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 36
+    },
+    {
+      "p": 7,
+      "A": 0,
+      "B": 5,
+      "N": 7,
+      "T": [
+        3,
+        2
+      ],
+      "u": 1,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "decoder_terms": 9,
+      "decoder_sha256": "8309041f9c8965b811545cd64c2c1557dc7991a7a6aa82e7f7e0ac3536dafac4",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 36
+    },
+    {
+      "p": 7,
+      "A": 1,
+      "B": 1,
+      "N": 5,
+      "T": [
+        0,
+        1
+      ],
+      "u": 0,
+      "degree_bound": 2,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        4
+      ],
+      "decoder_terms": 6,
+      "decoder_sha256": "1b91490862ef107bfea336d22b1061e39931a0cd4d1e71952ab58cd959cb090e",
+      "left_degree": 2,
+      "right_degree": 2,
+      "verified_target_entries": 16
+    },
+    {
+      "p": 7,
+      "A": 1,
+      "B": 1,
+      "N": 5,
+      "T": [
+        0,
+        1
+      ],
+      "u": 1,
+      "degree_bound": 2,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        4
+      ],
+      "decoder_terms": 7,
+      "decoder_sha256": "1431f546999df3ffeec71d2cc2fe85dccb8ec1b89d7b65a8c3f62ad67f5c0758",
+      "left_degree": 2,
+      "right_degree": 2,
+      "verified_target_entries": 16
+    },
+    {
+      "p": 7,
+      "A": 1,
+      "B": 6,
+      "N": 11,
+      "T": [
+        1,
+        1
+      ],
+      "u": 0,
+      "degree_bound": 4,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        10
+      ],
+      "decoder_terms": 46,
+      "decoder_sha256": "67d7c06d9941a24cace06ab964a578099c44c874fb84be33a2e3857fe9629dc5",
+      "left_degree": 4,
+      "right_degree": 4,
+      "verified_target_entries": 100
+    },
+    {
+      "p": 7,
+      "A": 1,
+      "B": 6,
+      "N": 11,
+      "T": [
+        1,
+        1
+      ],
+      "u": 1,
+      "degree_bound": 4,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        10
+      ],
+      "decoder_terms": 41,
+      "decoder_sha256": "1d678630dcc2c0334810b38e79ae040112115bda1ada3a879fc236fb5e7e610c",
+      "left_degree": 4,
+      "right_degree": 4,
+      "verified_target_entries": 100
+    },
+    {
+      "p": 7,
+      "A": 3,
+      "B": 2,
+      "N": 9,
+      "T": [
+        0,
+        3
+      ],
+      "u": 0,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "decoder_terms": 27,
+      "decoder_sha256": "d46fb8da0fa26d06e06b6eff96c20ec6ab12792eaf807a2430e537d974a2b5ad",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 64
+    },
+    {
+      "p": 7,
+      "A": 3,
+      "B": 2,
+      "N": 9,
+      "T": [
+        0,
+        3
+      ],
+      "u": 1,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "decoder_terms": 28,
+      "decoder_sha256": "9769c3fdde1e95c4dd18d44b811c2ed236aae128fb7a608039a602411ea51925",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 64
+    },
+    {
+      "p": 11,
+      "A": 0,
+      "B": 1,
+      "N": 3,
+      "T": [
+        0,
+        1
+      ],
+      "u": 0,
+      "degree_bound": 1,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        2
+      ],
+      "decoder_terms": 0,
+      "decoder_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "left_degree": 0,
+      "right_degree": 0,
+      "verified_target_entries": 4
+    },
+    {
+      "p": 11,
+      "A": 0,
+      "B": 1,
+      "N": 3,
+      "T": [
+        0,
+        1
+      ],
+      "u": 1,
+      "degree_bound": 1,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        2
+      ],
+      "decoder_terms": 2,
+      "decoder_sha256": "d4abe0cfe19a49c470dd9f82e6c5c9e301798645c9d153ae92e9be99da43fd1e",
+      "left_degree": 1,
+      "right_degree": 1,
+      "verified_target_entries": 4
+    },
+    {
+      "p": 11,
+      "A": 1,
+      "B": 1,
+      "N": 7,
+      "T": [
+        0,
+        1
+      ],
+      "u": 0,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "decoder_terms": 16,
+      "decoder_sha256": "d5529dc32ece68d6793c73304915415167c6cc8b33785754ab5f03160629539f",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 36
+    },
+    {
+      "p": 11,
+      "A": 1,
+      "B": 1,
+      "N": 7,
+      "T": [
+        0,
+        1
+      ],
+      "u": 1,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "decoder_terms": 18,
+      "decoder_sha256": "05c68230c65b84f0912468017e55e6bd07ff5ddd89d0a027c072cd7a22de0fe2",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 36
+    },
+    {
+      "p": 11,
+      "A": 1,
+      "B": 3,
+      "N": 9,
+      "T": [
+        4,
+        4
+      ],
+      "u": 0,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "decoder_terms": 28,
+      "decoder_sha256": "ef7130dc5c7b40602a342251952ac000c18d88cc9c43ef5dce4d7eb48b2db23d",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 64
+    },
+    {
+      "p": 11,
+      "A": 1,
+      "B": 3,
+      "N": 9,
+      "T": [
+        4,
+        4
+      ],
+      "u": 1,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "decoder_terms": 28,
+      "decoder_sha256": "3db39fefe2771499e323ab7c32e246a386c8cca5d0f79caf26f258d11b26432f",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 64
+    },
+    {
+      "p": 11,
+      "A": 1,
+      "B": 5,
+      "N": 11,
+      "T": [
+        0,
+        4
+      ],
+      "u": 0,
+      "degree_bound": 4,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        10
+      ],
+      "decoder_terms": 46,
+      "decoder_sha256": "4ee2fe7f921661ae49119d82de0343b198ca2bf7851828e4c3c7849ae444d1f3",
+      "left_degree": 4,
+      "right_degree": 4,
+      "verified_target_entries": 100
+    },
+    {
+      "p": 11,
+      "A": 1,
+      "B": 5,
+      "N": 11,
+      "T": [
+        0,
+        4
+      ],
+      "u": 1,
+      "degree_bound": 4,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        10
+      ],
+      "decoder_terms": 48,
+      "decoder_sha256": "57dc03779f38488a6657ef2b8c16bf7c3b98e1b0a2d1a8eb4d2f24d3df98adeb",
+      "left_degree": 4,
+      "right_degree": 4,
+      "verified_target_entries": 100
+    },
+    {
+      "p": 11,
+      "A": 1,
+      "B": 6,
+      "N": 13,
+      "T": [
+        2,
+        4
+      ],
+      "u": 0,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        11,
+        12
+      ],
+      "decoder_terms": 91,
+      "decoder_sha256": "88eafebb22826a25772625c2b7acf2d313a784fe3af4c5e1a11b4360bfa66eb9",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 144
+    },
+    {
+      "p": 11,
+      "A": 1,
+      "B": 6,
+      "N": 13,
+      "T": [
+        2,
+        4
+      ],
+      "u": 1,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        11,
+        12
+      ],
+      "decoder_terms": 94,
+      "decoder_sha256": "3cf6c8b2597e1d3fff689a54d1332e9462bd22e83f5d1fb01528bb3642baadde",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 144
+    },
+    {
+      "p": 11,
+      "A": 1,
+      "B": 7,
+      "N": 5,
+      "T": [
+        1,
+        3
+      ],
+      "u": 0,
+      "degree_bound": 2,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        4
+      ],
+      "decoder_terms": 8,
+      "decoder_sha256": "9c558e92950b442a9be94c48ac50aa03b7113775f28c397a78364cb8fbc07050",
+      "left_degree": 2,
+      "right_degree": 2,
+      "verified_target_entries": 16
+    },
+    {
+      "p": 11,
+      "A": 1,
+      "B": 7,
+      "N": 5,
+      "T": [
+        1,
+        3
+      ],
+      "u": 1,
+      "degree_bound": 2,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        4
+      ],
+      "decoder_terms": 7,
+      "decoder_sha256": "7062427b295329cbe9be292abd758b6149199626df946bfb04bc62d696287789",
+      "left_degree": 2,
+      "right_degree": 2,
+      "verified_target_entries": 16
+    },
+    {
+      "p": 11,
+      "A": 1,
+      "B": 7,
+      "N": 15,
+      "T": [
+        3,
+        2
+      ],
+      "u": 0,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        14
+      ],
+      "decoder_terms": 121,
+      "decoder_sha256": "35932faf1a833384d4a33629da7039ad7bfda0912d22ab1aa4ab40019dbe3c7e",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 196
+    },
+    {
+      "p": 11,
+      "A": 1,
+      "B": 7,
+      "N": 15,
+      "T": [
+        3,
+        2
+      ],
+      "u": 1,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        14
+      ],
+      "decoder_terms": 97,
+      "decoder_sha256": "422df6e1a2515449257eac17e3dc32bae1ee2f52447d7cef93c2eb5709372774",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 196
+    },
+    {
+      "p": 11,
+      "A": 2,
+      "B": 4,
+      "N": 17,
+      "T": [
+        0,
+        2
+      ],
+      "u": 0,
+      "degree_bound": 6,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        16
+      ],
+      "decoder_terms": 144,
+      "decoder_sha256": "591f3bcb35037412ffed0ee51cb57cfa15c489908903ff3d3effbd98dbf538cf",
+      "left_degree": 6,
+      "right_degree": 6,
+      "verified_target_entries": 256
+    },
+    {
+      "p": 11,
+      "A": 2,
+      "B": 4,
+      "N": 17,
+      "T": [
+        0,
+        2
+      ],
+      "u": 1,
+      "degree_bound": 6,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        16
+      ],
+      "decoder_terms": 158,
+      "decoder_sha256": "cb3bb26103467aa2b3579580eeecec5764f60a6b0a9873b09673f1971c841daf",
+      "left_degree": 6,
+      "right_degree": 6,
+      "verified_target_entries": 256
+    },
+    {
+      "p": 13,
+      "A": 0,
+      "B": 1,
+      "N": 3,
+      "T": [
+        0,
+        1
+      ],
+      "u": 0,
+      "degree_bound": 1,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        2
+      ],
+      "decoder_terms": 0,
+      "decoder_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "left_degree": 0,
+      "right_degree": 0,
+      "verified_target_entries": 4
+    },
+    {
+      "p": 13,
+      "A": 0,
+      "B": 1,
+      "N": 3,
+      "T": [
+        0,
+        1
+      ],
+      "u": 1,
+      "degree_bound": 1,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        2
+      ],
+      "decoder_terms": 2,
+      "decoder_sha256": "d0c284d9609cb7124a66012c65a9639b869c0baa1bccaf3e382738ff73a4b95c",
+      "left_degree": 1,
+      "right_degree": 1,
+      "verified_target_entries": 4
+    },
+    {
+      "p": 13,
+      "A": 0,
+      "B": 2,
+      "N": 19,
+      "T": [
+        1,
+        4
+      ],
+      "u": 0,
+      "degree_bound": 7,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        17,
+        18
+      ],
+      "decoder_terms": 48,
+      "decoder_sha256": "908e5070c352542361c8c9244b729d3f6e6be6cbc7cd1ec6e4c69884104138d3",
+      "left_degree": 7,
+      "right_degree": 7,
+      "verified_target_entries": 324
+    },
+    {
+      "p": 13,
+      "A": 0,
+      "B": 2,
+      "N": 19,
+      "T": [
+        1,
+        4
+      ],
+      "u": 1,
+      "degree_bound": 7,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        17,
+        18
+      ],
+      "decoder_terms": 99,
+      "decoder_sha256": "ad6030ab6bb688652b67dc493d2cc94ff87d6d479939a2649016fc9819b8230c",
+      "left_degree": 7,
+      "right_degree": 7,
+      "verified_target_entries": 324
+    },
+    {
+      "p": 13,
+      "A": 0,
+      "B": 4,
+      "N": 21,
+      "T": [
+        2,
+        5
+      ],
+      "u": 0,
+      "degree_bound": 7,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        20
+      ],
+      "decoder_terms": 58,
+      "decoder_sha256": "23b81079979deca3653de424c13857037377ba1311ec6e61ef7529acbfa7ecaa",
+      "left_degree": 7,
+      "right_degree": 7,
+      "verified_target_entries": 400
+    },
+    {
+      "p": 13,
+      "A": 0,
+      "B": 4,
+      "N": 21,
+      "T": [
+        2,
+        5
+      ],
+      "u": 1,
+      "degree_bound": 7,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        20
+      ],
+      "decoder_terms": 117,
+      "decoder_sha256": "df72a8a6cca379ec66bd89333665df4632469a66df9a50ff119e8bee8434ba8b",
+      "left_degree": 7,
+      "right_degree": 7,
+      "verified_target_entries": 400
+    },
+    {
+      "p": 13,
+      "A": 0,
+      "B": 4,
+      "N": 7,
+      "T": [
+        7,
+        3
+      ],
+      "u": 0,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "decoder_terms": 6,
+      "decoder_sha256": "52f3fe64a6971ad41f8f22797e940ba80765c7c66de421cebba6727dc72c0147",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 36
+    },
+    {
+      "p": 13,
+      "A": 0,
+      "B": 4,
+      "N": 7,
+      "T": [
+        7,
+        3
+      ],
+      "u": 1,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "decoder_terms": 12,
+      "decoder_sha256": "d9b7a0153111af0d525d387bf4ab5857629408cb1e3c920de5c5f5a4e1e4272e",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 36
+    },
+    {
+      "p": 13,
+      "A": 1,
+      "B": 0,
+      "N": 5,
+      "T": [
+        4,
+        4
+      ],
+      "u": 0,
+      "degree_bound": 2,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        4
+      ],
+      "decoder_terms": 4,
+      "decoder_sha256": "07f02a94ab967aa8091324e84a916b1726125eecc3de99cd7852fc46f023718e",
+      "left_degree": 2,
+      "right_degree": 2,
+      "verified_target_entries": 16
+    },
+    {
+      "p": 13,
+      "A": 1,
+      "B": 0,
+      "N": 5,
+      "T": [
+        4,
+        4
+      ],
+      "u": 1,
+      "degree_bound": 2,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        4
+      ],
+      "decoder_terms": 8,
+      "decoder_sha256": "1fb94afdfd6627d486f56fcd9c250d4fe38d521b0bf2a0fd5c23596dd998e7e3",
+      "left_degree": 2,
+      "right_degree": 2,
+      "verified_target_entries": 16
+    },
+    {
+      "p": 13,
+      "A": 1,
+      "B": 1,
+      "N": 9,
+      "T": [
+        4,
+        2
+      ],
+      "u": 0,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "decoder_terms": 28,
+      "decoder_sha256": "ba04e5aa8578029e4ef90b08704538e84d8ab0fed030c64708d340c1f20351e3",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 64
+    },
+    {
+      "p": 13,
+      "A": 1,
+      "B": 1,
+      "N": 9,
+      "T": [
+        4,
+        2
+      ],
+      "u": 1,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "decoder_terms": 28,
+      "decoder_sha256": "086db49061ad1222744dd05f08026f9eead8bf49c6ddc9b7eda7e11925495fa8",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 64
+    },
+    {
+      "p": 13,
+      "A": 1,
+      "B": 6,
+      "N": 13,
+      "T": [
+        2,
+        4
+      ],
+      "u": 0,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        11,
+        12
+      ],
+      "decoder_terms": 76,
+      "decoder_sha256": "db7bda96c29e50eca78e2255f1d492841627435b5c6ce877bd3849fad97c77b8",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 144
+    },
+    {
+      "p": 13,
+      "A": 1,
+      "B": 6,
+      "N": 13,
+      "T": [
+        2,
+        4
+      ],
+      "u": 1,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        11,
+        12
+      ],
+      "decoder_terms": 87,
+      "decoder_sha256": "85c94c67963daa4dbdf0dba6633ec2b5f500eb2596edc6118f053936775cca76",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 144
+    },
+    {
+      "p": 13,
+      "A": 2,
+      "B": 2,
+      "N": 15,
+      "T": [
+        3,
+        3
+      ],
+      "u": 0,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        14
+      ],
+      "decoder_terms": 117,
+      "decoder_sha256": "da149eeb69a1301ff28eecb8390c05850adf614eb42e03bf7c1f55999a7b8aa1",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 196
+    },
+    {
+      "p": 13,
+      "A": 2,
+      "B": 2,
+      "N": 15,
+      "T": [
+        3,
+        3
+      ],
+      "u": 1,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        14
+      ],
+      "decoder_terms": 115,
+      "decoder_sha256": "66e523130eaac703705122ff7dee0f2ac4d5df5717770d6c0c894b00e764d6be",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 196
+    },
+    {
+      "p": 13,
+      "A": 2,
+      "B": 4,
+      "N": 17,
+      "T": [
+        0,
+        2
+      ],
+      "u": 0,
+      "degree_bound": 6,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        16
+      ],
+      "decoder_terms": 142,
+      "decoder_sha256": "91595f6556bc50c501620881a776c00cb35fca60af7511fc7d9c36cd0ad231e5",
+      "left_degree": 6,
+      "right_degree": 6,
+      "verified_target_entries": 256
+    },
+    {
+      "p": 13,
+      "A": 2,
+      "B": 4,
+      "N": 17,
+      "T": [
+        0,
+        2
+      ],
+      "u": 1,
+      "degree_bound": 6,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        16
+      ],
+      "decoder_terms": 148,
+      "decoder_sha256": "ff790c31c13e8e4d09e9a64db3f5cf02c1a54057d6921e0eb107f81f05757e90",
+      "left_degree": 6,
+      "right_degree": 6,
+      "verified_target_entries": 256
+    },
+    {
+      "p": 13,
+      "A": 7,
+      "B": 6,
+      "N": 11,
+      "T": [
+        1,
+        1
+      ],
+      "u": 0,
+      "degree_bound": 4,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        10
+      ],
+      "decoder_terms": 43,
+      "decoder_sha256": "44d056ca3dbd1e3e79f31103b1cd4bebc24f26002ac6be73c4cb3ed6f802a208",
+      "left_degree": 4,
+      "right_degree": 4,
+      "verified_target_entries": 100
+    },
+    {
+      "p": 13,
+      "A": 7,
+      "B": 6,
+      "N": 11,
+      "T": [
+        1,
+        1
+      ],
+      "u": 1,
+      "degree_bound": 4,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        10
+      ],
+      "decoder_terms": 43,
+      "decoder_sha256": "49755414fc305807fd3026adb0628d8a1583b035cd6e90dcc0a0fe684ec7638b",
+      "left_degree": 4,
+      "right_degree": 4,
+      "verified_target_entries": 100
+    },
+    {
+      "p": 17,
+      "A": 0,
+      "B": 1,
+      "N": 3,
+      "T": [
+        0,
+        1
+      ],
+      "u": 0,
+      "degree_bound": 1,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        2
+      ],
+      "decoder_terms": 0,
+      "decoder_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "left_degree": 0,
+      "right_degree": 0,
+      "verified_target_entries": 4
+    },
+    {
+      "p": 17,
+      "A": 0,
+      "B": 1,
+      "N": 3,
+      "T": [
+        0,
+        1
+      ],
+      "u": 1,
+      "degree_bound": 1,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        2
+      ],
+      "decoder_terms": 2,
+      "decoder_sha256": "f05a6afe652eed909b0caefcc00cf1ad414d7a91b698d8fea16b91b535946162",
+      "left_degree": 1,
+      "right_degree": 1,
+      "verified_target_entries": 4
+    },
+    {
+      "p": 17,
+      "A": 0,
+      "B": 1,
+      "N": 9,
+      "T": [
+        1,
+        6
+      ],
+      "u": 0,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "decoder_terms": 29,
+      "decoder_sha256": "bf3882a10613e9fc927f334388a89f13ce23ce3d3ec272d76a2066f7cfbdcbf4",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 64
+    },
+    {
+      "p": 17,
+      "A": 0,
+      "B": 1,
+      "N": 9,
+      "T": [
+        1,
+        6
+      ],
+      "u": 1,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "decoder_terms": 32,
+      "decoder_sha256": "3a25ba3068a89ab476702963d38d02c2cf43ba18ac3dc5f9bc05d95697083e09",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 64
+    },
+    {
+      "p": 17,
+      "A": 1,
+      "B": 3,
+      "N": 17,
+      "T": [
+        2,
+        8
+      ],
+      "u": 0,
+      "degree_bound": 6,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        16
+      ],
+      "decoder_terms": 151,
+      "decoder_sha256": "f5c5d0da59cd1e47466effec26dafb5e9cf7e1043261bd03e447c1664e16fc1b",
+      "left_degree": 6,
+      "right_degree": 6,
+      "verified_target_entries": 256
+    },
+    {
+      "p": 17,
+      "A": 1,
+      "B": 3,
+      "N": 17,
+      "T": [
+        2,
+        8
+      ],
+      "u": 1,
+      "degree_bound": 6,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        16
+      ],
+      "decoder_terms": 152,
+      "decoder_sha256": "19c1b76987f198106debdeb3a8fb9f628ce59502dd026bdd043cdb16a4fbd473",
+      "left_degree": 6,
+      "right_degree": 6,
+      "verified_target_entries": 256
+    },
+    {
+      "p": 17,
+      "A": 1,
+      "B": 4,
+      "N": 7,
+      "T": [
+        4,
+        2
+      ],
+      "u": 0,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "decoder_terms": 16,
+      "decoder_sha256": "29334331c15379e045bd87510c408c74d15b6da9c520c416d101db6420e71f5d",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 36
+    },
+    {
+      "p": 17,
+      "A": 1,
+      "B": 4,
+      "N": 7,
+      "T": [
+        4,
+        2
+      ],
+      "u": 1,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "decoder_terms": 16,
+      "decoder_sha256": "3978f7361e32de64441fbb92947104aced65070bc728e3e91021a00b0fc52232",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 36
+    },
+    {
+      "p": 17,
+      "A": 1,
+      "B": 5,
+      "N": 15,
+      "T": [
+        2,
+        7
+      ],
+      "u": 0,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        14
+      ],
+      "decoder_terms": 124,
+      "decoder_sha256": "69bd4fbf32fffee272a303293e4aca11788ddb952129098a47a25163f00d075c",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 196
+    },
+    {
+      "p": 17,
+      "A": 1,
+      "B": 5,
+      "N": 15,
+      "T": [
+        2,
+        7
+      ],
+      "u": 1,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        14
+      ],
+      "decoder_terms": 118,
+      "decoder_sha256": "e54559f4f35bc112365da5b30730338608a3d30f52c96f625b8a27f7f3f76d3f",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 196
+    },
+    {
+      "p": 17,
+      "A": 1,
+      "B": 5,
+      "N": 5,
+      "T": [
+        5,
+        4
+      ],
+      "u": 0,
+      "degree_bound": 2,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        4
+      ],
+      "decoder_terms": 8,
+      "decoder_sha256": "50779abe21def4f630cf48303c8cb85259cacaab0904f011ff9eeb07d1596d90",
+      "left_degree": 2,
+      "right_degree": 2,
+      "verified_target_entries": 16
+    },
+    {
+      "p": 17,
+      "A": 1,
+      "B": 5,
+      "N": 5,
+      "T": [
+        5,
+        4
+      ],
+      "u": 1,
+      "degree_bound": 2,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        4
+      ],
+      "decoder_terms": 8,
+      "decoder_sha256": "76c448337cbb63020cd9f8a6949e8681e7cf72d656e43e944df0e015fe1209f8",
+      "left_degree": 2,
+      "right_degree": 2,
+      "verified_target_entries": 16
+    },
+    {
+      "p": 17,
+      "A": 1,
+      "B": 8,
+      "N": 25,
+      "T": [
+        0,
+        5
+      ],
+      "u": 0,
+      "degree_bound": 9,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        23,
+        24
+      ],
+      "decoder_terms": 629,
+      "decoder_sha256": "a345d1a6020a95d07b6e0b196ecbb1b55d485a14aa5db2073f4dfe1394f734e3",
+      "left_degree": 9,
+      "right_degree": 9,
+      "verified_target_entries": 576
+    },
+    {
+      "p": 17,
+      "A": 1,
+      "B": 8,
+      "N": 25,
+      "T": [
+        0,
+        5
+      ],
+      "u": 1,
+      "degree_bound": 9,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        23,
+        24
+      ],
+      "decoder_terms": 624,
+      "decoder_sha256": "9fda5678fd149ec8d3d2cd9cf214948334bd469694c6a90936272659d76319c1",
+      "left_degree": 9,
+      "right_degree": 9,
+      "verified_target_entries": 576
+    },
+    {
+      "p": 17,
+      "A": 2,
+      "B": 2,
+      "N": 19,
+      "T": [
+        0,
+        6
+      ],
+      "u": 0,
+      "degree_bound": 7,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        17,
+        18
+      ],
+      "decoder_terms": 278,
+      "decoder_sha256": "c354c6e712dc66e346250f681c599311285adb8792d593a0911359431c02bf01",
+      "left_degree": 7,
+      "right_degree": 7,
+      "verified_target_entries": 324
+    },
+    {
+      "p": 17,
+      "A": 2,
+      "B": 2,
+      "N": 19,
+      "T": [
+        0,
+        6
+      ],
+      "u": 1,
+      "degree_bound": 7,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        17,
+        18
+      ],
+      "decoder_terms": 265,
+      "decoder_sha256": "f911a2fa2c2a3a942b710d844d047f5614ad7eec7ad7c29486ada221378a9e04",
+      "left_degree": 7,
+      "right_degree": 7,
+      "verified_target_entries": 324
+    },
+    {
+      "p": 17,
+      "A": 2,
+      "B": 3,
+      "N": 11,
+      "T": [
+        3,
+        6
+      ],
+      "u": 0,
+      "degree_bound": 4,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        10
+      ],
+      "decoder_terms": 45,
+      "decoder_sha256": "75a39ca3c2330b8c4a5583f6e32a9d64aeb10ba604b1c5b21cd32284bb4a6b44",
+      "left_degree": 4,
+      "right_degree": 4,
+      "verified_target_entries": 100
+    },
+    {
+      "p": 17,
+      "A": 2,
+      "B": 3,
+      "N": 11,
+      "T": [
+        3,
+        6
+      ],
+      "u": 1,
+      "degree_bound": 4,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        10
+      ],
+      "decoder_terms": 45,
+      "decoder_sha256": "9b3aaf8373f4ca2be76b9ad22120145d44c13858873b2390779f9f2fdd189666",
+      "left_degree": 4,
+      "right_degree": 4,
+      "verified_target_entries": 100
+    },
+    {
+      "p": 17,
+      "A": 2,
+      "B": 8,
+      "N": 21,
+      "T": [
+        0,
+        5
+      ],
+      "u": 0,
+      "degree_bound": 7,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        20
+      ],
+      "decoder_terms": 312,
+      "decoder_sha256": "db06852701418e07ee0f2fbad501b7f62d8287a94f37441e44ae29838d915749",
+      "left_degree": 7,
+      "right_degree": 7,
+      "verified_target_entries": 400
+    },
+    {
+      "p": 17,
+      "A": 2,
+      "B": 8,
+      "N": 21,
+      "T": [
+        0,
+        5
+      ],
+      "u": 1,
+      "degree_bound": 7,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        20
+      ],
+      "decoder_terms": 311,
+      "decoder_sha256": "960aa90654900f3a112eef63d3935acb6a1e8b4616421b858912a7eb8730a598",
+      "left_degree": 7,
+      "right_degree": 7,
+      "verified_target_entries": 400
+    },
+    {
+      "p": 17,
+      "A": 3,
+      "B": 0,
+      "N": 13,
+      "T": [
+        1,
+        2
+      ],
+      "u": 0,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        11,
+        12
+      ],
+      "decoder_terms": 43,
+      "decoder_sha256": "d097978b75b3cc1dfcc35a4b723d263e628f40d0fc10f369af5d3d16c734b99a",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 144
+    },
+    {
+      "p": 17,
+      "A": 3,
+      "B": 0,
+      "N": 13,
+      "T": [
+        1,
+        2
+      ],
+      "u": 1,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        11,
+        12
+      ],
+      "decoder_terms": 83,
+      "decoder_sha256": "62c853bd2c476c28b964cbbf406b8808d20cd26772a38460dee53870e9bc1325",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 144
+    },
+    {
+      "p": 17,
+      "A": 3,
+      "B": 5,
+      "N": 23,
+      "T": [
+        1,
+        3
+      ],
+      "u": 0,
+      "degree_bound": 8,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        22
+      ],
+      "decoder_terms": 374,
+      "decoder_sha256": "58cb3f4c07553959f8f55a9479c280aa4f692c032fe9422ca4792b7900fe2d57",
+      "left_degree": 8,
+      "right_degree": 8,
+      "verified_target_entries": 484
+    },
+    {
+      "p": 17,
+      "A": 3,
+      "B": 5,
+      "N": 23,
+      "T": [
+        1,
+        3
+      ],
+      "u": 1,
+      "degree_bound": 8,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        22
+      ],
+      "decoder_terms": 370,
+      "decoder_sha256": "fe3b6429540a26c875fe3b4982b9f3b1e55bde5cbfef51669ff2c79a5f5c0ba1",
+      "left_degree": 8,
+      "right_degree": 8,
+      "verified_target_entries": 484
+    },
+    {
+      "p": 19,
+      "A": 0,
+      "B": 1,
+      "N": 3,
+      "T": [
+        0,
+        1
+      ],
+      "u": 0,
+      "degree_bound": 1,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        2
+      ],
+      "decoder_terms": 0,
+      "decoder_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "left_degree": 0,
+      "right_degree": 0,
+      "verified_target_entries": 4
+    },
+    {
+      "p": 19,
+      "A": 0,
+      "B": 1,
+      "N": 3,
+      "T": [
+        0,
+        1
+      ],
+      "u": 1,
+      "degree_bound": 1,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        2
+      ],
+      "decoder_terms": 2,
+      "decoder_sha256": "1999ffdcd954fa1873a07271dfb213ba1c72164198edf1b9552da65ec021ae43",
+      "left_degree": 1,
+      "right_degree": 1,
+      "verified_target_entries": 4
+    },
+    {
+      "p": 19,
+      "A": 0,
+      "B": 2,
+      "N": 13,
+      "T": [
+        4,
+        3
+      ],
+      "u": 0,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        11,
+        12
+      ],
+      "decoder_terms": 21,
+      "decoder_sha256": "782a8b96004f0a5175410a1a43ffd80f72ead93fe24f3dc18ddf30f150931e9a",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 144
+    },
+    {
+      "p": 19,
+      "A": 0,
+      "B": 2,
+      "N": 13,
+      "T": [
+        4,
+        3
+      ],
+      "u": 1,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        11,
+        12
+      ],
+      "decoder_terms": 45,
+      "decoder_sha256": "89f02824eb600331b4b71140fd0be8714a4f1e9ffa719bcf0183770d577edd87",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 144
+    },
+    {
+      "p": 19,
+      "A": 0,
+      "B": 4,
+      "N": 7,
+      "T": [
+        1,
+        9
+      ],
+      "u": 0,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "decoder_terms": 6,
+      "decoder_sha256": "ac497cab850bbde1ec8229f118fca910613280e6f56fcef8c57dc2b85e539f48",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 36
+    },
+    {
+      "p": 19,
+      "A": 0,
+      "B": 4,
+      "N": 7,
+      "T": [
+        1,
+        9
+      ],
+      "u": 1,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "decoder_terms": 12,
+      "decoder_sha256": "894bb05b4cf99dabf0c8e1c9aa3996e9ebd80b35af6714541524eecfc5359016",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 36
+    },
+    {
+      "p": 19,
+      "A": 0,
+      "B": 4,
+      "N": 21,
+      "T": [
+        4,
+        7
+      ],
+      "u": 0,
+      "degree_bound": 7,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        20
+      ],
+      "decoder_terms": 60,
+      "decoder_sha256": "dc0809c1a3d31a10110661270f1257ded197546945936dae334ecb017f73038d",
+      "left_degree": 7,
+      "right_degree": 7,
+      "verified_target_entries": 400
+    },
+    {
+      "p": 19,
+      "A": 0,
+      "B": 4,
+      "N": 21,
+      "T": [
+        4,
+        7
+      ],
+      "u": 1,
+      "degree_bound": 7,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        20
+      ],
+      "decoder_terms": 120,
+      "decoder_sha256": "fda367843cd06d0c49204afd3a2b5ec81573d1b4e9f059d16e79623090ace477",
+      "left_degree": 7,
+      "right_degree": 7,
+      "verified_target_entries": 400
+    },
+    {
+      "p": 19,
+      "A": 0,
+      "B": 5,
+      "N": 9,
+      "T": [
+        1,
+        5
+      ],
+      "u": 0,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "decoder_terms": 28,
+      "decoder_sha256": "a7c827912a8c58fc2c597497d50e42d89cd4dbdf8bd324f6704cba9e7dd4f37e",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 64
+    },
+    {
+      "p": 19,
+      "A": 0,
+      "B": 5,
+      "N": 9,
+      "T": [
+        1,
+        5
+      ],
+      "u": 1,
+      "degree_bound": 3,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "decoder_terms": 30,
+      "decoder_sha256": "26755f8c878d639d16eb55f886cd7685e48b39f2774bbe140ec0bf3dc32c8cf8",
+      "left_degree": 3,
+      "right_degree": 3,
+      "verified_target_entries": 64
+    },
+    {
+      "p": 19,
+      "A": 0,
+      "B": 10,
+      "N": 19,
+      "T": [
+        1,
+        7
+      ],
+      "u": 0,
+      "degree_bound": 7,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        17,
+        18
+      ],
+      "decoder_terms": 51,
+      "decoder_sha256": "4127fd8bf65616eee071fbda5ea603df8d88461d64913d3359e32c8f4240dc3b",
+      "left_degree": 7,
+      "right_degree": 7,
+      "verified_target_entries": 324
+    },
+    {
+      "p": 19,
+      "A": 0,
+      "B": 10,
+      "N": 19,
+      "T": [
+        1,
+        7
+      ],
+      "u": 1,
+      "degree_bound": 7,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        17,
+        18
+      ],
+      "decoder_terms": 97,
+      "decoder_sha256": "21343079f5088fb0966192a14815ca8db881ccb02fddac49e4b6e1c59266f0b4",
+      "left_degree": 7,
+      "right_degree": 7,
+      "verified_target_entries": 324
+    },
+    {
+      "p": 19,
+      "A": 1,
+      "B": 0,
+      "N": 5,
+      "T": [
+        5,
+        4
+      ],
+      "u": 0,
+      "degree_bound": 2,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        4
+      ],
+      "decoder_terms": 8,
+      "decoder_sha256": "7a71c3db2de0e6955ccf6b508cbbb89a7f87a1ad043feefacc99bc37d69efaf3",
+      "left_degree": 2,
+      "right_degree": 2,
+      "verified_target_entries": 16
+    },
+    {
+      "p": 19,
+      "A": 1,
+      "B": 0,
+      "N": 5,
+      "T": [
+        5,
+        4
+      ],
+      "u": 1,
+      "degree_bound": 2,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        4
+      ],
+      "decoder_terms": 6,
+      "decoder_sha256": "cba8441d86470d6984e5bfd690c3a852b0b8adddb9726e30b51fb11b19fc1e65",
+      "left_degree": 2,
+      "right_degree": 2,
+      "verified_target_entries": 16
+    },
+    {
+      "p": 19,
+      "A": 1,
+      "B": 5,
+      "N": 15,
+      "T": [
+        0,
+        9
+      ],
+      "u": 0,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        14
+      ],
+      "decoder_terms": 122,
+      "decoder_sha256": "34aacb5ad9acb2e63970ae99b48e8a05f325e4456cba0d948f288b40cc18c54a",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 196
+    },
+    {
+      "p": 19,
+      "A": 1,
+      "B": 5,
+      "N": 15,
+      "T": [
+        0,
+        9
+      ],
+      "u": 1,
+      "degree_bound": 5,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        14
+      ],
+      "decoder_terms": 125,
+      "decoder_sha256": "a54704579c48c1d9779e34e1a2bcff3be923583d2ab3239a9cac3f13f468185d",
+      "left_degree": 5,
+      "right_degree": 5,
+      "verified_target_entries": 196
+    },
+    {
+      "p": 19,
+      "A": 1,
+      "B": 12,
+      "N": 11,
+      "T": [
+        5,
+        3
+      ],
+      "u": 0,
+      "degree_bound": 4,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        10
+      ],
+      "decoder_terms": 47,
+      "decoder_sha256": "53a33914a112f9c95586a1e1763aa8cf9c94799dbfcf7ae39ef2287d35b4339c",
+      "left_degree": 4,
+      "right_degree": 4,
+      "verified_target_entries": 100
+    },
+    {
+      "p": 19,
+      "A": 1,
+      "B": 12,
+      "N": 11,
+      "T": [
+        5,
+        3
+      ],
+      "u": 1,
+      "degree_bound": 4,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        10
+      ],
+      "decoder_terms": 48,
+      "decoder_sha256": "a176676185f1c83f45569a7865e25d134f903f28f35be2baadf2f724233b1782",
+      "left_degree": 4,
+      "right_degree": 4,
+      "verified_target_entries": 100
+    },
+    {
+      "p": 19,
+      "A": 1,
+      "B": 14,
+      "N": 25,
+      "T": [
+        1,
+        4
+      ],
+      "u": 0,
+      "degree_bound": 9,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        23,
+        24
+      ],
+      "decoder_terms": 617,
+      "decoder_sha256": "449d8f008bb23e5a6aa6e44a866b63caabc0158e1156d8e632745dcc2162b4f6",
+      "left_degree": 9,
+      "right_degree": 9,
+      "verified_target_entries": 576
+    },
+    {
+      "p": 19,
+      "A": 1,
+      "B": 14,
+      "N": 25,
+      "T": [
+        1,
+        4
+      ],
+      "u": 1,
+      "degree_bound": 9,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        23,
+        24
+      ],
+      "decoder_terms": 608,
+      "decoder_sha256": "9429a9831ad338c278818b156cf766f7a3e1488b98d7b9784b21da8e7b65138c",
+      "left_degree": 9,
+      "right_degree": 9,
+      "verified_target_entries": 576
+    },
+    {
+      "p": 19,
+      "A": 2,
+      "B": 1,
+      "N": 27,
+      "T": [
+        4,
+        4
+      ],
+      "u": 0,
+      "degree_bound": 9,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        26
+      ],
+      "decoder_terms": 684,
+      "decoder_sha256": "0878573018b5cd988523243cc757582fc4ef879cb5d52c7f29176fee8145eb12",
+      "left_degree": 9,
+      "right_degree": 9,
+      "verified_target_entries": 676
+    },
+    {
+      "p": 19,
+      "A": 2,
+      "B": 1,
+      "N": 27,
+      "T": [
+        4,
+        4
+      ],
+      "u": 1,
+      "degree_bound": 9,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        24,
+        26
+      ],
+      "decoder_terms": 671,
+      "decoder_sha256": "76496ac1a4dee68b720941e8ea39da6d3a0d6a3106ea5c5bb0a8c8a396b31cad",
+      "left_degree": 9,
+      "right_degree": 9,
+      "verified_target_entries": 676
+    },
+    {
+      "p": 19,
+      "A": 2,
+      "B": 9,
+      "N": 23,
+      "T": [
+        0,
+        3
+      ],
+      "u": 0,
+      "degree_bound": 8,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        22
+      ],
+      "decoder_terms": 377,
+      "decoder_sha256": "c85160bf954c21e44e7739a191c1aac9adeb9d444e0d92781a95c302734039a7",
+      "left_degree": 8,
+      "right_degree": 8,
+      "verified_target_entries": 484
+    },
+    {
+      "p": 19,
+      "A": 2,
+      "B": 9,
+      "N": 23,
+      "T": [
+        0,
+        3
+      ],
+      "u": 1,
+      "degree_bound": 8,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        18,
+        21,
+        22
+      ],
+      "decoder_terms": 382,
+      "decoder_sha256": "a4857b03ebb769320fa025ab2ec5973ca1794a4e625832d959686089e0300fbd",
+      "left_degree": 8,
+      "right_degree": 8,
+      "verified_target_entries": 484
+    },
+    {
+      "p": 19,
+      "A": 2,
+      "B": 10,
+      "N": 17,
+      "T": [
+        3,
+        9
+      ],
+      "u": 0,
+      "degree_bound": 6,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        16
+      ],
+      "decoder_terms": 158,
+      "decoder_sha256": "71ce661238cc25d385294ede4df0e10da37468c64154bcf29cdaeaf95ac00f04",
+      "left_degree": 6,
+      "right_degree": 6,
+      "verified_target_entries": 256
+    },
+    {
+      "p": 19,
+      "A": 2,
+      "B": 10,
+      "N": 17,
+      "T": [
+        3,
+        9
+      ],
+      "u": 1,
+      "degree_bound": 6,
+      "evaluation_ranks_degrees_0_through_bound": [
+        1,
+        3,
+        6,
+        9,
+        12,
+        15,
+        16
+      ],
+      "decoder_terms": 161,
+      "decoder_sha256": "eb0ad189120a72d7813d94409af94e76644f9d6107024a2027d24220ceb7a6f0",
+      "left_degree": 6,
+      "right_degree": 6,
+      "verified_target_entries": 256
+    }
+  ],
+  "mutation_controls": [
+    {
+      "name": "missing_residue_factor_two",
+      "status": "rejected",
+      "fixture": {
+        "p": 5,
+        "A": 0,
+        "B": 1,
+        "N": 3,
+        "T": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "name": "wrong_residue_negation_sign",
+      "status": "rejected",
+      "fixture": {
+        "p": 5,
+        "A": 0,
+        "B": 1,
+        "N": 3,
+        "T": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "name": "uncompressed_ordinary_degree",
+      "status": "rejected",
+      "fixture": {
+        "p": 5,
+        "A": 1,
+        "B": 1,
+        "N": 9,
+        "T": [
+          0,
+          1
+        ]
+      }
+    }
+  ],
+  "witness_bundle_sha256": "4376f617ed727beded9c28ec789f729aca628f82e250b8693d51aefdca8b820a",
+  "proof_scope": "Finite exact controls for the stated interpolation model; universal conclusions use the accompanying Lean proofs.",
+  "elapsed_seconds": 1.16771,
+  "witness_output_sha256": "7b45583d06dc347abe37f17d44a8bed31bf30e54bed68b9885bc4b207c5e85c1"
+}

@@ -1,0 +1,53 @@
+{
+  "checks": {
+    "fixture_replay": "Independently reran all six check_fixture calls and matched every parsed fixture field against the reviewed receipt.",
+    "formula_cases": "Reviewed secant, tangent and inverse-pair identities for nonidentity inputs in an odd-order subgroup; the assigned value u is selected exactly on inverse pairs.",
+    "gate_trace_accounting": "Independently traversed each stored gate trace to recompute dependency validity, multiplicative depth and both syntactic formal-degree upper bounds.",
+    "mutation": "The wrong identity selector fails on every inverse pair and every tangent pair at u=1, while secant outputs agree.",
+    "native_power_guard": "AST inspection found no pow call or ** expression in the Circuit class or gate-trace replay function. Powers are compiled into counted binary multiplication gates.",
+    "public_parameter_accounting": "Checked 1523 multiplications, 12 additions/subtractions, constructed depth 507 and conditional degree-derived depth lower bound 255. Final decimal-string degree bounds retain their exact integer values."
+  },
+  "execution_scope": {
+    "assigned_values": "Every u in each executed prime field.",
+    "extension_fields": "The algebraic formula supports general finite fields; this integer-modulus interpreter executes prime-field fixtures only.",
+    "prime_fields": [
+      17,
+      19,
+      23,
+      29,
+      31,
+      37
+    ],
+    "subgroup_orders": [
+      19,
+      23,
+      29,
+      23,
+      43,
+      29
+    ]
+  },
+  "final_delta": "Exactly one conversion of the two secp256k1 formal-degree upper bounds from JSON integers to decimal strings; removing that conversion reproduces the previously reviewed source hash.",
+  "measurement_semantics": {
+    "coefficient_evaluations": "The named receipt field counts gate-trace evaluations for assigned coefficient u and each point pair; it is not a count of expanded-polynomial coefficient inspections.",
+    "formal_degrees": "Syntactic upper bounds before cancellation or reduction modulo curve and field equations.",
+    "formalization": "This review and finite replay are independent controls; the universal circuit construction has not been formalized in Lean.",
+    "secp256k1": "Static public-parameter circuit accounting; parameter primality, a full-size point-group instance, scalar recovery and ECDSA forgery are outside this check."
+  },
+  "previous_reviewed_source_sha256": "71f20ff52d47eeaf70a475675ab944165f1b8977876711bd5e4fc160efbb45d5",
+  "receipt_file": "circuit_scope_receipt.json",
+  "receipt_sha256": "7db757aa5d2775ae12b9374978bc40173b47167576767f71bd46c98fb6aa5cb6",
+  "reviewer": "ecdsa_classical_sources",
+  "schema": "trr12-independent-review-v1",
+  "source_file": "circuit_scope_control.py",
+  "source_sha256": "31dd73ff60500422f549cd8a53ef15d0f05142d0ac240a6ca491123c479da0fb",
+  "status": "passed",
+  "validated_totals": {
+    "coefficient_evaluations": 130464,
+    "fixtures": 6,
+    "input_pairs": 4624,
+    "inverse_pairs": 160,
+    "tangent_pairs": 160,
+    "wrong_identity_selector_failures": 320
+  }
+}

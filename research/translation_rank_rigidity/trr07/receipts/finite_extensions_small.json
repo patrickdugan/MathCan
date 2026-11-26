@@ -1,0 +1,3222 @@
+{
+  "counts": {
+    "coefficient_pairs_visited": 288,
+    "curve_generic_j": 213,
+    "curve_j0": 37,
+    "curve_j1728": 37,
+    "curve_ordinary": 248,
+    "curve_supersingular": 39,
+    "direct_matrix_checks": 206,
+    "exception_curve_isomorphism_classes": 0,
+    "field_arithmetic_checks": 9216,
+    "field_isomorphism_classes": 263,
+    "generator_invariance_checks": 315,
+    "order5_controls_outside_prime_field": 10,
+    "order5_positive_controls": 22,
+    "singular_models_skipped": 1,
+    "smooth_models": 287,
+    "subgroup_instances": 315,
+    "subgroups_full_prime_group": 5,
+    "subgroups_generic_j": 237,
+    "subgroups_j0": 37,
+    "subgroups_j1728": 41,
+    "subgroups_matching_characteristic": 41,
+    "subgroups_ordinary": 275,
+    "subgroups_proper_subgroup": 310,
+    "subgroups_supersingular": 40,
+    "subgroups_tame_nontransitive": 174,
+    "subgroups_tame_transitive": 100
+  },
+  "errors": [],
+  "fields": [
+    {
+      "by_stratum": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": 4,
+        "matching_characteristic|j1728|ordinary|proper_subgroup": 1,
+        "tame_transitive|generic_j|ordinary|full_prime_group": 1,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 4
+      },
+      "by_subgroup_order": {
+        "11": 2,
+        "19": 1,
+        "5": 5,
+        "7": 2
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 11,
+        "curve_j0": 2,
+        "curve_j1728": 3,
+        "curve_ordinary": 14,
+        "curve_supersingular": 2,
+        "direct_matrix_checks": 9,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 13,
+        "generator_invariance_checks": 10,
+        "order5_controls_outside_prime_field": 0,
+        "order5_positive_controls": 0,
+        "smooth_models": 16,
+        "subgroup_instances": 10,
+        "subgroups_full_prime_group": 1,
+        "subgroups_generic_j": 9,
+        "subgroups_j1728": 1,
+        "subgroups_matching_characteristic": 5,
+        "subgroups_ordinary": 10,
+        "subgroups_proper_subgroup": 9,
+        "subgroups_tame_transitive": 5
+      },
+      "elapsed_seconds": 0.007787,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 2,
+        "modulus_low_first": [
+          2,
+          0,
+          1
+        ],
+        "p": 5,
+        "primitive_element": 6,
+        "q": 25,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {},
+      "order5_controls": [],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": {
+          "a": 3,
+          "b": 17,
+          "generator": [
+            9,
+            6
+          ],
+          "n": 5,
+          "order": 20
+        },
+        "matching_characteristic|j1728|ordinary|proper_subgroup": {
+          "a": 2,
+          "b": 0,
+          "generator": [
+            2,
+            10
+          ],
+          "n": 5,
+          "order": 20
+        },
+        "tame_transitive|generic_j|ordinary|full_prime_group": {
+          "a": 9,
+          "b": 1,
+          "generator": [
+            0,
+            1
+          ],
+          "n": 19,
+          "order": 19
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 2,
+          "b": 4,
+          "generator": [
+            0,
+            2
+          ],
+          "n": 7,
+          "order": 35
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": 2,
+        "matching_characteristic|j0|ordinary|proper_subgroup": 1,
+        "tame_nontransitive|generic_j|ordinary|full_prime_group": 1,
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 5,
+        "tame_nontransitive|j0|ordinary|proper_subgroup": 1,
+        "tame_transitive|generic_j|ordinary|full_prime_group": 1,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 2
+      },
+      "by_subgroup_order": {
+        "11": 2,
+        "13": 1,
+        "19": 1,
+        "41": 1,
+        "47": 1,
+        "5": 4,
+        "7": 3
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 11,
+        "curve_j0": 3,
+        "curve_j1728": 2,
+        "curve_ordinary": 14,
+        "curve_supersingular": 2,
+        "direct_matrix_checks": 10,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 15,
+        "generator_invariance_checks": 13,
+        "order5_controls_outside_prime_field": 2,
+        "order5_positive_controls": 2,
+        "smooth_models": 16,
+        "subgroup_instances": 13,
+        "subgroups_full_prime_group": 2,
+        "subgroups_generic_j": 11,
+        "subgroups_j0": 2,
+        "subgroups_matching_characteristic": 3,
+        "subgroups_ordinary": 13,
+        "subgroups_proper_subgroup": 11,
+        "subgroups_tame_nontransitive": 7,
+        "subgroups_tame_transitive": 3
+      },
+      "elapsed_seconds": 0.011186,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 2,
+        "modulus_low_first": [
+          1,
+          0,
+          1
+        ],
+        "p": 7,
+        "primitive_element": 9,
+        "q": 49,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {},
+      "order5_controls": [
+        {
+          "a": 25,
+          "annihilator": [
+            0,
+            40,
+            33,
+            23,
+            16
+          ],
+          "assigned_value": 0,
+          "b": 12,
+          "curve_order": 40,
+          "direct_matrix_verified": true,
+          "discriminant": 8,
+          "parameter": 18,
+          "parameter_outside_prime_field": true,
+          "point": [
+            37,
+            47
+          ],
+          "ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "subgroup": [
+            null,
+            [
+              37,
+              47
+            ],
+            [
+              6,
+              13
+            ],
+            [
+              6,
+              43
+            ],
+            [
+              37,
+              9
+            ]
+          ]
+        },
+        {
+          "a": 32,
+          "annihilator": [
+            0,
+            19,
+            26,
+            30,
+            37
+          ],
+          "assigned_value": 0,
+          "b": 47,
+          "curve_order": 40,
+          "direct_matrix_verified": true,
+          "discriminant": 43,
+          "parameter": 39,
+          "parameter_outside_prime_field": true,
+          "point": [
+            16,
+            12
+          ],
+          "ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "subgroup": [
+            null,
+            [
+              16,
+              12
+            ],
+            [
+              6,
+              48
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              16,
+              44
+            ]
+          ]
+        }
+      ],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": {
+          "a": 9,
+          "b": 35,
+          "generator": [
+            2,
+            21
+          ],
+          "n": 7,
+          "order": 49
+        },
+        "matching_characteristic|j0|ordinary|proper_subgroup": {
+          "a": 0,
+          "b": 2,
+          "generator": [
+            1,
+            14
+          ],
+          "n": 7,
+          "order": 63
+        },
+        "tame_nontransitive|generic_j|ordinary|full_prime_group": {
+          "a": 12,
+          "b": 16,
+          "generator": [
+            0,
+            26
+          ],
+          "n": 41,
+          "order": 41
+        },
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 27,
+          "b": 44,
+          "generator": [
+            20,
+            10
+          ],
+          "n": 5,
+          "order": 40
+        },
+        "tame_nontransitive|j0|ordinary|proper_subgroup": {
+          "a": 0,
+          "b": 23,
+          "generator": [
+            9,
+            2
+          ],
+          "n": 13,
+          "order": 52
+        },
+        "tame_transitive|generic_j|ordinary|full_prime_group": {
+          "a": 7,
+          "b": 12,
+          "generator": [
+            3,
+            15
+          ],
+          "n": 47,
+          "order": 47
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 3,
+          "b": 10,
+          "generator": [
+            16,
+            8
+          ],
+          "n": 11,
+          "order": 44
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": 2,
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 5,
+        "tame_transitive|generic_j|ordinary|full_prime_group": 2,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 2
+      },
+      "by_subgroup_order": {
+        "107": 2,
+        "11": 2,
+        "19": 1,
+        "29": 1,
+        "5": 2,
+        "53": 1,
+        "7": 2
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 12,
+        "curve_j0": 2,
+        "curve_j1728": 2,
+        "curve_ordinary": 12,
+        "curve_supersingular": 4,
+        "direct_matrix_checks": 6,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 14,
+        "generator_invariance_checks": 11,
+        "order5_controls_outside_prime_field": 0,
+        "order5_positive_controls": 2,
+        "smooth_models": 16,
+        "subgroup_instances": 11,
+        "subgroups_full_prime_group": 2,
+        "subgroups_generic_j": 11,
+        "subgroups_matching_characteristic": 2,
+        "subgroups_ordinary": 11,
+        "subgroups_proper_subgroup": 9,
+        "subgroups_tame_nontransitive": 5,
+        "subgroups_tame_transitive": 4
+      },
+      "elapsed_seconds": 0.01869,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 2,
+        "modulus_low_first": [
+          1,
+          0,
+          1
+        ],
+        "p": 11,
+        "primitive_element": 15,
+        "q": 121,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {
+        "137": 1
+      },
+      "order5_controls": [
+        {
+          "a": 2,
+          "annihilator": [
+            0,
+            9,
+            5,
+            6,
+            2
+          ],
+          "assigned_value": 9,
+          "b": 9,
+          "curve_order": 135,
+          "direct_matrix_verified": true,
+          "discriminant": 4,
+          "parameter": 4,
+          "parameter_outside_prime_field": false,
+          "point": [
+            4,
+            9
+          ],
+          "ratios": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "subgroup": [
+            null,
+            [
+              4,
+              9
+            ],
+            [
+              8,
+              8
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              4,
+              2
+            ]
+          ]
+        },
+        {
+          "a": 8,
+          "annihilator": [
+            0,
+            5,
+            2,
+            9,
+            6
+          ],
+          "assigned_value": 4,
+          "b": 5,
+          "curve_order": 135,
+          "direct_matrix_verified": true,
+          "discriminant": 3,
+          "parameter": 8,
+          "parameter_outside_prime_field": false,
+          "point": [
+            6,
+            7
+          ],
+          "ratios": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "subgroup": [
+            null,
+            [
+              6,
+              7
+            ],
+            [
+              3,
+              10
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              6,
+              4
+            ]
+          ]
+        }
+      ],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": {
+          "a": 57,
+          "b": 90,
+          "generator": [
+            17,
+            50
+          ],
+          "n": 11,
+          "order": 110
+        },
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 57,
+          "b": 90,
+          "generator": [
+            58,
+            30
+          ],
+          "n": 5,
+          "order": 110
+        },
+        "tame_transitive|generic_j|ordinary|full_prime_group": {
+          "a": 92,
+          "b": 76,
+          "generator": [
+            0,
+            53
+          ],
+          "n": 107,
+          "order": 107
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 49,
+          "b": 39,
+          "generator": [
+            16,
+            39
+          ],
+          "n": 7,
+          "order": 112
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": 2,
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 3,
+        "tame_nontransitive|j1728|ordinary|proper_subgroup": 2,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 4,
+        "tame_transitive|j0|ordinary|proper_subgroup": 1
+      },
+      "by_subgroup_order": {
+        "11": 1,
+        "13": 2,
+        "19": 1,
+        "41": 1,
+        "43": 1,
+        "47": 1,
+        "5": 2,
+        "59": 1,
+        "7": 2
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 12,
+        "curve_j0": 2,
+        "curve_j1728": 2,
+        "curve_ordinary": 16,
+        "direct_matrix_checks": 7,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 16,
+        "generator_invariance_checks": 12,
+        "order5_controls_outside_prime_field": 2,
+        "order5_positive_controls": 2,
+        "smooth_models": 16,
+        "subgroup_instances": 12,
+        "subgroups_generic_j": 9,
+        "subgroups_j0": 1,
+        "subgroups_j1728": 2,
+        "subgroups_matching_characteristic": 2,
+        "subgroups_ordinary": 12,
+        "subgroups_proper_subgroup": 12,
+        "subgroups_tame_nontransitive": 5,
+        "subgroups_tame_transitive": 5
+      },
+      "elapsed_seconds": 0.017229,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 2,
+        "modulus_low_first": [
+          2,
+          0,
+          1
+        ],
+        "p": 13,
+        "primitive_element": 15,
+        "q": 169,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {
+        "167": 1,
+        "173": 2
+      },
+      "order5_controls": [
+        {
+          "a": 153,
+          "annihilator": [
+            0,
+            164,
+            37,
+            145,
+            18
+          ],
+          "assigned_value": 80,
+          "b": 125,
+          "curve_order": 160,
+          "direct_matrix_verified": true,
+          "discriminant": 144,
+          "parameter": 20,
+          "parameter_outside_prime_field": true,
+          "point": [
+            72,
+            81
+          ],
+          "ratios": [
+            80,
+            80,
+            80,
+            80
+          ],
+          "subgroup": [
+            null,
+            [
+              72,
+              81
+            ],
+            [
+              79,
+              95
+            ],
+            [
+              79,
+              87
+            ],
+            [
+              72,
+              101
+            ]
+          ]
+        },
+        {
+          "a": 36,
+          "annihilator": [
+            0,
+            21,
+            154,
+            28,
+            161
+          ],
+          "assigned_value": 93,
+          "b": 60,
+          "curve_order": 160,
+          "direct_matrix_verified": true,
+          "discriminant": 27,
+          "parameter": 163,
+          "parameter_outside_prime_field": true,
+          "point": [
+            111,
+            94
+          ],
+          "ratios": [
+            93,
+            93,
+            93,
+            93
+          ],
+          "subgroup": [
+            null,
+            [
+              111,
+              94
+            ],
+            [
+              92,
+              82
+            ],
+            [
+              92,
+              100
+            ],
+            [
+              111,
+              88
+            ]
+          ]
+        }
+      ],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": {
+          "a": 39,
+          "b": 139,
+          "generator": [
+            16,
+            72
+          ],
+          "n": 13,
+          "order": 156
+        },
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 43,
+          "b": 128,
+          "generator": [
+            10,
+            13
+          ],
+          "n": 41,
+          "order": 164
+        },
+        "tame_nontransitive|j1728|ordinary|proper_subgroup": {
+          "a": 1,
+          "b": 0,
+          "generator": [
+            4,
+            4
+          ],
+          "n": 5,
+          "order": 160
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 5,
+          "b": 90,
+          "generator": [
+            5,
+            76
+          ],
+          "n": 11,
+          "order": 176
+        },
+        "tame_transitive|j0|ordinary|proper_subgroup": {
+          "a": 0,
+          "b": 2,
+          "generator": [
+            1,
+            4
+          ],
+          "n": 19,
+          "order": 171
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 10,
+        "tame_nontransitive|j1728|ordinary|proper_subgroup": 2,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 6
+      },
+      "by_subgroup_order": {
+        "11": 3,
+        "13": 2,
+        "23": 1,
+        "29": 1,
+        "5": 7,
+        "53": 2,
+        "59": 1,
+        "7": 1
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 12,
+        "curve_j0": 2,
+        "curve_j1728": 2,
+        "curve_ordinary": 13,
+        "curve_supersingular": 3,
+        "direct_matrix_checks": 13,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 13,
+        "generator_invariance_checks": 18,
+        "order5_controls_outside_prime_field": 2,
+        "order5_positive_controls": 2,
+        "smooth_models": 16,
+        "subgroup_instances": 18,
+        "subgroups_generic_j": 16,
+        "subgroups_j1728": 2,
+        "subgroups_ordinary": 18,
+        "subgroups_proper_subgroup": 18,
+        "subgroups_tame_nontransitive": 12,
+        "subgroups_tame_transitive": 6
+      },
+      "elapsed_seconds": 0.029729,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 2,
+        "modulus_low_first": [
+          3,
+          0,
+          1
+        ],
+        "p": 17,
+        "primitive_element": 19,
+        "q": 289,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {
+        "149": 1,
+        "281": 1
+      },
+      "order5_controls": [
+        {
+          "a": 232,
+          "annihilator": [
+            0,
+            282,
+            49,
+            257,
+            24
+          ],
+          "assigned_value": 39,
+          "b": 219,
+          "curve_order": 265,
+          "direct_matrix_verified": true,
+          "discriminant": 97,
+          "parameter": 26,
+          "parameter_outside_prime_field": true,
+          "point": [
+            29,
+            140
+          ],
+          "ratios": [
+            39,
+            39,
+            39,
+            39
+          ],
+          "subgroup": [
+            null,
+            [
+              29,
+              140
+            ],
+            [
+              38,
+              158
+            ],
+            [
+              38,
+              148
+            ],
+            [
+              29,
+              166
+            ]
+          ]
+        },
+        {
+          "a": 79,
+          "annihilator": [
+            0,
+            27,
+            270,
+            36,
+            279
+          ],
+          "assigned_value": 260,
+          "b": 100,
+          "curve_order": 265,
+          "direct_matrix_verified": true,
+          "discriminant": 216,
+          "parameter": 281,
+          "parameter_outside_prime_field": true,
+          "point": [
+            284,
+            157
+          ],
+          "ratios": [
+            260,
+            260,
+            260,
+            260
+          ],
+          "subgroup": [
+            null,
+            [
+              284,
+              157
+            ],
+            [
+              259,
+              141
+            ],
+            [
+              259,
+              165
+            ],
+            [
+              284,
+              149
+            ]
+          ]
+        }
+      ],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 285,
+          "b": 100,
+          "generator": [
+            76,
+            32
+          ],
+          "n": 5,
+          "order": 265
+        },
+        "tame_nontransitive|j1728|ordinary|proper_subgroup": {
+          "a": 1,
+          "b": 0,
+          "generator": [
+            7,
+            85
+          ],
+          "n": 5,
+          "order": 320
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 131,
+          "b": 281,
+          "generator": [
+            21,
+            137
+          ],
+          "n": 59,
+          "order": 295
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 3,
+        "tame_nontransitive|j0|ordinary|proper_subgroup": 1,
+        "tame_nontransitive|j1728|supersingular|proper_subgroup": 12,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 10,
+        "tame_transitive|j0|ordinary|proper_subgroup": 1
+      },
+      "by_subgroup_order": {
+        "11": 4,
+        "13": 1,
+        "23": 1,
+        "43": 1,
+        "5": 15,
+        "59": 1,
+        "7": 4
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 12,
+        "curve_j0": 2,
+        "curve_j1728": 2,
+        "curve_ordinary": 14,
+        "curve_supersingular": 2,
+        "direct_matrix_checks": 24,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 14,
+        "generator_invariance_checks": 27,
+        "order5_controls_outside_prime_field": 0,
+        "order5_positive_controls": 2,
+        "smooth_models": 16,
+        "subgroup_instances": 27,
+        "subgroups_generic_j": 13,
+        "subgroups_j0": 2,
+        "subgroups_j1728": 12,
+        "subgroups_ordinary": 15,
+        "subgroups_proper_subgroup": 27,
+        "subgroups_supersingular": 12,
+        "subgroups_tame_nontransitive": 16,
+        "subgroups_tame_transitive": 11
+      },
+      "elapsed_seconds": 0.072672,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 2,
+        "modulus_low_first": [
+          1,
+          0,
+          1
+        ],
+        "p": 19,
+        "primitive_element": 22,
+        "q": 361,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {
+        "337": 1,
+        "367": 1
+      },
+      "order5_controls": [
+        {
+          "a": 16,
+          "annihilator": [
+            0,
+            16,
+            7,
+            12,
+            3
+          ],
+          "assigned_value": 12,
+          "b": 3,
+          "curve_order": 375,
+          "direct_matrix_verified": true,
+          "discriminant": 6,
+          "parameter": 5,
+          "parameter_outside_prime_field": false,
+          "point": [
+            6,
+            7
+          ],
+          "ratios": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "subgroup": [
+            null,
+            [
+              6,
+              7
+            ],
+            [
+              11,
+              3
+            ],
+            [
+              11,
+              16
+            ],
+            [
+              6,
+              12
+            ]
+          ]
+        },
+        {
+          "a": 11,
+          "annihilator": [
+            0,
+            6,
+            8,
+            11,
+            13
+          ],
+          "assigned_value": 2,
+          "b": 14,
+          "curve_order": 375,
+          "direct_matrix_verified": true,
+          "discriminant": 4,
+          "parameter": 15,
+          "parameter_outside_prime_field": false,
+          "point": [
+            5,
+            2
+          ],
+          "ratios": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "subgroup": [
+            null,
+            [
+              5,
+              2
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              1,
+              11
+            ],
+            [
+              5,
+              17
+            ]
+          ]
+        }
+      ],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 16,
+          "b": 154,
+          "generator": [
+            122,
+            131
+          ],
+          "n": 5,
+          "order": 385
+        },
+        "tame_nontransitive|j0|ordinary|proper_subgroup": {
+          "a": 0,
+          "b": 2,
+          "generator": [
+            4,
+            3
+          ],
+          "n": 13,
+          "order": 351
+        },
+        "tame_nontransitive|j1728|supersingular|proper_subgroup": {
+          "a": 1,
+          "b": 0,
+          "generator": [
+            5,
+            4
+          ],
+          "n": 5,
+          "order": 400
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 360,
+          "b": 136,
+          "generator": [
+            12,
+            134
+          ],
+          "n": 59,
+          "order": 354
+        },
+        "tame_transitive|j0|ordinary|proper_subgroup": {
+          "a": 0,
+          "b": 1,
+          "generator": [
+            1,
+            114
+          ],
+          "n": 7,
+          "order": 336
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 10,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 5
+      },
+      "by_subgroup_order": {
+        "107": 1,
+        "13": 1,
+        "5": 7,
+        "61": 1,
+        "7": 4,
+        "73": 1
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 12,
+        "curve_j0": 2,
+        "curve_j1728": 2,
+        "curve_ordinary": 12,
+        "curve_supersingular": 4,
+        "direct_matrix_checks": 12,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 14,
+        "generator_invariance_checks": 15,
+        "order5_controls_outside_prime_field": 2,
+        "order5_positive_controls": 2,
+        "smooth_models": 16,
+        "subgroup_instances": 15,
+        "subgroups_generic_j": 15,
+        "subgroups_ordinary": 15,
+        "subgroups_proper_subgroup": 15,
+        "subgroups_tame_nontransitive": 10,
+        "subgroups_tame_transitive": 5
+      },
+      "elapsed_seconds": 0.044926,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 2,
+        "modulus_low_first": [
+          1,
+          0,
+          1
+        ],
+        "p": 23,
+        "primitive_element": 25,
+        "q": 529,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {
+        "503": 1,
+        "521": 1,
+        "541": 1
+      },
+      "order5_controls": [
+        {
+          "a": 301,
+          "annihilator": [
+            0,
+            450,
+            205,
+            347,
+            102
+          ],
+          "assigned_value": 242,
+          "b": 373,
+          "curve_order": 520,
+          "direct_matrix_verified": true,
+          "discriminant": 48,
+          "parameter": 104,
+          "parameter_outside_prime_field": true,
+          "point": [
+            160,
+            500
+          ],
+          "ratios": [
+            242,
+            242,
+            242,
+            242
+          ],
+          "subgroup": [
+            null,
+            [
+              160,
+              500
+            ],
+            [
+              241,
+              64
+            ],
+            [
+              241,
+              488
+            ],
+            [
+              160,
+              52
+            ]
+          ]
+        },
+        {
+          "a": 232,
+          "annihilator": [
+            0,
+            105,
+            366,
+            186,
+            447
+          ],
+          "assigned_value": 311,
+          "b": 166,
+          "curve_order": 520,
+          "direct_matrix_verified": true,
+          "discriminant": 485,
+          "parameter": 449,
+          "parameter_outside_prime_field": true,
+          "point": [
+            413,
+            63
+          ],
+          "ratios": [
+            311,
+            311,
+            311,
+            311
+          ],
+          "subgroup": [
+            null,
+            [
+              413,
+              63
+            ],
+            [
+              310,
+              501
+            ],
+            [
+              310,
+              51
+            ],
+            [
+              413,
+              489
+            ]
+          ]
+        }
+      ],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 146,
+          "b": 501,
+          "generator": [
+            124,
+            82
+          ],
+          "n": 5,
+          "order": 540
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 237,
+          "b": 289,
+          "generator": [
+            234,
+            213
+          ],
+          "n": 7,
+          "order": 511
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": 1,
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 4,
+        "tame_nontransitive|j0|supersingular|proper_subgroup": 12,
+        "tame_nontransitive|j1728|ordinary|proper_subgroup": 8,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 5
+      },
+      "by_subgroup_order": {
+        "107": 1,
+        "13": 2,
+        "17": 1,
+        "19": 1,
+        "23": 1,
+        "29": 1,
+        "37": 1,
+        "43": 1,
+        "47": 1,
+        "5": 19,
+        "7": 1
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 12,
+        "curve_j0": 2,
+        "curve_j1728": 2,
+        "curve_ordinary": 14,
+        "curve_supersingular": 2,
+        "direct_matrix_checks": 22,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 15,
+        "generator_invariance_checks": 30,
+        "order5_controls_outside_prime_field": 0,
+        "order5_positive_controls": 2,
+        "smooth_models": 16,
+        "subgroup_instances": 30,
+        "subgroups_generic_j": 10,
+        "subgroups_j0": 12,
+        "subgroups_j1728": 8,
+        "subgroups_matching_characteristic": 1,
+        "subgroups_ordinary": 18,
+        "subgroups_proper_subgroup": 30,
+        "subgroups_supersingular": 12,
+        "subgroups_tame_nontransitive": 24,
+        "subgroups_tame_transitive": 5
+      },
+      "elapsed_seconds": 0.098122,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 2,
+        "modulus_low_first": [
+          2,
+          0,
+          1
+        ],
+        "p": 29,
+        "primitive_element": 30,
+        "q": 841,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {
+        "163": 1,
+        "223": 1,
+        "439": 1,
+        "809": 1,
+        "857": 1
+      },
+      "order5_controls": [
+        {
+          "a": 18,
+          "annihilator": [
+            0,
+            25,
+            9,
+            20,
+            4
+          ],
+          "assigned_value": 24,
+          "b": 10,
+          "curve_order": 900,
+          "direct_matrix_verified": true,
+          "discriminant": 21,
+          "parameter": 6,
+          "parameter_outside_prime_field": false,
+          "point": [
+            17,
+            26
+          ],
+          "ratios": [
+            24,
+            24,
+            24,
+            24
+          ],
+          "subgroup": [
+            null,
+            [
+              17,
+              26
+            ],
+            [
+              23,
+              18
+            ],
+            [
+              23,
+              11
+            ],
+            [
+              17,
+              3
+            ]
+          ]
+        },
+        {
+          "a": 27,
+          "annihilator": [
+            0,
+            7,
+            16,
+            13,
+            22
+          ],
+          "assigned_value": 20,
+          "b": 27,
+          "curve_order": 900,
+          "direct_matrix_verified": true,
+          "discriminant": 2,
+          "parameter": 24,
+          "parameter_outside_prime_field": false,
+          "point": [
+            24,
+            17
+          ],
+          "ratios": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "subgroup": [
+            null,
+            [
+              24,
+              17
+            ],
+            [
+              19,
+              27
+            ],
+            [
+              19,
+              2
+            ],
+            [
+              24,
+              12
+            ]
+          ]
+        }
+      ],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": {
+          "a": 5,
+          "b": 76,
+          "generator": [
+            39,
+            197
+          ],
+          "n": 29,
+          "order": 812
+        },
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 5,
+          "b": 76,
+          "generator": [
+            576,
+            153
+          ],
+          "n": 7,
+          "order": 812
+        },
+        "tame_nontransitive|j0|supersingular|proper_subgroup": {
+          "a": 0,
+          "b": 1,
+          "generator": [
+            1,
+            348
+          ],
+          "n": 5,
+          "order": 900
+        },
+        "tame_nontransitive|j1728|ordinary|proper_subgroup": {
+          "a": 1,
+          "b": 0,
+          "generator": [
+            13,
+            8
+          ],
+          "n": 5,
+          "order": 800
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 641,
+          "b": 365,
+          "generator": [
+            7,
+            150
+          ],
+          "n": 47,
+          "order": 846
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 8,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 4,
+        "tame_transitive|j0|ordinary|proper_subgroup": 2
+      },
+      "by_subgroup_order": {
+        "109": 1,
+        "11": 1,
+        "13": 1,
+        "23": 1,
+        "29": 1,
+        "37": 1,
+        "41": 1,
+        "5": 2,
+        "7": 4,
+        "89": 1
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 12,
+        "curve_j0": 2,
+        "curve_j1728": 2,
+        "curve_ordinary": 14,
+        "curve_supersingular": 2,
+        "direct_matrix_checks": 8,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 14,
+        "generator_invariance_checks": 14,
+        "order5_controls_outside_prime_field": 0,
+        "order5_positive_controls": 2,
+        "smooth_models": 16,
+        "subgroup_instances": 14,
+        "subgroups_generic_j": 12,
+        "subgroups_j0": 2,
+        "subgroups_ordinary": 14,
+        "subgroups_proper_subgroup": 14,
+        "subgroups_tame_nontransitive": 8,
+        "subgroups_tame_transitive": 6
+      },
+      "elapsed_seconds": 0.069038,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 2,
+        "modulus_low_first": [
+          1,
+          0,
+          1
+        ],
+        "p": 31,
+        "primitive_element": 35,
+        "q": 961,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {
+        "181": 1,
+        "241": 1,
+        "487": 1,
+        "509": 1,
+        "967": 1
+      },
+      "order5_controls": [
+        {
+          "a": 5,
+          "annihilator": [
+            0,
+            20,
+            23,
+            8,
+            11
+          ],
+          "assigned_value": 1,
+          "b": 18,
+          "curve_order": 1020,
+          "direct_matrix_verified": true,
+          "discriminant": 26,
+          "parameter": 13,
+          "parameter_outside_prime_field": false,
+          "point": [
+            18,
+            9
+          ],
+          "ratios": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "subgroup": [
+            null,
+            [
+              18,
+              9
+            ],
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              24
+            ],
+            [
+              18,
+              22
+            ]
+          ]
+        },
+        {
+          "a": 16,
+          "annihilator": [
+            0,
+            14,
+            4,
+            27,
+            17
+          ],
+          "assigned_value": 20,
+          "b": 5,
+          "curve_order": 1020,
+          "direct_matrix_verified": true,
+          "discriminant": 11,
+          "parameter": 19,
+          "parameter_outside_prime_field": false,
+          "point": [
+            0,
+            6
+          ],
+          "ratios": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "subgroup": [
+            null,
+            [
+              0,
+              6
+            ],
+            [
+              19,
+              10
+            ],
+            [
+              19,
+              21
+            ],
+            [
+              0,
+              25
+            ]
+          ]
+        }
+      ],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 465,
+          "b": 12,
+          "generator": [
+            21,
+            189
+          ],
+          "n": 29,
+          "order": 928
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 306,
+          "b": 595,
+          "generator": [
+            86,
+            412
+          ],
+          "n": 7,
+          "order": 1008
+        },
+        "tame_transitive|j0|ordinary|proper_subgroup": {
+          "a": 0,
+          "b": 1,
+          "generator": [
+            12,
+            310
+          ],
+          "n": 7,
+          "order": 1008
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": 3,
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 5,
+        "tame_nontransitive|j0|supersingular|proper_subgroup": 2,
+        "tame_nontransitive|j1728|ordinary|proper_subgroup": 2,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 4
+      },
+      "by_subgroup_order": {
+        "13": 1,
+        "23": 3,
+        "31": 1,
+        "37": 1,
+        "5": 3,
+        "59": 1,
+        "61": 1,
+        "7": 5
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 11,
+        "curve_j0": 2,
+        "curve_j1728": 2,
+        "curve_ordinary": 13,
+        "curve_supersingular": 2,
+        "direct_matrix_checks": 9,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 15,
+        "generator_invariance_checks": 16,
+        "order5_controls_outside_prime_field": 0,
+        "order5_positive_controls": 0,
+        "singular_models_skipped": 1,
+        "smooth_models": 15,
+        "subgroup_instances": 16,
+        "subgroups_generic_j": 12,
+        "subgroups_j0": 2,
+        "subgroups_j1728": 2,
+        "subgroups_matching_characteristic": 3,
+        "subgroups_ordinary": 14,
+        "subgroups_proper_subgroup": 16,
+        "subgroups_supersingular": 2,
+        "subgroups_tame_nontransitive": 9,
+        "subgroups_tame_transitive": 4
+      },
+      "elapsed_seconds": 0.022227,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 3,
+        "modulus_low_first": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "p": 5,
+        "primitive_element": 9,
+        "q": 125,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {},
+      "order5_controls": [],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": {
+          "a": 9,
+          "b": 7,
+          "generator": [
+            87,
+            63
+          ],
+          "n": 5,
+          "order": 115
+        },
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 38,
+          "b": 58,
+          "generator": [
+            24,
+            48
+          ],
+          "n": 7,
+          "order": 112
+        },
+        "tame_nontransitive|j0|supersingular|proper_subgroup": {
+          "a": 0,
+          "b": 1,
+          "generator": [
+            12,
+            14
+          ],
+          "n": 7,
+          "order": 126
+        },
+        "tame_nontransitive|j1728|ordinary|proper_subgroup": {
+          "a": 1,
+          "b": 0,
+          "generator": [
+            5,
+            2
+          ],
+          "n": 37,
+          "order": 148
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 35,
+          "b": 105,
+          "generator": [
+            3,
+            68
+          ],
+          "n": 59,
+          "order": 118
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": 4,
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 3,
+        "tame_nontransitive|j1728|supersingular|proper_subgroup": 2,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 4
+      },
+      "by_subgroup_order": {
+        "13": 3,
+        "17": 2,
+        "23": 1,
+        "41": 1,
+        "43": 2,
+        "7": 4
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 12,
+        "curve_j0": 2,
+        "curve_j1728": 2,
+        "curve_ordinary": 14,
+        "curve_supersingular": 2,
+        "direct_matrix_checks": 7,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 12,
+        "generator_invariance_checks": 13,
+        "order5_controls_outside_prime_field": 0,
+        "order5_positive_controls": 0,
+        "smooth_models": 16,
+        "subgroup_instances": 13,
+        "subgroups_generic_j": 11,
+        "subgroups_j1728": 2,
+        "subgroups_matching_characteristic": 4,
+        "subgroups_ordinary": 11,
+        "subgroups_proper_subgroup": 13,
+        "subgroups_supersingular": 2,
+        "subgroups_tame_nontransitive": 5,
+        "subgroups_tame_transitive": 4
+      },
+      "elapsed_seconds": 0.036102,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 3,
+        "modulus_low_first": [
+          2,
+          0,
+          0,
+          1
+        ],
+        "p": 7,
+        "primitive_element": 22,
+        "q": 343,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {
+        "163": 1,
+        "311": 1
+      },
+      "order5_controls": [],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": {
+          "a": 171,
+          "b": 70,
+          "generator": [
+            22,
+            82
+          ],
+          "n": 7,
+          "order": 357
+        },
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 305,
+          "b": 22,
+          "generator": [
+            127,
+            193
+          ],
+          "n": 13,
+          "order": 312
+        },
+        "tame_nontransitive|j1728|supersingular|proper_subgroup": {
+          "a": 1,
+          "b": 0,
+          "generator": [
+            10,
+            21
+          ],
+          "n": 43,
+          "order": 344
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 171,
+          "b": 70,
+          "generator": [
+            16,
+            115
+          ],
+          "n": 17,
+          "order": 357
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 10,
+        "tame_nontransitive|j0|supersingular|proper_subgroup": 2,
+        "tame_nontransitive|j1728|supersingular|proper_subgroup": 2
+      },
+      "by_subgroup_order": {
+        "127": 1,
+        "13": 1,
+        "37": 5,
+        "5": 3,
+        "53": 1,
+        "7": 3
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 12,
+        "curve_j0": 2,
+        "curve_j1728": 2,
+        "curve_ordinary": 12,
+        "curve_supersingular": 4,
+        "direct_matrix_checks": 7,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 16,
+        "generator_invariance_checks": 14,
+        "order5_controls_outside_prime_field": 0,
+        "order5_positive_controls": 2,
+        "smooth_models": 16,
+        "subgroup_instances": 14,
+        "subgroups_generic_j": 10,
+        "subgroups_j0": 2,
+        "subgroups_j1728": 2,
+        "subgroups_ordinary": 10,
+        "subgroups_proper_subgroup": 14,
+        "subgroups_supersingular": 4,
+        "subgroups_tame_nontransitive": 14
+      },
+      "elapsed_seconds": 0.125375,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 3,
+        "modulus_low_first": [
+          4,
+          1,
+          0,
+          1
+        ],
+        "p": 11,
+        "primitive_element": 11,
+        "q": 1331,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {
+        "1279": 1,
+        "331": 1,
+        "443": 1,
+        "643": 2,
+        "691": 1
+      },
+      "order5_controls": [
+        {
+          "a": 2,
+          "annihilator": [
+            0,
+            9,
+            5,
+            6,
+            2
+          ],
+          "assigned_value": 9,
+          "b": 9,
+          "curve_order": 1260,
+          "direct_matrix_verified": true,
+          "discriminant": 4,
+          "parameter": 4,
+          "parameter_outside_prime_field": false,
+          "point": [
+            4,
+            9
+          ],
+          "ratios": [
+            9,
+            9,
+            9,
+            9
+          ],
+          "subgroup": [
+            null,
+            [
+              4,
+              9
+            ],
+            [
+              8,
+              8
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              4,
+              2
+            ]
+          ]
+        },
+        {
+          "a": 8,
+          "annihilator": [
+            0,
+            5,
+            2,
+            9,
+            6
+          ],
+          "assigned_value": 4,
+          "b": 5,
+          "curve_order": 1260,
+          "direct_matrix_verified": true,
+          "discriminant": 3,
+          "parameter": 8,
+          "parameter_outside_prime_field": false,
+          "point": [
+            6,
+            7
+          ],
+          "ratios": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "subgroup": [
+            null,
+            [
+              6,
+              7
+            ],
+            [
+              3,
+              10
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              6,
+              4
+            ]
+          ]
+        }
+      ],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 1172,
+          "b": 324,
+          "generator": [
+            419,
+            158
+          ],
+          "n": 13,
+          "order": 1378
+        },
+        "tame_nontransitive|j0|supersingular|proper_subgroup": {
+          "a": 0,
+          "b": 1,
+          "generator": [
+            26,
+            22
+          ],
+          "n": 37,
+          "order": 1332
+        },
+        "tame_nontransitive|j1728|supersingular|proper_subgroup": {
+          "a": 1,
+          "b": 0,
+          "generator": [
+            26,
+            28
+          ],
+          "n": 37,
+          "order": 1332
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": 1,
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 8,
+        "tame_nontransitive|j0|ordinary|proper_subgroup": 3,
+        "tame_nontransitive|j1728|ordinary|proper_subgroup": 1,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 7,
+        "tame_transitive|j1728|ordinary|proper_subgroup": 2
+      },
+      "by_subgroup_order": {
+        "101": 2,
+        "109": 1,
+        "11": 2,
+        "13": 1,
+        "19": 1,
+        "23": 1,
+        "5": 6,
+        "61": 1,
+        "7": 6,
+        "79": 1
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 12,
+        "curve_j0": 2,
+        "curve_j1728": 2,
+        "curve_ordinary": 16,
+        "direct_matrix_checks": 15,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 16,
+        "generator_invariance_checks": 22,
+        "order5_controls_outside_prime_field": 0,
+        "order5_positive_controls": 0,
+        "smooth_models": 16,
+        "subgroup_instances": 22,
+        "subgroups_generic_j": 16,
+        "subgroups_j0": 3,
+        "subgroups_j1728": 3,
+        "subgroups_matching_characteristic": 1,
+        "subgroups_ordinary": 22,
+        "subgroups_proper_subgroup": 22,
+        "subgroups_tame_nontransitive": 12,
+        "subgroups_tame_transitive": 9
+      },
+      "elapsed_seconds": 0.168749,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 3,
+        "modulus_low_first": [
+          2,
+          0,
+          0,
+          1
+        ],
+        "p": 13,
+        "primitive_element": 15,
+        "q": 2197,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {
+        "1103": 1,
+        "149": 1,
+        "151": 1,
+        "229": 1,
+        "313": 1
+      },
+      "order5_controls": [],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": {
+          "a": 1810,
+          "b": 1775,
+          "generator": [
+            332,
+            581
+          ],
+          "n": 13,
+          "order": 2106
+        },
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 1223,
+          "b": 770,
+          "generator": [
+            135,
+            975
+          ],
+          "n": 7,
+          "order": 2212
+        },
+        "tame_nontransitive|j0|ordinary|proper_subgroup": {
+          "a": 0,
+          "b": 1,
+          "generator": [
+            13,
+            5
+          ],
+          "n": 7,
+          "order": 2268
+        },
+        "tame_nontransitive|j1728|ordinary|proper_subgroup": {
+          "a": 1,
+          "b": 0,
+          "generator": [
+            17,
+            66
+          ],
+          "n": 109,
+          "order": 2180
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 673,
+          "b": 1355,
+          "generator": [
+            419,
+            237
+          ],
+          "n": 5,
+          "order": 2265
+        },
+        "tame_transitive|j1728|ordinary|proper_subgroup": {
+          "a": 1,
+          "b": 0,
+          "generator": [
+            4,
+            4
+          ],
+          "n": 5,
+          "order": 2180
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": 2,
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 6,
+        "tame_nontransitive|j0|supersingular|proper_subgroup": 4,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 4,
+        "tame_transitive|j1728|ordinary|proper_subgroup": 1
+      },
+      "by_subgroup_order": {
+        "13": 3,
+        "17": 2,
+        "19": 2,
+        "31": 1,
+        "47": 1,
+        "5": 4,
+        "7": 4
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 12,
+        "curve_j0": 2,
+        "curve_j1728": 2,
+        "curve_ordinary": 14,
+        "curve_supersingular": 2,
+        "direct_matrix_checks": 11,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 15,
+        "generator_invariance_checks": 17,
+        "order5_controls_outside_prime_field": 0,
+        "order5_positive_controls": 0,
+        "smooth_models": 16,
+        "subgroup_instances": 17,
+        "subgroups_generic_j": 12,
+        "subgroups_j0": 4,
+        "subgroups_j1728": 1,
+        "subgroups_matching_characteristic": 2,
+        "subgroups_ordinary": 13,
+        "subgroups_proper_subgroup": 17,
+        "subgroups_supersingular": 4,
+        "subgroups_tame_nontransitive": 10,
+        "subgroups_tame_transitive": 5
+      },
+      "elapsed_seconds": 0.291319,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 3,
+        "modulus_low_first": [
+          3,
+          1,
+          0,
+          1
+        ],
+        "p": 17,
+        "primitive_element": 17,
+        "q": 4913,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {
+        "131": 1,
+        "167": 1,
+        "241": 1,
+        "2477": 1,
+        "269": 1,
+        "307": 1,
+        "313": 1,
+        "829": 1
+      },
+      "order5_controls": [],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": {
+          "a": 1664,
+          "b": 1532,
+          "generator": [
+            159,
+            521
+          ],
+          "n": 17,
+          "order": 4998
+        },
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 27,
+          "b": 2461,
+          "generator": [
+            798,
+            717
+          ],
+          "n": 7,
+          "order": 5054
+        },
+        "tame_nontransitive|j0|supersingular|proper_subgroup": {
+          "a": 0,
+          "b": 1,
+          "generator": [
+            2182,
+            1146
+          ],
+          "n": 7,
+          "order": 4914
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 4104,
+          "b": 508,
+          "generator": [
+            637,
+            2506
+          ],
+          "n": 5,
+          "order": 4860
+        },
+        "tame_transitive|j1728|ordinary|proper_subgroup": {
+          "a": 2,
+          "b": 0,
+          "generator": [
+            8,
+            1
+          ],
+          "n": 5,
+          "order": 4820
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "matching_characteristic|j0|ordinary|proper_subgroup": 1,
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 10,
+        "tame_nontransitive|j0|ordinary|proper_subgroup": 3,
+        "tame_nontransitive|j1728|supersingular|proper_subgroup": 4,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 6
+      },
+      "by_subgroup_order": {
+        "13": 1,
+        "19": 1,
+        "23": 2,
+        "29": 2,
+        "31": 1,
+        "5": 8,
+        "59": 2,
+        "7": 6,
+        "73": 1
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 12,
+        "curve_j0": 2,
+        "curve_j1728": 2,
+        "curve_ordinary": 14,
+        "curve_supersingular": 2,
+        "direct_matrix_checks": 15,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 16,
+        "generator_invariance_checks": 24,
+        "order5_controls_outside_prime_field": 0,
+        "order5_positive_controls": 2,
+        "smooth_models": 16,
+        "subgroup_instances": 24,
+        "subgroups_generic_j": 16,
+        "subgroups_j0": 4,
+        "subgroups_j1728": 4,
+        "subgroups_matching_characteristic": 1,
+        "subgroups_ordinary": 20,
+        "subgroups_proper_subgroup": 24,
+        "subgroups_supersingular": 4,
+        "subgroups_tame_nontransitive": 17,
+        "subgroups_tame_transitive": 6
+      },
+      "elapsed_seconds": 0.425058,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 3,
+        "modulus_low_first": [
+          2,
+          0,
+          0,
+          1
+        ],
+        "p": 19,
+        "primitive_element": 29,
+        "q": 6859,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {
+        "1361": 2,
+        "149": 1,
+        "173": 1,
+        "193": 1,
+        "197": 1,
+        "2237": 1,
+        "433": 1
+      },
+      "order5_controls": [
+        {
+          "a": 16,
+          "annihilator": [
+            0,
+            16,
+            7,
+            12,
+            3
+          ],
+          "assigned_value": 12,
+          "b": 3,
+          "curve_order": 6700,
+          "direct_matrix_verified": true,
+          "discriminant": 6,
+          "parameter": 5,
+          "parameter_outside_prime_field": false,
+          "point": [
+            6,
+            7
+          ],
+          "ratios": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "subgroup": [
+            null,
+            [
+              6,
+              7
+            ],
+            [
+              11,
+              3
+            ],
+            [
+              11,
+              16
+            ],
+            [
+              6,
+              12
+            ]
+          ]
+        },
+        {
+          "a": 11,
+          "annihilator": [
+            0,
+            6,
+            8,
+            11,
+            13
+          ],
+          "assigned_value": 2,
+          "b": 14,
+          "curve_order": 6700,
+          "direct_matrix_verified": true,
+          "discriminant": 4,
+          "parameter": 15,
+          "parameter_outside_prime_field": false,
+          "point": [
+            5,
+            2
+          ],
+          "ratios": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "subgroup": [
+            null,
+            [
+              5,
+              2
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              1,
+              11
+            ],
+            [
+              5,
+              17
+            ]
+          ]
+        }
+      ],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "matching_characteristic|j0|ordinary|proper_subgroup": {
+          "a": 0,
+          "b": 2,
+          "generator": [
+            361,
+            5
+          ],
+          "n": 19,
+          "order": 6916
+        },
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 6743,
+          "b": 1490,
+          "generator": [
+            196,
+            1952
+          ],
+          "n": 5,
+          "order": 6805
+        },
+        "tame_nontransitive|j0|ordinary|proper_subgroup": {
+          "a": 0,
+          "b": 1,
+          "generator": [
+            76,
+            5
+          ],
+          "n": 7,
+          "order": 6804
+        },
+        "tame_nontransitive|j1728|supersingular|proper_subgroup": {
+          "a": 1,
+          "b": 0,
+          "generator": [
+            5,
+            4
+          ],
+          "n": 5,
+          "order": 6860
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 560,
+          "b": 353,
+          "generator": [
+            630,
+            2678
+          ],
+          "n": 23,
+          "order": 6900
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": 6,
+        "matching_characteristic|j1728|ordinary|proper_subgroup": 2,
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 6,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 10
+      },
+      "by_subgroup_order": {
+        "107": 1,
+        "11": 1,
+        "17": 1,
+        "23": 2,
+        "29": 2,
+        "31": 2,
+        "47": 1,
+        "5": 8,
+        "67": 1,
+        "7": 5
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 12,
+        "curve_j0": 2,
+        "curve_j1728": 2,
+        "curve_ordinary": 14,
+        "curve_supersingular": 2,
+        "direct_matrix_checks": 14,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 14,
+        "generator_invariance_checks": 24,
+        "order5_controls_outside_prime_field": 0,
+        "order5_positive_controls": 0,
+        "smooth_models": 16,
+        "subgroup_instances": 24,
+        "subgroups_generic_j": 22,
+        "subgroups_j1728": 2,
+        "subgroups_matching_characteristic": 8,
+        "subgroups_ordinary": 24,
+        "subgroups_proper_subgroup": 24,
+        "subgroups_tame_nontransitive": 6,
+        "subgroups_tame_transitive": 10
+      },
+      "elapsed_seconds": 0.05463,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 4,
+        "modulus_low_first": [
+          2,
+          0,
+          0,
+          0,
+          1
+        ],
+        "p": 5,
+        "primitive_element": 6,
+        "q": 625,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {
+        "163": 1
+      },
+      "order5_controls": [],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": {
+          "a": 164,
+          "b": 114,
+          "generator": [
+            339,
+            280
+          ],
+          "n": 5,
+          "order": 670
+        },
+        "matching_characteristic|j1728|ordinary|proper_subgroup": {
+          "a": 1,
+          "b": 0,
+          "generator": [
+            50,
+            5
+          ],
+          "n": 5,
+          "order": 640
+        },
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 164,
+          "b": 114,
+          "generator": [
+            6,
+            47
+          ],
+          "n": 67,
+          "order": 670
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 307,
+          "b": 304,
+          "generator": [
+            70,
+            148
+          ],
+          "n": 7,
+          "order": 595
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": 4,
+        "matching_characteristic|j0|ordinary|proper_subgroup": 1,
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 9,
+        "tame_nontransitive|j0|ordinary|proper_subgroup": 2,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 6
+      },
+      "by_subgroup_order": {
+        "11": 1,
+        "13": 2,
+        "19": 1,
+        "23": 1,
+        "29": 2,
+        "31": 1,
+        "37": 1,
+        "41": 1,
+        "43": 1,
+        "47": 1,
+        "5": 3,
+        "7": 5,
+        "83": 2
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 12,
+        "curve_j0": 2,
+        "curve_j1728": 2,
+        "curve_ordinary": 14,
+        "curve_supersingular": 2,
+        "direct_matrix_checks": 11,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 15,
+        "generator_invariance_checks": 22,
+        "order5_controls_outside_prime_field": 2,
+        "order5_positive_controls": 2,
+        "smooth_models": 16,
+        "subgroup_instances": 22,
+        "subgroups_generic_j": 19,
+        "subgroups_j0": 3,
+        "subgroups_matching_characteristic": 5,
+        "subgroups_ordinary": 22,
+        "subgroups_proper_subgroup": 22,
+        "subgroups_tame_nontransitive": 11,
+        "subgroups_tame_transitive": 6
+      },
+      "elapsed_seconds": 0.210201,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 4,
+        "modulus_low_first": [
+          1,
+          1,
+          0,
+          0,
+          1
+        ],
+        "p": 7,
+        "primitive_element": 12,
+        "q": 2401,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {
+        "257": 1,
+        "293": 1,
+        "331": 1
+      },
+      "order5_controls": [
+        {
+          "a": 1840,
+          "annihilator": [
+            0,
+            2148,
+            962,
+            1838,
+            652
+          ],
+          "assigned_value": 0,
+          "b": 1527,
+          "curve_order": 2400,
+          "direct_matrix_verified": true,
+          "discriminant": 1530,
+          "parameter": 654,
+          "parameter_outside_prime_field": true,
+          "point": [
+            2145,
+            1269
+          ],
+          "ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "subgroup": [
+            null,
+            [
+              2145,
+              1269
+            ],
+            [
+              6,
+              1528
+            ],
+            [
+              6,
+              1272
+            ],
+            [
+              2145,
+              1531
+            ]
+          ]
+        },
+        {
+          "a": 961,
+          "annihilator": [
+            0,
+            655,
+            1834,
+            959,
+            2145
+          ],
+          "assigned_value": 0,
+          "b": 1269,
+          "curve_order": 2400,
+          "direct_matrix_verified": true,
+          "discriminant": 1272,
+          "parameter": 2147,
+          "parameter_outside_prime_field": true,
+          "point": [
+            652,
+            1527
+          ],
+          "ratios": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "subgroup": [
+            null,
+            [
+              652,
+              1527
+            ],
+            [
+              6,
+              1270
+            ],
+            [
+              6,
+              1530
+            ],
+            [
+              652,
+              1273
+            ]
+          ]
+        }
+      ],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": {
+          "a": 1587,
+          "b": 1233,
+          "generator": [
+            401,
+            928
+          ],
+          "n": 7,
+          "order": 2401
+        },
+        "matching_characteristic|j0|ordinary|proper_subgroup": {
+          "a": 0,
+          "b": 2,
+          "generator": [
+            1,
+            657
+          ],
+          "n": 7,
+          "order": 2331
+        },
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 258,
+          "b": 1345,
+          "generator": [
+            918,
+            653
+          ],
+          "n": 19,
+          "order": 2337
+        },
+        "tame_nontransitive|j0|ordinary|proper_subgroup": {
+          "a": 0,
+          "b": 1,
+          "generator": [
+            652,
+            573
+          ],
+          "n": 13,
+          "order": 2496
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 2031,
+          "b": 851,
+          "generator": [
+            123,
+            839
+          ],
+          "n": 31,
+          "order": 2480
+        }
+      },
+      "timeouts": []
+    },
+    {
+      "by_stratum": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": 4,
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": 3,
+        "tame_transitive|generic_j|ordinary|proper_subgroup": 6
+      },
+      "by_subgroup_order": {
+        "107": 2,
+        "127": 1,
+        "29": 1,
+        "37": 1,
+        "43": 1,
+        "5": 4,
+        "7": 2,
+        "89": 1
+      },
+      "complete": true,
+      "counts": {
+        "coefficient_pairs_visited": 16,
+        "curve_generic_j": 12,
+        "curve_j0": 2,
+        "curve_j1728": 2,
+        "curve_ordinary": 14,
+        "curve_supersingular": 2,
+        "direct_matrix_checks": 6,
+        "exception_curve_isomorphism_classes": 0,
+        "field_arithmetic_checks": 512,
+        "field_isomorphism_classes": 16,
+        "generator_invariance_checks": 13,
+        "order5_controls_outside_prime_field": 0,
+        "order5_positive_controls": 0,
+        "smooth_models": 16,
+        "subgroup_instances": 13,
+        "subgroups_generic_j": 13,
+        "subgroups_matching_characteristic": 4,
+        "subgroups_ordinary": 13,
+        "subgroups_proper_subgroup": 13,
+        "subgroups_tame_nontransitive": 3,
+        "subgroups_tame_transitive": 6
+      },
+      "elapsed_seconds": 0.312441,
+      "exceptions": [],
+      "failures": [],
+      "field": {
+        "degree": 5,
+        "modulus_low_first": [
+          1,
+          4,
+          0,
+          0,
+          0,
+          1
+        ],
+        "p": 5,
+        "primitive_element": 10,
+        "q": 3125,
+        "representation": "integer with base-p polynomial coefficients"
+      },
+      "omitted_curve_prime_factors": {
+        "1009": 1,
+        "1601": 1,
+        "3167": 1,
+        "3169": 1,
+        "521": 2,
+        "619": 1,
+        "761": 1
+      },
+      "order5_controls": [],
+      "sampling": {
+        "coefficient_pairs_requested": 16,
+        "isomorphism_scope": "F_q-isomorphism classes of tested short equations; subgroup instances are per equation",
+        "matrix_check_through_order": 13,
+        "max_subgroup_order": 127,
+        "mode": "fixed_seed_cohort",
+        "seed": 20261125
+      },
+      "stratum_examples": {
+        "matching_characteristic|generic_j|ordinary|proper_subgroup": {
+          "a": 2989,
+          "b": 2799,
+          "generator": [
+            422,
+            1741
+          ],
+          "n": 5,
+          "order": 3210
+        },
+        "tame_nontransitive|generic_j|ordinary|proper_subgroup": {
+          "a": 1085,
+          "b": 1540,
+          "generator": [
+            41,
+            1703
+          ],
+          "n": 127,
+          "order": 3048
+        },
+        "tame_transitive|generic_j|ordinary|proper_subgroup": {
+          "a": 2989,
+          "b": 2799,
+          "generator": [
+            10,
+            1280
+          ],
+          "n": 107,
+          "order": 3210
+        }
+      },
+      "timeouts": []
+    }
+  ],
+  "python": "3.12.14",
+  "schema": "trr07-finite-sweep-v1",
+  "scope": "exact finite calculations; sampled fields do not establish an algebraic-closure exclusion",
+  "source_sha256": {
+    "finite_fields.py": "79bc89d225604b978a22c16abfbb1508c2b30dcb0b9c8396547b98ce0fa6a635",
+    "finite_sweep.py": "39b0cefcbaa49ea1a1485c7af01aa5d9946e819bc80a164cbaf3e499f28e121c"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "trr07-ci-prior-attempts-v1",
+  "runs": [
+    {
+      "run_id": 45638674703,
+      "commit": "184099aa7b589f0d9d5bb676298a65d5cb5cae20",
+      "url": "https://github.com/patrickdugan/MathCan/actions/runs/45638674703",
+      "overall_conclusion": "failure",
+      "completed": [
+        "finite cohorts",
+        "robustness",
+        "baseline and mutation checks",
+        "uniform identities",
+        "15 Lean lemmas",
+        "order-23 search and direct replay"
+      ],
+      "issue": "PARI denominator sign normalization stopped searches at orders 19, 29 and 31."
+    },
+    {
+      "run_id": 45641093036,
+      "commit": "eb6bd67fa60bdd1465fa97db4c7ff37281728ffc",
+      "url": "https://github.com/patrickdugan/MathCan/actions/runs/45641093036",
+      "overall_conclusion": "success",
+      "mathematical_status": {
+        "19": "search and direct replay passed",
+        "23": "search and direct replay passed",
+        "29": "search completed; direct replay stopped at its 600-second limit",
+        "31": "search completed; direct replay stopped at its 600-second limit"
+      },
+      "report_status_for_29_and_31": "exclusion_candidate",
+      "report_proof_for_29_and_31": false,
+      "ci_limitation": "The default shell pipeline returned tee's status. The old report distinguished candidates from proofs but did not fail the workflow for incomplete replay."
+    }
+  ],
+  "changes_required_for_full_verification": [
+    "Normalize only denominator units +1 and -1, with an exact identity check.",
+    "Replay all certificates through independent Laurent reconstruction and integral elimination.",
+    "Use an explicit bash shell so pipeline failures propagate.",
+    "Require a passed receipt with matching certificate and current source hashes, the full equation count, and complete elimination/fibre checks.",
+    "Keep direct H-lambda replay at orders 19 and 23 as an additional check."
+  ],
+  "interpretation": "A successful workflow conclusion in the second run did not establish complete certificate replay at orders 29 or 31. The later strict workflow is the intended acceptance gate."
+}

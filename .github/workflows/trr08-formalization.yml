@@ -1,0 +1,166 @@
+name: TRR-08 to TRR-11 generalized interpolation degree
+
+on:
+  pull_request:
+    paths:
+      - 'MathCan/TranslationInterpolationUniform.lean'
+      - 'MathCan/TranslationInterpolationRootBound.lean'
+      - 'MathCan/TranslationInterpolationEvaluation.lean'
+      - 'experiments/trr08_geometry/**'
+      - 'research/translation_rank_rigidity/trr08/**'
+      - 'research/translation_rank_rigidity/trr09/**'
+      - 'research/translation_rank_rigidity/trr10/**'
+      - 'research/translation_rank_rigidity/trr11/**'
+      - 'lakefile.toml'
+      - 'lean-toolchain'
+      - '.github/workflows/trr08-formalization.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: trr08-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  formalization:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    defaults:
+      run:
+        shell: bash
+    env:
+      LEAN_NUM_THREADS: '2'
+      MATHLIB_NO_CACHE_ON_UPDATE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Record the checked source revision
+        run: |
+          mkdir -p artifacts/trr08 artifacts/trr09 artifacts/trr10 artifacts/trr11
+          git rev-parse HEAD > artifacts/trr08/checkout.txt
+          cp lean-toolchain artifacts/trr08/core-lean-toolchain.txt
+          cp experiments/trr08_geometry/lean-toolchain artifacts/trr08/geometry-lean-toolchain.txt
+          cp experiments/trr08_geometry/lake-manifest.json artifacts/trr08/committed-lake-manifest.json
+          git rev-parse HEAD > artifacts/trr09/checkout.txt
+          git rev-parse HEAD > artifacts/trr10/checkout.txt
+          git rev-parse HEAD > artifacts/trr11/checkout.txt
+      - name: Check the verifier's rejection controls
+        run: python research/translation_rank_rigidity/trr08/test_verifier.py --output artifacts/trr08/verifier-controls.json
+      - name: Check the finite coefficient identities exactly
+        run: |
+          python research/translation_rank_rigidity/trr09/check_finite_bridge.py \
+            --output artifacts/trr09/finite_bridge_receipt.json
+      - name: Check ordinary-degree interpolation and explicit decoder coefficients
+        run: |
+          timeout 600s python research/translation_rank_rigidity/trr10/check_interpolation.py \
+            --output artifacts/trr10/interpolation_receipt.json \
+            --witness-output artifacts/trr10/decoder_witnesses.json
+      - name: Check generalized coordinate changes and transported decoder coefficients
+        run: |
+          timeout 600s python research/translation_rank_rigidity/trr11/check_coordinate_change.py \
+            --output artifacts/trr11/coordinate_change_receipt.json \
+            --witness-output artifacts/trr11/generalized_decoder_witnesses.json
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+          use-github-cache: false
+      - name: Build the Init-only algebra modules
+        run: |
+          lean --version | tee artifacts/trr08/lean-version.txt
+          timeout 300s lake build MathCan.TranslationInterpolationUniform MathCan.TranslationInterpolationRootBound MathCan.TranslationInterpolationEvaluation 2>&1 | tee artifacts/trr08/core-build.log
+      - name: Resolve the pinned geometry dependencies
+        working-directory: experiments/trr08_geometry
+        run: |
+          timeout 600s lake update 2>&1 | tee "$GITHUB_WORKSPACE/artifacts/trr08/dependency-update.log"
+          git diff --exit-code -- lake-manifest.json lean-toolchain
+          git -C .lake/packages/mathlib rev-parse HEAD > "$GITHUB_WORKSPACE/artifacts/trr08/mathlib-revision.txt"
+          cp lake-manifest.json "$GITHUB_WORKSPACE/artifacts/trr08/resolved-lake-manifest.json"
+      - name: Fetch the exact imported Mathlib modules
+        working-directory: experiments/trr08_geometry
+        run: |
+          timeout 900s lake exe cache get \
+            Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point \
+            Mathlib.AlgebraicGeometry.EllipticCurve.NormalForms \
+            Mathlib.GroupTheory.OrderOfElement \
+            Mathlib.Tactic.LinearCombination \
+            Mathlib.Tactic.Ring \
+            Mathlib.Tactic.FieldSimp \
+            Mathlib.Data.List.FinRange \
+            Mathlib.LinearAlgebra.Lagrange \
+            Mathlib.Algebra.BigOperators.Group.Finset.Defs \
+            Mathlib.Algebra.BigOperators.Ring.Finset \
+            Mathlib.Algebra.Group.Equiv.Basic \
+            Mathlib.Algebra.MvPolynomial.Degrees \
+            Mathlib.Algebra.MvPolynomial.Eval \
+            Mathlib.Algebra.MvPolynomial.CommRing \
+            Mathlib.Algebra.BigOperators.Fin \
+            Mathlib.Algebra.Polynomial.Eval.Degree \
+            2>&1 | tee "$GITHUB_WORKSPACE/artifacts/trr08/mathlib-cache.log"
+      - name: Build the complete geometry aggregate
+        working-directory: experiments/trr08_geometry
+        run: |
+          timeout 900s lake build TRR08Geometry 2>&1 | tee "$GITHUB_WORKSPACE/artifacts/trr08/geometry-build.log"
+      - name: Verify the TRR-08 theorem contract
+        run: |
+          timeout 600s python research/translation_rank_rigidity/trr08/verify_formalization.py \
+            --core-root "$GITHUB_WORKSPACE" \
+            --geometry-root "$GITHUB_WORKSPACE/experiments/trr08_geometry" \
+            --output "$GITHUB_WORKSPACE/artifacts/trr08/formalization_receipt.json" \
+            2>&1 | tee artifacts/trr08/verification.log
+      - name: Verify the complete residue theorem and reject a false identity
+        run: |
+          timeout 900s python research/translation_rank_rigidity/trr09/verify_formalization.py \
+            --core-root "$GITHUB_WORKSPACE" \
+            --geometry-root "$GITHUB_WORKSPACE/experiments/trr08_geometry" \
+            --output "$GITHUB_WORKSPACE/artifacts/trr09/formalization_receipt.json" \
+            2>&1 | tee artifacts/trr09/verification.log
+      - name: Verify the exact block degree and reject changed threshold and sign
+        run: |
+          timeout 1200s python research/translation_rank_rigidity/trr10/verify_formalization.py \
+            --core-root "$GITHUB_WORKSPACE" \
+            --geometry-root "$GITHUB_WORKSPACE/experiments/trr08_geometry" \
+            --output "$GITHUB_WORKSPACE/artifacts/trr10/formalization_receipt.json" \
+            2>&1 | tee artifacts/trr10/verification.log
+      - name: Verify generalized interpolation and reject incorrect coordinate transport
+        run: |
+          timeout 1200s python research/translation_rank_rigidity/trr11/verify_formalization.py \
+            --core-root "$GITHUB_WORKSPACE" \
+            --geometry-root "$GITHUB_WORKSPACE/experiments/trr08_geometry" \
+            --output "$GITHUB_WORKSPACE/artifacts/trr11/formalization_receipt.json" \
+            2>&1 | tee artifacts/trr11/verification.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trr08-formalization
+          path: artifacts/trr08/
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trr09-residue-formalization
+          path: artifacts/trr09/
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trr10-polynomial-interpolation
+          path: artifacts/trr10/
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trr11-generalized-interpolation
+          path: artifacts/trr11/
+          if-no-files-found: error
+          retention-days: 30
