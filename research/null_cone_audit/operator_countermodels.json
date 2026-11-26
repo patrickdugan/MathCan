@@ -1,0 +1,295 @@
+{
+  "exact": {
+    "cutoff_ordering": {
+      "area_eigenvalues": {
+        "even": "0",
+        "odd": "log(2)"
+      },
+      "closed_weight_trace": "infinite",
+      "conclusion": "strong exhaustion alone does not determine a normalized trace limit",
+      "limit_probability_formula": "2(r-1)/(2r-1)",
+      "rows": [
+        {
+          "contains_initial_coordinates": 2,
+          "cycle_count": 1,
+          "cycle_length": 2,
+          "even_observable_probability_exact": "2/3",
+          "rank": 2,
+          "total_weight_exact": "3/2"
+        },
+        {
+          "contains_initial_coordinates": 4,
+          "cycle_count": 2,
+          "cycle_length": 2,
+          "even_observable_probability_exact": "2/3",
+          "rank": 4,
+          "total_weight_exact": "3"
+        },
+        {
+          "contains_initial_coordinates": 16,
+          "cycle_count": 8,
+          "cycle_length": 2,
+          "even_observable_probability_exact": "2/3",
+          "rank": 16,
+          "total_weight_exact": "12"
+        },
+        {
+          "contains_initial_coordinates": 64,
+          "cycle_count": 32,
+          "cycle_length": 2,
+          "even_observable_probability_exact": "2/3",
+          "rank": 64,
+          "total_weight_exact": "48"
+        },
+        {
+          "contains_initial_coordinates": 2,
+          "cycle_count": 1,
+          "cycle_length": 3,
+          "even_observable_probability_exact": "4/5",
+          "rank": 3,
+          "total_weight_exact": "5/2"
+        },
+        {
+          "contains_initial_coordinates": 4,
+          "cycle_count": 2,
+          "cycle_length": 3,
+          "even_observable_probability_exact": "4/5",
+          "rank": 6,
+          "total_weight_exact": "5"
+        },
+        {
+          "contains_initial_coordinates": 16,
+          "cycle_count": 8,
+          "cycle_length": 3,
+          "even_observable_probability_exact": "4/5",
+          "rank": 24,
+          "total_weight_exact": "20"
+        },
+        {
+          "contains_initial_coordinates": 64,
+          "cycle_count": 32,
+          "cycle_length": 3,
+          "even_observable_probability_exact": "4/5",
+          "rank": 96,
+          "total_weight_exact": "80"
+        },
+        {
+          "contains_initial_coordinates": 2,
+          "cycle_count": 1,
+          "cycle_length": 5,
+          "even_observable_probability_exact": "8/9",
+          "rank": 5,
+          "total_weight_exact": "9/2"
+        },
+        {
+          "contains_initial_coordinates": 4,
+          "cycle_count": 2,
+          "cycle_length": 5,
+          "even_observable_probability_exact": "8/9",
+          "rank": 10,
+          "total_weight_exact": "9"
+        },
+        {
+          "contains_initial_coordinates": 16,
+          "cycle_count": 8,
+          "cycle_length": 5,
+          "even_observable_probability_exact": "8/9",
+          "rank": 40,
+          "total_weight_exact": "36"
+        },
+        {
+          "contains_initial_coordinates": 64,
+          "cycle_count": 32,
+          "cycle_length": 5,
+          "even_observable_probability_exact": "8/9",
+          "rank": 160,
+          "total_weight_exact": "144"
+        },
+        {
+          "contains_initial_coordinates": 2,
+          "cycle_count": 1,
+          "cycle_length": 17,
+          "even_observable_probability_exact": "32/33",
+          "rank": 17,
+          "total_weight_exact": "33/2"
+        },
+        {
+          "contains_initial_coordinates": 4,
+          "cycle_count": 2,
+          "cycle_length": 17,
+          "even_observable_probability_exact": "32/33",
+          "rank": 34,
+          "total_weight_exact": "33"
+        },
+        {
+          "contains_initial_coordinates": 16,
+          "cycle_count": 8,
+          "cycle_length": 17,
+          "even_observable_probability_exact": "32/33",
+          "rank": 136,
+          "total_weight_exact": "132"
+        },
+        {
+          "contains_initial_coordinates": 64,
+          "cycle_count": 32,
+          "cycle_length": 17,
+          "even_observable_probability_exact": "32/33",
+          "rank": 544,
+          "total_weight_exact": "528"
+        }
+      ],
+      "strong_exhaustion": "every coordinate below 2K lies in P_(K,r)",
+      "uniform_weight_lower_bound": "1/2",
+      "weight_eigenvalues": {
+        "even": "1",
+        "odd": "1/2"
+      }
+    },
+    "geometric_state": [
+      {
+        "effective_dimension_exact": "45/17",
+        "entropy_nats_expression": "log(15/16) + (26/15) * log(2)",
+        "minimum_eigenvalue_exact": "1/15",
+        "normalized_first_moment_exact": "26/15",
+        "normalized_purity_exact": "17/45",
+        "rank": 4,
+        "trace_exact": "15/16"
+      },
+      {
+        "effective_dimension_exact": "765/257",
+        "entropy_nats_expression": "log(255/256) + (502/255) * log(2)",
+        "minimum_eigenvalue_exact": "1/255",
+        "normalized_first_moment_exact": "502/255",
+        "normalized_purity_exact": "257/765",
+        "rank": 8,
+        "trace_exact": "255/256"
+      },
+      {
+        "effective_dimension_exact": "196605/65537",
+        "entropy_nats_expression": "log(65535/65536) + (131054/65535) * log(2)",
+        "minimum_eigenvalue_exact": "1/65535",
+        "normalized_first_moment_exact": "131054/65535",
+        "normalized_purity_exact": "65537/196605",
+        "rank": 16,
+        "trace_exact": "65535/65536"
+      },
+      {
+        "effective_dimension_exact": "12884901885/4294967297",
+        "entropy_nats_expression": "log(4294967295/4294967296) + (8589934558/4294967295) * log(2)",
+        "minimum_eigenvalue_exact": "1/4294967295",
+        "normalized_first_moment_exact": "8589934558/4294967295",
+        "normalized_purity_exact": "4294967297/12884901885",
+        "rank": 32,
+        "trace_exact": "4294967295/4294967296"
+      },
+      {
+        "effective_dimension_exact": "55340232221128654845/18446744073709551617",
+        "entropy_nats_expression": "log(18446744073709551615/18446744073709551616) + (36893488147419103166/18446744073709551615) * log(2)",
+        "minimum_eigenvalue_exact": "1/18446744073709551615",
+        "normalized_first_moment_exact": "36893488147419103166/18446744073709551615",
+        "normalized_purity_exact": "18446744073709551617/55340232221128654845",
+        "rank": 64,
+        "trace_exact": "18446744073709551615/18446744073709551616"
+      }
+    ],
+    "identity_sewing": {
+      "identity_trace": "infinite",
+      "normalizable_transition_amplitudes": "bounded by product of input norms",
+      "partial_vector_squared_norm": "N"
+    },
+    "infinite_limits": {
+      "effective_dimension": "3",
+      "entropy_nats": "2 log(2)",
+      "purity": "1/3",
+      "rank": "countably infinite",
+      "spectral_infimum": "0",
+      "trace": "1"
+    },
+    "integer_charge_matching": [
+      {
+        "ambient_dimension": 9,
+        "charge_cutoff": 1,
+        "compression_ratio_exact": "3",
+        "physical_dimension": 3
+      },
+      {
+        "ambient_dimension": 25,
+        "charge_cutoff": 2,
+        "compression_ratio_exact": "5",
+        "physical_dimension": 5
+      },
+      {
+        "ambient_dimension": 81,
+        "charge_cutoff": 4,
+        "compression_ratio_exact": "9",
+        "physical_dimension": 9
+      },
+      {
+        "ambient_dimension": 289,
+        "charge_cutoff": 8,
+        "compression_ratio_exact": "17",
+        "physical_dimension": 17
+      },
+      {
+        "ambient_dimension": 1089,
+        "charge_cutoff": 16,
+        "compression_ratio_exact": "33",
+        "physical_dimension": 33
+      }
+    ],
+    "scope": "exact finite slices; infinite conclusions have analytic proofs in audit_notes.md"
+  },
+  "illustrative_values": {
+    "geometric_state": [
+      {
+        "effective_dimension": 2.6470588235294117,
+        "entropy_nats": 1.1369165918330009,
+        "rank": 4
+      },
+      {
+        "effective_dimension": 2.9766536964980546,
+        "entropy_nats": 1.3606346678988344,
+        "rank": 8
+      },
+      {
+        "effective_dimension": 2.9999084486625875,
+        "entropy_nats": 1.386109874246319,
+        "rank": 16
+      },
+      {
+        "effective_dimension": 2.999999998603016,
+        "entropy_nats": 1.386294355722711,
+        "rank": 32
+      },
+      {
+        "effective_dimension": 3.0,
+        "entropy_nats": 1.3862943611198906,
+        "rank": 64
+      }
+    ],
+    "ordering_probability": [
+      {
+        "cycle_length": 2,
+        "probability": 0.6666666666666666
+      },
+      {
+        "cycle_length": 3,
+        "probability": 0.8
+      },
+      {
+        "cycle_length": 5,
+        "probability": 0.8888888888888888
+      },
+      {
+        "cycle_length": 17,
+        "probability": 0.9696969696969697
+      }
+    ],
+    "replay_policy": "informational floating values; excluded from canonical --check"
+  },
+  "schema_version": "NCG-AUDIT-01",
+  "source_sha256": {
+    "NullConeTraceBound.lean": "0fbbc2f7236eadcdce2fbbc4b411a41643ff007f19fbf2cf6de40aa846dfae45",
+    "operator_countermodels.py": "4bdd72423068d92a259ad38798891e1b00e76d56c8eecf7b6a7631b1bf689094"
+  }
+}
