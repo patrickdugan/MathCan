@@ -7,8 +7,22 @@ const EST=[[4,2,5,0,3,1],[5,3,4,1,2,0]],C=[.16807611778507042,.14351343124006946
 const ones=()=>Array(N).fill(1),zeros=()=>Array(N).fill(0),sum=a=>a.reduce((s,v)=>s+v,0),dot=(a,b)=>sum(a.map((v,i)=>v*b[i])),unit=i=>zeros().map((_,j)=>Number(i===j));
 const I=Array.from({length:N},(_,i)=>unit(i));
 const mat=(a,b)=>a.map(r=>Array.from({length:N},(_,j)=>sum(r.map((v,i)=>v*b[i][j]))));
-const row=(r,b)=>Array.from({length:N},(_,j)=>sum(r.map((v,i)=>v*b[i][j])));
-const col=(b,r)=>b.map(a=>dot(a,r));
+// Optional post-registration backend; default retains the registered dense code.
+const FACTORIZED=typeof process!=="undefined"&&process.argv.includes("--factorized");
+const TRANSITION_DATA=new WeakMap();
+function row(r,b){
+ const x=FACTORIZED?TRANSITION_DATA.get(b):null;
+ if(!x)return Array.from({length:N},(_,j)=>sum(r.map((v,i)=>v*b[i][j])));
+ const q=Array(N).fill(x.z*sum(r)/N);
+ for(let i=0;i<N;i++)q[x.perm[i]]+=(1-x.z)*r[i];
+ return q;
+}
+function col(b,r){
+ const x=FACTORIZED?TRANSITION_DATA.get(b):null;
+ if(!x)return b.map(a=>dot(a,r));
+ const u=x.z*sum(r)/N;
+ return x.perm.map(j=>(1-x.z)*r[j]+u);
+}
 const mulv=(a,b)=>a.map((v,i)=>v*b[i]),quant=x=>Math.round(x*1e12)/1e12;
 const dep=id=>Math.floor(Math.log2(id));
 function gmul(a,b){const k=a%3,s=a>=3?1:0,l=b%3,t=b>=3?1:0;return 3*(s^t)+(k+(s?-l:l)+3)%3}
@@ -19,7 +33,7 @@ function op(model,a,c){
  if(OPERATORS.has(k))return OPERATORS.get(k);
  const perm=(model==="known"?TRUE:EST)[a],z=model==="known"?c:Math.max(0,Math.min(1,C[a]*c/.15));
  const T=I.map((_,i)=>zeros().map((_,j)=>z/6+(1-z)*Number(perm[i]===j)));
- OPERATORS.set(k,T);return T;
+ TRANSITION_DATA.set(T,{perm,z});OPERATORS.set(k,T);return T;
 }
 const levels=(regime,d,depth)=>regime==="independent"&&d===depth?[1]:d===1?[.60,.80]:[0,.05,.15];
 function meanOp(model,regime,d,depth){
@@ -277,6 +291,6 @@ function experiment09(){
  const begin=Date.now(),audit=Array.from({length:4},(_,i)=>exactEnumeration(tree(1540001+i,i<2?"correlated":"independent",2)));
  const probe={},adaptive={};
  for(const regime of ["correlated","independent"]){probe[regime]=terminalExperiment(regime);adaptive[regime]=adaptiveExperiment(regime)}
- return {status:"PASS",scope:"synthetic shared-prefix tree inference and search, not factoring",audit,probe,adaptive,sharedTransitionSlots:36*OPERATORS.size,elapsedMs:Date.now()-begin};
+ return {status:"PASS",scope:"synthetic shared-prefix tree inference and search, not factoring",audit,probe,adaptive,backend:FACTORIZED?"factorized":"dense",sharedTransitionSlots:36*OPERATORS.size,sharedPermutationMetadataSlots:OPERATORS.size*(N+1),elapsedMs:Date.now()-begin};
 }
 console.log(JSON.stringify(experiment09(),null,2));
