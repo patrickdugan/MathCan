@@ -1,0 +1,8 @@
+Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)
+
+'MathCan.NullConeTraceBound.partialWeight_lower_bound' depends on axioms: [propext, Quot.sound]
+'MathCan.NullConeTraceBound.count_le_budget' depends on axioms: [propext, Quot.sound]
+'MathCan.NullConeTraceBound.no_uniform_partialWeight_bound' depends on axioms: [propext, Quot.sound]
+'MathCan.NullConeTraceBound.no_finite_budget' depends on axioms: [propext, Quot.sound]
+
+exit_code=0
