@@ -166,8 +166,13 @@ function auditGlobal12(P,E,reference,w){
  let states=0,max=0;
  for(const v of E.memo.values()){
   if(!v.action)continue;
-  const ref=reference.rec(v.s,v.b);
-  ok(ref.action.id===v.action.id&&Math.abs(ref.v-v.v)<1e-10,"certified/exact policy mismatch");
+  const aligned=v.s.map((id,i)=>{
+   if(id<0)return id;
+   const x=P.local[i].at(id);
+   return reference.P.local[i].intern(x.stage,x.w);
+  });
+  const ref=reference.rec(aligned,v.b);
+  ok(ref.action?.id===v.action.id&&Math.abs(ref.v-v.v)<1e-10,"certified/exact policy mismatch "+JSON.stringify({mode:P.mode,state:v.s,aligned,budget:v.b,actual:v.action.id,ref:ref.action?.id,actualV:v.v,refV:ref.v}));
   states++;max=Math.max(max,Math.abs(ref.v-v.v));
   // Score intervals checked against exact formula for every action on these states.
   for(const a of P.legal(v.s,v.b)){
