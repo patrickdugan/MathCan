@@ -105,6 +105,149 @@
       ],
       "statement": "|- A <_ ( C + 1 )",
       "proof_steps": 80
+    },
+    {
+      "metamath_label": "ml-mc-obseq-refl",
+      "source": "MathCan/Intervention.lean",
+      "source_blob": "7d522bca485cc5a877a65897ce65246ba5b0d52b",
+      "lean_declaration": "MathCan.obsEqOn_refl",
+      "scope": "set-coded observable-trace translation",
+      "mapping": "A is set of valid action words; F(w) is readout(runActions step w s). Reflexivity for all valid words. List fold and valid-word definition are represented by trace graphs/domain, not rebuilt.",
+      "hypotheses": [],
+      "statement": "|- A. x e. A ( F ` x ) = ( F ` x )",
+      "proof_steps": 17,
+      "distinct": [
+        [
+          "A",
+          "x"
+        ],
+        [
+          "F",
+          "x"
+        ]
+      ]
+    },
+    {
+      "metamath_label": "ml-mc-obseq-symm",
+      "source": "MathCan/Intervention.lean",
+      "source_blob": "7d522bca485cc5a877a65897ce65246ba5b0d52b",
+      "lean_declaration": "MathCan.obsEqOn_symm",
+      "scope": "set-coded observable-trace translation",
+      "mapping": "F,G are trace readouts of s,t; A is all admissible words. The restricted universal equality is the unfolded behavioral equivalence.",
+      "hypotheses": [
+        "|- A. x e. A ( F ` x ) = ( G ` x )"
+      ],
+      "statement": "|- A. x e. A ( G ` x ) = ( F ` x )",
+      "proof_steps": 103,
+      "distinct": [
+        [
+          "A",
+          "x"
+        ],
+        [
+          "F",
+          "x"
+        ],
+        [
+          "G",
+          "x"
+        ]
+      ]
+    },
+    {
+      "metamath_label": "ml-mc-obseq-trans",
+      "source": "MathCan/Intervention.lean",
+      "source_blob": "7d522bca485cc5a877a65897ce65246ba5b0d52b",
+      "lean_declaration": "MathCan.obsEqOn_trans",
+      "scope": "set-coded observable-trace translation",
+      "mapping": "F,G,H are readout traces of s,t,r on valid word domain A. Restricted universal equality preserved by transitivity.",
+      "hypotheses": [
+        "|- A. x e. A ( F ` x ) = ( G ` x )",
+        "|- A. x e. A ( G ` x ) = ( H ` x )"
+      ],
+      "statement": "|- A. x e. A ( F ` x ) = ( H ` x )",
+      "proof_steps": 109,
+      "distinct": [
+        [
+          "A",
+          "x"
+        ],
+        [
+          "F",
+          "x"
+        ],
+        [
+          "G",
+          "x"
+        ],
+        [
+          "H",
+          "x"
+        ]
+      ]
+    },
+    {
+      "metamath_label": "ml-mc-obseq-action-subset",
+      "source": "MathCan/Intervention.lean",
+      "source_blob": "7d522bca485cc5a877a65897ce65246ba5b0d52b",
+      "lean_declaration": "MathCan.obsEqOn_action_subset",
+      "scope": "set-coded observable-trace translation",
+      "mapping": "A=small-admissible word set, B=large-admissible word set; F,G trace readouts. Action inclusion implies word inclusion; this certificate starts with the resulting word inclusion, leaving List.mem/fold derivation as a mapping obligation.",
+      "hypotheses": [
+        "|- A C_ B",
+        "|- A. x e. B ( F ` x ) = ( G ` x )"
+      ],
+      "statement": "|- A. x e. A ( F ` x ) = ( G ` x )",
+      "proof_steps": 76,
+      "distinct": [
+        [
+          "A",
+          "x"
+        ],
+        [
+          "B",
+          "x"
+        ],
+        [
+          "F",
+          "x"
+        ],
+        [
+          "G",
+          "x"
+        ]
+      ]
+    },
+    {
+      "metamath_label": "ml-mc-obseq-postcompose",
+      "source": "MathCan/Intervention.lean",
+      "source_blob": "7d522bca485cc5a877a65897ce65246ba5b0d52b",
+      "lean_declaration": "MathCan.obsEqOn_postcompose",
+      "scope": "set-coded observable-trace translation",
+      "mapping": "F,G fine trace readouts, H coarsen map; A admissible words. Quantified readout equality is preserved by pointwise function application.",
+      "hypotheses": [
+        "|- A. x e. A ( F ` x ) = ( G ` x )"
+      ],
+      "statement": "|- A. x e. A ( H ` ( F ` x ) ) = ( H ` ( G ` x ) )",
+      "proof_steps": 70,
+      "distinct": [
+        [
+          "A",
+          "x"
+        ],
+        [
+          "F",
+          "x"
+        ],
+        [
+          "G",
+          "x"
+        ],
+        [
+          "H",
+          "x"
+        ]
+      ]
     }
   ]
 }

@@ -77,3 +77,72 @@ ${
     letri mp2an
   $.
 $}
+
+$( MathCan.obsEqOn_refl; set-coded observable-trace translation. $)
+${
+  $d A x $.
+  $d F x $.
+  ml-mc-obseq-refl $p |- A. x e. A ( F ` x ) = ( F ` x ) $=
+    vx cv cF cfv vx cv cF cfv wceq vx cA vx cv cF cfv eqid rgenw
+  $.
+$}
+
+$( MathCan.obsEqOn_symm; set-coded observable-trace translation. $)
+${
+  $d A x $.
+  $d F x $.
+  $d G x $.
+  ml-mc-obseq-symm.h1 $e |- A. x e. A ( F ` x ) = ( G ` x ) $.
+  ml-mc-obseq-symm $p |- A. x e. A ( G ` x ) = ( F ` x ) $=
+    vx cv cG cfv vx cv cF cfv wceq vx cA vx cv cA wcel vx cv cF cfv vx cv cG cfv wceq vx cv cG cfv vx cv cF
+    cfv wceq vx cv cF cfv vx cv cG cfv wceq vx cA wral vx cv cA wcel vx cv cF cfv vx cv cG cfv wceq wi
+    ml-mc-obseq-symm.h1 vx cv cF cfv vx cv cG cfv wceq vx cA rsp ax-mp vx cv cF cfv vx cv cG cfv wceq vx cv
+    cG cfv vx cv cF cfv wceq vx cv cF cfv vx cv cG cfv eqcom biimpi syl rgen
+  $.
+$}
+
+$( MathCan.obsEqOn_trans; set-coded observable-trace translation. $)
+${
+  $d A x $.
+  $d F x $.
+  $d G x $.
+  $d H x $.
+  ml-mc-obseq-trans.h1 $e |- A. x e. A ( F ` x ) = ( G ` x ) $.
+  ml-mc-obseq-trans.h2 $e |- A. x e. A ( G ` x ) = ( H ` x ) $.
+  ml-mc-obseq-trans $p |- A. x e. A ( F ` x ) = ( H ` x ) $=
+    vx cv cF cfv vx cv cH cfv wceq vx cA vx cv cA wcel vx cv cF cfv vx cv cG cfv vx cv cH cfv vx cv cF cfv vx
+    cv cG cfv wceq vx cA wral vx cv cA wcel vx cv cF cfv vx cv cG cfv wceq wi ml-mc-obseq-trans.h1 vx cv cF
+    cfv vx cv cG cfv wceq vx cA rsp ax-mp vx cv cG cfv vx cv cH cfv wceq vx cA wral vx cv cA wcel vx cv cG
+    cfv vx cv cH cfv wceq wi ml-mc-obseq-trans.h2 vx cv cG cfv vx cv cH cfv wceq vx cA rsp ax-mp eqtrd rgen
+  $.
+$}
+
+$( MathCan.obsEqOn_action_subset; set-coded observable-trace translation. $)
+${
+  $d A x $.
+  $d B x $.
+  $d F x $.
+  $d G x $.
+  ml-mc-obseq-action-subset.h1 $e |- A C_ B $.
+  ml-mc-obseq-action-subset.h2 $e |- A. x e. B ( F ` x ) = ( G ` x ) $.
+  ml-mc-obseq-action-subset $p |- A. x e. A ( F ` x ) = ( G ` x ) $=
+    vx cv cF cfv vx cv cG cfv wceq vx cA vx cv cA wcel vx cv cB wcel vx cv cF cfv vx cv cG cfv wceq cA cB vx
+    cv ml-mc-obseq-action-subset.h1 sseli vx cv cF cfv vx cv cG cfv wceq vx cB wral vx cv cB wcel vx cv cF
+    cfv vx cv cG cfv wceq wi ml-mc-obseq-action-subset.h2 vx cv cF cfv vx cv cG cfv wceq vx cB rsp ax-mp syl
+    rgen
+  $.
+$}
+
+$( MathCan.obsEqOn_postcompose; set-coded observable-trace translation. $)
+${
+  $d A x $.
+  $d F x $.
+  $d G x $.
+  $d H x $.
+  ml-mc-obseq-postcompose.h1 $e |- A. x e. A ( F ` x ) = ( G ` x ) $.
+  ml-mc-obseq-postcompose $p |- A. x e. A ( H ` ( F ` x ) ) = ( H ` ( G ` x ) ) $=
+    vx cv cF cfv cH cfv vx cv cG cfv cH cfv wceq vx cA vx cv cA wcel vx cv cF cfv vx cv cG cfv cH vx cv cF
+    cfv vx cv cG cfv wceq vx cA wral vx cv cA wcel vx cv cF cfv vx cv cG cfv wceq wi
+    ml-mc-obseq-postcompose.h1 vx cv cF cfv vx cv cG cfv wceq vx cA rsp ax-mp fveq2d rgen
+  $.
+$}
