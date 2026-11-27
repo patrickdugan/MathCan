@@ -1,0 +1,78 @@
+{
+  "schema": "lean-setmm-port-v1",
+  "source_commit": "f0e61546b72fc4cbb541ce5ebba9cd8905561ddb",
+  "setmm_commit": "806509385370b29fe8b1723804777ac21b1ce194",
+  "ports": [
+    {
+      "metamath_label": "ml-mc-public-sound",
+      "source": "MathCan/NOR16PublicOutputCertificate.lean",
+      "source_blob": "dafaaf3f89b21e1f21cabbcdc45a1fb3bb1b5f54",
+      "lean_declaration": "MathCan.NOR16PublicOutputCertificate.sound_complete_public_output_certificate",
+      "scope": "set-valued translation",
+      "mapping": "A accepted programs, x planted, F prediction, B proposed. Restricted universal certificate and membership encode the Lean premises.",
+      "hypotheses": [
+        "|- x e. A",
+        "|- A. x e. A ( F ` x ) = B"
+      ],
+      "statement": "|- ( F ` x ) = B",
+      "proof_steps": 31
+    },
+    {
+      "metamath_label": "ml-mc-unanimity",
+      "source": "MathCan/NOR16PublicOutputCertificate.lean",
+      "source_blob": "dafaaf3f89b21e1f21cabbcdc45a1fb3bb1b5f54",
+      "lean_declaration": "MathCan.NOR16PublicOutputCertificate.accepted_program_unanimity_is_complete",
+      "scope": "set-valued translation",
+      "mapping": "Same unfolded certificate and membership.",
+      "hypotheses": [
+        "|- x e. A",
+        "|- A. x e. A ( F ` x ) = B"
+      ],
+      "statement": "|- ( F ` x ) = B",
+      "proof_steps": 31
+    },
+    {
+      "metamath_label": "ml-mc-public-unique",
+      "source": "MathCan/NOR16PublicOutputCertificate.lean",
+      "source_blob": "dafaaf3f89b21e1f21cabbcdc45a1fb3bb1b5f54",
+      "lean_declaration": "MathCan.NOR16PublicOutputCertificate.unique_accepted_candidate_certifies_future",
+      "scope": "set-valued translation",
+      "mapping": "A accepted programs, B unique, x planted, F prediction. Restricted universal premise expresses unique acceptance.",
+      "hypotheses": [
+        "|- x e. A",
+        "|- A. x e. A x = B"
+      ],
+      "statement": "|- ( F ` x ) = ( F ` B )",
+      "proof_steps": 30
+    },
+    {
+      "metamath_label": "ml-mc-incompatible-pair",
+      "source": "MathCan/NOR16PublicOutputCertificate.lean",
+      "source_blob": "dafaaf3f89b21e1f21cabbcdc45a1fb3bb1b5f54",
+      "lean_declaration": "MathCan.NOR16PublicOutputCertificate.incompatible_public_predictions_forbid_certificate",
+      "scope": "supporting pointwise lemma",
+      "mapping": "A and B differing predicted values, C proposed. Equality contradiction after specializing the two certificates; quantifier lifting remains open.",
+      "hypotheses": [
+        "|- -. A = B"
+      ],
+      "statement": "|- -. ( A = C /\\ B = C )",
+      "proof_steps": 29
+    },
+    {
+      "metamath_label": "ml-mc-precommit-unique",
+      "source": "MathCan/NOR44SessionOrdering.lean",
+      "source_blob": "764ce37c1221f8664bda6f2788ac0ee161c91e9b",
+      "lean_declaration": "MathCan.NOR44SessionOrdering.bound_signed_precommit_has_unique_reveal",
+      "scope": "set-valued translation",
+      "mapping": "Fixed context, F commit function, A original, x revealed, C receipt digest, D vector domain. x in D is type membership; binding universally quantified over D. Cryptographic binding remains a hypothesis.",
+      "hypotheses": [
+        "|- x e. D",
+        "|- ( F ` A ) = C",
+        "|- ( F ` x ) = C",
+        "|- A. x e. D ( ( F ` x ) = ( F ` A ) -> x = A )"
+      ],
+      "statement": "|- x = A",
+      "proof_steps": 76
+    }
+  ]
+}
