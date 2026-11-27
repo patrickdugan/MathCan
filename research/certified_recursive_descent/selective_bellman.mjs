@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-15: selective interval Bellman refinement on the frozen finite model.
 import {readFileSync} from "node:fs";
 import {ok,sum,fixture,Problem,Engine,forwardWorld,bootstrap} from "./information_gain.mjs";
@@ -195,6 +196,9 @@ function experiment15(frozen,regime){
  }
  return {status:"PASS",scope:"finite independent synthetic decision model; floating conditional expectation and numerical enclosures",regime,rows,paired,costs,audits,globalAudit,elapsedMs:Date.now()-begin};
 }
-const frozen15=JSON.parse(readFileSync(new URL("./information_gain_receipt.json",import.meta.url),"utf8"));
-const regime15=process.argv.includes("--stress")?"stress":"standard";
-console.log(JSON.stringify(experiment15(frozen15,regime15),null,2));
+export {Planner15,EPS15,quant15,key15,fresh15,experiment15};
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
+ const frozen15=JSON.parse(readFileSync(new URL("./information_gain_receipt.json",import.meta.url),"utf8"));
+ const regime15=process.argv.includes("--stress")?"stress":"standard";
+ console.log(JSON.stringify(experiment15(frozen15,regime15),null,2));
+}
