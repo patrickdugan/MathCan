@@ -187,7 +187,7 @@ class Stream21 extends Bounded21{
  }
  task(i){
   const A=this.A,M=this.M,c=this.meta.get(i);
-  this.trace.push(this.phase+":"+i+":"+A.get(i,3));
+  if(this.finish21)this.trace.push(this.phase+":"+i+":"+A.get(i,3));
   if(this.phase===0){const v=this.alloc(c.s,c.b);this.commit(i,v,true);M.event("staticTerms");return}
   if(A.get(i,4)===0){
    const actions=this.P.legal(c.s,c.b);
@@ -207,7 +207,7 @@ class Stream21 extends Bounded21{
   const M=this.M;M.event("decisions");
   try{
    this.init(s,b);
-   while(this.active21&&(this.finish21||!this.snap().certified)){
+   while(this.active21&&(this.finish21||this.upper-this.A.get(this.best,0)>EPS)){
     const i=this.kind21==="scan"?this.chooseScan():this.chooseHeap();if(i<0)break;
     this.task(i);
     if(this.kind21!=="scan"&&this.phase===1){const p=this.priority(i);if(p>0){this.A.set(i,6,p);this.H.push(i)}}
