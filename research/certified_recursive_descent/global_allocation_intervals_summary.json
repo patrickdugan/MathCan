@@ -1,0 +1,739 @@
+{
+  "status": "PASS",
+  "scope": "independent static allocation only; bounds are not adaptive upper bounds",
+  "roots": 36,
+  "branchFixtures": 108,
+  "exactDepth12Checks": 72,
+  "allocationDPChecks": 576,
+  "sourceBlobs": {
+    "search.mjs": "62dcc082bdce24113262f939c0bec2bb0a1c9d8a",
+    "grouped_likelihoods.mjs": "2a196fdd2e18e128b831025cbe66ef5ce33719f2",
+    "likelihood_tv_stress.mjs": "1ea7c81c374be04a8756b808bfdb43c2d6130bf4",
+    "likelihood_overlap_stress.mjs": "09a4d2b030ca1a70f8e61e854b63d4e58279ed73",
+    "global_allocation_intervals.mjs": "3084f5c8ff59e224f9d087024c4b6edd6abdd30a"
+  },
+  "fullReceiptBlob": "fbea8e3e41600123810fe5e56b6cca044bb463bf",
+  "maxLocalHeap": 513,
+  "summary": [
+    {
+      "regime": "weak",
+      "budget": 46,
+      "expansions": 0,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.684156651115242,
+        "meanUpper": 0.8752930628002642,
+        "meanWidth": 0.19113641168502196,
+        "meanAlternativeWidth": 0.19113641168502196,
+        "maxWidth": 0.23846153846153845,
+        "unique": 0,
+        "certifiedOptimal": 0,
+        "sameAttainsBoth": 0,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      },
+      "combined": {
+        "meanLower": 0.684156651115242,
+        "meanUpper": 0.684156651115242,
+        "meanWidth": 0,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      }
+    },
+    {
+      "regime": "weak",
+      "budget": 46,
+      "expansions": 32,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.684156651115242,
+        "meanUpper": 0.8468534737192371,
+        "meanWidth": 0.16269682260399523,
+        "meanAlternativeWidth": 0.16269682260399523,
+        "maxWidth": 0.20747520976353925,
+        "unique": 0,
+        "certifiedOptimal": 0,
+        "sameAttainsBoth": 0,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      },
+      "combined": {
+        "meanLower": 0.684156651115242,
+        "meanUpper": 0.684156651115242,
+        "meanWidth": 0,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      }
+    },
+    {
+      "regime": "weak",
+      "budget": 46,
+      "expansions": 128,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.684156651115242,
+        "meanUpper": 0.8183549674101664,
+        "meanWidth": 0.13419831629492426,
+        "meanAlternativeWidth": 0.13419831629492426,
+        "maxWidth": 0.17707765470384806,
+        "unique": 0,
+        "certifiedOptimal": 0,
+        "sameAttainsBoth": 0,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      },
+      "combined": {
+        "meanLower": 0.684156651115242,
+        "meanUpper": 0.684156651115242,
+        "meanWidth": 0,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      }
+    },
+    {
+      "regime": "weak",
+      "budget": 46,
+      "expansions": 512,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.684156651115242,
+        "meanUpper": 0.7763935395690424,
+        "meanWidth": 0.09223688845380025,
+        "meanAlternativeWidth": 0.09223688845380025,
+        "maxWidth": 0.12835854518728018,
+        "unique": 0,
+        "certifiedOptimal": 0,
+        "sameAttainsBoth": 0,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      },
+      "combined": {
+        "meanLower": 0.684156651115242,
+        "meanUpper": 0.684156651115242,
+        "meanWidth": 0,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      }
+    },
+    {
+      "regime": "weak",
+      "budget": 78,
+      "expansions": 0,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.8752930628002642,
+        "meanUpper": 0.8844802065825679,
+        "meanWidth": 0.009187143782303838,
+        "meanAlternativeWidth": 0.009187143782303838,
+        "maxWidth": 0.04723346828609986,
+        "unique": 0,
+        "certifiedOptimal": 7,
+        "sameAttainsBoth": 7,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      },
+      "combined": {
+        "meanLower": 0.8752930628002642,
+        "meanUpper": 0.8752930628002642,
+        "meanWidth": 0,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      }
+    },
+    {
+      "regime": "weak",
+      "budget": 78,
+      "expansions": 32,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.8752930628002642,
+        "meanUpper": 0.8797758958219574,
+        "meanWidth": 0.00448283302169316,
+        "meanAlternativeWidth": 0.00448283302169316,
+        "maxWidth": 0.04723346828609986,
+        "unique": 0,
+        "certifiedOptimal": 9,
+        "sameAttainsBoth": 9,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      },
+      "combined": {
+        "meanLower": 0.8752930628002642,
+        "meanUpper": 0.8752930628002642,
+        "meanWidth": 0,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      }
+    },
+    {
+      "regime": "weak",
+      "budget": 78,
+      "expansions": 128,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.8752930628002642,
+        "meanUpper": 0.8772980420347715,
+        "meanWidth": 0.002004979234507274,
+        "meanAlternativeWidth": 0.002004979234507274,
+        "maxWidth": 0.024059750814087285,
+        "unique": 0,
+        "certifiedOptimal": 11,
+        "sameAttainsBoth": 11,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      },
+      "combined": {
+        "meanLower": 0.8752930628002642,
+        "meanUpper": 0.8752930628002642,
+        "meanWidth": 0,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      }
+    },
+    {
+      "regime": "weak",
+      "budget": 78,
+      "expansions": 512,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.8752930628002642,
+        "meanUpper": 0.8752930628002642,
+        "meanWidth": 0,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0,
+        "unique": 1,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      },
+      "combined": {
+        "meanLower": 0.8752930628002642,
+        "meanUpper": 0.8752930628002642,
+        "meanWidth": 0,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      }
+    },
+    {
+      "regime": "moderate",
+      "budget": 46,
+      "expansions": 0,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.598343308879225,
+        "meanUpper": 0.8135708347529874,
+        "meanWidth": 0.21522752587376234,
+        "meanAlternativeWidth": 0.21522752587376234,
+        "maxWidth": 0.2415966386554622,
+        "unique": 0,
+        "certifiedOptimal": 0,
+        "sameAttainsBoth": 0,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      },
+      "combined": {
+        "meanLower": 0.5985219776820929,
+        "meanUpper": 0.8135708347529874,
+        "meanWidth": 0.2150488570708944,
+        "meanAlternativeWidth": 0.1953411622373987,
+        "maxWidth": 0.2415966386554622,
+        "unique": 1,
+        "certifiedOptimal": 1,
+        "sameAttainsBoth": 1,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      }
+    },
+    {
+      "regime": "moderate",
+      "budget": 46,
+      "expansions": 32,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.6120908767195936,
+        "meanUpper": 0.8135708347529874,
+        "meanWidth": 0.20147995803339372,
+        "meanAlternativeWidth": 0.08079698152204468,
+        "maxWidth": 0.21126050885869396,
+        "unique": 7,
+        "certifiedOptimal": 7,
+        "sameAttainsBoth": 7,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      },
+      "combined": {
+        "meanLower": 0.6433221147078939,
+        "meanUpper": 0.8124909327102268,
+        "meanWidth": 0.16916881800233283,
+        "meanAlternativeWidth": 0.013946003634483185,
+        "maxWidth": 0.17544211486759073,
+        "unique": 11,
+        "certifiedOptimal": 11,
+        "sameAttainsBoth": 11,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      }
+    },
+    {
+      "regime": "moderate",
+      "budget": 46,
+      "expansions": 128,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.6396587024654911,
+        "meanUpper": 0.8089873801983964,
+        "meanWidth": 0.16932867773290536,
+        "meanAlternativeWidth": 0.0136360233866699,
+        "maxWidth": 0.17302795788211175,
+        "unique": 11,
+        "certifiedOptimal": 11,
+        "sameAttainsBoth": 11,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      },
+      "combined": {
+        "meanLower": 0.6611533632150218,
+        "meanUpper": 0.7980153934461898,
+        "meanWidth": 0.13686203023116775,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0.14061852877363518,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      }
+    },
+    {
+      "regime": "moderate",
+      "budget": 46,
+      "expansions": 512,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.6616649184049165,
+        "meanUpper": 0.7886096761475089,
+        "meanWidth": 0.12694475774259253,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0.1330362091755006,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      },
+      "combined": {
+        "meanLower": 0.6763100693159272,
+        "meanUpper": 0.7684884040169836,
+        "meanWidth": 0.09217833470105637,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0.09789444778914091,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      }
+    },
+    {
+      "regime": "moderate",
+      "budget": 78,
+      "expansions": 0,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.8135708347529874,
+        "meanUpper": 0.8466552161143008,
+        "meanWidth": 0.03308438136131344,
+        "meanAlternativeWidth": 0.03308438136131344,
+        "maxWidth": 0.10822981366459626,
+        "unique": 0,
+        "certifiedOptimal": 2,
+        "sameAttainsBoth": 2,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      },
+      "combined": {
+        "meanLower": 0.8135708347529874,
+        "meanUpper": 0.8466552161143008,
+        "meanWidth": 0.03308438136131344,
+        "meanAlternativeWidth": 0.03308438136131344,
+        "maxWidth": 0.10822981366459626,
+        "unique": 0,
+        "certifiedOptimal": 2,
+        "sameAttainsBoth": 2,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      }
+    },
+    {
+      "regime": "moderate",
+      "budget": 78,
+      "expansions": 32,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.8135708347529874,
+        "meanUpper": 0.8466552161143008,
+        "meanWidth": 0.03308438136131344,
+        "meanAlternativeWidth": 0.03308438136131344,
+        "maxWidth": 0.10822981366459626,
+        "unique": 0,
+        "certifiedOptimal": 2,
+        "sameAttainsBoth": 2,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      },
+      "combined": {
+        "meanLower": 0.8160971217600701,
+        "meanUpper": 0.8459223591944206,
+        "meanWidth": 0.029825237434350588,
+        "meanAlternativeWidth": 0.023363451249518417,
+        "maxWidth": 0.07754143421798605,
+        "unique": 1,
+        "certifiedOptimal": 3,
+        "sameAttainsBoth": 3,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      }
+    },
+    {
+      "regime": "moderate",
+      "budget": 78,
+      "expansions": 128,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.8135708347529874,
+        "meanUpper": 0.8434178842929717,
+        "meanWidth": 0.0298470495399842,
+        "meanAlternativeWidth": 0.0298470495399842,
+        "maxWidth": 0.10717170655610121,
+        "unique": 0,
+        "certifiedOptimal": 3,
+        "sameAttainsBoth": 3,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      },
+      "combined": {
+        "meanLower": 0.8166909939774502,
+        "meanUpper": 0.8369756967234002,
+        "meanWidth": 0.020284702745950126,
+        "meanAlternativeWidth": 0.015015060170553785,
+        "maxWidth": 0.06323571090475608,
+        "unique": 1,
+        "certifiedOptimal": 4,
+        "sameAttainsBoth": 4,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      }
+    },
+    {
+      "regime": "moderate",
+      "budget": 78,
+      "expansions": 512,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.8135708347529874,
+        "meanUpper": 0.8322500920212329,
+        "meanWidth": 0.01867925726824537,
+        "meanAlternativeWidth": 0.01867925726824537,
+        "maxWidth": 0.09680494216031871,
+        "unique": 0,
+        "certifiedOptimal": 5,
+        "sameAttainsBoth": 5,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      },
+      "combined": {
+        "meanLower": 0.8172034137058395,
+        "meanUpper": 0.825482236904658,
+        "meanWidth": 0.008278823198818395,
+        "meanAlternativeWidth": 0.004783201801394803,
+        "maxWidth": 0.04194745676908312,
+        "unique": 1,
+        "certifiedOptimal": 8,
+        "sameAttainsBoth": 8,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      }
+    },
+    {
+      "regime": "high",
+      "budget": 46,
+      "expansions": 0,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.6663724984316833,
+        "meanUpper": 0.858985153587794,
+        "meanWidth": 0.19261265515611067,
+        "meanAlternativeWidth": 0.19261265515611067,
+        "maxWidth": 0.23203026481715008,
+        "unique": 0,
+        "certifiedOptimal": 0,
+        "sameAttainsBoth": 0,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      },
+      "combined": {
+        "meanLower": 0.8495040942892182,
+        "meanUpper": 0.858985153587794,
+        "meanWidth": 0.009481059298575815,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0.014306885235053883,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      }
+    },
+    {
+      "regime": "high",
+      "budget": 46,
+      "expansions": 32,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.8493210613606474,
+        "meanUpper": 0.858985153587794,
+        "meanWidth": 0.009664092227146386,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0.013621230241159027,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      },
+      "combined": {
+        "meanLower": 0.8531867538823157,
+        "meanUpper": 0.8589688533058742,
+        "meanWidth": 0.0057820994235586905,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0.008661110993502094,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      }
+    },
+    {
+      "regime": "high",
+      "budget": 46,
+      "expansions": 128,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.8550361835820491,
+        "meanUpper": 0.8586967443347354,
+        "meanWidth": 0.0036605607526863735,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0.005273476504716704,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      },
+      "combined": {
+        "meanLower": 0.855344891977818,
+        "meanUpper": 0.8585326590785899,
+        "meanWidth": 0.003187767100771946,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0.004750147712461873,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      }
+    },
+    {
+      "regime": "high",
+      "budget": 46,
+      "expansions": 512,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.8565242216786905,
+        "meanUpper": 0.8571212016384946,
+        "meanWidth": 0.0005969799598042777,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0.0008541569073640748,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      },
+      "combined": {
+        "meanLower": 0.8565422019930136,
+        "meanUpper": 0.857029423866977,
+        "meanWidth": 0.00048722187396330383,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0.000725209798944229,
+        "unique": 12,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 558,
+        "meanFeasibleAllocations": 8
+      }
+    },
+    {
+      "regime": "high",
+      "budget": 78,
+      "expansions": 0,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.858985153587794,
+        "meanUpper": 0.876228010865204,
+        "meanWidth": 0.017242857277409776,
+        "meanAlternativeWidth": 0.017242857277409776,
+        "maxWidth": 0.060059720669061845,
+        "unique": 0,
+        "certifiedOptimal": 5,
+        "sameAttainsBoth": 5,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      },
+      "combined": {
+        "meanLower": 0.871855329615769,
+        "meanUpper": 0.876228010865204,
+        "meanWidth": 0.0043726812494348484,
+        "meanAlternativeWidth": 0.0009203110631908791,
+        "maxWidth": 0.011821563559503303,
+        "unique": 5,
+        "certifiedOptimal": 10,
+        "sameAttainsBoth": 10,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      }
+    },
+    {
+      "regime": "high",
+      "budget": 78,
+      "expansions": 32,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.8720692008279859,
+        "meanUpper": 0.876228010865204,
+        "meanWidth": 0.004158810037217885,
+        "meanAlternativeWidth": 0.0009203110631908791,
+        "maxWidth": 0.010827704556694495,
+        "unique": 5,
+        "certifiedOptimal": 10,
+        "sameAttainsBoth": 10,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      },
+      "combined": {
+        "meanLower": 0.8734004319216796,
+        "meanUpper": 0.8762180910141245,
+        "meanWidth": 0.00281765909244498,
+        "meanAlternativeWidth": 0.00025273455623546514,
+        "maxWidth": 0.007156535690648247,
+        "unique": 6,
+        "certifiedOptimal": 11,
+        "sameAttainsBoth": 11,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      }
+    },
+    {
+      "regime": "high",
+      "budget": 78,
+      "expansions": 128,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.8742849001888676,
+        "meanUpper": 0.8760760588064435,
+        "meanWidth": 0.0017911586175757787,
+        "meanAlternativeWidth": 0.00023172929721518884,
+        "maxWidth": 0.004280987502885754,
+        "unique": 6,
+        "certifiedOptimal": 11,
+        "sameAttainsBoth": 11,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      },
+      "combined": {
+        "meanLower": 0.874356660064817,
+        "meanUpper": 0.8759903586909049,
+        "meanWidth": 0.0016336986260880439,
+        "meanAlternativeWidth": 0.00022110353660965051,
+        "maxWidth": 0.003924959188434677,
+        "unique": 6,
+        "certifiedOptimal": 11,
+        "sameAttainsBoth": 11,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      }
+    },
+    {
+      "regime": "high",
+      "budget": 78,
+      "expansions": 512,
+      "roots": 12,
+      "original": {
+        "meanLower": 0.8749631283481056,
+        "meanUpper": 0.8752585297380909,
+        "meanWidth": 0.00029540138998542653,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0.0006698912300941872,
+        "unique": 7,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      },
+      "combined": {
+        "meanLower": 0.874958415834232,
+        "meanUpper": 0.8752110592845056,
+        "meanWidth": 0.0002526434502737977,
+        "meanAlternativeWidth": 0,
+        "maxWidth": 0.0005742028916613522,
+        "unique": 7,
+        "certifiedOptimal": 12,
+        "sameAttainsBoth": 12,
+        "meanCombinations": 1212,
+        "meanFeasibleAllocations": 20
+      }
+    }
+  ]
+}
