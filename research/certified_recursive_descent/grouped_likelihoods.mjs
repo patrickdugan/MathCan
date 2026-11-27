@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-13A: exact BigInt grouped sensor likelihoods and certified prefix pruning.
 import {rng,shuffle} from "./search.mjs";
 const ok=(x,m)=>{if(!x)throw Error(m)};
@@ -182,4 +183,5 @@ function experiment13(){
  for(const [j,m] of [16,32,64].entries())for(let i=0;i<8;i++)rows.push(evaluate13(fixture13("unique",1970001+8*j+i,m),j===0&&i<2,j===0,true));
  return {status:"PASS",scope:"exact rational independent mandatory-sensor utility, not a real proof-search result",roots:rows.length,rawChecks:rows.filter(r=>r.raw).length,exactChecks:rows.filter(r=>r.exact).length,boundedRoots:rows.filter(r=>r.intervals.length).length,monotonicChecks:rows.filter(r=>r.monotonic).length,summary:aggregate13(rows),rows,elapsedMs:Date.now()-start};
 }
-console.log(JSON.stringify(experiment13(),null,2));
+export {ok,sum,sumN,top,bit,compile,binom,massNext,envelope,stats,exactGrouped,rawBits,Heap,bounded,experiment13};
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href) console.log(JSON.stringify(experiment13(),null,2));
