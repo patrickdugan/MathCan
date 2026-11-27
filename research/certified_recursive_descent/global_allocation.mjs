@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-14A: static product allocation and receding static-utility lookahead.
 import {readFileSync} from "node:fs";
 import {ok,sum,fixture,Problem,Engine,forwardWorld,bootstrap} from "./information_gain.mjs";
@@ -177,5 +178,8 @@ function finite14(frozen){
  }
  return {status:"PASS",scope:"independent finite decision model; static witness and receding lower-bound control",rows,paired,costs,audit,elapsedMs:Date.now()-start};
 }
-const frozen14=JSON.parse(readFileSync(new URL("./information_gain_receipt.json",import.meta.url),"utf8"));
-console.log(JSON.stringify(finite14(frozen14),null,2));
+export {local14,AllocationProblem,staticWitness,finite14};
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
+ const frozen14=JSON.parse(readFileSync(new URL("./information_gain_receipt.json",import.meta.url),"utf8"));
+ console.log(JSON.stringify(finite14(frozen14),null,2));
+}
