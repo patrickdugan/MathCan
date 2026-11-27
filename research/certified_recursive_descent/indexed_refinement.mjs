@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-21: indexed lower-envelope tasks, delta sums, streaming whole-action control.
 import {ok,sum,Problem,Engine,bootstrap} from "./information_gain.mjs";
 import {AllocationProblem} from "./global_allocation.mjs";
@@ -281,5 +282,8 @@ function experiment21(name){
  }
  return {status:"PASS",scope:"finite independent synthetic decision model, weighted work and explicitly bounded numeric arrays",name,roots:n,cap,budget:b,audit,baselines:{optimal:mean(ref.optimal),receding2:mean(ref.receding2)},rows,paired,elapsedMs:Date.now()-begin};
 }
-const cohortName21=process.argv.includes("--deep")?"deep":process.argv.includes("--tight")?"tight":"standard";
-console.log(JSON.stringify(experiment21(cohortName21),null,2));
+export {Memo21,Arena21,Heap21,meter21,experiment21};
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
+ const cohortName21=process.argv.includes("--deep")?"deep":process.argv.includes("--tight")?"tight":"standard";
+ console.log(JSON.stringify(experiment21(cohortName21),null,2));
+}
