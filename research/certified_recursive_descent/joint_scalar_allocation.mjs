@@ -152,7 +152,7 @@ function unit26(){
    if(i===n){if(f<best)best=f;return}
    for(const a of os[i])if(c+a.t<=b)rec(i+1,c+a.t,f*BigInt(10-a.num));
   }rec(0,0,1n);
-  const ref=Number(den-best)/Number(den),o=os.map(x=>x.map(a=>({t:a.t,v:a.num/10}))).filter(x=>x.length>1);
+  const ref=Number(den-best)/Number(den),o=os.map(x=>x.filter(a=>a.t<=b).map(a=>({t:a.t,v:a.num/10}))).filter(x=>x.length>1);
   for(const mode of ["skip","short","both"]){
    const v=allocation26(o,b,M,mode),e=Math.abs(v-ref);ok(e<1e-12,"integer shortcut");
    checks++;maxError=Math.max(maxError,e)
