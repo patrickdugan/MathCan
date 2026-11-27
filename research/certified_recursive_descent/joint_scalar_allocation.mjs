@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-26: exact scalar joint likelihoods and affordability-aware allocation.
 import {rng} from "./search.mjs";
 import {ok,sum,fixture,Problem,Engine,bootstrap} from "./information_gain.mjs";
@@ -268,5 +269,8 @@ function experiment26(name){
  }
  return {status:"PASS",scope:"finite synthetic independent-branch model; exact static arithmetic and metered policy proxy",name,roots:n,population:pop,budget:b,cap,audit,baselines:{optimal:mean(refs.optimal),receding2:mean(refs.receding2)},traceRows,tracePairs,rows,paired,elapsedMs:Date.now()-start}
 }
-const name26=process.argv.includes("--population")?"population":process.argv.includes("--larger")?"larger":"standard";
-console.log(JSON.stringify(experiment26(name26),null,2));
+export {meter26,blank26,Scalar26,fold26,single26,make26,policy26,experiment26};
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
+ const name26=process.argv.includes("--population")?"population":process.argv.includes("--larger")?"larger":"standard";
+ console.log(JSON.stringify(experiment26(name26),null,2));
+}
