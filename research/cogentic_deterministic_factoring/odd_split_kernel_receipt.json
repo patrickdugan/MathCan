@@ -1,0 +1,15 @@
+{
+  "schema": "DETFACT-17-kernel-ci",
+  "source_commit": "0c3400ccf1d942114f1de16f2ef43a6d20bd4477",
+  "source_blob": "41532faa804af26a480ed3d728cb36e9e297ccf9",
+  "source_path": "MathCan/DETFACT17OddSplit.lean",
+  "toolchain": "leanprover/lean4:v4.35.0",
+  "initial_failed_run": 45933807927,
+  "repair": "Simplify odd zero/empty base cases and reduce true conditional before exponent rewrite; no weakened statements.",
+  "run_id": 45935329672,
+  "url": "https://github.com/patrickdugan/MathCan/actions/runs/45935329672",
+  "conclusion": "success",
+  "replay": "success",
+  "axiom_marker_gate": "success",
+  "scope": "Abstract odd decomposition and pointwise split probes assuming valid complete unique roster."
+}

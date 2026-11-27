@@ -1,0 +1,18 @@
+{
+  "schema": "DETFACT-18-kernel-ci",
+  "source_commit": "b35c89be666a8a0db0604e7b169f62ffcd7afcf7",
+  "source_blob": "98b3f0c53356c98d1e34ead3769ebf06fe235c6d",
+  "source_path": "MathCan/DETFACT18Enumeration.lean",
+  "toolchain": "leanprover/lean4:v4.35.0",
+  "run_id": 45935564216,
+  "url": "https://github.com/patrickdugan/MathCan/actions/runs/45935564216",
+  "conclusion": "success",
+  "replay": "success",
+  "axiom_marker_gate": "success",
+  "axioms_inspected": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "scope": "Abstract marking iff prime/composite, odd progression, segment membership and unique partition, duplicate-free eligible labels and maximal exponent roster existence with exact LCM. BaseSound and BaseComplete are premises. No native C refinement."
+}
