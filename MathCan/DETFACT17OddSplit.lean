@@ -22,7 +22,7 @@ theorem odd_mul (a b : Nat) (ha : Odd a) (hb : Odd b) : Odd (a*b) := by
 
 theorem odd_pow (p e : Nat) (hp : Odd p) : Odd (p^e) := by
   induction e with
-  | zero => decide
+  | zero => simp [Odd, Nat.pow_zero]
   | succ e ih => rw [Nat.pow_succ]; exact odd_mul _ _ ih hp
 
 theorem prime_two : PrimeLike 2 := by
@@ -111,7 +111,7 @@ theorem roster_split_product (es : List Entry) :
   | nil => simp [rosterProduct,twoExponent,oddFactors,exponentProduct]
   | cons e es ih =>
     by_cases h : e.1 = 2
-    · simp only [rosterProduct,twoExponent,oddFactors,if_pos h,entryPower, h]
+    · simp only [rosterProduct,twoExponent,oddFactors,if_pos h,entryPower, h, ite_true]
       rw [ih, Nat.pow_add]
       ac_rfl
     · simp only [rosterProduct,twoExponent,oddFactors,if_neg h,exponentProduct]
@@ -122,7 +122,7 @@ theorem odd_factors_product (K : Nat) (es : List Entry)
     (hv : ∀ e : Entry, e ∈ es → ValidEntry K e) :
     Odd (exponentProduct (oddFactors es)) := by
   induction es with
-  | nil => decide
+  | nil => simp [Odd, exponentProduct, oddFactors]
   | cons e es ih =>
     have ht := ih (fun f hf => hv f (by simp [hf]))
     by_cases h : e.1 = 2
