@@ -1,6 +1,8 @@
 import MathCan.OperationalIdentifiability
 import MathCan.Pregeometry.ObservationFactorization
 import MathCan.Pregeometry.OperationalCounterexamples
+import MathCan.Pregeometry.QuantumDiamond
+import MathCan.Pregeometry.SmithObservation
 
 /-!
 # Pregeometry: observation maps and finite operational witnesses
