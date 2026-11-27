@@ -1,0 +1,16 @@
+{
+  "schema": "DETFACT-18-exact",
+  "runtime": "authoring JS runtime",
+  "indices": 204,
+  "segment_configurations": 1020,
+  "segments": 27528,
+  "candidate_partition_and_mark_checks": 89720,
+  "mark_writes": 72370,
+  "odd_progression_witnesses": 72370,
+  "roster_entries": 36615,
+  "lcm_product_checks": 1020,
+  "streamed_residues": 4080,
+  "split_probes": 52760,
+  "negative_controls": 8,
+  "max_K": 4097
+}
