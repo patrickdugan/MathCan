@@ -1,0 +1,15 @@
+{
+  "schema": "DETFACT-17-exact",
+  "execution": "authoring JS runtime",
+  "intervals": 76,
+  "rosters": 228,
+  "roster_entries": 9399,
+  "exponent_decompositions": 1140,
+  "valuation_checks": 1140,
+  "residue_checks": 31920,
+  "split_probe_checks": 257964,
+  "nonunit_base_cases": 12540,
+  "first_split_checks": 31920,
+  "negative_controls": 7,
+  "max_K": 4097
+}
