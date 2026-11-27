@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-19: metered incremental Bellman transactions and feasible early ranking.
 import {ok,sum,Problem,Engine,bootstrap} from "./information_gain.mjs";
 import {AllocationProblem} from "./global_allocation.mjs";
@@ -271,5 +272,8 @@ function experiment19(name){
  }
  return {status:"PASS",scope:"finite synthetic model, weighted planning proxy",name,roots:n,cap,budget:b,check,baselines:{optimal:mean(ref.optimal),receding2:mean(ref.receding2)},rows,paired,elapsedMs:Date.now()-start};
 }
-const cohortName19=process.argv.includes("--deep")?"deep":process.argv.includes("--tight")?"tight":"standard";
-console.log(JSON.stringify(experiment19(cohortName19),null,2));
+export {blank19,meter19,snapshot19,cheapValue19,cheapRoot19,Inc19,Two19,policy19,experiment19};
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
+ const cohortName19=process.argv.includes("--deep")?"deep":process.argv.includes("--tight")?"tight":"standard";
+ console.log(JSON.stringify(experiment19(cohortName19),null,2));
+}
