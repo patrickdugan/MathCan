@@ -1,0 +1,448 @@
+{
+  "decisions": [
+    {
+      "cap": 512,
+      "cost": 0,
+      "id": "test-00",
+      "minimum": 1
+    },
+    {
+      "cap": 768,
+      "cost": 0,
+      "id": "test-00",
+      "minimum": 1
+    },
+    {
+      "cap": 1024,
+      "cost": 0,
+      "id": "test-00",
+      "minimum": 1
+    },
+    {
+      "cap": 1536,
+      "cost": 0,
+      "id": "test-00",
+      "minimum": 1
+    },
+    {
+      "cap": 3072,
+      "cost": 0,
+      "id": "test-00",
+      "minimum": 1
+    },
+    {
+      "cap": 8192,
+      "cost": 0,
+      "id": "test-00",
+      "minimum": 1
+    },
+    {
+      "cap": 512,
+      "cost": 0,
+      "id": "test-01",
+      "minimum": 1
+    },
+    {
+      "cap": 768,
+      "cost": 0,
+      "id": "test-01",
+      "minimum": 1
+    },
+    {
+      "cap": 1024,
+      "cost": 0,
+      "id": "test-01",
+      "minimum": 1
+    },
+    {
+      "cap": 1536,
+      "cost": 0,
+      "id": "test-01",
+      "minimum": 1
+    },
+    {
+      "cap": 3072,
+      "cost": 0,
+      "id": "test-01",
+      "minimum": 1
+    },
+    {
+      "cap": 8192,
+      "cost": 0,
+      "id": "test-01",
+      "minimum": 1
+    },
+    {
+      "cap": 512,
+      "cost": null,
+      "id": "test-02",
+      "minimum": null
+    },
+    {
+      "cap": 768,
+      "cost": null,
+      "id": "test-02",
+      "minimum": null
+    },
+    {
+      "cap": 1024,
+      "cost": null,
+      "id": "test-02",
+      "minimum": null
+    },
+    {
+      "cap": 1536,
+      "cost": 0,
+      "id": "test-02",
+      "minimum": 1
+    },
+    {
+      "cap": 3072,
+      "cost": 0,
+      "id": "test-02",
+      "minimum": 1
+    },
+    {
+      "cap": 8192,
+      "cost": 0,
+      "id": "test-02",
+      "minimum": 1
+    },
+    {
+      "cap": 512,
+      "cost": 0,
+      "id": "test-03",
+      "minimum": 1
+    },
+    {
+      "cap": 768,
+      "cost": 0,
+      "id": "test-03",
+      "minimum": 1
+    },
+    {
+      "cap": 1024,
+      "cost": 0,
+      "id": "test-03",
+      "minimum": 1
+    },
+    {
+      "cap": 1536,
+      "cost": 0,
+      "id": "test-03",
+      "minimum": 1
+    },
+    {
+      "cap": 3072,
+      "cost": 0,
+      "id": "test-03",
+      "minimum": 1
+    },
+    {
+      "cap": 8192,
+      "cost": 0,
+      "id": "test-03",
+      "minimum": 1
+    },
+    {
+      "cap": 512,
+      "cost": null,
+      "id": "test-04",
+      "minimum": null
+    },
+    {
+      "cap": 768,
+      "cost": 0,
+      "id": "test-04",
+      "minimum": 1
+    },
+    {
+      "cap": 1024,
+      "cost": 0,
+      "id": "test-04",
+      "minimum": 1
+    },
+    {
+      "cap": 1536,
+      "cost": 0,
+      "id": "test-04",
+      "minimum": 1
+    },
+    {
+      "cap": 3072,
+      "cost": 0,
+      "id": "test-04",
+      "minimum": 1
+    },
+    {
+      "cap": 8192,
+      "cost": 0,
+      "id": "test-04",
+      "minimum": 1
+    },
+    {
+      "cap": 512,
+      "cost": null,
+      "id": "test-05",
+      "minimum": null
+    },
+    {
+      "cap": 768,
+      "cost": null,
+      "id": "test-05",
+      "minimum": null
+    },
+    {
+      "cap": 1024,
+      "cost": 0,
+      "id": "test-05",
+      "minimum": 1
+    },
+    {
+      "cap": 1536,
+      "cost": 0,
+      "id": "test-05",
+      "minimum": 1
+    },
+    {
+      "cap": 3072,
+      "cost": 0,
+      "id": "test-05",
+      "minimum": 1
+    },
+    {
+      "cap": 8192,
+      "cost": 0,
+      "id": "test-05",
+      "minimum": 1
+    },
+    {
+      "cap": 512,
+      "cost": null,
+      "id": "test-06",
+      "minimum": null
+    },
+    {
+      "cap": 768,
+      "cost": null,
+      "id": "test-06",
+      "minimum": null
+    },
+    {
+      "cap": 1024,
+      "cost": null,
+      "id": "test-06",
+      "minimum": null
+    },
+    {
+      "cap": 1536,
+      "cost": 0,
+      "id": "test-06",
+      "minimum": 1
+    },
+    {
+      "cap": 3072,
+      "cost": 0,
+      "id": "test-06",
+      "minimum": 1
+    },
+    {
+      "cap": 8192,
+      "cost": 0,
+      "id": "test-06",
+      "minimum": 1
+    },
+    {
+      "cap": 512,
+      "cost": 0,
+      "id": "test-07",
+      "minimum": 1
+    },
+    {
+      "cap": 768,
+      "cost": 0,
+      "id": "test-07",
+      "minimum": 1
+    },
+    {
+      "cap": 1024,
+      "cost": 0,
+      "id": "test-07",
+      "minimum": 1
+    },
+    {
+      "cap": 1536,
+      "cost": 0,
+      "id": "test-07",
+      "minimum": 1
+    },
+    {
+      "cap": 3072,
+      "cost": 0,
+      "id": "test-07",
+      "minimum": 1
+    },
+    {
+      "cap": 8192,
+      "cost": 0,
+      "id": "test-07",
+      "minimum": 1
+    },
+    {
+      "cap": 512,
+      "cost": null,
+      "id": "test-08",
+      "minimum": null
+    },
+    {
+      "cap": 768,
+      "cost": null,
+      "id": "test-08",
+      "minimum": null
+    },
+    {
+      "cap": 1024,
+      "cost": 0,
+      "id": "test-08",
+      "minimum": 1
+    },
+    {
+      "cap": 1536,
+      "cost": 0,
+      "id": "test-08",
+      "minimum": 1
+    },
+    {
+      "cap": 3072,
+      "cost": 0,
+      "id": "test-08",
+      "minimum": 1
+    },
+    {
+      "cap": 8192,
+      "cost": 0,
+      "id": "test-08",
+      "minimum": 1
+    },
+    {
+      "cap": 512,
+      "cost": 0,
+      "id": "test-09",
+      "minimum": 1
+    },
+    {
+      "cap": 768,
+      "cost": 0,
+      "id": "test-09",
+      "minimum": 1
+    },
+    {
+      "cap": 1024,
+      "cost": 0,
+      "id": "test-09",
+      "minimum": 1
+    },
+    {
+      "cap": 1536,
+      "cost": 0,
+      "id": "test-09",
+      "minimum": 1
+    },
+    {
+      "cap": 3072,
+      "cost": 0,
+      "id": "test-09",
+      "minimum": 1
+    },
+    {
+      "cap": 8192,
+      "cost": 0,
+      "id": "test-09",
+      "minimum": 1
+    },
+    {
+      "cap": 512,
+      "cost": 0,
+      "id": "test-10",
+      "minimum": 1
+    },
+    {
+      "cap": 768,
+      "cost": 0,
+      "id": "test-10",
+      "minimum": 1
+    },
+    {
+      "cap": 1024,
+      "cost": 0,
+      "id": "test-10",
+      "minimum": 1
+    },
+    {
+      "cap": 1536,
+      "cost": 0,
+      "id": "test-10",
+      "minimum": 1
+    },
+    {
+      "cap": 3072,
+      "cost": 0,
+      "id": "test-10",
+      "minimum": 1
+    },
+    {
+      "cap": 8192,
+      "cost": 0,
+      "id": "test-10",
+      "minimum": 1
+    },
+    {
+      "cap": 512,
+      "cost": 0,
+      "id": "test-11",
+      "minimum": 1
+    },
+    {
+      "cap": 768,
+      "cost": 0,
+      "id": "test-11",
+      "minimum": 1
+    },
+    {
+      "cap": 1024,
+      "cost": 0,
+      "id": "test-11",
+      "minimum": 1
+    },
+    {
+      "cap": 1536,
+      "cost": 0,
+      "id": "test-11",
+      "minimum": 1
+    },
+    {
+      "cap": 3072,
+      "cost": 0,
+      "id": "test-11",
+      "minimum": 1
+    },
+    {
+      "cap": 8192,
+      "cost": 0,
+      "id": "test-11",
+      "minimum": 1
+    }
+  ],
+  "protocol_sha256": "1a83e9f0573b88609569757648d30c0db0cd7a165913abace2858014512c8d73",
+  "weights": [
+    0.0,
+    0.0005973926485342751,
+    0.0011455364318342938,
+    0.0,
+    0.0007536832826516537,
+    6.801357073990673e-05,
+    0.0,
+    0.0,
+    0.0010301510881223009
+  ]
+}

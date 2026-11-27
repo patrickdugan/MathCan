@@ -1,0 +1,12 @@
+{
+  "schema": "MATHCAN-DETFACT-AUDIT-01",
+  "bound_inclusive": 511,
+  "composites_with_distinct_primes": 147,
+  "with_repeated_prime_factor": 35,
+  "prime_pairs": 183,
+  "equal_two_adic_ranks": 78,
+  "unequal_two_adic_ranks": 105,
+  "split_trials": 735,
+  "prime_qnr_trials": 96,
+  "negative_controls": 3
+}

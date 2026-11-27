@@ -1,0 +1,116 @@
+{
+  "schema": "MATHCAN-DETFACT-10-summary",
+  "repeats": 3,
+  "frozen_sha256": "f005937a3f951250d9fa80eb290ee5d18b38c841268811c1d635d263fa218309",
+  "native_residue_and_split_comparisons": 2808,
+  "independent_python_bases": 117,
+  "actual_capped_runs": 157,
+  "summary": {
+    "learned": {
+      "feasible_cases": 67,
+      "success": 67,
+      "budget_aborts": 5,
+      "unavoidable_aborts": 5,
+      "median_regret": 1,
+      "geomean_regret": 1.0351070323269869,
+      "max_regret": 1.2345852399246964,
+      "grid_best_hits": 35
+    },
+    "fixed": {
+      "feasible_cases": 67,
+      "success": 67,
+      "budget_aborts": 5,
+      "unavoidable_aborts": 5,
+      "median_regret": 1,
+      "geomean_regret": 1.0131721027271945,
+      "max_regret": 1.2932393613467832,
+      "grid_best_hits": 46
+    },
+    "smallest": {
+      "feasible_cases": 67,
+      "success": 67,
+      "budget_aborts": 5,
+      "unavoidable_aborts": 5,
+      "median_regret": 1.2324717290400513,
+      "geomean_regret": 1.215331158453571,
+      "max_regret": 1.435382058005213,
+      "grid_best_hits": 7
+    }
+  },
+  "fixed_actions": {
+    "1024": 1,
+    "2048": 3,
+    "4096": 5,
+    "16384": 5,
+    "65536": 5,
+    "262144": 5
+  },
+  "calibration_margin": [
+    1.0849689815888097,
+    1.1368205741392152,
+    1.104118868816828,
+    1.1026241203909422,
+    1.0686683250050135,
+    1.067935072745358,
+    1.2667035640831514,
+    1.2620715694245481
+  ],
+  "actions": [
+    [
+      "explicit",
+      8192,
+      256
+    ],
+    [
+      "stream",
+      128,
+      64
+    ],
+    [
+      "stream",
+      512,
+      64
+    ],
+    [
+      "stream",
+      512,
+      256
+    ],
+    [
+      "stream",
+      2048,
+      256
+    ],
+    [
+      "stream",
+      2048,
+      1024
+    ],
+    [
+      "stream",
+      8192,
+      256
+    ],
+    [
+      "stream",
+      8192,
+      1024
+    ]
+  ],
+  "caps": [
+    1024,
+    2048,
+    4096,
+    16384,
+    65536,
+    262144
+  ],
+  "receipt_sha256": "1b2d0dc4eefc903c9320183b4790e8abfc07a8b762f3682965dd5fe39dc32263",
+  "script_sha256": "2f7ad407ddecb0fbd664be2da5911e749a4693143bf5ba0f0d8777e35077997e",
+  "paired": {
+    "learned_faster": 4,
+    "tie": 42,
+    "fixed_faster": 21,
+    "learned_to_fixed_geomean": 1.0216497567794742
+  }
+}

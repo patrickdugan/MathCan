@@ -1,0 +1,27 @@
+{
+  "schema": "MATHCAN-DETFACT-AUDIT-05",
+  "moduli": [
+    15,
+    21,
+    33,
+    35,
+    45,
+    55,
+    65,
+    77,
+    91,
+    105,
+    143,
+    221
+  ],
+  "generic_transport_fixtures": 288,
+  "two_field_pairs": 288,
+  "verified_field_identities": 864,
+  "annihilation_checks": 288,
+  "nonmonic_field_checks": 720,
+  "bezout_inverse_checks": 138,
+  "negative_controls": 11,
+  "recovered_factor_controls": 3,
+  "unresolved_controls": 1,
+  "largest_explicit_exponent_bits": 260
+}

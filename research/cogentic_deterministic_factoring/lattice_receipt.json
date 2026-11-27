@@ -1,0 +1,36 @@
+{
+  "schema": "MATHCAN-DETFACT-AUDIT-04",
+  "moduli": [
+    15,
+    21,
+    33,
+    35,
+    45,
+    55,
+    65,
+    77,
+    91,
+    105,
+    143,
+    221
+  ],
+  "dimension_range": [
+    2,
+    4
+  ],
+  "matrix_fixtures": 1152,
+  "determinant_replays": 1152,
+  "adjugate_identity_checks": 3456,
+  "target_certificates": 3456,
+  "cramer_membership_checks": 3456,
+  "prime_divisor_minimality_checks": 6522,
+  "strict_target_reductions": 3443,
+  "global_annihilation_checks": 3456,
+  "paired_bordered_checks": 1087,
+  "strict_bordered_reductions": 1080,
+  "zero_bordered_determinants": 1,
+  "negative_controls": 6,
+  "gcd_aggregation_checks": 1728,
+  "strict_gcd_reductions": 472,
+  "max_determinant_bits": 27
+}

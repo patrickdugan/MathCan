@@ -1,0 +1,18 @@
+{
+  "schema": "MATHCAN-DETFACT-AUDIT-03",
+  "degree_range": [
+    4,
+    10
+  ],
+  "z_values": [
+    3,
+    5,
+    7
+  ],
+  "pair_fixtures": 378,
+  "polynomial_checks": 1512,
+  "perturbed_pair_fixtures": 378,
+  "perturbation_injectivity_checks": 3402,
+  "negative_controls": 3,
+  "largest_N_bits": 57
+}

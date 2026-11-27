@@ -1,0 +1,61 @@
+{
+  "schema": "DETFACT-11-summary",
+  "protocol_sha256": "0745d8ba2859908861b6ed7852609186d3786b2a8a7c25575092dd515265233e",
+  "frozen_sha256": "4a46ec3b4985c3415d161caa598c0718909793cffcdd0c02a6434f634fe8e9db",
+  "full_receipt_sha256": "dadf40fbba57f7167ab58ec19b99b20536d836ca5735b169945fe633b96b0845",
+  "script_sha256": "5023bb0b6ecebc4e516708b59b3e366ee9c086aaed2bafe950e0adc594c52f03",
+  "archive_sha256": "3a9e258c6d2f4f21ab1c110e31862589e95655dcce645e93c2b87c86cae1ed5e",
+  "checks": 4560,
+  "grid_runs": 720,
+  "capped_runs": 225,
+  "summary": {
+    "fixed": {
+      "feasible": 63,
+      "completed": 62,
+      "avoidable_aborts": 1,
+      "unavoidable_aborts": 9,
+      "geomean_grid_regret": 1.0148014134767334,
+      "max_grid_regret": 1.1004737022510869,
+      "median_inference_us": 0.11
+    },
+    "residual": {
+      "feasible": 63,
+      "completed": 62,
+      "avoidable_aborts": 1,
+      "unavoidable_aborts": 9,
+      "geomean_grid_regret": 1.015842118450997,
+      "max_grid_regret": 1.1006973289908177,
+      "median_inference_us": 8.5075
+    }
+  },
+  "paired": {
+    "cases": 62,
+    "workloads": 12,
+    "gmean_ratio": 0.9987376653848505,
+    "bootstrap95": [
+      0.9937896931927168,
+      1.0012224290046665
+    ],
+    "wins": 3,
+    "ties": 0,
+    "losses": 59,
+    "reasons": {
+      "abstain": 58,
+      "predicted_no_feasible": 11,
+      "predicted_speed_gain": 3
+    },
+    "actual_switches": 3,
+    "primary_pass": false
+  },
+  "posthoc": {
+    "scope": "single retrospective failure-case replay; not held-out policy evaluation",
+    "workload": "test-07",
+    "cap": 2048,
+    "actual_payload_baseline": 2104,
+    "calibrated_prediction_baseline_rounded": 1528,
+    "alternative_action": 1,
+    "actual_payload_alternative": 1717,
+    "reference_hash_match": true,
+    "diagnostic_sha256": "29dc94064f66413d9a45f11a1e5dd0d97b7facf11bb030e8237f4530a40b131a"
+  }
+}

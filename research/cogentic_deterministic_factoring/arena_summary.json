@@ -1,0 +1,131 @@
+{
+  "capped_runs": 176,
+  "edges": {
+    "exact_cap_and_cap_minus_one_checks": 640,
+    "invalid_input_checks": 5,
+    "residue_checks": 1600,
+    "split_checks": 1600
+  },
+  "frozen_sha256": "39ea57974ae4588d638b6772ff2ee21e8e05ff08a9903b9fa83b6a7161643f51",
+  "grid_residue_checks": 2736,
+  "grid_runs": 486,
+  "grid_split_checks": 2736,
+  "primary_pass": true,
+  "protocol_sha256": "38d4cc9cd09bc5cb7cbcce3334568fa4f2a60090a53cdc54434a6b1ce0c323fe",
+  "rank": {
+    "256": [
+      1,
+      0,
+      2,
+      3,
+      5,
+      4
+    ],
+    "512": [
+      1,
+      0,
+      2,
+      5,
+      4,
+      3
+    ],
+    "768": [
+      2,
+      1,
+      0,
+      4,
+      3,
+      5
+    ],
+    "1024": [
+      2,
+      1,
+      0,
+      4,
+      3,
+      5
+    ],
+    "1536": [
+      2,
+      4,
+      1,
+      3,
+      0,
+      5
+    ],
+    "3072": [
+      2,
+      4,
+      5,
+      1,
+      3,
+      0
+    ],
+    "8192": [
+      2,
+      4,
+      5,
+      1,
+      3,
+      0
+    ]
+  },
+  "schema": "DETFACT-12",
+  "sha256": {
+    "arena_audit.c": "811e00e9c6172f7f3f3acdde5612b794a52206084c6e27cea6d793d63a3e6f44",
+    "arena_bench.py": "26ebead595c685cfabf0da05f46617c3a8d6e703e12fee0d058f8621f549e1de",
+    "arena_receipt.json": "cfefa80cdbce3777df4eebabe95a7522684f5a10db47a4008def78a217d1f232",
+    "frozen.json": "39ea57974ae4588d638b6772ff2ee21e8e05ff08a9903b9fa83b6a7161643f51",
+    "protocol.json": "38d4cc9cd09bc5cb7cbcce3334568fa4f2a60090a53cdc54434a6b1ce0c323fe",
+    "ubsan_receipt.json": "62d9266ea56b0a7d21257284bcd74920fe8a5d94c48d3bc3974f95b8b294a5b9",
+    "DETFACT-12-replay.zip": "e368351c46b3dc0f771596a89953e767551759b082c2cb0f992707957bade7f3"
+  },
+  "summary": {
+    "certified_minimum": {
+      "avoidable_failures": 0,
+      "completed": 80,
+      "feasible": 80,
+      "geomean_regret": 1.0532332345350497,
+      "grid_best_hits": 19,
+      "grid_infeasible": 25,
+      "max_regret": 1.4879880460812893,
+      "overcap_allocations": 0,
+      "preflight_abstentions": 25,
+      "worker_budget_rejections": 0
+    },
+    "certified_rank": {
+      "avoidable_failures": 0,
+      "completed": 80,
+      "feasible": 80,
+      "geomean_regret": 1.0660557802650186,
+      "grid_best_hits": 10,
+      "grid_infeasible": 25,
+      "max_regret": 1.4879880460812893,
+      "overcap_allocations": 0,
+      "preflight_abstentions": 25,
+      "worker_budget_rejections": 0
+    },
+    "fixed": {
+      "avoidable_failures": 2,
+      "completed": 78,
+      "feasible": 80,
+      "geomean_regret": 1.0676494395968918,
+      "grid_best_hits": 9,
+      "grid_infeasible": 25,
+      "max_regret": 1.4879880460812893,
+      "overcap_allocations": 0,
+      "preflight_abstentions": 0,
+      "worker_budget_rejections": 27
+    }
+  },
+  "ubsan": {
+    "compiler": "gcc (Debian 14.2.0-19) 14.2.0",
+    "fixtures": 144,
+    "flags": "-O1 -g -std=c11 -Wall -Wextra -Werror -Wvla -fsanitize=undefined -fno-sanitize-recover=all",
+    "residue_checks": 432,
+    "schema": "DETFACT-12-ubsan",
+    "seed": 1212,
+    "split_checks": 432,
+    "undefined_behavior_sanitizer_errors": 0
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "schema": "MATHCAN-DETFACT-AUDIT-06",
+  "fixture_model": "oracle-signed-order relations; conditional verifier only",
+  "composite_moduli": 12,
+  "squarefree_moduli": 10,
+  "repeated_factor_moduli": 2,
+  "positive_pipelines": 72,
+  "verified_factors": 72,
+  "signed_order_splits": 72,
+  "base_gcd_splits": 0,
+  "polynomial_pairs": 408,
+  "transported_column_pairs": 816,
+  "lattice_exponents": 408,
+  "strict_lattice_reductions": 408,
+  "prime_factor_order_checks": 156,
+  "max_N_bits": 18,
+  "max_M_bits": 7460,
+  "max_index_cap": 5159,
+  "control_cases": [
+    {
+      "name": "short list",
+      "status": "unresolved",
+      "stage": "coverage",
+      "reason": "insufficient labels"
+    },
+    {
+      "name": "duplicate prime",
+      "status": "invalid",
+      "stage": "coverage",
+      "reason": "prime label"
+    },
+    {
+      "name": "composite target",
+      "status": "invalid",
+      "stage": "coverage",
+      "reason": "prime label"
+    },
+    {
+      "name": "prime beyond B",
+      "status": "invalid",
+      "stage": "coverage",
+      "reason": "prime label"
+    },
+    {
+      "name": "bad polynomial root",
+      "status": "invalid",
+      "stage": "preconditioning",
+      "reason": "pair"
+    },
+    {
+      "name": "forged quotient",
+      "status": "invalid",
+      "stage": "transport",
+      "reason": "polynomial identity"
+    },
+    {
+      "name": "wrong signed relation",
+      "status": "invalid",
+      "stage": "transport",
+      "reason": "signed column"
+    },
+    {
+      "name": "incompatible modular nuisance",
+      "status": "invalid",
+      "stage": "transport",
+      "reason": "common image"
+    },
+    {
+      "name": "valid singular matrix",
+      "status": "unresolved",
+      "stage": "lattice",
+      "reason": "singular pivot"
+    },
+    {
+      "name": "saturation limit",
+      "status": "unresolved",
+      "stage": "saturation",
+      "reason": "index budget"
+    },
+    {
+      "name": "split limit",
+      "status": "unresolved",
+      "stage": "split",
+      "reason": "scan budget"
+    },
+    {
+      "name": "nonunit denominator exposes divisor",
+      "status": "factor",
+      "stage": "transport"
+    },
+    {
+      "name": "zero evaluated denominator",
+      "status": "unresolved",
+      "stage": "transport",
+      "reason": "zero modular denominator"
+    },
+    {
+      "name": "target prime exposes divisor",
+      "status": "factor",
+      "stage": "preconditioning"
+    }
+  ]
+}

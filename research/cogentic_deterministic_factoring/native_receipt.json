@@ -1,0 +1,769 @@
+{
+  "schema": "MATHCAN-DETFACT-AUDIT-09",
+  "environment": {
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "python": "3.13.5",
+    "compiler": "gcc (Debian 14.2.0-19) 14.2.0",
+    "gmp": "6.3.0"
+  },
+  "policy": "lowest calibration median time within full-run tracked live payload cap; tie by payload, mode, span, width; freeze before held-out K",
+  "checks": {
+    "native_fixtures": 312,
+    "independent_python_residue_checks": 2496,
+    "split_result_checks": 2496,
+    "invalid_domain_checks": 2,
+    "budget_rejection_checks": 1
+  },
+  "calibration": [
+    {
+      "max_exponent_bits": 94449,
+      "pow_calls": 4,
+      "prime_powers": 6541,
+      "mark_writes": 45605,
+      "segments": 4,
+      "s": 26,
+      "allocation_events": 10640,
+      "mode": "explicit",
+      "k": 65536,
+      "batch": 4,
+      "span": 8192,
+      "width": 256,
+      "seconds_runs": [
+        0.003468905,
+        0.002856981,
+        0.003007729
+      ],
+      "median_seconds": 0.003007729,
+      "peak_payload_bytes": 23808,
+      "gmp_peak_bytes": 23720,
+      "own_peak_bytes": 8680,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "14e70e4011836cc0efd4c7ea1783bd802d2b6ee158e55302a7aaf0b69145f9ae"
+    },
+    {
+      "max_exponent_bits": 64,
+      "pow_calls": 6432,
+      "prime_powers": 6541,
+      "mark_writes": 45605,
+      "segments": 64,
+      "s": 26,
+      "allocation_events": 13,
+      "mode": "stream",
+      "k": 65536,
+      "batch": 4,
+      "span": 512,
+      "width": 64,
+      "seconds_runs": [
+        0.003325869,
+        0.00332008,
+        0.003687205
+      ],
+      "median_seconds": 0.003325869,
+      "peak_payload_bytes": 1096,
+      "gmp_peak_bytes": 96,
+      "own_peak_bytes": 1000,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "14e70e4011836cc0efd4c7ea1783bd802d2b6ee158e55302a7aaf0b69145f9ae"
+    },
+    {
+      "max_exponent_bits": 256,
+      "pow_calls": 1620,
+      "prime_powers": 6541,
+      "mark_writes": 45605,
+      "segments": 64,
+      "s": 26,
+      "allocation_events": 16,
+      "mode": "stream",
+      "k": 65536,
+      "batch": 4,
+      "span": 512,
+      "width": 256,
+      "seconds_runs": [
+        0.004006947,
+        0.003518569,
+        0.00354477
+      ],
+      "median_seconds": 0.00354477,
+      "peak_payload_bytes": 1120,
+      "gmp_peak_bytes": 120,
+      "own_peak_bytes": 1000,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "14e70e4011836cc0efd4c7ea1783bd802d2b6ee158e55302a7aaf0b69145f9ae"
+    },
+    {
+      "max_exponent_bits": 256,
+      "pow_calls": 1544,
+      "prime_powers": 6541,
+      "mark_writes": 45605,
+      "segments": 16,
+      "s": 26,
+      "allocation_events": 16,
+      "mode": "stream",
+      "k": 65536,
+      "batch": 4,
+      "span": 2048,
+      "width": 256,
+      "seconds_runs": [
+        0.003041821,
+        0.003142022,
+        0.003726794
+      ],
+      "median_seconds": 0.003142022,
+      "peak_payload_bytes": 2656,
+      "gmp_peak_bytes": 120,
+      "own_peak_bytes": 2536,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "14e70e4011836cc0efd4c7ea1783bd802d2b6ee158e55302a7aaf0b69145f9ae"
+    },
+    {
+      "max_exponent_bits": 256,
+      "pow_calls": 1532,
+      "prime_powers": 6541,
+      "mark_writes": 45605,
+      "segments": 4,
+      "s": 26,
+      "allocation_events": 16,
+      "mode": "stream",
+      "k": 65536,
+      "batch": 4,
+      "span": 8192,
+      "width": 256,
+      "seconds_runs": [
+        0.004445298,
+        0.002834227,
+        0.002954348
+      ],
+      "median_seconds": 0.002954348,
+      "peak_payload_bytes": 8800,
+      "gmp_peak_bytes": 120,
+      "own_peak_bytes": 8680,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "14e70e4011836cc0efd4c7ea1783bd802d2b6ee158e55302a7aaf0b69145f9ae"
+    },
+    {
+      "max_exponent_bits": 1024,
+      "pow_calls": 388,
+      "prime_powers": 6541,
+      "mark_writes": 45605,
+      "segments": 4,
+      "s": 26,
+      "allocation_events": 28,
+      "mode": "stream",
+      "k": 65536,
+      "batch": 4,
+      "span": 8192,
+      "width": 1024,
+      "seconds_runs": [
+        0.003028842,
+        0.003099047,
+        0.002883121
+      ],
+      "median_seconds": 0.003028842,
+      "peak_payload_bytes": 8896,
+      "gmp_peak_bytes": 216,
+      "own_peak_bytes": 8680,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "14e70e4011836cc0efd4c7ea1783bd802d2b6ee158e55302a7aaf0b69145f9ae"
+    }
+  ],
+  "holdout": [
+    {
+      "max_exponent_bits": 378036,
+      "pow_calls": 4,
+      "prime_powers": 22999,
+      "mark_writes": 198578,
+      "segments": 16,
+      "s": 28,
+      "allocation_events": 39451,
+      "mode": "explicit",
+      "k": 262144,
+      "batch": 4,
+      "span": 8192,
+      "width": 256,
+      "seconds_runs": [
+        0.016795757,
+        0.011899978,
+        0.01871274
+      ],
+      "median_seconds": 0.016795757,
+      "peak_payload_bytes": 153920,
+      "gmp_peak_bytes": 153856,
+      "own_peak_bytes": 9024,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "6b379f2115df77d41c77ca12e2a4ffa9e0aaaebbc325d9f65572841428f8a5f2"
+    },
+    {
+      "max_exponent_bits": 64,
+      "pow_calls": 28696,
+      "prime_powers": 22999,
+      "mark_writes": 198578,
+      "segments": 256,
+      "s": 28,
+      "allocation_events": 13,
+      "mode": "stream",
+      "k": 262144,
+      "batch": 4,
+      "span": 512,
+      "width": 64,
+      "seconds_runs": [
+        0.015323365,
+        0.013340643,
+        0.017057242
+      ],
+      "median_seconds": 0.015323365,
+      "peak_payload_bytes": 1440,
+      "gmp_peak_bytes": 96,
+      "own_peak_bytes": 1345,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "6b379f2115df77d41c77ca12e2a4ffa9e0aaaebbc325d9f65572841428f8a5f2"
+    },
+    {
+      "max_exponent_bits": 256,
+      "pow_calls": 6572,
+      "prime_powers": 22999,
+      "mark_writes": 198578,
+      "segments": 256,
+      "s": 28,
+      "allocation_events": 16,
+      "mode": "stream",
+      "k": 262144,
+      "batch": 4,
+      "span": 512,
+      "width": 256,
+      "seconds_runs": [
+        0.015549086,
+        0.014821297,
+        0.012474466
+      ],
+      "median_seconds": 0.014821297,
+      "peak_payload_bytes": 1464,
+      "gmp_peak_bytes": 120,
+      "own_peak_bytes": 1345,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "6b379f2115df77d41c77ca12e2a4ffa9e0aaaebbc325d9f65572841428f8a5f2"
+    },
+    {
+      "max_exponent_bits": 256,
+      "pow_calls": 6232,
+      "prime_powers": 22999,
+      "mark_writes": 198578,
+      "segments": 64,
+      "s": 28,
+      "allocation_events": 16,
+      "mode": "stream",
+      "k": 262144,
+      "batch": 4,
+      "span": 2048,
+      "width": 256,
+      "seconds_runs": [
+        0.012366442,
+        0.012406984,
+        0.011612445
+      ],
+      "median_seconds": 0.012366442,
+      "peak_payload_bytes": 3000,
+      "gmp_peak_bytes": 120,
+      "own_peak_bytes": 2880,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "6b379f2115df77d41c77ca12e2a4ffa9e0aaaebbc325d9f65572841428f8a5f2"
+    },
+    {
+      "max_exponent_bits": 256,
+      "pow_calls": 6152,
+      "prime_powers": 22999,
+      "mark_writes": 198578,
+      "segments": 16,
+      "s": 28,
+      "allocation_events": 16,
+      "mode": "stream",
+      "k": 262144,
+      "batch": 4,
+      "span": 8192,
+      "width": 256,
+      "seconds_runs": [
+        0.012258449,
+        0.012195805,
+        0.012105619
+      ],
+      "median_seconds": 0.012195805,
+      "peak_payload_bytes": 9144,
+      "gmp_peak_bytes": 120,
+      "own_peak_bytes": 9024,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "6b379f2115df77d41c77ca12e2a4ffa9e0aaaebbc325d9f65572841428f8a5f2"
+    },
+    {
+      "max_exponent_bits": 1024,
+      "pow_calls": 1540,
+      "prime_powers": 22999,
+      "mark_writes": 198578,
+      "segments": 16,
+      "s": 28,
+      "allocation_events": 28,
+      "mode": "stream",
+      "k": 262144,
+      "batch": 4,
+      "span": 8192,
+      "width": 1024,
+      "seconds_runs": [
+        0.011312292,
+        0.013469447,
+        0.010971798
+      ],
+      "median_seconds": 0.011312292,
+      "peak_payload_bytes": 9240,
+      "gmp_peak_bytes": 216,
+      "own_peak_bytes": 9024,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "6b379f2115df77d41c77ca12e2a4ffa9e0aaaebbc325d9f65572841428f8a5f2"
+    },
+    {
+      "max_exponent_bits": 1512562,
+      "pow_calls": 4,
+      "prime_powers": 82024,
+      "mark_writes": 852341,
+      "segments": 64,
+      "s": 30,
+      "allocation_events": 142799,
+      "mode": "explicit",
+      "k": 1048576,
+      "batch": 4,
+      "span": 8192,
+      "width": 256,
+      "seconds_runs": [
+        0.05339521,
+        0.059545341,
+        0.055095045
+      ],
+      "median_seconds": 0.055095045,
+      "peak_payload_bytes": 1072312,
+      "gmp_peak_bytes": 1072248,
+      "own_peak_bytes": 9624,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "de940479a557e9f0061b26d9e95a00181e7dcf7f962107310db42ffcc32350dd"
+    },
+    {
+      "max_exponent_bits": 64,
+      "pow_calls": 108448,
+      "prime_powers": 82024,
+      "mark_writes": 852341,
+      "segments": 1024,
+      "s": 30,
+      "allocation_events": 13,
+      "mode": "stream",
+      "k": 1048576,
+      "batch": 4,
+      "span": 512,
+      "width": 64,
+      "seconds_runs": [
+        0.052691548,
+        0.057012128,
+        0.060324537
+      ],
+      "median_seconds": 0.057012128,
+      "peak_payload_bytes": 2545,
+      "gmp_peak_bytes": 96,
+      "own_peak_bytes": 2457,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "de940479a557e9f0061b26d9e95a00181e7dcf7f962107310db42ffcc32350dd"
+    },
+    {
+      "max_exponent_bits": 256,
+      "pow_calls": 26532,
+      "prime_powers": 82024,
+      "mark_writes": 852341,
+      "segments": 1024,
+      "s": 30,
+      "allocation_events": 16,
+      "mode": "stream",
+      "k": 1048576,
+      "batch": 4,
+      "span": 512,
+      "width": 256,
+      "seconds_runs": [
+        0.046337149,
+        0.046032179,
+        0.063433413
+      ],
+      "median_seconds": 0.046337149,
+      "peak_payload_bytes": 2545,
+      "gmp_peak_bytes": 120,
+      "own_peak_bytes": 2457,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "de940479a557e9f0061b26d9e95a00181e7dcf7f962107310db42ffcc32350dd"
+    },
+    {
+      "max_exponent_bits": 256,
+      "pow_calls": 25064,
+      "prime_powers": 82024,
+      "mark_writes": 852341,
+      "segments": 256,
+      "s": 30,
+      "allocation_events": 16,
+      "mode": "stream",
+      "k": 1048576,
+      "batch": 4,
+      "span": 2048,
+      "width": 256,
+      "seconds_runs": [
+        0.048360821,
+        0.048487642,
+        0.044522389
+      ],
+      "median_seconds": 0.048360821,
+      "peak_payload_bytes": 3600,
+      "gmp_peak_bytes": 120,
+      "own_peak_bytes": 3480,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "de940479a557e9f0061b26d9e95a00181e7dcf7f962107310db42ffcc32350dd"
+    },
+    {
+      "max_exponent_bits": 256,
+      "pow_calls": 24748,
+      "prime_powers": 82024,
+      "mark_writes": 852341,
+      "segments": 64,
+      "s": 30,
+      "allocation_events": 16,
+      "mode": "stream",
+      "k": 1048576,
+      "batch": 4,
+      "span": 8192,
+      "width": 256,
+      "seconds_runs": [
+        0.047513011,
+        0.044899267,
+        0.047946265
+      ],
+      "median_seconds": 0.047513011,
+      "peak_payload_bytes": 9744,
+      "gmp_peak_bytes": 120,
+      "own_peak_bytes": 9624,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "de940479a557e9f0061b26d9e95a00181e7dcf7f962107310db42ffcc32350dd"
+    },
+    {
+      "max_exponent_bits": 1024,
+      "pow_calls": 6128,
+      "prime_powers": 82024,
+      "mark_writes": 852341,
+      "segments": 64,
+      "s": 30,
+      "allocation_events": 28,
+      "mode": "stream",
+      "k": 1048576,
+      "batch": 4,
+      "span": 8192,
+      "width": 1024,
+      "seconds_runs": [
+        0.044296378,
+        0.046608956,
+        0.04675043
+      ],
+      "median_seconds": 0.046608956,
+      "peak_payload_bytes": 9840,
+      "gmp_peak_bytes": 216,
+      "own_peak_bytes": 9624,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "de940479a557e9f0061b26d9e95a00181e7dcf7f962107310db42ffcc32350dd"
+    }
+  ],
+  "batch_sweep": [
+    {
+      "max_exponent_bits": 378036,
+      "pow_calls": 1,
+      "prime_powers": 22999,
+      "mark_writes": 198578,
+      "segments": 16,
+      "s": 28,
+      "allocation_events": 39448,
+      "mode": "explicit",
+      "k": 262144,
+      "batch": 1,
+      "span": 8192,
+      "width": 256,
+      "seconds_runs": [
+        0.007632096,
+        0.005232706,
+        0.005188178
+      ],
+      "median_seconds": 0.005232706,
+      "peak_payload_bytes": 153848,
+      "gmp_peak_bytes": 153832,
+      "own_peak_bytes": 8976,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "2ea9519d359764be6ee8f479fad98e64d224b5e1d6daf07dab23eae8c5302218"
+    },
+    {
+      "max_exponent_bits": 256,
+      "pow_calls": 1643,
+      "prime_powers": 22999,
+      "mark_writes": 198578,
+      "segments": 256,
+      "s": 28,
+      "allocation_events": 13,
+      "mode": "stream",
+      "k": 262144,
+      "batch": 1,
+      "span": 512,
+      "width": 256,
+      "seconds_runs": [
+        0.003532841,
+        0.003470246,
+        0.003519461
+      ],
+      "median_seconds": 0.003519461,
+      "peak_payload_bytes": 1392,
+      "gmp_peak_bytes": 96,
+      "own_peak_bytes": 1297,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "2ea9519d359764be6ee8f479fad98e64d224b5e1d6daf07dab23eae8c5302218"
+    },
+    {
+      "max_exponent_bits": 256,
+      "pow_calls": 1538,
+      "prime_powers": 22999,
+      "mark_writes": 198578,
+      "segments": 16,
+      "s": 28,
+      "allocation_events": 13,
+      "mode": "stream",
+      "k": 262144,
+      "batch": 1,
+      "span": 8192,
+      "width": 256,
+      "seconds_runs": [
+        0.003709547,
+        0.003471227,
+        0.003398909
+      ],
+      "median_seconds": 0.003471227,
+      "peak_payload_bytes": 9072,
+      "gmp_peak_bytes": 96,
+      "own_peak_bytes": 8976,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "2ea9519d359764be6ee8f479fad98e64d224b5e1d6daf07dab23eae8c5302218"
+    },
+    {
+      "max_exponent_bits": 378036,
+      "pow_calls": 16,
+      "prime_powers": 22999,
+      "mark_writes": 198578,
+      "segments": 16,
+      "s": 28,
+      "allocation_events": 39463,
+      "mode": "explicit",
+      "k": 262144,
+      "batch": 16,
+      "span": 8192,
+      "width": 256,
+      "seconds_runs": [
+        0.046690921,
+        0.045246171,
+        0.046372961
+      ],
+      "median_seconds": 0.046372961,
+      "peak_payload_bytes": 154208,
+      "gmp_peak_bytes": 153952,
+      "own_peak_bytes": 9216,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "7b56e5ef35870de57c982ea402b005a1d51911a2bcc9aec57f070e03cfdcdaf6"
+    },
+    {
+      "max_exponent_bits": 256,
+      "pow_calls": 26288,
+      "prime_powers": 22999,
+      "mark_writes": 198578,
+      "segments": 256,
+      "s": 28,
+      "allocation_events": 28,
+      "mode": "stream",
+      "k": 262144,
+      "batch": 16,
+      "span": 512,
+      "width": 256,
+      "seconds_runs": [
+        0.045632137,
+        0.075613081,
+        0.043236809
+      ],
+      "median_seconds": 0.045632137,
+      "peak_payload_bytes": 1752,
+      "gmp_peak_bytes": 216,
+      "own_peak_bytes": 1537,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "7b56e5ef35870de57c982ea402b005a1d51911a2bcc9aec57f070e03cfdcdaf6"
+    },
+    {
+      "max_exponent_bits": 256,
+      "pow_calls": 24608,
+      "prime_powers": 22999,
+      "mark_writes": 198578,
+      "segments": 16,
+      "s": 28,
+      "allocation_events": 28,
+      "mode": "stream",
+      "k": 262144,
+      "batch": 16,
+      "span": 8192,
+      "width": 256,
+      "seconds_runs": [
+        0.045084136,
+        0.042792188,
+        0.042831637
+      ],
+      "median_seconds": 0.042831637,
+      "peak_payload_bytes": 9432,
+      "gmp_peak_bytes": 216,
+      "own_peak_bytes": 9216,
+      "rss_kib_runs": [
+        96268,
+        96268,
+        96268
+      ],
+      "output_sha256": "7b56e5ef35870de57c982ea402b005a1d51911a2bcc9aec57f070e03cfdcdaf6"
+    }
+  ],
+  "policy_evaluations": [
+    {
+      "k": 262144,
+      "budget": 4096,
+      "status": "within cap",
+      "selected_median_seconds": 0.012366442,
+      "selected_peak_payload_bytes": 3000,
+      "best_feasible_median_seconds": 0.012366442,
+      "selected_to_best_ratio": 1
+    },
+    {
+      "k": 262144,
+      "budget": 16384,
+      "status": "within cap",
+      "selected_median_seconds": 0.012195805,
+      "selected_peak_payload_bytes": 9144,
+      "best_feasible_median_seconds": 0.011312292,
+      "selected_to_best_ratio": 1.078102032726878
+    },
+    {
+      "k": 1048576,
+      "budget": 4096,
+      "status": "within cap",
+      "selected_median_seconds": 0.048360821,
+      "selected_peak_payload_bytes": 3600,
+      "best_feasible_median_seconds": 0.046337149,
+      "selected_to_best_ratio": 1.0436727775375216
+    },
+    {
+      "k": 1048576,
+      "budget": 16384,
+      "status": "within cap",
+      "selected_median_seconds": 0.047513011,
+      "selected_peak_payload_bytes": 9744,
+      "best_feasible_median_seconds": 0.046337149,
+      "selected_to_best_ratio": 1.0253762267505926
+    }
+  ],
+  "chosen": {
+    "4096": {
+      "mode": "stream",
+      "span": 2048,
+      "width": 256
+    },
+    "16384": {
+      "mode": "stream",
+      "span": 8192,
+      "width": 256
+    }
+  }
+}

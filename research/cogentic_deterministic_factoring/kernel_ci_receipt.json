@@ -1,0 +1,34 @@
+{
+  "schema": "DETFACT-13-kernel-ci",
+  "source_commit": "77afb14eecbf2e78987b90ca300bb7f88db18ce9",
+  "source_path": "MathCan/DETFACT13Arena.lean",
+  "source_blob_sha": "ac2a7c40ce43c826e7f3e5055f3f4d365fe5bb75",
+  "toolchain": "leanprover/lean4:v4.35.0",
+  "runs": [
+    {
+      "id": 45920661534,
+      "event": "pull_request",
+      "name": "DETFACT-13 standalone arena arithmetic",
+      "conclusion": "success",
+      "kernel_step": "Check standalone candidate and axiom dependencies",
+      "kernel_step_conclusion": "success",
+      "url": "https://github.com/patrickdugan/MathCan/actions/runs/45920661534"
+    },
+    {
+      "id": 45920655416,
+      "event": "push",
+      "name": "DETFACT-13 standalone arena arithmetic",
+      "conclusion": "success",
+      "url": "https://github.com/patrickdugan/MathCan/actions/runs/45920655416"
+    },
+    {
+      "id": 45920661577,
+      "event": "pull_request",
+      "name": "MathCan mathematical checks",
+      "conclusion": "success",
+      "url": "https://github.com/patrickdugan/MathCan/actions/runs/45920661577"
+    }
+  ],
+  "scope": "abstract natural-number arena arithmetic; workflow compiles standalone file and rejects listed admitted-proof or native-reduction markers; no independent axiom-log inspection, no C semantics proof",
+  "original_receipt_status": "candidate_uncompiled was accurate when the original local receipt was generated; this addendum supersedes that status"
+}

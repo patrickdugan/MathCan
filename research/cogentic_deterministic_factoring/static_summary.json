@@ -1,0 +1,103 @@
+{
+  "arithmetic_checks": 1224,
+  "boundary_rejections": 72,
+  "counter_checks": 216,
+  "feasibility_pass": true,
+  "frozen_sha256": "0add635c62e7024119394a86ce1a9af3d332f01c4fd83fdded0ff505bf640500",
+  "grid_runs": 216,
+  "posthoc_observation": {
+    "K": 65536,
+    "matching_singleton_pow_call_counts": 12,
+    "static16_odd_prime_powers": 6541
+  },
+  "protocol_sha256": "964ea9fbdbcc69bb5e01f81df557052bc47ef6d73e9ee39813818ae434a6a950",
+  "ratios": {
+    "cost": {
+      "bootstrap95": [
+        0.9585949341794726,
+        1.001743877656304
+      ],
+      "cases": 47,
+      "cold": 1.208261047775057,
+      "kernel": 0.982379311746945,
+      "switches": 47,
+      "warm": 0.978558918184516,
+      "workloads": 12
+    },
+    "static16": {
+      "bootstrap95": [
+        0.9612229364885527,
+        1.0047853781927727
+      ],
+      "cases": 47,
+      "cold": 0.9818871803985512,
+      "kernel": 0.9845955737626396,
+      "switches": 47,
+      "warm": 0.9818871803985512,
+      "workloads": 12
+    }
+  },
+  "reporting_fix": "After the frozen sweep, fixed a variable shadowing error in receipt repeat-count calculation only. Grid and policy decisions unchanged; selector times remeasured.",
+  "schema": "DETFACT-14",
+  "sha256": {
+    "arena_audit.c": "811e00e9c6172f7f3f3acdde5612b794a52206084c6e27cea6d793d63a3e6f44",
+    "arena_bench.py": "26ebead595c685cfabf0da05f46617c3a8d6e703e12fee0d058f8621f549e1de",
+    "cost_audit.py": "7d023ed44630880893e518754cfca0bfa8fe369f009af3d9aad129e9e1ac84d8",
+    "cost_frozen.json": "0af8fdbc5dd5b9cdf3e123128fcdec0b9135eca8d86c528129877921a3eab68c",
+    "static_audit.py": "15bb1548383ba99cc4382a73f6b0f45a57f4535a427487de56f393d4f52889ca",
+    "static_frozen.json": "0add635c62e7024119394a86ce1a9af3d332f01c4fd83fdded0ff505bf640500",
+    "static_protocol.json": "964ea9fbdbcc69bb5e01f81df557052bc47ef6d73e9ee39813818ae434a6a950",
+    "static_receipt.json": "28e8d276fd20122fd8d500ad1f04aad971b1e79de5a92dd079ec5096219f49a2"
+  },
+  "speed_gate": true,
+  "static_vs_cost": {
+    "same_action": 42,
+    "static_to_cost_cold": 0.8126449017012009,
+    "static_to_cost_warm": 1.0034011873502824
+  },
+  "static_workload_losses": 3,
+  "static_workload_wins": 9,
+  "summary": {
+    "cost": {
+      "abstained": 25,
+      "actions": {
+        "0": 42,
+        "2": 2,
+        "3": 3,
+        "None": 25
+      },
+      "cold_us": 8466.007000000001,
+      "completed": 47,
+      "gmean_regret": 1.0111486635822333,
+      "grid_best_hits": 31,
+      "overcap": 0,
+      "warm_us": 8.017499999999998
+    },
+    "minimum": {
+      "abstained": 25,
+      "actions": {
+        "1": 47,
+        "None": 25
+      },
+      "cold_us": 3.025,
+      "completed": 47,
+      "gmean_regret": 1.0333038152247183,
+      "grid_best_hits": 9,
+      "overcap": 0,
+      "warm_us": 3.025
+    },
+    "static16": {
+      "abstained": 25,
+      "actions": {
+        "0": 47,
+        "None": 25
+      },
+      "cold_us": 0.351,
+      "completed": 47,
+      "gmean_regret": 1.0145877696260641,
+      "grid_best_hits": 26,
+      "overcap": 0,
+      "warm_us": 0.351
+    }
+  }
+}
