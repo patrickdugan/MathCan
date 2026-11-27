@@ -158,3 +158,5 @@ import MathCan.RHSplitTorusCharacter
 import MathCan.RHCyclicExtension
 import MathCan.DCFDecision
 import MathCan.SCCG10Admission
+
+import MathCan.MMSTRMEconomics
