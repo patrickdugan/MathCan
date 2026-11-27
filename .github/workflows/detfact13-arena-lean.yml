@@ -1,0 +1,28 @@
+name: DETFACT-13 standalone arena arithmetic
+on:
+  push:
+    paths: ['MathCan/DETFACT13Arena.lean', '.github/workflows/detfact13-arena-lean.yml']
+  pull_request:
+    paths: ['MathCan/DETFACT13Arena.lean', '.github/workflows/detfact13-arena-lean.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Check standalone candidate and axiom dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/DETFACT13Arena.lean | tee detfact13-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|declaration uses .sorry.' detfact13-axioms.txt; then exit 1; fi

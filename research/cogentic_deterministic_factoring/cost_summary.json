@@ -1,0 +1,88 @@
+{
+  "arithmetic_checks": 1548,
+  "capped_runs": 366,
+  "exact_counter_checks": 378,
+  "frozen_sha256": "0af8fdbc5dd5b9cdf3e123128fcdec0b9135eca8d86c528129877921a3eab68c",
+  "grid_runs": 378,
+  "paired": {
+    "bootstrap95": [
+      0.9793308150741142,
+      1.007525227950043
+    ],
+    "cases": 61,
+    "cold_ratio": 1.2400463815760532,
+    "speed_gate": false,
+    "switches": 61,
+    "warm_ratio": 0.9921963183682004,
+    "workloads": 12
+  },
+  "primary_pass": true,
+  "protocol_sha256": "1a83e9f0573b88609569757648d30c0db0cd7a165913abace2858014512c8d73",
+  "schema": "DETFACT-13",
+  "summary": {
+    "cost": {
+      "completed": 61,
+      "feasible": 61,
+      "geomean_grid_regret": 1.0152050290192425,
+      "grid_best_hits": 36,
+      "median_cold_us": 1803.6499999999999,
+      "median_warm_us": 11.583,
+      "overcap": 0,
+      "preflight_abstentions": 11
+    },
+    "minimum": {
+      "completed": 61,
+      "feasible": 61,
+      "geomean_grid_regret": 1.0212970297607749,
+      "grid_best_hits": 11,
+      "median_cold_us": 3.6555,
+      "median_warm_us": 3.6555,
+      "overcap": 0,
+      "preflight_abstentions": 11
+    }
+  },
+  "weights": [
+    0.0,
+    0.0005973926485342751,
+    0.0011455364318342938,
+    0.0,
+    0.0007536832826516537,
+    6.801357073990673e-05,
+    0.0,
+    0.0,
+    0.0010301510881223009
+  ],
+  "safety": {
+    "schema": "DETFACT-13-safety",
+    "fixtures": 180,
+    "residue_checks": 450,
+    "split_checks": 450,
+    "allocation_boundary_checks": 361,
+    "max_domain_preflight_bytes": 5073314,
+    "static_analyzer_diagnostics": 0,
+    "address_sanitizer_errors": 0,
+    "undefined_behavior_sanitizer_errors": 0,
+    "compiler": "clang version 17.0.0 (https://github.com/swiftlang/llvm-project.git 10999b6d034fe318f3d56c83bddb6572593a8bb0)",
+    "seed": 1313
+  },
+  "lean_status": "candidate_uncompiled",
+  "action_counts": {
+    "minimum": {
+      "action_1": 61,
+      "unresolved": 11
+    },
+    "cost": {
+      "action_0": 61,
+      "unresolved": 11
+    }
+  },
+  "sha256": {
+    "DETFACT13Arena.lean": "cd4ffb7f9107c54f5a8458fcf252e5c45cc28c6c089efc14adf02215a82b5cf5",
+    "cost_audit.py": "7d023ed44630880893e518754cfca0bfa8fe369f009af3d9aad129e9e1ac84d8",
+    "safety_audit.py": "7ecb40d583bef1d422692f52319b4feeeb5199381e385e275fcf3c730f51291d",
+    "cost_protocol.json": "1a83e9f0573b88609569757648d30c0db0cd7a165913abace2858014512c8d73",
+    "cost_frozen.json": "0af8fdbc5dd5b9cdf3e123128fcdec0b9135eca8d86c528129877921a3eab68c",
+    "cost_receipt.json": "a4ad7f328fefa67437ca78ebb82d6a4e57e4ad2b549e2a234e2fe1c57c23bc40",
+    "safety_receipt.json": "ef7c19919b95ad237df156a47a5bf898a3eb6e997730e573443ed4abbbb73bb9"
+  }
+}
