@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-18: metered persistent planning; finite synthetic independent branches.
 import {rng} from "./search.mjs";
 import {ok,sum,fixture,Problem,Engine,bootstrap} from "./information_gain.mjs";
@@ -292,5 +293,8 @@ function experiment18(name){
  }
  return {status:"PASS",scope:"metered synthetic policy expectation; declared proxy, not measured FLOPs/CPU/RSS",name,roots:n,cap,budget:b,check,baselines:{optimal:mean(ref.optimal),receding2:mean(ref.receding2)},rows,paired,elapsedMs:Date.now()-start};
 }
-const cohortName=process.argv.includes("--deep")?"deep":process.argv.includes("--tight")?"tight":"standard";
-console.log(JSON.stringify(experiment18(cohortName),null,2));
+export {EPS,quant,clip,key,STOP,charges,events,blank,Meter,top,setup,affordable,prophet,deadline,Planner,copyGraph,addWork,rootFor,experiment18};
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
+ const cohortName=process.argv.includes("--deep")?"deep":process.argv.includes("--tight")?"tight":"standard";
+ console.log(JSON.stringify(experiment18(cohortName),null,2));
+}
