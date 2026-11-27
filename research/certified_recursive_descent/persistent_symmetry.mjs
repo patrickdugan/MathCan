@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-16: exact symmetry quotient, sparse static allocation and trajectory DAG reuse.
 import {ok,sum,fixture,Problem,Engine,bootstrap} from "./information_gain.mjs";
 import {AllocationProblem,local14} from "./global_allocation.mjs";
@@ -240,5 +241,8 @@ function experiment16(name){
  }
  return {status:"PASS",scope:"independent finite branch model; numeric work and exact expectation, not CPU/RSS",name,roots:n,cap,budget:b,exact,sparse,baselines:{optimal:mean(baselines.optimal),receding2:mean(baselines.receding2),recedingWork},rows,paired,elapsedMs:Date.now()-begin};
 }
-const cohort=process.argv.includes("--symmetry")?"symmetry":process.argv.includes("--stress")?"stress":"standard";
-console.log(JSON.stringify(experiment16(cohort),null,2));
+export {desc16,canon16,align16,Sparse16,copyReach16,PersistentPlanner16,effortKeys16,emptyEffort16,policy16,experiment16};
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
+ const cohort=process.argv.includes("--symmetry")?"symmetry":process.argv.includes("--stress")?"stress":"standard";
+ console.log(JSON.stringify(experiment16(cohort),null,2));
+}
