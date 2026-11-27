@@ -101,9 +101,10 @@ class Inc19 extends Planner{
  tighten(n,U){
   const u=Math.max(n.L,Math.min(n.U,U));
   ok(U>=n.L-EPS,"tightened below lower");
-  if(n.U-u>EPS)this.M.event("strictTightens");
+  const strict=n.U-u>EPS;
   if(n.parents?.size||n.actions)this.transaction(n,n.L,u);
   else n.U=u;
+  if(strict)this.M.event("strictTightens");
  }
  expand(n){
   ok(n.actions===null,"expand once");
@@ -129,7 +130,7 @@ class Inc19 extends Planner{
    const root=this.node(s,b);if(!root.actions)this.expand(root);
    for(;;){
     this.refresh(root);const as=this.choices(root),g=snapshot19(as,root);
-    snap=better19(snap,g);if(g.certified){snap=g;break}
+    snap=initial?better19(snap,g):g;if(g.certified){snap=g;break}
     const n=this.leaf(root,true);if(!n)break;
     if(this.variant==="incLazy"&&n.tier===0)this.tightenDL(n);
     else if(this.variant==="incLazy"&&n.tier===1)this.warm(n,true);
