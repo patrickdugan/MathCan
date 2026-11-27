@@ -1,0 +1,9 @@
+# Exact parity inference and approximate gauge choice
+
+Source: https://github.com/MoralityLabAI/LoopedTransformers/tree/be5ff2f9a173a6d8a716c9ddf2b1cbf11e9ad75e/experiments/logrank_bpd_13.
+
+For uniform h in F_2^d and observations y_i=a_i dot h + e_i with independent known BSC noise, let G be any invertible binary linear map. Transform each row to G a_i and the latent state to G^{-T}h. The pairings, prior, likelihood and every corresponding posterior query probability are preserved. The transformation is a bijection of the finite state space.
+
+For a public ordered list of observation and candidate rows that spans the space, retain a row precisely when it is outside the span of retained predecessors. This ordered independence algorithm is equivariant under G: inductively the retained sets transform together, since linear dependence is preserved. Uniqueness of coordinates in the final basis proves that every transformed mask has the identical coefficient vector. A deterministic candidate ordering based on invariant public costs and list indices preserves the result.
+
+Zero-initialized binary parity sum-product is not generally gauge invariant. If every check contains at least two variables, each factor-to-variable update multiplies at least one zero incoming tanh message and returns zero. Induction shows all variable-to-factor messages and marginals stay zero. Noise magnitudes and repeated-check aggregation do not break this fixed point. Choosing an induced basis from independent observations creates singleton checks. This can resolve the zero-message obstruction but does not ensure calibrated approximate marginals. 13 verified 131,540 coefficient equalities across 128 invertible transformations, and all 48 raw trajectories lacking singleton checks had uniform outputs. Exact inference and approximate inference in induced coordinates remain distinct claims. Written proof, not Lean-checked.
