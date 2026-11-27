@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-24: shared min-product allocation factors, metered bounded memo.
 import {rng} from "./search.mjs";
 import {ok,sum,fixture,Problem,Engine,bootstrap} from "./information_gain.mjs";
@@ -247,5 +248,8 @@ function experiment24(name){
  }
  return {status:"PASS",scope:"finite independent branch model, trace equivalence and metered policy proxy",name,roots:n,population:pop,budget:b,cap,audit,baselines:{optimal:mean(ref.optimal),receding2:mean(ref.receding2)},traceRows,tracePairs,rows,paired,elapsedMs:Date.now()-start};
 }
-const name24=process.argv.includes("--population")?"population":process.argv.includes("--larger")?"larger":"standard";
-console.log(JSON.stringify(experiment24(name24),null,2));
+export {meter24,blank24,Store24,Factor24,merge24,experiment24};
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
+ const name24=process.argv.includes("--population")?"population":process.argv.includes("--larger")?"larger":"standard";
+ console.log(JSON.stringify(experiment24(name24),null,2));
+}
