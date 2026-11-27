@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-13C: pairwise likelihood-overlap lower envelope.
 import {rng} from "./search.mjs";
 import {ok,sum,sumN,bit,compile,massNext,stats,exactGrouped,rawBits,Heap,bounded} from "./grouped_likelihoods.mjs";
@@ -69,4 +70,5 @@ function stressC(){
  }
  return {status:"PASS",scope:"exact rational overlap+TV envelopes, fresh stress roots",roots:rows.length,rawChecks:rows.filter(r=>r.exactNumerator!==null).length,summary,rows,elapsedMs:Date.now()-start};
 }
-console.log(JSON.stringify(stressC(),null,2));
+export {prepareOverlap,combinedEnvelope,solveOverlap,fixtureC,stressC};
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href) console.log(JSON.stringify(stressC(),null,2));
