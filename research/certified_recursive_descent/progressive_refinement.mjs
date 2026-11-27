@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-20: progressive bounded two-step lower-envelope refinement.
 import {ok,sum,Problem,Engine,bootstrap} from "./information_gain.mjs";
 import {AllocationProblem} from "./global_allocation.mjs";
@@ -255,5 +256,8 @@ function experiment20(name){
  }
  return {status:"PASS",scope:"finite synthetic decision model, weighted work and logical records",name,roots:n,cap,budget:b,check,baselines:{optimal:mean(ref.optimal),receding2:mean(ref.receding2)},rows,paired,elapsedMs:Date.now()-start};
 }
-const cohortName20=process.argv.includes("--deep")?"deep":process.argv.includes("--tight")?"tight":"standard";
-console.log(JSON.stringify(experiment20(cohortName20),null,2));
+export {blank20,meter20,reference20,policy20,experiment20};
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
+ const cohortName20=process.argv.includes("--deep")?"deep":process.argv.includes("--tight")?"tight":"standard";
+ console.log(JSON.stringify(experiment20(cohortName20),null,2));
+}
