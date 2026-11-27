@@ -1,0 +1,9 @@
+# Cutset-conditioned certified parity inference
+
+Source and audited development results: https://github.com/MoralityLabAI/LoopedTransformers/tree/296380f733f012e7ddb7c38a201060d1cf53f0fb/experiments/logrank_bpd_17.
+
+For a cutset C, each assignment x to C induces a disjoint cell. Restrict parity rows to the complement of C and XOR the observed label with the parity contributed by x. The integer likelihood for every full state is preserved under the bijective restriction to its cell. For an event with parity mask q, condition the residual mask by the corresponding bit after XORing the contribution from C; if the residual is zero the event is fixed. For each event side b, add valid cell lower and upper bounds over all assignments to C to get L_b <= Z_b <= U_b. Thus L_1/(L_1+U_0) <= P(q=1|evidence) <= U_1/(U_1+L_0). If every relevant conditioned bucket fits its scope cap, both sums are exact.
+
+For a static cut of k bits and residual scope cap c, at most 2^k cells are processed and each bounded table has at most 2^c entries per bound. Sequential processing can reuse the tables. This is a factor-table size statement, not a hard RSS guarantee or a claim of total runtime O(2^(k+c)); the number of factors, queries, elimination operations, integer precision and retained records also matter.
+
+17: degree-selected two-variable cuts recover both planted hubs in all nine structured worlds and exact probabilities on all 72 structured query/noise cases, with an independent selector replay. At 48 variables and .15 noise, the maximum counted live table slots fall from 1488 to 550 relative to no-cut scope 5, at a runtime increase from 83.6 to 167.7 ms. No measured RSS reduction; global random-triple controls remain vacuous. Written elementary proof and finite development checks, not Lean formalized. Next: a disjoint adaptive frontier that chooses between additional conditioning and a larger residual scope budget.
