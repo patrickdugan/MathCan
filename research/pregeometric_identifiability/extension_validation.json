@@ -112,7 +112,7 @@
     "total_decoder": "Explicit default supplied; classical representative selection."
   },
   "source_sha256": {
-    "MathCan/Pregeometry.lean": "83748a2d7872f632a77bf2be46ae8f11ddc167b3e5a147cc65b0efeb56778c28",
+    "MathCan/Pregeometry.lean": "d6e14f48db03d08a8023d535e2ef391c1c69baf93c82cf0bacb17d08638eeefe",
     "MathCan/Pregeometry/ObservationFactorization.lean": "d12d129c7d1055fffca47008f48eb290b66e0a641fae4407d4a164f082357d12",
     "MathCan/Pregeometry/OperationalCounterexamples.lean": "4cae7687d90acf351490322d56a767c383ecba7104f715935000c7646b88aacd",
     "research/pregeometric_identifiability/verify_lean_extension.py": "aa310fc5cde42670fa43187d3b8e746605cdff31f57e80a60a263d56992eb0c5"
