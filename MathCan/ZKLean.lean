@@ -135,13 +135,12 @@ theorem divSpec_unique (n d q r q' r' : Nat)
   rcases h with ⟨hd, hn, hr⟩
   rcases h' with ⟨_, hn', hr'⟩
   have hq : q = q' := by
-    by_contra hne
-    have hor : q < q' ∨ q' < q := by omega
-    rcases hor with hlt | hlt
+    rcases Nat.lt_trichotomy q q' with hlt | he | hlt
     · have hs : q + 1 ≤ q' := by omega
       have hm := Nat.mul_le_mul_right d hs
       rw [Nat.add_mul, Nat.one_mul] at hm
       omega
+    · exact he
     · have hs : q' + 1 ≤ q := by omega
       have hm := Nat.mul_le_mul_right d hs
       rw [Nat.add_mul, Nat.one_mul] at hm
@@ -225,7 +224,7 @@ theorem trace_invariant {S : Type} {step : Rel S S} {I : S → Prop}
     {n : Nat} {s t : S} (h : Trace step n s t) (hs : I s) : I t := by
   induction h with
   | nil => exact hs
-  | snoc _ hstep ih => exact preserve _ _ ih hstep
+  | snoc _ hstep ih => exact preserve _ _ (ih hs) hstep
 
 structure Pins (S : Type) where
   initial : S
@@ -245,4 +244,72 @@ def statementWidths : List Nat := [33,2,1,32,32,32,32,32,32,32,32,8,4]
 theorem statement_width : statementWidths.foldl Nat.add 0 = 304 := by decide
 
 -- Collision resistance is an explicit computational premise, not an injectivity theorem.
+
+/- ZKL-10: structural certificates for reorder/deduplicate.
+   The row inclusion proof is about the exact lists, not their hashes. -/
+def RowSubset (a b : List Row) : Prop :=
+  ∀ r ∈ a, r ∈ b
+
+theorem holds_of_rowSubset {p : Nat} {w : Assignment} {a b : List Row}
+    (h : RowSubset a b) (hb : holds p w b) : holds p w a := by
+  intro r hr
+  exact hb r (h r hr)
+
+theorem holds_row_equivalent {p : Nat} {w : Assignment} {a b : List Row}
+    (hab : RowSubset a b) (hba : RowSubset b a) :
+    holds p w a ↔ holds p w b :=
+  ⟨holds_of_rowSubset hba, holds_of_rowSubset hab⟩
+
+def withRows (s : Shape) (rs : List Row) : Shape :=
+  { s with rows := rs }
+
+theorem wellFormed_withRows (s : Shape) (rs : List Row)
+    (hs : wellFormed s) (hsub : RowSubset rs s.rows) :
+    wellFormed (withRows s rs) := by
+  rcases hs with ⟨hp, hw, hx, hn, hr⟩
+  exact ⟨hp, hw, hx, hn, fun r hmem t ht => hr r (hsub r hmem) t ht⟩
+
+theorem accepts_delete_equiv (s : Shape) (rs : List Row)
+    (hsub : RowSubset rs s.rows) (hcover : RowSubset s.rows rs) (x : List Nat) :
+    accepts s x ↔ accepts (withRows s rs) x := by
+  constructor
+  · intro h
+    rcases h with ⟨hs, w, hw, hx, hr⟩
+    exact ⟨wellFormed_withRows s rs hs hsub, w, hw, hx, holds_of_rowSubset hsub hr⟩
+  · intro h
+    rcases h with ⟨hs, w, hw, hx, hr⟩
+    have hws : wellFormed s := by
+      rcases hs with ⟨hp, hw', hx', hn, hrows⟩
+      exact ⟨hp, hw', hx', hn, fun r hmem t ht => hrows r (hcover r hmem) t ht⟩
+    exact ⟨hws, w, hw, hx, holds_of_rowSubset hcover hr⟩
+
+-- Decidable row membership reflection; each certificate item must name a real row.
+def covers (need haveRows : List Row) : Bool :=
+  need.all (fun r => decide (r ∈ haveRows))
+
+theorem covers_sound (need haveRows : List Row)
+    (h : covers need haveRows = true) : RowSubset need haveRows := by
+  intro r hr
+  have hall : ∀ a ∈ need, decide (a ∈ haveRows) = true :=
+    List.all_eq_true.mp h
+  exact of_decide_eq_true (hall r hr)
+
+theorem checked_delete_equiv (s : Shape) (rs : List Row)
+    (hsub : covers rs s.rows = true) (hcover : covers s.rows rs = true)
+    (x : List Nat) : accepts s x ↔ accepts (withRows s rs) x :=
+  accepts_delete_equiv s rs (covers_sound _ _ hsub) (covers_sound _ _ hcover) x
+
+-- A stronger local invariant: if a full transition gives book/claim/fund/carry
+-- deltas satisfying this independently established relation, ledger identity survives.
+def ledgerIdentity (cash claims fund carry book : Int) : Prop :=
+  cash - claims - fund + carry = book
+
+theorem ledger_identity_delta
+    (cash claims fund carry book dc dq df dr db : Int)
+    (h : ledgerIdentity cash claims fund carry book)
+    (delta : dc - dq - df + dr = db) :
+    ledgerIdentity (cash + dc) (claims + dq) (fund + df) (carry + dr) (book + db) := by
+  unfold ledgerIdentity at *
+  omega
+
 end MathCan.ZKLean
