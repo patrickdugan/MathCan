@@ -1,0 +1,21 @@
+{
+  "states": 44204,
+  "horizons": {
+    "1": {
+      "parameters": 172,
+      "ordinary_roots": 169,
+      "infinite_sham_roots": 41,
+      "ordinary_triplets": 138645894,
+      "infinite_sham_triplets": 5942
+    },
+    "2": {
+      "parameters": 172,
+      "ordinary_roots": 169,
+      "infinite_sham_roots": 38,
+      "ordinary_triplets": 138543826,
+      "infinite_sham_triplets": 5570
+    }
+  },
+  "infinite_sham_root_union": 41,
+  "infinite_sham_root_intersection": 38
+}
