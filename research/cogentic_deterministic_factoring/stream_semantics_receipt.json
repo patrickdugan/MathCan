@@ -1,0 +1,11 @@
+{
+  "checkpoint": 2991,
+  "equal_product": 609,
+  "maximal_powers": 64502,
+  "negative_controls": 3,
+  "nonunit_cases": 208,
+  "schema": "DETFACT-15-exact",
+  "singleton_checks": 72,
+  "split_probe": 5400,
+  "streamed": 600
+}

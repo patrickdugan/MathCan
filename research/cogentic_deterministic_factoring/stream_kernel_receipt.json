@@ -1,0 +1,18 @@
+{
+  "schema": "DETFACT-15-kernel-ci",
+  "source_commit": "855b676098182bdf1af7cb01a97ccda955a1d587",
+  "source_path": "MathCan/DETFACT15Stream.lean",
+  "source_blob": "cad57bd7e91807ab55e5715f0b89e356468dd4ce",
+  "toolchain": "leanprover/lean4:v4.35.0",
+  "run_id": 45931698100,
+  "run_attempt": 1,
+  "conclusion": "success",
+  "kernel_step": "success",
+  "axiom_marker_check": "success",
+  "python_replay": "success",
+  "run_url": "https://github.com/patrickdugan/MathCan/actions/runs/45931698100",
+  "replay_source_blob": "dcc0268a3eac37762a31cddfa403a922ff6a6b7f",
+  "replay_source_sha256": "59280c5f1cc5fe7cc54d273647ac7d2312e7ff77db6b57269d3c8a733bc5da57",
+  "local_replay_sha256": "65dff175ab7175d5ac7ad70f568c2093c6a8e531500ec309230aa606d9a47762",
+  "scope": "Abstract Nat modular power, checkpoint composition, pointwise square-chain and gcd equivalence, and sufficient singleton packing guard. The workflow checks specified axiom markers; the full axiom log was not independently inspected. No proof of prime enumeration completeness, lcm factorization, native C semantics, upstream relation production or complexity."
+}
