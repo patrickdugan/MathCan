@@ -50,3 +50,30 @@ ${
     cfv cA cF cfv wceq vx cv cA wceq wi vx cD rsp mp2 ax-mp
   $.
 $}
+
+$( MathCan.GraphAuthorization.repair_budget_equiv; natural arithmetic translation. $)
+${
+  ml-mc-repair-budget-equiv.h1 $e |- A e. NN0 $.
+  ml-mc-repair-budget-equiv.h2 $e |- B e. NN0 $.
+  ml-mc-repair-budget-equiv.h3 $e |- 1 <_ A $.
+  ml-mc-repair-budget-equiv $p |- ( ( A - 1 ) <_ B <-> A <_ ( B + 1 ) ) $=
+    cA c1 cB cA ml-mc-repair-budget-equiv.h1 nn0rei 1re cB ml-mc-repair-budget-equiv.h2 nn0rei lesubaddi
+  $.
+$}
+
+$( MathCan.GraphAuthorization.repair_budget_mono; natural arithmetic translation. $)
+${
+  ml-mc-repair-budget-mono.h1 $e |- A e. NN0 $.
+  ml-mc-repair-budget-mono.h2 $e |- B e. NN0 $.
+  ml-mc-repair-budget-mono.h3 $e |- C e. NN0 $.
+  ml-mc-repair-budget-mono.h4 $e |- B <_ C $.
+  ml-mc-repair-budget-mono.h5 $e |- A <_ ( B + 1 ) $.
+  ml-mc-repair-budget-mono $p |- A <_ ( C + 1 ) $=
+    cA cB c1 caddc co cle wbr cB c1 caddc co cC c1 caddc co cle wbr cA cC c1 caddc co cle wbr
+    ml-mc-repair-budget-mono.h5 cB cC cle wbr cB c1 caddc co cC c1 caddc co cle wbr
+    ml-mc-repair-budget-mono.h4 cB cC c1 cB ml-mc-repair-budget-mono.h2 nn0rei cC ml-mc-repair-budget-mono.h3
+    nn0rei 1re leadd1i mpbi cA cB c1 caddc co cC c1 caddc co cA ml-mc-repair-budget-mono.h1 nn0rei cB c1 cB
+    ml-mc-repair-budget-mono.h2 nn0rei 1re readdcli cC c1 cC ml-mc-repair-budget-mono.h3 nn0rei 1re readdcli
+    letri mp2an
+  $.
+$}

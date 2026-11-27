@@ -73,6 +73,38 @@
       ],
       "statement": "|- x = A",
       "proof_steps": 76
+    },
+    {
+      "metamath_label": "ml-mc-repair-budget-equiv",
+      "source": "MathCan/GraphAuthorization.lean",
+      "source_blob": "502ada45d84639a926267d950288806e6b604082",
+      "lean_declaration": "MathCan.GraphAuthorization.repair_budget_equiv",
+      "scope": "natural arithmetic translation",
+      "mapping": "A=components, B=budget; 1<=A ensures Lean truncated subtraction equals ordinary subtraction. NN0 membership encodes Nat.",
+      "hypotheses": [
+        "|- A e. NN0",
+        "|- B e. NN0",
+        "|- 1 <_ A"
+      ],
+      "statement": "|- ( ( A - 1 ) <_ B <-> A <_ ( B + 1 ) )",
+      "proof_steps": 11
+    },
+    {
+      "metamath_label": "ml-mc-repair-budget-mono",
+      "source": "MathCan/GraphAuthorization.lean",
+      "source_blob": "502ada45d84639a926267d950288806e6b604082",
+      "lean_declaration": "MathCan.GraphAuthorization.repair_budget_mono",
+      "scope": "natural arithmetic translation",
+      "mapping": "A=components,B=b,C=c. All Nat premises retained.",
+      "hypotheses": [
+        "|- A e. NN0",
+        "|- B e. NN0",
+        "|- C e. NN0",
+        "|- B <_ C",
+        "|- A <_ ( B + 1 )"
+      ],
+      "statement": "|- A <_ ( C + 1 )",
+      "proof_steps": 80
     }
   ]
 }
