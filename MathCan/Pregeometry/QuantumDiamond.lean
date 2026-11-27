@@ -47,7 +47,7 @@ theorem target_pullback_source_identity (x z : Bool) :
     (pullback (target x z)).xs = false ∧
       (pullback (target x z)).zs = false := by
   rw [target_pullback]
-  decide
+  exact ⟨rfl, rfl⟩
 
 #print axioms target_pullback
 #print axioms target_pullback_source_identity
