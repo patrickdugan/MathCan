@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "scope": "post-campaign unit diagnostic; separate from frozen policy cohorts",
+  "heapChecks": 239664,
+  "pops": 3072,
+  "arenaChecks": 144,
+  "memoChecks": 41664,
+  "memoEvictions": 256,
+  "abortChecks": 2,
+  "typedBytes": {
+    "arena96": 6144,
+    "arena32": 2048,
+    "heap96": 384,
+    "heap32": 128,
+    "memo": 1024
+  }
+}
