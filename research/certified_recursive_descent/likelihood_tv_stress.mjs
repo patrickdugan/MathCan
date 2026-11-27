@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-13B: certified total-variation envelopes on fresh weak/moderate fixtures.
 import {rng} from "./search.mjs";
 import {ok,sum,sumN,top,bit,compile,massNext,envelope,stats,exactGrouped,rawBits,Heap,bounded} from "./grouped_likelihoods.mjs";
@@ -91,4 +92,5 @@ function stress13(){
  }
  return {status:"PASS",scope:"fresh weak/moderate stress, exact rational enclosures",roots:rows.length,rawChecks:rows.filter(r=>r.exactNumerator!==null).length,summary,rows,elapsedMs:Date.now()-start};
 }
-console.log(JSON.stringify(stress13(),null,2));
+export {ceilDiv,sqrtCeil,min,prepareTV,tvEnvelope,solveTV,fixtureB,stress13};
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href) console.log(JSON.stringify(stress13(),null,2));
