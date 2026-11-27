@@ -1,0 +1,9 @@
+{
+  "interval_cases": 272,
+  "negative_controls": 7,
+  "power_entries": 165875,
+  "roster_checks": 1360,
+  "schema": "DETFACT-16-exact",
+  "split_probe_checks": 11320,
+  "streamed_comparisons": 1360
+}

@@ -1,0 +1,37 @@
+name: DETFACT-16 exact saturation roster
+on:
+  push:
+    paths: ['MathCan/DETFACT16Saturation.lean', 'research/cogentic_deterministic_factoring/saturation_certificate_audit.py', '.github/workflows/detfact16-saturation-lean.yml']
+  pull_request:
+    paths: ['MathCan/DETFACT16Saturation.lean', 'research/cogentic_deterministic_factoring/saturation_certificate_audit.py', '.github/workflows/detfact16-saturation-lean.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  kernel-and-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Check saturation lemmas and axiom dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/DETFACT16Saturation.lean | tee detfact16-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|declaration uses .sorry.' detfact16-axioms.txt; then exit 1; fi
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Replay exact saturation certificates
+        run: python research/cogentic_deterministic_factoring/saturation_certificate_audit.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: detfact16-axioms
+          path: detfact16-axioms.txt
