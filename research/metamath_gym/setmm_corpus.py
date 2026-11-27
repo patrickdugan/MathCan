@@ -175,7 +175,7 @@ def load_verifier(path):
 class StopPrefix(Exception):
     pass
 
-def extract(mm, db, limit=LIMIT):
+def extract(mm, db, limit=LIMIT, on_expanded=None, single_masks=True):
     class Tracking(mm.Toks):
         previous = None
         p_label = None
@@ -244,6 +244,10 @@ def extract(mm, db, limit=LIMIT):
                 return
             super().verify(f, e, conclusion, expanded)
             self.replacements[label] = expanded
+            if on_expanded is not None:
+                on_expanded(self, label, index, statement, expanded, active, variables, distinct)
+            if not single_masks:
+                return
             groups = defaultdict(list)
             for lab, entry in self.labels.items():
                 if entry[0] in ("$a", "$p"):
