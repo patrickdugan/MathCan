@@ -100,4 +100,41 @@ theorem mixed_matches_diagonal_on_fixture_moduli :
 #print axioms mixed_kernel_counts
 #print axioms mixed_matches_diagonal_on_fixture_moduli
 
+/-! ## BPD-QPU03: an exact finite alias chain on Z/8^3 -/
+
+def phaseShiftGrid : List (List Nat) :=
+  (List.range 8).flatMap (fun a =>
+    (List.range 8).flatMap (fun b =>
+      (List.range 8).map (fun c => [a,b,c])))
+
+def phaseKernel (rows : List (List Nat)) : List (List Nat) :=
+  phaseShiftGrid.filter (fun x =>
+    rows.all (fun r =>
+      (r.getD 0 0 * x.getD 0 0 + r.getD 1 0 * x.getD 1 0 +
+        r.getD 2 0 * x.getD 2 0) % 8 == 0))
+
+def evenRows : List (List Nat) := [[2,0,0],[0,2,0],[0,0,2]]
+def pairRows : List (List Nat) := [[1,1,0],[0,1,1],[1,0,1]]
+
+set_option maxRecDepth 10000 in
+theorem even_scout_eight_aliases :
+    phaseKernel evenRows =
+      [[0,0,0],[0,0,4],[0,4,0],[0,4,4],
+       [4,0,0],[4,0,4],[4,4,0],[4,4,4]] := by
+  decide +kernel
+
+set_option maxRecDepth 10000 in
+theorem pair_sums_leave_global_alias :
+    phaseKernel (evenRows ++ pairRows) = [[0,0,0],[4,4,4]] := by
+  decide +kernel
+
+set_option maxRecDepth 10000 in
+theorem odd_triple_removes_global_alias :
+    phaseKernel (evenRows ++ pairRows ++ [[1,1,1]]) = [[0,0,0]] := by
+  decide +kernel
+
+#print axioms even_scout_eight_aliases
+#print axioms pair_sums_leave_global_alias
+#print axioms odd_triple_removes_global_alias
+
 end MathCan.Pregeometry.SmithObservation
