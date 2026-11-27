@@ -66,6 +66,48 @@ theorem checked_local_poly_delete
 /-! ZKL-24: interpret the certificate's retained indices in the original
 ordered matrix. A row at the deleted position cannot discharge a retained
 premise, even if the concrete row value occurs elsewhere. -/
+private theorem lookup_mem (rows : List Row) (j : Nat) (r : Row)
+    (h : rows[j]? = some r) : r ∈ rows := by
+  induction rows generalizing j with
+  | nil =>
+    change none = some r at h
+    cases h
+  | cons a tail ih =>
+    cases j with
+    | zero =>
+      change some a = some r at h
+      exact List.mem_cons.mpr (Or.inl (Option.some.inj h).symm)
+    | succ j =>
+      change tail[j]? = some r at h
+      exact List.mem_cons.mpr (Or.inr (ih j h))
+
+private theorem lookup_mem_erase (rows : List Row) (i j : Nat) (r : Row)
+    (hne : j ≠ i) (h : rows[j]? = some r) : r ∈ rows.eraseIdx i := by
+  induction rows generalizing i j with
+  | nil =>
+    change none = some r at h
+    cases h
+  | cons a tail ih =>
+    cases i with
+    | zero =>
+      cases j with
+      | zero => exact False.elim (hne rfl)
+      | succ j =>
+        change tail[j]? = some r at h
+        change r ∈ tail
+        exact lookup_mem tail j r h
+    | succ i =>
+      cases j with
+      | zero =>
+        change some a = some r at h
+        change r ∈ a :: tail.eraseIdx i
+        exact List.mem_cons.mpr (Or.inl (Option.some.inj h).symm)
+      | succ j =>
+        change tail[j]? = some r at h
+        change r ∈ a :: tail.eraseIdx i
+        exact List.mem_cons.mpr (Or.inr (ih i j
+          (fun he => hne (congrArg Nat.succ he)) h))
+
 theorem indexed_subset_erase (rows : List Row) (i : Nat)
     (refs : List (Nat × Row))
     (hpos : ∀ q ∈ refs, q.1 ≠ i ∧ rows[q.1]? = some q.2) :
@@ -73,42 +115,89 @@ theorem indexed_subset_erase (rows : List Row) (i : Nat)
   intro r hr
   rcases List.mem_map.mp hr with ⟨q, hq, he⟩
   rcases hpos q hq with ⟨hne, hlookup⟩
-  have hmem : q.2 ∈ rows.eraseIdx i := by
-    by_cases hlt : q.1 < i
-    · apply List.mem_of_getElem? (i := q.1)
-      rw [List.getElem?_eraseIdx, if_pos hlt]
-      exact hlookup
-    · have hlt' : ¬ q.1 - 1 < i := by omega
-      have hplus : q.1 - 1 + 1 = q.1 := by omega
-      apply List.mem_of_getElem? (i := q.1 - 1)
-      rw [List.getElem?_eraseIdx, if_neg hlt', hplus]
-      exact hlookup
   rw [← he]
-  exact hmem
+  exact lookup_mem_erase rows i q.1 q.2 hne hlookup
+
+private theorem mem_original_or_erased (rows : List Row) (i : Nat)
+    (target : Row) (ht : rows[i]? = some target) :
+    ∀ r ∈ rows, r = target ∨ r ∈ rows.eraseIdx i := by
+  induction rows generalizing i with
+  | nil =>
+    change none = some target at ht
+    cases ht
+  | cons a tail ih =>
+    cases i with
+    | zero =>
+      change some a = some target at ht
+      intro r hr
+      change r = target ∨ r ∈ tail
+      rcases List.mem_cons.mp hr with he | hm
+      · exact Or.inl (he.trans (Option.some.inj ht))
+      · exact Or.inr hm
+    | succ i =>
+      change tail[i]? = some target at ht
+      intro r hr
+      change r = target ∨ r ∈ a :: tail.eraseIdx i
+      rcases List.mem_cons.mp hr with he | hm
+      · exact Or.inr (List.mem_cons.mpr (Or.inl he))
+      · rcases ih i ht r hm with he | hm'
+        · exact Or.inl he
+        · exact Or.inr (List.mem_cons.mpr (Or.inr hm'))
+
+private theorem erased_subset (rows : List Row) (i : Nat) :
+    RowSubset (rows.eraseIdx i) rows := by
+  induction rows generalizing i with
+  | nil =>
+    intro r hr
+    change r ∈ ([] : List Row) at hr
+    exact False.elim (List.not_mem_nil hr)
+  | cons a tail ih =>
+    cases i with
+    | zero =>
+      intro r hr
+      change r ∈ tail at hr
+      exact List.mem_cons.mpr (Or.inr hr)
+    | succ i =>
+      intro r hr
+      change r ∈ a :: tail.eraseIdx i at hr
+      rcases List.mem_cons.mp hr with he | hm
+      · exact List.mem_cons.mpr (Or.inl he)
+      · exact List.mem_cons.mpr (Or.inr (ih i r hm))
 
 theorem checked_indexed_poly_delete
     (s : Shape) (i : Nat) (target : Row) (refs : List (Nat × Row))
     (ws : List Multiplier) (correction : PPoly)
-    (hs : wellFormed s) (hi : i < s.rows.length) (ht : s.rows[i] = target)
+    (hs : wellFormed s) (_hi : i < s.rows.length)
+    (ht : s.rows[i]? = some target)
     (hpos : ∀ q ∈ refs, q.1 ≠ i ∧ s.rows[q.1]? = some q.2)
     (hweights : covers (ws.map Multiplier.row) (refs.map Prod.snd) = true)
     (hc : polyCheck s.modulus target ws correction = true) (x : List Nat) :
     accepts s x ↔ accepts (withRows s (s.rows.eraseIdx i)) x := by
-  have hsplit : s.rows.take i ++ target :: s.rows.drop (i + 1) = s.rows := by
-    rw [← ht, ← List.drop_eq_getElem_cons hi, List.take_append_drop]
-  have hdel := List.eraseIdx_eq_take_drop_succ s.rows i
-  have hs' : wellFormed (withRows s (s.rows.take i ++ target :: s.rows.drop (i + 1))) := by
-    rw [hsplit]
-    cases s
-    exact hs
   have hsub := indexed_subset_erase s.rows i refs hpos
-  rw [hdel] at hsub
-  have h := checked_local_poly_delete s (s.rows.take i) (s.rows.drop (i + 1))
-    (refs.map Prod.snd) target ws correction hs' hsub hweights hc x
-  rw [hsplit, ← hdel] at h
-  cases s
-  exact h
+  have hret := erased_subset s.rows i
+  constructor
+  · intro ha
+    rcases ha with ⟨_, w, hw, hx, hr⟩
+    exact ⟨wellFormed_withRows s (s.rows.eraseIdx i) hs hret,
+           w, hw, hx, holds_of_rowSubset hret hr⟩
+  · intro ha
+    rcases ha with ⟨_, w, hw, hx, hr⟩
+    refine ⟨hs, w, hw, hx, ?_⟩
+    have hlocal := holds_of_rowSubset hsub hr
+    have htarget : rowHolds s.modulus w target := by
+      apply poly_sound s.modulus w hw.1 target ws correction hc
+      intro item hm
+      exact hlocal item.row (covers_sound _ _ hweights item.row
+        (List.mem_map.mpr ⟨item, hm, rfl⟩))
+    intro r hm
+    rcases mem_original_or_erased s.rows i target ht r hm with he | hmem
+    · subst r
+      exact htarget
+    · exact hr r hmem
 
+#print axioms lookup_mem_erase
+#print axioms mem_original_or_erased
+#print axioms erased_subset
 #print axioms indexed_subset_erase
 #print axioms checked_indexed_poly_delete
 
