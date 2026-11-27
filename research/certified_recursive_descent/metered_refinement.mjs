@@ -83,11 +83,11 @@ class Planner{
   this.P=P;this.M=meter;this.mode=mode;this.cache=retained??new Map();this.lv=new Map();this.av=new Map();this.dv=new Map();
   this.peakNodes=this.cache.size;this.peakEdges=0;this.edges=0;
   // The retained copy's edge count is computed during charged copying.
-  for(const n of this.cache.values())this.edges+=n.actions?.reduce((s,a)=>s+a.os.length,0)??n.prepared?.reduce((s,a)=>s+a.os.length,0)??0;
+  this.edges=retained?.edgeCount??0;
   this.peakEdges=this.edges;
  }
  val(i,id,b){
-  const k=desc16(this.P,i,id)+":"+b;this.M.take("lookup");if(this.lv.has(k))return this.lv.get(k);
+  this.M.take("lookup");const k=desc16(this.P,i,id)+":"+b;if(this.lv.has(k))return this.lv.get(k);
   this.M.take("localMiss");let v=0;
   if(id>=0&&b>0){
    const l=this.P.local[i],s=l.at(id),m=l.L-s.stage,k=Math.min(3,b-m);
@@ -102,7 +102,7 @@ class Planner{
   this.lv.set(k,v);return v;
  }
  alloc(s,b){
-  const c=canon16(this.P,s,b);this.M.take("lookup");if(this.av.has(c.key))return this.av.get(c.key);
+  this.M.take("lookup");const c=canon16(this.P,s,b);if(this.av.has(c.key))return this.av.get(c.key);
   let dp=Array(b+1).fill(1);
   for(const {i} of c.entries){
    const id=s[i],opts=[{t:0,v:0}];this.M.take("option");
@@ -117,7 +117,7 @@ class Planner{
   const v=1-dp[b];this.av.set(c.key,v);return v;
  }
  dl(s,b){
-  const k=canon16(this.P,s,b).key;this.M.take("lookup");if(this.dv.has(k))return this.dv.get(k);
+  this.M.take("lookup");const k=canon16(this.P,s,b).key;if(this.dv.has(k))return this.dv.get(k);
   const v=deadline(this.P,s,b,this.M);this.dv.set(k,v);return v;
  }
  tighten(n,U){const old=n.U;n.U=Math.min(old,U);ok(n.U>=n.L-EPS,"tight bound below lower");n.U=Math.max(n.L,n.U);if(old-n.U>EPS)this.M.event("strictTightens")}
@@ -125,8 +125,9 @@ class Planner{
  raw(n,warm){
   const out=[];
   for(const a of this.P.legal(n.s,n.b)){
-   this.M.take("actionEnum");const os=[];
-   for(const o of this.P.outcomes(n.s,a)){this.M.take("outcomeGen");if(warm)this.M.event("warmOutcomes");os.push(o.hit?{p:o.p,hit:true,s:null}:{p:o.p,hit:false,s:o.s.slice()})}
+   this.M.take("actionEnum");const os=[],count=this.P.local[a.i].outcomes(n.s[a.i],a.t).length;
+   this.M.take("outcomeGen",count);if(warm)this.M.event("warmOutcomes",count);
+   for(const o of this.P.outcomes(n.s,a)){os.push(o.hit?{p:o.p,hit:true,s:null}:{p:o.p,hit:false,s:o.s.slice()})}
    out.push({a,os});
   }
   return out;
@@ -139,7 +140,7 @@ class Planner{
   if(reuse){n.prepared=raw;this.edges+=raw.reduce((s,a)=>s+a.os.length,0);this.peakEdges=Math.max(this.peakEdges,this.edges)}
  }
  node(s,b){
-  const k=key(s,b);this.M.take("lookup");if(this.cache.has(k))return this.cache.get(k);
+  this.M.take("lookup");const k=key(s,b);if(this.cache.has(k))return this.cache.get(k);
   this.M.take("nodeInit");const aff=affordable(this.P,s,b);let L=0,U=0;
   if(aff.length===1)L=U=this.val(aff[0].i,aff[0].id,b);
   else if(aff.length>1){L=this.alloc(s,b);U=aff.every(x=>x.m===0)?L:1-aff.reduce((v,x)=>v*(1-x.mass),1)}
@@ -221,7 +222,7 @@ function copyGraph(root,meter){
   else if(n.prepared)c.prepared=n.prepared.map(a=>({a:{...a.a},os:a.os.map(o=>{meter.take("copyEdge");return {p:o.p,hit:o.hit,s:o.s?.slice()??null}})}));
   return c;
  }
- try{rec(root);return cache}catch(e){if(e!==STOP)throw e;meter.event("copyAborts");return null}
+ try{rec(root);cache.edgeCount=meter.c.copyEdge;return cache}catch(e){if(e!==STOP)throw e;meter.event("copyAborts");return null}
 }
 function addWork(a,b,p=1){for(const k of Object.keys(a))a[k]+=p*b[k]}
 function policy(root,cap,budget,total,mode,oracle){
