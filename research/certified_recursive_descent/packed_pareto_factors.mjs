@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-25: packed Pareto supports, sibling-local products and joint likelihoods.
 import {rng} from "./search.mjs";
 import {ok,sum,fixture,Problem,Engine,bootstrap} from "./information_gain.mjs";
@@ -354,5 +355,8 @@ function experiment25(name){
  }
  return {status:"PASS",scope:"finite synthetic independent model; packed numeric payload and metered proxy",name,roots:n,population:pop,budget:b,cap,audit,baselines:{optimal:mean(refs.optimal),receding2:mean(refs.receding2)},traceRows,tracePairs,rows,paired,elapsedMs:Date.now()-start}
 }
-const name25=process.argv.includes("--population")?"population":process.argv.includes("--larger")?"larger":"standard";
-console.log(JSON.stringify(experiment25(name25),null,2));
+export {queries25,Factor25,experiment25};
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
+ const name25=process.argv.includes("--population")?"population":process.argv.includes("--larger")?"larger":"standard";
+ console.log(JSON.stringify(experiment25(name25),null,2));
+}
