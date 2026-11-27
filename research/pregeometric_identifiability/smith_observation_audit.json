@@ -1,0 +1,2495 @@
+{
+  "version": "PGC-SNF-01",
+  "evidence": "exact integer minors and exhaustive finite cyclic kernels; no hardware",
+  "fixture_count": 28,
+  "checks": 152,
+  "assignments": 271796,
+  "edge_order": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      5
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      6
+    ],
+    [
+      3,
+      7
+    ],
+    [
+      4,
+      5
+    ],
+    [
+      4,
+      6
+    ],
+    [
+      5,
+      7
+    ],
+    [
+      6,
+      7
+    ]
+  ],
+  "faces": [
+    [
+      0,
+      1,
+      3,
+      2
+    ],
+    [
+      4,
+      5,
+      7,
+      6
+    ],
+    [
+      0,
+      1,
+      5,
+      4
+    ],
+    [
+      2,
+      3,
+      7,
+      6
+    ],
+    [
+      0,
+      2,
+      6,
+      4
+    ],
+    [
+      1,
+      3,
+      7,
+      5
+    ]
+  ],
+  "chord_indices": [
+    5,
+    8,
+    9,
+    10,
+    11
+  ],
+  "fixtures": [
+    {
+      "name": "Q3_all_faces",
+      "A": [
+        [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          -1,
+          1,
+          -1
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 5,
+      "free": 0,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        30,
+        150,
+        200,
+        75,
+        6
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_4_faces_0123",
+      "A": [
+        [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          -1,
+          1,
+          -1
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          -1
+        ]
+      ],
+      "g": 5,
+      "rank": 4,
+      "free": 1,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        20,
+        60,
+        40,
+        5
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 3,
+          "enumerated": 3,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 5,
+          "enumerated": 5,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_4_faces_0124",
+      "A": [
+        [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          -1,
+          1,
+          -1
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 4,
+      "free": 1,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        20,
+        60,
+        40,
+        5
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 3,
+          "enumerated": 3,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 5,
+          "enumerated": 5,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_4_faces_0125",
+      "A": [
+        [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          -1,
+          1,
+          -1
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 4,
+      "free": 1,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        20,
+        60,
+        40,
+        5
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 3,
+          "enumerated": 3,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 5,
+          "enumerated": 5,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_4_faces_0134",
+      "A": [
+        [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          -1,
+          1,
+          -1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 4,
+      "free": 1,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        20,
+        60,
+        40,
+        5
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 3,
+          "enumerated": 3,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 5,
+          "enumerated": 5,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_4_faces_0135",
+      "A": [
+        [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          -1,
+          1,
+          -1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 4,
+      "free": 1,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        20,
+        60,
+        40,
+        5
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 3,
+          "enumerated": 3,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 5,
+          "enumerated": 5,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_4_faces_0145",
+      "A": [
+        [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          -1,
+          1,
+          -1
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 4,
+      "free": 1,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        20,
+        60,
+        40,
+        5
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 3,
+          "enumerated": 3,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 5,
+          "enumerated": 5,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_4_faces_0234",
+      "A": [
+        [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 4,
+      "free": 1,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        20,
+        60,
+        40,
+        5
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 3,
+          "enumerated": 3,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 5,
+          "enumerated": 5,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_4_faces_0235",
+      "A": [
+        [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 4,
+      "free": 1,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        20,
+        60,
+        40,
+        5
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 3,
+          "enumerated": 3,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 5,
+          "enumerated": 5,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_4_faces_0245",
+      "A": [
+        [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 4,
+      "free": 1,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        20,
+        60,
+        40,
+        5
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 3,
+          "enumerated": 3,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 5,
+          "enumerated": 5,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_4_faces_0345",
+      "A": [
+        [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 4,
+      "free": 1,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        20,
+        60,
+        40,
+        5
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 3,
+          "enumerated": 3,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 5,
+          "enumerated": 5,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_4_faces_1234",
+      "A": [
+        [
+          0,
+          1,
+          -1,
+          1,
+          -1
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 4,
+      "free": 1,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        20,
+        60,
+        40,
+        5
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 3,
+          "enumerated": 3,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 5,
+          "enumerated": 5,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_4_faces_1235",
+      "A": [
+        [
+          0,
+          1,
+          -1,
+          1,
+          -1
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 4,
+      "free": 1,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        20,
+        60,
+        40,
+        5
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 3,
+          "enumerated": 3,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 5,
+          "enumerated": 5,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_4_faces_1245",
+      "A": [
+        [
+          0,
+          1,
+          -1,
+          1,
+          -1
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 4,
+      "free": 1,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        20,
+        60,
+        40,
+        5
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 3,
+          "enumerated": 3,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 5,
+          "enumerated": 5,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_4_faces_1345",
+      "A": [
+        [
+          0,
+          1,
+          -1,
+          1,
+          -1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 4,
+      "free": 1,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        20,
+        60,
+        40,
+        5
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 3,
+          "enumerated": 3,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 5,
+          "enumerated": 5,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_4_faces_2345",
+      "A": [
+        [
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 4,
+      "free": 1,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        20,
+        60,
+        40,
+        5
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 3,
+          "enumerated": 3,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 5,
+          "enumerated": 5,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_5_faces_01234",
+      "A": [
+        [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          -1,
+          1,
+          -1
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 5,
+      "free": 0,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        25,
+        100,
+        100,
+        25,
+        1
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_5_faces_01235",
+      "A": [
+        [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          -1,
+          1,
+          -1
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 5,
+      "free": 0,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        25,
+        100,
+        100,
+        25,
+        1
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_5_faces_01245",
+      "A": [
+        [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          -1,
+          1,
+          -1
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 5,
+      "free": 0,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        25,
+        100,
+        100,
+        25,
+        1
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_5_faces_01345",
+      "A": [
+        [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          -1,
+          1,
+          -1
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 5,
+      "free": 0,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        25,
+        100,
+        100,
+        25,
+        1
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_5_faces_02345",
+      "A": [
+        [
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 5,
+      "free": 0,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        25,
+        100,
+        100,
+        25,
+        1
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "Q3_5_faces_12345",
+      "A": [
+        [
+          0,
+          1,
+          -1,
+          1,
+          -1
+        ],
+        [
+          0,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          -1
+        ],
+        [
+          0,
+          0,
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ]
+      ],
+      "g": 5,
+      "rank": 5,
+      "free": 0,
+      "factors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "divisors": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "examined": [
+        25,
+        100,
+        100,
+        25,
+        1
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 32
+        },
+        {
+          "m": 3,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 243
+        },
+        {
+          "m": 4,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 1024
+        },
+        {
+          "m": 5,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 3125
+        },
+        {
+          "m": 6,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 7776
+        }
+      ]
+    },
+    {
+      "name": "circle",
+      "A": [],
+      "g": 1,
+      "rank": 0,
+      "free": 1,
+      "factors": [],
+      "divisors": [
+        "1"
+      ],
+      "examined": [],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 2
+        },
+        {
+          "m": 3,
+          "predicted": 3,
+          "enumerated": 3,
+          "assignments": 3
+        },
+        {
+          "m": 4,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 4
+        },
+        {
+          "m": 5,
+          "predicted": 5,
+          "enumerated": 5,
+          "assignments": 5
+        },
+        {
+          "m": 6,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 6
+        },
+        {
+          "m": 8,
+          "predicted": 8,
+          "enumerated": 8,
+          "assignments": 8
+        },
+        {
+          "m": 12,
+          "predicted": 12,
+          "enumerated": 12,
+          "assignments": 12
+        }
+      ]
+    },
+    {
+      "name": "torus_abelianized_face",
+      "A": [
+        [
+          0,
+          0
+        ]
+      ],
+      "g": 2,
+      "rank": 0,
+      "free": 2,
+      "factors": [],
+      "divisors": [
+        "1"
+      ],
+      "examined": [
+        2
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 4
+        },
+        {
+          "m": 3,
+          "predicted": 9,
+          "enumerated": 9,
+          "assignments": 9
+        },
+        {
+          "m": 4,
+          "predicted": 16,
+          "enumerated": 16,
+          "assignments": 16
+        },
+        {
+          "m": 5,
+          "predicted": 25,
+          "enumerated": 25,
+          "assignments": 25
+        },
+        {
+          "m": 6,
+          "predicted": 36,
+          "enumerated": 36,
+          "assignments": 36
+        },
+        {
+          "m": 8,
+          "predicted": 64,
+          "enumerated": 64,
+          "assignments": 64
+        },
+        {
+          "m": 12,
+          "predicted": 144,
+          "enumerated": 144,
+          "assignments": 144
+        }
+      ]
+    },
+    {
+      "name": "degree_2_attaching_map_RP2",
+      "A": [
+        [
+          2
+        ]
+      ],
+      "g": 1,
+      "rank": 1,
+      "free": 0,
+      "factors": [
+        "2"
+      ],
+      "divisors": [
+        "1",
+        "2"
+      ],
+      "examined": [
+        1
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 2
+        },
+        {
+          "m": 3,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 3
+        },
+        {
+          "m": 4,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 4
+        },
+        {
+          "m": 5,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 5
+        },
+        {
+          "m": 6,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 6
+        },
+        {
+          "m": 8,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 8
+        },
+        {
+          "m": 12,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 12
+        }
+      ]
+    },
+    {
+      "name": "degree_6_attaching_map",
+      "A": [
+        [
+          6
+        ]
+      ],
+      "g": 1,
+      "rank": 1,
+      "free": 0,
+      "factors": [
+        "6"
+      ],
+      "divisors": [
+        "1",
+        "6"
+      ],
+      "examined": [
+        1
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 2
+        },
+        {
+          "m": 3,
+          "predicted": 3,
+          "enumerated": 3,
+          "assignments": 3
+        },
+        {
+          "m": 4,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 4
+        },
+        {
+          "m": 5,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 5
+        },
+        {
+          "m": 6,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 6
+        },
+        {
+          "m": 8,
+          "predicted": 2,
+          "enumerated": 2,
+          "assignments": 8
+        },
+        {
+          "m": 12,
+          "predicted": 6,
+          "enumerated": 6,
+          "assignments": 12
+        }
+      ]
+    },
+    {
+      "name": "nontrivial_integer_mixed_presentation",
+      "A": [
+        [
+          2,
+          4
+        ],
+        [
+          6,
+          8
+        ]
+      ],
+      "g": 2,
+      "rank": 2,
+      "free": 0,
+      "factors": [
+        "2",
+        "4"
+      ],
+      "divisors": [
+        "1",
+        "2",
+        "8"
+      ],
+      "examined": [
+        4,
+        1
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 4
+        },
+        {
+          "m": 3,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 9
+        },
+        {
+          "m": 4,
+          "predicted": 8,
+          "enumerated": 8,
+          "assignments": 16
+        },
+        {
+          "m": 5,
+          "predicted": 1,
+          "enumerated": 1,
+          "assignments": 25
+        },
+        {
+          "m": 6,
+          "predicted": 4,
+          "enumerated": 4,
+          "assignments": 36
+        },
+        {
+          "m": 8,
+          "predicted": 8,
+          "enumerated": 8,
+          "assignments": 64
+        },
+        {
+          "m": 12,
+          "predicted": 8,
+          "enumerated": 8,
+          "assignments": 144
+        }
+      ]
+    },
+    {
+      "name": "rank_deficient_with_torsion",
+      "A": [
+        [
+          2,
+          4,
+          0
+        ],
+        [
+          4,
+          8,
+          0
+        ]
+      ],
+      "g": 3,
+      "rank": 1,
+      "free": 2,
+      "factors": [
+        "2"
+      ],
+      "divisors": [
+        "1",
+        "2"
+      ],
+      "examined": [
+        6,
+        3
+      ],
+      "modular": [
+        {
+          "m": 2,
+          "predicted": 8,
+          "enumerated": 8,
+          "assignments": 8
+        },
+        {
+          "m": 3,
+          "predicted": 9,
+          "enumerated": 9,
+          "assignments": 27
+        },
+        {
+          "m": 4,
+          "predicted": 32,
+          "enumerated": 32,
+          "assignments": 64
+        },
+        {
+          "m": 5,
+          "predicted": 25,
+          "enumerated": 25,
+          "assignments": 125
+        },
+        {
+          "m": 6,
+          "predicted": 72,
+          "enumerated": 72,
+          "assignments": 216
+        },
+        {
+          "m": 8,
+          "predicted": 128,
+          "enumerated": 128,
+          "assignments": 512
+        },
+        {
+          "m": 12,
+          "predicted": 288,
+          "enumerated": 288,
+          "assignments": 1728
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Determinantal minors scale combinatorially; this is a small-certificate reference implementation, not a production SNF algorithm.",
+    "Finite-modulus enumerations check the formula on selected fixtures only.",
+    "The torus classification uses the standard mathematical Smith normal form theorem; no general SNF existence proof in Lean is claimed."
+  ]
+}
