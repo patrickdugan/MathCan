@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-22: metered whole-action order and bounded exact memo policy.
 import {rng} from "./search.mjs";
 import {ok,sum,fixture,Problem,Engine,bootstrap} from "./information_gain.mjs";
@@ -213,5 +214,8 @@ function experiment22(name){
  }
  return {status:"PASS",scope:"finite independent synthetic model, metered work proxy and numeric cache payload",name,roots:n,cap,budget:b,audit,baselines:{optimal:mean(ref.optimal),receding2:mean(ref.receding2)},rows,paired,elapsedMs:Date.now()-start};
 }
-const name22=process.argv.includes("--deep")?"deep":process.argv.includes("--population")?"population":"standard";
-console.log(JSON.stringify(experiment22(name22),null,2));
+export {meter22,blank22,specs22,Cache22,Order22,policy22,complete22,experiment22};
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
+ const name22=process.argv.includes("--deep")?"deep":process.argv.includes("--population")?"population":"standard";
+ console.log(JSON.stringify(experiment22(name22),null,2));
+}
