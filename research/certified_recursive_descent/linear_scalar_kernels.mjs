@@ -1,3 +1,4 @@
+import {pathToFileURL} from "node:url";
 // CRD-27: scalar fusion, terminal fold, linear gate, distinct-branch table.
 import {rng} from "./search.mjs";
 import {ok,sum,fixture,Problem,Engine,bootstrap} from "./information_gain.mjs";
@@ -246,5 +247,8 @@ function experiment27(name){
  }
  return {status:"PASS",scope:"finite synthetic independent model, exact scalar kernels and declared work proxy",name,roots:n,population:pop,budget:b,cap,audit,baselines:{optimal:mean(refs.optimal),receding2:mean(refs.receding2)},traceRows,tracePairs,rows,paired,elapsedMs:Date.now()-start}
 }
-const name27=process.argv.includes("--population")?"population":process.argv.includes("--larger")?"larger":"standard";
-console.log(JSON.stringify(experiment27(name27),null,2));
+export {meter27,blank27,Scalar27,make27,last27,policy27,experiment27};
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
+ const name27=process.argv.includes("--population")?"population":process.argv.includes("--larger")?"larger":"standard";
+ console.log(JSON.stringify(experiment27(name27),null,2));
+}
