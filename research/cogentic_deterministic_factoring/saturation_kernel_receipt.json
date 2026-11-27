@@ -1,0 +1,14 @@
+{
+  "schema": "DETFACT-16-kernel-ci",
+  "source_commit": "a9a61ebabea3d0169c3373ca8bdc7a0ee7c70c45",
+  "source_path": "MathCan/DETFACT16Saturation.lean",
+  "source_blob": "069679eb218625f0807423cac3d93f560af95280",
+  "toolchain": "leanprover/lean4:v4.35.0",
+  "run_id": 45933185558,
+  "conclusion": "success",
+  "kernel_step": "success",
+  "axiom_marker_check": "success",
+  "python_replay": "success",
+  "url": "https://github.com/patrickdugan/MathCan/actions/runs/45933185558",
+  "scope": "Complete unique valid maximal-prime-power roster gives interval LCM; prime-power divisibility criterion; subgroup-order saturation. Actual enumerator correctness and native C refinement remain separate. Workflow checks specified axiom markers; raw axiom log not independently inspected."
+}
