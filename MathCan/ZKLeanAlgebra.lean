@@ -57,8 +57,8 @@ theorem eval_mkQ (w : Assignment) (i j : Nat) (c : Int) :
   unfold mkQ
   split
   · rfl
-  · unfold evalTerm
-    ac_rfl
+  · change c * ((w j : Int) * (w i : Int)) = c * ((w i : Int) * (w j : Int))
+    rw [Int.mul_comm (w j : Int) (w i : Int)]
 
 def crossTerm (t : Term) : LC → QPoly
   | [] => []
