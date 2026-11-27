@@ -1,0 +1,266 @@
+{
+  "status": "PASS",
+  "scope": "post-main registered two-factor change diagnostic, no policy result",
+  "totals": {
+    "parents": 176,
+    "queries": 2416,
+    "twoChanges": 2240,
+    "valueChecks": 14496,
+    "coeffChecks": 39360,
+    "maxError": 1.1102230246251565e-16
+  },
+  "rows": [
+    {
+      "population": 3,
+      "roots": 4,
+      "parents": 48,
+      "queries": 240,
+      "twoChanges": 192,
+      "valueChecks": 1440,
+      "coeffChecks": 4032,
+      "maxError": 1.1102230246251565e-16,
+      "stats": {
+        "direct": {
+          "work": 4908,
+          "allocation": 2408,
+          "likelihood": 624,
+          "storeHits": 0,
+          "storeEvictions": 0,
+          "storePeak": 0,
+          "segmentHits": 0,
+          "rootHits": 0,
+          "vectorReads": 0,
+          "vectorWrites": 0
+        },
+        "scalar": {
+          "work": 5772,
+          "allocation": 2408,
+          "likelihood": 624,
+          "storeHits": 668,
+          "storeEvictions": 0,
+          "storePeak": 50,
+          "segmentHits": 0,
+          "rootHits": 0,
+          "vectorReads": 668,
+          "vectorWrites": 196
+        },
+        "fold": {
+          "work": 8226,
+          "allocation": 1266,
+          "likelihood": 720,
+          "storeHits": 384,
+          "storeEvictions": 0,
+          "storePeak": 34,
+          "segmentHits": 0,
+          "rootHits": 144,
+          "vectorReads": 1644,
+          "vectorWrites": 660
+        },
+        "prefix": {
+          "work": 7692,
+          "allocation": 1004,
+          "likelihood": 720,
+          "storeHits": 336,
+          "storeEvictions": 0,
+          "storePeak": 46,
+          "segmentHits": 48,
+          "rootHits": 144,
+          "vectorReads": 1436,
+          "vectorWrites": 884
+        },
+        "tree": {
+          "work": 8146,
+          "allocation": 1138,
+          "likelihood": 720,
+          "storeHits": 352,
+          "storeEvictions": 0,
+          "storePeak": 46,
+          "segmentHits": 32,
+          "rootHits": 144,
+          "vectorReads": 1500,
+          "vectorWrites": 948
+        },
+        "tree16": {
+          "work": 15684,
+          "allocation": 1852,
+          "likelihood": 1944,
+          "storeHits": 396,
+          "storeEvictions": 436,
+          "storePeak": 16,
+          "segmentHits": 24,
+          "rootHits": 60,
+          "vectorReads": 1628,
+          "vectorWrites": 2260
+        }
+      }
+    },
+    {
+      "population": 5,
+      "roots": 4,
+      "parents": 64,
+      "queries": 832,
+      "twoChanges": 768,
+      "valueChecks": 4992,
+      "coeffChecks": 13568,
+      "maxError": 1.1102230246251565e-16,
+      "stats": {
+        "direct": {
+          "work": 22812,
+          "allocation": 12932,
+          "likelihood": 696,
+          "storeHits": 0,
+          "storeEvictions": 0,
+          "storePeak": 0,
+          "segmentHits": 0,
+          "rootHits": 0,
+          "vectorReads": 0,
+          "vectorWrites": 0
+        },
+        "scalar": {
+          "work": 26860,
+          "allocation": 12932,
+          "likelihood": 696,
+          "storeHits": 3536,
+          "storeEvictions": 0,
+          "storePeak": 129,
+          "segmentHits": 0,
+          "rootHits": 0,
+          "vectorReads": 3536,
+          "vectorWrites": 512
+        },
+        "fold": {
+          "work": 52708,
+          "allocation": 10232,
+          "likelihood": 2136,
+          "storeHits": 2428,
+          "storeEvictions": 324,
+          "storePeak": 64,
+          "segmentHits": 0,
+          "rootHits": 384,
+          "vectorReads": 9912,
+          "vectorWrites": 2760
+        },
+        "prefix": {
+          "work": 57064,
+          "allocation": 8586,
+          "likelihood": 3804,
+          "storeHits": 1816,
+          "storeEvictions": 1340,
+          "storePeak": 64,
+          "segmentHits": 440,
+          "rootHits": 288,
+          "vectorReads": 7368,
+          "vectorWrites": 6952
+        },
+        "tree": {
+          "work": 51850,
+          "allocation": 7829,
+          "likelihood": 3588,
+          "storeHits": 1680,
+          "storeEvictions": 1124,
+          "storePeak": 64,
+          "segmentHits": 784,
+          "rootHits": 304,
+          "vectorReads": 6832,
+          "vectorWrites": 6200
+        },
+        "tree16": {
+          "work": 109053,
+          "allocation": 14026,
+          "likelihood": 14484,
+          "storeHits": 1764,
+          "storeEvictions": 3596,
+          "storePeak": 16,
+          "segmentHits": 736,
+          "rootHits": 0,
+          "vectorReads": 7056,
+          "vectorWrites": 15664
+        }
+      }
+    },
+    {
+      "population": 7,
+      "roots": 4,
+      "parents": 64,
+      "queries": 1344,
+      "twoChanges": 1280,
+      "valueChecks": 8064,
+      "coeffChecks": 21760,
+      "maxError": 1.1102230246251565e-16,
+      "stats": {
+        "direct": {
+          "work": 50391,
+          "allocation": 28912,
+          "likelihood": 1116,
+          "storeHits": 0,
+          "storeEvictions": 0,
+          "storePeak": 0,
+          "segmentHits": 0,
+          "rootHits": 0,
+          "vectorReads": 0,
+          "vectorWrites": 0
+        },
+        "scalar": {
+          "work": 58947,
+          "allocation": 28912,
+          "likelihood": 1116,
+          "storeHits": 7705,
+          "storeEvictions": 0,
+          "storePeak": 214,
+          "segmentHits": 0,
+          "rootHits": 0,
+          "vectorReads": 7705,
+          "vectorWrites": 851
+        },
+        "fold": {
+          "work": 144469,
+          "allocation": 29893,
+          "likelihood": 6336,
+          "storeHits": 6332,
+          "storeEvictions": 1004,
+          "storePeak": 64,
+          "segmentHits": 0,
+          "rootHits": 436,
+          "vectorReads": 25576,
+          "vectorWrites": 5736
+        },
+        "prefix": {
+          "work": 223237,
+          "allocation": 32557,
+          "likelihood": 20784,
+          "storeHits": 5160,
+          "storeEvictions": 6328,
+          "storePeak": 64,
+          "segmentHits": 976,
+          "rootHits": 0,
+          "vectorReads": 20640,
+          "vectorWrites": 28320
+        },
+        "tree": {
+          "work": 168663,
+          "allocation": 23889,
+          "likelihood": 18120,
+          "storeHits": 3732,
+          "storeEvictions": 4592,
+          "storePeak": 64,
+          "segmentHits": 2328,
+          "rootHits": 0,
+          "vectorReads": 14932,
+          "vectorWrites": 21332
+        },
+        "tree16": {
+          "work": 238063,
+          "allocation": 28179,
+          "likelihood": 40512,
+          "storeHits": 2992,
+          "storeEvictions": 7888,
+          "storePeak": 16,
+          "segmentHits": 1740,
+          "rootHits": 0,
+          "vectorReads": 11968,
+          "vectorWrites": 33056
+        }
+      }
+    }
+  ]
+}

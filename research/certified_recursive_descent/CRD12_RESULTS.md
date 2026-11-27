@@ -1,0 +1,45 @@
+# CRD-12 | Exact local value formula and distilled utility
+2026-11-27. CRD-01–11 merged into main at f402322d176feb02a6a12bf0d000c93339997cec (PR #286, hosted MathCan mathematical checks success). CRD-12 protocol 3324c414a90eb601a0476c4330662443f483ed1d; initial source 6d664ae35c8e16667e9a8678b01c84c23e5c83d9; audit alignment fix a3f4112527eb76276918d5c5f543ac3136f78a85; frozen receipt 9dd7c0a3f25fe3533670254e8f260d74800df319. The initial replay stopped at an assertion because separate solvers intern posterior states in different orders; fixed comparison by mapping each local stage and exact integer belief into the reference intern table. No policy, model, split or hyperparameter changed. Positive exact-formula and decision-equivalence gates; surrogate alone loses utility. No new full TRM/BPD, theorem-proving or factoring result.
+
+## Exact local value theorem
+Assumptions: independent branches, a single local branch, mandatory sequential sensors preceding probes, no intermediate probe before sensors complete, unit action cost, no other local decisions while sensors are pending, conditionally independent sensor outcomes given hidden state, and three mutually exclusive successful terminal states 0,1,2. If current posterior p, m required sensors remain, and b calls are available, put k=min(3,b-m). For k<=0 value zero. For m=0 the optimal set of probes takes the k largest feasible posterior masses; stop on success. For m>0, a sensor word u has probability Z(u)=sum over all six states p_j Pr(u|j). Conditional posterior of feasible j is p_j Pr(u|j)/Z(u). For Z(u)>0 the optimal post-sensor success probability is the sum of the top k such terms. Multiplying by Z(u) cancels the denominator. Zero-probability sensor words contribute zero. Thus
+    V(p,m,b)=sum_u TopSum_k((p_j Pr(u|j))_(j=0,1,2)).
+When k>=3 the sum is total feasible mass, since each state's sensor likelihoods sum to one. The nontrivial computation uses at most 2^m outcome words, each with three feasible-state likelihood products; infeasible state weights are needed only for the initial normalized p. A legal forced reveal has Q=V, and a legal forced first probe j with m=0 has Q=p_j+TopSum_(b-1)(p_other feasible). The formula is not a general Bellman shortcut for adaptive optional sensors, differing costs, overlapping successful terminal events or coupled branches.
+
+Audit enumerates every reachable positive-feasible local posterior in each fixture and each budget 1..6, comparing V and legal Q against the independent original recursive solver. 512 development, 128 validation, 256 local test fixtures. V checks 61,626+16,938+34,692=113,256. Q checks 93,005+25,790+52,340=171,135. Total 284,391; max absolute discrepancy 2.22045e-16. These are numerical checks of a mathematical identity, not an interval-arithmetic or Lean proof. All three sensor depths and both nontrivial probe counts represented.
+
+## Local predictor
+273-parameter width-16 tanh MLP, scalar sigmoid output. Fit only nontrivial local V cases: m>0, k=1 or 2. 3,436 development rows, 924 validation rows, 1,924 fresh local test rows. All other cases and forced probe Q evaluated by the exact shortcuts. Inference clips predictions into the analytical interval [top-k current feasible masses, total feasible mass]. Lower bound follows from ignoring new sensor evidence and probing a fixed top-k set; upper bound from probing all feasible states. Fit 16 epochs, 64x32 batches per epoch, learning rate .08, frozen seed; choose epoch16 by validation clipped MAE .0606343. Gradient central-difference max error 7.44e-13. Local test MAE .0576208, MSE .00788558, median abs error .0330682, p90 .159539, p99 .260870, max .384141. No uniform learned error bound; clipping interval is valid by the task's structure, not by the neural approximation. Local labels and fixture states are synthetic; no real arithmetic/proof verifier in this task.
+
+## Frozen global head test
+192 fresh three-branch roots, each 1–3 sensors, cap2, budgets4 and6. Frozen CRD-11A recurrent global action head; only local value evaluation changed. DP and exact formula use the same 1e-12 score quantization and descending action-ID ties. The certified arm proposes with the surrogate, bounds the four local feature coordinates analytically, propagates intervals through the frozen affine/tanh layers and certifies a choice only when its lower score exceeds every competitor upper score with padding. If not, recompute exact formula scores and rank. A single legal action is vacuously certified. The implementation does not optimize exact tie cases and may fall back unnecessarily. Numerical padding is not rigorous floating-point interval certification.
+
+| Policy | Budget4 expected success | Budget6 expected success |
+|---|---:|---:|
+| Optimal | 59.7956% | 76.2801% |
+| Sensor-aware | 54.2042% | 68.1533% |
+| Local DP heuristic | 58.3713% | 72.8115% |
+| Rollout | 58.4918% | 74.1833% |
+| DP-feature head | 57.2571% | 72.7271% |
+| Formula-feature head | 57.2571% | 72.7271% |
+| Surrogate-feature head | 52.8256% | 72.1667% |
+| Certified fallback | 57.2571% | 72.7271% |
+
+Formula and certified head match DP-feature policy on every root at both budgets and all 12,070 reached decision-state comparisons (6,035 formula vs DP and 6,035 certified vs formula); values exactly equal in replay. All candidate interval checks on these audit states pass within tolerance. The audit maps local posterior states by stage and exact integer weights rather than raw intern IDs. 3,072 finite-model policy/root/budget evaluations, not physical verifier episodes. Formula, surrogate and certified inference all pass zero-local-DP-state/transition/query gate, excluding separate reference audits. Full policy remains below optimal and rollout; formula equality preserves the frozen head, not an optimality certificate.
+
+Budget6 surrogate vs formula mean -0.5605 pp, paired root bootstrap [-0.9164,-0.2299] pp, 32/49/111 wins/losses/ties. Vs sensor +4.0134 pp [3.0020,5.0988], 109/29/54. Vs local heuristic -.6449 pp [-1.2378,-.0921]. At budget4 surrogate vs formula -4.4315 pp [-5.6584,-3.3599]; vs sensor -1.3785 pp [-2.5000,-.2461]. Descriptive bootstrap intervals (2000 resamples), no multiplicity adjustment. At budget6 exact/certified expected calls 4.28224, surrogate 4.29674, sensor 4.01038, oracle 5.04749. Exact/certified heads had zero expected evictions; no learned eviction benefit.
+
+## Work accounting and conclusion
+Costs aggregate both budgets over each root with shared memoization. Reference audits excluded.
+
+| Head | Local DP states | Local DP transitions | Exact formula calls | Nontrivial formula calls | Pattern leaves | Neural local calls | Global head evaluations | Interval head evaluations |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| DP | 31,697 | 133,816 | 0 | 0 | 0 | 0 | 17,409 | 0 |
+| Formula | 0 | 0 | 8,257 | 1,756 | 6,744 | 0 | 17,409 | 0 |
+| Surrogate | 0 | 0 | 0 | 0 | 0 | 1,479 | 18,600 | 0 |
+| Certified | 0 | 0 | 1,772 | 908 | 4,150 | 1,460 | 20,399 | 17,409 |
+
+Certified decides directly 5,141/6,035 reached states (85.19%), falls back 894; reduces nontrivial exact formula calls by 48.29% and pattern leaves by 38.46% compared with formula-only. However it adds neural and interval evaluations. A formula leaf, local DP transition and neural/interval evaluation are unequal units; there is no CPU FLOP or wall-time advantage established. For m<=3 the exact formula is the strongest economical default: finite enumeration of up to 8 words with three masses each, no approximation or extra learned parameters. Do not interpret fallback as cheaper than formula-only without a measured benchmark. End-to-end JS isolate runtime 12.384s includes training, generation, evaluation and audits. Local formula cache has no physical byte cap. Actual RSS, standalone Node invocation and Lean compilation of CRD-01 ledger remain outstanding; original Cogentic main paper/companion formalization remain unaudited. Reproduce from repository root with node research/certified_recursive_descent/local_distillation.mjs.
+
+## Next: CRD-13 (unregistered)
+Investigate larger sensor depth and correlated hypotheses where naive local enumeration is no longer trivial. Use exact piecewise-linear top-k likelihood envelopes, dynamic programming on repeated/sufficient-statistic sensor types, certified branch-and-bound over sensor outcomes, and batched vectorized likelihood transport. Compare formula, memoized recursive DP and interval-certified approximations at measured operation counts and physical memory on local Node/Rust. For independent branches, local summary V is a strong feature but global resource allocation requires cross-branch opportunities; test a global structured knapsack/value-convolution baseline against learned residuals and rollout before claiming MMS gains. Preserve fallback for uncertain global choices. For a correlated-tree extension, local formula independence assumptions fail; use CRD-09 messages and evaluate separately. No new integer-factorization or ECDLP result follows.
