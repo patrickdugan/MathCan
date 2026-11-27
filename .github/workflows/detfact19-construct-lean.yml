@@ -1,0 +1,41 @@
+name: DETFACT-19 executable saturation roster and first strike
+on:
+  push:
+    paths: ['MathCan/DETFACT19Construct.lean','research/cogentic_deterministic_factoring/construct_audit.mjs','.github/workflows/detfact19-construct-lean.yml']
+  pull_request:
+    paths: ['MathCan/DETFACT19Construct.lean','research/cogentic_deterministic_factoring/construct_audit.mjs','.github/workflows/detfact19-construct-lean.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  kernel-and-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Check dependency modules and construction proofs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .lake/build/lib/lean/MathCan
+          for module in DETFACT15Stream DETFACT16Saturation DETFACT17OddSplit DETFACT18Enumeration; do
+            lake env lean -o ".lake/build/lib/lean/MathCan/$module.olean" "MathCan/$module.lean"
+          done | tee detfact19-axioms.txt
+          lake env lean MathCan/DETFACT19Construct.lean | tee -a detfact19-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|declaration uses .sorry.' detfact19-axioms.txt; then exit 1; fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay first-strike and maximal-power construction
+        run: node research/cogentic_deterministic_factoring/construct_audit.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: detfact19-axioms
+          path: detfact19-axioms.txt

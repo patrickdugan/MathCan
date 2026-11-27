@@ -1,0 +1,14 @@
+{
+  "schema": "DETFACT-19-exact",
+  "execution": "authoring JS runtime",
+  "indices": 143,
+  "base_candidates": 930,
+  "base_rosters": 143,
+  "first_strike_checks": 247161,
+  "offset_membership_checks": 864914,
+  "segment_configurations": 569,
+  "maximal_power_checks": 78645,
+  "lcm_checks": 569,
+  "negative_controls": 6,
+  "max_K": 65537
+}
