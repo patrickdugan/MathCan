@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'MathCan/Pregeometry/QuantumDiamond.lean'
+      - 'MathCan/Pregeometry/SmithObservation.lean'
+      - 'research/pregeometric_identifiability/smith_observation_audit.*'
       - 'MathCan/Pregeometry/Q3Curl.lean'
       - '.github/workflows/pgc-q3-curl.yml'
   push:
@@ -12,6 +14,8 @@ on:
     paths:
       - 'MathCan/Pregeometry/Q3Curl.lean'
       - 'MathCan/Pregeometry/QuantumDiamond.lean'
+      - 'MathCan/Pregeometry/SmithObservation.lean'
+      - 'research/pregeometric_identifiability/smith_observation_audit.*'
       - 'research/pregeometric_identifiability/q3_minimal_observation.py'
       - 'research/pregeometric_identifiability/q3_minimal_observation.json'
       - 'research/arithmetic_holonomy_rotor/ibm_qpu_01/q3_curvature.py'
@@ -44,6 +48,18 @@ jobs:
           set -euo pipefail
           lake env lean MathCan/Pregeometry/QuantumDiamond.lean | tee /tmp/quantumdiamond.log
           ! grep -q "sorry" /tmp/quantumdiamond.log
+      - name: Kernel-check certified observation fiber reductions
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/Pregeometry/SmithObservation.lean | tee /tmp/smith-observation.log
+          ! grep -q "sorry" /tmp/smith-observation.log
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay exact Smith and cyclic-grid audit
+        run: |
+          node research/pregeometric_identifiability/smith_observation_audit.mjs > /tmp/smith-observation.json
+          diff -u research/pregeometric_identifiability/smith_observation_audit.json /tmp/smith-observation.json
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
