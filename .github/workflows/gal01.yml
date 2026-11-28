@@ -4,6 +4,7 @@ on:
     paths:
       - 'MathCan/Galacticity.lean'
       - 'MathCan/GalacticityComposition.lean'
+      - 'MathCan/GalacticityAccess.lean'
       - '.github/workflows/gal01.yml'
   workflow_dispatch:
 permissions:
@@ -18,3 +19,4 @@ jobs:
           build: false
       - run: lake env lean MathCan/Galacticity.lean
       - run: lake env lean MathCan/GalacticityComposition.lean
+      - run: lake env lean MathCan/GalacticityAccess.lean
