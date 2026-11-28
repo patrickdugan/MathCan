@@ -138,7 +138,7 @@ theorem disjoint_zero_col (n : ℕ) (x : Cube n) :
   induction n with
   | zero =>
     cases x
-    simp [disjoint, zeroCube]
+    simp [disjoint, zeroCube, Matrix.one_apply]
   | succ n ih =>
     change (bitD K ⊗ₖ disjoint K n) x (0,zeroCube n) = 1
     obtain ⟨i,a⟩ := x
@@ -150,7 +150,7 @@ theorem disjoint_zero_row (n : ℕ) (y : Cube n) :
   induction n with
   | zero =>
     cases y
-    simp [disjoint, zeroCube]
+    simp [disjoint, zeroCube, Matrix.one_apply]
   | succ n ih =>
     change (bitD K ⊗ₖ disjoint K n) (0,zeroCube n) y = 1
     obtain ⟨j,b⟩ := y
