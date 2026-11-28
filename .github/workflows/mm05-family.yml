@@ -1,0 +1,44 @@
+name: MM05 fresh alpha-family corpus
+on:
+  pull_request:
+    paths:
+      - 'research/metamath_gym/mm05*'
+      - 'research/metamath_gym/test_mm05.py'
+      - '.github/workflows/mm05-family.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unit controls
+        run: python -m unittest discover -s research/metamath_gym -p test_mm05.py -v
+      - name: Obtain pinned sources and C verifier
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL https://raw.githubusercontent.com/metamath/set.mm/806509385370b29fe8b1723804777ac21b1ce194/set.mm -o "$RUNNER_TEMP/set.mm"
+          curl -fsSL https://raw.githubusercontent.com/david-a-wheeler/mmverify.py/63a2aa3815cd5bf67892dbfc7f2048cbb177524c/mmverify.py -o "$RUNNER_TEMP/mmverify.py"
+          git init "$RUNNER_TEMP/metamath-exe"
+          git -C "$RUNNER_TEMP/metamath-exe" fetch --depth=1 https://github.com/metamath/metamath-exe.git 580b4bd5ae6f2a0d746398b0033cddccba1b418b
+          git -C "$RUNNER_TEMP/metamath-exe" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/metamath-exe" rev-parse HEAD)" = 580b4bd5ae6f2a0d746398b0033cddccba1b418b
+          cd "$RUNNER_TEMP/metamath-exe/src"
+          gcc m*.c -o metamath
+      - name: Freeze new corpus
+        run: python research/metamath_gym/mm05_family.py "$RUNNER_TEMP/mmverify.py" "$RUNNER_TEMP/set.mm" "$RUNNER_TEMP/mm05"
+      - name: Independent replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          python "$RUNNER_TEMP/mmverify.py" "$RUNNER_TEMP/mm05/expanded-prefix.mm" -v 1 2>&1 | tee "$RUNNER_TEMP/mm05/expanded-python.log"
+          grep -Fq 'No errors were found.' "$RUNNER_TEMP/mm05/expanded-python.log"
+          PYTHONPATH=research/metamath_gym python -c 'import sys,json; from pathlib import Path; from c_differential import check,digest; e,p=map(Path,sys.argv[1:]); print(json.dumps({"verifier_sha256":digest(e),"certificate":check(e,p,True)}))' "$RUNNER_TEMP/metamath-exe/src/metamath" "$RUNNER_TEMP/mm05/expanded-prefix.mm" | tee "$RUNNER_TEMP/mm05/expanded-c.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mm05-family-corpus
+          path: ${{ runner.temp }}/mm05
