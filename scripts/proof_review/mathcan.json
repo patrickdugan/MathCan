@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "lean_version": "4.35.0",
+  "modules": [
+    {
+      "module": "MathCan.ObservableQuotient",
+      "graph": true,
+      "roots": [
+        {
+          "name": "MathCan.ObservableQuotient.factor_iff_fiber",
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "expected_axioms": [
+            "Classical.choice"
+          ]
+        },
+        {
+          "name": "MathCan.ObservableQuotient.factor_unique",
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "expected_axioms": [
+            "Quot.sound"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "MathCan.AuthorizationQuotient",
+      "graph": true,
+      "roots": [
+        {
+          "name": "MathCan.AuthorizationQuotient.classifier_exists_iff_fiber",
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "expected_axioms": [
+            "Classical.choice"
+          ],
+          "contract": "∀ {S : Type u} {O : Type v} {A : Type w} (obs : S → O) (authorized : S → A → Bool), Function.Surjective obs → ((∃ classify : O → A → Bool, ∀ s a, classify (obs s) a = authorized s a) ↔ MathCan.AuthorizationQuotient.AuthorizationFiberCompatible obs authorized)"
+        },
+        {
+          "name": "MathCan.AuthorizationQuotient.collision_forces_error",
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "expected_axioms": []
+        },
+        {
+          "name": "MathCan.AuthorizationQuotient.coarse_compatible_implies_fine",
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "expected_axioms": []
+        }
+      ]
+    },
+    {
+      "module": "MathCan.NOR19StreamedVerifier",
+      "graph": true,
+      "roots": [
+        {
+          "name": "MathCan.NOR19StreamedVerifier.streamed_exactly_iff_materialized_equal",
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "expected_axioms": [
+            "propext"
+          ]
+        },
+        {
+          "name": "MathCan.NOR19StreamedVerifier.streamed_rejection_iff_unequal",
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "expected_axioms": [
+            "propext"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "MathCan.MatchedStepMargin",
+      "graph": true,
+      "roots": [
+        {
+          "name": "MathCan.MatchedStepMargin.positive_margin_stable",
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "expected_axioms": [
+            "Quot.sound",
+            "propext"
+          ]
+        },
+        {
+          "name": "MathCan.MatchedStepMargin.negative_margin_stable",
+          "allowed_axioms": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "expected_axioms": [
+            "Quot.sound",
+            "propext"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "MathCan.ConstructiveObservationAudit",
+      "graph": false,
+      "roots": [
+        {
+          "name": "MathCan.ConstructiveObservationAudit.factor_of_section",
+          "allowed_axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "MathCan.ConstructiveObservationAudit.authorization_of_section",
+          "allowed_axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "MathCan.ConstructiveObservationAudit.lookup_sound",
+          "allowed_axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "MathCan.ConstructiveObservationAudit.lookup_complete",
+          "allowed_axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "MathCan.ConstructiveObservationAudit.finite_factor_correct",
+          "allowed_axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "MathCan.ConstructiveObservationAudit.finite_authorization_correct",
+          "allowed_axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "contract": "∀ {S : Type u} {O : Type v} {A : Type w} [DecidableEq O] (obs : S → O) (authorized : S → A → Bool) (xs : List S), MathCan.ConstructiveObservationAudit.CoversImage obs xs → MathCan.AuthorizationQuotient.AuthorizationFiberCompatible obs authorized → ∀ s a, MathCan.ConstructiveObservationAudit.finiteAuthorization obs authorized xs (obs s) a = authorized s a"
+        },
+        {
+          "name": "MathCan.ConstructiveObservationAudit.finite_authorization_denies_unseen",
+          "allowed_axioms": [
+            "propext",
+            "Quot.sound"
+          ],
+          "contract": "∀ {S : Type u} {O : Type v} {A : Type w} [DecidableEq O] (obs : S → O) (authorized : S → A → Bool) (xs : List S) (o : O) (a : A), (∀ s, s ∈ xs → obs s ≠ o) → MathCan.ConstructiveObservationAudit.finiteAuthorization obs authorized xs o a = false"
+        },
+        {
+          "name": "MathCan.ConstructiveObservationAudit.demo_monitor_correct",
+          "allowed_axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        },
+        {
+          "name": "MathCan.ConstructiveObservationAudit.demo_monitor_unknown_denied",
+          "allowed_axioms": [
+            "propext",
+            "Quot.sound"
+          ]
+        }
+      ]
+    }
+  ]
+}

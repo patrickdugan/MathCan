@@ -1,0 +1,83 @@
+name: RefutationBench application proof review
+on:
+  push:
+    paths:
+      - 'scripts/proof_review/**'
+      - 'MathCan/ConstructiveObservationAudit.lean'
+      - 'MathCan/AuthorizationQuotient.lean'
+      - 'MathCan/ObservableQuotient.lean'
+      - 'MathCan/NOR19StreamedVerifier.lean'
+      - 'MathCan/MatchedStepMargin.lean'
+      - '.github/workflows/refutationbench-application-review.yml'
+  pull_request:
+    paths:
+      - 'scripts/proof_review/**'
+      - 'MathCan/ConstructiveObservationAudit.lean'
+      - 'MathCan/AuthorizationQuotient.lean'
+      - 'MathCan/ObservableQuotient.lean'
+      - 'MathCan/NOR19StreamedVerifier.lean'
+      - 'MathCan/MatchedStepMargin.lean'
+      - '.github/workflows/refutationbench-application-review.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned Lean 4.35
+        run: |
+          curl --fail --location --retry 3 https://github.com/leanprover/lean4/releases/download/v4.35.0/lean-4.35.0-linux.tar.zst -o /tmp/lean435.tar.zst
+          tar --zstd -xf /tmp/lean435.tar.zst -C /tmp
+          echo "/tmp/lean-4.35.0-linux/bin" >> "$GITHUB_PATH"
+      - name: Native theorem review
+        run: |
+          python -u scripts/proof_review/review.py --manifest scripts/proof_review/mathcan.json --out /tmp/proof-review/positive
+      - name: Negative policy and statement contract controls
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          manifest=json.loads(Path("scripts/proof_review/mathcan.json").read_text())
+          original=manifest["modules"][0]
+          factor=dict(original["roots"][0])
+          factor["allowed_axioms"]=["propext","Quot.sound"]
+          bad_policy={**manifest,"modules":[{**original,"roots":[factor]}]}
+          Path("/tmp/proof-review/deny-choice.json").write_text(json.dumps(bad_policy))
+          bad_contract=dict(original["roots"][0])
+          bad_contract["contract"]="False"
+          bad_type={**manifest,"modules":[{**original,"graph":False,"roots":[bad_contract]}]}
+          Path("/tmp/proof-review/bad-contract.json").write_text(json.dumps(bad_type))
+          PY
+          set +e
+          python -u scripts/proof_review/review.py --manifest /tmp/proof-review/deny-choice.json --out /tmp/proof-review/negative-policy
+          policy_status=$?
+          python -u scripts/proof_review/review.py --manifest /tmp/proof-review/bad-contract.json --out /tmp/proof-review/negative-contract
+          contract_status=$?
+          set -e
+          test "$policy_status" -eq 1
+          test "$contract_status" -ne 0
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          review=json.loads(Path("/tmp/proof-review/negative-policy/review.json").read_text())
+          assert not review["passed"] and len(review["roots"])==1
+          root=review["roots"][0]
+          assert root["axioms"]==["Classical.choice"]
+          assert root["status"]=="FAIL" and root["errors"]==["unapproved axioms: Classical.choice"]
+          assert root["axiom_paths"]["Classical.choice"]["path"][0]==root["name"]
+          log=Path("/tmp/proof-review/negative-contract/MathCan.ObservableQuotient-audit.log").read_text()
+          assert "type mismatch" in log.lower(),log
+          print("NEGATIVE_CONTROLS policy_and_contract=PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-proof-review
+          path: /tmp/proof-review
+          retention-days: 30
