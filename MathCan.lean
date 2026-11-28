@@ -165,3 +165,4 @@ import MathCan.ZKLeanAlgebra
 import MathCan.ZKLeanPoly
 import MathCan.ZKLeanLocal
 import MathCan.ZKLeanCompose
+import MathCan.ZKLeanSettlement
