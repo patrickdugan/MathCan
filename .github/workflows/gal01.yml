@@ -1,0 +1,32 @@
+name: GAL-01 Lean candidate
+on:
+  pull_request:
+    paths:
+      - 'MathCan/Galacticity.lean'
+      - 'MathCan/GalacticityComposition.lean'
+      - 'MathCan/GalacticityAccess.lean'
+      - 'MathCan/GalacticityMarkets.lean'
+      - 'MathCan/GalacticityCapital.lean'
+      - 'MathCan/GalacticityRisk.lean'
+      - 'MathCan/GalacticityEpistemic.lean'
+      - 'MathCan/GalacticityCertificates.lean'
+      - '.github/workflows/gal01.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          build: false
+      - run: lake env lean MathCan/Galacticity.lean
+      - run: lake env lean MathCan/GalacticityComposition.lean
+      - run: lake env lean MathCan/GalacticityAccess.lean
+      - run: lake env lean MathCan/GalacticityMarkets.lean
+      - run: lake env lean MathCan/GalacticityCapital.lean
+      - run: lake env lean MathCan/GalacticityRisk.lean
+      - run: lake env lean MathCan/GalacticityEpistemic.lean
+      - run: lake env lean MathCan/GalacticityCertificates.lean
