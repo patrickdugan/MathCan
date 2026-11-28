@@ -1,0 +1,42 @@
+name: COE-03 soft probe finite Lean certificates
+
+on:
+  pull_request:
+    paths:
+      - 'MathCan/SoftObserverPrecision.lean'
+      - 'MathCan.lean'
+      - 'research/compactification/SOFT_PRECISION_DEPTH.md'
+      - '.github/workflows/coe03-soft-observers.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'MathCan/SoftObserverPrecision.lean'
+      - 'MathCan.lean'
+      - '.github/workflows/coe03-soft-observers.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lean-kernel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Kernel and axiom inventory for COE-03
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/SoftObserverPrecision.lean | tee coe03-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' coe03-axioms.txt; then
+            echo 'Unexpected admitted proof or reduction axiom'
+            exit 1
+          fi

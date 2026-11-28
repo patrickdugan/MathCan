@@ -1,0 +1,39 @@
+name: AHR-QPU-02 mock-backend compilation and noise gate
+
+on:
+  pull_request:
+    paths:
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_02/**'
+      - '.github/workflows/ahr-qpu-02.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_02/**'
+      - '.github/workflows/ahr-qpu-02.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  fake-backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned Qiskit and Aer dependencies
+        working-directory: research/arithmetic_holonomy_rotor/ibm_qpu_01
+        run: python -m pip install -r requirements-qiskit.txt
+      - name: Test read-only guards and mock calibration
+        working-directory: research/arithmetic_holonomy_rotor/ibm_qpu_02
+        run: python -m pytest -q tests/test_backend_gate.py
+      - name: Run full-shot historical backend noise audit
+        working-directory: research/arithmetic_holonomy_rotor/ibm_qpu_02
+        run: python backend_gate.py --mode fake --shots 2048 --output receipts/fake_backend_report.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ahr-qpu-02-historical-snapshot
+          path: research/arithmetic_holonomy_rotor/ibm_qpu_02/receipts/fake_backend_report.json
+          retention-days: 30

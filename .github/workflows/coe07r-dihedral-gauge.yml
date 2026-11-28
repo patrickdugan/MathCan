@@ -1,0 +1,38 @@
+name: COE-07R dihedral observer finite and Lean audit
+on:
+  pull_request:
+    paths:
+      - 'MathCan/DihedralPhaseGauge.lean'
+      - 'MathCan.lean'
+      - 'research/compactification/DIHEDRAL_GAUGE_OBSERVER_LEDGER.md'
+      - 'tests/test_dihedral_phase_gauge.py'
+      - '.github/workflows/coe07r-dihedral-gauge.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  finite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p 'test_dihedral_phase_gauge.py' -v
+  lean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Check finite theorems and transitive axiom inventory
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/DihedralPhaseGauge.lean | tee coe07r-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' coe07r-axioms.txt; then exit 1; fi

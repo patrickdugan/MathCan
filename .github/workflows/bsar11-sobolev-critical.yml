@@ -1,0 +1,75 @@
+name: BSAR-11 critical Sobolev cone-cost exact audit
+
+on:
+  pull_request:
+    paths:
+      - "scripts/bsar11_sobolev_critical_audit.py"
+      - "tests/test_bsar11_sobolev_critical_audit.py"
+      - "research/bsar_audit/BSAR11_CRITICAL_SOBOLEV_CONE.md"
+      - ".github/workflows/bsar11-sobolev-critical.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/bsar11_sobolev_critical_audit.py"
+      - "tests/test_bsar11_sobolev_critical_audit.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exactly-helical:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify upstream Fourier script pin
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/bsar10_beltrami_energy_audit.py)" =             "87045b392a43477e524e3f844b312324db08c7bf"
+          python -m py_compile scripts/bsar11_sobolev_critical_audit.py
+      - name: Verify exact Gaussian Fourier and fractional Sobolev scaling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p 'test_bsar11_sobolev_critical_audit.py' -v
+      - name: Freeze exact 360-case rational cone-cost archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar11
+          python scripts/bsar11_sobolev_critical_audit.py generate --out artifacts/bsar11
+          python scripts/bsar11_sobolev_critical_audit.py audit --out artifacts/bsar11
+          sha256sum scripts/bsar11_sobolev_critical_audit.py > artifacts/bsar11/source.sha256
+          python - <<'PY'
+          import json
+          from collections import Counter
+          from pathlib import Path
+          p = Path("artifacts/bsar11/manifest.json")
+          manifest = json.loads(p.read_text(encoding="utf-8"))
+          assert manifest["cases"] == 360
+          assert manifest["fixed_homogeneous_Hs_norm_squared"] == "1/1"
+          rows = [json.loads(line) for line in
+                  (p.parent / "cases.jsonl").read_text().splitlines() if line]
+          assert len(rows) == 360
+          assert Counter(x["regime"] for x in rows) == {
+              "diverging": 144, "critical": 72, "decaying": 144
+          }
+          assert all(x["if_gate_J_ge_scale_over_4nu"] for x in rows)
+          assert all(x["initial_homogeneous_Hs_seminorm_squared"] == "1/1"
+                     for x in rows)
+          assert all(x["positive_start_cone_integral_upper_rational"] != "0/1"
+                     for x in rows)
+          print("BSAR-11 rational norm, initial layer and scale receipts verified")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bsar11-exact-fourier-critical-sobolev
+          path: artifacts/bsar11/
+          retention-days: 14

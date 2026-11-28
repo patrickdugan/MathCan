@@ -1,0 +1,43 @@
+name: SPC-01 exact spectral-aliasing certificates
+on:
+  push:
+    paths:
+      - 'MathCan/SpectralAliasing.lean'
+      - 'MathCan.lean'
+      - 'tests/test_spectral_aliasing.py'
+      - '.github/workflows/spc01-spectral-aliasing.yml'
+  pull_request:
+    paths:
+      - 'MathCan/SpectralAliasing.lean'
+      - 'MathCan.lean'
+      - 'tests/test_spectral_aliasing.py'
+      - '.github/workflows/spc01-spectral-aliasing.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-finite-field-oracle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p test_spectral_aliasing.py -v
+  lean-fourier-certificates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Check specific module and axioms
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/SpectralAliasing.lean | tee spc01-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' spc01-axioms.txt; then exit 1; fi

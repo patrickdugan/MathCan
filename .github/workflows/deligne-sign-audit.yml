@@ -1,0 +1,47 @@
+name: DEL-01 finite-field Deligne sign audit
+
+on:
+  push:
+    branches: [audit/deligne-sign-20261122]
+  pull_request:
+    paths:
+      - 'MathCan/DeligneSignAudit.lean'
+      - 'research/deligne_sign_audit/**'
+      - 'tests/test_deligne_sign_audit.py'
+      - '.github/workflows/deligne-sign-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-oracles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run exact cyclotomic and mutation fixtures
+        run: python -m unittest -v tests.test_deligne_sign_audit
+
+  lean-sign:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Kernel-check DEL-01 and inspect axiom output
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/DeligneSignAudit.lean | tee deligne-sign-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne-sign-axioms.txt; then
+            echo 'Unexpected proof axiom detected.'
+            exit 1
+          fi

@@ -1,0 +1,39 @@
+name: COE-09 label synchronization and dark-fiber invariance
+on:
+  pull_request:
+    paths:
+      - 'MathCan/ObserverLabelAlignment.lean'
+      - 'MathCan.lean'
+      - 'research/compactification/OBSERVER_LABEL_ALIGNMENT.md'
+      - 'tests/test_observer_label_alignment.py'
+      - '.github/workflows/coe09-label-alignment.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-oracle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p 'test_observer_label_alignment.py' -v
+  lean-kernel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Check finite source theorem and transitive axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/ObserverLabelAlignment.lean | tee coe09-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' coe09-axioms.txt; then exit 1; fi

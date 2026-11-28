@@ -1,0 +1,81 @@
+name: NRF-04 observable closure and family-factor proofs
+
+on:
+  push:
+    paths:
+      - 'MathCan.lean'
+      - 'MathCan/ObservableFamily.lean'
+      - 'MathCan/ObservablePareto.lean'
+      - 'MathCan/ObservableQuotient.lean'
+      - 'research/compactification/observable_closure.py'
+      - 'tests/test_observable_closure.py'
+      - 'MathCan/GateFamilyNoGo.lean'
+      - 'research/compactification/global_gate_nogo.py'
+      - 'tests/test_global_gate_nogo.py'
+      - 'MathCan/JordanDepth.lean'
+      - 'MathCan/SuffixTransport.lean'
+      - 'research/compactification/suffix_leakage_transport.py'
+      - 'tests/test_suffix_leakage_transport.py'
+      - 'research/compactification/jordan_depth_frontier.py'
+      - 'tests/test_jordan_depth_frontier.py'
+      - '.github/workflows/nrf04-observable-closure.yml'
+  pull_request:
+    paths:
+      - 'MathCan.lean'
+      - 'MathCan/ObservableFamily.lean'
+      - 'MathCan/ObservablePareto.lean'
+      - 'MathCan/ObservableQuotient.lean'
+      - 'research/compactification/observable_closure.py'
+      - 'tests/test_observable_closure.py'
+      - 'MathCan/GateFamilyNoGo.lean'
+      - 'research/compactification/global_gate_nogo.py'
+      - 'tests/test_global_gate_nogo.py'
+      - 'MathCan/JordanDepth.lean'
+      - 'MathCan/SuffixTransport.lean'
+      - 'research/compactification/suffix_leakage_transport.py'
+      - 'tests/test_suffix_leakage_transport.py'
+      - 'research/compactification/jordan_depth_frontier.py'
+      - 'tests/test_jordan_depth_frontier.py'
+      - '.github/workflows/nrf04-observable-closure.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-oracle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest tests.test_observable_closure tests.test_global_gate_nogo tests.test_jordan_depth_frontier tests.test_suffix_leakage_transport -v
+
+  lean-abstract-family:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Verify family-factor transitive axioms
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/ObservableFamily.lean | tee nrf04-axioms.txt
+          lake env lean MathCan/GateFamilyNoGo.lean | tee -a nrf04-axioms.txt
+          lake env lean MathCan/JordanDepth.lean | tee -a nrf04-axioms.txt
+          lake env lean MathCan/SuffixTransport.lean | tee -a nrf04-axioms.txt
+          lake env lean MathCan/ObservablePareto.lean | tee -a nrf04-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' nrf04-axioms.txt; then
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nrf04-lean-family-axioms
+          path: nrf04-axioms.txt

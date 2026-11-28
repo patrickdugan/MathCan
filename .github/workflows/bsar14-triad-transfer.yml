@@ -1,0 +1,80 @@
+name: BSAR-14 exact 3D Leray triad and cone initial audit
+
+on:
+  pull_request:
+    paths:
+      - "scripts/bsar14_initial_triad_transfer.py"
+      - "tests/test_bsar14_initial_triad_transfer.py"
+      - "research/bsar_audit/BSAR14_INITIAL_TRIAD_TRANSFER.md"
+      - ".github/workflows/bsar14-triad-transfer.yml"
+  push:
+    branches: [main, audit/bsar14-triad-projection-20261122]
+    paths:
+      - "scripts/bsar14_initial_triad_transfer.py"
+      - "tests/test_bsar14_initial_triad_transfer.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-initial-triad:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Pin BSAR-10, 11 and 13 exact Gaussian Fourier inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/bsar10_beltrami_energy_audit.py)" = "87045b392a43477e524e3f844b312324db08c7bf"
+          test "$(git hash-object scripts/bsar11_sobolev_critical_audit.py)" = "07d76458b8d27aba893136a5b07a04e3ed2c460e"
+          test "$(git hash-object scripts/bsar13_abc_pressure.py)" = "90af5522c60183dfaf191d325c771cf033fea6d0"
+          python -m py_compile scripts/bsar14_initial_triad_transfer.py
+      - name: Test exact non-gradient NSE triad, shell flux and core endpoints
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s tests -p 'test_bsar14_initial_triad_transfer.py' -v
+      - name: Freeze and replay 360 exact paired initial-state cases
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar14
+          python scripts/bsar14_initial_triad_transfer.py generate --out artifacts/bsar14
+          python scripts/bsar14_initial_triad_transfer.py audit --out artifacts/bsar14
+          sha256sum scripts/bsar14_initial_triad_transfer.py > artifacts/bsar14/source.sha256
+          python - <<'PY'
+          import json
+          from collections import Counter, defaultdict
+          from fractions import Fraction
+          from pathlib import Path
+          root = Path("artifacts/bsar14")
+          manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+          rows = [json.loads(s) for s in (root / "cases.jsonl").read_text(encoding="utf-8").splitlines() if s]
+          assert manifest["cases"] == len(rows) == 360
+          assert manifest["phase_matched_pairs"] == 180
+          assert manifest["nonzero_leray_projected_interaction"]
+          assert manifest["genuine_vorticity_stretching_at_t0"]
+          assert Counter(r["phase_sigma"] for r in rows) == {1: 180, -1: 180}
+          assert Counter(r["q"] for r in rows) == dict.fromkeys(range(5), 72)
+          grouped = defaultdict(list)
+          for r in rows:
+              grouped[r["pair_id"]].append(r)
+              assert sum((Fraction(x) for x in r["shell_nonlinear_transfer"].values()), Fraction()) == 0
+              assert r["anchor_direction_difference_sq"] == "50/13"
+              assert r["pressure_poisson_exact"] and r["projection_solenoidal"]
+          assert all(len(pair) == 2 and {x["phase_sigma"] for x in pair} == {-1, 1}
+                     for pair in grouped.values())
+          print("BSAR-14 exact triad and phase-pair receipts passed")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bsar14-exact-triad-leray-stretching
+          path: artifacts/bsar14/
+          retention-days: 14

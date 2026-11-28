@@ -1,0 +1,54 @@
+name: SPC-02 finite phase separation and deferred-state certificates
+
+on:
+  push:
+    paths:
+      - 'MathCan/SpectralStability.lean'
+      - 'MathCan.lean'
+      - 'tests/test_spectral_stability.py'
+      - 'research/spectral_aliasing/SPC-02.md'
+      - '.github/workflows/spc02-spectral-stability.yml'
+  pull_request:
+    paths:
+      - 'MathCan/SpectralStability.lean'
+      - 'MathCan.lean'
+      - 'tests/test_spectral_stability.py'
+      - 'research/spectral_aliasing/SPC-02.md'
+      - '.github/workflows/spc02-spectral-stability.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-arithmetic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent F7 root and support oracle
+        run: python -m unittest discover -s tests -p 'test_spectral_stability.py' -v
+  lean-kernel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Recheck exact new theorem axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/SpectralStability.lean | tee spc02-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' spc02-axioms.txt; then exit 1; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: spc02-axiom-audit
+          path: spc02-axioms.txt
+          if-no-files-found: warn

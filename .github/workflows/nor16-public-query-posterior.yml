@@ -1,0 +1,47 @@
+name: NOR-16 kernel public query posterior and observation collision bounds
+
+on:
+  push:
+    paths:
+      - 'MathCan/NOR16PublicQueryConsensus.lean'
+      - 'MathCan.lean'
+      - 'research/nor16/**'
+      - '.github/workflows/nor16-public-query-posterior.yml'
+  pull_request:
+    paths:
+      - 'MathCan/NOR16PublicQueryConsensus.lean'
+      - 'MathCan.lean'
+      - 'research/nor16/**'
+      - '.github/workflows/nor16-public-query-posterior.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-posterior-and-collision:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Confirm exact finite posterior count bounds and axiom inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/NOR16PublicQueryConsensus.lean | tee nor16-posterior-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:|admit' nor16-posterior-axioms.txt; then
+            echo 'Unproved or native reduction marker detected'
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nor16-public-query-consensus-lean-axioms
+          path: nor16-posterior-axioms.txt

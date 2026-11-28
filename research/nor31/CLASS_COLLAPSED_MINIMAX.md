@@ -1,0 +1,11 @@
+# NOR-31: quotient duplicated audit policies and enforce a template floor
+
+Continuation of the exact authenticated-coordinate witness line from NOR-23 through NOR-30.
+
+NOR-30's shuffled_prior uniformly permutes an arbitrary fixed ranking before inspecting its first k coordinates. Composition of an arbitrary fixed permutation with a uniform random permutation is itself uniformly distributed. Lean NOR31ClassCollapsedMinimax proves the underlying **bijection of permutation spaces** using an explicit inverse, so the two defender classes can be identified for an ideal uniformly sampled audit. An exact finite-game lemma proves that combining the weights of two identical payoff columns preserves every attacker-row score.
+
+NOR-31 excludes shuffled_prior from the six eligible defender columns. The old shuffled attack family remains part of the training and evaluation adversaries. Historical NOR-26 provides all seven attacker rows, whereas the source-locked NOR-30 original template control provides separate weighted 4:3:2:1 counts for tail, magnitude, lag and background attacks. A frozen training-only constraint requires at least **18%** weighted historical template detection and between 2 and 12 of 16 quanta assigned to the explicit uniform arm.
+
+The Lean theorem template_floor_excludes_uniform_only proves an abstract necessity: if the registered floor is higher than the maximum uniform-only template numerator, every feasible allocation requires positive weight on genuinely distinct risk-targeted auditors. A generic finite-mixture theorem inherits exact nonnegative weighted detection floors and the positive uniform component retains a conditional positive worst-case bound. These statements are conditional on valid per-arm floors, authentic external target coefficients, and attacks frozen before independently sampled audit coins.
+
+The first mathematical evidence is a structural result. It neither establishes that the historical optimizer generalizes to new attacks nor proves pseudorandom security, true OS entropy, SHA/HMAC binding, or unconditional target correctness. The companion applied preregistration uses **12 fresh RRC25 source identities** and fixes all five source-level PASS/FAIL gates before generating those sources.

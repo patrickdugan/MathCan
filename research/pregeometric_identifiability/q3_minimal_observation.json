@@ -1,0 +1,383 @@
+{
+ "evidence_class": "exact integer algebra (Fraction) + ideal/noisy NumPy simulation; no Q3 hardware",
+ "exact": {
+  "edges": 12,
+  "faces": 6,
+  "rank_curl": 5,
+  "bianchi_left_null": true,
+  "gauge_dim_edge_kernel": 7,
+  "curl_kills_gradients": true,
+  "rank_gradient_image": 7,
+  "cycle_dof": 5,
+  "left_null_dim": 1,
+  "chord_block_rank": 5,
+  "chord_block_5x5_dets_by_omitted_face": [
+   -1,
+   -1,
+   1,
+   1,
+   -1,
+   -1
+  ],
+  "every_five_face_subset_unimodular": true
+ },
+ "five_face_subsets": [
+  {
+   "faces": [
+    0,
+    1,
+    2,
+    3,
+    4
+   ],
+   "rank": 5,
+   "unobserved_cycle_dim": 0,
+   "cond_edge_space": 2.802517076888147,
+   "cond_chord_gauge": 5.685666412207295,
+   "full_cycle_recovery": true
+  },
+  {
+   "faces": [
+    0,
+    1,
+    2,
+    3,
+    5
+   ],
+   "rank": 5,
+   "unobserved_cycle_dim": 0,
+   "cond_edge_space": 2.8025170768881473,
+   "cond_chord_gauge": 5.685666412207292,
+   "full_cycle_recovery": true
+  },
+  {
+   "faces": [
+    0,
+    1,
+    2,
+    4,
+    5
+   ],
+   "rank": 5,
+   "unobserved_cycle_dim": 0,
+   "cond_edge_space": 2.8025170768881464,
+   "cond_chord_gauge": 4.791287847477918,
+   "full_cycle_recovery": true
+  },
+  {
+   "faces": [
+    0,
+    1,
+    3,
+    4,
+    5
+   ],
+   "rank": 5,
+   "unobserved_cycle_dim": 0,
+   "cond_edge_space": 2.8025170768881478,
+   "cond_chord_gauge": 5.685666412207291,
+   "full_cycle_recovery": true
+  },
+  {
+   "faces": [
+    0,
+    2,
+    3,
+    4,
+    5
+   ],
+   "rank": 5,
+   "unobserved_cycle_dim": 0,
+   "cond_edge_space": 2.8025170768881478,
+   "cond_chord_gauge": 2.618033988749895,
+   "full_cycle_recovery": true
+  },
+  {
+   "faces": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "rank": 5,
+   "unobserved_cycle_dim": 0,
+   "cond_edge_space": 2.8025170768881478,
+   "cond_chord_gauge": 6.846396067828399,
+   "full_cycle_recovery": true
+  }
+ ],
+ "subset_rank_summary": {
+  "1": [
+   1
+  ],
+  "2": [
+   2
+  ],
+  "3": [
+   3
+  ],
+  "4": [
+   4
+  ],
+  "5": [
+   5
+  ],
+  "6": [
+   5
+  ]
+ },
+ "minimal_cycle_recovery_size": 5,
+ "gauge": {
+  "trials": 200,
+  "max_flux_change_under_vertex_gauge": 1.7763568394002505e-15
+ },
+ "restricted_indistinguishable": [
+  {
+   "faces": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "unobserved_dim": 1,
+   "same_observed_flux_gap": 4.440892098500626e-16,
+   "full_flux_gap": 0.9899494936611664,
+   "indistinguishable_pair_found": true
+  },
+  {
+   "faces": [
+    0,
+    1,
+    2,
+    4
+   ],
+   "unobserved_dim": 1,
+   "same_observed_flux_gap": 8.881784197001252e-16,
+   "full_flux_gap": 1.0844353369380775,
+   "indistinguishable_pair_found": true
+  },
+  {
+   "faces": [
+    0,
+    1,
+    2,
+    5
+   ],
+   "unobserved_dim": 1,
+   "same_observed_flux_gap": 4.440892098500626e-16,
+   "full_flux_gap": 1.0844353369380766,
+   "indistinguishable_pair_found": true
+  },
+  {
+   "faces": [
+    0,
+    1,
+    3,
+    4
+   ],
+   "unobserved_dim": 1,
+   "same_observed_flux_gap": 0.0,
+   "full_flux_gap": 1.0844353369380766,
+   "indistinguishable_pair_found": true
+  },
+  {
+   "faces": [
+    0,
+    1,
+    3,
+    5
+   ],
+   "unobserved_dim": 1,
+   "same_observed_flux_gap": 8.881784197001252e-16,
+   "full_flux_gap": 1.0844353369380766,
+   "indistinguishable_pair_found": true
+  },
+  {
+   "faces": [
+    0,
+    1,
+    4,
+    5
+   ],
+   "unobserved_dim": 1,
+   "same_observed_flux_gap": 4.440892098500626e-16,
+   "full_flux_gap": 0.9899494936611664,
+   "indistinguishable_pair_found": true
+  },
+  {
+   "faces": [
+    0,
+    2,
+    3,
+    4
+   ],
+   "unobserved_dim": 1,
+   "same_observed_flux_gap": 4.440892098500626e-16,
+   "full_flux_gap": 1.0844353369380766,
+   "indistinguishable_pair_found": true
+  },
+  {
+   "faces": [
+    0,
+    2,
+    3,
+    5
+   ],
+   "unobserved_dim": 1,
+   "same_observed_flux_gap": 8.881784197001252e-16,
+   "full_flux_gap": 1.0844353369380775,
+   "indistinguishable_pair_found": true
+  },
+  {
+   "faces": [
+    0,
+    2,
+    4,
+    5
+   ],
+   "unobserved_dim": 1,
+   "same_observed_flux_gap": 4.440892098500626e-16,
+   "full_flux_gap": 1.0844353369380766,
+   "indistinguishable_pair_found": true
+  },
+  {
+   "faces": [
+    0,
+    3,
+    4,
+    5
+   ],
+   "unobserved_dim": 1,
+   "same_observed_flux_gap": 4.440892098500626e-16,
+   "full_flux_gap": 1.0844353369380766,
+   "indistinguishable_pair_found": true
+  },
+  {
+   "faces": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "unobserved_dim": 1,
+   "same_observed_flux_gap": 8.881784197001252e-16,
+   "full_flux_gap": 1.0844353369380766,
+   "indistinguishable_pair_found": true
+  },
+  {
+   "faces": [
+    1,
+    2,
+    3,
+    5
+   ],
+   "unobserved_dim": 1,
+   "same_observed_flux_gap": 0.0,
+   "full_flux_gap": 1.0844353369380766,
+   "indistinguishable_pair_found": true
+  },
+  {
+   "faces": [
+    1,
+    2,
+    4,
+    5
+   ],
+   "unobserved_dim": 1,
+   "same_observed_flux_gap": 1.3322676295501878e-15,
+   "full_flux_gap": 1.0844353369380775,
+   "indistinguishable_pair_found": true
+  },
+  {
+   "faces": [
+    1,
+    3,
+    4,
+    5
+   ],
+   "unobserved_dim": 1,
+   "same_observed_flux_gap": 4.440892098500626e-16,
+   "full_flux_gap": 1.0844353369380766,
+   "indistinguishable_pair_found": true
+  },
+  {
+   "faces": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "unobserved_dim": 1,
+   "same_observed_flux_gap": 3.1086244689504383e-15,
+   "full_flux_gap": 0.989949493661169,
+   "indistinguishable_pair_found": true
+  }
+ ],
+ "orientation": {
+  "trials": 400,
+  "mean_consistent_sign_patterns_cos_only": 2.0,
+  "max_consistent_sign_patterns_cos_only": 2,
+  "quadrature_patterns": 1,
+  "global_reflection_always_consistent": true,
+  "fraction_trials_exactly_two": 1.0,
+  "z2_flux_sector_orientation_blind": true
+ },
+ "bianchi_projection": {
+  "n": 4000,
+  "mean_sq_error_raw": 0.049891819342114146,
+  "mean_sq_error_unweighted_projection": 0.0416523578876277,
+  "mean_sq_error_covariance_weighted_projection": 0.035147239397340685,
+  "expected_weighted_projection_error": 0.035500000000000004,
+  "bianchi_residual_sd_empirical": 0.22233809934371349,
+  "bianchi_residual_sd_theory": 0.223606797749979,
+  "sixth_face_prediction_residual_sd_by_held_out_face": {
+   "0": 0.22548760803557216,
+   "1": 0.22193598912525622,
+   "2": 0.2303665132248682,
+   "3": 0.22931168387705309,
+   "4": 0.2189906059852503,
+   "5": 0.22678802270966145
+  },
+  "abs_bianchi_residual_for_0p3_rad_bias_on_face_k": [
+   0.31050521506530854,
+   0.3200162237774669,
+   0.33253130240160905,
+   0.31944663354977415,
+   0.3161978123676269,
+   0.31272724843971633
+  ],
+  "bianchi_integer_n_histogram": {
+   "-2": 25,
+   "-1": 700,
+   "0": 1601,
+   "1": 657,
+   "2": 17
+  },
+  "fraction_configs_needing_2pi_branch_correction": 0.4663333333333333,
+  "max_error_unwrapped_residual_projection": 3.139487528133487,
+  "max_error_wrapped_residual_projection": 0.4200877085206365
+ },
+ "reconstruction": {
+  "trials": 400,
+  "max_chord_phase_error_mod_2pi": 1.7763568394002505e-15
+ },
+ "existing_hardware_receipts": "ibm_qpu_01/receipts/hardware_q2 covers one Q2 face only; Q3 is simulation-only",
+ "checks": {
+  "rank_curl_is_5": true,
+  "bianchi_is_left_null": true,
+  "gauge_dim_7": true,
+  "cycle_dof_5": true,
+  "vertex_gauge_in_kernel": true,
+  "all_five_face_subsets_unimodular": true,
+  "all_six_five_subsets_rank5": true,
+  "four_face_subsets_all_rank4": true,
+  "minimal_size_is_5": true,
+  "gauge_invariance": true,
+  "reconstruction_exact": true,
+  "every_restricted_set_has_indistinguishable_pair": true,
+  "wrapped_projection_beats_unwrapped_on_branches": true,
+  "weighted_projection_beats_unweighted": true,
+  "cos_only_orientation_ambiguous": true
+ }
+}

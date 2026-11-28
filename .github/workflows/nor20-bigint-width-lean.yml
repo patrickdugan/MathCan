@@ -1,0 +1,47 @@
+name: NOR-20 exact coefficient bit-width and streamed public workspace bounds
+
+on:
+  push:
+    paths:
+      - 'MathCan/NOR20BigintWidthBounds.lean'
+      - 'MathCan.lean'
+      - 'research/nor20/**'
+      - '.github/workflows/nor20-bigint-width-lean.yml'
+  pull_request:
+    paths:
+      - 'MathCan/NOR20BigintWidthBounds.lean'
+      - 'MathCan.lean'
+      - 'research/nor20/**'
+      - '.github/workflows/nor20-bigint-width-lean.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  kernel-observed-operand-work-and-materialization:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Check wide-coefficient observed-work bound, streamed buffer savings and exact public integer comparison
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/NOR20BigintWidthBounds.lean | tee nor20-bigint-work-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:|admit' nor20-bigint-work-axioms.txt; then
+            echo 'Unexpected admitted theorem or native reduction in NOR20'
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nor20-bigint-coefficient-workspace-kernel-axioms
+          path: nor20-bigint-work-axioms.txt

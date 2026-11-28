@@ -1,0 +1,55 @@
+name: RHD-02 source pin family quantifier audit
+
+on:
+  pull_request:
+    paths:
+      - 'research/rh_proof_distillation/family_quantifier_source_audit.py'
+      - 'tests/test_rhd02_family_source.py'
+      - '.github/workflows/rhd02-family-source.yml'
+  push:
+    paths:
+      - 'research/rh_proof_distillation/family_quantifier_source_audit.py'
+      - 'tests/test_rhd02_family_source.py'
+      - '.github/workflows/rhd02-family-source.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-quantifier-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: mathcan
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: leanprover-community/riemann-hypothesis
+          ref: f150e02623b1e2bbe1f1da8eab5ffee5e930a6a3
+          path: upstream
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/Formalism/SharpRestriction/GlobalSchurBounds/ZetaZeroFreeRegion.lean
+            src/Formalism/SharpRestriction/GlobalSchurBounds/RamificationTwoAndConjugationAtQAndD.lean
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Mutation tests for source quantifier shapes
+        working-directory: mathcan
+        run: python -m unittest tests.test_rhd02_family_source -v
+      - name: Verify pinned source bytes and quantifier ordering
+        working-directory: mathcan
+        run: |
+          mkdir -p rhd02
+          python -m research.rh_proof_distillation.family_quantifier_source_audit \
+            --upstream ../upstream --output rhd02/family-quantifier-source-audit.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rhd02-family-quantifier-source-receipt
+          path: mathcan/rhd02/
+          if-no-files-found: ignore

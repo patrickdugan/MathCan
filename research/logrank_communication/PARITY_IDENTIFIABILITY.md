@@ -1,0 +1,9 @@
+# Parity sign identifiability
+
+Source and finite replay: https://github.com/MoralityLabAI/LoopedTransformers/tree/60603b52faa2dfd0af1e9efc49707af658b2d69b/experiments/logrank_bpd_09.
+
+For known coordinate correspondence and clean parity observations, write the unknown coordinate signs as (-1)^h_i, h in F_2^k. Divide each query output by its known unsigned coordinate product; the resulting sign supplies a binary linear equation. Stack the incidence rows in A, giving Ah=b. For consistent b, the solution set is h_0+ker A. The sign of an unseen parity query q is invariant across that affine space iff q annihilates ker A, equivalently iff q lies in row(A), by rank-nullity. Outside the row span, some g in ker A has q dot g=1, so h and h+g agree on every training parity observation but disagree on that query for every memory. Under the uniform solution prior its expected accuracy cannot exceed 1/2, regardless of compute.
+
+All-even training parity queries leave a global sign ambiguity for odd queries. Full incidence rank resolves signs without singleton supervision. An exact enumeration checked 512 binary 3x3 matrices, consistent right-hand sides and all queries (20,952 checks). This is a written proof with finite executable check, not yet Lean formalized. It is conditional on known coordinates and clean parity data, not a theorem for unknown coordinate matching, noisy labels or arbitrary Boolean programs.
+
+For clean singleton labels on m iid uniform bipolar memories, column signatures are pairwise distinct up to sign except with probability at most k(k-1)2^(-m), by union bound. In LOGRANK-BPD-09B, unique exact matches on the finite training signatures recovered all 384 held-out query functions. Singleton supervision must be excluded from the next identifiability gym to make it informative.

@@ -1,0 +1,47 @@
+name: NRF-10 projector-leakage exact oracle and Lean
+
+on:
+  push:
+    paths:
+      - 'MathCan.lean'
+      - 'MathCan/ProjectorLeakage.lean'
+      - 'research/compactification/projector_leakage_geometry.py'
+      - 'tests/test_projector_leakage_geometry.py'
+      - '.github/workflows/nrf10-projector-geometry.yml'
+  pull_request:
+    paths:
+      - 'MathCan.lean'
+      - 'MathCan/ProjectorLeakage.lean'
+      - 'research/compactification/projector_leakage_geometry.py'
+      - 'tests/test_projector_leakage_geometry.py'
+      - '.github/workflows/nrf10-projector-geometry.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rational-oracle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest tests.test_projector_leakage_geometry -v
+
+  lean-skeleton:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+      - name: Lean module and axiom audit
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/ProjectorLeakage.lean | tee nrf10-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' nrf10-axioms.txt; then exit 1; fi

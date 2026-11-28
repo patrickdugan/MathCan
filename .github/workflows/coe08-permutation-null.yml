@@ -1,0 +1,39 @@
+name: COE-08 exact permutation-null arithmetic and Lean
+on:
+  pull_request:
+    paths:
+      - 'MathCan/ObserverPermutationNull.lean'
+      - 'MathCan.lean'
+      - 'research/compactification/OBSERVER_PERMUTATION_NULL.md'
+      - 'tests/test_observer_permutation_null.py'
+      - '.github/workflows/coe08-permutation-null.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-oracle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p 'test_observer_permutation_null.py' -v
+  lean-finite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Kernel-checked finite observer cells and axiom audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/ObserverPermutationNull.lean | tee coe08-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' coe08-axioms.txt; then exit 1; fi

@@ -1,0 +1,56 @@
+name: BSAR-16A exact spectral residual and Galerkin energy audit
+
+on:
+  pull_request:
+    paths:
+      - "experiments/bsar16/**"
+      - "research/bsar_audit/BSAR16A_EXACT_SPATIAL_RESIDUAL.md"
+      - ".github/workflows/bsar16a-exact-residual.yml"
+  push:
+    branches: [main, audit/bsar16-exact-spatial-residual-20261122]
+    paths:
+      - "experiments/bsar16/**"
+      - ".github/workflows/bsar16a-exact-residual.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-residual:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify the independent BSAR-14 source blob
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/bsar14_initial_triad_transfer.py)" = "aa25ad74be2347acf061d631f55338802eead212"
+          python -m py_compile experiments/bsar16/exact_residual.py experiments/bsar16/test_exact_residual.py
+      - name: Audit exact rational residual and source parity
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest experiments.bsar16.test_exact_residual -v
+      - name: Freeze and independently re-audit exact certificates
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar16a
+          python -m experiments.bsar16.exact_residual generate --out artifacts/bsar16a
+          python -m experiments.bsar16.exact_residual audit --out artifacts/bsar16a
+          sha256sum experiments/bsar16/exact_residual.py > artifacts/bsar16a/source.sha256
+      - name: Archive exact rational receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsar16a-exact-high-mode-residual
+          path: artifacts/bsar16a/
+          if-no-files-found: warn
+          retention-days: 14

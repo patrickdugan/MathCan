@@ -1,0 +1,47 @@
+name: NOR-09 asynchronous natural-source metric certificate
+
+on:
+  push:
+    paths:
+      - 'MathCan/NOR09Asynchronous.lean'
+      - 'MathCan.lean'
+      - 'research/nor09/**'
+      - '.github/workflows/nor09-asynchronous.yml'
+  pull_request:
+    paths:
+      - 'MathCan/NOR09Asynchronous.lean'
+      - 'MathCan.lean'
+      - 'research/nor09/**'
+      - '.github/workflows/nor09-asynchronous.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture-clock-metric-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Audit asynchronous two-source terminal clipping axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/NOR09Asynchronous.lean | tee nor09-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' nor09-axioms.txt; then
+            echo 'Detected admitted proof or native reduction axiom'
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nor09-asynchronous-lean-kernel-axioms
+          path: nor09-axioms.txt

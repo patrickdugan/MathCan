@@ -1,0 +1,6 @@
+name = "continuity_v1_formal"
+version = "0.1.0"
+defaultTargets = ["ContinuityV1"]
+
+[[lean_lib]]
+name = "ContinuityV1"

@@ -1,0 +1,46 @@
+name: SPC-07 Gramian transfer and gauge equivariance
+on:
+  push:
+    paths:
+      - 'MathCan/GramianTransfer.lean'
+      - 'MathCan.lean'
+      - 'tests/test_gramian_transfer.py'
+      - '.github/workflows/spc07-gramian-transfer.yml'
+  pull_request:
+    paths:
+      - 'MathCan/GramianTransfer.lean'
+      - 'MathCan.lean'
+      - 'tests/test_gramian_transfer.py'
+      - '.github/workflows/spc07-gramian-transfer.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-diagonal-oracles:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p 'test_gramian_transfer.py' -v
+  lean-transport-certificates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Audit new finite transport theorems
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/GramianTransfer.lean | tee spc07-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' spc07-axioms.txt; then exit 1; fi

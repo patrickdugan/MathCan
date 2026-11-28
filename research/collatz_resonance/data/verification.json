@@ -1,0 +1,172 @@
+{
+  "absolute_sign_construction": {
+    "auxiliary_primes": [
+      1873,
+      1321,
+      1009
+    ],
+    "cycle_lower_bound": 27,
+    "parameter": 2496501097,
+    "seed_primes": [
+      5,
+      7,
+      11
+    ],
+    "unit_cycle_lower_bound": 8
+  },
+  "class_counts": [
+    {
+      "cycles": 55,
+      "dividing_prime_factors": 0,
+      "periodic_classes": 32,
+      "relative_sign_classes": 8
+    },
+    {
+      "cycles": 49,
+      "dividing_prime_factors": 1,
+      "periodic_classes": 40,
+      "relative_sign_classes": 16
+    },
+    {
+      "cycles": 26,
+      "dividing_prime_factors": 2,
+      "periodic_classes": 18,
+      "relative_sign_classes": 12
+    },
+    {
+      "cycles": 6,
+      "dividing_prime_factors": 3,
+      "periodic_classes": 4,
+      "relative_sign_classes": 4
+    },
+    {
+      "cycles": 1,
+      "dividing_prime_factors": 4,
+      "periodic_classes": 1,
+      "relative_sign_classes": 1
+    }
+  ],
+  "complete_enumeration_comparisons": {
+    "path": {
+      "rows_equal": true,
+      "sha256": "f50668dda8731b08a22f726e5d660d16fa142548742f82e21f870f955cb19b17"
+    },
+    "peel": {
+      "rows_equal": true,
+      "sha256": "f50668dda8731b08a22f726e5d660d16fa142548742f82e21f870f955cb19b17"
+    }
+  },
+  "cycles": 137,
+  "full_unaccelerated_cycle_replays": 137,
+  "lattice": {
+    "halving_period": 2365636,
+    "halving_residue": 885958,
+    "index": 4731272,
+    "local_logs_of_3": [
+      5,
+      17,
+      109,
+      271
+    ],
+    "near_slope_six_u_le_10000_tolerance_100": [
+      [
+        3546,
+        21230
+      ],
+      [
+        7092,
+        42460
+      ]
+    ],
+    "triple_stride": 2
+  },
+  "maximum_period": 74514,
+  "odd_core_vertices": 80416609,
+  "original_cpp_sha256": "c22b02eb05ce818f4a73bffde27047cbd70a6f455f26510d241e9de71f4a1f49",
+  "parameter": 160833217,
+  "periodic_integers": 1869713,
+  "prescribed_seeds": [
+    {
+      "cycle_minimum": 13405,
+      "halvings": 21230,
+      "odd_steps": 7109,
+      "period": 28339,
+      "seed": 1,
+      "triple_branches": 3546
+    },
+    {
+      "cycle_minimum": 4621,
+      "halvings": 55912,
+      "odd_steps": 18593,
+      "period": 74505,
+      "seed": 5,
+      "triple_branches": 9116
+    },
+    {
+      "cycle_minimum": 3067,
+      "halvings": 21230,
+      "odd_steps": 7070,
+      "period": 28300,
+      "seed": 7,
+      "triple_branches": 3546
+    },
+    {
+      "cycle_minimum": 13853,
+      "halvings": 21230,
+      "odd_steps": 7113,
+      "period": 28343,
+      "seed": 11,
+      "triple_branches": 3546
+    },
+    {
+      "cycle_minimum": 19147,
+      "halvings": 21230,
+      "odd_steps": 7084,
+      "period": 28314,
+      "seed": 35,
+      "triple_branches": 3546
+    },
+    {
+      "cycle_minimum": 12369,
+      "halvings": 21230,
+      "odd_steps": 7113,
+      "period": 28343,
+      "seed": 55,
+      "triple_branches": 3546
+    },
+    {
+      "cycle_minimum": 8993,
+      "halvings": 21230,
+      "odd_steps": 7092,
+      "period": 28322,
+      "seed": 77,
+      "triple_branches": 3546
+    },
+    {
+      "cycle_minimum": 19795,
+      "halvings": 21230,
+      "odd_steps": 7064,
+      "period": 28294,
+      "seed": 385,
+      "triple_branches": 3546
+    }
+  ],
+  "reference_csv_sha256": "f50668dda8731b08a22f726e5d660d16fa142548742f82e21f870f955cb19b17",
+  "schema": "mathcan.collatz.audit.v1",
+  "unit_branch_families": [
+    {
+      "cycles": 53,
+      "halvings": 21230,
+      "maximum_period": 28365,
+      "minimum_period": 28214,
+      "triple_branches": 3546
+    },
+    {
+      "cycles": 2,
+      "halvings": 55912,
+      "maximum_period": 74514,
+      "minimum_period": 74505,
+      "triple_branches": 9116
+    }
+  ]
+}

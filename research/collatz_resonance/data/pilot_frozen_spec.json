@@ -1,0 +1,20 @@
+{
+  "config": {
+    "baseline": "OLS log(median_period) ~ 1 + log(unit_odd_core_states)",
+    "candidate_rank": "(A+2u,u,A)",
+    "development_d": [
+      5,
+      1025
+    ],
+    "evaluation_d": [
+      1029,
+      8193
+    ],
+    "gcd_d_6": 1,
+    "parameter_step": 4,
+    "slope": 6,
+    "squared_deviation_coefficient": 22,
+    "target": "median full-map period, equal weight per unit cycle"
+  },
+  "source_sha256": "d6c5ace0454d1922107122c374e28f7850dc6223c8e5bbd927163be30ea4d8e2"
+}

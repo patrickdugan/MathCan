@@ -1,0 +1,19 @@
+'MathCan.CollatzResonance.stripTwos_le' depends on axioms: [propext, Quot.sound]
+'MathCan.CollatzResonance.stripTwos_pos' depends on axioms: [propext, Quot.sound]
+'MathCan.CollatzResonance.stripTwos_odd' depends on axioms: [propext, Quot.sound]
+'MathCan.CollatzResonance.stripTwos_quarter' depends on axioms: [propext, Quot.sound]
+'MathCan.CollatzResonance.numerator_divisible_four' depends on axioms: [propext, Quot.sound]
+'MathCan.CollatzResonance.oddNext_pos' depends on axioms: [propext, Quot.sound]
+'MathCan.CollatzResonance.oddNext_odd' depends on axioms: [propext, Quot.sound]
+'MathCan.CollatzResonance.oddNext_bound' depends on axioms: [propext, Quot.sound]
+'MathCan.CollatzResonance.odd_core_closed' depends on axioms: [propext, Quot.sound]
+'MathCan.CollatzResonance.odd_descent_above_core' depends on axioms: [propext, Quot.sound]
+'MathCan.CollatzResonance.eventually_in_odd_core' depends on axioms: [propext, Quot.sound]
+'MathCan.CollatzResonance.invariant_iterate' does not depend on any axioms
+'MathCan.CollatzResonance.distinct_labels_prevent_meeting' does not depend on any axioms
+'MathCan.CollatzResonance.aliased_targets_prevent_decoder' does not depend on any axioms
+'MathCan.CollatzResonance.short_window_residue_injective' depends on axioms: [propext]
+'MathCan.CollatzResonance.d13_cycle_one' depends on axioms: [propext, Quot.sound]
+'MathCan.CollatzResonance.d13_cycle_five' depends on axioms: [propext, Quot.sound]
+'MathCan.CollatzResonance.d13_modular_alias' does not depend on any axioms
+'MathCan.CollatzResonance.reference_lattice_determinant' does not depend on any axioms

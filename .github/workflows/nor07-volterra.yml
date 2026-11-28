@@ -1,0 +1,47 @@
+name: NOR-07T noncommutative Volterra kernel gate
+
+on:
+  pull_request:
+    paths:
+      - 'MathCan/NOR07Volterra.lean'
+      - 'MathCan.lean'
+      - 'research/nor07/NONCOMMUTATIVE_VOLTERRA_TUBES.md'
+      - '.github/workflows/nor07-volterra.yml'
+  push:
+    paths:
+      - 'MathCan/NOR07Volterra.lean'
+      - 'MathCan.lean'
+      - 'research/nor07/NONCOMMUTATIVE_VOLTERRA_TUBES.md'
+      - '.github/workflows/nor07-volterra.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-ordered-semiring-identity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Kernel audit of noncommutative product identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/NOR07Volterra.lean | tee nor07t-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' nor07t-axioms.txt; then
+            echo 'Admitted or native reduction axiom found'
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nor07t-volterra-lean-axioms
+          path: nor07t-axioms.txt

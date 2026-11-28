@@ -1,0 +1,52 @@
+name: MM-GYM-01 C verifier and upstream baseline
+on:
+  pull_request:
+    paths:
+      - 'research/metamath_gym/**'
+      - '.github/workflows/mm-gym01-c.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/metamath_gym/**'
+      - '.github/workflows/mm-gym01-c.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  c-and-upstream:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate certificates
+        run: node research/metamath_gym/mm_gym.mjs "$RUNNER_TEMP/mm-gym"
+      - name: Obtain and compile pinned C verifier
+        shell: bash
+        run: |
+          set -euo pipefail
+          git init "$RUNNER_TEMP/metamath-exe"
+          git -C "$RUNNER_TEMP/metamath-exe" fetch --depth=1 https://github.com/metamath/metamath-exe.git 580b4bd5ae6f2a0d746398b0033cddccba1b418b
+          git -C "$RUNNER_TEMP/metamath-exe" checkout --detach FETCH_HEAD
+          test "$(git -C "$RUNNER_TEMP/metamath-exe" rev-parse HEAD)" = 580b4bd5ae6f2a0d746398b0033cddccba1b418b
+          cd "$RUNNER_TEMP/metamath-exe/src"
+          gcc m*.c -o metamath
+      - name: Obtain pinned upstream corpus and Python verifier
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location https://raw.githubusercontent.com/metamath/set.mm/806509385370b29fe8b1723804777ac21b1ce194/set.mm -o "$RUNNER_TEMP/set.mm"
+          curl --fail --silent --show-error --location https://raw.githubusercontent.com/david-a-wheeler/mmverify.py/63a2aa3815cd5bf67892dbfc7f2048cbb177524c/mmverify.py -o "$RUNNER_TEMP/mmverify.py"
+          sha256sum "$RUNNER_TEMP/set.mm" "$RUNNER_TEMP/mmverify.py" "$RUNNER_TEMP/metamath-exe/src/metamath" > "$RUNNER_TEMP/mm-gym/upstream-sha256.txt"
+      - name: Verify fixture and upstream corpus with C
+        run: python research/metamath_gym/c_differential.py "$RUNNER_TEMP/metamath-exe/src/metamath" "$RUNNER_TEMP/mm-gym" "$RUNNER_TEMP/set.mm"
+      - name: Verify upstream corpus independently with Python
+        shell: bash
+        run: |
+          set -euo pipefail
+          timeout 900 python "$RUNNER_TEMP/mmverify.py" "$RUNNER_TEMP/set.mm" -v 1 2>&1 | tee "$RUNNER_TEMP/mm-gym/upstream-python.log"
+          grep -Fq 'No errors were found.' "$RUNNER_TEMP/mm-gym/upstream-python.log"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mm-gym01-c-and-upstream-receipts
+          path: ${{ runner.temp }}/mm-gym

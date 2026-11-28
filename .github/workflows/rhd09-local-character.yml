@@ -1,0 +1,43 @@
+name: RHD-09 local character and norm compatibility
+
+on:
+  push:
+    paths:
+      - 'research/rh_proof_distillation/RHD09_LOCAL_CHARACTER.md'
+      - 'research/rh_proof_distillation/rhd09_local_character.py'
+      - 'tests/test_rhd09_local_character.py'
+      - '.github/workflows/rhd09-local-character.yml'
+  pull_request:
+    paths:
+      - 'research/rh_proof_distillation/RHD09_LOCAL_CHARACTER.md'
+      - 'research/rh_proof_distillation/rhd09_local_character.py'
+      - 'tests/test_rhd09_local_character.py'
+      - '.github/workflows/rhd09-local-character.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-local-character:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify Hensel factors, trace/norm, and character
+        run: python -m unittest tests.test_rhd09_local_character -v
+      - name: Generate deterministic finite-ring training receipts
+        run: |
+          mkdir -p rhd09
+          python -m research.rh_proof_distillation.rhd09_local_character --output rhd09/local_norm_trace.jsonl
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rhd09-local-character-receipts
+          path: rhd09/
+          if-no-files-found: ignore

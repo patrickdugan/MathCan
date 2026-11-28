@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "model": "full magnetic cube Q3 and Q4, prime-logarithm diagonal plus random detunings",
+  "time": 0.4,
+  "cases": [
+    {
+      "d": 3,
+      "seed": 20261123,
+      "raw_complex_error": 0.3283315109846355,
+      "richardson_complex_error": 0.02557694658514185
+    },
+    {
+      "d": 3,
+      "seed": 20261124,
+      "raw_complex_error": 0.2892396240336695,
+      "richardson_complex_error": 0.02033072322313211
+    },
+    {
+      "d": 4,
+      "seed": 20261125,
+      "raw_complex_error": 0.3204406634385904,
+      "richardson_complex_error": 0.032105095203264496
+    }
+  ],
+  "min_controlled_edges": 3,
+  "three_cube_faces": 6,
+  "phase_initial_state_settings": 24,
+  "controlled_edges": [
+    [
+      0,
+      1
+    ],
+    [
+      2,
+      6
+    ],
+    [
+      5,
+      7
+    ]
+  ],
+  "beyond_simulator": "No QPU experiments"
+}

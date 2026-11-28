@@ -1,0 +1,47 @@
+name: SPC-04 exact phase-memory and alternating-Jacobian certificates
+on:
+  push:
+    paths:
+      - 'MathCan/PhaseMemory.lean'
+      - 'MathCan.lean'
+      - 'research/spectral_aliasing/SPC-04.md'
+      - 'tests/test_phase_memory.py'
+      - '.github/workflows/spc04-phase-memory.yml'
+  pull_request:
+    paths:
+      - 'MathCan/PhaseMemory.lean'
+      - 'MathCan.lean'
+      - 'research/spectral_aliasing/SPC-04.md'
+      - 'tests/test_phase_memory.py'
+      - '.github/workflows/spc04-phase-memory.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-rational-hermite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p 'test_phase_memory.py' -v
+  lean-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Check kernel / axioms on SPC-04 module
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/PhaseMemory.lean | tee spc04-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' spc04-axioms.txt; then exit 1; fi

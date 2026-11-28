@@ -1,0 +1,47 @@
+name: NOR-31 matched calibration root finite game Lean kernel
+
+on:
+  push:
+    paths:
+      - 'MathCan/NOR31MatchedRootCalibration.lean'
+      - 'MathCan.lean'
+      - 'research/nor31/**'
+      - '.github/workflows/nor31-matched-root-lean.yml'
+  pull_request:
+    paths:
+      - 'MathCan/NOR31MatchedRootCalibration.lean'
+      - 'MathCan.lean'
+      - 'research/nor31/**'
+      - '.github/workflows/nor31-matched-root-lean.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  matched-calibration-and-evaluation-root-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Check full finite cal-root/eval-root/tie inequality, strict witness and binding
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/NOR31MatchedRootCalibration.lean | tee nor31-matched-root-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:|admit' nor31-matched-root-axioms.txt; then
+            echo 'NOR31 Lean kernel or admission check failed'
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nor31-matched-root-finite-game-kernel-axioms
+          path: nor31-matched-root-axioms.txt

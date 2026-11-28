@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "seed": 20261123,
+  "six_cycle_counts": {
+    "3": {
+      "observed": 16,
+      "expected": 16
+    },
+    "4": {
+      "observed": 128,
+      "expected": 128
+    },
+    "5": {
+      "observed": 640,
+      "expected": 640
+    }
+  },
+  "prime_three_face_hexagon": {
+    "mixed_sixth": -2.7372648201962875,
+    "mixed_seventh": -32.58492278789345,
+    "ratio_observed": 11.90419083585665,
+    "ratio_predicted": 11.904190835817545
+  },
+  "q3_spanning_surface_distribution": {
+    "2": 12,
+    "3": 4
+  },
+  "max_stokes_error": 4.440892098500626e-16,
+  "max_relative_chirality_error": 1.1102230246251565e-16,
+  "sixth_derivative_examples": [
+    {
+      "min_spanning_faces": 2,
+      "cycle": [
+        0,
+        1,
+        3,
+        2,
+        6,
+        4
+      ],
+      "flux_mod_2pi": 0.48175780370422494,
+      "observed_cos_derivative": 8.989757828963775,
+      "predicted_cos_derivative": 8.98975782896438,
+      "observed_sin_derivative": -4.700269027785907,
+      "predicted_sin_derivative": -4.700269027776456,
+      "phase_error": 8.526512829121202e-13
+    },
+    {
+      "min_spanning_faces": 3,
+      "cycle": [
+        0,
+        1,
+        3,
+        7,
+        6,
+        4
+      ],
+      "flux_mod_2pi": -3.07286661642799,
+      "observed_cos_derivative": -2.7372648202035634,
+      "predicted_cos_derivative": -2.737264820204542,
+      "observed_sin_derivative": 0.18841810695266759,
+      "predicted_sin_derivative": 0.18841810695749306,
+      "phase_error": 1.730171561575844e-12
+    }
+  ],
+  "claim": "Exact finite matrices; no hardware or complexity separation"
+}

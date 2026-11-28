@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "seed": 20261123,
+  "dimensions": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "random_graph_trials": 16,
+  "max_fourth_error": 4.547473508864641e-13,
+  "max_fifth_error": 1.5916157281026244e-12,
+  "prime_ratio_observed": 4.479398673070149,
+  "prime_ratio_predicted": 4.479398673070137,
+  "signed_flux_error": 7.105427357601002e-15,
+  "canonical_gauge_frobenius_squared": 61.8586555277986,
+  "gauge_bound": 10006.2466038054,
+  "time_reversal_eigenvalues_returns": "PASS"
+}

@@ -1,0 +1,47 @@
+name: NRF-09 matched-step median margin mathematics
+
+on:
+  push:
+    paths:
+      - 'MathCan.lean'
+      - 'MathCan/MatchedStepMargin.lean'
+      - 'research/compactification/matched_step_margin.py'
+      - 'tests/test_matched_step_margin.py'
+      - '.github/workflows/nrf09-matched-step-margin.yml'
+  pull_request:
+    paths:
+      - 'MathCan.lean'
+      - 'MathCan/MatchedStepMargin.lean'
+      - 'research/compactification/matched_step_margin.py'
+      - 'tests/test_matched_step_margin.py'
+      - '.github/workflows/nrf09-matched-step-margin.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-oracle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest tests.test_matched_step_margin -v
+  lean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Audit new theorem axioms
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/MatchedStepMargin.lean | tee nrf09-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' nrf09-axioms.txt; then exit 1; fi

@@ -1,0 +1,46 @@
+name: SPC-08 deferred-observability exact rank and Lean witnesses
+on:
+  push:
+    paths:
+      - 'MathCan/DeferredObservability.lean'
+      - 'MathCan.lean'
+      - 'research/spectral_aliasing/SPC-08.md'
+      - 'tests/test_deferred_observability.py'
+      - '.github/workflows/spc08-deferred-observability.yml'
+  pull_request:
+    paths:
+      - 'MathCan/DeferredObservability.lean'
+      - 'MathCan.lean'
+      - 'research/spectral_aliasing/SPC-08.md'
+      - 'tests/test_deferred_observability.py'
+      - '.github/workflows/spc08-deferred-observability.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  rational-oracles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p 'test_deferred_observability.py' -v
+  lean-kernel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Audit named theorem axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/DeferredObservability.lean | tee spc08-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' spc08-axioms.txt; then exit 1; fi

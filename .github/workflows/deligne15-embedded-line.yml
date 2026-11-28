@@ -1,0 +1,64 @@
+name: DEL-15 embedded-line relative Jacobian
+
+on:
+  push:
+    branches: [proof/deligne15-embedded-line-bad-locus-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/EmbeddedLineBadLocus.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL15_*'
+      - 'research/deligne_sign_audit/del15_*'
+      - 'tests/test_deligne15_embedded_line.py'
+      - '.github/workflows/deligne15-embedded-line.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne15-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check actual relative derivative and bad locus
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/EmbeddedLineBadLocus.lean | tee deligne15-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne15-axioms.txt; then
+            echo 'DEL-15 admitted proof or unexpected reduction axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate DEL-15 exact finite-field oracle and 96 cases
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne15_embedded_line

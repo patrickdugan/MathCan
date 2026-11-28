@@ -1,0 +1,63 @@
+name: DEL-22C exact relative critical ideal base change
+
+on:
+  push:
+    branches: [proof/deligne22c-exact-ideal-specialization-20261123]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/RelativeCriticalBaseChange.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL22C_*'
+      - 'tests/test_deligne22c_rankd_pivot.py'
+      - '.github/workflows/deligne22c-exact-basechange.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne22c-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check exact base change and full Deligne04 imports
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/RelativeCriticalBaseChange.lean | tee deligne22c-basechange-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne22c-basechange-axioms.txt; then
+            echo 'DEL-22C unexpected axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Recheck geometric and universal specialization regressions
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne22c_rankd_pivot tests.test_deligne22b_universal_section tests.test_deligne22a_relative_critical tests.test_deligne21g_geometric_fiber

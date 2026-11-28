@@ -1,0 +1,71 @@
+name: BSAR-09R real window exponential bound
+
+on:
+  pull_request:
+    paths:
+      - "experiments/deligne_mathlib/BSAR09/**"
+      - "research/bsar_audit/BSAR09R_REAL_RATIO_BUDGET.md"
+      - ".github/workflows/bsar09r-real-product.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: bsar09r-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  real-mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Restore exact pinned Mathlib 4.35 compiled artifacts
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Check real ratio-product theorem and source ODE bridge
+        working-directory: experiments/deligne_mathlib
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar09r
+          lake env lean BSAR09/RealWindow.lean 2>&1 | tee artifacts/bsar09r/lean-axioms.log
+          sha256sum BSAR09/RealWindow.lean > artifacts/bsar09r/source.sha256
+          cat lean-toolchain > artifacts/bsar09r/toolchain.txt
+          python - <<'PY'
+          import re
+          from pathlib import Path
+          log = Path("artifacts/bsar09r/lean-axioms.log").read_text()
+          names = [
+            "BSAR09Real.ratio_product_le_exp_sum",
+            "BSAR09Real.ratio_product_le_exp_budget",
+            "BSAR09Real.source_window_real_factor",
+            "BSAR09Real.source_chain_product",
+            "BSAR09Real.uniform_real_endpoint_bound",
+          ]
+          printed = set(re.findall(r"'([^']+)' (?:depends on axioms|does not depend on any axioms)", log))
+          assert all(n in printed for n in names), "Missing printed theorem axiom receipt"
+          assert not re.search(r"\bsorryAx\b|\bofReduceBool\b", log), "Axiom audit failed"
+          print("BSAR-09R Mathlib kernel and axiom receipts passed")
+          PY
+      - name: Preserve complete kernel receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsar09r-real-product-kernel
+          path: experiments/deligne_mathlib/artifacts/bsar09r/
+          if-no-files-found: warn
+          retention-days: 14

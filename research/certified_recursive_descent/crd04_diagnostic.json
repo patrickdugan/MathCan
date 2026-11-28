@@ -1,0 +1,69 @@
+{
+  "scope": "post-hoc, development and validation only; no model selection or test tuning",
+  "diagnostic": {
+    "development": {
+      "states": 1782,
+      "topTieStates": 1033,
+      "byPolicy": {
+        "depthRandom": {
+          "choiceChanges": 586,
+          "bankSetChanges": 12,
+          "bankOrderChanges": 737
+        },
+        "linearResidual": {
+          "choiceChanges": 0,
+          "bankSetChanges": 0,
+          "bankOrderChanges": 0
+        },
+        "recurrentResidual": {
+          "choiceChanges": 0,
+          "bankSetChanges": 0,
+          "bankOrderChanges": 0
+        }
+      },
+      "completeTraceIdentical": {
+        "linearResidual": 384,
+        "recurrentResidual": 384,
+        "depthRandom": 46
+      },
+      "episodes": 384
+    },
+    "validation": {
+      "states": 1941,
+      "topTieStates": 1055,
+      "byPolicy": {
+        "depthRandom": {
+          "choiceChanges": 578,
+          "bankSetChanges": 13,
+          "bankOrderChanges": 795
+        },
+        "linearResidual": {
+          "choiceChanges": 0,
+          "bankSetChanges": 0,
+          "bankOrderChanges": 0
+        },
+        "recurrentResidual": {
+          "choiceChanges": 0,
+          "bankSetChanges": 0,
+          "bankOrderChanges": 0
+        }
+      },
+      "completeTraceIdentical": {
+        "linearResidual": 256,
+        "recurrentResidual": 256,
+        "depthRandom": 20
+      },
+      "episodes": 256
+    }
+  },
+  "linearWeights": [
+    0.0021298519780809533,
+    0.07563006665388312,
+    -0.032671494729883524,
+    0.09554420900534721,
+    -0.027831014980382734,
+    -0.09539197240547802,
+    0.07602658695541323,
+    0.04002672270871699
+  ]
+}

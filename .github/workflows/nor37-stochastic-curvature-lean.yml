@@ -1,0 +1,47 @@
+name: NOR-37 stochastic public curvature exploration Lean kernel bounds
+
+on:
+  push:
+    paths:
+      - 'MathCan/NOR37RandomizedCurvature.lean'
+      - 'MathCan.lean'
+      - 'research/nor37/**'
+      - '.github/workflows/nor37-stochastic-curvature-lean.yml'
+  pull_request:
+    paths:
+      - 'MathCan/NOR37RandomizedCurvature.lean'
+      - 'MathCan.lean'
+      - 'research/nor37/**'
+      - '.github/workflows/nor37-stochastic-curvature-lean.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exploration-lower-bound-blind-quota-and-evasion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Check Lean 4.35 kernel proof, axiom inventory and no admitted lemmas
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/NOR37RandomizedCurvature.lean | tee nor37-stochastic-curvature-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:|admit' nor37-stochastic-curvature-axioms.txt; then
+            echo "NOR37 unproved mathematical assertion"
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nor37-stochastic-curvature-lean-axioms
+          path: nor37-stochastic-curvature-axioms.txt

@@ -1,0 +1,69 @@
+name: DEL-13 global conic Jacobian unit ideal
+
+on:
+  push:
+    branches: [proof/deligne13-jacobian-unit-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/GlobalJacobianIdeal.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL13_*'
+      - 'research/deligne_sign_audit/del13_*'
+      - 'tests/test_deligne13_jacobian_unit.py'
+      - '.github/workflows/deligne13-jacobian-unit.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne13-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Retrieve pinned Mathlib v4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check global conic Bézout identity and Jacobian ideal
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/GlobalJacobianIdeal.lean | tee deligne13-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne13-axioms.txt; then
+            echo 'DEL-13 admitted proof or unexpected reduction axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run DEL-13 exact conic Jacobian ideal tests
+        run: |
+          set -euo pipefail
+          if test -f tests/test_deligne13_jacobian_unit.py; then
+            python -m unittest -v tests.test_deligne13_jacobian_unit
+          fi
+          if test -f research/deligne_sign_audit/del13_verify_tasks.py; then
+            python -m research.deligne_sign_audit.del13_verify_tasks
+          fi

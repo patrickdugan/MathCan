@@ -1,0 +1,48 @@
+name: SPC-06 finite temporal observability checks
+on:
+  push:
+    paths:
+      - 'MathCan/PhaseObservability.lean'
+      - 'MathCan.lean'
+      - 'research/spectral_aliasing/SPC-06.md'
+      - 'tests/test_phase_observability.py'
+      - '.github/workflows/spc06-phase-observability.yml'
+  pull_request:
+    paths:
+      - 'MathCan/PhaseObservability.lean'
+      - 'MathCan.lean'
+      - 'research/spectral_aliasing/SPC-06.md'
+      - 'tests/test_phase_observability.py'
+      - '.github/workflows/spc06-phase-observability.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  finite-exact-oracles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Standard-library rational calculations
+        run: python -m unittest discover -s tests -p test_phase_observability.py -v
+  lean-phase-observability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Check new statements and axiom inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/PhaseObservability.lean | tee spc06-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' spc06-axioms.txt; then exit 1; fi

@@ -1,0 +1,47 @@
+name: NOR-27 seed and reserve leak exact counts Lean kernel
+
+on:
+  push:
+    paths:
+      - 'MathCan/NOR27SeedLeakage.lean'
+      - 'MathCan.lean'
+      - 'research/nor27/**'
+      - '.github/workflows/nor27-seed-leakage-lean.yml'
+  pull_request:
+    paths:
+      - 'MathCan/NOR27SeedLeakage.lean'
+      - 'MathCan.lean'
+      - 'research/nor27/**'
+      - '.github/workflows/nor27-seed-leakage-lean.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-preview-counts-and-leakage-fibers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Check exact post-leak binomial counts and all theorem axiom inventories
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/NOR27SeedLeakage.lean | tee nor27-seed-leakage-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:|admit' nor27-seed-leakage-axioms.txt; then
+            echo 'NOR27 kernel failure or unexpected admitted proof'
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nor27-seed-leakage-kernel-axiom-inventory
+          path: nor27-seed-leakage-axioms.txt

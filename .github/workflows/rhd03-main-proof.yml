@@ -1,0 +1,95 @@
+name: RHD-03 actual Main source and literature interface
+
+on:
+  push:
+    paths:
+      - 'MathCan/RHMainLogic.lean'
+      - 'MathCan.lean'
+      - 'research/rh_proof_distillation/main_character_dependency_audit.py'
+      - 'tests/test_rhd03_main_source.py'
+      - 'research/rh_proof_distillation/MAIN_PROOF_SOURCE.md'
+      - '.github/workflows/rhd03-main-proof.yml'
+  pull_request:
+    paths:
+      - 'MathCan/RHMainLogic.lean'
+      - 'MathCan.lean'
+      - 'research/rh_proof_distillation/main_character_dependency_audit.py'
+      - 'tests/test_rhd03_main_source.py'
+      - 'research/rh_proof_distillation/MAIN_PROOF_SOURCE.md'
+      - '.github/workflows/rhd03-main-proof.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  main-source-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: mathcan
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: leanprover-community/riemann-hypothesis
+          ref: f150e02623b1e2bbe1f1da8eab5ffee5e930a6a3
+          path: upstream
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/Main.lean
+            src/Supplements/Kernels/MainTheorems.lean
+            src/Development/AutomorphicArithmetic/CharacterBoxes/MainConclusion.lean
+            src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/IntegralStructures/RowSrc.lean
+            src/Development/AutomorphicArithmetic/AutomorphicVarieties/ModularityArgument/ThresholdArguments/DenseThresholdCases/VwinOfRow.lean
+            src/Development/AutomorphicArithmetic/ThetaCorrespondence/ThetaPairLifts/ThirdPlaceSeries/EveryCharacterOfLiteratureOfVWin.lean
+            src/Formalism/GammaFactorNonvanishing/CritLine.lean
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run source-census mutation tests
+        working-directory: mathcan
+        run: python -m unittest tests.test_rhd03_main_source -v
+      - name: Pinned Main route and 195-wrapper source call graph
+        working-directory: mathcan
+        run: |
+          mkdir -p rhd03
+          python -m research.rh_proof_distillation.main_character_dependency_audit \
+            --source-root ../upstream \
+            --output rhd03/main-actual-source-graph.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rhd03-pinned-main-source-graph
+          path: mathcan/rhd03/
+          if-no-files-found: ignore
+
+  lean-source-logic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Axiom inventory for independent source-interface proofs
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/RHMainLogic.lean | tee rhd03-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:|admit' rhd03-axioms.txt; then
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rhd03-source-interface-axioms
+          path: rhd03-axioms.txt
+          if-no-files-found: ignore

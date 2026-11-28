@@ -40,5 +40,125 @@ import MathCan.CausalInteraction
 import MathCan.PairedHistory
 import MathCan.MemoryProjection
 import MathCan.GradientStability
+import MathCan.OrbitStitching
+import MathCan.FilteredOrbit
+import MathCan.BlockRemainder
+import MathCan.InvariantBall
+import MathCan.PeriodOne
+import MathCan.BasinCapture
+import MathCan.MultiBasin
+import MathCan.NOR07Volterra
+import MathCan.BasinCodes
+import MathCan.ChromaticObservers
+import MathCan.ChromaticCutCodes
+import MathCan.SoftObserverPrecision
+import MathCan.TemporalCutCapacity
+import MathCan.PhaseGaugeCapacity
+import MathCan.PhaseBlindObservers
+import MathCan.PhaseGaugePairLedger
+import MathCan.DihedralPhaseGauge
+import MathCan.SpectralAliasing
+import MathCan.SpectralStability
+import MathCan.ContractionAliasing
+import MathCan.JacobianSecant
+import MathCan.PhaseMemory
+import MathCan.PhaseLatch
+import MathCan.PhaseObservability
+import MathCan.GramianTransfer
+import MathCan.ObserverPermutationNull
+import MathCan.NOR09Asynchronous
+import MathCan.DeferredObservability
+import MathCan.ObserverLabelAlignment
+import MathCan.NumericalRangeSwitching
+import MathCan.GraphSwitching
+import MathCan.ObservableQuotient
+import MathCan.AuthorizationQuotient
+import MathCan.ObservableFamily
+import MathCan.ObservablePareto
+import MathCan.GateFamilyNoGo
+import MathCan.JordanDepth
+import MathCan.SuffixTransport
+import MathCan.NOR13GateOrder
+import MathCan.NOR15TrajectoryObservability
+import MathCan.MatchedStepMargin
+import MathCan.ProjectorLeakage
+
+import MathCan.NOR15VerifierAlias
+
+import MathCan.NOR15MaskCapacity
+
+import MathCan.NOR16PublicQueryConsensus
+
+import MathCan.NOR16PublicOutputCertificate
+
+import MathCan.NOR17BudgetedPublicCertificate
+
+import MathCan.NOR18CachedVerifierWork
+
+import MathCan.NOR18RReciprocalReuse
+
+import MathCan.NOR19StreamedVerifier
+
+import MathCan.NOR20BigintWidthBounds
+
+import MathCan.NOR21ObservationCompleteness
+
+import MathCan.NOR22ModularFutureCommitments
+
+import MathCan.NOR23CoordinateAudit
+
+import MathCan.NOR24SequentialWitness
+
+import MathCan.NOR25UniformReserve
+
+import MathCan.NOR26PolicyAwareBlindAudit
+
+import MathCan.NOR27SeedLeakage
+
+import MathCan.NOR28CommitBeforeEntropy
+
+import MathCan.NOR29EarlyEntropyGame
+
+import MathCan.NOR30MixedAudit
+
+import MathCan.NOR31MatchedRootCalibration
+
+import MathCan.NOR31ClassCollapsedMinimax
+
+import MathCan.NOR32UnknownSupportCoverage
+
+import MathCan.NOR32NestedAuditCoverage
+
+import MathCan.NOR33OverlapMatchedCoverage
+
+import MathCan.NOR34EightAtomMatchedCoverage
+
+import MathCan.NOR35IntraAtomCurvature
+
+import MathCan.NOR36PolicyAwareCurvature
+
+import MathCan.NOR37RandomizedCurvature
+
+import MathCan.NOR38UniformAuditMaximin
+
+import MathCan.NOR40SingletonBracket
+import MathCan.NOR42HiddenSuffix
+import MathCan.NOR43AuthenticatedRoot
+import MathCan.NOR44SessionOrdering
+import MathCan.NOR45AuthorizedProgram
+import MathCan.NOR46ExactIntegerTrace
+import MathCan.RHWindowExponents
+import MathCan.RHFamilyWitnesses
+import MathCan.RHMainLogic
+import MathCan.RHGaloisRowInputs
+import MathCan.RHRankOneEigenline
+import MathCan.RHFiniteUnitObstructions
+import MathCan.RHNormOneCollapse
+import MathCan.RHSplitTorusCharacter
+import MathCan.RHCyclicExtension
+import MathCan.DCFDecision
+import MathCan.SCCG10Admission
+
+import MathCan.MMSTRMEconomics
 import MathCan.CoalitionNoise
 import MathCan.CoalitionThreshold
