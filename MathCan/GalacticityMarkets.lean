@@ -59,4 +59,25 @@ theorem rejection_reserve (budget direct gate evaluation proposal bound : Nat)
     direct + gate + evaluation + proposal ≤ budget := by
   omega
 
+
+/-- With no past savings and a strictly expensive first acquisition,
+    a zero-premium prefix budget forbids the purchase. -/
+theorem zero_premium_first_buy (past spent direct buy : Nat)
+    (h : past ≤ spent) (extra : direct < buy) :
+    ¬ spent + buy ≤ past + direct := by
+  omega
+
+/-- Before the first acquisition, the available premium must pay the
+    entire excess price; prior spend is at least the direct baseline. -/
+theorem first_buy_premium (num den past spent direct buy : Nat)
+    (hp : past ≤ spent) (he : direct ≤ buy)
+    (safe : den * (spent + buy) ≤ (num + den) * (past + direct)) :
+    den * (buy - direct) ≤ num * (past + direct) := by
+  have hm : den * past ≤ den * spent := Nat.mul_le_mul_left den hp
+  have heq : buy - direct + direct = buy := by omega
+  have hd : den * (buy - direct) + den * direct = den * buy := by
+    rw [← Nat.mul_add, heq]
+  simp only [Nat.mul_add, Nat.add_mul] at safe ⊢
+  omega
+
 end GalacticityMarkets
