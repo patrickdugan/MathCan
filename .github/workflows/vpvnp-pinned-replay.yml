@@ -1,0 +1,86 @@
+name: VPVNP pinned replay and rank geometry
+
+# Historical per-stage gate; consolidated proof workflow runs on the PR.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vpvnp-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rank-geometry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Exact registered pilot and byte-for-byte replay
+        run: |
+          python3 research/VPVNP/rank_geometry.py --out /tmp/rank_geometry.json
+          diff -u research/VPVNP/results/rank_geometry.json /tmp/rank_geometry.json
+  pinned-upstream:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      ELAN_VERSION: v4.2.3
+      ELAN_SHA256: df0b2b3a439961ffcbb3985214365ffe40f49bc871df04dff268c7d8e21ca8b2
+      COMPARATOR_COMMIT: 575674928e239f5bc452aab72d1dd7b0f1326494
+      NANODA_COMMIT: 68d5ca9db226849b41a6fff59d796ff19d0a8840
+      LANDRUN_COMMIT: 811cfff51ceaf3d9843708aa6d22e9b84ccac8b4
+      LEAN4EXPORT_COMMIT: 15f6055e299ad5b89345e533cc2192f4cc00f659
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: anthropics/formal-math
+          ref: 11b6c7e3c927df2658f513b6b68ea7f8929c62c5
+          path: upstream-formal-math
+          persist-credentials: false
+      - name: Verify all source blobs and import closure
+        run: python3 research/VPVNP/audit_source.py upstream-formal-math --out "$RUNNER_TEMP/source_audit.json"
+      - name: Free disk and install checksum-pinned elan
+        shell: bash
+        run: |
+          sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc /opt/hostedtoolcache/CodeQL || true
+          curl --fail --location --proto '=https' --tlsv1.2 --output "$RUNNER_TEMP/elan.tar.gz" "https://github.com/leanprover/elan/releases/download/${ELAN_VERSION}/elan-x86_64-unknown-linux-gnu.tar.gz"
+          echo "${ELAN_SHA256}  $RUNNER_TEMP/elan.tar.gz" | sha256sum --check
+          mkdir -p "$RUNNER_TEMP/elan"
+          tar -xzf "$RUNNER_TEMP/elan.tar.gz" -C "$RUNNER_TEMP/elan"
+          "$RUNNER_TEMP/elan/elan-init" -y --no-modify-path --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fresh native build and axiom audit
+        shell: bash
+        working-directory: upstream-formal-math/vp-vnp
+        run: |
+          lean --version
+          lake exe cache get
+          lake build 2>&1 | tee "$RUNNER_TEMP/lake-build.log"
+          if grep -F "declaration uses 'sorry'" "$RUNNER_TEMP/lake-build.log" | grep -v -E '(^|[ /])Challenge(/[^ :]*)?\.lean:'; then
+            exit 1
+          fi
+          lake env lean scripts/PrintAxioms.lean 2>&1 | tee "$RUNNER_TEMP/axioms.log"
+      - name: Statement equivalence and independent nanoda kernel
+        shell: bash
+        working-directory: upstream-formal-math/vp-vnp
+        env:
+          LOG_DIR: ${{ runner.temp }}/comparator-logs
+        run: bash ../.github/scripts/comparator-check.sh
+      - name: Preserve receipts
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: vpvnp-independent-replay
+          path: |
+            ${{ runner.temp }}/source_audit.json
+            ${{ runner.temp }}/lake-build.log
+            ${{ runner.temp }}/axioms.log
+            ${{ runner.temp }}/comparator-logs/
+          if-no-files-found: ignore
+          retention-days: 30

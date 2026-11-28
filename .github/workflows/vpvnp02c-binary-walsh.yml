@@ -1,0 +1,70 @@
+name: VPVNP-02C binary Walsh and basis DP
+# Historical per-stage gate; consolidated proof workflow runs on the PR.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+concurrency:
+  group: vpvnp02c-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Native Walsh proofs and axiom audit
+        working-directory: experiments/deligne_mathlib
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp ../../research/VPVNP/RankSpectral.lean .
+          cp ../../research/VPVNP/BinaryWalsh.lean .
+          lake env bash -c 'set -euo pipefail; export LEAN_PATH="$PWD:$LEAN_PATH"; lean -o RankSpectral.olean RankSpectral.lean; lean BinaryWalsh.lean' | tee "$RUNNER_TEMP/vpvnp02c-axioms.txt"
+          python3 - "$RUNNER_TEMP/vpvnp02c-axioms.txt" <<'PY'
+          import re,sys
+          from pathlib import Path
+          s=Path(sys.argv[1]).read_text()
+          expected=set("pairing_unit walsh_sum_zero walsh_orthogonal walsh_dual_orthogonal walsh_reconstruct actual_shift_energy actual_vector_shift_energy increment_energy recurrence_unique".split())
+          found=set()
+          assert not re.search(r"sorryAx|ofReduceBool|declaration uses 'sorry'|^error:",s,re.M),s
+          for name,body in re.findall(r"'VPVNP\.Binary\.([\w]+)' depends on axioms: \[(.*?)\]",s,re.S):
+              found.add(name)
+              assert set(x.strip() for x in body.split(',') if x.strip()) <= {'propext','Classical.choice','Quot.sound'},(name,body)
+          for name in re.findall(r"'VPVNP\.Binary\.([\w]+)' does not depend on any axioms",s):
+              found.add(name)
+          assert found==expected,(found,expected)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vpvnp02c-native-axioms
+          path: ${{ runner.temp }}/vpvnp02c-axioms.txt
+  exact-basis-dp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replay independent signed counts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 research/VPVNP/basis_dp.py | tee "$RUNNER_TEMP/vpvnp02c-basis.json"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vpvnp02c-basis-dp
+          path: ${{ runner.temp }}/vpvnp02c-basis.json

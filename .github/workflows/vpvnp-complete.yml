@@ -1,0 +1,94 @@
+name: VPVNP complete observer proof
+on:
+  pull_request:
+    paths:
+      - 'research/VPVNP/**'
+      - '.github/workflows/vpvnp-complete.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: vpvnp-complete-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Build all proof modules and check every named axiom report
+        working-directory: experiments/deligne_mathlib
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp ../../research/VPVNP/*.lean .
+          lake env bash -c 'set -euo pipefail; export LEAN_PATH="$PWD:$LEAN_PATH"; for m in RankSpectral BinaryWalsh HyperplaneCancellation OrderedFrameFibers SignedFrameTransport MatrixRankCharacter CanonicalRankRecurrence RankOneCharacter ObserverBound FiveTrackCore; do lean -o "$m.olean" "$m.lean"; done' | tee "$RUNNER_TEMP/vpvnp-complete-axioms.txt"
+          python3 - "$RUNNER_TEMP/vpvnp-complete-axioms.txt" <<'PY'
+          import re,sys
+          from pathlib import Path
+          s=Path(sys.argv[1]).read_text()
+          mods="RankSpectral BinaryWalsh HyperplaneCancellation OrderedFrameFibers SignedFrameTransport MatrixRankCharacter CanonicalRankRecurrence RankOneCharacter ObserverBound FiveTrackCore".split()
+          expected=set()
+          for mod in mods:
+              expected.update(re.findall(r"^#print axioms ([\w.]+)",Path(mod+".lean").read_text(),re.M))
+          assert len(expected)>=100,(len(expected),expected)
+          found=set()
+          assert not re.search(r"sorryAx|ofReduceBool|declaration uses 'sorry'|^error:",s,re.M),s
+          for name,body in re.findall(r"'([\w.]+)' depends on axioms: \[(.*?)\]",s,re.S):
+              found.add(name)
+              assert set(x.strip() for x in body.split(',') if x.strip()) <= {'propext','Classical.choice','Quot.sound'},(name,body)
+          for name in re.findall(r"'([\w.]+)' does not depend on any axioms",s):
+              found.add(name)
+          assert expected==found,(expected-found,found-expected)
+          print("PASS",len(found),"named axiom receipts")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vpvnp-complete-native-axioms
+          path: ${{ runner.temp }}/vpvnp-complete-axioms.txt
+  exact-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replay all registered exact oracles
+        working-directory: research/VPVNP
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/vpvnp-exact"
+          python3 rank_geometry.py --out "$RUNNER_TEMP/vpvnp-exact/rank_geometry.json"
+          diff -u results/rank_geometry.json "$RUNNER_TEMP/vpvnp-exact/rank_geometry.json"
+          for m in stability_check basis_dp hyperplane_check frame_fiber_check signed_frame_check full_walsh_audit canonical_rank_check rank_one_check observer_bound_check; do
+            python3 "$m.py" | tee "$RUNNER_TEMP/vpvnp-exact/$m.json"
+          done
+          node five_track_check.mjs | tee "$RUNNER_TEMP/vpvnp-exact/five_track_check.json"
+          python3 - "$RUNNER_TEMP/vpvnp-exact/five_track_check.json" <<'PY'
+          import json,sys
+          r=json.load(open(sys.argv[1]))
+          assert r["schema"] == "vpvnp-five-01"
+          assert r["AC"]["minima_checked"] == 10 and r["AC"]["feasible_pairs"] == 25
+          assert r["IPS"]["gate_identities"] == 6400 and r["IPS"]["actual_certificate_examples"] == 4
+          assert r["GEO"]["exact_flattening_ranks"] == 128 and r["GEO"]["rank_sum_checks"] == 240
+          assert r["LOOP"]["exact_polynomial_cases"] == 720
+          assert r["CROSS"]["translated_gate_outputs"] == 6400 and r["CROSS"]["diagonal_values"] == 17
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vpvnp-complete-exact
+          path: ${{ runner.temp }}/vpvnp-exact/
