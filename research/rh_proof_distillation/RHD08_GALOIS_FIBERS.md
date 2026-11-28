@@ -46,6 +46,10 @@ At ell coprime to n, `SqAt` then corresponds to `ell ≡ 1 (mod 4)` for d=1 or `
 
 These demonstrate that RHD-07's completely split criterion is specific to its biquadratic field. A higher-degree CM field can supply distinct prime contractions even when the cyclotomic polynomial has only degree-two factors.
 
+## Residue degree four
+
+The same coset count gives an example with residue degree four in the abelian CM field $E=\mathbf{Q}(\zeta_{16})^+(\sqrt{-547},\sqrt{-727})$. Take $K=\mathbf{Q}(\sqrt{-547})$. The three independent factors of $\mathrm{Gal}(E/\mathbf{Q})$ have orders $4,2,2$, so $|H|=8$. The unramified prime $11$ splits in $K$ since $5^2\equiv-547\pmod{11}$. Its class modulo $16$ has order four up to sign ($11^2\equiv9$ and $11^4\equiv1\pmod{16}$), so the decomposition group $D$ has order four and lies in $H$. Each of the two primes of $K$ above $11$ therefore has $8/4=2$ primes of $E$ above it, each of residue degree four over $\mathbf{Q}$. [Crossley’s field and Frobenius calculation](https://github.com/leecrossley/theta-race-short-shifts/blob/e1b53f66b171e1a2acb0561b910abd1215546379/PROOF.md#L29), [archived paper](https://doi.org/10.5281/zenodo.24410823).
+
 ## The RHD-08 training gym
 
 A separate reproducible artifact has **13,528** supervised exercises, **613** exact-verifier recurrent episodes, and **20** conductor-level generalization tasks. All 15 local tests passed. Training uses conductors `12,20,24,30,36,40`, validation `15,21,28`, and test `44,45,48,60,84`, with an additional disjoint split on 237 rational primes.
