@@ -40,6 +40,8 @@ import MathCan.CausalInteraction
 import MathCan.PairedHistory
 import MathCan.MemoryProjection
 import MathCan.GradientStability
+import MathCan.CoalitionNoise
+import MathCan.CoalitionThreshold
 import MathCan.OrbitStitching
 import MathCan.FilteredOrbit
 import MathCan.BlockRemainder
@@ -160,5 +162,3 @@ import MathCan.DCFDecision
 import MathCan.SCCG10Admission
 
 import MathCan.MMSTRMEconomics
-import MathCan.CoalitionNoise
-import MathCan.CoalitionThreshold
