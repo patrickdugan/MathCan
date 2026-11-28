@@ -160,3 +160,9 @@ import MathCan.DCFDecision
 import MathCan.SCCG10Admission
 
 import MathCan.MMSTRMEconomics
+import MathCan.ZKLean
+import MathCan.ZKLeanAlgebra
+import MathCan.ZKLeanPoly
+import MathCan.ZKLeanLocal
+import MathCan.ZKLeanCompose
+import MathCan.ZKLeanSettlement
