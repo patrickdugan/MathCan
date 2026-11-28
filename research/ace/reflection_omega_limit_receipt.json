@@ -1,0 +1,20 @@
+{
+  "experiment": "ACE-03N",
+  "part": "limit",
+  "proofs": {
+    "successor_closed_range_limit": {
+      "nodes": 273,
+      "goal_bytes": 320519,
+      "proof_bytes": 643848
+    },
+    "range_implies_reflecting_stage": {
+      "nodes": 41801,
+      "goal_bytes": 426809,
+      "proof_bytes": 40004517
+    }
+  },
+  "exact_interfaces": 1,
+  "negative_controls": 0,
+  "pinned_L_unchanged": true,
+  "scope": "closed proof module for one fixed reflection example"
+}

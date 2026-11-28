@@ -1,0 +1,167 @@
+{
+  "experiment": "ACE-03Q",
+  "part": "unbounded",
+  "spec": {
+    "name": "separation",
+    "params": 0,
+    "body": [
+      "&",
+      [
+        "E",
+        [
+          "M",
+          1,
+          0
+        ]
+      ],
+      [
+        "E",
+        [
+          "M",
+          0,
+          1
+        ]
+      ]
+    ]
+  },
+  "graph": [
+    {
+      "id": "extension.0",
+      "dependencies": 0,
+      "nodes": 18577,
+      "guarded": false
+    },
+    {
+      "id": "extension.1",
+      "dependencies": 0,
+      "nodes": 18577,
+      "guarded": false
+    },
+    {
+      "id": "selector.conditional",
+      "dependencies": 0,
+      "nodes": 13679,
+      "guarded": false
+    },
+    {
+      "id": "selector.strict",
+      "dependencies": 0,
+      "nodes": 12,
+      "guarded": false
+    },
+    {
+      "id": "selector.total",
+      "dependencies": 3,
+      "nodes": 5,
+      "guarded": false
+    },
+    {
+      "id": "omega.range",
+      "dependencies": 0,
+      "nodes": 3687,
+      "guarded": false
+    },
+    {
+      "id": "limit.reflection",
+      "dependencies": 0,
+      "nodes": 18522,
+      "guarded": false
+    },
+    {
+      "id": "omega.ordinal",
+      "dependencies": 0,
+      "nodes": 394,
+      "guarded": false
+    },
+    {
+      "id": "omega.exists",
+      "dependencies": 0,
+      "nodes": 136,
+      "guarded": false
+    },
+    {
+      "id": "stage.members",
+      "dependencies": 0,
+      "nodes": 27,
+      "guarded": false
+    },
+    {
+      "id": "transport",
+      "dependencies": 0,
+      "nodes": 117,
+      "guarded": false
+    },
+    {
+      "id": "reflection.imp",
+      "dependencies": 0,
+      "nodes": 101,
+      "guarded": false
+    },
+    {
+      "id": "reflection",
+      "dependencies": 9,
+      "nodes": 17,
+      "guarded": false
+    },
+    {
+      "id": "common_constructible_stage",
+      "dependencies": 0,
+      "nodes": 11304,
+      "guarded": false
+    },
+    {
+      "id": "ordinal_stage_value_monotone",
+      "dependencies": 0,
+      "nodes": 3750,
+      "guarded": false
+    },
+    {
+      "id": "ordinal_stage_value_transitive",
+      "dependencies": 0,
+      "nodes": 2882,
+      "guarded": false
+    },
+    {
+      "id": "definable_subset_constructible",
+      "dependencies": 0,
+      "nodes": 5053,
+      "guarded": false
+    },
+    {
+      "id": "subset_definability",
+      "dependencies": 0,
+      "nodes": 6078,
+      "guarded": false
+    },
+    {
+      "id": "separation.imp",
+      "dependencies": 0,
+      "nodes": 249,
+      "guarded": false
+    },
+    {
+      "id": "separation.pure",
+      "dependencies": 7,
+      "nodes": 13,
+      "guarded": false
+    },
+    {
+      "id": "separation.guard",
+      "dependencies": 1,
+      "nodes": 2,
+      "guarded": true
+    }
+  ],
+  "stats": {
+    "graph_nodes": 21,
+    "graph_kernel_visits": 103182,
+    "rewritten_source_nodes": 5,
+    "translated_nodes": 8,
+    "conditional_nodes": 9,
+    "cut_nodes": 3
+  },
+  "source_nodes": 5,
+  "exact_target": true,
+  "pinned_L_unchanged": true,
+  "scope": "complete streamed proof DAG for fixed unbounded Separation and repeated source-axiom translation"
+}

@@ -1,0 +1,38 @@
+{
+  "experiment": "ACE-03P",
+  "part": "right",
+  "spec": {
+    "name": "separation",
+    "params": 0,
+    "body": [
+      "&",
+      [
+        "E",
+        [
+          "M",
+          1,
+          0
+        ]
+      ],
+      [
+        "E",
+        [
+          "M",
+          0,
+          1
+        ]
+      ]
+    ]
+  },
+  "proofs": {
+    "strict_stage_witness_extension": {
+      "nodes": 18577,
+      "goal_bytes": 160087,
+      "proof_bytes": 33693244
+    }
+  },
+  "exact_interfaces": 2,
+  "negative_controls": 1,
+  "pinned_L_unchanged": true,
+  "scope": "checked dependency or link for one fixed unbounded Separation instance; unrestricted schema remains open"
+}

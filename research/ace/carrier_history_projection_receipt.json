@@ -1,0 +1,684 @@
+{
+  "experiment": "ACE-03X",
+  "part": "packed_order_history_carrier_projection",
+  "checks": [
+    {
+      "id": "carrier_value_unique",
+      "nodes": 262,
+      "goal_bytes": 2269,
+      "ambient_axioms": []
+    },
+    {
+      "id": "carrier_value_total",
+      "nodes": 30,
+      "goal_bytes": 2275,
+      "ambient_axioms": []
+    },
+    {
+      "id": "projected_pair_total_unique",
+      "nodes": 600,
+      "goal_bytes": 3487,
+      "ambient_axioms": [
+        "extensionality",
+        "pairing"
+      ]
+    },
+    {
+      "id": "exact_projection_exists",
+      "nodes": 617,
+      "goal_bytes": 3525,
+      "ambient_axioms": [
+        "extensionality",
+        "pairing",
+        "replacement"
+      ]
+    },
+    {
+      "id": "exact_projection_unique",
+      "nodes": 32,
+      "goal_bytes": 3789,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "exact_projection_agreement",
+      "nodes": 329,
+      "goal_bytes": 3745,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "exact_projection_graph",
+      "nodes": 708,
+      "goal_bytes": 4527,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "history_values_are_good",
+      "nodes": 40,
+      "goal_bytes": 253617,
+      "ambient_axioms": []
+    },
+    {
+      "id": "history_values_are_packed",
+      "nodes": 67,
+      "goal_bytes": 251119,
+      "ambient_axioms": []
+    },
+    {
+      "id": "limit_carrier_projects",
+      "nodes": 109,
+      "goal_bytes": 4113,
+      "ambient_axioms": []
+    },
+    {
+      "id": "step_projects_stage",
+      "nodes": 446,
+      "goal_bytes": 302803,
+      "ambient_axioms": []
+    },
+    {
+      "id": "history_projection_stage_graph",
+      "nodes": 1640,
+      "goal_bytes": 305167,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "carrier_history_projection_exists",
+      "nodes": 2708,
+      "goal_bytes": 306147,
+      "ambient_axioms": [
+        "extensionality",
+        "pairing",
+        "replacement"
+      ]
+    },
+    {
+      "id": "ordinal_carrier_history_projection",
+      "nodes": 2722,
+      "goal_bytes": 306229,
+      "ambient_axioms": [
+        "extensionality",
+        "pairing",
+        "replacement"
+      ]
+    },
+    {
+      "id": "projected_carriers_are_good",
+      "nodes": 316,
+      "goal_bytes": 255187,
+      "ambient_axioms": []
+    }
+  ],
+  "checked_modules": 15,
+  "new_statement_checks": 15,
+  "kernel_visits": 10626,
+  "independent_exact_goals": 15,
+  "independent_formula_interfaces": 16,
+  "exact_pinned_stage_schema_comparisons": 2,
+  "exact_Replacement_schema_comparisons": 1,
+  "logic_only_checks": 7,
+  "pure_logic_modules": [
+    "carrier_value_unique",
+    "carrier_value_total",
+    "history_values_are_good",
+    "history_values_are_packed",
+    "limit_carrier_projects",
+    "step_projects_stage",
+    "projected_carriers_are_good"
+  ],
+  "negative_controls": 71,
+  "kernel_rejection_controls": 26,
+  "contract_rejection_controls": 45,
+  "controls": [
+    "carrier_value_unique:drop_universal",
+    "carrier_value_unique:changed_outer_binder",
+    "carrier_value_total:drop_universal",
+    "carrier_value_total:changed_outer_binder",
+    "projected_pair_total_unique:drop_universal",
+    "projected_pair_total_unique:changed_outer_binder",
+    "projected_pair_total_unique:forbid_set_axioms",
+    "exact_projection_exists:drop_universal",
+    "exact_projection_exists:changed_outer_binder",
+    "exact_projection_exists:forbid_set_axioms",
+    "exact_projection_unique:drop_universal",
+    "exact_projection_unique:changed_outer_binder",
+    "exact_projection_unique:forbid_set_axioms",
+    "exact_projection_agreement:drop_universal",
+    "exact_projection_agreement:changed_outer_binder",
+    "exact_projection_agreement:forbid_set_axioms",
+    "exact_projection_graph:drop_universal",
+    "exact_projection_graph:changed_outer_binder",
+    "exact_projection_graph:forbid_set_axioms",
+    "history_values_are_good:drop_universal",
+    "history_values_are_good:changed_outer_binder",
+    "history_values_are_packed:drop_universal",
+    "history_values_are_packed:changed_outer_binder",
+    "limit_carrier_projects:drop_universal",
+    "limit_carrier_projects:changed_outer_binder",
+    "step_projects_stage:drop_universal",
+    "step_projects_stage:changed_outer_binder",
+    "history_projection_stage_graph:drop_universal",
+    "history_projection_stage_graph:changed_outer_binder",
+    "history_projection_stage_graph:forbid_set_axioms",
+    "carrier_history_projection_exists:drop_universal",
+    "carrier_history_projection_exists:changed_outer_binder",
+    "carrier_history_projection_exists:forbid_set_axioms",
+    "ordinal_carrier_history_projection:drop_universal",
+    "ordinal_carrier_history_projection:changed_outer_binder",
+    "ordinal_carrier_history_projection:forbid_set_axioms",
+    "projected_carriers_are_good:drop_universal",
+    "projected_carriers_are_good:changed_outer_binder",
+    "carrier_value_unique:omit_premise_0",
+    "carrier_value_unique:omit_premise_1",
+    "carrier_value_unique:omit_premise_2",
+    "carrier_value_unique:omit_premise_3",
+    "exact_projection_exists:omit_premise_0",
+    "exact_projection_exists:omit_premise_1",
+    "exact_projection_graph:omit_premise_0",
+    "exact_projection_graph:omit_premise_1",
+    "exact_projection_graph:omit_premise_2",
+    "limit_carrier_projects:omit_premise_0",
+    "limit_carrier_projects:omit_premise_1",
+    "limit_carrier_projects:omit_premise_2",
+    "limit_carrier_projects:omit_premise_3",
+    "limit_carrier_projects:omit_premise_4",
+    "step_projects_stage:omit_premise_0",
+    "step_projects_stage:omit_premise_1",
+    "step_projects_stage:omit_premise_2",
+    "step_projects_stage:omit_premise_3",
+    "step_projects_stage:omit_premise_4",
+    "history_projection_stage_graph:omit_premise_0",
+    "history_projection_stage_graph:omit_premise_1",
+    "history_projection_stage_graph:omit_premise_2",
+    "carrier_history_projection_exists:omit_premise_0",
+    "carrier_history_projection_exists:omit_premise_1",
+    "ordinal_carrier_history_projection:omit_premise_0",
+    "ordinal_carrier_history_projection:omit_premise_1",
+    "projected_carriers_are_good:omit_premise_0",
+    "projected_carriers_are_good:omit_premise_1",
+    "exact_projection_agreement:wrong_packed_coordinate",
+    "history_projection_stage_graph:input_as_projected_graph",
+    "exact_projection_exists:corrupt_Replacement_body",
+    "carrier_value_unique:corrupt_coordinate_transport",
+    "choice_axiom_forbidden"
+  ],
+  "contract_controls_use_verified_conclusions": true,
+  "ambient_axiom_instances": [
+    {
+      "name": "extensionality"
+    },
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "replacement",
+      "params": 1,
+      "body_bytes": 891
+    }
+  ],
+  "replacement_schema": {
+    "name": "replacement",
+    "params": 1,
+    "body": [
+      "E",
+      [
+        "&",
+        [
+          "E",
+          [
+            "E",
+            [
+              "&",
+              [
+                "E",
+                [
+                  "&",
+                  [
+                    "M",
+                    0,
+                    6
+                  ],
+                  [
+                    "E",
+                    [
+                      "E",
+                      [
+                        "&",
+                        [
+                          "&",
+                          [
+                            "A",
+                            [
+                              "&",
+                              [
+                                ">",
+                                [
+                                  "M",
+                                  0,
+                                  2
+                                ],
+                                [
+                                  "=",
+                                  0,
+                                  8
+                                ]
+                              ],
+                              [
+                                ">",
+                                [
+                                  "=",
+                                  0,
+                                  8
+                                ],
+                                [
+                                  "M",
+                                  0,
+                                  2
+                                ]
+                              ]
+                            ]
+                          ],
+                          [
+                            "A",
+                            [
+                              "&",
+                              [
+                                ">",
+                                [
+                                  "M",
+                                  0,
+                                  1
+                                ],
+                                [
+                                  "|",
+                                  [
+                                    "=",
+                                    0,
+                                    8
+                                  ],
+                                  [
+                                    "=",
+                                    0,
+                                    5
+                                  ]
+                                ]
+                              ],
+                              [
+                                ">",
+                                [
+                                  "|",
+                                  [
+                                    "=",
+                                    0,
+                                    8
+                                  ],
+                                  [
+                                    "=",
+                                    0,
+                                    5
+                                  ]
+                                ],
+                                [
+                                  "M",
+                                  0,
+                                  1
+                                ]
+                              ]
+                            ]
+                          ]
+                        ],
+                        [
+                          "A",
+                          [
+                            "&",
+                            [
+                              ">",
+                              [
+                                "M",
+                                0,
+                                3
+                              ],
+                              [
+                                "|",
+                                [
+                                  "=",
+                                  0,
+                                  2
+                                ],
+                                [
+                                  "=",
+                                  0,
+                                  1
+                                ]
+                              ]
+                            ],
+                            [
+                              ">",
+                              [
+                                "|",
+                                [
+                                  "=",
+                                  0,
+                                  2
+                                ],
+                                [
+                                  "=",
+                                  0,
+                                  1
+                                ]
+                              ],
+                              [
+                                "M",
+                                0,
+                                3
+                              ]
+                            ]
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              [
+                "E",
+                [
+                  "E",
+                  [
+                    "&",
+                    [
+                      "&",
+                      [
+                        "A",
+                        [
+                          "&",
+                          [
+                            ">",
+                            [
+                              "M",
+                              0,
+                              2
+                            ],
+                            [
+                              "=",
+                              0,
+                              5
+                            ]
+                          ],
+                          [
+                            ">",
+                            [
+                              "=",
+                              0,
+                              5
+                            ],
+                            [
+                              "M",
+                              0,
+                              2
+                            ]
+                          ]
+                        ]
+                      ],
+                      [
+                        "A",
+                        [
+                          "&",
+                          [
+                            ">",
+                            [
+                              "M",
+                              0,
+                              1
+                            ],
+                            [
+                              "|",
+                              [
+                                "=",
+                                0,
+                                5
+                              ],
+                              [
+                                "=",
+                                0,
+                                3
+                              ]
+                            ]
+                          ],
+                          [
+                            ">",
+                            [
+                              "|",
+                              [
+                                "=",
+                                0,
+                                5
+                              ],
+                              [
+                                "=",
+                                0,
+                                3
+                              ]
+                            ],
+                            [
+                              "M",
+                              0,
+                              1
+                            ]
+                          ]
+                        ]
+                      ]
+                    ],
+                    [
+                      "A",
+                      [
+                        "&",
+                        [
+                          ">",
+                          [
+                            "M",
+                            0,
+                            4
+                          ],
+                          [
+                            "|",
+                            [
+                              "=",
+                              0,
+                              2
+                            ],
+                            [
+                              "=",
+                              0,
+                              1
+                            ]
+                          ]
+                        ],
+                        [
+                          ">",
+                          [
+                            "|",
+                            [
+                              "=",
+                              0,
+                              2
+                            ],
+                            [
+                              "=",
+                              0,
+                              1
+                            ]
+                          ],
+                          [
+                            "M",
+                            0,
+                            4
+                          ]
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "E",
+          [
+            "E",
+            [
+              "&",
+              [
+                "&",
+                [
+                  "A",
+                  [
+                    "&",
+                    [
+                      ">",
+                      [
+                        "M",
+                        0,
+                        2
+                      ],
+                      [
+                        "=",
+                        0,
+                        5
+                      ]
+                    ],
+                    [
+                      ">",
+                      [
+                        "=",
+                        0,
+                        5
+                      ],
+                      [
+                        "M",
+                        0,
+                        2
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "A",
+                  [
+                    "&",
+                    [
+                      ">",
+                      [
+                        "M",
+                        0,
+                        1
+                      ],
+                      [
+                        "|",
+                        [
+                          "=",
+                          0,
+                          5
+                        ],
+                        [
+                          "=",
+                          0,
+                          3
+                        ]
+                      ]
+                    ],
+                    [
+                      ">",
+                      [
+                        "|",
+                        [
+                          "=",
+                          0,
+                          5
+                        ],
+                        [
+                          "=",
+                          0,
+                          3
+                        ]
+                      ],
+                      [
+                        "M",
+                        0,
+                        1
+                      ]
+                    ]
+                  ]
+                ]
+              ],
+              [
+                "A",
+                [
+                  "&",
+                  [
+                    ">",
+                    [
+                      "M",
+                      0,
+                      4
+                    ],
+                    [
+                      "|",
+                      [
+                        "=",
+                        0,
+                        2
+                      ],
+                      [
+                        "=",
+                        0,
+                        1
+                      ]
+                    ]
+                  ],
+                  [
+                    ">",
+                    [
+                      "|",
+                      [
+                        "=",
+                        0,
+                        2
+                      ],
+                      [
+                        "=",
+                        0,
+                        1
+                      ]
+                    ],
+                    [
+                      "M",
+                      0,
+                      4
+                    ]
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  },
+  "pinned_L_unchanged": true,
+  "scope": "exact unique graph of carrier coordinates, with the original pinned stageGraph recursion and a well-order on each projected carrier, conditional on the packed canonical order history",
+  "open_obligations": [
+    "compose the projection with actual canonical order-history existence",
+    "internal constructibility of the canonical order sets",
+    "exact relativized Choice import",
+    "formal checker soundness"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "proofs": {
+    "constructible_pair_closure": {
+      "proof_bytes": 20103684
+    },
+    "pairing_axiom": {
+      "nodes": 19928,
+      "proof_bytes": 20104468
+    }
+  },
+  "independent_goal_checks": 1,
+  "negative_controls": 3,
+  "closed_L_axiom_certificate": "pairing",
+  "source_nodes": 1,
+  "target_nodes": 19929
+}

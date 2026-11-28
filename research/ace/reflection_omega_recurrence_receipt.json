@@ -1,0 +1,35 @@
+{
+  "experiment": "ACE-03N",
+  "part": "recurrence",
+  "proofs": {
+    "tight_endpoint_is_endpoint": {
+      "nodes": 67,
+      "goal_bytes": 4857,
+      "proof_bytes": 12575
+    },
+    "finite_iteration_conditional": {
+      "nodes": 3104,
+      "goal_bytes": 5781,
+      "proof_bytes": 205814
+    },
+    "omega_endpoint_total_conditional": {
+      "nodes": 3326,
+      "goal_bytes": 5755,
+      "proof_bytes": 235720
+    },
+    "omega_range_exists_conditional": {
+      "nodes": 3343,
+      "goal_bytes": 5793,
+      "proof_bytes": 239226
+    },
+    "omega_range_closed_conditional": {
+      "nodes": 3687,
+      "goal_bytes": 1333,
+      "proof_bytes": 282698
+    }
+  },
+  "exact_interfaces": 0,
+  "negative_controls": 2,
+  "pinned_L_unchanged": true,
+  "scope": "conditional finite-history recurrence fixture"
+}

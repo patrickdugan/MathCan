@@ -1,0 +1,10 @@
+{
+  "proofs": {
+    "relative_power_definable": {
+      "nodes": 4194,
+      "proof_bytes": 1350795
+    }
+  },
+  "independent_goal_checks": 1,
+  "negative_controls": 1
+}

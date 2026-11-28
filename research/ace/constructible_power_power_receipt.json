@@ -1,0 +1,24 @@
+{
+  "proofs": {
+    "ambient_relative_powerset_exists": {
+      "nodes": 45,
+      "proof_bytes": 534183
+    },
+    "generic_power": {
+      "nodes": 49,
+      "proof_bytes": 1020
+    },
+    "constructible_powerset_closure": {
+      "proof_bytes": 24874133
+    },
+    "power_axiom": {
+      "nodes": 24263,
+      "proof_bytes": 26235771
+    }
+  },
+  "independent_goal_checks": 3,
+  "negative_controls": 3,
+  "closed_L_axiom_certificate": "power",
+  "source_nodes": 1,
+  "target_nodes": 24264
+}

@@ -1,0 +1,14 @@
+{
+  "experiment": "ACE-03N",
+  "part": "omega",
+  "proofs": {
+    "omega_range_closed_conditional": {
+      "nodes": 3687,
+      "goal_bytes": 960803
+    }
+  },
+  "exact_interfaces": 1,
+  "negative_controls": 0,
+  "pinned_L_unchanged": true,
+  "scope": "closed proof module for one fixed reflection example"
+}

@@ -1,0 +1,272 @@
+{
+  "experiment": "ACE-03W",
+  "part": "omega_membership_well_order_and_induction",
+  "checks": [
+    {
+      "id": "successor_set_unique",
+      "nodes": 31,
+      "goal_bytes": 231,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "omega_successor_exists",
+      "nodes": 10,
+      "goal_bytes": 593,
+      "ambient_axioms": []
+    },
+    {
+      "id": "omega_successor_membership",
+      "nodes": 44,
+      "goal_bytes": 593,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "omega_transitive",
+      "nodes": 128,
+      "goal_bytes": 507,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "omega_members_transitive",
+      "nodes": 138,
+      "goal_bytes": 529,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "omega_member_transitive",
+      "nodes": 148,
+      "goal_bytes": 529,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "omega_zero_or_successor",
+      "nodes": 111,
+      "goal_bytes": 627,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "omega_nonempty_predecessor",
+      "nodes": 131,
+      "goal_bytes": 615,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "omega_membership_irreflexive",
+      "nodes": 64,
+      "goal_bytes": 497,
+      "ambient_axioms": [
+        "foundation",
+        "pairing"
+      ]
+    },
+    {
+      "id": "omega_membership_transitive",
+      "nodes": 163,
+      "goal_bytes": 561,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "omega_membership_total",
+      "nodes": 799,
+      "goal_bytes": 539,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "separation"
+      ]
+    },
+    {
+      "id": "omega_membership_minima",
+      "nodes": 24,
+      "goal_bytes": 585,
+      "ambient_axioms": [
+        "foundation"
+      ]
+    },
+    {
+      "id": "omega_membership_well_order",
+      "nodes": 1067,
+      "goal_bytes": 841,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "separation"
+      ]
+    },
+    {
+      "id": "omega_ordinal",
+      "nodes": 275,
+      "goal_bytes": 589,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "transitivity_induction",
+      "nodes": 87,
+      "goal_bytes": 879,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "unbounded_relation_induction",
+      "nodes": 89,
+      "goal_bytes": 797,
+      "ambient_axioms": [
+        "separation"
+      ]
+    }
+  ],
+  "checked_modules": 16,
+  "well_order_family_checks": 14,
+  "fixed_induction_instance_checks": 2,
+  "kernel_visits": 3309,
+  "independent_exact_goals": 16,
+  "independent_formula_interfaces": 3,
+  "shared_well_order_layout_checks": 1,
+  "pure_logic_checks": [
+    "omega_successor_exists"
+  ],
+  "negative_controls": 44,
+  "controls": [
+    "successor_set_unique:drop_binders",
+    "successor_set_unique:forbid_set_axioms",
+    "omega_successor_exists:drop_binders",
+    "omega_successor_membership:drop_binders",
+    "omega_successor_membership:forbid_set_axioms",
+    "omega_transitive:drop_binders",
+    "omega_transitive:forbid_set_axioms",
+    "omega_members_transitive:drop_binders",
+    "omega_members_transitive:forbid_set_axioms",
+    "omega_member_transitive:drop_binders",
+    "omega_member_transitive:forbid_set_axioms",
+    "omega_zero_or_successor:drop_binders",
+    "omega_zero_or_successor:forbid_set_axioms",
+    "omega_nonempty_predecessor:drop_binders",
+    "omega_nonempty_predecessor:forbid_set_axioms",
+    "omega_membership_irreflexive:free_instantiation",
+    "omega_membership_irreflexive:forbid_set_axioms",
+    "omega_membership_transitive:drop_binders",
+    "omega_membership_transitive:forbid_set_axioms",
+    "omega_membership_total:free_instantiation",
+    "omega_membership_total:forbid_set_axioms",
+    "omega_membership_minima:drop_binders",
+    "omega_membership_minima:forbid_set_axioms",
+    "omega_membership_well_order:drop_binders",
+    "omega_membership_well_order:forbid_set_axioms",
+    "omega_ordinal:drop_binders",
+    "omega_ordinal:forbid_set_axioms",
+    "transitivity_induction:drop_binders",
+    "transitivity_induction:forbid_set_axioms",
+    "unbounded_relation_induction:drop_binders",
+    "unbounded_relation_induction:forbid_set_axioms",
+    "well_order:omit_omega",
+    "member_transitivity:omit_natural_membership",
+    "successor:omit_successor_equation",
+    "induction:omit_empty_base",
+    "induction:omit_successor_step",
+    "well_order:remove_live_foundation",
+    "well_order:remove_live_separation",
+    "well_order:remove_live_extensionality",
+    "induction:escaping_parameter",
+    "induction:negative_parameter_count",
+    "induction:fractional_parameter_count",
+    "induction:too_many_parameters",
+    "choice_axiom_forbidden"
+  ],
+  "induction_contract": {
+    "property_free_order": [
+      "n",
+      "...parameters"
+    ],
+    "quantifier_order": [
+      "...parameters",
+      "w"
+    ],
+    "premises": [
+      "Omega(w)",
+      "forall z (Empty(z) -> P(z))",
+      "forall n,d (n in w -> Succ(n,d) -> P(n) -> P(d))"
+    ],
+    "conclusion": "forall m (m in w -> P(m))"
+  },
+  "main_quantifier_order": [
+    "w"
+  ],
+  "main_premises": [
+    "Omega(w)"
+  ],
+  "ambient_axiom_instances": [
+    {
+      "name": "extensionality"
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 31
+    },
+    {
+      "name": "separation",
+      "params": 0,
+      "body_bytes": 53
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 151
+    },
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "foundation"
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 63
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 41
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 41
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 31
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "membership is a strict well-order on a supplied set satisfying the exact pinned Omega definition; natural predecessor, successor, transitivity and fixed-formula induction theorems",
+  "open_obligations": [
+    "set realization of the membership relation when a coded order is required",
+    "order and carrier constructions for finite program codes",
+    "internal constructibility of orders",
+    "formal checker soundness"
+  ]
+}

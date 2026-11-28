@@ -1,0 +1,689 @@
+{
+  "experiment": "ACE-03X",
+  "part": "unique_successor_limit_and_coherent_order_history_replay",
+  "exact_receipt_comparisons": 15,
+  "checked_modules": 114,
+  "new_statement_checks": 112,
+  "reproved_existing_statement_checks": 2,
+  "reused_helper_checks": 0,
+  "independent_exact_goals": 114,
+  "kernel_visits": 513363,
+  "proof_rejection_controls": 422,
+  "independent_formula_interfaces": 200,
+  "logic_only_checks": 44,
+  "existing_statement_identity_checks": 0,
+  "shared_well_order_layout_checks": 1,
+  "syntax_formula_link_checks": 0,
+  "independent_product_specification_checks": 0,
+  "exact_pinned_Def_schema_comparisons": 1,
+  "exact_pinned_L_schema_comparisons": 1,
+  "choice_axiom_imported": false,
+  "family_totals": {
+    "canonical_description_order": {
+      "checked_modules": 4,
+      "new_statement_checks": 4,
+      "reproved_existing_statement_checks": 0,
+      "reused_helper_checks": 0,
+      "kernel_visits": 15303,
+      "rejection_controls": 15,
+      "independent_formula_interfaces": 11,
+      "logic_only_checks": 0
+    },
+    "canonical_limit_order": {
+      "checked_modules": 23,
+      "new_statement_checks": 23,
+      "reproved_existing_statement_checks": 0,
+      "reused_helper_checks": 0,
+      "kernel_visits": 8775,
+      "rejection_controls": 81,
+      "independent_formula_interfaces": 16,
+      "logic_only_checks": 9
+    },
+    "uniform_history_recursion": {
+      "checked_modules": 15,
+      "new_statement_checks": 15,
+      "reproved_existing_statement_checks": 0,
+      "reused_helper_checks": 0,
+      "kernel_visits": 27562,
+      "rejection_controls": 24,
+      "independent_formula_interfaces": 13,
+      "logic_only_checks": 0
+    },
+    "uniform_history_example": {
+      "checked_modules": 6,
+      "new_statement_checks": 6,
+      "reproved_existing_statement_checks": 0,
+      "reused_helper_checks": 0,
+      "kernel_visits": 9722,
+      "rejection_controls": 15,
+      "independent_formula_interfaces": 13,
+      "logic_only_checks": 1
+    },
+    "canonical_stage_order": {
+      "checked_modules": 15,
+      "new_statement_checks": 15,
+      "reproved_existing_statement_checks": 0,
+      "reused_helper_checks": 0,
+      "kernel_visits": 130513,
+      "rejection_controls": 66,
+      "independent_formula_interfaces": 15,
+      "logic_only_checks": 9
+    },
+    "indexed_order_family": {
+      "checked_modules": 14,
+      "new_statement_checks": 12,
+      "reproved_existing_statement_checks": 2,
+      "reused_helper_checks": 0,
+      "kernel_visits": 19700,
+      "rejection_controls": 69,
+      "independent_formula_interfaces": 21,
+      "logic_only_checks": 8
+    },
+    "constructible_order_history_range": {
+      "checked_modules": 3,
+      "new_statement_checks": 3,
+      "reproved_existing_statement_checks": 0,
+      "reused_helper_checks": 0,
+      "kernel_visits": 91,
+      "rejection_controls": 9,
+      "independent_formula_interfaces": 13,
+      "logic_only_checks": 1
+    },
+    "constructible_order_history_structure": {
+      "checked_modules": 4,
+      "new_statement_checks": 4,
+      "reproved_existing_statement_checks": 0,
+      "reused_helper_checks": 0,
+      "kernel_visits": 301,
+      "rejection_controls": 12,
+      "independent_formula_interfaces": 13,
+      "logic_only_checks": 4
+    },
+    "constructible_order_history_functional": {
+      "checked_modules": 1,
+      "new_statement_checks": 1,
+      "reproved_existing_statement_checks": 0,
+      "reused_helper_checks": 0,
+      "kernel_visits": 2903,
+      "rejection_controls": 3,
+      "independent_formula_interfaces": 13,
+      "logic_only_checks": 0
+    },
+    "constructible_order_history_total": {
+      "checked_modules": 1,
+      "new_statement_checks": 1,
+      "reproved_existing_statement_checks": 0,
+      "reused_helper_checks": 0,
+      "kernel_visits": 47881,
+      "rejection_controls": 4,
+      "independent_formula_interfaces": 13,
+      "logic_only_checks": 0
+    },
+    "constructible_order_history_coherence": {
+      "checked_modules": 1,
+      "new_statement_checks": 1,
+      "reproved_existing_statement_checks": 0,
+      "reused_helper_checks": 0,
+      "kernel_visits": 3593,
+      "rejection_controls": 4,
+      "independent_formula_interfaces": 13,
+      "logic_only_checks": 0
+    },
+    "constructible_order_history_existence": {
+      "checked_modules": 1,
+      "new_statement_checks": 1,
+      "reproved_existing_statement_checks": 0,
+      "reused_helper_checks": 0,
+      "kernel_visits": 55964,
+      "rejection_controls": 4,
+      "independent_formula_interfaces": 13,
+      "logic_only_checks": 0
+    },
+    "carrier_history_projection": {
+      "checked_modules": 15,
+      "new_statement_checks": 15,
+      "reproved_existing_statement_checks": 0,
+      "reused_helper_checks": 0,
+      "kernel_visits": 10626,
+      "rejection_controls": 71,
+      "independent_formula_interfaces": 16,
+      "logic_only_checks": 7
+    },
+    "restricted_well_order": {
+      "checked_modules": 7,
+      "new_statement_checks": 7,
+      "reproved_existing_statement_checks": 0,
+      "reused_helper_checks": 0,
+      "kernel_visits": 1369,
+      "rejection_controls": 30,
+      "independent_formula_interfaces": 7,
+      "logic_only_checks": 4
+    },
+    "constructible_stage_well_order": {
+      "checked_modules": 4,
+      "new_statement_checks": 4,
+      "reproved_existing_statement_checks": 0,
+      "reused_helper_checks": 0,
+      "kernel_visits": 179060,
+      "rejection_controls": 15,
+      "independent_formula_interfaces": 10,
+      "logic_only_checks": 1
+    }
+  },
+  "prior_manifest_checks": [
+    {
+      "manifest": "full_replay_provenance.json",
+      "source_hash_comparisons": 33,
+      "receipt_hash_comparisons": 2
+    },
+    {
+      "manifest": "ace03u_receipt.json",
+      "source_hash_comparisons": 19,
+      "receipt_hash_comparisons": 4
+    },
+    {
+      "manifest": "ace03v_receipt.json",
+      "source_hash_comparisons": 23,
+      "receipt_hash_comparisons": 4
+    },
+    {
+      "manifest": "ace03w_receipt.json",
+      "source_hash_comparisons": 41,
+      "receipt_hash_comparisons": 10
+    }
+  ],
+  "prior_source_hash_comparisons": 116,
+  "prior_distinct_source_files": 80,
+  "prior_receipt_hash_comparisons": 20,
+  "prior_receipt_sha256": {
+    "unbounded_replacement_full_receipt.json": "dc94ee3ebc09abba83e068d3e7f84d556adc59986524e46eec0fef0d2320113e",
+    "modular_unbounded_receipt.json": "af7329214e179584277596f9d40ee5b9c34694d2bf9986a4f182bc546b7ff27b",
+    "canonical_relation_receipt.json": "33029cd8ef944e383fab85fbd78f32ec6b79a7bf031defb1393db5e42ce5d793",
+    "syntax_trace_adequacy_receipt.json": "f0ddf262b5d823bab77dbc08e73eee2b3ee31081c42ff958e9cdcbebfe23de67",
+    "finite_witness_selection_receipt.json": "41d461480bc5ca7cf15f104f2a08e7bd816f6959c1b80db457ed28266b0de946",
+    "trace_code_bridge_receipt.json": "04f00affbd4b4f09ce15e6ab908d91d260b18bb0b2af447ff135e341c14d0446",
+    "instruction_tags_receipt.json": "0288e640d07425070658ff849a4b3a6e65a82413b5b66f60baca59aa0767f16b",
+    "instruction_witnesses_receipt.json": "5b5e06b0b6a630173cc786d5c9dab27c3c2c55c949168603f08321a5136127d0",
+    "instruction_decoding_receipt.json": "c96965e957553dd1446b66c2da6a0f84e80861421c53091e2cb747f076794cb2",
+    "syntax_decoration_receipt.json": "7cb151beeb2fc200281db45dd83731f2a1308360dd1c13d8cee785ba5b2e2a4f",
+    "omega_well_order_receipt.json": "f67354391e282f8756eb71c558728201e722a687cf76600d09583d475d1a1176",
+    "lexicographic_pullback_receipt.json": "c82d3fa127a44b1e851251351f7d07ff579cbf77e3b147cdfa7379c8951c1cf6",
+    "pair_product_order_receipt.json": "3effdd9a7d063ce1a86469584cd4b5ee6833e1eb6834ef80030a64b3b5d82280",
+    "natural_code_order_receipt.json": "21132b9a9f241c1487795160a3203a2715b7fb693405ebb74e3b2ceac525971a",
+    "finite_sequence_order_receipt.json": "fea9a77dd7c28eb03148cf0d71f33209fa0694b3522f7d586a5fff47bda81547",
+    "finite_sequence_carrier_receipt.json": "f9cab69e0f1411f39cd7697b3af47ba429c9b8398b99c7e1d28c329a84206887",
+    "syntax_instruction_codes_receipt.json": "0e75494ad1b1987fb615c209c510c9dcec6b60e7d8bd3354a9fec03e827f0174",
+    "description_carrier_receipt.json": "d0e13779d135ea5ecb2d41b272e303d5444bd545dcef36f856033341fe5a11c4",
+    "description_evaluation_receipt.json": "918c66f28250eca42050ced792a4d01b5078a2cf371e27d746aeb0648c2d5d9f",
+    "definable_stage_order_receipt.json": "d5b314f00ba58d15d92fc93b34c2d57bf26ec1be6813625bb14550914371d1f3"
+  },
+  "input_stability_hash_checks": 137,
+  "expose_gc_for_phase_boundaries": true,
+  "replay_heap_limit_mib_by_part": {
+    "canonical_description_order": 3072,
+    "canonical_limit_order": 3072,
+    "uniform_history_recursion": 3072,
+    "uniform_history_example": 3072,
+    "canonical_stage_order": 3072,
+    "indexed_order_family": 3072,
+    "constructible_order_history_range": 3000,
+    "constructible_order_history_structure": 3000,
+    "constructible_order_history_functional": 3000,
+    "constructible_order_history_total": 3000,
+    "constructible_order_history_coherence": 3000,
+    "constructible_order_history_existence": 3000,
+    "carrier_history_projection": 3072,
+    "restricted_well_order": 3072,
+    "constructible_stage_well_order": 3000
+  },
+  "replay_timeout_seconds": {
+    "canonical_description_order": 300,
+    "canonical_limit_order": 300,
+    "uniform_history_recursion": 300,
+    "uniform_history_example": 300,
+    "canonical_stage_order": 600,
+    "indexed_order_family": 300,
+    "constructible_order_history_range": 1200,
+    "constructible_order_history_structure": 1200,
+    "constructible_order_history_functional": 1200,
+    "constructible_order_history_total": 1200,
+    "constructible_order_history_coherence": 1200,
+    "constructible_order_history_existence": 1200,
+    "carrier_history_projection": 1200,
+    "restricted_well_order": 300,
+    "constructible_stage_well_order": 1200
+  },
+  "receipt_sha256": {
+    "canonical_description_order_receipt.json": "fb458551482d3e4735ac8f2ecf2849c8895e65110682d7a7fe95e425ad2f2bdb",
+    "canonical_limit_order_receipt.json": "0cfb058077130b1110b47dcc2bb65edb2b638e94943e6bdf3b62ca4e7cf2328b",
+    "uniform_history_recursion_receipt.json": "2db95f2b6ed8c8c32297a3658660fa9c1ea39b75fca53360c18479003fc15f8b",
+    "uniform_history_example_receipt.json": "743d7377f461f892d2561f7aa6ec29eaa141c0a88e7333694c42b7a8ee88ef50",
+    "canonical_stage_order_receipt.json": "e2c15475dd6c77b8ce21190f2340805fc1444b3051ee612e7aca473e5ce4db83",
+    "indexed_order_family_receipt.json": "bf17b0d718445a27347b048392ef3910444619e1afc4a42d7a6c0ffc8b1c2aae",
+    "constructible_order_history_range_receipt.json": "e110319a89829af87865b8245dbbd9ad5f195583aaa29dfd50cafd4c395d3a69",
+    "constructible_order_history_structure_receipt.json": "76e5fbcbf5581d0218aad3b9b73eda8996ebf6fe8d643996ee08433f9acff4eb",
+    "constructible_order_history_functional_receipt.json": "d9e9a91790b116e887866e83d67d92986ec7d332a50c6c75372f2943bd6f7ce9",
+    "constructible_order_history_total_receipt.json": "cfbf938dedca6ed8b717a0087b2cecc61e85f8d445b707b48d27179f77eaac5e",
+    "constructible_order_history_coherence_receipt.json": "d2b1bf30537bb019a179f526615de67b1416b99d68eaf5833b525b218fe63ced",
+    "constructible_order_history_existence_receipt.json": "92fd83200356163181a3f04cb4b0d510a66576dd93be4e79f5ff0f966927c6c6",
+    "carrier_history_projection_receipt.json": "de59d2c0095b0a8f886fa4bcf592d2969fec1b6b3b39f681ca40de59fe626af8",
+    "restricted_well_order_receipt.json": "25b7a84a3fd458e2ba410643a8efe38a82a24fa89402b0404505d20ea09fea60",
+    "constructible_stage_well_order_receipt.json": "e933ff8d0446b0d8afbc3504ee0103abb43aa603ae658052816d97c586fb4fec"
+  },
+  "source_file_count": 61,
+  "source_files_sha256": {
+    "L_formula.json": "f6deb563af271469873b44118e8925b30394e1a21ec4c1e9fd8d103d1fdffdc0",
+    "ace03u_receipt.json": "1cd936a7643ed7d2f0a1aa45ae66c7ec84fb374162329138d89adfaffbb4ee74",
+    "ace03v_receipt.json": "43c5469b3946201f35847e7d16318dc032ff17dd3c3f2b86b3e25db745c30914",
+    "ace03w_receipt.json": "8b3337701cc265339d8033707eb358f57460755dc869b61227b5a423b4161007",
+    "ace03x_replay.mjs": "bb72adbdf901c23897be865bbacbd505ffd7c9572f65a833d75c22ff15a3dfb1",
+    "canonical_description_order.mjs": "40913f05adb33e78c1aead905f8edea52adab7cbbefc15ea9caa6b111e34274f",
+    "canonical_description_order_replay.mjs": "139e53dc0bcd2b09ca5287e065a54f4489330df17d1201cb959eaf334617c9e6",
+    "canonical_limit_order.mjs": "c1964e0ddd3bba36d14f3d1f49bd9552f05cc0a45246cd15e709f1561f4fe5dd",
+    "canonical_limit_order_replay.mjs": "1aaafbdfa814fddc1baab8095bfed9564a33a7cf5639d7b637e53ab130183f45",
+    "canonical_relation.mjs": "35f0e4d3eff271c0cf3e48fb75d8aed34b76d24db33f556ea688d7b182a0f4ae",
+    "canonical_relation_replay.mjs": "0655ae95b3b95154851270441946856c21c991a34f29852775cc3b5e5b24f5a6",
+    "canonical_stage_order.mjs": "738d80d9b108ccc29cbe0f3439d5bc04c3f3c54ce1eee76572a7307370edd4d3",
+    "canonical_stage_order_replay.mjs": "907f3d9562e3c89b2e9d808c3aa83dcfa02a1113b1d3d2615396028ecbe15c4a",
+    "carrier_history_projection.mjs": "e8a2896b81128afcaf1061bcdc572e8e3b0351c8123efd6ca881ff2e207bfe5a",
+    "carrier_history_projection_replay.mjs": "62669987fb3ce22d164d58c501bd1793b671dd0ae6e446addb5de74718765f83",
+    "coherent_well_order.mjs": "0cd972361e10dc60e8c7c2698af202e10387b202d50612df80e38046398e3ccc",
+    "constructible_definition.mjs": "ad41730e7a726b16d0fda6c7ee431c85e705b5f3bb6e6024fd7eaa8dcef00320",
+    "constructible_order_history.mjs": "4b4e2fbf7fe792256bd5e67c5077e2b003e8ef3d0064b855b0be2c791c2d8bc1",
+    "constructible_order_history_replay.mjs": "3f108b37ac77dc21360e6ab9411f9bb8164d50be198d9788732eb848ebef1fa9",
+    "constructible_stage_well_order.mjs": "f92cc1fc95686b31d7d5645903606899ef8f5c40f690f62c71591c1eaa831a88",
+    "constructible_stage_well_order_replay.mjs": "c1a2391ed7c3032cfc464a32b498a351ee0cfa8d3c26fb0a1e92a994861b740f",
+    "constructible_well_order.mjs": "ef7ba5401ee17d6269a9ac9657c50d021b76b0ba52f10672f29ec56bfb648857",
+    "definable_stage_order.mjs": "ae160824c1ec68fa92510c951fd8249b52cdc316b737faf866c3a0c4eb3b98bd",
+    "definable_stage_order_replay.mjs": "a80e8f91c5ef4065b690d858efcec62e528535da7238f212f88571694a1c58b3",
+    "description_carrier.mjs": "2e4084d07a75ccd707f7c12c36c5152f6cef29080b499790d77b53051b27dd6d",
+    "description_carrier_replay.mjs": "79ba1d25e3750ea3bb744ff9b707fa92ffef5b8d3aacaba7979e27d11ee1daed",
+    "description_evaluation.mjs": "1c7a69ee14d52b92347645612db93bf79622eccc205ecbc712df20db9f069abd",
+    "description_evaluation_replay.mjs": "e324f98756943441dc7d1ed58f35ec93b40f128bd952648b4d48918ddd6fe473",
+    "finite_sequence_carrier.mjs": "453413215b568c9d7e176a082c0b70d3ed8e347213ff0eb6d9af05b4e6af097a",
+    "finite_sequence_carrier_replay.mjs": "77899b5ea2192391ed3eaff6bf7a57918bfaec8b942d941e8918a89dadace3d8",
+    "finite_sequence_order.mjs": "4c460c1d14c12e508c5b6f2b080378a2d922e3857fa4c35aeb845ebb2bad4cb2",
+    "finite_witness_selection.mjs": "fc08e389c85d6d9405727f576b7f72928928191640a344347fa6aa26ae416c6a",
+    "finite_witness_selection_replay.mjs": "8f5f063710c23181a6df32ed23811a29be86463a6d9f5c23dd443a01a8934462",
+    "finite_witnesses.mjs": "9e4f6d9f9dbd4cdfa27c16413a27d099afafd8c052152f37d0ae305b123536b2",
+    "full_replay_provenance.json": "a0435c59160efc1c8d018b4f80581f1a1fef9837d54bbe6ce56f161544048bfe",
+    "hierarchy_closure.mjs": "df5b7962422db2fb3f19dd14ed6efa9e43012620221adbb6093b151dcd0b24e2",
+    "indexed_order_family.mjs": "78014dc83f1e9e3108f3b388a855d5a0129fd0757ff81d919944ce06e0d06c65",
+    "indexed_order_family_replay.mjs": "12202187d5795c5dd8f74bdbe64cafdcc5669817c93f81450a2e255214c63040",
+    "instruction_decoding.mjs": "85c9e0eb602ef0d1f6b6922c4146a5a43025bc8edce5df6425704c9bf9e47074",
+    "instruction_tags.mjs": "724fa9abadfb6452b63a423d0f935cf378bff63e09df26f969647d3e9462b8f4",
+    "instruction_witnesses.mjs": "15e8c206666d1be3d135fbb1819879650e31d17c59e098c61df95dafdc6599ed",
+    "lexicographic_pullback.mjs": "cde193bcc1267d3b43a70dcef4e9bb04badb22f3385ed62d51182601c9fdaf16",
+    "lexicographic_pullback_replay.mjs": "cf41b32dce2f6dfafa6e262a6c51aa645f1a05f9b98faadf1275fe503203f4ee",
+    "natural_code_order.mjs": "fcbfc2013faf89d0b62bd37e24e269e2e11c6332342b7f7911d384cd744da5b3",
+    "omega_well_order.mjs": "aa9d25410d8ccf36e37590467a2a283800c0690ffb1e013a0b9ab4bfc3268128",
+    "pair_product_order.mjs": "58dd14f7ba051bb4ab4a64871873aaf97e7befb86cb00045ca7e17399dd8439e",
+    "pair_product_order_replay.mjs": "78ad6a29d12b2b6ecf33d51303f61d86e313d4affa4d08e100be208b6c534fd5",
+    "relation_realization.mjs": "1ce85c7b71057c983cfebcae421bdce890995bbd9658c64482a20f7f0838ee83",
+    "relation_realization_replay.mjs": "e791546a547169b3c13d8baf57b7e1f9c91c0a3a4595bd8cc26530dae234978b",
+    "restricted_well_order.mjs": "f43ffde641ce4126b94534f766c97676a0248978c3f0b9f1ada1da6f8c6a071c",
+    "restricted_well_order_replay.mjs": "87d16aa168c10c12ad7f16c6ecf8874fb77207b0183cd219438394cdaed44e05",
+    "successor_well_order.mjs": "72b78c671a78ac97391bdfa4ebd9c0a61a9b05b214f429f3eb211d01b04830b9",
+    "syntax_decoration.mjs": "9971f902e44db895345ab799f2c16873b77249c16cd9dd99272f538756428b5d",
+    "syntax_instruction_codes.mjs": "6c4e325bd5db7263326852cb599dcf5f0b3caaa818fdc4136c1aa47532f97a82",
+    "syntax_instruction_codes_replay.mjs": "124fdb3bcbfeff66143f280d66f8219247dd4d6fecc176fd36fa9ac5e64548f5",
+    "syntax_trace_adequacy.mjs": "4f6e61692c03f287d6e27fc762b9f6e534b914db23d591f4c00e59b50f6adaa9",
+    "syntax_trace_adequacy_replay.mjs": "01dfb74a9b37ee33deab5744639744d93f5bf3798c8b70ac2f5dbe064ce20836",
+    "uniform_history_example.mjs": "8ba0c2396486b1d4b824c726961c4d471c423984587588442785900921560709",
+    "uniform_history_recursion.mjs": "3fc231c5ca577643e4319eaf8db9168025edabc08ffb719a425b0b376ff81b7e",
+    "uniform_history_recursion_replay.mjs": "91891b9e2764723ffdb2447cc0e1178683b2cd63042adb8bb4a70cfea1e8c55f",
+    "zf_interface.mjs": "ba757a6128590c6e31edb93ee149e2229e2baeef6d46397bac5925fd97d042ae"
+  },
+  "static_local_imports": {
+    "ace03x_replay.mjs": [],
+    "canonical_description_order.mjs": [
+      "description_carrier.mjs",
+      "finite_sequence_carrier.mjs",
+      "natural_code_order.mjs",
+      "pair_product_order.mjs",
+      "zf_interface.mjs"
+    ],
+    "canonical_description_order_replay.mjs": [
+      "canonical_description_order.mjs",
+      "constructible_definition.mjs",
+      "finite_sequence_carrier_replay.mjs",
+      "pair_product_order_replay.mjs",
+      "zf_interface.mjs"
+    ],
+    "canonical_limit_order.mjs": [
+      "canonical_relation.mjs",
+      "coherent_well_order.mjs",
+      "finite_witnesses.mjs",
+      "hierarchy_closure.mjs",
+      "relation_realization.mjs",
+      "zf_interface.mjs"
+    ],
+    "canonical_limit_order_replay.mjs": [
+      "canonical_limit_order.mjs",
+      "coherent_well_order.mjs",
+      "constructible_definition.mjs",
+      "pair_product_order_replay.mjs",
+      "zf_interface.mjs"
+    ],
+    "canonical_relation.mjs": [
+      "constructible_well_order.mjs",
+      "relation_realization.mjs",
+      "successor_well_order.mjs",
+      "zf_interface.mjs"
+    ],
+    "canonical_relation_replay.mjs": [
+      "canonical_relation.mjs",
+      "constructible_definition.mjs",
+      "relation_realization_replay.mjs",
+      "zf_interface.mjs"
+    ],
+    "canonical_stage_order.mjs": [
+      "canonical_description_order.mjs",
+      "canonical_relation.mjs",
+      "definable_stage_order.mjs",
+      "description_evaluation.mjs",
+      "finite_witnesses.mjs",
+      "hierarchy_closure.mjs",
+      "successor_well_order.mjs",
+      "syntax_instruction_codes.mjs",
+      "zf_interface.mjs"
+    ],
+    "canonical_stage_order_replay.mjs": [
+      "canonical_description_order_replay.mjs",
+      "canonical_limit_order_replay.mjs",
+      "canonical_relation_replay.mjs",
+      "canonical_stage_order.mjs",
+      "constructible_definition.mjs",
+      "definable_stage_order_replay.mjs",
+      "description_evaluation_replay.mjs",
+      "pair_product_order_replay.mjs",
+      "zf_interface.mjs"
+    ],
+    "carrier_history_projection.mjs": [
+      "canonical_limit_order.mjs",
+      "canonical_stage_order.mjs",
+      "constructible_order_history.mjs",
+      "finite_witnesses.mjs",
+      "hierarchy_closure.mjs",
+      "zf_interface.mjs"
+    ],
+    "carrier_history_projection_replay.mjs": [
+      "canonical_limit_order_replay.mjs",
+      "canonical_stage_order_replay.mjs",
+      "carrier_history_projection.mjs",
+      "constructible_definition.mjs",
+      "pair_product_order_replay.mjs",
+      "zf_interface.mjs"
+    ],
+    "coherent_well_order.mjs": [
+      "zf_interface.mjs"
+    ],
+    "constructible_definition.mjs": [],
+    "constructible_order_history.mjs": [
+      "canonical_limit_order.mjs",
+      "canonical_stage_order.mjs",
+      "hierarchy_closure.mjs",
+      "indexed_order_family.mjs",
+      "uniform_history_recursion.mjs",
+      "zf_interface.mjs"
+    ],
+    "constructible_order_history_replay.mjs": [
+      "canonical_limit_order_replay.mjs",
+      "canonical_stage_order_replay.mjs",
+      "constructible_definition.mjs",
+      "constructible_order_history.mjs",
+      "zf_interface.mjs"
+    ],
+    "constructible_stage_well_order.mjs": [
+      "carrier_history_projection.mjs",
+      "constructible_order_history.mjs",
+      "hierarchy_closure.mjs",
+      "restricted_well_order.mjs",
+      "uniform_history_recursion.mjs",
+      "zf_interface.mjs"
+    ],
+    "constructible_stage_well_order_replay.mjs": [
+      "carrier_history_projection_replay.mjs",
+      "constructible_definition.mjs",
+      "constructible_stage_well_order.mjs",
+      "pair_product_order_replay.mjs",
+      "restricted_well_order_replay.mjs",
+      "zf_interface.mjs"
+    ],
+    "constructible_well_order.mjs": [
+      "zf_interface.mjs"
+    ],
+    "definable_stage_order.mjs": [
+      "canonical_relation.mjs",
+      "constructible_well_order.mjs",
+      "description_carrier.mjs",
+      "description_evaluation.mjs",
+      "finite_witnesses.mjs",
+      "hierarchy_closure.mjs",
+      "pair_product_order.mjs",
+      "successor_well_order.mjs",
+      "syntax_instruction_codes.mjs",
+      "zf_interface.mjs"
+    ],
+    "definable_stage_order_replay.mjs": [
+      "constructible_definition.mjs",
+      "definable_stage_order.mjs",
+      "description_carrier_replay.mjs",
+      "description_evaluation_replay.mjs",
+      "pair_product_order_replay.mjs",
+      "syntax_instruction_codes_replay.mjs",
+      "zf_interface.mjs"
+    ],
+    "description_carrier.mjs": [
+      "finite_sequence_carrier.mjs",
+      "finite_witnesses.mjs",
+      "natural_code_order.mjs",
+      "pair_product_order.mjs",
+      "syntax_instruction_codes.mjs",
+      "syntax_trace_adequacy.mjs",
+      "zf_interface.mjs"
+    ],
+    "description_carrier_replay.mjs": [
+      "constructible_definition.mjs",
+      "description_carrier.mjs",
+      "pair_product_order_replay.mjs",
+      "syntax_instruction_codes_replay.mjs",
+      "syntax_trace_adequacy_replay.mjs",
+      "zf_interface.mjs"
+    ],
+    "description_evaluation.mjs": [
+      "description_carrier.mjs",
+      "finite_witnesses.mjs",
+      "hierarchy_closure.mjs",
+      "omega_well_order.mjs",
+      "syntax_decoration.mjs",
+      "syntax_instruction_codes.mjs",
+      "syntax_trace_adequacy.mjs",
+      "zf_interface.mjs"
+    ],
+    "description_evaluation_replay.mjs": [
+      "constructible_definition.mjs",
+      "description_carrier_replay.mjs",
+      "description_evaluation.mjs",
+      "syntax_instruction_codes_replay.mjs",
+      "syntax_trace_adequacy_replay.mjs",
+      "zf_interface.mjs"
+    ],
+    "finite_sequence_carrier.mjs": [
+      "canonical_relation.mjs",
+      "finite_sequence_order.mjs",
+      "relation_realization.mjs",
+      "zf_interface.mjs"
+    ],
+    "finite_sequence_carrier_replay.mjs": [
+      "constructible_definition.mjs",
+      "finite_sequence_carrier.mjs",
+      "relation_realization.mjs",
+      "zf_interface.mjs"
+    ],
+    "finite_sequence_order.mjs": [
+      "finite_witnesses.mjs",
+      "hierarchy_closure.mjs",
+      "lexicographic_pullback.mjs",
+      "omega_well_order.mjs",
+      "zf_interface.mjs"
+    ],
+    "finite_witness_selection.mjs": [
+      "finite_witnesses.mjs",
+      "zf_interface.mjs"
+    ],
+    "finite_witness_selection_replay.mjs": [
+      "constructible_definition.mjs",
+      "finite_witness_selection.mjs",
+      "zf_interface.mjs"
+    ],
+    "finite_witnesses.mjs": [
+      "constructible_definition.mjs",
+      "hierarchy_closure.mjs",
+      "zf_interface.mjs"
+    ],
+    "hierarchy_closure.mjs": [
+      "constructible_definition.mjs",
+      "zf_interface.mjs"
+    ],
+    "indexed_order_family.mjs": [
+      "canonical_limit_order.mjs",
+      "canonical_stage_order.mjs",
+      "finite_witnesses.mjs",
+      "hierarchy_closure.mjs",
+      "zf_interface.mjs"
+    ],
+    "indexed_order_family_replay.mjs": [
+      "canonical_limit_order_replay.mjs",
+      "constructible_definition.mjs",
+      "indexed_order_family.mjs",
+      "zf_interface.mjs"
+    ],
+    "instruction_decoding.mjs": [
+      "finite_witnesses.mjs",
+      "instruction_tags.mjs",
+      "instruction_witnesses.mjs",
+      "relation_realization.mjs",
+      "syntax_trace_adequacy.mjs",
+      "zf_interface.mjs"
+    ],
+    "instruction_tags.mjs": [
+      "finite_witnesses.mjs",
+      "zf_interface.mjs"
+    ],
+    "instruction_witnesses.mjs": [
+      "finite_witness_selection.mjs",
+      "finite_witnesses.mjs",
+      "zf_interface.mjs"
+    ],
+    "lexicographic_pullback.mjs": [
+      "zf_interface.mjs"
+    ],
+    "lexicographic_pullback_replay.mjs": [
+      "constructible_definition.mjs",
+      "constructible_well_order.mjs",
+      "lexicographic_pullback.mjs",
+      "zf_interface.mjs"
+    ],
+    "natural_code_order.mjs": [
+      "canonical_relation.mjs",
+      "omega_well_order.mjs",
+      "pair_product_order.mjs",
+      "relation_realization.mjs",
+      "zf_interface.mjs"
+    ],
+    "omega_well_order.mjs": [
+      "finite_witnesses.mjs",
+      "zf_interface.mjs"
+    ],
+    "pair_product_order.mjs": [
+      "canonical_relation.mjs",
+      "finite_witnesses.mjs",
+      "hierarchy_closure.mjs",
+      "lexicographic_pullback.mjs",
+      "relation_realization.mjs",
+      "zf_interface.mjs"
+    ],
+    "pair_product_order_replay.mjs": [
+      "constructible_definition.mjs",
+      "constructible_well_order.mjs",
+      "lexicographic_pullback_replay.mjs",
+      "pair_product_order.mjs",
+      "zf_interface.mjs"
+    ],
+    "relation_realization.mjs": [
+      "constructible_well_order.mjs",
+      "finite_witnesses.mjs",
+      "successor_well_order.mjs",
+      "zf_interface.mjs"
+    ],
+    "relation_realization_replay.mjs": [
+      "constructible_definition.mjs",
+      "relation_realization.mjs",
+      "zf_interface.mjs"
+    ],
+    "restricted_well_order.mjs": [
+      "finite_witnesses.mjs",
+      "zf_interface.mjs"
+    ],
+    "restricted_well_order_replay.mjs": [
+      "constructible_definition.mjs",
+      "pair_product_order_replay.mjs",
+      "restricted_well_order.mjs",
+      "zf_interface.mjs"
+    ],
+    "successor_well_order.mjs": [
+      "zf_interface.mjs"
+    ],
+    "syntax_decoration.mjs": [
+      "instruction_decoding.mjs",
+      "instruction_tags.mjs",
+      "instruction_witnesses.mjs",
+      "syntax_trace_adequacy.mjs",
+      "zf_interface.mjs"
+    ],
+    "syntax_instruction_codes.mjs": [
+      "finite_witness_selection.mjs",
+      "finite_witnesses.mjs",
+      "hierarchy_closure.mjs",
+      "instruction_tags.mjs",
+      "omega_well_order.mjs",
+      "syntax_trace_adequacy.mjs",
+      "zf_interface.mjs"
+    ],
+    "syntax_instruction_codes_replay.mjs": [
+      "constructible_definition.mjs",
+      "finite_witness_selection_replay.mjs",
+      "syntax_instruction_codes.mjs",
+      "syntax_trace_adequacy_replay.mjs",
+      "zf_interface.mjs"
+    ],
+    "syntax_trace_adequacy.mjs": [
+      "hierarchy_closure.mjs",
+      "zf_interface.mjs"
+    ],
+    "syntax_trace_adequacy_replay.mjs": [
+      "constructible_definition.mjs",
+      "hierarchy_closure.mjs",
+      "syntax_trace_adequacy.mjs",
+      "zf_interface.mjs"
+    ],
+    "uniform_history_example.mjs": [
+      "uniform_history_recursion.mjs",
+      "zf_interface.mjs"
+    ],
+    "uniform_history_recursion.mjs": [
+      "finite_witnesses.mjs",
+      "hierarchy_closure.mjs",
+      "zf_interface.mjs"
+    ],
+    "uniform_history_recursion_replay.mjs": [
+      "constructible_definition.mjs",
+      "uniform_history_example.mjs",
+      "uniform_history_recursion.mjs",
+      "zf_interface.mjs"
+    ],
+    "zf_interface.mjs": []
+  },
+  "scope": "unique canonical successor and limit operations, pure-formula ordinal recursion, coherent histories, their exact pinned-stage projection and ambient well-orderability of every constructible set with an actual restricted relation; internal constructibility of the order, the relativized Choice import and formal checker soundness remain separate obligations"
+}

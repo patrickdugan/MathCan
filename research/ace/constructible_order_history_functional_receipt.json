@@ -1,0 +1,42 @@
+{
+  "experiment": "ACE-03X",
+  "part": "constructible_order_history_functional",
+  "checks": [
+    {
+      "id": "step_functional",
+      "nodes": 2903,
+      "goal_bytes": 748801,
+      "goal_sha256": "63a1d1bc2be1ce4f779a8ada5050ef5203e3d4daca81025673f9ee5017358808",
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing"
+      ]
+    }
+  ],
+  "checked_modules": 1,
+  "kernel_visits": 2903,
+  "independent_exact_goals": 1,
+  "independent_formula_interfaces": 13,
+  "negative_controls": 3,
+  "kernel_rejections": 1,
+  "contract_rejections": 2,
+  "logic_only_checks": 0,
+  "controls": [
+    "step_functional:unbound_dependency",
+    "step_functional:false_conclusion",
+    "step_functional:drop_outer_quantifier"
+  ],
+  "ambient_axioms": [
+    "extensionality",
+    "foundation",
+    "pairing"
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "canonical packed constructible-stage histories using the actual least-description successor order and exact limit union; every recursive value carries a transitive well-ordered carrier and embeds all earlier values",
+  "open_obligations": [
+    "internal constructibility of the canonical order",
+    "relativized Choice import",
+    "formal checker soundness"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "proofs": {
+    "constructible_union_closure": {
+      "proof_bytes": 10864680
+    },
+    "union_axiom": {
+      "nodes": 14483,
+      "proof_bytes": 12226367
+    }
+  },
+  "independent_goal_checks": 1,
+  "negative_controls": 4,
+  "closed_L_axiom_certificate": "union",
+  "source_nodes": 1,
+  "target_nodes": 14484
+}

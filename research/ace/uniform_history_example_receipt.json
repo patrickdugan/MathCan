@@ -1,0 +1,104 @@
+{
+  "experiment": "ACE-03X",
+  "part": "seeded_uniform_history_example",
+  "checks": [
+    {
+      "id": "seeded_graph_total",
+      "nodes": 95,
+      "goal_bytes": 1787,
+      "ambient_axioms": [
+        "pairing",
+        "replacement",
+        "union"
+      ]
+    },
+    {
+      "id": "seeded_history_total",
+      "nodes": 121,
+      "goal_bytes": 3027,
+      "ambient_axioms": [
+        "pairing",
+        "replacement",
+        "union"
+      ]
+    },
+    {
+      "id": "seeded_functional",
+      "nodes": 35,
+      "goal_bytes": 3669,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "seeded_prefix_local",
+      "nodes": 62,
+      "goal_bytes": 2813,
+      "ambient_axioms": []
+    },
+    {
+      "id": "seeded_ordinal_history_exists_unique",
+      "nodes": 5276,
+      "goal_bytes": 4381,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "replacement",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "seeded_ordinal_value_exists",
+      "nodes": 4133,
+      "goal_bytes": 2681,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "replacement",
+        "separation",
+        "union"
+      ]
+    }
+  ],
+  "checked_modules": 6,
+  "kernel_visits": 9722,
+  "independent_exact_goals": 6,
+  "independent_formula_interfaces": 13,
+  "negative_controls": 15,
+  "controls": [
+    "seeded_graph_total:unbound_hypothesis",
+    "seeded_graph_total:changed_conclusion",
+    "seeded_history_total:unbound_hypothesis",
+    "seeded_history_total:changed_conclusion",
+    "seeded_functional:unbound_hypothesis",
+    "seeded_functional:changed_conclusion",
+    "seeded_prefix_local:unbound_hypothesis",
+    "seeded_prefix_local:changed_conclusion",
+    "seeded_ordinal_history_exists_unique:unbound_hypothesis",
+    "seeded_ordinal_history_exists_unique:changed_conclusion",
+    "seeded_ordinal_value_exists:unbound_hypothesis",
+    "seeded_ordinal_value_exists:changed_conclusion",
+    "seeded_graph_total:forbid_set_axioms",
+    "seeded_functional:forbid_set_axioms",
+    "seeded_ordinal_history_exists_unique:forbid_set_axioms"
+  ],
+  "logic_only_checks": 1,
+  "ambient_axioms": [
+    "extensionality",
+    "foundation",
+    "pairing",
+    "replacement",
+    "separation",
+    "union"
+  ],
+  "step_parameters": 2,
+  "pinned_L_unchanged": true,
+  "scope": "closed ZF transfinite history existence and uniqueness for the prior-value range with two arbitrary seeds adjoined; every generic recursion contract is proved",
+  "open_obligations": [
+    "canonical constructible order step instantiation",
+    "formal checker soundness"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "experiment": "ACE-03N",
+  "part": "canonical",
+  "proofs": {
+    "canonical_extension_total": {
+      "nodes": 23393,
+      "goal_bytes": 639849,
+      "proof_bytes": 46533947
+    },
+    "canonical_extension_strict": {
+      "nodes": 12,
+      "goal_bytes": 320001,
+      "proof_bytes": 319917
+    }
+  },
+  "exact_interfaces": 2,
+  "negative_controls": 1,
+  "pinned_L_unchanged": true,
+  "scope": "closed proof module for one fixed reflection example"
+}

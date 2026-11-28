@@ -1,0 +1,333 @@
+{
+  "experiment": "ACE-03W",
+  "part": "partial_description_evaluation_and_exact_definability",
+  "checks": [
+    {
+      "id": "omega_set_unique",
+      "nodes": 30,
+      "goal_bytes": 917,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "last_at_base_is_last_slice",
+      "nodes": 43,
+      "goal_bytes": 10345,
+      "ambient_axioms": []
+    },
+    {
+      "id": "last_slice_has_base_tuple",
+      "nodes": 45,
+      "goal_bytes": 10343,
+      "ambient_axioms": []
+    },
+    {
+      "id": "common_program_last_at_base_unique",
+      "nodes": 923,
+      "goal_bytes": 71690,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "separation"
+      ]
+    },
+    {
+      "id": "positive_evaluation_functional",
+      "nodes": 5144,
+      "goal_bytes": 122633,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "separation"
+      ]
+    },
+    {
+      "id": "positive_evaluation_is_definable",
+      "nodes": 326,
+      "goal_bytes": 86433,
+      "ambient_axioms": []
+    },
+    {
+      "id": "definable_has_positive_description",
+      "nodes": 14857,
+      "goal_bytes": 95408,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "positive_description_is_definable",
+      "nodes": 357,
+      "goal_bytes": 86490,
+      "ambient_axioms": []
+    },
+    {
+      "id": "definable_iff_positive_description",
+      "nodes": 15258,
+      "goal_bytes": 181401,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "empty_description_in_raw_carrier",
+      "nodes": 160,
+      "goal_bytes": 7871,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "empty_code_excludes_positive_evaluation",
+      "nodes": 357,
+      "goal_bytes": 61590,
+      "ambient_axioms": []
+    },
+    {
+      "id": "evaluation_functional",
+      "nodes": 5946,
+      "goal_bytes": 123937,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "separation"
+      ]
+    },
+    {
+      "id": "definable_has_description_evaluation",
+      "nodes": 15080,
+      "goal_bytes": 96026,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "description_evaluation_is_definable",
+      "nodes": 358,
+      "goal_bytes": 87108,
+      "ambient_axioms": []
+    },
+    {
+      "id": "definable_iff_description_evaluation",
+      "nodes": 15482,
+      "goal_bytes": 182637,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    }
+  ],
+  "checked_modules": 15,
+  "kernel_visits": 74366,
+  "independent_exact_goals": 15,
+  "independent_formula_interfaces": 8,
+  "pure_logic_checks": [
+    "last_at_base_is_last_slice",
+    "last_slice_has_base_tuple",
+    "positive_evaluation_is_definable",
+    "positive_description_is_definable",
+    "empty_code_excludes_positive_evaluation",
+    "description_evaluation_is_definable"
+  ],
+  "negative_controls": 36,
+  "kernel_rejection_controls": 28,
+  "exact_interface_rejection_controls": 8,
+  "controls": [
+    "omega_set_unique:drop_binders",
+    "omega_set_unique:forbid_set_axioms",
+    "last_at_base_is_last_slice:drop_binders",
+    "last_slice_has_base_tuple:drop_binders",
+    "common_program_last_at_base_unique:free_instantiation",
+    "common_program_last_at_base_unique:forbid_set_axioms",
+    "positive_evaluation_functional:free_instantiation",
+    "positive_evaluation_functional:forbid_set_axioms",
+    "positive_evaluation_is_definable:drop_binders",
+    "definable_has_positive_description:drop_binders",
+    "definable_has_positive_description:forbid_set_axioms",
+    "positive_description_is_definable:drop_binders",
+    "definable_iff_positive_description:drop_binders",
+    "definable_iff_positive_description:forbid_set_axioms",
+    "empty_description_in_raw_carrier:free_instantiation",
+    "empty_description_in_raw_carrier:forbid_set_axioms",
+    "empty_code_excludes_positive_evaluation:free_instantiation",
+    "evaluation_functional:drop_binders",
+    "evaluation_functional:forbid_set_axioms",
+    "definable_has_description_evaluation:drop_binders",
+    "definable_has_description_evaluation:forbid_set_axioms",
+    "description_evaluation_is_definable:drop_binders",
+    "definable_iff_description_evaluation:drop_binders",
+    "definable_iff_description_evaluation:forbid_set_axioms",
+    "coverage_interface:omit_omega",
+    "coverage_interface:omit_canonical_bank",
+    "coverage_interface:omit_alphabet",
+    "coverage_interface:omit_raw_carrier",
+    "functionality_interface:omit_omega",
+    "functionality_interface:omit_distinct_tags",
+    "last_slice_interface:omit_full_base_tuple",
+    "functionality_interface:replace_encoded_base_with_fresh_witness",
+    "positive_evaluation_functional:remove_live_extensionality",
+    "definable_has_positive_description:remove_live_separation",
+    "empty_description_in_raw_carrier:remove_live_pairing",
+    "choice_axiom_forbidden"
+  ],
+  "formula_argument_orders": {
+    "last_at_base": [
+      "f",
+      "m",
+      "n",
+      "A",
+      "b",
+      "X"
+    ],
+    "positive_evaluation": [
+      "d",
+      "X",
+      "A",
+      "w",
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4"
+    ],
+    "evaluation": [
+      "d",
+      "X",
+      "A",
+      "w",
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4"
+    ],
+    "canonical_bank": [
+      "w",
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4"
+    ],
+    "empty_code": [
+      "d"
+    ]
+  },
+  "functionality_quantifier_order": [
+    "w",
+    "A",
+    "t0",
+    "t1",
+    "t2",
+    "t3",
+    "t4",
+    "d",
+    "X",
+    "Y"
+  ],
+  "functionality_premises": [
+    "Omega(w)",
+    "Distinct(tags)",
+    "Evaluation(d,X)",
+    "Evaluation(d,Y)"
+  ],
+  "equivalence_quantifier_order": [
+    "w",
+    "A",
+    "I",
+    "C",
+    "t0",
+    "t1",
+    "t2",
+    "t3",
+    "t4",
+    "X"
+  ],
+  "equivalence_premises": [
+    "Omega(w)",
+    "CanonicalBank(w,tags)",
+    "TripleCarrier(I,w)",
+    "RawCarrier(C,w,I,A)"
+  ],
+  "equivalence": "definable(A,X) iff exists d in C Evaluation(d,X)",
+  "empty_code": "exists z (Empty(z) and Description(d,z,z,z))",
+  "fixed_encoded_base_tuple": true,
+  "ambient_axiom_instances": [
+    {
+      "name": "extensionality"
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 649
+    },
+    {
+      "name": "foundation"
+    },
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "separation",
+      "params": 0,
+      "body_bytes": 53
+    },
+    {
+      "name": "separation",
+      "params": 8,
+      "body_bytes": 43143
+    },
+    {
+      "name": "union"
+    },
+    {
+      "name": "power"
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 891
+    },
+    {
+      "name": "separation",
+      "params": 10,
+      "body_bytes": 12713
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 31
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "single-valued partial evaluation of raw descriptions, exact coverage of the pinned definable predicate, and a reserved empty-output description",
+  "outside_this_replay": [
+    "total execution for arbitrary supplied syntax",
+    "single-natural-number coding",
+    "internal constructibility of canonical orders",
+    "formal checker soundness"
+  ]
+}

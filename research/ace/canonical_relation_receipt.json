@@ -1,0 +1,237 @@
+{
+  "experiment": "ACE-03U",
+  "part": "canonical_relation_membership_and_uniqueness",
+  "checks": [
+    {
+      "id": "induced.exact_membership_exists",
+      "nodes": 147,
+      "goal_bytes": 5261,
+      "ambient_axioms": [
+        "power",
+        "separation"
+      ]
+    },
+    {
+      "id": "induced.exact_membership_unique",
+      "nodes": 34,
+      "goal_bytes": 10537,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "induced.exact_membership_pair_only",
+      "nodes": 24,
+      "goal_bytes": 5613,
+      "ambient_axioms": []
+    },
+    {
+      "id": "induced.exact_membership_implies_agreement",
+      "nodes": 327,
+      "goal_bytes": 10489,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "induced.canonical_unique_relation",
+      "nodes": 205,
+      "goal_bytes": 10529,
+      "ambient_axioms": [
+        "extensionality",
+        "power",
+        "separation"
+      ]
+    },
+    {
+      "id": "induced.canonical_well_order_realization",
+      "nodes": 701,
+      "goal_bytes": 34577,
+      "ambient_axioms": [
+        "extensionality",
+        "pairing",
+        "power",
+        "separation"
+      ]
+    },
+    {
+      "id": "induced.composed_canonical_well_order",
+      "nodes": 1329,
+      "goal_bytes": 21651,
+      "ambient_axioms": [
+        "extensionality",
+        "pairing",
+        "power",
+        "separation"
+      ]
+    },
+    {
+      "id": "successor.exact_membership_exists",
+      "nodes": 147,
+      "goal_bytes": 2217,
+      "ambient_axioms": [
+        "power",
+        "separation"
+      ]
+    },
+    {
+      "id": "successor.exact_membership_unique",
+      "nodes": 34,
+      "goal_bytes": 4433,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "successor.exact_membership_pair_only",
+      "nodes": 24,
+      "goal_bytes": 2569,
+      "ambient_axioms": []
+    },
+    {
+      "id": "successor.exact_membership_implies_agreement",
+      "nodes": 327,
+      "goal_bytes": 4405,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "successor.canonical_unique_relation",
+      "nodes": 205,
+      "goal_bytes": 4433,
+      "ambient_axioms": [
+        "extensionality",
+        "power",
+        "separation"
+      ]
+    },
+    {
+      "id": "successor.canonical_well_order_realization",
+      "nodes": 701,
+      "goal_bytes": 14801,
+      "ambient_axioms": [
+        "extensionality",
+        "pairing",
+        "power",
+        "separation"
+      ]
+    },
+    {
+      "id": "successor.composed_canonical_well_order",
+      "nodes": 1269,
+      "goal_bytes": 13973,
+      "ambient_axioms": [
+        "extensionality",
+        "pairing",
+        "power",
+        "separation"
+      ]
+    }
+  ],
+  "checked_modules": 14,
+  "kernel_visits": 5474,
+  "independent_exact_goals": 14,
+  "independent_order_predicates": 2,
+  "negative_controls": 33,
+  "controls": [
+    "induced.exact_membership_exists:drop_binders",
+    "induced.exact_membership_unique:drop_binders",
+    "induced.exact_membership_pair_only:drop_binders",
+    "induced.exact_membership_implies_agreement:drop_binders",
+    "induced.canonical_unique_relation:drop_binders",
+    "induced.canonical_well_order_realization:drop_binders",
+    "induced.composed_canonical_well_order:drop_binders",
+    "induced.exact_membership_exists:forbid_set_axioms",
+    "induced.exact_membership_unique:forbid_extensionality",
+    "induced.exact_membership_implies_agreement:forbid_pairing",
+    "induced:remove_carrier_guard",
+    "induced:replace_exact_by_Val_only",
+    "induced:omit_order_premise_0",
+    "induced:omit_order_premise_1",
+    "induced:omit_order_premise_2",
+    "successor.exact_membership_exists:drop_binders",
+    "successor.exact_membership_unique:drop_binders",
+    "successor.exact_membership_pair_only:drop_binders",
+    "successor.exact_membership_implies_agreement:drop_binders",
+    "successor.canonical_unique_relation:drop_binders",
+    "successor.canonical_well_order_realization:drop_binders",
+    "successor.composed_canonical_well_order:drop_binders",
+    "successor.exact_membership_exists:forbid_set_axioms",
+    "successor.exact_membership_unique:forbid_extensionality",
+    "successor.exact_membership_implies_agreement:forbid_pairing",
+    "successor:remove_carrier_guard",
+    "successor:replace_exact_by_Val_only",
+    "successor:omit_order_premise_0",
+    "successor:omit_order_premise_1",
+    "successor:omit_order_premise_2",
+    "choice_axiom_forbidden",
+    "junk:empty_relation:rejected_by_exact_membership",
+    "junk:nonempty_relation:rejected_by_exact_membership"
+  ],
+  "junk_fixtures": [
+    {
+      "name": "empty_relation",
+      "coordinate_comparisons": 16,
+      "same_Val": true,
+      "distinct_sets": true,
+      "clean_exact_membership": true,
+      "junk_exact_membership": false,
+      "offending_member": "empty set, which is not a Kuratowski pair"
+    },
+    {
+      "name": "nonempty_relation",
+      "coordinate_comparisons": 36,
+      "same_Val": true,
+      "distinct_sets": true,
+      "clean_exact_membership": true,
+      "junk_exact_membership": false,
+      "offending_member": "empty set, which is not a Kuratowski pair"
+    }
+  ],
+  "ambient_axiom_instances": [
+    {
+      "name": "power"
+    },
+    {
+      "name": "separation",
+      "params": 4,
+      "body_bytes": 2593
+    },
+    {
+      "name": "extensionality"
+    },
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "separation",
+      "params": 4,
+      "body_bytes": 989
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 301
+    },
+    {
+      "name": "separation",
+      "params": 4,
+      "body_bytes": 1071
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 9
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "unique ambient relation sets defined by exact pair membership, with pair-only shape and composed well-order proofs",
+  "open_obligations": [
+    "syntax-code adequacy for pinned Def",
+    "existence of the coherent transfinite history",
+    "internal constructibility of the unique relation sets",
+    "relativized Choice import",
+    "formal checker soundness"
+  ]
+}

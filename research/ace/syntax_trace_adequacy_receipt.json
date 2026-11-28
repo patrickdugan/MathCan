@@ -1,0 +1,193 @@
+{
+  "experiment": "ACE-03U",
+  "part": "uniform_decoded_syntax_trace_adequacy",
+  "checks": [
+    {
+      "id": "eq_relation_unique",
+      "nodes": 34,
+      "goal_bytes": 8241,
+      "ambient_axioms": [
+        "extensionality"
+      ],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "mem_relation_unique",
+      "nodes": 34,
+      "goal_bytes": 8241,
+      "ambient_axioms": [
+        "extensionality"
+      ],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "neg_relation_unique",
+      "nodes": 33,
+      "goal_bytes": 5643,
+      "ambient_axioms": [
+        "extensionality"
+      ],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "and_relation_unique",
+      "nodes": 32,
+      "goal_bytes": 237,
+      "ambient_axioms": [
+        "extensionality"
+      ],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "exists_relation_unique",
+      "nodes": 34,
+      "goal_bytes": 10777,
+      "ambient_axioms": [
+        "extensionality"
+      ],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "slice_unique",
+      "nodes": 35,
+      "goal_bytes": 6663,
+      "ambient_axioms": [
+        "extensionality"
+      ],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "instruction_execution_entry",
+      "nodes": 140,
+      "goal_bytes": 55807,
+      "ambient_axioms": [],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "syntax_trace_is_valid_program",
+      "nodes": 193,
+      "goal_bytes": 61381,
+      "ambient_axioms": [],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "trace_value_induction",
+      "nodes": 74,
+      "goal_bytes": 2069,
+      "ambient_axioms": [
+        "foundation",
+        "separation"
+      ],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "common_program_trace_values_unique",
+      "nodes": 595,
+      "goal_bytes": 64691,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "separation"
+      ],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "exact_graph_extensionality",
+      "nodes": 288,
+      "goal_bytes": 3291,
+      "ambient_axioms": [
+        "extensionality"
+      ],
+      "reused_existing_helper": true
+    },
+    {
+      "id": "common_program_trace_graphs_equal",
+      "nodes": 977,
+      "goal_bytes": 64039,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "separation"
+      ],
+      "reused_existing_helper": false
+    },
+    {
+      "id": "common_program_slice_agreement",
+      "nodes": 700,
+      "goal_bytes": 71344,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "separation"
+      ],
+      "reused_existing_helper": false
+    }
+  ],
+  "checked_modules": 13,
+  "new_statement_checks": 12,
+  "reused_helper_checks": 1,
+  "kernel_visits": 3169,
+  "independent_exact_goals": 13,
+  "independent_formula_interfaces": 5,
+  "existing_helper_identity_checks": 1,
+  "logic_only_checks": 2,
+  "negative_controls": 34,
+  "controls": [
+    "eq_relation_unique:drop_binders",
+    "eq_relation_unique:forbid_set_axioms",
+    "mem_relation_unique:drop_binders",
+    "mem_relation_unique:forbid_set_axioms",
+    "neg_relation_unique:drop_binders",
+    "neg_relation_unique:forbid_set_axioms",
+    "and_relation_unique:drop_binders",
+    "and_relation_unique:forbid_set_axioms",
+    "exists_relation_unique:drop_binders",
+    "exists_relation_unique:forbid_set_axioms",
+    "slice_unique:drop_binders",
+    "slice_unique:forbid_set_axioms",
+    "instruction_execution_entry:drop_binders",
+    "syntax_trace_is_valid_program:drop_binders",
+    "trace_value_induction:drop_binders",
+    "trace_value_induction:forbid_set_axioms",
+    "common_program_trace_values_unique:drop_binders",
+    "common_program_trace_values_unique:forbid_set_axioms",
+    "exact_graph_extensionality:forbid_set_axioms",
+    "common_program_trace_graphs_equal:drop_binders",
+    "common_program_trace_graphs_equal:forbid_set_axioms",
+    "common_program_slice_agreement:drop_binders",
+    "common_program_slice_agreement:forbid_set_axioms",
+    "trace_uniqueness:omit_transitive_domain",
+    "trace_uniqueness:omit_common_syntax",
+    "trace_uniqueness:omit_first_trace",
+    "trace_uniqueness:omit_second_trace",
+    "eq_relation_unique:mismatched_semantic_extension",
+    "mem_relation_unique:mismatched_semantic_extension",
+    "neg_relation_unique:mismatched_semantic_extension",
+    "and_relation_unique:mismatched_semantic_extension",
+    "exists_relation_unique:mismatched_semantic_extension",
+    "slice_unique:mismatched_semantic_extension",
+    "choice_axiom_forbidden"
+  ],
+  "ambient_schema_instances": [
+    {
+      "name": "extensionality"
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 649
+    },
+    {
+      "name": "foundation"
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "uniform object-language operation functionality, exact decoded syntax-to-validProgram implication, trace equality and slice agreement over arbitrary transitive instruction domains",
+  "open_obligations": [
+    "existence of semantic traces for every well-formed syntax program",
+    "uniform semantic-trace decoration existence",
+    "single-natural-number program encoding adequacy",
+    "full pinned Def equivalence to the canonical code system",
+    "formal checker soundness"
+  ]
+}

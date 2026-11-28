@@ -1,0 +1,309 @@
+{
+  "experiment": "ACE-03W",
+  "part": "actual_raw_description_carrier_and_syntax_coverage",
+  "checks": [
+    {
+      "id": "description_packing_exists",
+      "nodes": 63,
+      "goal_bytes": 595,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "nested_products_are_raw_carrier",
+      "nodes": 105,
+      "goal_bytes": 13785,
+      "ambient_axioms": []
+    },
+    {
+      "id": "raw_carrier_unique",
+      "nodes": 33,
+      "goal_bytes": 13571,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "ordered_description_from_components",
+      "nodes": 10410,
+      "goal_bytes": 17015,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "raw_description_well_order_exists",
+      "nodes": 16539,
+      "goal_bytes": 13449,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "sequence_description_member",
+      "nodes": 95,
+      "goal_bytes": 10177,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "syntax_description_with_tags",
+      "nodes": 4011,
+      "goal_bytes": 45301,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "syntax_description_exists",
+      "nodes": 4504,
+      "goal_bytes": 45956,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "separation",
+        "union"
+      ]
+    }
+  ],
+  "checked_modules": 8,
+  "new_statement_checks": 8,
+  "reused_helper_checks": 0,
+  "kernel_visits": 35760,
+  "independent_exact_goals": 8,
+  "independent_formula_interfaces": 10,
+  "pure_logic_checks": [
+    "nested_products_are_raw_carrier"
+  ],
+  "negative_controls": 43,
+  "controls": [
+    "description_packing_exists:drop_binders",
+    "description_packing_exists:forbid_set_axioms",
+    "nested_products_are_raw_carrier:drop_binders",
+    "raw_carrier_unique:drop_binders",
+    "raw_carrier_unique:forbid_set_axioms",
+    "ordered_description_from_components:drop_binders",
+    "ordered_description_from_components:forbid_set_axioms",
+    "raw_description_well_order_exists:drop_binders",
+    "raw_description_well_order_exists:forbid_set_axioms",
+    "sequence_description_member:drop_binders",
+    "sequence_description_member:forbid_set_axioms",
+    "syntax_description_with_tags:drop_binders",
+    "syntax_description_with_tags:forbid_set_axioms",
+    "syntax_description_exists:drop_binders",
+    "syntax_description_exists:forbid_set_axioms",
+    "raw_description_well_order_exists:omit_omega",
+    "raw_description_well_order_exists:omit_alphabet_well_order",
+    "ordered_description_from_components:omit_omega",
+    "ordered_description_from_components:omit_natural_well_order",
+    "ordered_description_from_components:omit_instruction_well_order",
+    "ordered_description_from_components:omit_parameter_well_order",
+    "sequence_description_member:omit_raw_carrier",
+    "sequence_description_member:omit_width_membership",
+    "sequence_description_member:omit_finite_program",
+    "sequence_description_member:omit_finite_base",
+    "syntax_description_with_tags:omit_omega",
+    "syntax_description_with_tags:omit_width_membership",
+    "syntax_description_with_tags:omit_length_membership",
+    "syntax_description_with_tags:omit_tag_membership",
+    "syntax_description_with_tags:omit_triple_carrier",
+    "syntax_description_with_tags:omit_raw_carrier",
+    "syntax_description_with_tags:omit_syntax",
+    "syntax_description_with_tags:omit_specific_base_tuple",
+    "syntax_description_exists:omit_omega",
+    "syntax_description_exists:omit_width_membership",
+    "syntax_description_exists:omit_length_membership",
+    "syntax_description_exists:omit_triple_carrier",
+    "syntax_description_exists:omit_raw_carrier",
+    "syntax_description_exists:omit_syntax",
+    "syntax_description_exists:omit_specific_base_tuple",
+    "syntax_description_with_tags:replace_specific_base_by_program",
+    "description_packing_exists:replace_pairing_with_union",
+    "choice_axiom_forbidden"
+  ],
+  "ambient_axiom_instances": [
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "extensionality"
+    },
+    {
+      "name": "union"
+    },
+    {
+      "name": "power"
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 323
+    },
+    {
+      "name": "separation",
+      "params": 5,
+      "body_bytes": 1617
+    },
+    {
+      "name": "separation",
+      "params": 6,
+      "body_bytes": 323
+    },
+    {
+      "name": "separation",
+      "params": 7,
+      "body_bytes": 305
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 1369
+    },
+    {
+      "name": "separation",
+      "params": 4,
+      "body_bytes": 4733
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 1369
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 1347
+    },
+    {
+      "name": "foundation"
+    },
+    {
+      "name": "separation",
+      "params": 0,
+      "body_bytes": 53
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 63
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 41
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 41
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 13029
+    },
+    {
+      "name": "separation",
+      "params": 3,
+      "body_bytes": 3631
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 307
+    },
+    {
+      "name": "separation",
+      "params": 6,
+      "body_bytes": 2607
+    },
+    {
+      "name": "separation",
+      "params": 7,
+      "body_bytes": 2589
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 339
+    },
+    {
+      "name": "separation",
+      "params": 10,
+      "body_bytes": 12713
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 31
+    }
+  ],
+  "raw_carrier": "w x (Seq(w,I) x Seq(w,A))",
+  "description_shape": "<n,<g,b>>",
+  "order_quantifier_order": [
+    "w",
+    "A",
+    "R"
+  ],
+  "order_premises": [
+    "Omega(w)",
+    "WO(A,R)"
+  ],
+  "order_conclusion": "exists I,C,T [TripleCarrier(I,w) and (RawCarrier(C,w,I,A) and WO(C,T))]",
+  "supplied_tag_coverage_quantifier_order": [
+    "w",
+    "I",
+    "A",
+    "C",
+    "m",
+    "n",
+    "b",
+    "P0",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "t0",
+    "t1",
+    "t2",
+    "t3",
+    "t4"
+  ],
+  "supplied_tag_coverage_premises": [
+    "Omega(w)",
+    "n in w",
+    "m in w",
+    "Members(w,tags)",
+    "TripleCarrier(I,w)",
+    "RawCarrier(C,w,I,A)",
+    "Syntax(fields,m,n)",
+    "Tuple(b,n,A)"
+  ],
+  "supplied_base_tuple_preserved": true,
+  "canonical_tag_bank_exists": true,
+  "external_length_bound": false,
+  "pinned_L_unchanged": true,
+  "scope": "actual raw-description carrier and actual well-order, exact carrier uniqueness, arbitrary sequence packaging, and syntax coverage preserving the supplied base tuple",
+  "outside_this_replay": [
+    "evaluation adequacy and functional decoding for the raw carrier",
+    "internal constructibility and canonical order history",
+    "formal checker soundness"
+  ]
+}

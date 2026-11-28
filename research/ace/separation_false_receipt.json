@@ -1,0 +1,31 @@
+{
+  "experiment": "ACE-03O",
+  "part": "false",
+  "spec": {
+    "name": "separation",
+    "params": 0,
+    "body": [
+      "F"
+    ]
+  },
+  "proofs": {
+    "subset_definability": {
+      "nodes": 3425,
+      "proof_bytes": 1082313
+    },
+    "bounded_absoluteness": {
+      "nodes": 10,
+      "proof_bytes": 53493
+    },
+    "separation_certificate": {
+      "nodes": 20007,
+      "proof_bytes": 20564907
+    }
+  },
+  "exact_goals": 4,
+  "rejections": 3,
+  "source_nodes": 1,
+  "target_nodes": 20008,
+  "pinned_L_unchanged": true,
+  "scope": "one fixed bounded Separation instance, not unrestricted schema"
+}

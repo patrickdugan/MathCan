@@ -1,0 +1,43 @@
+{
+  "experiment": "ACE-03U",
+  "part": "combined_replay_and_source_receipt",
+  "exact_receipt_comparisons": 4,
+  "checked_modules": 35,
+  "new_statement_checks": 34,
+  "reused_helper_checks": 1,
+  "independent_exact_goals": 35,
+  "kernel_visits": 15053,
+  "proof_rejection_controls": 93,
+  "finite_malformed_or_corrupt_controls": 27,
+  "exhaustive_raw_traces": 4469,
+  "rejected_invalid_traces": 4155,
+  "receipt_sha256": {
+    "canonical_relation_receipt.json": "33029cd8ef944e383fab85fbd78f32ec6b79a7bf031defb1393db5e42ce5d793",
+    "syntax_trace_adequacy_receipt.json": "f0ddf262b5d823bab77dbc08e73eee2b3ee31081c42ff958e9cdcbebfe23de67",
+    "finite_witness_selection_receipt.json": "41d461480bc5ca7cf15f104f2a08e7bd816f6959c1b80db457ed28266b0de946",
+    "trace_code_bridge_receipt.json": "04f00affbd4b4f09ce15e6ab908d91d260b18bb0b2af447ff135e341c14d0446"
+  },
+  "source_file_count": 19,
+  "source_files_sha256": {
+    "L_formula.json": "f6deb563af271469873b44118e8925b30394e1a21ec4c1e9fd8d103d1fdffdc0",
+    "ace03u_replay.mjs": "57a76f0f9e5bcbff03dafa52050be270357a78bf7316cc9ca394700cd59a6013",
+    "canonical_relation.mjs": "35f0e4d3eff271c0cf3e48fb75d8aed34b76d24db33f556ea688d7b182a0f4ae",
+    "canonical_relation_replay.mjs": "0655ae95b3b95154851270441946856c21c991a34f29852775cc3b5e5b24f5a6",
+    "constructible_definition.mjs": "ad41730e7a726b16d0fda6c7ee431c85e705b5f3bb6e6024fd7eaa8dcef00320",
+    "constructible_well_order.mjs": "ef7ba5401ee17d6269a9ac9657c50d021b76b0ba52f10672f29ec56bfb648857",
+    "finite_witness_selection.mjs": "fc08e389c85d6d9405727f576b7f72928928191640a344347fa6aa26ae416c6a",
+    "finite_witness_selection_replay.mjs": "8f5f063710c23181a6df32ed23811a29be86463a6d9f5c23dd443a01a8934462",
+    "finite_witnesses.mjs": "9e4f6d9f9dbd4cdfa27c16413a27d099afafd8c052152f37d0ae305b123536b2",
+    "hierarchy_closure.mjs": "df5b7962422db2fb3f19dd14ed6efa9e43012620221adbb6093b151dcd0b24e2",
+    "relation_realization.mjs": "1ce85c7b71057c983cfebcae421bdce890995bbd9658c64482a20f7f0838ee83",
+    "relation_realization_replay.mjs": "e791546a547169b3c13d8baf57b7e1f9c91c0a3a4595bd8cc26530dae234978b",
+    "successor_well_order.mjs": "72b78c671a78ac97391bdfa4ebd9c0a61a9b05b214f429f3eb211d01b04830b9",
+    "syntax_trace_adequacy.mjs": "4f6e61692c03f287d6e27fc762b9f6e534b914db23d591f4c00e59b50f6adaa9",
+    "syntax_trace_adequacy_replay.mjs": "01dfb74a9b37ee33deab5744639744d93f5bf3798c8b70ac2f5dbe064ce20836",
+    "trace_code_bridge.mjs": "aca93e0edcdd09bfc7d5f9724094097f4fc50ee0f2b04f42602381a71036f5ed",
+    "trace_code_bridge_replay.mjs": "3bb7d35ff08f045eeeb52244bd77f48e8e265d35546bf7545be98406d456be23",
+    "well_order_codes.mjs": "2f8203173efb5769690660cf16a1b164330ef2d2d27028d0cd1066a38c9213cb",
+    "zf_interface.mjs": "ba757a6128590c6e31edb93ee149e2229e2baeef6d46397bac5925fd97d042ae"
+  },
+  "scope": "four exact replay receipts, checked proof totals and static source-import closure; formal kernel soundness and full syntax-code adequacy remain open"
+}

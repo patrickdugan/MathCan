@@ -1,0 +1,42 @@
+{
+  "proofs": {
+    "ordinal_comparison_induction": {
+      "nodes": 70,
+      "proof_bytes": 2441
+    },
+    "ordinal_comparison": {
+      "nodes": 527,
+      "proof_bytes": 10516
+    },
+    "least_constructible_rank": {
+      "nodes": 146,
+      "proof_bytes": 1226883
+    },
+    "least_rank_unique": {
+      "nodes": 567,
+      "proof_bytes": 224525
+    },
+    "least_rank_exists_unique": {
+      "nodes": 737,
+      "proof_bytes": 2411779
+    },
+    "rank_successor_unique": {
+      "nodes": 629,
+      "proof_bytes": 652314
+    },
+    "rank_successor_total": {
+      "nodes": 906,
+      "proof_bytes": 3269141
+    },
+    "ordinal_family_union": {
+      "nodes": 54,
+      "proof_bytes": 794
+    },
+    "constructible_set_stage_bound": {
+      "nodes": 8882,
+      "proof_bytes": 12186308
+    }
+  },
+  "independent_goal_checks": 4,
+  "negative_controls": 2
+}

@@ -1,0 +1,48 @@
+{
+  "experiment": "ACE-03G",
+  "scope": "closed proofs for pinned L predicate; explicit first two stage graphs, no general transfinite recursion",
+  "proofs": {
+    "def_zero_singleton": {
+      "nodes": 89,
+      "proof_bytes": 50997
+    },
+    "zero_stage_rule": {
+      "nodes": 30,
+      "proof_bytes": 51613
+    },
+    "zero_stage_graph": {
+      "nodes": 400,
+      "proof_bytes": 483015
+    },
+    "one_stage_graph": {
+      "nodes": 663,
+      "proof_bytes": 957687
+    },
+    "L_empty": {
+      "nodes": 1017,
+      "proof_bytes": 1283429
+    },
+    "L_contains_empty": {
+      "nodes": 1028,
+      "proof_bytes": 1443619
+    },
+    "L_empty_closure_guard": {
+      "nodes": 1037,
+      "proof_bytes": 1443790
+    },
+    "L_empty_axiom": {
+      "nodes": 1050,
+      "proof_bytes": 1444062
+    }
+  },
+  "closed_L_axiom_certificates": [
+    "empty",
+    "extensionality",
+    "foundation"
+  ],
+  "independent_goal_checks": 2,
+  "composite_source_nodes": 5,
+  "composite_target_nodes": 6950,
+  "negative_controls": 9,
+  "remaining": "general stage recursion and coherence, uniform adequacy, other L axioms, proof checker soundness"
+}

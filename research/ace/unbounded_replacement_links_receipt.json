@@ -1,0 +1,88 @@
+{
+  "experiment": "ACE-03S",
+  "part": "links",
+  "spec": {
+    "name": "replacement",
+    "params": 0,
+    "body": [
+      "A",
+      [
+        ">",
+        [
+          "M",
+          2,
+          0
+        ],
+        [
+          "M",
+          1,
+          0
+        ]
+      ]
+    ]
+  },
+  "checks": [
+    {
+      "id": "reflection.imp",
+      "nodes": 96,
+      "dependencies": [],
+      "goal_bytes": 2830471
+    },
+    {
+      "id": "reflection",
+      "nodes": 17,
+      "dependencies": [
+        "reflection.imp",
+        "selector.total",
+        "selector.strict",
+        "omega.range",
+        "limit.reflection",
+        "omega.exists",
+        "omega.ordinal",
+        "stage.members",
+        "transport"
+      ],
+      "goal_bytes": 160359
+    },
+    {
+      "id": "replacement.imp",
+      "nodes": 614,
+      "dependencies": [],
+      "goal_bytes": 1437719
+    },
+    {
+      "id": "replacement.pure",
+      "nodes": 17,
+      "dependencies": [
+        "replacement.imp",
+        "L_transitivity",
+        "constructible_set_stage_bound",
+        "ordinal_stage_value_transitive",
+        "stage.members",
+        "definable_subset_constructible",
+        "reflection",
+        "image_definability",
+        "ordinal_stage_value_monotone"
+      ],
+      "goal_bytes": 640249
+    },
+    {
+      "id": "replacement.guard",
+      "nodes": 2,
+      "dependencies": [
+        "replacement.pure"
+      ],
+      "goal_bytes": 457
+    }
+  ],
+  "exact_node_goals": 5,
+  "negative_controls": 5,
+  "translation": {
+    "source_nodes": 5,
+    "translated_nodes": 8,
+    "conditional_nodes": 9,
+    "cut_nodes": 3
+  },
+  "pinned_L_unchanged": true,
+  "scope": "split checked node proofs and exact interfaces for fixed unbounded Replacement; full streamed importer is a separate replay"
+}

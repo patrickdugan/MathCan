@@ -1,0 +1,161 @@
+{
+  "prior_regression": {
+    "experiment": "ACE-03A",
+    "scope": "restricted intuitionistic natural deduction; generic class, not constructible universe or ZF axioms",
+    "seeds": {
+      "109": {
+        "formulas": 128,
+        "empty_class": 26,
+        "proofs": 1280,
+        "semantic_proof_checks": 2300,
+        "nonvacuous_proof_checks": 756,
+        "shift_commutes": 128,
+        "substitution_commutes": 77,
+        "source_nodes": 4864,
+        "target_nodes": 7296,
+        "source_bytes": 89482,
+        "target_bytes": 137168
+      },
+      "113": {
+        "formulas": 128,
+        "empty_class": 27,
+        "proofs": 1280,
+        "semantic_proof_checks": 2290,
+        "nonvacuous_proof_checks": 885,
+        "shift_commutes": 128,
+        "substitution_commutes": 83,
+        "source_nodes": 4864,
+        "target_nodes": 7296,
+        "source_bytes": 92254,
+        "target_bytes": 138932
+      },
+      "127": {
+        "formulas": 128,
+        "empty_class": 35,
+        "proofs": 1280,
+        "semantic_proof_checks": 2210,
+        "nonvacuous_proof_checks": 821,
+        "shift_commutes": 128,
+        "substitution_commutes": 66,
+        "source_nodes": 4864,
+        "target_nodes": 7296,
+        "source_bytes": 93286,
+        "target_bytes": 141224
+      }
+    },
+    "families": {
+      "identity": 384,
+      "universal_elim": 384,
+      "existential_intro": 384,
+      "universal_intro": 384,
+      "existential_elim": 384,
+      "quantified_mp": 384,
+      "existential_mp": 384,
+      "disjunction_elim": 384,
+      "falsum": 384,
+      "reflexivity": 384
+    },
+    "negative_proof_controls": 12,
+    "unguarded_quantifier_truth_flips": 2,
+    "encoding": "JSON proof AST bytes, contexts excluded, tree expansion counted; no wall-time comparison"
+  },
+  "current": {
+    "experiment": "ACE-03B",
+    "scope": "explicit ZF/ZFC axiom syntax and proof-checked interpretation interface; total-class positive control only",
+    "seeds": {
+      "109": {
+        "fixed_axiom_semantics": 512,
+        "separation_semantics": 64,
+        "replacement_semantics": 64,
+        "logical_compiled": 192,
+        "schema_leaves_checked": 128,
+        "class_guard_transports": 128,
+        "blocked_without_cert": 640
+      },
+      "113": {
+        "fixed_axiom_semantics": 512,
+        "separation_semantics": 64,
+        "replacement_semantics": 64,
+        "logical_compiled": 192,
+        "schema_leaves_checked": 128,
+        "class_guard_transports": 128,
+        "blocked_without_cert": 640
+      },
+      "127": {
+        "fixed_axiom_semantics": 512,
+        "separation_semantics": 64,
+        "replacement_semantics": 64,
+        "logical_compiled": 192,
+        "schema_leaves_checked": 128,
+        "class_guard_transports": 128,
+        "blocked_without_cert": 640
+      }
+    },
+    "negative_controls": 22,
+    "parameter_limit": 32,
+    "choice_form": "choice set for disjoint nonempty family",
+    "target_policy": "ZF only, no AC; class predicate definition supplied separately",
+    "note": "finite structures need not satisfy ZF; no L certificates"
+  },
+  "class_closure": {
+    "experiment": "ACE-03C",
+    "scope": "conditional class closure derivations and closed singleton-empty-class controls; no definition of L",
+    "generic": {
+      "extensionality": {
+        "nodes": 40,
+        "premises": 1
+      },
+      "empty": {
+        "nodes": 12,
+        "premises": 1
+      },
+      "pairing": {
+        "nodes": 22,
+        "premises": 1
+      },
+      "union": {
+        "nodes": 46,
+        "premises": 2
+      },
+      "foundation": {
+        "nodes": 31,
+        "premises": 1
+      }
+    },
+    "closed": {
+      "extensionality": {
+        "nodes": 52,
+        "compiler_nodes": 53
+      },
+      "empty": {
+        "nodes": 20,
+        "compiler_nodes": 21
+      },
+      "union": {
+        "nodes": 83,
+        "compiler_nodes": 84
+      },
+      "foundation": {
+        "nodes": 43,
+        "compiler_nodes": 44
+      }
+    },
+    "closure_proofs": [
+      11,
+      7,
+      24
+    ],
+    "composite_source_nodes": 3,
+    "composite_target_nodes": 106,
+    "open_imports": 4,
+    "finite_structures": 530,
+    "finite_subclasses": 4164,
+    "conditional_checks": 16194,
+    "conditional_nonvacuous": 4836,
+    "closed_checks": 2120,
+    "closed_nonvacuous": 1181,
+    "pairing_counterexamples": 133,
+    "nontransitive_extensionality_counterexamples": 144,
+    "negative_controls": 7
+  }
+}

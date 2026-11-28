@@ -1,0 +1,33 @@
+{
+  "experiment": "ACE-03O",
+  "part": "atom",
+  "spec": {
+    "name": "separation",
+    "params": 1,
+    "body": [
+      "M",
+      0,
+      1
+    ]
+  },
+  "proofs": {
+    "subset_definability": {
+      "nodes": 3557,
+      "proof_bytes": 978090
+    },
+    "bounded_absoluteness": {
+      "nodes": 12,
+      "proof_bytes": 53525
+    },
+    "separation_certificate": {
+      "nodes": 20161,
+      "proof_bytes": 20514539
+    }
+  },
+  "exact_goals": 4,
+  "rejections": 3,
+  "source_nodes": 1,
+  "target_nodes": 20162,
+  "pinned_L_unchanged": true,
+  "scope": "one fixed bounded Separation instance, not unrestricted schema"
+}

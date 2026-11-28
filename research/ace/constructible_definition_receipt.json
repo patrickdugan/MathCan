@@ -1,0 +1,127 @@
+{
+  "experiment": "ACE-03D",
+  "scope": "pure membership-language definition generator and finite semantic regressions; no formal ZF adequacy proof",
+  "formulas": {
+    "empty": {
+      "nodes": 4,
+      "atoms": 1,
+      "quantifiers": 1,
+      "max_binder_depth": 1,
+      "free_indices": [
+        0
+      ],
+      "bytes": 27
+    },
+    "ordinal": {
+      "nodes": 18,
+      "atoms": 7,
+      "quantifiers": 5,
+      "max_binder_depth": 3,
+      "free_indices": [
+        0
+      ],
+      "bytes": 135
+    },
+    "successor": {
+      "nodes": 12,
+      "atoms": 6,
+      "quantifiers": 1,
+      "max_binder_depth": 1,
+      "free_indices": [
+        0,
+        1
+      ],
+      "bytes": 95
+    },
+    "pair": {
+      "nodes": 36,
+      "atoms": 16,
+      "quantifiers": 5,
+      "max_binder_depth": 3,
+      "free_indices": [
+        0,
+        1,
+        2
+      ],
+      "bytes": 279
+    },
+    "omega": {
+      "nodes": 59,
+      "atoms": 22,
+      "quantifiers": 12,
+      "max_binder_depth": 4,
+      "free_indices": [
+        0
+      ],
+      "bytes": 441
+    },
+    "graph": {
+      "nodes": 130,
+      "atoms": 54,
+      "quantifiers": 23,
+      "max_binder_depth": 7,
+      "free_indices": [
+        0,
+        1
+      ],
+      "bytes": 995
+    },
+    "definable": {
+      "nodes": 3269,
+      "atoms": 1345,
+      "quantifiers": 560,
+      "max_binder_depth": 17,
+      "free_indices": [
+        0,
+        1
+      ],
+      "bytes": 25016
+    },
+    "Def": {
+      "nodes": 6544,
+      "atoms": 2692,
+      "quantifiers": 1121,
+      "max_binder_depth": 18,
+      "free_indices": [
+        0,
+        1
+      ],
+      "bytes": 50077
+    },
+    "L": {
+      "nodes": 6969,
+      "atoms": 2866,
+      "quantifiers": 1196,
+      "max_binder_depth": 25,
+      "free_indices": [
+        0
+      ],
+      "bytes": 53323
+    }
+  },
+  "seeds": {
+    "109": {
+      "programs": 128,
+      "tuple_truth_checks": 642,
+      "slice_checks": 642,
+      "empty_domain_programs": 32
+    },
+    "113": {
+      "programs": 128,
+      "tuple_truth_checks": 566,
+      "slice_checks": 566,
+      "empty_domain_programs": 32
+    },
+    "127": {
+      "programs": 128,
+      "tuple_truth_checks": 654,
+      "slice_checks": 654,
+      "empty_domain_programs": 32
+    }
+  },
+  "finite_subset_witnesses": 30,
+  "hf_domain_size": 12,
+  "hf_checks": 31,
+  "invalid_programs_rejected": 6,
+  "alpha_rename_matches": 9
+}

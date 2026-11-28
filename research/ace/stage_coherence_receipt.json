@@ -1,0 +1,61 @@
+{
+  "experiment": "ACE-03H",
+  "scope": "coherence, restriction, uniqueness and monotonicity of existing exact stage graphs; no general existence",
+  "proofs": {
+    "no_two_cycle": {
+      "nodes": 58,
+      "proof_bytes": 619
+    },
+    "successor_predecessor_unique": {
+      "nodes": 99,
+      "proof_bytes": 1222
+    },
+    "bounded_induction_coherence": {
+      "nodes": 76,
+      "proof_bytes": 4099
+    },
+    "stage_graph_coherence": {
+      "nodes": 513,
+      "proof_bytes": 267537
+    },
+    "bounded_induction_monotonicity": {
+      "nodes": 72,
+      "proof_bytes": 4207
+    },
+    "stage_graph_monotonicity_conditional": {
+      "nodes": 474,
+      "proof_bytes": 167269
+    },
+    "stage_graph_restriction": {
+      "nodes": 236,
+      "proof_bytes": 529750
+    },
+    "ordered_pair_unique": {
+      "nodes": 198,
+      "proof_bytes": 2442
+    },
+    "graph_extensionality": {
+      "nodes": 288,
+      "proof_bytes": 7735
+    },
+    "stage_graph_unique": {
+      "nodes": 898,
+      "proof_bytes": 492962
+    },
+    "cross_graph_monotonicity_conditional": {
+      "nodes": 1077,
+      "proof_bytes": 801989
+    },
+    "stage_graph_monotonicity": {
+      "nodes": 3031,
+      "proof_bytes": 940612
+    },
+    "cross_graph_monotonicity": {
+      "nodes": 3634,
+      "proof_bytes": 1575332
+    }
+  },
+  "independent_goal_checks": 3,
+  "negative_controls": 5,
+  "remaining": "general stage graph existence and extension, remaining L axioms, uniform adequacy, checker soundness"
+}

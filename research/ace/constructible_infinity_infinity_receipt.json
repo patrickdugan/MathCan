@@ -1,0 +1,20 @@
+{
+  "proofs": {
+    "generic_infinity": {
+      "nodes": 61,
+      "proof_bytes": 1763
+    },
+    "constructible_inductive_set": {
+      "proof_bytes": 49433119
+    },
+    "infinity_axiom": {
+      "nodes": 47479,
+      "proof_bytes": 50795540
+    }
+  },
+  "independent_goal_checks": 2,
+  "negative_controls": 3,
+  "closed_L_axiom_certificate": "infinity",
+  "source_nodes": 1,
+  "target_nodes": 47480
+}

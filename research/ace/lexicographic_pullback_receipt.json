@@ -1,0 +1,86 @@
+{
+  "experiment": "ACE-03W",
+  "part": "lexicographic_pullback_pair_instance",
+  "checks": [
+    {
+      "id": "lexicographic_irreflexive",
+      "nodes": 93,
+      "goal_bytes": 6907,
+      "ambient_axioms": []
+    },
+    {
+      "id": "lexicographic_transitive",
+      "nodes": 224,
+      "goal_bytes": 9593,
+      "ambient_axioms": []
+    },
+    {
+      "id": "lexicographic_total",
+      "nodes": 207,
+      "goal_bytes": 8603,
+      "ambient_axioms": []
+    },
+    {
+      "id": "lexicographic_minima",
+      "nodes": 238,
+      "goal_bytes": 7349,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "lexicographic_well_order",
+      "nodes": 823,
+      "goal_bytes": 16103,
+      "ambient_axioms": [
+        "separation"
+      ]
+    }
+  ],
+  "checked_modules": 5,
+  "new_statement_checks": 5,
+  "kernel_visits": 1585,
+  "independent_exact_goals": 5,
+  "independent_formula_interfaces": 7,
+  "shared_well_order_layout_checks": 1,
+  "logic_only_checks": 3,
+  "negative_controls": 22,
+  "controls": [
+    "lexicographic_irreflexive:changed_outer_binder",
+    "lexicographic_irreflexive:free_instantiation",
+    "lexicographic_transitive:changed_outer_binder",
+    "lexicographic_transitive:free_instantiation",
+    "lexicographic_total:changed_outer_binder",
+    "lexicographic_total:free_instantiation",
+    "lexicographic_minima:changed_outer_binder",
+    "lexicographic_minima:free_instantiation",
+    "lexicographic_minima:forbid_separation",
+    "lexicographic_well_order:changed_outer_binder",
+    "lexicographic_well_order:free_instantiation",
+    "lexicographic_well_order:forbid_separation",
+    "well_order:omit_first_order",
+    "well_order:omit_second_order",
+    "well_order:omit_coverage",
+    "well_order:omit_coordinate_functionality",
+    "well_order:omit_joint_injection",
+    "spec:too_many_parameters",
+    "spec:bad_carrier",
+    "spec:free_coordinate",
+    "spec:class_guard",
+    "choice_axiom_forbidden"
+  ],
+  "ambient_axiom_instances": [
+    {
+      "name": "separation",
+      "params": 6,
+      "body_bytes": 323
+    },
+    {
+      "name": "separation",
+      "params": 7,
+      "body_bytes": 305
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "lexicographic well-order from two supplied well-orders and total functional jointly injective representation; concrete pair instance checked here"
+}

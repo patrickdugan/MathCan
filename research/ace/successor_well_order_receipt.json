@@ -1,0 +1,94 @@
+{
+  "experiment": "ACE-03T",
+  "part": "successor_initial_segment_order",
+  "checks": [
+    {
+      "id": "successor_irreflexive",
+      "nodes": 42,
+      "goal_bytes": 5745,
+      "ambient_axioms": []
+    },
+    {
+      "id": "successor_transitive",
+      "nodes": 166,
+      "goal_bytes": 7337,
+      "ambient_axioms": []
+    },
+    {
+      "id": "successor_total",
+      "nodes": 144,
+      "goal_bytes": 6551,
+      "ambient_axioms": []
+    },
+    {
+      "id": "successor_minima",
+      "nodes": 144,
+      "goal_bytes": 5833,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "successor_well_order",
+      "nodes": 546,
+      "goal_bytes": 10673,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "successor_restriction",
+      "nodes": 46,
+      "goal_bytes": 2275,
+      "ambient_axioms": []
+    },
+    {
+      "id": "successor_initial_segment",
+      "nodes": 25,
+      "goal_bytes": 857,
+      "ambient_axioms": []
+    }
+  ],
+  "checked_modules": 7,
+  "kernel_visits": 1113,
+  "independent_exact_goals": 7,
+  "independent_formula_interfaces": 2,
+  "negative_controls": 14,
+  "controls": [
+    "successor_irreflexive:drop_binders",
+    "successor_transitive:drop_binders",
+    "successor_total:drop_binders",
+    "successor_minima:drop_binders",
+    "successor_well_order:drop_binders",
+    "successor_restriction:drop_binders",
+    "successor_initial_segment:drop_binders",
+    "successor_minima:forbid_separation",
+    "successor_well_order:forbid_separation",
+    "successor:omit_inclusion",
+    "successor:omit_old_well_order",
+    "successor:omit_new_well_order",
+    "successor_restriction:omit_guard",
+    "successor_initial_segment:omit_guard"
+  ],
+  "ambient_schema_instances": [
+    {
+      "name": "separation",
+      "params": 1,
+      "body": [
+        "M",
+        0,
+        1
+      ]
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "conditional ZF ordered-sum theorem preserving the old order and initial-segment property; successor relation remains a formula",
+  "set_realization_verified_by": "relation_realization_replay.mjs",
+  "open_obligations": [
+    "syntax-code adequacy for pinned Def",
+    "existence of the coherent transfinite history",
+    "internal constructibility of the canonical order",
+    "relativized Choice import",
+    "formal checker soundness"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "proofs": {
+    "ordinal_successor": {
+      "nodes": 68,
+      "proof_bytes": 1252
+    },
+    "binary_union_exists": {
+      "nodes": 68,
+      "proof_bytes": 1137
+    },
+    "ordinal_binary_union": {
+      "nodes": 61,
+      "proof_bytes": 880
+    },
+    "ordinal_stage_value_transitive": {
+      "nodes": 2882,
+      "proof_bytes": 1039905
+    },
+    "ordinal_stage_value_monotone": {
+      "nodes": 3750,
+      "proof_bytes": 1789726
+    },
+    "common_constructible_stage": {
+      "nodes": 11304,
+      "proof_bytes": 10226240
+    },
+    "successor_stage_def": {
+      "nodes": 813,
+      "proof_bytes": 985265
+    },
+    "definable_subset_constructible": {
+      "nodes": 5053,
+      "proof_bytes": 7973611
+    }
+  },
+  "independent_goal_checks": 2,
+  "negative_controls": 0
+}

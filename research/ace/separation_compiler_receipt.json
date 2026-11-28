@@ -1,0 +1,26 @@
+{
+  "experiment": "ACE-03O",
+  "part": "compiler",
+  "proofs": {
+    "atom": {
+      "nodes": 2676,
+      "proof_bytes": 681271
+    },
+    "existential": {
+      "nodes": 4404,
+      "proof_bytes": 1151314
+    },
+    "universal": {
+      "nodes": 9182,
+      "proof_bytes": 2477567
+    },
+    "false": {
+      "nodes": 2598,
+      "proof_bytes": 811662
+    }
+  },
+  "exact_goals": 4,
+  "rejections": 3,
+  "pinned_L_unchanged": true,
+  "scope": "fixed formula program proof generator; finite resource caps"
+}

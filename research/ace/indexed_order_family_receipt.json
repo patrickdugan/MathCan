@@ -1,0 +1,279 @@
+{
+  "experiment": "ACE-03X",
+  "part": "indexed_order_family_adapter",
+  "checks": [
+    {
+      "id": "indexed_ordinal_member",
+      "nodes": 24,
+      "goal_bytes": 305,
+      "ambient_axioms": []
+    },
+    {
+      "id": "indexed_ordinal_comparison",
+      "nodes": 506,
+      "goal_bytes": 337,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "indexed_coordinates_unique",
+      "nodes": 254,
+      "goal_bytes": 2286,
+      "ambient_axioms": []
+    },
+    {
+      "id": "indexed_family_local",
+      "nodes": 31,
+      "goal_bytes": 6539,
+      "ambient_axioms": []
+    },
+    {
+      "id": "indexed_family_transitive",
+      "nodes": 31,
+      "goal_bytes": 1783,
+      "ambient_axioms": []
+    },
+    {
+      "id": "indexed_family_directed",
+      "nodes": 979,
+      "goal_bytes": 5861,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "indexed_family_extends",
+      "nodes": 1031,
+      "goal_bytes": 7147,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "indexed_family_extensions",
+      "nodes": 31,
+      "goal_bytes": 5039,
+      "ambient_axioms": []
+    },
+    {
+      "id": "packed_indexed_local",
+      "nodes": 270,
+      "goal_bytes": 6209,
+      "ambient_axioms": []
+    },
+    {
+      "id": "packed_indexed_transitive",
+      "nodes": 270,
+      "goal_bytes": 3831,
+      "ambient_axioms": []
+    },
+    {
+      "id": "packed_indexed_forward",
+      "nodes": 525,
+      "goal_bytes": 5941,
+      "ambient_axioms": []
+    },
+    {
+      "id": "indexed_canonical_limit_complete",
+      "nodes": 4612,
+      "goal_bytes": 16145,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "packed_indexed_limit_properties",
+      "nodes": 5365,
+      "goal_bytes": 16393,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "packed_indexed_limit_complete",
+      "nodes": 5771,
+      "goal_bytes": 16393,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    }
+  ],
+  "checked_modules": 14,
+  "new_statement_checks": 12,
+  "reproved_existing_statement_checks": 2,
+  "existing_statements": {
+    "indexed_ordinal_member": "stage_recursion.ordinal_member",
+    "indexed_ordinal_comparison": "constructible_power.ordinal_comparison"
+  },
+  "kernel_visits": 19700,
+  "independent_exact_goals": 14,
+  "independent_formula_interfaces": 21,
+  "logic_only_checks": 8,
+  "negative_controls": 69,
+  "kernel_rejection_controls": 22,
+  "contract_rejection_controls": 47,
+  "controls": [
+    "indexed_ordinal_member:changed_outer_binder",
+    "indexed_ordinal_member:drop_binders",
+    "indexed_ordinal_comparison:changed_outer_binder",
+    "indexed_ordinal_comparison:free_instantiation",
+    "indexed_ordinal_comparison:forbid_set_axioms",
+    "indexed_coordinates_unique:changed_outer_binder",
+    "indexed_coordinates_unique:drop_binders",
+    "indexed_family_local:changed_outer_binder",
+    "indexed_family_local:drop_binders",
+    "indexed_family_transitive:changed_outer_binder",
+    "indexed_family_transitive:drop_binders",
+    "indexed_family_directed:changed_outer_binder",
+    "indexed_family_directed:drop_binders",
+    "indexed_family_directed:forbid_set_axioms",
+    "indexed_family_extends:changed_outer_binder",
+    "indexed_family_extends:drop_binders",
+    "indexed_family_extends:forbid_set_axioms",
+    "indexed_family_extensions:changed_outer_binder",
+    "indexed_family_extensions:drop_binders",
+    "packed_indexed_local:changed_outer_binder",
+    "packed_indexed_local:drop_binders",
+    "packed_indexed_transitive:changed_outer_binder",
+    "packed_indexed_transitive:drop_binders",
+    "packed_indexed_forward:changed_outer_binder",
+    "packed_indexed_forward:drop_binders",
+    "indexed_canonical_limit_complete:changed_outer_binder",
+    "indexed_canonical_limit_complete:drop_binders",
+    "indexed_canonical_limit_complete:forbid_set_axioms",
+    "packed_indexed_limit_properties:changed_outer_binder",
+    "packed_indexed_limit_properties:drop_binders",
+    "packed_indexed_limit_properties:forbid_set_axioms",
+    "packed_indexed_limit_complete:changed_outer_binder",
+    "packed_indexed_limit_complete:drop_binders",
+    "packed_indexed_limit_complete:forbid_set_axioms",
+    "indexed_coordinates_unique:omitted_premise_0",
+    "indexed_coordinates_unique:omitted_premise_1",
+    "indexed_coordinates_unique:omitted_premise_2",
+    "indexed_coordinates_unique:omitted_premise_3",
+    "indexed_family_local:omitted_premise_0",
+    "indexed_family_local:omitted_premise_1",
+    "indexed_family_transitive:omitted_premise_0",
+    "indexed_family_transitive:omitted_premise_1",
+    "indexed_family_directed:omitted_premise_0",
+    "indexed_family_directed:omitted_premise_1",
+    "indexed_family_directed:omitted_premise_2",
+    "indexed_family_directed:omitted_premise_3",
+    "indexed_family_extends:omitted_premise_0",
+    "indexed_family_extends:omitted_premise_1",
+    "indexed_family_extends:omitted_premise_2",
+    "indexed_family_extends:omitted_premise_3",
+    "indexed_canonical_limit_complete:omitted_premise_0",
+    "indexed_canonical_limit_complete:omitted_premise_1",
+    "indexed_canonical_limit_complete:omitted_premise_2",
+    "indexed_canonical_limit_complete:omitted_premise_3",
+    "indexed_canonical_limit_complete:omitted_premise_4",
+    "indexed_canonical_limit_complete:omitted_premise_5",
+    "packed_indexed_limit_properties:omitted_premise_0",
+    "packed_indexed_limit_properties:omitted_premise_1",
+    "packed_indexed_limit_properties:omitted_premise_2",
+    "packed_indexed_limit_properties:omitted_premise_3",
+    "packed_indexed_limit_properties:omitted_premise_4",
+    "packed_indexed_limit_properties:omitted_premise_5",
+    "packed_indexed_limit_complete:omitted_premise_0",
+    "packed_indexed_limit_complete:omitted_premise_1",
+    "packed_indexed_limit_complete:omitted_premise_2",
+    "packed_indexed_limit_complete:omitted_premise_3",
+    "packed_indexed_limit_complete:omitted_premise_4",
+    "indexed_family_extends:corrupt_coordinate_transport",
+    "choice_axiom_forbidden"
+  ],
+  "packed_limit_quantifiers": [
+    "f",
+    "d",
+    "H",
+    "r"
+  ],
+  "packed_limit_premises": [
+    "Ord(d)",
+    "Graph(f,d)",
+    "Range(f,d,H)",
+    "PointwiseGood(f,d)",
+    "ForwardEmbeddings(f,d)",
+    "Value(H,r)"
+  ],
+  "packed_limit_conclusion": "Good(r) and forall i in d forall p (Val(f,i,p) implies Embed(p,r))",
+  "same_index_requires_graph_functionality": true,
+  "multivalued_single_index_control": {
+    "carrier_count": 2,
+    "forward_vacuous": true,
+    "directed": false
+  },
+  "ambient_axiom_instances": [
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "union"
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 21
+    },
+    {
+      "name": "foundation"
+    },
+    {
+      "name": "extensionality"
+    },
+    {
+      "name": "separation",
+      "params": 0,
+      "body_bytes": 343
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 307
+    },
+    {
+      "name": "power"
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 983
+    },
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 9
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "ambient_choice_used": false,
+  "scope": "indexed ordinal histories with pointwise good states and forward initial embeddings yield canonical directed initial-segment limits; unrelated relation members are excluded by exact limit membership"
+}

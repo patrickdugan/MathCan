@@ -1,0 +1,431 @@
+name: ACE certificate and kernel replay
+on:
+  pull_request:
+    paths:
+      - 'MathCan/ACE*.lean'
+      - 'research/ace/**'
+      - 'lean-toolchain'
+      - '.github/workflows/ace-replay.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  finite-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay pinned receipts
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in finite_choice arithmetic_transport relativization zf_interface constructible_definition constructible_gate hierarchy_closure finite_witnesses initial_stages stage_coherence stage_recursion; do
+            node "research/ace/$name.mjs" > "/tmp/$name.json"
+            diff -u "research/ace/${name}_receipt.json" "/tmp/$name.json"
+          done
+  constructible-closure-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [finite, stage, pairing, union]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay class-closure certificate
+        shell: bash
+        env:
+          PART: ${{ matrix.part }}
+        run: |
+          set -euo pipefail
+          node research/ace/constructible_closure.mjs "$PART" > "/tmp/ace-$PART.json"
+          diff -u "research/ace/constructible_closure_${PART}_receipt.json" "/tmp/ace-$PART.json"
+  constructible-infinity-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [finite, stage, infinity]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay Infinity certificate
+        shell: bash
+        env:
+          PART: ${{ matrix.part }}
+        run: |
+          set -euo pipefail
+          node research/ace/constructible_infinity.mjs "$PART" > "/tmp/ace-infinity-$PART.json"
+          diff -u "research/ace/constructible_infinity_${PART}_receipt.json" "/tmp/ace-infinity-$PART.json"
+  constructible-power-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [finite, ranks, power]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay Power Set certificate
+        shell: bash
+        env:
+          PART: ${{ matrix.part }}
+        run: |
+          set -euo pipefail
+          node research/ace/constructible_power.mjs "$PART" > "/tmp/ace-power-$PART.json"
+          diff -u "research/ace/constructible_power_${PART}_receipt.json" "/tmp/ace-power-$PART.json"
+  reflection-bounds-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [membership, extension, two_parameter, quantified, closed]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay formula-indexed witness bound
+        shell: bash
+        env:
+          PART: ${{ matrix.part }}
+        run: |
+          set -euo pipefail
+          node research/ace/reflection_bounds.mjs "$PART" > "/tmp/ace-reflection-$PART.json"
+          diff -u "research/ace/reflection_bounds_${PART}_receipt.json" "/tmp/ace-reflection-$PART.json"
+  reflection-transport-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay finite Tarski-Vaught proof objects and semantic controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          node research/ace/reflection_transport.mjs > /tmp/ace-transport.json
+          diff -u research/ace/reflection_transport_receipt.json /tmp/ace-transport.json
+  reflection-omega-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [canonical, omega, limit, base, link, two_clause, recurrence]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay omega reflection module and verify exact interface
+        shell: bash
+        env:
+          PART: ${{ matrix.part }}
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: |
+          set -euo pipefail
+          node research/ace/reflection_omega_replay.mjs "$PART" > "/tmp/ace-omega-$PART.json"
+          diff -u "research/ace/reflection_omega_${PART}_receipt.json" "/tmp/ace-omega-$PART.json"
+  separation-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [compiler, delta, atom, existential, universal, "false"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay fixed-formula definability and Separation certificates
+        shell: bash
+        env:
+          PART: ${{ matrix.part }}
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: |
+          set -euo pipefail
+          node research/ace/separation_replay.mjs "$PART" > "/tmp/ace-separation-$PART.json"
+          diff -u "research/ace/separation_${PART}_receipt.json" "/tmp/ace-separation-$PART.json"
+  unbounded-separation-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [left, right, selector, omega, limit, base, separation, links]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay modular unbounded Separation certificate
+        shell: bash
+        env:
+          PART: ${{ matrix.part }}
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: |
+          set -euo pipefail
+          node research/ace/unbounded_separation_replay.mjs "$PART" > "/tmp/ace-p-$PART.json"
+          diff -u "research/ace/unbounded_separation_${PART}_receipt.json" "/tmp/ace-p-$PART.json"
+  modular-certificate-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [synthetic, bounded]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay modular certificate import and compare pinned receipt
+        shell: bash
+        env:
+          PART: ${{ matrix.part }}
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: |
+          set -euo pipefail
+          node research/ace/modular_certificate_replay.mjs "$PART" > "/tmp/ace-q-$PART.json"
+          diff -u "research/ace/modular_certificate_${PART}_receipt.json" "/tmp/ace-q-$PART.json"
+  modular-unbounded-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check complete streamed unbounded proof DAG and translate repeated axiom
+        shell: bash
+        env:
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: |
+          set -euo pipefail
+          node research/ace/modular_unbounded_replay.mjs | tee /tmp/ace-q-unbounded.json
+          diff -u research/ace/modular_unbounded_receipt.json /tmp/ace-q-unbounded.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ace-q-unbounded-receipt
+          path: /tmp/ace-q-unbounded.json
+  replacement-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [identity, singleton, constant, conditional]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay exact Replacement certificate and modular translation
+        shell: bash
+        env:
+          PART: ${{ matrix.part }}
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: |
+          set -euo pipefail
+          node research/ace/replacement_replay.mjs "$PART" > "/tmp/ace-r-$PART.json"
+          diff -u "research/ace/replacement_${PART}_receipt.json" "/tmp/ace-r-$PART.json"
+  unbounded-replacement-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [extension, selector, omega, limit, base, replacement, links]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Replay exact unbounded Replacement graph module
+        shell: bash
+        env:
+          PART: ${{ matrix.part }}
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: |
+          set -euo pipefail
+          node research/ace/unbounded_replacement_replay.mjs "$PART" > "/tmp/ace-s-$PART.json"
+          diff -u "research/ace/unbounded_replacement_${PART}_receipt.json" "/tmp/ace-s-$PART.json"
+  unbounded-replacement-full-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify full streamed graph and modular source import
+        shell: bash
+        env:
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: |
+          set -euo pipefail
+          node research/ace/unbounded_replacement_replay.mjs full | tee /tmp/ace-s-full.json
+          diff -u research/ace/unbounded_replacement_full_receipt.json /tmp/ace-s-full.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ace-s-full-receipt
+          path: /tmp/ace-s-full.json
+  constructible-well-order-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check least codes, conditional Choice, coherent stages and finite code controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          node research/ace/constructible_well_order_replay.mjs > /tmp/ace-t-order.json
+          diff -u research/ace/constructible_well_order_receipt.json /tmp/ace-t-order.json
+          node research/ace/relation_realization_replay.mjs > /tmp/ace-t-relations.json
+          diff -u research/ace/relation_realization_receipt.json /tmp/ace-t-relations.json
+          node research/ace/successor_well_order_replay.mjs > /tmp/ace-t-successor.json
+          diff -u research/ace/successor_well_order_receipt.json /tmp/ace-t-successor.json
+          node research/ace/coherent_well_order_replay.mjs > /tmp/ace-t-limit.json
+          diff -u research/ace/coherent_well_order_receipt.json /tmp/ace-t-limit.json
+          node research/ace/well_order_codes_replay.mjs > /tmp/ace-t-codes.json
+          diff -u research/ace/well_order_codes_receipt.json /tmp/ace-t-codes.json
+  canonical-syntax-trace-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check canonical relations, syntax traces and finite witness selection
+        shell: bash
+        run: |
+          set -euo pipefail
+          node research/ace/ace03u_replay.mjs > /tmp/ace03u.json
+          diff -u research/ace/ace03u_receipt.json /tmp/ace03u.json
+  finite-syntax-decoration-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check finite syntax decoration and the exact Def equivalence
+        shell: bash
+        run: |
+          set -euo pipefail
+          node research/ace/ace03v_replay.mjs > /tmp/ace03v.json
+          diff -u research/ace/ace03v_receipt.json /tmp/ace03v.json
+  definable-stage-order-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check syntax description carriers, evaluation and Def well-ordering
+        shell: bash
+        run: |
+          set -euo pipefail
+          node research/ace/ace03w_replay.mjs > /tmp/ace03w.json
+          diff -u research/ace/ace03w_receipt.json /tmp/ace03w.json
+  canonical-order-history-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check unique order histories and the exact pinned L-stage projection
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACE_REPLAY_PROGRESS=1 node research/ace/ace03x_replay.mjs > /tmp/ace03x.json
+          diff -u research/ace/ace03x_receipt.json /tmp/ace03x.json
+  lean-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          build: false
+      - name: Replay standalone modules and reject unexpected choice or sorry
+        shell: bash
+        run: |
+          set -euo pipefail
+          for module in ACEFiniteChoice ACEArithmeticTransport ACERelativization; do
+            lake env lean "MathCan/$module.lean" | tee "/tmp/$module.log"
+            if grep -F 'sorryAx' "/tmp/$module.log"; then exit 1; fi
+          done
+          grep -F "'MathCan.ACE.globalViaChoice' depends on axioms: [Classical.choice]" /tmp/ACEFiniteChoice.log
+          grep -F "'MathCan.ACE.globalWithoutChoice' does not depend on any axioms" /tmp/ACEFiniteChoice.log
+          grep -F "'MathCan.ACE.finiteChoice' does not depend on any axioms" /tmp/ACEFiniteChoice.log
+          grep -F "'MathCan.ACE.alignedMap' does not depend on any axioms" /tmp/ACEFiniteChoice.log
+          if grep -v 'globalViaChoice' /tmp/ACEFiniteChoice.log | grep -F 'Classical.choice'; then exit 1; fi
+          if grep -F 'Classical.choice' /tmp/ACEArithmeticTransport.log /tmp/ACERelativization.log; then exit 1; fi
+          grep -F "'MathCan.ACE.Arithmetic.sat_transport'" /tmp/ACEArithmeticTransport.log
+          grep -F "'MathCan.ACE.Arithmetic.sentence_assignment_independent'" /tmp/ACEArithmeticTransport.log
+          grep -F "'MathCan.ACE.Relativization.sat_restrict'" /tmp/ACERelativization.log
+
+  internal-choice-bridge-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Replay exact conditional Choice bridge
+        run: |
+          set -euo pipefail
+          node research/ace/internal_choice_bridge.mjs > /tmp/ace03y-01.json
+          diff -u research/ace/internal_choice_bridge_receipt.json /tmp/ace03y-01.json
+
+  bounded-choice-transport-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Replay bounded selector and order transport
+        run: |
+          set -euo pipefail
+          node research/ace/bounded_choice_transport.mjs > /tmp/ace03y-02.json
+          diff -u research/ace/bounded_choice_transport_receipt.json /tmp/ace03y-02.json
+
+  composed-internal-choice-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Replay composed conditional Choice
+        run: |
+          set -euo pipefail
+          node --max-old-space-size=3072 research/ace/composed_internal_choice.mjs > /tmp/ace03y-03.json
+          diff -u research/ace/composed_internal_choice_receipt.json /tmp/ace03y-03.json

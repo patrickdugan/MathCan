@@ -1,0 +1,48 @@
+{
+  "experiment": "ACE-03M",
+  "part": "membership",
+  "formula": [
+    "M",
+    0,
+    1
+  ],
+  "arity": 1,
+  "proofs": {
+    "demand_from_constructible_witness": {
+      "nodes": 38,
+      "proof_bytes": 533112
+    },
+    "least_witness_stage": {
+      "nodes": 204,
+      "proof_bytes": 696350
+    },
+    "least_witness_stage_unique": {
+      "nodes": 567,
+      "proof_bytes": 224613
+    },
+    "witness_selector_unique": {
+      "nodes": 678,
+      "proof_bytes": 866815
+    },
+    "witness_selector_total": {
+      "nodes": 1129,
+      "proof_bytes": 4345573
+    },
+    "witness_selector_bounds": {
+      "nodes": 69,
+      "proof_bytes": 1013854
+    },
+    "parameter_aggregate_total": {
+      "nodes": 1309,
+      "proof_bytes": 8680162
+    },
+    "finite_parameter_witness_bound": {
+      "nodes": 10333,
+      "proof_bytes": 24504912
+    }
+  },
+  "independent_goal_checks": 1,
+  "negative_controls": 3,
+  "pinned_L_unchanged": true,
+  "scope": "one-step finite parameter witness bounds; no limit-stage reflection or full Separation schema"
+}

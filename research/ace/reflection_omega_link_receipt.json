@@ -1,0 +1,17 @@
+{
+  "experiment": "ACE-03N",
+  "part": "link",
+  "proofs": {
+    "reflection_link_implication": {
+      "nodes": 96,
+      "goal_bytes": 2829051,
+      "proof_bytes": 5870963
+    }
+  },
+  "exact_interfaces": 2,
+  "negative_controls": 2,
+  "link_applications": 8,
+  "conclusion_bytes": 160273,
+  "pinned_L_unchanged": true,
+  "scope": "logical link only; all eight dependencies separately verified by other replay parts"
+}

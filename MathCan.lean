@@ -149,6 +149,9 @@ import MathCan.NOR43AuthenticatedRoot
 import MathCan.NOR44SessionOrdering
 import MathCan.NOR45AuthorizedProgram
 import MathCan.NOR46ExactIntegerTrace
+import MathCan.ACEFiniteChoice
+import MathCan.ACEArithmeticTransport
+import MathCan.ACERelativization
 import MathCan.RHWindowExponents
 import MathCan.RHFamilyWitnesses
 import MathCan.RHMainLogic

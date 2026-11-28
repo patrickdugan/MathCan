@@ -1,0 +1,139 @@
+{
+  "experiment": "ACE-03V",
+  "part": "finite_decoration_and_exact_Def_equivalence",
+  "checks": [
+    {
+      "id": "finite_trace_has_decoded_syntax",
+      "nodes": 10456,
+      "goal_bytes": 61801,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "finite_valid_program_iff_decoded_syntax",
+      "nodes": 10695,
+      "goal_bytes": 123115,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "pinned_definable_has_decoded_syntax",
+      "nodes": 10510,
+      "goal_bytes": 72827,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "decoded_syntax_is_pinned_definable",
+      "nodes": 259,
+      "goal_bytes": 72827,
+      "ambient_axioms": []
+    },
+    {
+      "id": "definable_iff_decoded_syntax",
+      "nodes": 10776,
+      "goal_bytes": 145649,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "def_set_iff_decoded_syntax",
+      "nodes": 10833,
+      "goal_bytes": 291445,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    }
+  ],
+  "checked_modules": 6,
+  "new_statement_checks": 6,
+  "reused_helper_checks": 0,
+  "kernel_visits": 53529,
+  "independent_exact_goals": 6,
+  "independent_formula_interfaces": 3,
+  "pinned_def_skeleton_checks": 1,
+  "logic_only_checks": 1,
+  "negative_controls": 22,
+  "controls": [
+    "finite_trace_has_decoded_syntax:changed_outer_binder",
+    "finite_trace_has_decoded_syntax:free_instantiation",
+    "finite_trace_has_decoded_syntax:forbid_set_axioms",
+    "finite_valid_program_iff_decoded_syntax:changed_outer_binder",
+    "finite_valid_program_iff_decoded_syntax:free_instantiation",
+    "finite_valid_program_iff_decoded_syntax:forbid_set_axioms",
+    "pinned_definable_has_decoded_syntax:changed_outer_binder",
+    "pinned_definable_has_decoded_syntax:free_instantiation",
+    "pinned_definable_has_decoded_syntax:forbid_set_axioms",
+    "decoded_syntax_is_pinned_definable:changed_outer_binder",
+    "decoded_syntax_is_pinned_definable:free_instantiation",
+    "definable_iff_decoded_syntax:changed_outer_binder",
+    "definable_iff_decoded_syntax:free_instantiation",
+    "definable_iff_decoded_syntax:forbid_set_axioms",
+    "def_set_iff_decoded_syntax:changed_outer_binder",
+    "def_set_iff_decoded_syntax:free_instantiation",
+    "def_set_iff_decoded_syntax:forbid_set_axioms",
+    "decoration:omit_omega",
+    "decoration:omit_finite_domain",
+    "decoration:omit_valid_program",
+    "decoration:escaping_field_variable",
+    "choice_axiom_forbidden"
+  ],
+  "ambient_axiom_instances": [
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "foundation"
+    },
+    {
+      "name": "separation",
+      "params": 8,
+      "body_bytes": 43143
+    },
+    {
+      "name": "union"
+    },
+    {
+      "name": "power"
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 891
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "uniform finite reverse decoration, exact validProgram equivalence under its omega and finite-domain premises, and both directions of pinned definable and Def equivalence to decoded syntax",
+  "open_obligations": [
+    "total semantic execution existence for arbitrary supplied syntax",
+    "single-natural-number coding adequacy",
+    "canonical transfinite well-order history",
+    "internal constructibility of canonical orders",
+    "exact relativized Choice import",
+    "formal checker soundness"
+  ]
+}

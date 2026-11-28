@@ -1,0 +1,35 @@
+{
+  "experiment": "ACE-03N",
+  "part": "two_clause",
+  "proofs": {
+    "common_strict_extension_conditional": {
+      "nodes": 12876,
+      "goal_bytes": 533649,
+      "proof_bytes": 13811339
+    },
+    "least_extension_exists": {
+      "nodes": 205,
+      "goal_bytes": 639987,
+      "proof_bytes": 2775973
+    },
+    "least_extension_unique": {
+      "nodes": 566,
+      "goal_bytes": 853359,
+      "proof_bytes": 864164
+    },
+    "canonical_extension_total_conditional": {
+      "nodes": 13679,
+      "goal_bytes": 1173685,
+      "proof_bytes": 21399083
+    },
+    "canonical_extension_strict": {
+      "nodes": 12,
+      "goal_bytes": 426825,
+      "proof_bytes": 426741
+    }
+  },
+  "exact_interfaces": 1,
+  "negative_controls": 1,
+  "pinned_L_unchanged": true,
+  "scope": "conditional two-clause selector; no unconditional two-clause reflection"
+}

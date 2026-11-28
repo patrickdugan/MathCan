@@ -1,0 +1,26 @@
+{
+  "proofs": {
+    "omega_ordinal": {
+      "nodes": 394,
+      "proof_bytes": 6258
+    },
+    "omega_limit": {
+      "nodes": 129,
+      "proof_bytes": 2034
+    },
+    "ordinal_limit_stage_members": {
+      "nodes": 8609,
+      "proof_bytes": 9342396
+    },
+    "omega_stage_inductive": {
+      "nodes": 33251,
+      "proof_bytes": 34375684
+    },
+    "ordinal_stage_constructible": {
+      "nodes": 6713,
+      "proof_bytes": 8562250
+    }
+  },
+  "independent_goal_checks": 4,
+  "negative_controls": 0
+}

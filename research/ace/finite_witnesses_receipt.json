@@ -1,0 +1,70 @@
+{
+  "experiment": "ACE-03F",
+  "scope": "closed object proofs for pinned L predicate, checked by executable ZF kernel",
+  "proofs": {
+    "pair_exists": {
+      "nodes": 45,
+      "proof_bytes": 2466
+    },
+    "pair_injective": {
+      "nodes": 206,
+      "proof_bytes": 2570
+    },
+    "binary_graph_exists": {
+      "nodes": 508,
+      "proof_bytes": 29353
+    },
+    "unary_graph_exists": {
+      "nodes": 356,
+      "proof_bytes": 16448
+    },
+    "omega_exists": {
+      "nodes": 136,
+      "proof_bytes": 3741
+    },
+    "finite_ordinals": {
+      "nodes": 309,
+      "proof_bytes": 11711
+    },
+    "membership_relation_exists": {
+      "nodes": 204,
+      "proof_bytes": 39415
+    },
+    "atomic_member_definable": {
+      "nodes": 2537,
+      "proof_bytes": 697945
+    },
+    "def_inflation": {
+      "nodes": 2556,
+      "proof_bytes": 773335
+    },
+    "stage_transitivity": {
+      "nodes": 2806,
+      "proof_bytes": 932290
+    },
+    "L_transitivity": {
+      "nodes": 2897,
+      "proof_bytes": 1306938
+    },
+    "L_transitivity_guard": {
+      "nodes": 2911,
+      "proof_bytes": 1360406
+    },
+    "L_extensionality": {
+      "nodes": 2952,
+      "proof_bytes": 1360912
+    },
+    "L_foundation": {
+      "nodes": 2943,
+      "proof_bytes": 1360978
+    }
+  },
+  "closed_L_axiom_certificates": [
+    "extensionality",
+    "foundation"
+  ],
+  "composite_source_nodes": 3,
+  "composite_target_nodes": 5898,
+  "negative_controls": 7,
+  "remaining": "adequacy, stage recursion and other L axioms; proof checker soundness"
+}

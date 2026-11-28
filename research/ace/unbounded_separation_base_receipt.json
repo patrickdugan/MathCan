@@ -1,0 +1,53 @@
+{
+  "experiment": "ACE-03P",
+  "part": "base",
+  "spec": {
+    "name": "separation",
+    "params": 0,
+    "body": [
+      "&",
+      [
+        "E",
+        [
+          "M",
+          1,
+          0
+        ]
+      ],
+      [
+        "E",
+        [
+          "M",
+          0,
+          1
+        ]
+      ]
+    ]
+  },
+  "proofs": {
+    "omega_exists": {
+      "nodes": 136,
+      "goal_bytes": 447,
+      "proof_bytes": 3741
+    },
+    "omega_ordinal": {
+      "nodes": 394,
+      "goal_bytes": 589,
+      "proof_bytes": 6258
+    },
+    "stage_members_constructible": {
+      "nodes": 27,
+      "goal_bytes": 106659,
+      "proof_bytes": 320027
+    },
+    "conditional_transport": {
+      "nodes": 117,
+      "goal_bytes": 373757,
+      "proof_bytes": 801676
+    }
+  },
+  "exact_interfaces": 6,
+  "negative_controls": 0,
+  "pinned_L_unchanged": true,
+  "scope": "checked dependency or link for one fixed unbounded Separation instance; unrestricted schema remains open"
+}

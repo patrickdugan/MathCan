@@ -1,0 +1,257 @@
+{
+  "experiment": "ACE-03X",
+  "part": "uniform_history_recursion",
+  "checks": [
+    {
+      "id": "history_restriction_exact",
+      "nodes": 164,
+      "goal_bytes": 9093,
+      "ambient_axioms": [
+        "separation"
+      ],
+      "goal_sha256": "a72e7a136a2076c24fa56e6567e5a6a2c81182d4cd2ebb82a7362c44e9c9648d"
+    },
+    {
+      "id": "ordinal_successor",
+      "nodes": 70,
+      "goal_bytes": 403,
+      "ambient_axioms": [],
+      "goal_sha256": "6727c98deac27dd69c576265c2a362c01adc56186ebcd3afb68d88a5add926c1"
+    },
+    {
+      "id": "history_coherence",
+      "nodes": 542,
+      "goal_bytes": 11667,
+      "ambient_axioms": [
+        "foundation",
+        "separation"
+      ],
+      "goal_sha256": "96f1410b92af09ba7e5b0f79576e6cd2a463113e87ef5a8c3e3a75f9f26d2a3e"
+    },
+    {
+      "id": "history_unique",
+      "nodes": 939,
+      "goal_bytes": 10853,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "separation"
+      ],
+      "goal_sha256": "0b3dbabf8cd09f5f73bb7cbe800a9b6e4c869ff02493dd441d84f8401b2a993c"
+    },
+    {
+      "id": "history_extension",
+      "nodes": 974,
+      "goal_bytes": 10303,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "union"
+      ],
+      "goal_sha256": "926b80a94cd5605661573a7995457ab5fccfe10e5ca847450bf28ad366bdfa83"
+    },
+    {
+      "id": "empty_history_exists",
+      "nodes": 30,
+      "goal_bytes": 2151,
+      "ambient_axioms": [
+        "empty"
+      ],
+      "goal_sha256": "60c5f30821a3435b21a7a1db9769da8cfefa39f4557eb7d2e18921fdac55a770"
+    },
+    {
+      "id": "compatible_history_union_exact",
+      "nodes": 1158,
+      "goal_bytes": 13363,
+      "ambient_axioms": [
+        "foundation",
+        "separation",
+        "union"
+      ],
+      "goal_sha256": "557d364b95090fae3ceb94220614e7ab24e0f2c07a2fd8666812206a2a561e10"
+    },
+    {
+      "id": "successor_history_unique",
+      "nodes": 1095,
+      "goal_bytes": 11069,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "separation"
+      ],
+      "goal_sha256": "d9e1e084e35ca06aa3a6884f73bf5eb965f374c730d2bf0e55624633df353abc"
+    },
+    {
+      "id": "successor_history_exists",
+      "nodes": 3845,
+      "goal_bytes": 11861,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "replacement",
+        "separation",
+        "union"
+      ],
+      "goal_sha256": "d874ee53d94a9143d401584299714f9883bda540c99080e39786099cd3444fbc"
+    },
+    {
+      "id": "ordinal_history_exists",
+      "nodes": 4056,
+      "goal_bytes": 11753,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "replacement",
+        "separation",
+        "union"
+      ],
+      "goal_sha256": "757fc859f81573876c92242116baddc6217f4fc5616b61d6e1894d06422fbc07"
+    },
+    {
+      "id": "ordinal_history_exists_unique",
+      "nodes": 5033,
+      "goal_bytes": 13875,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "replacement",
+        "separation",
+        "union"
+      ],
+      "goal_sha256": "f34d4c2fdafd013d82ab021d42dae547adddb248d7cd43bcd309bf4ae7ae5443"
+    },
+    {
+      "id": "graph_total_implies_history_total",
+      "nodes": 13,
+      "goal_bytes": 4809,
+      "ambient_axioms": [],
+      "goal_sha256": "6ad764cd3e26f43fc162a154cb0cd0711a4ffda2c0c13f3ae724853ff035ac28"
+    },
+    {
+      "id": "graph_total_ordinal_history_exists_unique",
+      "nodes": 5061,
+      "goal_bytes": 12635,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "replacement",
+        "separation",
+        "union"
+      ],
+      "goal_sha256": "a2f5f61591af3d9b98eaea953c93923d483f58ee7f32cbb10288d8cf77c7f64b"
+    },
+    {
+      "id": "ordinal_value_exists",
+      "nodes": 3890,
+      "goal_bytes": 12175,
+      "ambient_axioms": [
+        "extensionality",
+        "foundation",
+        "pairing",
+        "replacement",
+        "separation",
+        "union"
+      ],
+      "goal_sha256": "85f1093687b9d1529ae487ee08de5ab6744e864bcf6b7152dff0375f37e06b72"
+    },
+    {
+      "id": "ordinal_value_unique",
+      "nodes": 692,
+      "goal_bytes": 11697,
+      "ambient_axioms": [
+        "foundation",
+        "separation"
+      ],
+      "goal_sha256": "0cace363e761c573e1c490d8b63a78d66415c4b66031787f84f689f34c5ae18b"
+    }
+  ],
+  "checked_modules": 15,
+  "kernel_visits": 27562,
+  "independent_exact_goals": 15,
+  "independent_formula_interfaces": 13,
+  "negative_controls": 24,
+  "controls": [
+    "history_restriction_exact:drop_binders",
+    "ordinal_successor:drop_binders",
+    "history_coherence:drop_binders",
+    "history_unique:drop_binders",
+    "history_extension:drop_binders",
+    "empty_history_exists:drop_binders",
+    "compatible_history_union_exact:drop_binders",
+    "successor_history_unique:drop_binders",
+    "successor_history_exists:drop_binders",
+    "ordinal_history_exists:drop_binders",
+    "ordinal_history_exists_unique:drop_binders",
+    "graph_total_implies_history_total:drop_binders",
+    "graph_total_ordinal_history_exists_unique:drop_binders",
+    "ordinal_value_exists:drop_binders",
+    "ordinal_value_unique:drop_binders",
+    "history_exists_unique:omit_totality",
+    "history_exists_unique:omit_functionality",
+    "history_exists_unique:omit_prefix_locality",
+    "history_restriction_exact:forbid_set_axioms",
+    "history_coherence:forbid_set_axioms",
+    "ordinal_history_exists_unique:forbid_set_axioms",
+    "step:class_predicate",
+    "step:unbound_parameter",
+    "step:negative_parameter_count"
+  ],
+  "ambient_schema_instances": [
+    {
+      "name": "separation",
+      "params": 1,
+      "body_sha256": "5931a6bb2bafa9563ca9fc4c8a3db289ef655db8b795a74b00f850db63ae55b7"
+    },
+    {
+      "name": "separation",
+      "params": 3,
+      "body_sha256": "05ec98a965faefc807eb9f56eeafe8b58c6b7cb9b50566aa11f9839146f04a2a"
+    },
+    {
+      "name": "foundation"
+    },
+    {
+      "name": "extensionality"
+    },
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "union"
+    },
+    {
+      "name": "empty"
+    },
+    {
+      "name": "replacement",
+      "params": 2,
+      "body_sha256": "43fdb7080ce2544f25c97d060dca84d0970948ea8900a1ecae0cff55c7ef6c6b"
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_sha256": "f8204b381dba9441d4fe032c5329c98a14f48d14116b53943b640f07cbb62342"
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "step_parameters": 2,
+  "step_free_layout": [
+    "history",
+    "index",
+    "value",
+    "seed_a",
+    "seed_b"
+  ],
+  "step_sha256": "3af8a437fdf89eb7bcd6dded92f532a14b90b9c2ee176d7145c9a14211361869",
+  "scope": "ZF pure-formula transfinite recursion with explicit totality on ordinal histories, functionality on exact prefix histories, and prefix locality; exact restrictions and compatible unions",
+  "open_obligations": [
+    "discharge the contracts for the canonical constructible order step",
+    "internal constructibility of the canonical order",
+    "relativized Choice import",
+    "formal checker soundness"
+  ]
+}

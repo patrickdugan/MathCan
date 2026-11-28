@@ -1,0 +1,37 @@
+{
+  "experiment": "ACE-03P",
+  "part": "omega",
+  "spec": {
+    "name": "separation",
+    "params": 0,
+    "body": [
+      "&",
+      [
+        "E",
+        [
+          "M",
+          1,
+          0
+        ]
+      ],
+      [
+        "E",
+        [
+          "M",
+          0,
+          1
+        ]
+      ]
+    ]
+  },
+  "proofs": {
+    "omega_range_closed_conditional": {
+      "nodes": 3687,
+      "goal_bytes": 1281275
+    }
+  },
+  "exact_interfaces": 2,
+  "negative_controls": 0,
+  "pinned_L_unchanged": true,
+  "scope": "checked dependency or link for one fixed unbounded Separation instance; unrestricted schema remains open"
+}

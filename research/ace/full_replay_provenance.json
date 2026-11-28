@@ -1,0 +1,95 @@
+{
+  "source_commit": "0456b5981235db8ba1faf154b8bbd4744f256868",
+  "runtime": {
+    "node": "v24.22.3",
+    "platform": "Linux",
+    "architecture": "x86_64"
+  },
+  "source_hash_scope": "Every .mjs module tracked under research/ace at source_commit, plus the pinned L formula; current bytes matched source_commit at verification.",
+  "source_files_sha256": {
+    "research/ace/arithmetic_transport.mjs": "4758d4e50a3b380b2b55ec3f83ada42f688bac258e816f3ce26a7f6c07bd0af1",
+    "research/ace/bounded_absoluteness.mjs": "73784f4163117c123df21f89f4db491841aca51b2047125a0da9730bdc54e93e",
+    "research/ace/constructible_closure.mjs": "a626539b87e84bb98772bd4230c8262f4aed7c20f9cd48084edbe6c442db92ba",
+    "research/ace/constructible_definition.mjs": "ad41730e7a726b16d0fda6c7ee431c85e705b5f3bb6e6024fd7eaa8dcef00320",
+    "research/ace/constructible_gate.mjs": "2f2ced64311da90cba10676744951ec6b841f995e9886e8c43bde733b7a38a85",
+    "research/ace/constructible_infinity.mjs": "fe404a199fe4213961af4d0738acb764cca3fb2211943c08631c75fcdb15dd8f",
+    "research/ace/constructible_power.mjs": "6e054c56ddc8f1c8a34d6bb2c96078a3f6fb64e84c8f12827aa6919eac9bdc54",
+    "research/ace/finite_choice.mjs": "f6aa802f343738c7a508e1635d18b5db00f653bb90c06a4ac63634c7d2260b55",
+    "research/ace/finite_witnesses.mjs": "9e4f6d9f9dbd4cdfa27c16413a27d099afafd8c052152f37d0ae305b123536b2",
+    "research/ace/hierarchy_closure.mjs": "df5b7962422db2fb3f19dd14ed6efa9e43012620221adbb6093b151dcd0b24e2",
+    "research/ace/initial_stages.mjs": "1dd7598a02154f251e41b68a7d3428f539263ab778fb9f55ee242b299ca4922e",
+    "research/ace/modular_certificate.mjs": "a1b2931208529ace689bc35ab5f174051745a1c5ddd31faa72600cb9cbf75b2c",
+    "research/ace/modular_certificate_replay.mjs": "40549c8e55b2e9183afcc5477ad21e48710393bc8e69a32ad2b3ef39a7c80d64",
+    "research/ace/modular_unbounded_replay.mjs": "2a4abcd565f027c4f01587f633133c69cd82572911344f6720e275f50767c995",
+    "research/ace/omega_iteration.mjs": "360732a5563a8acd0a1d53813f46e63a7290f345d1b8ed1ec630f0c45c1f458a",
+    "research/ace/reflection_bounds.mjs": "036a4d4b807b1b51c0666b8f73ed2e5dd0a8d39833a6b383bc7a73a7799d68dc",
+    "research/ace/reflection_iteration.mjs": "533eef0b341cad46ae2cab6ec9c561317867aabb4b0680b82897152a6e1907d3",
+    "research/ace/reflection_limit.mjs": "7be4563b4f59cd890614bcdede90576d9c2c7ef25c90fa66196f827b91400d76",
+    "research/ace/reflection_link.mjs": "31d05a42aea318a87cec4e3dcdc9e9dc06ea641c61934d281e4dcf1ec3fad436",
+    "research/ace/reflection_omega_replay.mjs": "22fbcf426e27d5d7fc2c6cf127237518decbda5cd7bcde78bc170a815bab9375",
+    "research/ace/reflection_transport.mjs": "59df4f19a51c8be98bff64f30ac2f42de1c3c2af42c27e2d5e512066bc9e7527",
+    "research/ace/relativization.mjs": "0accf9759e9c8f80e36d0ffb3111e55001297422d6d07bf131e742ad3aff1b87",
+    "research/ace/replacement_instances.mjs": "f8db7a6259eeb744e434cd414d392daee257c3f29c107889ec31954425fe58f1",
+    "research/ace/replacement_replay.mjs": "77f81226b83cd5202490f943245059497a5cb1a22bd5b93c5344c4557bf00fc5",
+    "research/ace/separation_instances.mjs": "a1390d62810b0028c171a78e88768015874f346510fb57dc4cea6fbd436ffeb7",
+    "research/ace/separation_replay.mjs": "e25dab7ae5a1bff7a674780cb90bf9d3bd1bc3c3927e6b0413a7ee3a59c457b7",
+    "research/ace/stage_coherence.mjs": "41e3425c8fd4cdc026c726623af07c9980335464f3c9695fa8e4d15bf997c44b",
+    "research/ace/stage_recursion.mjs": "bd495ad248f974960171e7a3da6430851312390869288cb663813d2ddf5d95f9",
+    "research/ace/unbounded_replacement_replay.mjs": "0e64c354b3742880ebe041bf68d247f62d22c286fbb5365aeb57c328123a57ca",
+    "research/ace/unbounded_separation.mjs": "b03af6d631189f077df2acac13dcf8139a1322907689287ba281b27ad611fb06",
+    "research/ace/unbounded_separation_replay.mjs": "8592fefc4e472f5e6f406bbaf3f273a2269f0543ce5dd3d4619958dadb19a159",
+    "research/ace/zf_interface.mjs": "ba757a6128590c6e31edb93ee149e2229e2baeef6d46397bac5925fd97d042ae",
+    "research/ace/L_formula.json": "f6deb563af271469873b44118e8925b30394e1a21ec4c1e9fd8d103d1fdffdc0"
+  },
+  "runs": {
+    "replacement": {
+      "command": [
+        "node",
+        "--max-old-space-size=6144",
+        "research/ace/unbounded_replacement_replay.mjs",
+        "full"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 50.75529847699997,
+      "max_rss_kib": 4466548,
+      "timeout_seconds": 600,
+      "receipt": "research/ace/unbounded_replacement_full_receipt.json",
+      "receipt_sha256": "dc94ee3ebc09abba83e068d3e7f84d556adc59986524e46eec0fef0d2320113e",
+      "graph_nodes": 21,
+      "graph_kernel_visits": 81601
+    },
+    "separation": {
+      "command": [
+        "node",
+        "--max-old-space-size=6144",
+        "research/ace/modular_unbounded_replay.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 106.246048594,
+      "max_rss_kib": 5018632,
+      "timeout_seconds": 600,
+      "receipt": "research/ace/modular_unbounded_receipt.json",
+      "receipt_sha256": "af7329214e179584277596f9d40ee5b9c34694d2bf9986a4f182bc546b7ff27b",
+      "graph_nodes": 21,
+      "graph_kernel_visits": 103182
+    }
+  },
+  "cross_checks": {
+    "replacement_full_graph_matches_seven_split_receipts": true,
+    "separation_full_receipt_matches_prior_ci_json": true
+  },
+  "prior_separation_ci": {
+    "run_id": 45596235187,
+    "job_id": 139142926505,
+    "head_sha": "f7a6b42eaf9c7b4f64a60832eb033ea607626a85",
+    "tested_merge_sha": "509a0d95cf751253cd401e17621256b3e44636a6",
+    "status": "completed",
+    "conclusion": "success",
+    "proof_step_started_at": "2026-11-25T11:02:12Z",
+    "proof_step_completed_at": "2026-11-25T11:03:21Z",
+    "node_version": "v22.23.5",
+    "job_url": "https://github.com/patrickdugan/MathCan/actions/runs/45596235187/job/139142926505",
+    "artifact_url": "https://github.com/patrickdugan/MathCan/actions/runs/45596235187/artifacts/15014863998"
+  },
+  "scope": "Complete fixed-formula streamed proof graphs and exact repeated source-axiom imports. Timing and memory measurements are separate from deterministic proof receipts."
+}

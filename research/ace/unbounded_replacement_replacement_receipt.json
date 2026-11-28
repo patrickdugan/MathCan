@@ -1,0 +1,67 @@
+{
+  "experiment": "ACE-03S",
+  "part": "replacement",
+  "spec": {
+    "name": "replacement",
+    "params": 0,
+    "body": [
+      "A",
+      [
+        ">",
+        [
+          "M",
+          2,
+          0
+        ],
+        [
+          "M",
+          1,
+          0
+        ]
+      ]
+    ]
+  },
+  "checks": [
+    {
+      "id": "L_transitivity",
+      "nodes": 2897,
+      "dependencies": [],
+      "goal_bytes": 106681
+    },
+    {
+      "id": "constructible_set_stage_bound",
+      "nodes": 8882,
+      "dependencies": [],
+      "goal_bytes": 106703
+    },
+    {
+      "id": "ordinal_stage_value_transitive",
+      "nodes": 2882,
+      "dependencies": [],
+      "goal_bytes": 53367
+    },
+    {
+      "id": "definable_subset_constructible",
+      "nodes": 5053,
+      "dependencies": [],
+      "goal_bytes": 131666
+    },
+    {
+      "id": "ordinal_stage_value_monotone",
+      "nodes": 3750,
+      "dependencies": [],
+      "goal_bytes": 106675
+    },
+    {
+      "id": "image_definability",
+      "nodes": 9586,
+      "dependencies": [],
+      "goal_bytes": 25304
+    }
+  ],
+  "exact_node_goals": 6,
+  "negative_controls": 0,
+  "translation": null,
+  "pinned_L_unchanged": true,
+  "scope": "split checked node proofs and exact interfaces for fixed unbounded Replacement; full streamed importer is a separate replay"
+}

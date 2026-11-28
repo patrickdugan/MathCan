@@ -1,0 +1,209 @@
+{
+  "experiment": "ACE-03V",
+  "part": "pinned_entry_tagged_witnesses_and_finite_assembly",
+  "checks": [
+    {
+      "id": "binary_instruction_code_exists",
+      "nodes": 63,
+      "goal_bytes": 595,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "entry_has_tagged_instruction",
+      "nodes": 432,
+      "goal_bytes": 38618,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "tagged_instruction_has_entry",
+      "nodes": 107,
+      "goal_bytes": 38617,
+      "ambient_axioms": []
+    },
+    {
+      "id": "valid_program_candidate_total",
+      "nodes": 470,
+      "goal_bytes": 40281,
+      "ambient_axioms": [
+        "pairing"
+      ]
+    },
+    {
+      "id": "instruction_empty_domain_selection",
+      "nodes": 34,
+      "goal_bytes": 22329,
+      "ambient_axioms": []
+    },
+    {
+      "id": "instruction_successor_domain_selection",
+      "nodes": 992,
+      "goal_bytes": 86515,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "union"
+      ]
+    },
+    {
+      "id": "instruction_omega_finite_selection_induction",
+      "nodes": 1135,
+      "goal_bytes": 43697,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "instruction_finite_witness_selection",
+      "nodes": 1164,
+      "goal_bytes": 43697,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "finite_valid_program_tagged_graph",
+      "nodes": 1673,
+      "goal_bytes": 42080,
+      "ambient_axioms": [
+        "foundation",
+        "pairing",
+        "separation",
+        "union"
+      ]
+    }
+  ],
+  "checked_modules": 9,
+  "kernel_visits": 6070,
+  "independent_exact_goals": 9,
+  "independent_formula_interfaces": 4,
+  "pure_logic_checks": [
+    "tagged_instruction_has_entry",
+    "instruction_empty_domain_selection"
+  ],
+  "negative_controls": 26,
+  "controls": [
+    "binary_instruction_code_exists:drop_binders",
+    "binary_instruction_code_exists:forbid_set_axioms",
+    "entry_has_tagged_instruction:drop_binders",
+    "entry_has_tagged_instruction:forbid_set_axioms",
+    "tagged_instruction_has_entry:drop_binders",
+    "valid_program_candidate_total:drop_binders",
+    "valid_program_candidate_total:forbid_set_axioms",
+    "instruction_empty_domain_selection:drop_binders",
+    "instruction_successor_domain_selection:drop_binders",
+    "instruction_successor_domain_selection:forbid_set_axioms",
+    "instruction_omega_finite_selection_induction:drop_binders",
+    "instruction_omega_finite_selection_induction:forbid_set_axioms",
+    "instruction_finite_witness_selection:drop_binders",
+    "instruction_finite_witness_selection:forbid_set_axioms",
+    "finite_valid_program_tagged_graph:drop_binders",
+    "finite_valid_program_tagged_graph:forbid_set_axioms",
+    "finite_assembly:omit_omega",
+    "finite_assembly:omit_finite_membership",
+    "finite_assembly:omit_valid_program",
+    "entry_packing:omit_opcode_0",
+    "entry_packing:omit_opcode_1",
+    "entry_packing:omit_opcode_2",
+    "entry_packing:omit_opcode_3",
+    "entry_packing:omit_opcode_4",
+    "entry_packing:omit_entry_premise",
+    "choice_axiom_forbidden"
+  ],
+  "formula_argument_orders": {
+    "binary_code": [
+      "c",
+      "tag",
+      "i",
+      "j"
+    ],
+    "instruction_witness": [
+      "c",
+      "f",
+      "k",
+      "r",
+      "n",
+      "A",
+      "tag0",
+      "tag1",
+      "tag2",
+      "tag3",
+      "tag4"
+    ],
+    "candidate": [
+      "k",
+      "c",
+      "f",
+      "n",
+      "A",
+      "tag0",
+      "tag1",
+      "tag2",
+      "tag3",
+      "tag4"
+    ],
+    "tagged_program": [
+      "g",
+      "f",
+      "m",
+      "n",
+      "A",
+      "tag0",
+      "tag1",
+      "tag2",
+      "tag3",
+      "tag4"
+    ]
+  },
+  "main_quantifier_order": [
+    "w",
+    "f",
+    "m",
+    "n",
+    "A",
+    "tag0",
+    "tag1",
+    "tag2",
+    "tag3",
+    "tag4"
+  ],
+  "main_premises": [
+    "Omega(w)",
+    "m in w",
+    "validProgram(f,m,n,A)"
+  ],
+  "tag_distinctness_required": false,
+  "ambient_axiom_instances": [
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "union"
+    },
+    {
+      "name": "foundation"
+    },
+    {
+      "name": "separation",
+      "params": 8,
+      "body_bytes": 43143
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "exact pinned-entry packing and finite tagged-program existence under supplied omega and finite-domain premises; tags may coincide",
+  "downstream_requirements": [
+    "distinct tags for unique opcode decoding",
+    "exact five-field decoding",
+    "natural-number program coding",
+    "execution existence and internal constructibility"
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "experiment": "ACE-03X",
+  "part": "actual_well_order_relation_on_subset",
+  "checks": [
+    {
+      "id": "restriction_exact_exists",
+      "nodes": 5,
+      "goal_bytes": 741,
+      "ambient_axioms": [
+        "separation"
+      ]
+    },
+    {
+      "id": "restriction_exact_unique",
+      "nodes": 32,
+      "goal_bytes": 1493,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "restriction_subset",
+      "nodes": 12,
+      "goal_bytes": 779,
+      "ambient_axioms": []
+    },
+    {
+      "id": "restriction_pair_only",
+      "nodes": 26,
+      "goal_bytes": 1093,
+      "ambient_axioms": []
+    },
+    {
+      "id": "restriction_value_agreement",
+      "nodes": 292,
+      "goal_bytes": 2049,
+      "ambient_axioms": []
+    },
+    {
+      "id": "restriction_preserves_well_order",
+      "nodes": 472,
+      "goal_bytes": 5661,
+      "ambient_axioms": []
+    },
+    {
+      "id": "restricted_well_order_exists",
+      "nodes": 530,
+      "goal_bytes": 6013,
+      "ambient_axioms": [
+        "separation"
+      ]
+    }
+  ],
+  "checked_modules": 7,
+  "new_statement_checks": 7,
+  "kernel_visits": 1369,
+  "independent_exact_goals": 7,
+  "independent_formula_interfaces": 7,
+  "logic_only_checks": 4,
+  "negative_controls": 30,
+  "kernel_rejection_controls": 12,
+  "contract_rejection_controls": 18,
+  "controls": [
+    "restriction_exact_exists:changed_outer_binder",
+    "restriction_exact_exists:drop_binders",
+    "restriction_exact_exists:forbid_set_axioms",
+    "restriction_exact_unique:changed_outer_binder",
+    "restriction_exact_unique:drop_binders",
+    "restriction_exact_unique:forbid_set_axioms",
+    "restriction_subset:changed_outer_binder",
+    "restriction_subset:drop_binders",
+    "restriction_pair_only:changed_outer_binder",
+    "restriction_pair_only:drop_binders",
+    "restriction_value_agreement:changed_outer_binder",
+    "restriction_value_agreement:drop_binders",
+    "restriction_preserves_well_order:changed_outer_binder",
+    "restriction_preserves_well_order:drop_binders",
+    "restricted_well_order_exists:changed_outer_binder",
+    "restricted_well_order_exists:drop_binders",
+    "restricted_well_order_exists:forbid_set_axioms",
+    "restriction_exact_unique:omitted_premise_0",
+    "restriction_exact_unique:omitted_premise_1",
+    "restriction_subset:omitted_premise_0",
+    "restriction_pair_only:omitted_premise_0",
+    "restriction_value_agreement:omitted_premise_0",
+    "restriction_preserves_well_order:omitted_premise_0",
+    "restriction_preserves_well_order:omitted_premise_1",
+    "restriction_preserves_well_order:omitted_premise_2",
+    "restricted_well_order_exists:omitted_premise_0",
+    "restricted_well_order_exists:omitted_premise_1",
+    "restriction_exact_exists:omit_pair_support_filter",
+    "restriction_value_agreement:corrupt_pair_coordinates",
+    "choice_axiom_forbidden"
+  ],
+  "main_quantifier_order": [
+    "A",
+    "R",
+    "B"
+  ],
+  "main_premises": [
+    "B subset A",
+    "WO(A,R)"
+  ],
+  "main_conclusion": "exists S (ExactRestriction(S,R,B) and (WO(B,S) and PairOnly(S,B)))",
+  "exact_restriction": "p in S iff p in R and exists x in B exists y in B Pair(p,x,y)",
+  "pair_only": "forall p (p in S implies exists x exists y ((x in B and y in B) and Pair(p,x,y)))",
+  "relation_is_subset_of_input": true,
+  "relation_contains_only_pairs_from_subset": true,
+  "ambient_axiom_instances": [
+    {
+      "name": "separation",
+      "params": 1,
+      "body_bytes": 323
+    },
+    {
+      "name": "extensionality"
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "ambient_choice_used": false,
+  "scope": "Separation restricts any carrier-relative well-order to a unique actual relation on a supplied subset, including exact pair support"
+}

@@ -1,0 +1,151 @@
+{
+  "experiment": "ACE-03W",
+  "part": "exact_pair_product_and_canonical_order",
+  "checks": [
+    {
+      "id": "pair_product_exists",
+      "nodes": 165,
+      "goal_bytes": 709,
+      "ambient_axioms": [
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    },
+    {
+      "id": "pair_product_unique",
+      "nodes": 32,
+      "goal_bytes": 1429,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "pair_product_covers",
+      "nodes": 11,
+      "goal_bytes": 1061,
+      "ambient_axioms": []
+    },
+    {
+      "id": "pair_product_coordinate_functionality",
+      "nodes": 227,
+      "goal_bytes": 649,
+      "ambient_axioms": []
+    },
+    {
+      "id": "pair_product_joint_injection",
+      "nodes": 218,
+      "goal_bytes": 643,
+      "ambient_axioms": [
+        "extensionality"
+      ]
+    },
+    {
+      "id": "pair_product_lexicographic_well_order",
+      "nodes": 1306,
+      "goal_bytes": 15155,
+      "ambient_axioms": [
+        "extensionality",
+        "separation"
+      ]
+    },
+    {
+      "id": "pair_product_canonical_well_order",
+      "nodes": 2044,
+      "goal_bytes": 17925,
+      "ambient_axioms": [
+        "extensionality",
+        "pairing",
+        "power",
+        "separation"
+      ]
+    },
+    {
+      "id": "ordered_product_exists",
+      "nodes": 2237,
+      "goal_bytes": 8041,
+      "ambient_axioms": [
+        "extensionality",
+        "pairing",
+        "power",
+        "separation",
+        "union"
+      ]
+    }
+  ],
+  "checked_modules": 8,
+  "new_statement_checks": 8,
+  "kernel_visits": 6240,
+  "independent_exact_goals": 8,
+  "independent_formula_interfaces": 6,
+  "shared_well_order_layout_checks": 1,
+  "logic_only_checks": 2,
+  "negative_controls": 28,
+  "controls": [
+    "pair_product_exists:changed_outer_binder",
+    "pair_product_exists:free_instantiation",
+    "pair_product_exists:forbid_set_axioms",
+    "pair_product_unique:changed_outer_binder",
+    "pair_product_unique:free_instantiation",
+    "pair_product_unique:forbid_set_axioms",
+    "pair_product_covers:changed_outer_binder",
+    "pair_product_covers:free_instantiation",
+    "pair_product_coordinate_functionality:changed_outer_binder",
+    "pair_product_coordinate_functionality:free_instantiation",
+    "pair_product_joint_injection:changed_outer_binder",
+    "pair_product_joint_injection:free_instantiation",
+    "pair_product_joint_injection:forbid_set_axioms",
+    "pair_product_lexicographic_well_order:changed_outer_binder",
+    "pair_product_lexicographic_well_order:free_instantiation",
+    "pair_product_lexicographic_well_order:forbid_set_axioms",
+    "pair_product_canonical_well_order:changed_outer_binder",
+    "pair_product_canonical_well_order:free_instantiation",
+    "pair_product_canonical_well_order:forbid_set_axioms",
+    "ordered_product_exists:changed_outer_binder",
+    "ordered_product_exists:free_instantiation",
+    "ordered_product_exists:forbid_set_axioms",
+    "pair_product_lexicographic_well_order:omitted_premise_0",
+    "pair_product_lexicographic_well_order:omitted_premise_1",
+    "pair_product_lexicographic_well_order:omitted_premise_2",
+    "ordered_product_exists:omitted_premise_0",
+    "ordered_product_exists:omitted_premise_1",
+    "choice_axiom_forbidden"
+  ],
+  "ambient_axiom_instances": [
+    {
+      "name": "pairing"
+    },
+    {
+      "name": "union"
+    },
+    {
+      "name": "power"
+    },
+    {
+      "name": "separation",
+      "params": 2,
+      "body_bytes": 323
+    },
+    {
+      "name": "extensionality"
+    },
+    {
+      "name": "separation",
+      "params": 6,
+      "body_bytes": 323
+    },
+    {
+      "name": "separation",
+      "params": 7,
+      "body_bytes": 305
+    },
+    {
+      "name": "separation",
+      "params": 5,
+      "body_bytes": 1617
+    }
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "exact Cartesian-product sets, canonical lexicographic relation sets, and well-order existence from supplied component orders"
+}

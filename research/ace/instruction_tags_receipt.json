@@ -1,0 +1,48 @@
+{
+  "experiment": "ACE-03V",
+  "part": "five_distinct_instruction_tags",
+  "checks": [
+    {
+      "id": "successor_chain_tags_distinct",
+      "nodes": 309,
+      "goal_bytes": 711,
+      "ambient_axioms": [
+        "foundation",
+        "pairing"
+      ]
+    },
+    {
+      "id": "five_distinct_omega_tags",
+      "nodes": 384,
+      "goal_bytes": 837,
+      "ambient_axioms": [
+        "foundation",
+        "pairing"
+      ]
+    }
+  ],
+  "checked_modules": 2,
+  "new_statement_checks": 2,
+  "reused_helper_checks": 0,
+  "independent_exact_goals": 2,
+  "independent_formula_interfaces": 2,
+  "kernel_visits": 693,
+  "negative_controls": 9,
+  "controls": [
+    "successor_chain_tags_distinct:free_instantiation",
+    "successor_chain_tags_distinct:forbid_set_axioms",
+    "successor_chain_tags_distinct:changed_outer_binder",
+    "five_distinct_omega_tags:free_instantiation",
+    "five_distinct_omega_tags:forbid_set_axioms",
+    "five_distinct_omega_tags:changed_outer_binder",
+    "chain:omit_last_successor",
+    "tags:omit_omega",
+    "choice_axiom_forbidden"
+  ],
+  "ambient_axioms": [
+    "foundation",
+    "pairing"
+  ],
+  "pinned_L_unchanged": true,
+  "scope": "five pairwise distinct tags belonging to each supplied omega set; all tag-existence premises discharged using its successor closure"
+}
