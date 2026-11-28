@@ -1,0 +1,7 @@
+# E06E results
+
+Original [run 45381486250](https://github.com/patrickdugan/MathCan/actions/runs/45381486250), job 138401350701, source commit 240a98febe13bf4054b7b154fadda1c009b8878d, [artifact 14914076648](https://github.com/patrickdugan/MathCan/actions/runs/45381486250/artifacts/14914076648): FAIL. Nine of ten exact registered declarations have clean allowed-axiom reports. family_threshold alone has sorryAx from failed nested list induction at line 126: the inner induction hypothesis inherited dependent hypotheses of the outer induction. Move the absolute-sum nonnegativity proof to a standalone private lemma; preserve all ten registered statements. Full acceptance awaits repair receipt.
+
+## Final kernel receipt: 10/10 PASS
+
+[Run 45383305777](https://github.com/patrickdugan/MathCan/actions/runs/45383305777), job 138407648731, repair b2ab6a2c626d5f58087e904a8e3467f97e8d6701; [artifact 14914068968](https://github.com/patrickdugan/MathCan/actions/runs/45383305777/artifacts/14914068968). All ten exact registered declarations typechecked and passed the allowed-axiom audit. Lean 4.35.0 eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Mathlib 56a005855ea17e0b0958f73ec801ae140b0a1679; source SHA256 d4666e1036e34f16a0e94f0e8c27a023992f59effc840d531fd9c7997bd32047; elapsed 7.26s, peak RSS 6985476 kB. Prior failure preserved; private proof isolation only, public contracts unchanged. E05C4 and E06A–E independently audited 101 declarations. Conditional scalar mathematics, no source arithmetic integration.

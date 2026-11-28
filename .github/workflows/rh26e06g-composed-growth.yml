@@ -1,0 +1,132 @@
+name: RH-26E-06G composed growth certificates
+
+on:
+  push:
+    branches: [research/rh26-extraction-rubrics-20261123]
+    paths:
+      - 'research/rh26/lean/RH26E06[FG]*.lean'
+      - 'research/rh26/RH26E06G_REGISTRATION.md'
+      - '.github/workflows/rh26e06g-composed-growth.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: rh26e06g-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  composed-growth-kernel:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Verify registration, sources and toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -Fx 'leanprover/lean4:v4.35.0' experiments/deligne_mathlib/lean-toolchain
+          grep -Fx 'rev = "v4.35.0"' experiments/deligne_mathlib/lakefile.toml
+          test -s research/rh26/RH26E06G_REGISTRATION.md
+          for mod in RH26E06FSplitCore RH26E06GComposedGrowth; do
+            f="research/rh26/lean/$mod.lean"
+            test -s "$f"
+            if grep -En '\b(sorry|admit|native_decide)\b|^[[:space:]]*(axiom|unsafe|opaque)[[:space:]]' "$f"; then
+              exit 1
+            fi
+          done
+          for mod in RH26E06FSplitCore; do
+            git show 658c142871113cbc28fbde062fd0a886affef903:"research/rh26/lean/$mod.lean" | cmp - "research/rh26/lean/$mod.lean"
+          done
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve Mathlib v4.35.0
+        working-directory: experiments/deligne_mathlib
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Compile two modules and audit 20 declarations
+        working-directory: experiments/deligne_mathlib
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT="$PWD/../../artifacts/rh26e06g"
+          BUILD="$PWD/.rh26e06g"
+          mkdir -p "$OUT" "$BUILD"
+          export OUT BUILD
+          git rev-parse HEAD | tee "$OUT/commit.txt"
+          lean --version | tee "$OUT/lean-version.txt"
+          grep -F 'Lean (version 4.35.0' "$OUT/lean-version.txt"
+          git -C .lake/packages/mathlib rev-parse HEAD | tee "$OUT/mathlib-sha.txt"
+          grep -Fx '56a005855ea17e0b0958f73ec801ae140b0a1679' "$OUT/mathlib-sha.txt"
+          for mod in RH26E06FSplitCore RH26E06GComposedGrowth; do
+            cp "../../research/rh26/lean/$mod.lean" "$BUILD/"
+          done
+          sha256sum "$BUILD/"*.lean | tee "$OUT/source-sha256.txt"
+          lake env bash -c '
+            set -euo pipefail
+            export LEAN_PATH="$BUILD:${LEAN_PATH:-}"
+            for mod in RH26E06FSplitCore RH26E06GComposedGrowth; do
+              /usr/bin/time -v -o "$OUT/$mod.timing.txt" lean --root="$BUILD" -o "$BUILD/$mod.olean" "$BUILD/$mod.lean" 2>&1 | tee "$OUT/$mod.audit.txt"
+            done
+          '
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          base = Path("../../artifacts/rh26e06g")
+          registered = {
+              "RH26E06FSplitCore": ("RH26E06F", """
+                  core_ineq_split h_poly_bound h_53 h_52_control split_power
+                  split_absorb original_parameters explicit_threshold final_character_absorb split_controls
+              """),
+              "RH26E06GComposedGrowth": ("RH26E06G", """
+                  growth_unabsorbed growth_margin bracket_nonneg split_size composed_growth
+                  composed_character all_thresholds split_bracket_transport source_parameter_controls strict_margin_control
+              """),
+          }
+          allowed = {"propext", "Classical.choice", "Quot.sound"}
+          total = 0
+          for mod, (ns, names) in registered.items():
+              expected = {ns+"."+n for n in names.split()}
+              log = (base / (mod+".audit.txt")).read_text()
+              assert "sorryAx" not in log and "ofReduceBool" not in log
+              assert "declaration uses 'sorry'" not in log
+              found = {}
+              for line in log.splitlines():
+                  match = re.fullmatch(r"'([^']+)' depends on axioms: \[([^]]*)\]", line.strip())
+                  if match:
+                      name, axioms = match.groups()
+                      deps = {x.strip() for x in axioms.split(",") if x.strip()}
+                  else:
+                      match = re.fullmatch(r"'([^']+)' does not depend on any axioms", line.strip())
+                      if not match:
+                          continue
+                      name, deps = match[1], set()
+                  assert name not in found, name
+                  assert deps <= allowed, (name, deps-allowed)
+                  found[name] = deps
+              assert set(found) == expected, (mod, expected-set(found), set(found)-expected)
+              print(mod, len(found), "PASS")
+              total += len(found)
+          assert total == 20
+          print("RH26E06G: 20/20 registered declarations audited")
+          PY
+      - name: Preserve kernel receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rh26e06g-lean435-kernel-receipts
+          path: artifacts/rh26e06g/
+          if-no-files-found: warn
+          retention-days: 30

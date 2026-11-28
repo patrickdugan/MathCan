@@ -1,0 +1,5 @@
+# RH26B15 registration: LinkN family adapter and analytic boundary
+
+Date 2026-11-24 Asia/Manila. Parent E05C4 workflow commit 5b580d7483c2e6fb4090a832191510c124fff286. Frozen upstream leanprover-community/riemann-hypothesis@c900e67c2fcd1fdb041685820bbd2b867fbc5a4b. Register before new source reads.
+
+Start with Formalism/SharpRestriction/GlobalTheoremInputs.lean and LevelLetterCocycles/ThetaScalarFamilyOfEigenvalue.lean (direct imports of prior LinkNAlongFamilyOfLocalBounds). Locate N.linkN_of and its exact input/output, follow actual declaration dependencies and immediate imports only. Up to 250 lines per window and 1000 returned lines total in this pass. Record exact paths, ranges, supplied assumptions, quantifier order, coefficient conversion, threshold dependence, source boundaries and new independently testable scalar consequences. Explicitly separate source proof text from kernel execution and distinguish a fixed coefficient change from an exponent change. No whole-repo scan or build. Record failure if upstream inaccessible; do not infer missing signatures from B14. No arithmetic upstream edit or RH proof claim.

@@ -1,0 +1,109 @@
+# RH-26E-03: independent density-normalized scalar growth bound
+
+**Date:** 2026-11-24 (Asia/Manila).  
+**Registration:** [RH26E03_REGISTRATION.md](RH26E03_REGISTRATION.md), `e8dd41174d9a6ff1f2d201261b4ddb64b2d45120`, before executable source.  
+**Implementation:** [RH26E03GrowthBound.lean](lean/RH26E03GrowthBound.lean), initially `71c25b03`, explicit power regrouping at `b4d3b5c7`, workflow commit `108f74fdb2305889c04bd02c02827c76ce711a30`.  
+**Disposition:** **KERNEL PASS (14/14)**. Both failed attempts retained below; final modifier-only repair passed the full frozen gate.
+
+## Mathematical scope
+
+The module independently encodes the source's real scalar window (generalized from natural cardinalities by coercion), raw error bracket B, per-slot normalization, and the actual density-corrected scalar input. It imports Mathlib only. The exact motivating source boundaries and independent derivations are in [RH26C02_ERROR_BRACKET.md](RH26C02_ERROR_BRACKET.md) and [RH26C03_NORMALIZATION.md](RH26C03_NORMALIZATION.md), at the frozen upstream pin `c900e67c2fcd1fdb041685820bbd2b867fbc5a4b`.
+
+The intended scalar conclusion, with Q=Nmb, delta=P/n, R=B/Q, is:
+
+```text
+Window x eps n N P m b k a, C>=0,
+Err<=x^(C*eps)*B,
+Q*(delta/2)*(G-4*x^(1/2+eps))<=Err+2*Q/x
+  => G<=x^(1/2+(C+3)*eps).
+```
+
+The positive denominator facts follow from Window. The final proof uses the 10Y bound for R with Y=x^(1/2+13eps/8), the inverse density cost 1/delta<=x^eps, and Z=x^(1/2+(C+21/8)eps). The normalized contributions are <=20Z, <=2Z and <=4Z; 26<=x^(3eps/8) yields the desired exponent. The observable G remains signed. All real-power relationships must be proved; no power-scale axioms are declared.
+
+## Frozen checks
+
+| Declarations | Target |
+| --- | --- |
+| window_positive, bracket_normalization, card_ratio | Positive denominators, exact bracket division, finite-cardinality loss |
+| component_bounds, bracket_bound | Four terms with coefficients 2,2,4,2 and constant-10 envelope |
+| two_term_envelope | Power-loss upper envelope under m>=1, which holds for the positive natural source m |
+| density_inverse, density_normalize | Exact inverse-density cost and both additive remainders |
+| growth_bound | Full real-power scalar conclusion with C>=0 and actual Err inequality |
+| zero_density_control, zero_volume_control | Concrete degenerate coefficients admitting arbitrary large signed G |
+| missing_density_control | Positive Q,delta,x example violates a normalization with the inverse-density cost removed |
+| no_loss_family, no_uniform_no_loss | Integer t scalar family with eps=1, x=t², m=b=t, n=N=P=x, k=a=x*t, eventual threshold and failure of any uniform fixed positive A,D envelope |
+
+The counterexample concerns the **normalized bracket**, not the actual potentially smaller gap or a realized arithmetic host. The source scalar lower/upper bounds on m remain constraints on a valid family, not evidence that the user can freely choose its minimizer.
+
+## Verification receipt (pending)
+
+- CPU run [45279143901](https://github.com/patrickdugan/MathCan/actions/runs/45279143901), job `138058675275`, source/workflow commit `108f74fdb2305889c04bd02c02827c76ce711a30`.
+- Source blob `5cc2de37912655520a65901ea75761d85951334d`; 437 lines, 14 theorem declarations and corresponding print-axioms names.
+- Last check: checkout, pinned toolchain validation and Lean setup succeeded; Mathlib resolution in progress, kernel step pending.
+- One isolated GitHub CPU job, 25-minute cap, Lean 4.35.0 and Mathlib v4.35.0. Require exact registered axiom names and only propext, Classical.choice, Quot.sound. Source SHA-256, actual dependency pin, elapsed time/RSS, and audit artifact are pending.
+
+No full upstream/Deligne build, GPU, QPU, or paid cloud requested. If the job fails, preserve the errors and repair within the frozen contracts. If green, update this report with literal audit results and close the ledger gate. No independent RH or analytic proof claim.
+
+## Next research boundary
+
+Check the exact CPU run before proceeding. After closing this verification, revisit RH-26D (operator/arithmetic holonomy bridge) or the unresolved RH-26B quantitative multiplicity theorem. A separately preregistered RH-26C-04 may locate the exact upstream proposition_size_bound assembly after line 250 of LipschitzWeightAndMinimum.lean. Retain the pinned source and bounded read rules.
+
+## First-run failure receipt (preserved)
+
+Run [45279143901](https://github.com/patrickdugan/MathCan/actions/runs/45279143901), job 138058675275, commit `108f74fdb2305889c04bd02c02827c76ce711a30`, completed failure. Source SHA-256 `caf524a5bf3e1eecc62c5ee3ac1a5dbd2f6e8cabeb9ee0adc4a458fd461bd20b`. [Failed audit artifact](https://github.com/patrickdugan/MathCan/actions/runs/45279143901/artifacts/14869036172). Toolchain, Mathlib resolution and artifact upload succeeded. Seven compiler errors at source lines 172, 188, 200, 213, 253, 265, 330: linear arithmetic failed on products/divisions, redundant tactic after a solved goal, unestablished positivity of Q, addition-order mismatch, and a cast through a local let. Five declarations carried sorryAx because Lean elaboration recovered from errors; these are failures and cannot qualify as audited proofs. Nine declarations printed only permitted axioms. Repair the proof scripts without altering any registered mathematical contract; require a fresh complete CPU audit.
+
+## Repair attempt 1
+
+Commit `ed10fd9b389ec4e9e598955ece6aa929f33155f6` replaces unsuccessful linear arithmetic calls with explicit monotone inequality composition, removes the redundant solved-goal tactic, supplies positive Q using the window's b>0, aligns the addition-order API, and unfolds the natural-to-real local let before casting. All 14 public theorem statements were compared with the original implementation and match byte for byte. The repaired file is 472 lines, Git blob `0a8d0e7f9a84af2985f82d6202c64d6921c92c6e`. Fresh [CPU verification run 45279600326](https://github.com/patrickdugan/MathCan/actions/runs/45279600326), job 138060239393. Kernel and complete axiom status pending. No frozen contract changed.
+
+## Second-run receipt: mathematical declarations accepted; module compilation failed
+
+Run [45279600326](https://github.com/patrickdugan/MathCan/actions/runs/45279600326), job `138060239393`, commit `ed10fd9b389ec4e9e598955ece6aa929f33155f6`, completed failure. Source SHA-256 `482036279c6644f8d0ffaac0a5c0fd50a5ee333ad5ffcfd5260c1c8b8c3ce306`; [artifact 14868309262](https://github.com/patrickdugan/MathCan/actions/runs/45279600326/artifacts/14868309262). Lean 4.35.0, compiler `eb6cafb7290e8bd5f2937522d8d804f58f02bafc`, Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`.
+
+The seven previously reported proof-script errors are absent. Every registered theorem printed only permitted axioms. The remaining two errors at lines 11 and 16 are `lean.dependsOnNoncomputable`: the real-valued definitions `bracket` and `perSlot` depend on the noncomputable real division instance. The compiler exits 1, so the workflow's subsequent exact-name Python audit did not run. The overall registered gate is still FAILED, despite the clean theorem-level receipt. The next repair will mark just those two definitions noncomputable; no theorem type, proof body, definition body, or verification criterion changes.
+
+Literal theorem-level receipt:
+
+```text
+'RH26E03.window_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.bracket_normalization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.card_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.component_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.bracket_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.two_term_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.density_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.density_normalize' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.growth_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.zero_density_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.zero_volume_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.missing_density_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.no_loss_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.no_uniform_no_loss' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+## Repair attempt 2
+
+Commit `3a86836dd430a163ea1b46905e40a8605cf2f094` adds the required `noncomputable` modifier to exactly two real-valued definitions, bracket and perSlot. Definition bodies, all proofs, the frozen fourteen theorem contracts, and the workflow acceptance criteria are unchanged. Repaired source Git blob: `f6ce36a63f2938d47cbd737633c8b28d9d562020`. Fresh [CPU run 45280349533](https://github.com/patrickdugan/MathCan/actions/runs/45280349533), at the modifier-only repair commit, is queued. Full registered gate remains pending until the compiler exits successfully and the exact-name audit passes.
+
+## Final kernel receipt: PASS
+
+[Run 45280349533](https://github.com/patrickdugan/MathCan/actions/runs/45280349533), job 138062862899, completed success at checked commit `3a86836dd430a163ea1b46905e40a8605cf2f094`. [Artifact 14869161779](https://github.com/patrickdugan/MathCan/actions/runs/45280349533/artifacts/14869161779). Lean 4.35.0 compiler `eb6cafb7290e8bd5f2937522d8d804f58f02bafc`, Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`, source SHA-256 `d30d0bceea25544c5e8dc75e086595d12e8e01138bf246bb37b46bfe64d38b43`. Isolated Lean invocation elapsed 7.77 s; user CPU 8.48 s; system CPU 2.96 s; maximum RSS 7,020,808 kB. The exact fourteen-name CI audit completed successfully. No registered theorem statement changed through repair; final modifier-only fix changed neither mathematical definitions' bodies nor proofs. Previous pending statements above are historical receipts.
+
+```text
+'RH26E03.window_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.bracket_normalization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.card_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.component_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.bracket_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.two_term_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.density_inverse' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.density_normalize' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.growth_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.zero_density_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.zero_volume_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.missing_density_control' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.no_loss_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RH26E03.no_uniform_no_loss' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+The full independent scalar real-power consequence and parametric scalar-domain no-loss obstruction now have kernel proofs. The actual analytic input, eligibility/existence of arithmetic families, and upstream RH theorem remain outside the independent module. No independent automorphic proof or unsourced multiplicity theorem is claimed.

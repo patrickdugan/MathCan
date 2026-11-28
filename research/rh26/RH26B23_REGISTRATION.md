@@ -1,0 +1,3 @@
+# RH26B23 registration
+
+Date 2026-11-24 Asia/Manila. Prior 1674740c6ea0ff1d1e2dc1875b03a72556d36ebb. Frozen upstream c900e67c2fcd1fdb041685820bbd2b867fbc5a4b. Start from DesWin:69–70, TopShape:62,79–82, the actual LinkGl import and MuTuOfTuSize; trace J.linkMu_of_linkDIV, GlobalTheory.Top.link_gl, LinkGLOBAL and exact ChainTied conclusion via named direct dependencies. Maximum eight source files, 250 lines/window, 1200 returned lines aggregate. Record exact coefficient and exponent witnesses, hypotheses, thresholds and stop boundaries; derive independent scalar opportunities only where justified. No upstream edits, whole build or claim of global multiplicity exponent. Freeze before reads.
