@@ -1,0 +1,69 @@
+name: DEL-09 projective quasi-finite and finite-parameter descent
+
+on:
+  push:
+    branches: [proof/deligne09-projective-descent-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/ProjectiveQuasiFinite.lean'
+      - 'experiments/deligne_mathlib/Deligne04/ActualProjChart.lean'
+      - 'experiments/deligne_mathlib/Deligne04/FiniteParameterDescent.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL09_*'
+      - 'research/deligne_sign_audit/del09_*'
+      - 'tests/test_deligne09_projective_descent.py'
+      - '.github/workflows/deligne09-projective-descent.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne09-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Fetch pinned Mathlib v4.35.0
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check projective composite and parameter extension
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/ProjectiveQuasiFinite.lean | tee deligne09-axioms.txt
+          lake env lean Deligne04/ActualProjChart.lean | tee -a deligne09-axioms.txt
+          lake env lean Deligne04/FiniteParameterDescent.lean | tee -a deligne09-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne09-axioms.txt; then
+            echo 'DEL-09 introduced admitted or reduction axioms'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify DEL-09 finite-field descent and chart mutants
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne09_projective_descent
+          python -m research.deligne_sign_audit.del09_verify_tasks

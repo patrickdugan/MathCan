@@ -1,0 +1,42 @@
+name: COE-04 tied temporal observer Lean certificates
+
+on:
+  pull_request:
+    paths:
+      - 'MathCan/TemporalCutCapacity.lean'
+      - 'MathCan.lean'
+      - 'research/compactification/TEMPORAL_OBSERVER_CAPACITY.md'
+      - '.github/workflows/coe04-temporal-capacity.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'MathCan/TemporalCutCapacity.lean'
+      - 'MathCan.lean'
+      - '.github/workflows/coe04-temporal-capacity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lean-kernel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Kernel-check COE-04 finite witnesses and transitive axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/TemporalCutCapacity.lean | tee coe04-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' coe04-axioms.txt; then
+            echo 'Untrusted Lean proof primitive detected.'
+            exit 1
+          fi

@@ -1,0 +1,47 @@
+name: NOR-18 kernel prefix nesting and cached four-operator verifier work
+
+on:
+  push:
+    paths:
+      - 'MathCan/NOR18CachedVerifierWork.lean'
+      - 'MathCan.lean'
+      - 'research/nor18/**'
+      - '.github/workflows/nor18-cached-verifier-work.yml'
+  pull_request:
+    paths:
+      - 'MathCan/NOR18CachedVerifierWork.lean'
+      - 'MathCan.lean'
+      - 'research/nor18/**'
+      - '.github/workflows/nor18-cached-verifier-work.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cached-four-map-cost-and-prefix-refinement:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Audit exact 4x4 cached work identity, prefix nesting and axiom inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/NOR18CachedVerifierWork.lean | tee nor18-cached-work-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:|admit' nor18-cached-work-axioms.txt; then
+            echo 'Admitted theorem or unsupported axiom found in NOR18'
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nor18-cached-verifier-prefix-lean-axiom-audit
+          path: nor18-cached-work-axioms.txt

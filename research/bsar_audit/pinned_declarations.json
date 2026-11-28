@@ -1,0 +1,66 @@
+{
+  "schema": "bsar-step7-declaration-snapshot/v1",
+  "repository": "VivienSweetbrier/bsa-r",
+  "commit": "80c62433b0eb671175bd8d6169822d3ebd922b60",
+  "path": "lean/Step7VorticityDirectionPdeRound6.lean",
+  "extraction": "public source, only theorem signature prior to ':= by'; comments and bodies excluded",
+  "validation": "statement inspection; not Lean kernel validation",
+  "signatures": [
+    {
+      "name": "step7_polar_palinstrophy_lagrange_splitting",
+      "line": 351,
+      "signature": "theorem step7_polar_palinstrophy_lagrange_splitting (w1 w2 w3 j11 j21 j31 j12 j22 j32 j13 j23 j33 : Int) : PolarAmpTerm w1 w2 w3 j11 j21 j31 j12 j22 j32 j13 j23 j33 + PolarDirTerm w1 w2 w3 j11 j21 j31 j12 j22 j32 j13 j23 j33 = VecNormSq w1 w2 w3 * JacFrobSq j11 j21 j31 j12 j22 j32 j13 j23 j33",
+      "premises": [],
+      "has_int_parameters": true,
+      "has_smooth_pde_types": false
+    },
+    {
+      "name": "step7_zero_gap_bony_paraproduct_uv_gate",
+      "line": 835,
+      "signature": "theorem step7_zero_gap_bony_paraproduct_uv_gate (T_LL T_lin T_HH kap nu D4 P4 : Int) (h_nu_pos : 0 < nu) (h_P4_pos : 0 < P4) (h_THH_nn : 0 ≤ T_HH) (h_collar_gate : 16 * (T_LL * T_LL) < (nu * ((P4 * P4) * (P4 * P4))) * (nu * ((P4 * P4) * (P4 * P4)))) (h_lin_gate : 2 * T_lin ≤ nu * ((P4 * P4) * (P4 * P4))) (h_self_bound : 9 * ((T_HH * T_HH) * (T_HH * T_HH)) ≤ (((kap * kap) * (kap * kap)) * (D4 * (D4 * D4))) * (((P4 * P4) * (P4 * P4)) * (((P4 * P4) * (P4 * P4)) * ((P4 * P4) * (P4 * P4))))) (h_self_gate : 256 * (((kap * kap) * (kap * kap)) * (D4 * (D4 * D4))) < 9 * (((nu * nu) * (nu * nu)) * ((P4 * P4) * (P4 * P4)))) : 4 * (T_LL + T_lin + T_HH - nu * ((P4 * P4) * (P4 * P4))) < 0",
+      "premises": [
+        "h_nu_pos",
+        "h_P4_pos",
+        "h_THH_nn",
+        "h_collar_gate",
+        "h_lin_gate",
+        "h_self_bound",
+        "h_self_gate"
+      ],
+      "has_int_parameters": true,
+      "has_smooth_pde_types": false
+    },
+    {
+      "name": "step7_holder_half_cone_biot_savart_bound",
+      "line": 938,
+      "signature": "theorem step7_holder_half_cone_biot_savart_bound (x1 x2 x3 y1 y2 y3 z1 z2 z3 R K_xi d1 : Int) (hx : VecNormSq x1 x2 x3 = R) (hy : VecNormSq y1 y2 y3 = R) (h_R_nn : 0 ≤ R) (h_holder_cone : VecNormSq (x1 - y1) (x2 - y2) (x3 - y3) ≤ K_xi * d1) : BiotSavartDet x1 x2 x3 y1 y2 y3 z1 z2 z3 * BiotSavartDet x1 x2 x3 y1 y2 y3 z1 z2 z3 ≤ VecNormSq z1 z2 z3 * (R * (K_xi * d1))",
+      "premises": [
+        "hx",
+        "hy",
+        "h_R_nn",
+        "h_holder_cone"
+      ],
+      "has_int_parameters": true,
+      "has_smooth_pde_types": false
+    },
+    {
+      "name": "step7_holder_half_quadratic_d3_to_d2_reduction",
+      "line": 1008,
+      "signature": "theorem step7_holder_half_quadratic_d3_to_d2_reduction (C_star kh D g nu P_dir : Int) : 2 * nu * (2 * ((C_star * kh) * (D * g)) - 2 * (nu * (g * g + P_dir))) ≤ ((C_star * kh) * D) * ((C_star * kh) * D) - 4 * ((nu * nu) * P_dir)",
+      "premises": [],
+      "has_int_parameters": true,
+      "has_smooth_pde_types": false
+    },
+    {
+      "name": "step7_leray_quadratic_doubling_closure",
+      "line": 1087,
+      "signature": "theorem step7_leray_quadratic_doubling_closure {M d0 dfinal : Int} {K : Nat} (h_M_pos : 0 < M) (hchain : LerayDoublingChain M K d0 dfinal) : dfinal ≤ Pow2 K * d0",
+      "premises": [
+        "h_M_pos",
+        "hchain"
+      ],
+      "has_int_parameters": true,
+      "has_smooth_pde_types": false
+    }
+  ]
+}

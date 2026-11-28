@@ -1,0 +1,29 @@
+{
+  "all_primary_candidates_checked": 1365,
+  "arithmetic_unit_counts_checked": 1365,
+  "audited_source_sha256": {
+    "arithmetic.py": "0c6f1169830e55df469cb3fda9985b59bee80ee6b28f3f26c1c20f0540cfff63",
+    "collatz_core.py": "24ff52171aedf890c33439896ab5e71de65d9b05d557ba61d162f3623aa5dbca",
+    "pilot_controls.py": "965371f34f629d351c2b6d5c5ce64e9c69ee7481f7913d999947f708daf65422",
+    "resonance_pilot.py": "d6c5ace0454d1922107122c374e28f7850dc6223c8e5bbd927163be30ea4d8e2"
+  },
+  "brute_search_max_parameter": 313,
+  "control_minima_checked_by_direct_modular_search": 156,
+  "controls_summary_sha256": "b4302d5411cf63bec3f63190b5bea1c59664496b44226f085a1eaa8cd2340d3f",
+  "evaluation_summary_recomputed": {
+    "cycles_with_predicted_pair": 3488,
+    "parameters": 1194,
+    "primary_median_relative_absolute_error": 0.036769891,
+    "primary_strict_wins_from_rounded_size_predictions": 848,
+    "size_median_relative_absolute_error_from_rounded_predictions": 0.499032005,
+    "unit_cycles": 5369
+  },
+  "evidence_class": "exact finite arithmetic and receipt audit",
+  "pilot_csv_sha256": "71875ba43ca18cc1a1501c9f7152ef40d7cbf6c1f5707649c7dd350bbf5d639e",
+  "pilot_summary_sha256": "4f3bb6bb6c69808329bdda5fa5c41154b9871fb57902c653e1e407edf53322de",
+  "primary_minima_checked_by_direct_modular_search": 52,
+  "schema": "mathcan.collatz.independent-pilot-audit.v1",
+  "scope": "Target cycle census is inherited from the separately replayed pilot receipt. Direct candidate optimality is independently exhausted through d=313; larger rows receive feasibility and selector replay checks.",
+  "source_sha256": "c577785e5b1aa92cb4cc5ff87b5e9809c47a4a70480aeeb38de8d72ffcc053e4",
+  "status": "passed"
+}

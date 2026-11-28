@@ -76,6 +76,10 @@ jobs:
           lake env lean MathCan/PeriodOne.lean | tee -a mathcan-axioms.txt
           lake env lean MathCan/BasinCapture.lean | tee -a mathcan-axioms.txt
           lake env lean MathCan/MultiBasin.lean | tee -a mathcan-axioms.txt
+          lake env lean MathCan/BasinCodes.lean | tee -a mathcan-axioms.txt
+          lake env lean MathCan/NOR13GateOrder.lean | tee -a mathcan-axioms.txt
+          lake env lean MathCan/NOR09Asynchronous.lean | tee -a mathcan-axioms.txt
+          lake env lean MathCan/NOR07Volterra.lean | tee -a mathcan-axioms.txt
           lake env lean MathCan/DeletionMemory.lean | tee -a mathcan-axioms.txt
           lake env lean MathCan/GraphAuthorization.lean | tee -a mathcan-axioms.txt
           lake env lean MathCan/TreeReconstruction.lean | tee -a mathcan-axioms.txt

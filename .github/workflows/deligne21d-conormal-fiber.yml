@@ -1,0 +1,64 @@
+name: DEL-21D conormal cotangent duality
+
+on:
+  push:
+    branches: [proof/deligne21d-conormal-fiber-dual-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/PresentedCotangentFiber.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL21D_*'
+      - 'research/deligne_sign_audit/del21d_*'
+      - 'tests/test_deligne21d_conormal_fiber.py'
+      - '.github/workflows/deligne21d-conormal-fiber.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne21d-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check conormal quotient dual tangent equivalence
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/PresentedCotangentFiber.lean | tee deligne21d-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne21d-axioms.txt; then
+            echo 'DEL-21D admitted proof or unexpected reduction axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify 160 actual conormal quotient and radical cases
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne21d_conormal_fiber

@@ -1,0 +1,95 @@
+name: RHD-01 MathCan RH window mathematics
+
+on:
+  push:
+    paths:
+      - 'MathCan/RHWindowExponents.lean'
+      - 'MathCan.lean'
+      - 'research/rh_proof_distillation/**'
+      - 'tests/test_rh_proof_distillation.py'
+      - '.github/workflows/rh-window-distillation.yml'
+  pull_request:
+    paths:
+      - 'MathCan/RHWindowExponents.lean'
+      - 'MathCan.lean'
+      - 'research/rh_proof_distillation/**'
+      - 'tests/test_rh_proof_distillation.py'
+      - '.github/workflows/rh-window-distillation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-rational-oracles:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Execute exact numeric witness and falsification checks
+        run: python -m unittest tests.test_rh_proof_distillation -v
+      - uses: actions/checkout@v4
+        with:
+          repository: leanprover-community/riemann-hypothesis
+          ref: f150e02623b1e2bbe1f1da8eab5ffee5e930a6a3
+          path: upstream
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/Formalism/SizeWindowBrackets/GrowthBoundGivesRiemannHypothesis.lean
+            src/Formalism/SharpRestriction/GlobalSchurBounds/ZetaZeroFreeRegion.lean
+            src/Formalism/SharpRestriction/GlobalSchurBounds/RamificationTwoAndConjugationAtQAndD.lean
+      - name: Verify pinned original source of window predicates
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from research.rh_proof_distillation.rh_window_feasibility import source_pin
+          print(source_pin(Path("upstream")))
+          PY
+
+      - name: Export exact numerical mathematical receipts
+        run: |
+          mkdir -p rh-mathcan-receipts
+          python -m research.rh_proof_distillation.rh_window_feasibility \
+            --source-root upstream \
+            --output rh-mathcan-receipts/window-feasibility.json
+          python -m research.rh_proof_distillation.rh_joint_scalar_envelope \
+            --source-root upstream \
+            --output rh-mathcan-receipts/joint-scalar-envelope.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rh-mathcan-exact-receipts
+          path: rh-mathcan-receipts/
+          if-no-files-found: ignore
+
+  native-lean-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Kernel check source-scale integers and axiom inventory
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/RHWindowExponents.lean | tee rh-window-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:|admit' rh-window-axioms.txt; then
+            exit 1
+          fi
+        shell: bash
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rh-window-lean-axioms
+          path: rh-window-axioms.txt
+          if-no-files-found: ignore

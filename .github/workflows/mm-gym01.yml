@@ -1,0 +1,31 @@
+name: MM-GYM-01 Metamath differential verification
+on:
+  pull_request:
+    paths:
+      - 'research/metamath_gym/**'
+      - '.github/workflows/mm-gym01.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/metamath_gym/**'
+      - '.github/workflows/mm-gym01.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate fixed-prefix certificates and mutation census
+        run: node research/metamath_gym/mm_gym.mjs "$RUNNER_TEMP/mm-gym"
+      - name: Obtain pinned independent verifier
+        run: curl --fail --silent --show-error --location https://raw.githubusercontent.com/david-a-wheeler/mmverify.py/63a2aa3815cd5bf67892dbfc7f2048cbb177524c/mmverify.py -o "$RUNNER_TEMP/mmverify.py"
+      - name: Differential verification
+        run: python research/metamath_gym/differential.py "$RUNNER_TEMP/mmverify.py" "$RUNNER_TEMP/mm-gym"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mm-gym01-receipt
+          path: ${{ runner.temp }}/mm-gym

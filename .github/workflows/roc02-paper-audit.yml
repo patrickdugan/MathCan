@@ -1,0 +1,77 @@
+name: ROC-02 observer causal paper arithmetic
+
+on:
+  push:
+    paths:
+      - 'papers/roc02/**'
+      - '.github/workflows/roc02-paper-audit.yml'
+  pull_request:
+    paths:
+      - 'papers/roc02/**'
+      - '.github/workflows/roc02-paper-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  primary-arithmetic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify six-seed signed permutation and scope
+        run: |
+          python -m compileall -q papers/roc02
+          python papers/roc02/roc02_primary_signflip_v01.py
+          python papers/roc02/roc04a_primary_signflip_v01.py
+          python papers/roc02/roc04b_reserved_signflip_v01.py
+          python papers/roc02/roc05a_b_primary_audit_v01.py
+          python papers/roc02/roc06a_gradient_primary_signflip_v01.py
+          python - <<'PY'
+          from pathlib import Path
+          import csv
+          p=Path("papers/roc02/ROC02_Observer_Causal_Update_v01_20261117.md")
+          x=p.read_text()
+          assert "0.375" in x and "3/6" in x
+          assert "sealed" in x.lower() and "calibration" in x.lower()
+          assert len(list(csv.DictReader(open("papers/roc02/ROC02_primary_six_seed_v01.csv")))) == 6
+          new=Path("papers/roc02/ROC02_Observer_Causal_Update_v02_20261117.md").read_text()
+          assert "version 0.2" in new
+          assert "0.015625" in new and "0.4778645833" in new
+          assert "4/6" in new and "0/6" in new
+          assert "reserved" in new.lower() and "families 6" in new.lower()
+          assert len(list(csv.DictReader(open("papers/roc02/ROC04A_primary_six_seed_v01.csv")))) == 6
+          assert "ROC02_Observer_Causal_Update_v02_20261117.md" in Path("papers/roc02/README.md").read_text()
+          roc04b=Path("papers/roc02/ROC02_Observer_Causal_Update_v03_20261117.md").read_text()
+          assert "version 0.3" in roc04b and "0.51953125" in roc04b
+          assert "0.015625" in roc04b and "11.89%" in roc04b
+          assert "first hosted attempt" in roc04b.lower() and "6–7" in roc04b
+          assert "Competence gate" in roc04b or "competence gate" in roc04b
+          assert len(list(csv.DictReader(open("papers/roc02/ROC04B_reserved_test_by_seed_v01.csv"))))==6
+          idx=Path("papers/roc02/README.md").read_text()
+          assert "ROC02_Observer_Causal_Update_v03_20261117.md" in idx
+          assert "ROC-04B" in idx and "consumed" in idx
+          newest=Path("papers/roc02/ROC02_Observer_Causal_Update_v04_20261117.md").read_text()
+          assert "version 0.4" in newest and "0.5416666667" in newest
+          assert "0.015625" in newest and "0.06805337873205038" in newest
+          assert "0/6" in newest and "73,728" in newest
+          assert "384 ROC-05 reserved" in newest
+          assert "family-6/7" in newest or "families 6–7" in newest
+          assert len(list(csv.DictReader(open("papers/roc02/ROC05A_fresh_seed_primary_v01.csv")))) == 6
+          assert len(list(csv.DictReader(open("papers/roc02/ROC05B_matched_causal_primary_v01.csv")))) == 6
+          index=Path("papers/roc02/README.md").read_text()
+          assert "ROC02_Observer_Causal_Update_v04_20261117.md" in index
+          assert "unopened" in index or "ungenerated" in index
+          v05=Path("papers/roc02/ROC02_Observer_Causal_Update_v05_20261125.md").read_text()
+          assert "version 0.5" in v05
+          assert "−0.0566440431951681" in v05
+          assert "0.01140925" in v05 and "0/6" in v05
+          assert "3,072" in v05 and "72/72" in v05
+          assert "unopened" in v05
+          assert len(list(csv.DictReader(open("papers/roc02/ROC06A_gradient_primary_by_seed_v01.csv"))))==6
+          updated=Path("papers/roc02/README.md").read_text()
+          assert "ROC02_Observer_Causal_Update_v05_20261125.md" in updated
+          PY

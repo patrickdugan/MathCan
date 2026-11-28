@@ -1,0 +1,77 @@
+name: RAM-12 pinned old-source native state traces
+on:
+  push:
+    paths:
+      - 'research/ram12/**'
+      - '.github/workflows/ram12-native-state-traces.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verified-historical-state-extraction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      OMP_NUM_THREADS: '2'
+      MKL_NUM_THREADS: '2'
+      LEAN_NUM_THREADS: '2'
+      PYTHONHASHSEED: '0'
+    steps:
+      - name: Checkout dedicated RAM-12 public research branch
+        uses: actions/checkout@v4
+      - name: Checkout original old MathCan TRAIN, never current unreviewed source
+        uses: actions/checkout@v4
+        with:
+          repository: patrickdugan/MathCan
+          ref: c84e2025334e9a967c1297425a490f98d5b3d189
+          path: _old_mathcan
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Provision pinned original Lean toolchain
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Validate immutable 76-proof source and software contracts
+        run: |
+          set -euo pipefail
+          test "$(git -C _old_mathcan rev-parse HEAD)" = "c84e2025334e9a967c1297425a490f98d5b3d189"
+          test "$(cat _old_mathcan/lean-toolchain)" = "leanprover/lean4:v4.35.0"
+          python -m unittest discover -s research/ram12 -p 'test_*.py' -v
+      - name: Build original historical Lean imports and trace-only macro
+        run: |
+          set -euo pipefail
+          (cd _old_mathcan && lake build MathCan)
+          mkdir -p _old_mathcan/RAM12 _old_mathcan/.lake/build/lib/lean/RAM12
+          cp research/ram12/RAM12/Trace.lean _old_mathcan/RAM12/Trace.lean
+          (cd _old_mathcan && lake env lean RAM12/Trace.lean -o .lake/build/lib/lean/RAM12/Trace.olean)
+          test "$(git -C _old_mathcan status --porcelain --untracked-files=no)" = ""
+      - name: Double-compile all 76 original complete theorem sources and record exact prefix states
+        run: |
+          set -euo pipefail
+          python research/ram12/collect_states.py --mathcan _old_mathcan --out "$RUNNER_TEMP/ram12_first_native_states"
+          python - <<'PY'
+          import json,os,pathlib,hashlib
+          p=pathlib.Path(os.environ['RUNNER_TEMP'])/'ram12_first_native_states'
+          a=json.loads((p/'receipt.json').read_text())
+          assert a['status']=='complete'
+          assert a['processed']==76 and a['full_source_compilations']==152
+          assert (a['raw_action_occurrences'],a['unique_prefix_actions'],a['exact_prefix_states'],a['roots'])==(282,230,176,22)
+          assert a['split_roots']=={'train':14,'dev':3,'holdback':5}
+          assert all(c['status']=='two_complete_source_compiles_agree' for c in a['cases'])
+          assert hashlib.sha256((p/'certified_state_action_labels.jsonl').read_bytes()).hexdigest()==a['labels_sha256']
+          print('RAM12_NATIVE_STATE_REPLAY_AUDITED',json.dumps({k:a[k] for k in ('processed','raw_action_occurrences','unique_prefix_actions','exact_prefix_states','split_roots','labels_sha256')},sort_keys=True))
+          PY
+      - name: Archive exact sources, both compiler logs, native states and negative receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ram12-pinned-native-lean-state-traces-${{ github.run_id }}
+          path: ${{ runner.temp }}/ram12_first_native_states/
+          retention-days: 30
+          if-no-files-found: warn

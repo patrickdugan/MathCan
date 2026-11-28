@@ -1,0 +1,61 @@
+name: RHD-07 cyclotomic FieldOK and OneK input gate
+
+on:
+  push:
+    paths:
+      - 'research/rh_proof_distillation/RHD07_FIELDOK_NONVACUITY.md'
+      - 'research/rh_proof_distillation/rhd07_fieldok_fixture.py'
+      - 'tests/test_rhd07_fieldok_fixture.py'
+      - '.github/workflows/rhd07-fieldok.yml'
+  pull_request:
+    paths:
+      - 'research/rh_proof_distillation/RHD07_FIELDOK_NONVACUITY.md'
+      - 'research/rh_proof_distillation/rhd07_fieldok_fixture.py'
+      - 'tests/test_rhd07_fieldok_fixture.py'
+      - '.github/workflows/rhd07-fieldok.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-pinned-arithmetic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: mathcan
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: leanprover-community/riemann-hypothesis
+          ref: f150e02623b1e2bbe1f1da8eab5ffee5e930a6a3
+          path: upstream
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/Development/AbelianVarietyTheory/Definitions/GaloisGeometry/LatticeDataThicknessBound.lean
+            src/Development/AbelianVarietyTheory/Definitions/GaloisGeometry/ApartAllEmpty.lean
+            src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/IntegralStructures/GeometricFlagBases/HodgeTrAt.lean
+            src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/IntegralStructures/ZetaCharacterDivisibility/SeedFinOddOf.lean
+            src/Development/AbelianVarietyTheory/Definitions/GaloisGeometry/LimWPhi.lean
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prove source identity and exact arithmetic fixture tests
+        working-directory: mathcan
+        run: python -m unittest tests.test_rhd07_fieldok_fixture -v
+      - name: Produce exact cyclotomic source-pinned receipts
+        working-directory: mathcan
+        run: |
+          mkdir -p rhd07
+          python -m research.rh_proof_distillation.rhd07_fieldok_fixture \
+            --upstream ../upstream \
+            --output rhd07/fieldok_fixtures.jsonl
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rhd07-cyclotomic-fieldok-fixtures
+          path: mathcan/rhd07/
+          if-no-files-found: ignore

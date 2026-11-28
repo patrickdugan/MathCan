@@ -1,0 +1,65 @@
+name: RAM-14 independent third Lean certificate audit
+
+on:
+  push:
+    paths:
+      - '.github/workflows/ram14-third-lean-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  independently-recompile:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkout identical original public MathCan theorem source
+        uses: actions/checkout@v4
+        with:
+          repository: patrickdugan/MathCan
+          ref: f427e0ef4a61093304d12ca2c0dc943d8d2429e5
+          path: _mathcan_original
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Retrieve FIRST completed original diagnostic from its immutable CI run
+        uses: actions/download-artifact@v4
+        with:
+          name: ram14-posthoc-structural-grammar-43791363290
+          run-id: 43791363290
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: ${{ runner.temp }}/ram14_first
+      - name: Run isolated grammar contracts and compile pinned source
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s research/ram14 -p 'test_grammar.py' -v
+          test "$(git -C _mathcan_original rev-parse HEAD)" = f427e0ef4a61093304d12ca2c0dc943d8d2429e5
+          (cd _mathcan_original && lake build MathCan)
+      - name: Independent source/script/hash audit and THIRD compiler replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          python research/ram14/independent_audit.py \
+            --mathcan _mathcan_original \
+            --first-artifact "$RUNNER_TEMP/ram14_first" \
+            --out "$RUNNER_TEMP/ram14_independent"
+      - name: Preserve independent compiler logs, exact source SHA and axiom inventories
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ram14-independent-third-lean-audit-${{ github.run_id }}
+          path: ${{ runner.temp }}/ram14_independent
+          retention-days: 30
+          if-no-files-found: warn

@@ -1,0 +1,46 @@
+name: NOR-44 session precommit and exact challenge conditional Lean theorem
+
+on:
+  push:
+    branches:
+      - research/nor44-session-order-lean-20261118
+    paths:
+      - 'MathCan/NOR44SessionOrdering.lean'
+      - 'MathCan.lean'
+      - '.github/workflows/nor44-session-lean.yml'
+  pull_request:
+    paths:
+      - 'MathCan/NOR44SessionOrdering.lean'
+      - 'MathCan.lean'
+      - '.github/workflows/nor44-session-lean.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  session_order_and_true_support_soundness:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Check all phase and source-bound true support lemmas in kernel, no sorries
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/NOR44SessionOrdering.lean | tee nor44-lean-axioms.txt
+          if grep -Eq 'sorryAx|^error:|admit' nor44-lean-axioms.txt; then
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nor44-session-ordering-kernel-axioms
+          path: nor44-lean-axioms.txt

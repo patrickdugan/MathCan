@@ -1,0 +1,65 @@
+name: DEL-21I dual tangent coherence
+
+on:
+  push:
+    branches: [proof/deligne21i-dual-tangent-coherence-20261123]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/GeometricFiberCoherence.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL21I_*'
+      - 'tests/test_deligne21h_field_towers.py'
+      - 'tests/test_deligne21g_geometric_fiber.py'
+      - 'tests/test_deligne21f_actual_fiber.py'
+      - '.github/workflows/deligne21i-dual-tangent.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne21i-${{ github.event_name }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check coordinate tangent coherence
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/GeometricFiberCoherence.lean | tee deligne21i-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne21i-axioms.txt; then
+            echo 'DEL-21I unexpected axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Replay DEL-21F/G/H extension and original-ideal regression oracles
+        run: |
+          set -euo pipefail
+          python -m unittest -v tests.test_deligne21h_field_towers tests.test_deligne21g_geometric_fiber tests.test_deligne21f_actual_fiber

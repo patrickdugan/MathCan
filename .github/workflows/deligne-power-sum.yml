@@ -1,0 +1,31 @@
+name: DEL-03 exact rational spectral pole certificates
+
+on:
+  push:
+    branches: [audit/deligne-power-sums-20261122]
+  pull_request:
+    paths:
+      - 'research/deligne_sign_audit/power_sum_poles.py'
+      - 'research/deligne_sign_audit/DEL03_POWER_SUM.md'
+      - 'research/deligne_sign_audit/del03_tasks.jsonl'
+      - 'research/deligne_sign_audit/verify_del03_tasks.py'
+      - 'tests/test_deligne_power_sum_poles.py'
+      - '.github/workflows/deligne-power-sum.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  spectral-exact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify Hankel determinants, recurrence, and mutants
+        run: python -m unittest -v tests.test_deligne_power_sum_poles
+      - name: Verify 36 public synth labels
+        run: python -m research.deligne_sign_audit.verify_del03_tasks

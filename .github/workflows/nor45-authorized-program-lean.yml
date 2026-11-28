@@ -1,0 +1,46 @@
+name: NOR-45 authorized-program execution and signed-root conditional Lean kernel
+
+on:
+  push:
+    branches:
+      - research/nor45-authorized-program-execution-20261118
+    paths:
+      - 'MathCan/NOR45AuthorizedProgram.lean'
+      - 'MathCan.lean'
+      - '.github/workflows/nor45-authorized-program-lean.yml'
+  pull_request:
+    paths:
+      - 'MathCan/NOR45AuthorizedProgram.lean'
+      - 'MathCan.lean'
+      - '.github/workflows/nor45-authorized-program-lean.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact_authorized_execution_and_semantic_trust_boundary:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Kernel verify authorized execution root and separate semantic truth premise
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/NOR45AuthorizedProgram.lean | tee nor45-program-axioms.txt
+          if grep -Eq 'sorryAx|^error:|admit' nor45-program-axioms.txt; then
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nor45-authorized-program-kernel-axioms
+          path: nor45-program-axioms.txt

@@ -1,0 +1,47 @@
+name: NOR-32 exact unknown-support no-free-lunch finite Lean theorem
+
+on:
+  push:
+    paths:
+      - 'MathCan/NOR32UnknownSupportCoverage.lean'
+      - 'MathCan.lean'
+      - 'research/nor32/**'
+      - '.github/workflows/nor32-unknown-support-lean.yml'
+  pull_request:
+    paths:
+      - 'MathCan/NOR32UnknownSupportCoverage.lean'
+      - 'MathCan.lean'
+      - 'research/nor32/**'
+      - '.github/workflows/nor32-unknown-support-lean.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-unknown-support-count-and-uniform-attack-invariance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Lean 4.35 kernel check uniform-attack duality, mixture invariance and axiom inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/NOR32UnknownSupportCoverage.lean | tee nor32-unknown-support-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:|admit' nor32-unknown-support-axioms.txt; then
+            echo 'NOR32 incomplete proof or nonstandard axiom'
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nor32-unknown-support-lean-axiom-inventory
+          path: nor32-unknown-support-axioms.txt

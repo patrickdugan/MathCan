@@ -1,0 +1,81 @@
+name: DEL-06 geometric trace and tensor-spectrum bridge
+
+on:
+  push:
+    branches: [proof/deligne06-gysin-tensor-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/TensorSpectrum.lean'
+      - 'experiments/deligne_mathlib/Deligne04/MatrixTensorEigen.lean'
+      - 'experiments/deligne_mathlib/Deligne04/KunnethDegrees.lean'
+      - 'experiments/deligne_mathlib/Deligne04/GysinTrace.lean'
+      - 'experiments/deligne_mathlib/Deligne04/GysinPowers.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL06_*'
+      - 'research/deligne_sign_audit/geometry_trace.py'
+      - 'research/deligne_sign_audit/del06_tasks.jsonl'
+      - 'research/deligne_sign_audit/verify_del06_tasks.py'
+      - 'tests/test_deligne06_geometry.py'
+      - '.github/workflows/deligne06-geometry.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne06-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lean-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Compile full DEL-06 formal proof chain
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/TensorSpectrum.lean | tee deligne06-axioms.txt
+          lake env lean Deligne04/GysinTrace.lean | tee -a deligne06-axioms.txt
+          lake env lean Deligne04/MatrixTensorEigen.lean | tee -a deligne06-axioms.txt
+          lake env lean Deligne04/KunnethDegrees.lean | tee -a deligne06-axioms.txt
+          if test -f Deligne04/GysinPowers.lean; then
+            lake env lean Deligne04/GysinPowers.lean | tee -a deligne06-axioms.txt
+          fi
+          if grep -Eq 'sorryAx|ofReduceBool' deligne06-axioms.txt; then
+            echo 'DEL-06 has admitted proof or native-reduction axiom'
+            exit 1
+          fi
+
+  exact-fixtures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run DEL-06 exact Gysin and tensor mutations
+        run: |
+          set -euo pipefail
+          if test -f tests/test_deligne06_geometry.py; then
+            python -m unittest -v tests.test_deligne06_geometry
+          fi
+          if test -f research/deligne_sign_audit/verify_del06_tasks.py; then
+            python -m research.deligne_sign_audit.verify_del06_tasks
+          fi

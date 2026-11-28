@@ -1,0 +1,30 @@
+name: COE-07 phase-gauge pair ledger proofs
+on:
+  pull_request:
+    paths:
+      - 'MathCan/PhaseGaugePairLedger.lean'
+      - 'MathCan.lean'
+      - 'research/compactification/PHASE_GAUGE_PAIR_LEDGER.md'
+      - '.github/workflows/coe07-phase-gauge-ledger.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lean-phase-ledger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Kernel check and transitive-axiom report
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/PhaseGaugePairLedger.lean | tee coe07-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' coe07-axioms.txt; then exit 1; fi

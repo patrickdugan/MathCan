@@ -1,0 +1,47 @@
+name: NOR-33 matched two-block overlap exact count Lean kernel
+
+on:
+  push:
+    paths:
+      - 'MathCan/NOR33OverlapMatchedCoverage.lean'
+      - 'MathCan.lean'
+      - 'research/nor33/**'
+      - '.github/workflows/nor33-overlap-matched-lean.yml'
+  pull_request:
+    paths:
+      - 'MathCan/NOR33OverlapMatchedCoverage.lean'
+      - 'MathCan.lean'
+      - 'research/nor33/**'
+      - '.github/workflows/nor33-overlap-matched-lean.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  matched-two-block-finite-hypergeometric-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Lean 4.35 exact matched support counting, equality, and axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/NOR33OverlapMatchedCoverage.lean | tee nor33-overlap-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:|admit' nor33-overlap-axioms.txt; then
+            echo 'NOR33 unverified or admitted theorem'
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nor33-matched-overlap-lean-axiom-inventory
+          path: nor33-overlap-axioms.txt

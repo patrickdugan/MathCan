@@ -1,0 +1,14 @@
+{
+  "checks": [
+    {
+      "theorem": "cancel-middle",
+      "steps": 131
+    },
+    {
+      "theorem": "wire-concat",
+      "steps": 37
+    }
+  ],
+  "malformed_proof_rejected": true,
+  "scope": "restricted standalone checker"
+}

@@ -1,0 +1,13 @@
+{
+  "cancellation": 1,
+  "changed_revision": 24,
+  "exact_pairs": 1536,
+  "fabricated": 24,
+  "foreign": 24,
+  "immutable": 48,
+  "overflow": 1,
+  "raw": 384,
+  "raw_cut": 24,
+  "stale": 24,
+  "symbolic_vertex": 1152
+}

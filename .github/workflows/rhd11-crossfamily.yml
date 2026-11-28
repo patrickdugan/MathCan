@@ -1,0 +1,54 @@
+name: RHD-11 held-out cyclotomic p5 transfer
+
+on:
+  push:
+    paths:
+      - 'research/rh_proof_distillation/rhd11_crossfamily.py'
+      - 'research/rh_proof_distillation/RHD11_CROSS_FAMILY.md'
+      - 'tests/test_rhd11_crossfamily.py'
+      - '.github/workflows/rhd11-crossfamily.yml'
+      - 'research/rh_proof_distillation/rhd10_policy_eval.py'
+      - 'research/rh_proof_distillation/rhd10_rank_one_repair.py'
+  pull_request:
+    paths:
+      - 'research/rh_proof_distillation/rhd11_crossfamily.py'
+      - 'research/rh_proof_distillation/RHD11_CROSS_FAMILY.md'
+      - 'tests/test_rhd11_crossfamily.py'
+      - '.github/workflows/rhd11-crossfamily.yml'
+      - 'research/rh_proof_distillation/rhd10_policy_eval.py'
+      - 'research/rh_proof_distillation/rhd10_rank_one_repair.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-cyclotomic-transfer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify source and independent target-field oracles
+        run: |
+          python -m unittest \
+            tests.test_rhd09_local_character \
+            tests.test_rhd10_rank_one_repair \
+            tests.test_rhd10_policy_eval \
+            tests.test_rhd10_unit_obstruction \
+            tests.test_rhd11_crossfamily -v
+      - name: Generate cross-family verifier receipts
+        run: |
+          mkdir -p rhd11
+          python -m research.rh_proof_distillation.rhd11_crossfamily --output rhd11/rhd11_report.json
+      - name: Upload exact target-field results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rhd11-crossfamily-p5-receipts
+          path: rhd11/
+          if-no-files-found: ignore

@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "seed": 20261123,
+  "shots": 8192,
+  "replicates": 2500,
+  "theta": 0.73,
+  "cases": [
+    {
+      "name": "square",
+      "time": 1.6,
+      "L": 4,
+      "settings_phase": 4,
+      "settings_masked": 64,
+      "a1": -0.2550941958093803,
+      "a2": 0.039977571221385885,
+      "a3": 0.0004275321588019064,
+      "rmse_degrees_four": 1.3669603504997303,
+      "rmse_degrees_masked": 21.16137476357393
+    },
+    {
+      "name": "hexagon_with_trees",
+      "time": 2.5,
+      "L": 6,
+      "settings_phase": 4,
+      "settings_masked": 256,
+      "a1": -0.10713493336918968,
+      "a2": 0.007552649783287709,
+      "a3": -0.000012348810605252326,
+      "rmse_degrees_four": 3.6685811525037146,
+      "rmse_degrees_masked": 93.24555343182665
+    }
+  ],
+  "confounder_phase_mask_gap": 0.05140103058551988,
+  "receipt_note": "Run ahr07_ci.py to produce the complete raw numerical receipt; figures here were verified locally before commit."
+}

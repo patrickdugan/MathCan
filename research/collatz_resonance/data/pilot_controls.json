@@ -1,0 +1,29 @@
+{
+  "candidate_period_conversion": "A+2u for all arms",
+  "pilot_csv_sha256": "71875ba43ca18cc1a1501c9f7152ef40d7cbf6c1f5707649c7dd350bbf5d639e",
+  "results": {
+    "necessary_cone_only": {
+      "control_strict_wins": 294,
+      "median_relative_absolute_error": 0.275686137,
+      "parameters": 1194,
+      "primary_strict_wins": 704,
+      "same_predicted_pair": 180
+    },
+    "slope_eight": {
+      "control_strict_wins": 274,
+      "median_relative_absolute_error": 0.609779314,
+      "parameters": 1194,
+      "primary_strict_wins": 849,
+      "same_predicted_pair": 65
+    },
+    "slope_four": {
+      "control_strict_wins": 346,
+      "median_relative_absolute_error": 0.390259279,
+      "parameters": 1194,
+      "primary_strict_wins": 758,
+      "same_predicted_pair": 74
+    }
+  },
+  "schema": "mathcan.collatz.controls.v1",
+  "status": "exploratory controls specified after observing the primary pilot"
+}

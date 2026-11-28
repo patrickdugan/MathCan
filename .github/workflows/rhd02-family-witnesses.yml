@@ -1,0 +1,48 @@
+name: RHD-02 family witness quantifier proofs
+
+on:
+  push:
+    paths:
+      - 'MathCan/RHFamilyWitnesses.lean'
+      - 'MathCan.lean'
+      - 'research/rh_proof_distillation/FAMILY_WITNESS_QUANTIFIERS.md'
+      - '.github/workflows/rhd02-family-witnesses.yml'
+  pull_request:
+    paths:
+      - 'MathCan/RHFamilyWitnesses.lean'
+      - 'MathCan.lean'
+      - 'research/rh_proof_distillation/FAMILY_WITNESS_QUANTIFIERS.md'
+      - '.github/workflows/rhd02-family-witnesses.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  family-quantifier-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Audit the independent witness quantifier proofs and axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/RHFamilyWitnesses.lean | tee rh-family-witness-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:|admit' rh-family-witness-axioms.txt; then
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rh-family-witness-axioms
+          path: rh-family-witness-axioms.txt
+          if-no-files-found: ignore

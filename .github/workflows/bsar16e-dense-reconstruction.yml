@@ -1,0 +1,86 @@
+name: BSAR-16E continuous polygonal Fourier reconstruction
+
+on:
+  pull_request:
+    paths:
+      - "experiments/bsar16/dense_interpolant.py"
+      - "experiments/bsar16/test_dense_interpolant.py"
+      - "research/bsar_audit/BSAR16E_CONTINUOUS_POLYGONAL_RECONSTRUCTION.md"
+      - ".github/workflows/bsar16e-dense-reconstruction.yml"
+  push:
+    branches: [main]
+    paths:
+      - "experiments/bsar16/dense_interpolant.py"
+      - "experiments/bsar16/test_dense_interpolant.py"
+      - ".github/workflows/bsar16e-dense-reconstruction.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-polygonal-interval:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install original BSAR-15 dependency
+        run: python -m pip install "numpy==2.3.5"
+      - name: Validate source provenance and exact interpolation identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/bsar14_initial_triad_transfer.py)" = "aa25ad74be2347acf061d631f55338802eead212"
+          python -m py_compile experiments/bsar16/dense_interpolant.py experiments/bsar16/test_dense_interpolant.py
+          python -m unittest experiments.bsar16.test_dense_interpolant -v
+      - name: Independently recreate the pinned 256-node source certificate
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar16d
+          python -m experiments.bsar16.float64_snapshots generate --out artifacts/bsar16d
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from experiments.bsar16.dense_interpolant import REGISTERED_PARENT_SHA256
+          meta=json.loads(Path("artifacts/bsar16d/manifest.json").read_text())
+          assert meta["run_count"]==16 and meta["snapshot_count"]==256
+          assert meta["runs_sha256"]==REGISTERED_PARENT_SHA256
+          print("Source-pinned 256-node binary64 archive verified")
+          PY
+      - name: Freeze and re-audit 240 continuous-time polygonal interval certificates
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar16e
+          python -m experiments.bsar16.dense_interpolant generate --source artifacts/bsar16d --out artifacts/bsar16e --expected-parent-sha256 9ef44ff668bb98e4c0d8ac925e13842ed10f3fa4230fd7ede2dd6740837c8e58
+          python -m experiments.bsar16.dense_interpolant audit --source artifacts/bsar16d --out artifacts/bsar16e --expected-parent-sha256 9ef44ff668bb98e4c0d8ac925e13842ed10f3fa4230fd7ede2dd6740837c8e58
+          python - <<'PY'
+          import json
+          from fractions import Fraction as Q
+          from pathlib import Path
+          meta=json.loads(Path("artifacts/bsar16e/manifest.json").read_text())
+          rows=json.loads(Path("artifacts/bsar16e/rows.json").read_text())
+          assert meta["run_count"] == 16
+          assert meta["interval_count"] == 240
+          assert meta["interval_direct_core_count"] == 240
+          assert meta["interval_via_galerkin_core_count"] == 240
+          assert all(Q(x["max_continuous_polygon_to_exact_galerkin_L2_upper"]) < Q(1,1000) for x in rows)
+          print("All 240 continuous-time polygonal intervals and their spatial core anchors certified")
+          print("Worst dense interval L2 bound:",
+                max(Q(x["max_continuous_polygon_to_exact_galerkin_L2_upper"]) for x in rows))
+          PY
+          sha256sum experiments/bsar16/dense_interpolant.py > artifacts/bsar16e/source.sha256
+      - name: Archive exact rational dense-interval receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsar16e-continuous-time-polygonal-anchors
+          path: artifacts/bsar16e/
+          if-no-files-found: warn
+          retention-days: 14

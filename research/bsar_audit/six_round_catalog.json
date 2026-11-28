@@ -1,0 +1,1427 @@
+{
+  "schema": "bsar-six-round-theorem-snapshot/v1",
+  "source_repo": "VivienSweetbrier/bsa-r",
+  "source_commit": "80c62433b0eb671175bd8d6169822d3ebd922b60",
+  "extraction_method": "Anchored Lean theorem declarations ending at ':= by'; static source inspection, not kernel validation",
+  "split_policy": "Rounds 1-4 train, round 5 dev, round 6 test",
+  "total": 129,
+  "rounds": [
+    {
+      "path": "lean/Step2ViscousCooldown.lean",
+      "count": 10,
+      "declarations": [
+        {
+          "name": "mul_self_mul_self_comm",
+          "line": 52,
+          "signature": "theorem mul_self_mul_self_comm (a b : R) : (a * b) * (a * b) = (a * a) * (b * b)",
+          "premises": [],
+          "has_explicit_int": false,
+          "has_abstract_R": true,
+          "has_real_analytic": false
+        },
+        {
+          "name": "lt_of_sq_lt_sq",
+          "line": 64,
+          "signature": "theorem lt_of_sq_lt_sq (x y : R) (hx : O.zero ≤ x) (hy : O.zero < y) (hsq : x * x < y * y) : x < y",
+          "premises": [
+            "hx",
+            "hy",
+            "hsq"
+          ],
+          "has_explicit_int": false,
+          "has_abstract_R": true,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step2_moving_viscous_ceiling",
+          "line": 87,
+          "signature": "theorem step2_moving_viscous_ceiling (F0 F1 F2 nu : R) (hF0 : O.zero < F0) (hF1 : O.zero ≤ F1) (hF2 : O.zero < F2) (hnu : O.zero < nu) (hCS : F1 * F1 ≤ F0 * F2) (hCeil : (F0 * F0) * F0 < (nu * nu) * F2) : (F0 * F1) - (nu * F2) < O.zero",
+          "premises": [
+            "hF0",
+            "hF1",
+            "hF2",
+            "hnu",
+            "hCS",
+            "hCeil"
+          ],
+          "has_explicit_int": false,
+          "has_abstract_R": true,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step2_sublattice_contraction",
+          "line": 134,
+          "signature": "theorem step2_sublattice_contraction (F0 F1 F2 nu k_min : R) (hF1 : O.zero < F1) (hnu : O.zero < nu) (hFloor : k_min * F1 ≤ F2) (hBall : F0 < k_min * nu) : (F0 * F1) - (nu * F2) < O.zero",
+          "premises": [
+            "hF1",
+            "hnu",
+            "hFloor",
+            "hBall"
+          ],
+          "has_explicit_int": false,
+          "has_abstract_R": true,
+          "has_real_analytic": false
+        },
+        {
+          "name": "bsar_fourier_sparsity_cooldown",
+          "line": 165,
+          "signature": "theorem bsar_fourier_sparsity_cooldown (F0 F1 F2 nu N E R_rad : R) (hF0 : O.zero < F0) (hF1 : O.zero ≤ F1) (hF2 : O.zero < F2) (hnu : O.zero < nu) (hCS1 : F1 * F1 ≤ F0 * F2) (hCS2 : F0 * F0 ≤ N * E) (hShell : (R_rad * R_rad) * F0 ≤ F2) (hSparse : N * E < (nu * nu) * (R_rad * R_rad)) : (F0 * F1) - (nu * F2) < O.zero",
+          "premises": [
+            "hF0",
+            "hF1",
+            "hF2",
+            "hnu",
+            "hCS1",
+            "hCS2",
+            "hShell",
+            "hSparse"
+          ],
+          "has_explicit_int": false,
+          "has_abstract_R": true,
+          "has_real_analytic": false
+        },
+        {
+          "name": "odd_sq_ge_one",
+          "line": 213,
+          "signature": "theorem odd_sq_ge_one (x a : Int) (hx : x = 2 * a + 1) : 1 ≤ x * x",
+          "premises": [
+            "hx"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "even_nz_sq_ge_four",
+          "line": 227,
+          "signature": "theorem even_nz_sq_ge_four (x a : Int) (hx : x = 2 * a) (hne : x ≠ 0) : 4 ≤ x * x",
+          "premises": [
+            "hx",
+            "hne"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "int_sq_nonneg",
+          "line": 242,
+          "signature": "theorem int_sq_nonneg (x : Int) : 0 ≤ x * x",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "bcc_spectral_floor_ge_3",
+          "line": 256,
+          "signature": "theorem bcc_spectral_floor_ge_3 (kx ky kz : Int) (hk : InBCCSublattice kx ky kz) : 3 ≤ kx * kx + ky * ky + kz * kz",
+          "premises": [
+            "hk"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "bcc_sublattice_closed",
+          "line": 284,
+          "signature": "theorem bcc_sublattice_closed (px py pz qx qy qz : Int) (hp : InBCCSublattice px py pz) (hq : InBCCSublattice qx qy qz) (hnz : px + qx ≠ 0 ∨ py + qy ≠ 0 ∨ pz + qz ≠ 0) : InBCCSublattice (px + qx) (py + qy) (pz + qz)",
+          "premises": [
+            "hp",
+            "hq",
+            "hnz"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        }
+      ]
+    },
+    {
+      "path": "lean/Step3ArbitraryDataRound2.lean",
+      "count": 22,
+      "declarations": [
+        {
+          "name": "int_sq_nonneg",
+          "line": 31,
+          "signature": "theorem int_sq_nonneg (x : Int) : 0 ≤ x * x",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "int_eq_zero_of_sq_le_zero",
+          "line": 45,
+          "signature": "theorem int_eq_zero_of_sq_le_zero (x : Int) (h : x * x ≤ 0) : x = 0",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "int_le_of_mul_le_mul_pos_right",
+          "line": 62,
+          "signature": "theorem int_le_of_mul_le_mul_pos_right (a b c : Int) (h : a * c ≤ b * c) (hc : 0 < c) : a ≤ b",
+          "premises": [
+            "hc"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "int_lt_of_mul_lt_mul_pos_right",
+          "line": 70,
+          "signature": "theorem int_lt_of_mul_lt_mul_pos_right (a b c : Int) (h : a * c < b * c) (hc : 0 < c) : a < b",
+          "premises": [
+            "hc"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "int_lt_of_sq_lt_sq",
+          "line": 78,
+          "signature": "theorem int_lt_of_sq_lt_sq (x y : Int) (hx : 0 ≤ x) (hy : 0 < y) (hsq : x * x < y * y) : x < y",
+          "premises": [
+            "hx",
+            "hy",
+            "hsq"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "int_two_mul_le_add_sq",
+          "line": 87,
+          "signature": "theorem int_two_mul_le_add_sq (x y : Int) : 2 * (x * y) ≤ x * x + y * y",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "viscous_young_absorption",
+          "line": 109,
+          "signature": "theorem viscous_young_absorption (A W0 W1 W2 nu : Int) (_hnu : 0 < nu) (hW0 : 0 ≤ W0) (hW2 : 0 ≤ W2) (hCS : W1 * W1 ≤ W0 * W2) : 4 * nu * (A * W1) ≤ 4 * nu * (nu * W2) + (A * A) * W0",
+          "premises": [
+            "hW0",
+            "hW2",
+            "hCS"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step3_viscous_perturbation_riccati",
+          "line": 186,
+          "signature": "theorem step3_viscous_perturbation_riccati (U0 U1 W0 W1 W2 nu : Int) (hnu : 0 < nu) (hW0 : 0 ≤ W0) (hW2 : 0 ≤ W2) (hCS : W1 * W1 ≤ W0 * W2) : 4 * nu * (U1 * W0 + (U0 + W0) * W1 - nu * W2) ≤ (4 * nu * U1 + (U0 + W0) * (U0 + W0)) * W0",
+          "premises": [
+            "hnu",
+            "hW0",
+            "hW2",
+            "hCS"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "dot3_comm",
+          "line": 238,
+          "signature": "theorem dot3_comm (a b : Vec3I) : dot3 a b = dot3 b a",
+          "premises": [],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "normSq3_nonneg",
+          "line": 242,
+          "signature": "theorem normSq3_nonneg (a : Vec3I) : 0 ≤ normSq3 a",
+          "premises": [],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "solenoidal_advective_shift",
+          "line": 250,
+          "signature": "theorem solenoidal_advective_shift (p q u : Vec3I) (hdiv : dot3 p u = 0) : dot3 u (add3 p q) = dot3 u q",
+          "premises": [
+            "hdiv"
+          ],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "collinear_triad_vanishes",
+          "line": 258,
+          "signature": "theorem collinear_triad_vanishes (p q u : Vec3I) (alpha beta : Int) (hdiv : dot3 p u = 0) (hbeta : beta ≠ 0) (hqx : beta * q.1 = alpha * p.1) (hqy : beta * q.2.1 = alpha * p.2.1) (hqz : beta * q.2.2 = alpha * p.2.2) : dot3 u (add3 p q) = 0",
+          "premises": [
+            "hdiv",
+            "hbeta",
+            "hqx",
+            "hqy",
+            "hqz"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "binet_pair",
+          "line": 300,
+          "signature": "private theorem binet_pair (a b u1 u2 q1 q2 : Int) : (a * u2 - b * u1) * (a * q2 - b * q1) = (a * a) * (u2 * q2) + (b * b) * (u1 * q1) - (a * u1) * (b * q2) - (b * u2) * (a * q1)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "diag_pair",
+          "line": 325,
+          "signature": "private theorem diag_pair (a u1 q1 : Int) : (a * a) * (u1 * q1) = (a * u1) * (a * q1)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "binet_cauchy_3d",
+          "line": 331,
+          "signature": "theorem binet_cauchy_3d (p u q : Vec3I) : dot3 (cross3 p u) (cross3 p q) = normSq3 p * dot3 u q - dot3 p u * dot3 p q",
+          "premises": [],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "lagrange_3d",
+          "line": 366,
+          "signature": "theorem lagrange_3d (a b : Vec3I) : normSq3 (cross3 a b) = normSq3 a * normSq3 b - dot3 a b * dot3 a b",
+          "premises": [],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "cauchy_schwarz_3d",
+          "line": 371,
+          "signature": "theorem cauchy_schwarz_3d (a b : Vec3I) : dot3 a b * dot3 a b ≤ normSq3 a * normSq3 b",
+          "premises": [],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step3_solenoidal_cross_depletion",
+          "line": 382,
+          "signature": "theorem step3_solenoidal_cross_depletion (p q u : Vec3I) (hp : 0 < normSq3 p) (hdiv : dot3 p u = 0) : normSq3 p * (dot3 u (add3 p q) * dot3 u (add3 p q)) ≤ normSq3 u * normSq3 (cross3 p q)",
+          "premises": [
+            "hp",
+            "hdiv"
+          ],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "lenInt_nonneg",
+          "line": 461,
+          "signature": "theorem lenInt_nonneg : ∀ xs : List Int, 0 ≤ lenInt xs | [] => by unfold lenInt; omega | _ :: xs => by unfold lenInt have h := lenInt_nonneg xs omega theorem minNonEmpty_pigeonhole : ∀ (d : Int) (xs : List Int), (1 + lenInt xs) * minNonEmpty d xs ≤ d + sumIntList xs | d, [] => by unfold lenInt minNonEmpty sumIntList omega | d, x :: xs => by have ih := minNonEmpty_pigeonhole x xs have hlen : 0 ≤ 1 + lenInt xs",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "minNonEmpty_pigeonhole",
+          "line": 468,
+          "signature": "theorem minNonEmpty_pigeonhole : ∀ (d : Int) (xs : List Int), (1 + lenInt xs) * minNonEmpty d xs ≤ d + sumIntList xs | d, [] => by unfold lenInt minNonEmpty sumIntList omega | d, x :: xs => by have ih := minNonEmpty_pigeonhole x xs have hlen : 0 ≤ 1 + lenInt xs",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step3_leray_pigeonhole_horizon",
+          "line": 497,
+          "signature": "theorem step3_leray_pigeonhole_horizon (d0 : Int) (ds : List Int) (nu dt E0 : Int) (hnu : 0 < nu) (hdt : 0 < dt) (hLeray : (nu * dt) * (d0 + sumIntList ds) ≤ E0) : ((nu * dt) * (1 + lenInt ds)) * minNonEmpty d0 ds ≤ E0",
+          "premises": [
+            "hnu",
+            "hdt",
+            "hLeray"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step3_low_shell_cooldown",
+          "line": 512,
+          "signature": "theorem step3_low_shell_cooldown (F0_low d_star H_R E0 nu T : Int) (hF0 : 0 ≤ F0_low) (hHR : 0 < H_R) (hnu : 0 < nu) (hT : 0 < T) (hEnstrophy : (nu * T) * d_star ≤ E0) (hShellCS : F0_low * F0_low ≤ H_R * d_star) (hHorizon : 4 * H_R * E0 < (nu * nu * nu) * T) : 2 * F0_low < nu",
+          "premises": [
+            "hF0",
+            "hHR",
+            "hnu",
+            "hT",
+            "hEnstrophy",
+            "hShellCS",
+            "hHorizon"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        }
+      ]
+    },
+    {
+      "path": "lean/Step4UltravioletGevreyRound3.lean",
+      "count": 17,
+      "declarations": [
+        {
+          "name": "int_sq_nonneg",
+          "line": 38,
+          "signature": "theorem int_sq_nonneg (x : Int) : 0 ≤ x * x",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "int_lt_of_sq_lt_sq",
+          "line": 51,
+          "signature": "theorem int_lt_of_sq_lt_sq (x y : Int) (hx : 0 ≤ x) (hy : 0 < y) (hsq : x * x < y * y) : x < y",
+          "premises": [
+            "hx",
+            "hy",
+            "hsq"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "int_lt_of_pow4_lt_pow4",
+          "line": 59,
+          "signature": "theorem int_lt_of_pow4_lt_pow4 (x y : Int) (hx : 0 ≤ x) (hy : 0 < y) (h4 : (x * x) * (x * x) < (y * y) * (y * y)) : x < y",
+          "premises": [
+            "hx",
+            "hy",
+            "h4"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "mul_self_mul_self_comm",
+          "line": 66,
+          "signature": "theorem mul_self_mul_self_comm (a b : Int) : (a * a) * (b * b) = (a * b) * (a * b)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "mul_coeff_combine",
+          "line": 74,
+          "signature": "theorem mul_coeff_combine (k m x y : Int) : k * ((m * x) * y) = (k * m) * (x * y)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "mul_term_mul_term",
+          "line": 77,
+          "signature": "theorem mul_term_mul_term (k m x y : Int) : (k * x) * (m * y) = (k * m) * (x * y)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "quartic_sos_identity",
+          "line": 96,
+          "signature": "theorem quartic_sos_identity (a b : Int) : ((a - b) * (a - b)) * (((a + b) * (a + b)) + 2 * (b * b)) = (a * a) * (a * a) + 3 * ((b * b) * (b * b)) - 4 * (a * (b * (b * b)))",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "young_quartic_four_le",
+          "line": 148,
+          "signature": "theorem young_quartic_four_le (a b : Int) : 4 * (a * (b * (b * b))) ≤ (a * a) * (a * a) + 3 * ((b * b) * (b * b))",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "young_quartic_27_256_sos",
+          "line": 162,
+          "signature": "theorem young_quartic_27_256_sos (A B : Int) : 256 * (A * (B * (B * B))) - 256 * ((B * B) * (B * B)) ≤ 27 * ((A * A) * (A * A))",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step4_moving_palinstrophy_ceiling",
+          "line": 198,
+          "signature": "theorem step4_moving_palinstrophy_ceiling (kappa nu d p : Int) (hk : 0 ≤ kappa) (hnu : 0 < nu) (hd : 0 ≤ d) (hp : 0 < p) (hCeil : ((kappa * kappa) * (kappa * kappa)) * (((d * d) * (d * d)) * (((d * d) * (d * d)) * ((d * d) * (d * d)))) < ((nu * nu) * (nu * nu)) * ((p * p) * (p * p))) : kappa * (d * (d * d)) * (p * (p * p)) - nu * ((p * p) * (p * p)) < 0",
+          "premises": [
+            "hk",
+            "hnu",
+            "hd",
+            "hp",
+            "hCeil"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step4_enstrophy_trapping_gate",
+          "line": 284,
+          "signature": "theorem step4_enstrophy_trapping_gate (kappa4 nu4 kmin2 D P : Int) (hD : 0 < D) (hnu4 : 0 ≤ nu4) (hPoincare : kmin2 * D ≤ P) (hTrap : kappa4 * (D * D) < kmin2 * nu4) : kappa4 * ((D * D) * D) < nu4 * P",
+          "premises": [
+            "hD",
+            "hnu4",
+            "hPoincare",
+            "hTrap"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "lagrange_pair",
+          "line": 330,
+          "signature": "private theorem lagrange_pair (a b q1 q2 : Int) : (a * q2 - b * q1) * (a * q2 - b * q1) = (a * a) * (q2 * q2) + (b * b) * (q1 * q1) - 2 * ((a * q1) * (b * q2))",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "sq_pair_diag",
+          "line": 349,
+          "signature": "private theorem sq_pair_diag (a q1 : Int) : (a * a) * (q1 * q1) = (a * q1) * (a * q1) := mul_self_mul_self_comm a q1 private theorem trinom_sq (A B C : Int) : (A + B + C) * (A + B + C) = A * A + B * B + C * C + 2 * (A * B) + 2 * (B * C) + 2 * (C * A)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "trinom_sq",
+          "line": 353,
+          "signature": "private theorem trinom_sq (A B C : Int) : (A + B + C) * (A + B + C) = A * A + B * B + C * C + 2 * (A * B) + 2 * (B * C) + 2 * (C * A)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step4_cauchy_schwarz_3d",
+          "line": 369,
+          "signature": "theorem step4_cauchy_schwarz_3d (p q : Vec3I) : dot3 p q * dot3 p q ≤ normSq3 p * normSq3 q",
+          "premises": [],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step4_gevrey_triad_submultiplicative_sq",
+          "line": 402,
+          "signature": "theorem step4_gevrey_triad_submultiplicative_sq (p q : Vec3I) : (normSq3 (add3 p q) - normSq3 p - normSq3 q) * (normSq3 (add3 p q) - normSq3 p - normSq3 q) ≤ 4 * (normSq3 p * normSq3 q)",
+          "premises": [],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step4_scale_invariant_e0_d0_global_gate",
+          "line": 440,
+          "signature": "theorem step4_scale_invariant_e0_d0_global_gate (kappa2 kappa4 E0 D0_sq kmin nu3 : Int) (hLaw : 27 * ((kappa2 * kappa4) * (E0 * D0_sq)) < 64 * (kmin * (nu3 * nu3))) : (kappa2 * E0) * (27 * (kappa4 * D0_sq)) < (kmin * nu3) * (64 * nu3)",
+          "premises": [
+            "hLaw"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        }
+      ]
+    },
+    {
+      "path": "lean/Step5SpectralVarianceTaoRound4.lean",
+      "count": 17,
+      "declarations": [
+        {
+          "name": "int_sq_nonneg",
+          "line": 48,
+          "signature": "theorem int_sq_nonneg (x : Int) : 0 ≤ x * x",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "int_lt_of_sq_lt_sq",
+          "line": 61,
+          "signature": "theorem int_lt_of_sq_lt_sq (x y : Int) (hx : 0 ≤ x) (hy : 0 < y) (hsq : x * x < y * y) : x < y",
+          "premises": [
+            "hx",
+            "hy",
+            "hsq"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "int_lt_of_pow4_lt_pow4",
+          "line": 69,
+          "signature": "theorem int_lt_of_pow4_lt_pow4 (x y : Int) (hx : 0 ≤ x) (hy : 0 < y) (h4 : (x * x) * (x * x) < (y * y) * (y * y)) : x < y",
+          "premises": [
+            "hx",
+            "hy",
+            "h4"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "mul_self_mul_self_comm",
+          "line": 76,
+          "signature": "theorem mul_self_mul_self_comm (a b : Int) : (a * a) * (b * b) = (a * b) * (a * b)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "mul_coeff_combine",
+          "line": 84,
+          "signature": "theorem mul_coeff_combine (k m x y : Int) : k * ((m * x) * y) = (k * m) * (x * y)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "mul_term_mul_term",
+          "line": 87,
+          "signature": "theorem mul_term_mul_term (k m x y : Int) : (k * x) * (m * y) = (k * m) * (x * y)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "single_mode_shifted_quad",
+          "line": 126,
+          "signature": "private theorem single_mode_shifted_quad (a b m e : Int) : ((a * m - b) * (a * m - b)) * e = (a * a) * ((m * m) * e) - 2 * ((a * b) * (m * e)) + (b * b) * e",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "shifted_quad_expand",
+          "line": 147,
+          "signature": "theorem shifted_quad_expand (a b : Int) (s : List (Int × Int)) : ShiftedQuad a b s = (a * a) * P_mom s - 2 * ((a * b) * D_mom s) + (b * b) * M0 s",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step5_spectral_variance_identity",
+          "line": 168,
+          "signature": "theorem step5_spectral_variance_identity (s : List (Int × Int)) : ShiftedQuad (M0 s) (D_mom s) s = (M0 s) * ((M0 s) * P_mom s - D_mom s * D_mom s)",
+          "premises": [],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "shifted_quad_nonneg",
+          "line": 184,
+          "signature": "theorem shifted_quad_nonneg (a b : Int) (s : List (Int × Int)) (h : AllNonnegEnergy s) : 0 ≤ ShiftedQuad a b s",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step5_cauchy_schwarz_d2_le_m0_p",
+          "line": 204,
+          "signature": "theorem step5_cauchy_schwarz_d2_le_m0_p (s : List (Int × Int)) (h_nn : AllNonnegEnergy s) (h_pos : 0 < M0 s) : D_mom s * D_mom s ≤ M0 s * P_mom s",
+          "premises": [
+            "h_nn",
+            "h_pos"
+          ],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "d_mom_on_shell",
+          "line": 216,
+          "signature": "theorem d_mom_on_shell (m0 : Int) (s : List (Int × Int)) (hs : AllOnShell m0 s) : D_mom s = m0 * M0 s",
+          "premises": [
+            "hs"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "p_mom_on_shell",
+          "line": 229,
+          "signature": "theorem p_mom_on_shell (m0 : Int) (s : List (Int × Int)) (hs : AllOnShell m0 s) : P_mom s = (m0 * m0) * M0 s",
+          "premises": [
+            "hs"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step5_monochromatic_shell_zero_variance",
+          "line": 247,
+          "signature": "theorem step5_monochromatic_shell_zero_variance (m0 : Int) (s : List (Int × Int)) (hs : AllOnShell m0 s) : M0 s * P_mom s - D_mom s * D_mom s = 0",
+          "premises": [
+            "hs"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step5_variance_depleted_palinstrophy_ceiling",
+          "line": 270,
+          "signature": "theorem step5_variance_depleted_palinstrophy_ceiling (kappa nu d p m sig : Int) (hk : 0 ≤ kappa) (hnu : 0 < nu) (hd : 0 ≤ d) (hp : 0 < p) (hm : 0 < m) (hsig : 0 ≤ sig) (hVarCeil : (((kappa * kappa) * (kappa * kappa)) * (((d * d) * (d * d)) * (((d * d) * (d * d)) * ((d * d) * (d * d))))) * ((sig * sig) * (sig * sig)) < (((nu * nu) * (nu * nu)) * ((m * m) * (m * m))) * (((p * p) * (p * p)) * (((p * p) * (p * p)) * ((p * p) * (p * p))))) : (kappa * (d * (d * d))) * (p * sig) - (nu * m) * ((p * p) * (p * p)) < 0",
+          "premises": [
+            "hk",
+            "hnu",
+            "hd",
+            "hp",
+            "hm",
+            "hsig",
+            "hVarCeil"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step5_single_shell_unconditional_decay",
+          "line": 371,
+          "signature": "theorem step5_single_shell_unconditional_decay (kappa nu d p m : Int) (hnu : 0 < nu) (hp : 0 < p) (hm : 0 < m) : (kappa * (d * (d * d))) * (p * 0) - (nu * m) * ((p * p) * (p * p)) < 0",
+          "premises": [
+            "hnu",
+            "hp",
+            "hm"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step5_two_shell_lagrange_variance",
+          "line": 395,
+          "signature": "theorem step5_two_shell_lagrange_variance (m1 e1 m2 e2 : Int) : M0 [(m1, e1), (m2, e2)] * P_mom [(m1, e1), (m2, e2)] - D_mom [(m1, e1), (m2, e2)] * D_mom [(m1, e1), (m2, e2)] = (e1 * e2) * ((m2 - m1) * (m2 - m1))",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        }
+      ]
+    },
+    {
+      "path": "lean/Step6BiotSavartCommutatorRound5.lean",
+      "count": 27,
+      "declarations": [
+        {
+          "name": "int_sq_nonneg",
+          "line": 61,
+          "signature": "theorem int_sq_nonneg (x : Int) : 0 ≤ x * x",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "int_eq_zero_of_sq_eq_zero",
+          "line": 74,
+          "signature": "theorem int_eq_zero_of_sq_eq_zero (x : Int) (h : x * x = 0) : x = 0",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "int_lt_of_sq_lt_sq",
+          "line": 90,
+          "signature": "theorem int_lt_of_sq_lt_sq (x y : Int) (hx : 0 ≤ x) (hy : 0 < y) (hsq : x * x < y * y) : x < y",
+          "premises": [
+            "hx",
+            "hy",
+            "hsq"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "int_lt_of_pow4_lt_pow4",
+          "line": 98,
+          "signature": "theorem int_lt_of_pow4_lt_pow4 (x y : Int) (hx : 0 ≤ x) (hy : 0 < y) (h4 : (x * x) * (x * x) < (y * y) * (y * y)) : x < y",
+          "premises": [
+            "hx",
+            "hy",
+            "h4"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "mul_self_mul_self_comm",
+          "line": 105,
+          "signature": "theorem mul_self_mul_self_comm (a b : Int) : (a * a) * (b * b) = (a * b) * (a * b)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "mul_coeff_combine",
+          "line": 113,
+          "signature": "theorem mul_coeff_combine (k m x y : Int) : k * ((m * x) * y) = (k * m) * (x * y)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "mul_term_mul_term",
+          "line": 116,
+          "signature": "theorem mul_term_mul_term (k m x y : Int) : (k * x) * (m * y) = (k * m) * (x * y)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "single_pair_quad_expand",
+          "line": 140,
+          "signature": "private theorem single_pair_quad_expand (x y a b : Int) : (x * a - y * b) * (x * a - y * b) = (x * x) * (a * a) - 2 * ((x * y) * (a * b)) + (y * y) * (b * b)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "pair_quad_expand",
+          "line": 151,
+          "signature": "theorem pair_quad_expand (x y : Int) (s : List (Int × Int)) : PairQuad x y s = (x * x) * NormASq s - 2 * ((x * y) * Dot s) + (y * y) * NormBSq s",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "pair_quad_nonneg",
+          "line": 167,
+          "signature": "theorem pair_quad_nonneg (x y : Int) (s : List (Int × Int)) : 0 ≤ PairQuad x y s",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "norm_a_sq_nonneg",
+          "line": 179,
+          "signature": "theorem norm_a_sq_nonneg (s : List (Int × Int)) : 0 ≤ NormASq s",
+          "premises": [],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "dot_eq_zero_of_norm_a_sq_zero",
+          "line": 191,
+          "signature": "theorem dot_eq_zero_of_norm_a_sq_zero (s : List (Int × Int)) (h : NormASq s = 0) : Dot s = 0",
+          "premises": [],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "list_dot_sq_le",
+          "line": 213,
+          "signature": "theorem list_dot_sq_le (s : List (Int × Int)) : Dot s * Dot s ≤ NormASq s * NormBSq s",
+          "premises": [],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step6_trace_free_isotropic_diagonal_zero",
+          "line": 272,
+          "signature": "theorem step6_trace_free_isotropic_diagonal_zero (s11 s22 s33 w1 w2 w3 : Int) (htr : s11 + s22 + s33 = 0) (hw12 : w1 * w1 = w2 * w2) (hw23 : w2 * w2 = w3 * w3) : StrainStretch s11 s22 s33 0 0 0 w1 w2 w3 = 0",
+          "premises": [
+            "htr",
+            "hw12",
+            "hw23"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "sq_three_sub",
+          "line": 287,
+          "signature": "private theorem sq_three_sub (x n : Int) : (3 * x - n) * (3 * x - n) = 9 * (x * x) - 6 * (x * n) + n * n",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "trinomial_sq_expand",
+          "line": 296,
+          "signature": "private theorem trinomial_sq_expand (a b c : Int) : (a + b + c) * (a + b + c) = (a * a + b * b + c * c) + 2 * (a * b + a * c + b * c)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step6_trace_free_strain_bound",
+          "line": 315,
+          "signature": "theorem step6_trace_free_strain_bound (s11 s22 s33 s12 s13 s23 w1 w2 w3 : Int) (htr : s11 + s22 + s33 = 0) : 3 * (StrainStretch s11 s22 s33 s12 s13 s23 w1 w2 w3 * StrainStretch s11 s22 s33 s12 s13 s23 w1 w2 w3) ≤ 2 * (StrainFrobSq s11 s22 s33 s12 s13 s23 * (VecNormSq w1 w2 w3 * VecNormSq w1 w2 w3))",
+          "premises": [
+            "htr"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step6_trace_free_moving_ceiling",
+          "line": 412,
+          "signature": "theorem step6_trace_free_moving_ceiling (stretch kappa nu d p : Int) (hstr_nn : 0 ≤ stretch) (hnu : 0 < nu) (hp : 0 < p) (h_tf_bound : 9 * ((stretch * stretch) * (stretch * stretch)) ≤ (((kappa * kappa) * (kappa * kappa)) * (((d * d) * (d * d)) * (((d * d) * (d * d)) * ((d * d) * (d * d))))) * (((p * p) * (p * p)) * (((p * p) * (p * p)) * ((p * p) * (p * p))))) (h_ceil_9x : ((kappa * kappa) * (kappa * kappa)) * (((d * d) * (d * d)) * (((d * d) * (d * d)) * ((d * d) * (d * d)))) < 9 * (((nu * nu) * (nu * nu)) * ((p * p) * (p * p)))) : stretch - nu * ((p * p) * (p * p)) < 0",
+          "premises": [
+            "hstr_nn",
+            "hnu",
+            "hp",
+            "h_tf_bound",
+            "h_ceil_9x"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step6_trace_free_quartic_3_128",
+          "line": 472,
+          "signature": "theorem step6_trace_free_quartic_3_128 (A B C : Int) (h_tf_fourth : 9 * ((C * C) * (C * C)) ≤ (A * A) * (A * A)) : 256 * (C * (B * (B * B))) - 256 * ((B * B) * (B * B)) ≤ 3 * ((A * A) * (A * A))",
+          "premises": [
+            "h_tf_fourth"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step6_biot_savart_collinear_zero",
+          "line": 569,
+          "signature": "theorem step6_biot_savart_collinear_zero (c x1 x2 x3 z1 z2 z3 : Int) : BiotSavartDet x1 x2 x3 (c * x1) (c * x2) (c * x3) z1 z2 z3 = 0",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step6_lagrange_cross_identity",
+          "line": 592,
+          "signature": "theorem step6_lagrange_cross_identity (x1 x2 x3 y1 y2 y3 : Int) : VecNormSq (CrossX x1 x2 x3 y1 y2 y3) (CrossY x1 x2 x3 y1 y2 y3) (CrossZ x1 x2 x3 y1 y2 y3) + (x1 * y1 + x2 * y2 + x3 * y3) * (x1 * y1 + x2 * y2 + x3 * y3) = VecNormSq x1 x2 x3 * VecNormSq y1 y2 y3",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step6_biot_savart_gram_bound",
+          "line": 636,
+          "signature": "theorem step6_biot_savart_gram_bound (x1 x2 x3 y1 y2 y3 z1 z2 z3 : Int) : BiotSavartDet x1 x2 x3 y1 y2 y3 z1 z2 z3 * BiotSavartDet x1 x2 x3 y1 y2 y3 z1 z2 z3 ≤ VecNormSq z1 z2 z3 * (VecNormSq x1 x2 x3 * VecNormSq y1 y2 y3 - (x1 * y1 + x2 * y2 + x3 * y3) * (x1 * y1 + x2 * y2 + x3 * y3))",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step6_cf_equal_norm_chord_depletion",
+          "line": 670,
+          "signature": "theorem step6_cf_equal_norm_chord_depletion (x1 x2 x3 y1 y2 y3 z1 z2 z3 R : Int) (hx : VecNormSq x1 x2 x3 = R) (hy : VecNormSq y1 y2 y3 = R) : BiotSavartDet x1 x2 x3 y1 y2 y3 z1 z2 z3 * BiotSavartDet x1 x2 x3 y1 y2 y3 z1 z2 z3 ≤ VecNormSq z1 z2 z3 * (R * VecNormSq (x1 - y1) (x2 - y2) (x3 - y3))",
+          "premises": [
+            "hx",
+            "hy"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step6_lattice_chord_identity",
+          "line": 723,
+          "signature": "theorem step6_lattice_chord_identity (p1 p2 p3 q1 q2 q3 : Int) : VecNormSq (q1 + p1) (q2 + p2) (q3 + p3) - VecNormSq q1 q2 q3 = 2 * (p1 * q1 + p2 * q2 + p3 * q3) + VecNormSq p1 p2 p3",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step6_odd_whale_chord_impossible",
+          "line": 742,
+          "signature": "theorem step6_odd_whale_chord_impossible (p1 p2 p3 q1 q2 q3 : Int) (h_odd : VecNormSq p1 p2 p3 % 2 = 1) : VecNormSq (q1 + p1) (q2 + p2) (q3 + p3) ≠ VecNormSq q1 q2 q3",
+          "premises": [
+            "h_odd"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step6_bimodal_commutator_viscous_gate",
+          "line": 761,
+          "signature": "theorem step6_bimodal_commutator_viscous_gate (prod nu m1 m2 F0L dH : Int) (hnu : 0 < nu) (hm2 : 0 < m2) (hdH : 0 < dH) (h_comm_bound : 3 * ((m2 * m2) * (prod * prod)) ≤ (((m2 - m1) * (m2 - m1)) * (m1 * (F0L * F0L))) * (dH * dH)) (h_visc_dom : ((m2 - m1) * (m2 - m1)) * (m1 * (F0L * F0L)) < 3 * ((nu * nu) * ((m2 * m2) * (m2 * m2)))) : prod - nu * (m2 * dH) < 0",
+          "premises": [
+            "hnu",
+            "hm2",
+            "hdH",
+            "h_comm_bound",
+            "h_visc_dom"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step6_broadband_commutator_sweeping_decoupling",
+          "line": 841,
+          "signature": "theorem step6_broadband_commutator_sweeping_decoupling (comm_prod self_prod nu m_cut F1L kap dH pH : Int) (hcomm_nn : 0 ≤ comm_prod) (hself_nn : 0 ≤ self_prod) (hnu : 0 < nu) (hm_cut : 0 < m_cut) (hdH : 0 < dH) (hpH : 0 < pH) (h_poincare : m_cut * ((dH * dH) * (dH * dH)) ≤ (pH * pH) * (pH * pH)) (h_comm_bound : 3 * (comm_prod * comm_prod) ≤ (F1L * F1L) * (((dH * dH) * (dH * dH)) * ((dH * dH) * (dH * dH)))) (h_self_bound : 9 * ((self_prod * self_prod) * (self_prod * self_prod)) ≤ (((kap * kap) * (kap * kap)) * (((dH * dH) * (dH * dH)) * (((dH * dH) * (dH * dH)) * ((dH * dH) * (dH * dH))))) * (((pH * pH) * (pH * pH)) * (((pH * pH) * (pH * pH)) * ((pH * pH) * (pH * pH))))) (h_low_strain_gate : 4 * (F1L * F1L) < 3 * ((nu * nu) * (m_cut * m_cut))) (h_high_self_gate : 16 * (((kap * kap) * (kap * kap)) * (((dH * dH) * (dH * dH)) * (((dH * dH) * (dH * dH)) * ((dH * dH) * (dH * dH))))) < 9 * (((nu * nu) * (nu * nu)) * ((pH * pH) * (pH * pH)))) : 2 * (comm_prod + self_prod) - 2 * (nu * ((pH * pH) * (pH * pH))) < 0",
+          "premises": [
+            "hcomm_nn",
+            "hself_nn",
+            "hnu",
+            "hm_cut",
+            "hdH",
+            "hpH",
+            "h_poincare",
+            "h_comm_bound",
+            "h_self_bound",
+            "h_low_strain_gate",
+            "h_high_self_gate"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        }
+      ]
+    },
+    {
+      "path": "lean/Step7VorticityDirectionPdeRound6.lean",
+      "count": 36,
+      "declarations": [
+        {
+          "name": "int_sq_nonneg",
+          "line": 72,
+          "signature": "theorem int_sq_nonneg (x : Int) : 0 ≤ x * x",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "int_eq_zero_of_sq_eq_zero",
+          "line": 85,
+          "signature": "theorem int_eq_zero_of_sq_eq_zero (x : Int) (h : x * x = 0) : x = 0",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "int_lt_of_sq_lt_sq",
+          "line": 101,
+          "signature": "theorem int_lt_of_sq_lt_sq (x y : Int) (hx : 0 ≤ x) (hy : 0 < y) (hsq : x * x < y * y) : x < y",
+          "premises": [
+            "hx",
+            "hy",
+            "hsq"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "int_lt_of_pow4_lt_pow4",
+          "line": 109,
+          "signature": "theorem int_lt_of_pow4_lt_pow4 (x y : Int) (hx : 0 ≤ x) (hy : 0 < y) (h4 : (x * x) * (x * x) < (y * y) * (y * y)) : x < y",
+          "premises": [
+            "hx",
+            "hy",
+            "h4"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "mul_self_mul_self_comm",
+          "line": 116,
+          "signature": "theorem mul_self_mul_self_comm (a b : Int) : (a * a) * (b * b) = (a * b) * (a * b)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "mul_coeff_combine",
+          "line": 124,
+          "signature": "theorem mul_coeff_combine (k m x y : Int) : k * ((m * x) * y) = (k * m) * (x * y)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "mul_term_mul_term",
+          "line": 127,
+          "signature": "theorem mul_term_mul_term (k m x y : Int) : (k * x) * (m * y) = (k * m) * (x * y)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "binomial_sq_expand",
+          "line": 134,
+          "signature": "theorem binomial_sq_expand (x y : Int) : (x + y) * (x + y) = x * x + 2 * (x * y) + y * y",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "binomial_sub_sq_expand",
+          "line": 138,
+          "signature": "theorem binomial_sub_sq_expand (x y : Int) : (x - y) * (x - y) = x * x - 2 * (x * y) + y * y",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "trinomial_sq_expand",
+          "line": 142,
+          "signature": "theorem trinomial_sq_expand (a b c : Int) : (a + b + c) * (a + b + c) = (a * a + b * b + c * c) + 2 * (a * b + a * c + b * c)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "single_pair_quad_expand",
+          "line": 170,
+          "signature": "private theorem single_pair_quad_expand (x y a b : Int) : (x * a - y * b) * (x * a - y * b) = (x * x) * (a * a) - 2 * ((x * y) * (a * b)) + (y * y) * (b * b)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "pair_quad_expand",
+          "line": 181,
+          "signature": "theorem pair_quad_expand (x y : Int) (s : List (Int × Int)) : PairQuad x y s = (x * x) * NormASq s - 2 * ((x * y) * Dot s) + (y * y) * NormBSq s",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "pair_quad_nonneg",
+          "line": 197,
+          "signature": "theorem pair_quad_nonneg (x y : Int) (s : List (Int × Int)) : 0 ≤ PairQuad x y s",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "norm_a_sq_nonneg",
+          "line": 209,
+          "signature": "theorem norm_a_sq_nonneg (s : List (Int × Int)) : 0 ≤ NormASq s",
+          "premises": [],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "dot_eq_zero_of_norm_a_sq_zero",
+          "line": 221,
+          "signature": "theorem dot_eq_zero_of_norm_a_sq_zero (s : List (Int × Int)) (h : NormASq s = 0) : Dot s = 0",
+          "premises": [],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "list_dot_sq_le",
+          "line": 239,
+          "signature": "theorem list_dot_sq_le (s : List (Int × Int)) : Dot s * Dot s ≤ NormASq s * NormBSq s",
+          "premises": [],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "lagrange_3d_identity",
+          "line": 287,
+          "signature": "theorem lagrange_3d_identity (x1 x2 x3 y1 y2 y3 : Int) : VecDot x1 x2 x3 y1 y2 y3 * VecDot x1 x2 x3 y1 y2 y3 + VecNormSq (CrossX x1 x2 x3 y1 y2 y3) (CrossY x1 x2 x3 y1 y2 y3) (CrossZ x1 x2 x3 y1 y2 y3) = VecNormSq x1 x2 x3 * VecNormSq y1 y2 y3",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step7_polar_palinstrophy_lagrange_splitting",
+          "line": 351,
+          "signature": "theorem step7_polar_palinstrophy_lagrange_splitting (w1 w2 w3 j11 j21 j31 j12 j22 j32 j13 j23 j33 : Int) : PolarAmpTerm w1 w2 w3 j11 j21 j31 j12 j22 j32 j13 j23 j33 + PolarDirTerm w1 w2 w3 j11 j21 j31 j12 j22 j32 j13 j23 j33 = VecNormSq w1 w2 w3 * JacFrobSq j11 j21 j31 j12 j22 j32 j13 j23 j33",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step7_kato_inequality_with_exact_curvature_deficit",
+          "line": 374,
+          "signature": "theorem step7_kato_inequality_with_exact_curvature_deficit (w1 w2 w3 j11 j21 j31 j12 j22 j32 j13 j23 j33 : Int) : 0 ≤ PolarDirTerm w1 w2 w3 j11 j21 j31 j12 j22 j32 j13 j23 j33 ∧ PolarAmpTerm w1 w2 w3 j11 j21 j31 j12 j22 j32 j13 j23 j33 ≤ VecNormSq w1 w2 w3 * JacFrobSq j11 j21 j31 j12 j22 j32 j13 j23 j33",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step7_s2_harmonic_laplacian_orthogonality",
+          "line": 401,
+          "signature": "theorem step7_s2_harmonic_laplacian_orthogonality (x1 x2 x3 lx ly lz g2 R : Int) (h_sphere : VecNormSq x1 x2 x3 = R) (h_second_deriv : VecDot x1 x2 x3 lx ly lz = -g2) : VecDot x1 x2 x3 (R * lx + g2 * x1) (R * ly + g2 * x2) (R * lz + g2 * x3) = 0",
+          "premises": [
+            "h_sphere",
+            "h_second_deriv"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "sq_three_sub",
+          "line": 437,
+          "signature": "private theorem sq_three_sub (x n : Int) : (3 * x - n) * (3 * x - n) = 9 * (x * x) - 6 * (x * n) + n * n",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "trace_free_strain_bound_helper",
+          "line": 446,
+          "signature": "theorem trace_free_strain_bound_helper (s11 s22 s33 s12 s13 s23 w1 w2 w3 : Int) (htr : s11 + s22 + s33 = 0) : 3 * (SymStrainStretch s11 s22 s33 s12 s13 s23 w1 w2 w3 * SymStrainStretch s11 s22 s33 s12 s13 s23 w1 w2 w3) ≤ 2 * (SymStrainFrobSq s11 s22 s33 s12 s13 s23 * (VecNormSq w1 w2 w3 * VecNormSq w1 w2 w3))",
+          "premises": [
+            "htr"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step7_vorticity_peak_drift_vanishes_and_curvature_crushes",
+          "line": 540,
+          "signature": "theorem step7_vorticity_peak_drift_vanishes_and_curvature_crushes (s11 s22 s33 s12 s13 s23 x1 x2 x3 : Int) (grad_om_x grad_om_y grad_om_z d1_xi d2_xi d3_xi : Int) (nu R g2 lap_om : Int) (h_trace_free : s11 + s22 + s33 = 0) (h_peak_grad_zero : grad_om_x = 0 ∧ grad_om_y = 0 ∧ grad_om_z = 0) (h_peak_lap_nonpos : lap_om ≤ 0) (h_nu_pos : 0 < nu) (h_R_pos : 0 < R) (h_g2_pos : 0 < g2) (h_sphere : VecNormSq x1 x2 x3 = R) (h_curv_gate : 2 * (SymStrainFrobSq s11 s22 s33 s12 s13 s23 * (R * R)) < 3 * ((nu * (R * g2)) * (nu * (R * g2)))) : (-2 * nu * VecDot grad_om_x grad_om_y grad_om_z d1_xi d2_xi d3_xi = 0) ∧ (SymStrainStretch s11 s22 s33 s12 s13 s23 x1 x2 x3 + nu * (R * lap_om) - nu * (R * g2) < 0)",
+          "premises": [
+            "h_trace_free",
+            "h_peak_grad_zero",
+            "h_peak_lap_nonpos",
+            "h_nu_pos",
+            "h_R_pos",
+            "h_g2_pos",
+            "h_sphere",
+            "h_curv_gate"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "quartic_sos_identity",
+          "line": 585,
+          "signature": "theorem quartic_sos_identity (a b : Int) : ((a - b) * (a - b)) * (((a + b) * (a + b)) + 2 * (b * b)) = (a * a) * (a * a) + 3 * ((b * b) * (b * b)) - 4 * (a * (b * (b * b)))",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "young_quartic_four_le",
+          "line": 627,
+          "signature": "theorem young_quartic_four_le (a b : Int) : 4 * (a * (b * (b * b))) ≤ (a * a) * (a * a) + 3 * ((b * b) * (b * b))",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "young_quartic_27_256_sos",
+          "line": 637,
+          "signature": "theorem young_quartic_27_256_sos (A B : Int) : 256 * (A * (B * (B * B))) - 256 * ((B * B) * (B * B)) ≤ 27 * ((A * A) * (A * A))",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step7_polar_curvature_ceiling_widening",
+          "line": 666,
+          "signature": "theorem step7_polar_curvature_ceiling_widening (stretch nu C4 D P_amp P_dir : Int) (h_nu_pos : 0 < nu) (h_Pamp_nn : 0 ≤ P_amp) (h_Pdir_nn : 0 ≤ P_dir) (h_P_pos : 0 < P_amp + P_dir) (h_amp_stretch_bound : 9 * ((stretch * stretch) * (stretch * stretch)) ≤ (C4 * (D * (D * D))) * (P_amp * (P_amp * P_amp))) (h_polar_ceiling_gate : (C4 * (D * (D * D))) * (P_amp * (P_amp * P_amp)) < 9 * (((nu * (P_amp + P_dir)) * (nu * (P_amp + P_dir))) * ((nu * (P_amp + P_dir)) * (nu * (P_amp + P_dir))))) : stretch - nu * (P_amp + P_dir) < 0",
+          "premises": [
+            "h_nu_pos",
+            "h_Pamp_nn",
+            "h_Pdir_nn",
+            "h_P_pos",
+            "h_amp_stretch_bound",
+            "h_polar_ceiling_gate"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step7_polar_curvature_cubic_quartic_depletion",
+          "line": 706,
+          "signature": "theorem step7_polar_curvature_cubic_quartic_depletion (A_amp nu P_amp1 P_dir : Int) : 128 * (nu * (nu * nu)) * (2 * (A_amp * (P_amp1 * (P_amp1 * P_amp1))) - 2 * (nu * ((P_amp1 * P_amp1) * (P_amp1 * P_amp1) + P_dir))) ≤ 27 * ((A_amp * A_amp) * (A_amp * A_amp)) - 256 * (((nu * nu) * (nu * nu)) * P_dir)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "z3_parallelogram_law",
+          "line": 777,
+          "signature": "theorem z3_parallelogram_law (px py pz qx qy qz : Int) : VecNormSq (px + qx) (py + qy) (pz + qz) + VecNormSq (px - qx) (py - qy) (pz - qz) = 2 * VecNormSq px py pz + 2 * VecNormSq qx qy qz",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step7_bony_adjacent_collar_localization",
+          "line": 793,
+          "signature": "theorem step7_bony_adjacent_collar_localization (px py pz qx qy qz M_cut : Int) (hp_low : VecNormSq px py pz ≤ M_cut) (hq_low : VecNormSq qx qy qz ≤ M_cut) (h_spill : M_cut < VecNormSq (px + qx) (py + qy) (pz + qz)) : VecNormSq (px + qx) (py + qy) (pz + qz) ≤ 4 * M_cut ∧ (M_cut < 4 * VecNormSq px py pz ∨ M_cut < 4 * VecNormSq qx qy qz)",
+          "premises": [
+            "hp_low",
+            "hq_low",
+            "h_spill"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step7_zero_gap_sweeping_symmetric_strain_reduction",
+          "line": 821,
+          "signature": "theorem step7_zero_gap_sweeping_symmetric_strain_reduction (g11 g12 g13 g21 g22 g23 g31 g32 g33 m11 m22 m33 m12 m13 m23 : Int) : 2 * (g11 * m11 + g12 * m12 + g13 * m13 + g21 * m12 + g22 * m22 + g23 * m23 + g31 * m13 + g32 * m23 + g33 * m33) = 2 * (g11 * m11) + 2 * (g22 * m22) + 2 * (g33 * m33) + 2 * ((g12 + g21) * m12) + 2 * ((g13 + g31) * m13) + 2 * ((g23 + g32) * m23)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step7_zero_gap_bony_paraproduct_uv_gate",
+          "line": 835,
+          "signature": "theorem step7_zero_gap_bony_paraproduct_uv_gate (T_LL T_lin T_HH kap nu D4 P4 : Int) (h_nu_pos : 0 < nu) (h_P4_pos : 0 < P4) (h_THH_nn : 0 ≤ T_HH) (h_collar_gate : 16 * (T_LL * T_LL) < (nu * ((P4 * P4) * (P4 * P4))) * (nu * ((P4 * P4) * (P4 * P4)))) (h_lin_gate : 2 * T_lin ≤ nu * ((P4 * P4) * (P4 * P4))) (h_self_bound : 9 * ((T_HH * T_HH) * (T_HH * T_HH)) ≤ (((kap * kap) * (kap * kap)) * (D4 * (D4 * D4))) * (((P4 * P4) * (P4 * P4)) * (((P4 * P4) * (P4 * P4)) * ((P4 * P4) * (P4 * P4))))) (h_self_gate : 256 * (((kap * kap) * (kap * kap)) * (D4 * (D4 * D4))) < 9 * (((nu * nu) * (nu * nu)) * ((P4 * P4) * (P4 * P4)))) : 4 * (T_LL + T_lin + T_HH - nu * ((P4 * P4) * (P4 * P4))) < 0",
+          "premises": [
+            "h_nu_pos",
+            "h_P4_pos",
+            "h_THH_nn",
+            "h_collar_gate",
+            "h_lin_gate",
+            "h_self_bound",
+            "h_self_gate"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step7_holder_half_cone_biot_savart_bound",
+          "line": 938,
+          "signature": "theorem step7_holder_half_cone_biot_savart_bound (x1 x2 x3 y1 y2 y3 z1 z2 z3 R K_xi d1 : Int) (hx : VecNormSq x1 x2 x3 = R) (hy : VecNormSq y1 y2 y3 = R) (h_R_nn : 0 ≤ R) (h_holder_cone : VecNormSq (x1 - y1) (x2 - y2) (x3 - y3) ≤ K_xi * d1) : BiotSavartDet x1 x2 x3 y1 y2 y3 z1 z2 z3 * BiotSavartDet x1 x2 x3 y1 y2 y3 z1 z2 z3 ≤ VecNormSq z1 z2 z3 * (R * (K_xi * d1))",
+          "premises": [
+            "hx",
+            "hy",
+            "h_R_nn",
+            "h_holder_cone"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step7_holder_half_quadratic_d3_to_d2_reduction",
+          "line": 1008,
+          "signature": "theorem step7_holder_half_quadratic_d3_to_d2_reduction (C_star kh D g nu P_dir : Int) : 2 * nu * (2 * ((C_star * kh) * (D * g)) - 2 * (nu * (g * g + P_dir))) ≤ ((C_star * kh) * D) * ((C_star * kh) * D) - 4 * ((nu * nu) * P_dir)",
+          "premises": [],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "pow2_pos",
+          "line": 1069,
+          "signature": "theorem pow2_pos (k : Nat) : 0 < Pow2 k",
+          "premises": [],
+          "has_explicit_int": false,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        },
+        {
+          "name": "step7_leray_quadratic_doubling_closure",
+          "line": 1087,
+          "signature": "theorem step7_leray_quadratic_doubling_closure {M d0 dfinal : Int} {K : Nat} (h_M_pos : 0 < M) (hchain : LerayDoublingChain M K d0 dfinal) : dfinal ≤ Pow2 K * d0",
+          "premises": [
+            "h_M_pos",
+            "hchain"
+          ],
+          "has_explicit_int": true,
+          "has_abstract_R": false,
+          "has_real_analytic": false
+        }
+      ]
+    }
+  ]
+}

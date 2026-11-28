@@ -1,0 +1,67 @@
+name: RHD-05 pinned geometric and theta-lift premises
+
+on:
+  push:
+    paths:
+      - 'research/rh_proof_distillation/galois_row_deep_audit.py'
+      - 'research/rh_proof_distillation/GEOMETRY_THETA_DEEP_GATES.md'
+      - 'tests/test_rhd05_geometric_gates.py'
+      - '.github/workflows/rhd05-geometric-premises.yml'
+  pull_request:
+    paths:
+      - 'research/rh_proof_distillation/galois_row_deep_audit.py'
+      - 'research/rh_proof_distillation/GEOMETRY_THETA_DEEP_GATES.md'
+      - 'tests/test_rhd05_geometric_gates.py'
+      - '.github/workflows/rhd05-geometric-premises.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-attested-premises:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: mathcan
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: leanprover-community/riemann-hypothesis
+          ref: f150e02623b1e2bbe1f1da8eab5ffee5e930a6a3
+          path: upstream
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/IntegralStructures/GeometricFlagBases/MapInvMul.lean
+            src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/IntegralStructures/GeometricFlagBases/PackExOf.lean
+            src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/IntegralStructures/GeometricFlagBases/StepsMain.lean
+            src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/IntegralStructures/GeometricFlagBases/WeightOneGeometricRealization.lean
+            src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/IntegralStructures/GeometricFlagBases/PrimeLevelLocalization/ExistsUnitaryGroupDatumOfVectorExponentSpectral.lean
+            src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/IntegralStructures/GeometricFlagBases/PrimeLevelLocalization/SpecTopHolds.lean
+            src/Development/AbelianVarietyTheory/Proofs/SatakeParameters/LefschetzFixedPointFiniteEtaleCorrespondence.lean
+            src/Development/AutomorphicArithmetic/Foundations/EtaleClopenDescent/LefschetzFixedPointFiniteEtaleCorrespondence.lean
+            src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/LefschetzSigmaSums/KsHodgeOfGeo.lean
+            src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/TPGTop.lean
+            src/Development/AutomorphicArithmetic/Foundations/GaloisRepresentations/ThetaParseval/ThetaKernels/TPGHolds.lean
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test mutation controls and proof-field shapes
+        working-directory: mathcan
+        run: python -m unittest tests.test_rhd05_geometric_gates -v
+      - name: Audit exact upstream Git blobs and supplier interfaces
+        working-directory: mathcan
+        run: |
+          mkdir -p rhd05
+          python -m research.rh_proof_distillation.galois_row_deep_audit \
+            --upstream ../upstream \
+            --output rhd05/deep_geometric_theta_gates.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rhd05-geometric-theta-source-receipts
+          path: mathcan/rhd05/
+          if-no-files-found: ignore

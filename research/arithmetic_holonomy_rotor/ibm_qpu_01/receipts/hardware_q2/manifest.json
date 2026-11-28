@@ -1,0 +1,880 @@
+{
+  "protocol": "ahr-qpu-01",
+  "prepared_utc": "2026-11-23T08:33:52+00:00",
+  "evidence": "simulation only",
+  "target_type": "live_snapshot",
+  "backend": "ibm_fez",
+  "physical_pair_xy": [
+    9,
+    10
+  ],
+  "calibration_timestamp": "2026-11-23T16:03:41+08:00",
+  "calibration_id": null,
+  "calibration_sha256": "df4addccd217d66fcb7524fb5762f1b260b502b9a397d9bc304c46705da99d69",
+  "qpy_sha256": "a0c68c6905894fd44ffd8930dc922196bc734b1193b45c591c2607430e948a45",
+  "selected_synthesis": "exact",
+  "synthesis_bakeoff": {
+    "exact": {
+      "sum_depth": 596,
+      "max_depth": 20,
+      "sum_two_qubit_gates": 76,
+      "max_absolute_probability_error": 3.469446951953614e-15,
+      "primary_absolute_harmonic_error": 2.0206364052201326e-16,
+      "eligible": true
+    },
+    "suzuki_2": {
+      "sum_depth": 608,
+      "max_depth": 20,
+      "sum_two_qubit_gates": 80,
+      "max_absolute_probability_error": 0.23378150051851754,
+      "primary_absolute_harmonic_error": 0.09123730579880439,
+      "eligible": false
+    },
+    "suzuki_4": {
+      "sum_depth": 720,
+      "max_depth": 20,
+      "sum_two_qubit_gates": 108,
+      "max_absolute_probability_error": 0.0568418846382035,
+      "primary_absolute_harmonic_error": 0.02215876829106222,
+      "eligible": false
+    },
+    "suzuki_8": {
+      "sum_depth": 720,
+      "max_depth": 20,
+      "sum_two_qubit_gates": 108,
+      "max_absolute_probability_error": 0.013946681376218573,
+      "primary_absolute_harmonic_error": 0.005465456909370463,
+      "eligible": false
+    }
+  },
+  "case_order": [
+    "reference_t1.2_q3",
+    "matched_detuning_t1.6_q2",
+    "reversed_t1.6_q3",
+    "tree_t1.6_q0",
+    "signal_t1.2_q1",
+    "reversed_t1.6_q1",
+    "signal_t0.8_q2",
+    "reference_t1.2_q1",
+    "tree_t1.6_q1",
+    "signal_t0.8_q1",
+    "signal_t1.6_q3",
+    "reversed_t1.6_q0",
+    "reference_t0.8_q1",
+    "signal_t1.6_q0",
+    "signal_t1.2_q0",
+    "signal_t0.8_q3",
+    "tree_t1.6_q3",
+    "reference_t1.2_q0",
+    "reference_t0.8_q0",
+    "signal_t1.6_q1",
+    "reference_t0.8_q3",
+    "signal_t1.2_q3",
+    "tree_t1.6_q2",
+    "signal_t1.6_q2",
+    "matched_detuning_t1.6_q1",
+    "reference_t0.8_q2",
+    "reference_t1.6_q0",
+    "signal_t0.8_q0",
+    "reference_t1.6_q2",
+    "reversed_t1.6_q2",
+    "reference_t1.6_q1",
+    "signal_t1.2_q2",
+    "reference_t1.2_q2",
+    "matched_detuning_t1.6_q0",
+    "reference_t1.6_q3",
+    "matched_detuning_t1.6_q3"
+  ],
+  "cases": [
+    {
+      "id": "reference_t1.2_q3",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 3,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.90238898038469
+    },
+    {
+      "id": "matched_detuning_t1.6_q2",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793
+    },
+    {
+      "id": "reversed_t1.6_q3",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.17238898038469
+    },
+    {
+      "id": "tree_t1.6_q0",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999
+    },
+    {
+      "id": "signal_t1.2_q1",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965
+    },
+    {
+      "id": "reversed_t1.6_q1",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.0307963267948965
+    },
+    {
+      "id": "signal_t0.8_q2",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793
+    },
+    {
+      "id": "reference_t1.2_q1",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 1,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.7607963267948965
+    },
+    {
+      "id": "tree_t1.6_q1",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965
+    },
+    {
+      "id": "signal_t0.8_q1",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965
+    },
+    {
+      "id": "signal_t1.6_q3",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469
+    },
+    {
+      "id": "reversed_t1.6_q0",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": -0.54
+    },
+    {
+      "id": "reference_t0.8_q1",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 1,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.7607963267948965
+    },
+    {
+      "id": "signal_t1.6_q0",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999
+    },
+    {
+      "id": "signal_t1.2_q0",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999
+    },
+    {
+      "id": "signal_t0.8_q3",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469
+    },
+    {
+      "id": "tree_t1.6_q3",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469
+    },
+    {
+      "id": "reference_t1.2_q0",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 0,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.19
+    },
+    {
+      "id": "reference_t0.8_q0",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 0,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.19
+    },
+    {
+      "id": "signal_t1.6_q1",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965
+    },
+    {
+      "id": "reference_t0.8_q3",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 3,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.90238898038469
+    },
+    {
+      "id": "signal_t1.2_q3",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469
+    },
+    {
+      "id": "tree_t1.6_q2",
+      "arm": "tree",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793
+    },
+    {
+      "id": "signal_t1.6_q2",
+      "arm": "signal",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793
+    },
+    {
+      "id": "matched_detuning_t1.6_q1",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.4907963267948965
+    },
+    {
+      "id": "reference_t0.8_q2",
+      "arm": "reference",
+      "time": 0.8,
+      "quadrant": 2,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 3.331592653589793
+    },
+    {
+      "id": "reference_t1.6_q0",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.19
+    },
+    {
+      "id": "signal_t0.8_q0",
+      "arm": "signal",
+      "time": 0.8,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999
+    },
+    {
+      "id": "reference_t1.6_q2",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 3.331592653589793
+    },
+    {
+      "id": "reversed_t1.6_q2",
+      "arm": "reversed",
+      "time": 1.6,
+      "quadrant": 2,
+      "theta": -0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 2.601592653589793
+    },
+    {
+      "id": "reference_t1.6_q1",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 1,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 1.7607963267948965
+    },
+    {
+      "id": "signal_t1.2_q2",
+      "arm": "signal",
+      "time": 1.2,
+      "quadrant": 2,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.061592653589793
+    },
+    {
+      "id": "reference_t1.2_q2",
+      "arm": "reference",
+      "time": 1.2,
+      "quadrant": 2,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 3.331592653589793
+    },
+    {
+      "id": "matched_detuning_t1.6_q0",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 0,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 0.9199999999999999
+    },
+    {
+      "id": "reference_t1.6_q3",
+      "arm": "reference",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0,
+      "energy": [
+        0.0,
+        0.6931471805599453,
+        1.0986122886681098,
+        1.791759469228055
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 4.90238898038469
+    },
+    {
+      "id": "matched_detuning_t1.6_q3",
+      "arm": "matched_detuning",
+      "time": 1.6,
+      "quadrant": 3,
+      "theta": 0.73,
+      "energy": [
+        0.0,
+        1.791759469228055,
+        1.0986122886681098,
+        0.6931471805599453
+      ],
+      "mask": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "reference_offset": 0.19,
+      "programmed_phase": 5.63238898038469
+    }
+  ],
+  "primary": {
+    "signal": "signal_t1.6",
+    "reference": "reference_t1.6",
+    "per_setting_shots": 2048,
+    "systematic_floor_per_component": 0.003
+  },
+  "seeds": {
+    "transpiler": 314159,
+    "case_order": 144739,
+    "monte_carlo": 20261123,
+    "aer": 271828
+  },
+  "monte_carlo_replicates_per_configuration": 2500,
+  "budget": {
+    "2048": {
+      "circuits": 36,
+      "shots_per_circuit": 2048,
+      "shots_total": 73728,
+      "serial_gate_measure_reset_allowance_s": 37.140987904,
+      "overhead_allowance_s": 60,
+      "required_free_qpu_seconds": 98,
+      "unknown_instruction_durations": []
+    },
+    "8192": {
+      "circuits": 36,
+      "shots_per_circuit": 8192,
+      "shots_total": 294912,
+      "serial_gate_measure_reset_allowance_s": 148.563951616,
+      "overhead_allowance_s": 60,
+      "required_free_qpu_seconds": 209,
+      "unknown_instruction_durations": []
+    }
+  },
+  "calibration_sha256_as_prepared": "d804a12a40f94d61f6f9b7f9690abd15aea626cceb41a7cdd29a7d228a81047f"
+}

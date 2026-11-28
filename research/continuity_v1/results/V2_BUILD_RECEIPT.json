@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-20",
+  "errors": 0,
+  "failures": 0,
+  "gpu_used": false,
+  "lean_kernel_checked": false,
+  "lean_reason": "Lean toolchain absent from local environment; lean-action CI job included",
+  "pass_count": 28,
+  "python_version": "3.13.5",
+  "schema": "selfmodels.continuity.v2.build-receipt",
+  "skipped_count": 1,
+  "skipped_reason": "Full NafsProbe source is unavailable in this isolated package; actual source compatibility test runs after patch applies to SelfModels",
+  "source_sha256": {
+    "research/continuity_v1/README.md": "8c8360586ec09e4290922c60821a6950ada393062c6514bd011fa07aa8d3af4e",
+    "research/continuity_v1/THEOREMS.md": "37e8c8cfbde85740923d4f137dae9a4991060d6ca816a89a16f9e92b3663c911",
+    "research/continuity_v1/core.py": "74776ee653457fd133d88e26f33841435a8c870bcbf58d3056b7e7b4f3d63cc3",
+    "research/continuity_v1/formal/ContinuityV1.lean": "e3db143e8484acbec95207ec7f7e94e9cb422343d36456aa2dca889ef97bec28",
+    "research/continuity_v1/formal/README.md": "a086aa1f80c3c99ed60b4458e27bbf8ae75f14717cbf0e1902773c1e0d280ad9",
+    "research/continuity_v1/formal/lakefile.toml": "a2c25b6bb1cc27b29debaccbcc6554aa5d2a881e529df84085b6216d4af0f40e",
+    "research/continuity_v1/nafsprobe_bridge.py": "7b229e384d87556cba8a1ed801b1d6d50ad605547fb1eb88aef7f7ee5d56d9e5",
+    "research/continuity_v1/nafsprobe_sidecar.py": "451c0f0ab8336ba54fe849a3c2678c41b76f24174aadf556552f56d8d0fcf700",
+    "research/continuity_v1/results/EXACT_CPU_RECEIPT.json": "740cd0fb39f69a60ece4391eb6847a419baa5ff06525808c038933d37362faad",
+    "research/continuity_v1/tests/test_core.py": "23f4bbcf6cf6db3b8368662912db0d82eebad2713b7d55052c12351c1f99f9a7",
+    "research/continuity_v1/tests/test_nafsprobe_bridge.py": "bad8693a38258de3601e542c09c9901108dcc434aac96f488227ae508c726807",
+    "research/continuity_v1/tests/test_nafsprobe_sidecar.py": "27c18738cea520f76ff48882b84f038ef7e4e0f534f4db6970ad46a950be04bf"
+  },
+  "test_count": 29
+}

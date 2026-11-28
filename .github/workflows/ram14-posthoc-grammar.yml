@@ -1,0 +1,59 @@
+name: RAM-14 posthoc structural Nat-induction grammar proof audit
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-diagnostic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    steps:
+      - name: Checkout RAM14 source and frozen registration
+        uses: actions/checkout@v4
+      - name: Checkout exact public MathCan source whose original proofs are replaced
+        uses: actions/checkout@v4
+        with:
+          repository: patrickdugan/MathCan
+          ref: f427e0ef4a61093304d12ca2c0dc943d8d2429e5
+          path: _mathcan_original
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Run isolated source-only grammar unit tests before native checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest discover -s research/ram14 -p 'test_*.py' -v
+      - name: Build pinned original MathCan sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C _mathcan_original rev-parse HEAD)" = f427e0ef4a61093304d12ca2c0dc943d8d2429e5
+          test "$(cat _mathcan_original/lean-toolchain)" = leanprover/lean4:v4.35.0
+          (cd _mathcan_original && lake build MathCan)
+      - name: Evaluate source-only generated tactics against both previously failed Gramian sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          python research/ram14/diagnose.py \
+            --mathcan _mathcan_original \
+            --out "$RUNNER_TEMP/ram14_posthoc"
+      - name: Archive all generated original theorem sources, failed compiler logs, and paired proof certificates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ram14-posthoc-structural-grammar-${{ github.run_id }}
+          path: ${{ runner.temp }}/ram14_posthoc/
+          retention-days: 30
+          if-no-files-found: warn

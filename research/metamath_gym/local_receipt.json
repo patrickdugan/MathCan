@@ -1,0 +1,20 @@
+{
+  "schema": "mm-gym-01-v1",
+  "cases": 102,
+  "split_counts": {
+    "train": 6,
+    "dev": 16,
+    "depth_challenge": 80
+  },
+  "reference_steps": 16776,
+  "max_stack": 12,
+  "mutation_checks": 100656,
+  "mutations_accepted": 0,
+  "mutations_rejected": 100656,
+  "alternative_single_step_proofs": 0,
+  "masked_valid_candidates": 102,
+  "masked_invalid_candidates": 612,
+  "negative_dv_cases": 2,
+  "local_assertions": 10,
+  "scope": "fixed uncompressed implicational fixture plus separate synthetic DV controls; no set.mm or external verifier run"
+}

@@ -1,0 +1,69 @@
+name: DEL-12 actual multivariate Jacobian
+
+on:
+  push:
+    branches: [proof/deligne12-actual-jacobian-20261122]
+  pull_request:
+    paths:
+      - 'experiments/deligne_mathlib/Deligne04/ConicJacobian.lean'
+      - 'experiments/deligne_mathlib/Deligne04.lean'
+      - 'research/deligne_sign_audit/DEL12_*'
+      - 'research/deligne_sign_audit/del12_*'
+      - 'tests/test_deligne12_actual_jacobian.py'
+      - '.github/workflows/deligne12-actual-jacobian.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deligne12-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  mathlib-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Resolve pinned Mathlib 4.35
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake update
+          lake exe cache get
+      - name: Kernel-check actual multivariate pderiv identities
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake build Deligne04
+          lake env lean Deligne04/ConicJacobian.lean | tee deligne12-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' deligne12-axioms.txt; then
+            echo 'DEL-12 unexpected axiom'
+            exit 1
+          fi
+
+  exact-corpus:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify formal pderiv oracle and mutants
+        run: |
+          set -euo pipefail
+          if test -f tests/test_deligne12_actual_jacobian.py; then
+            python -m unittest -v tests.test_deligne12_actual_jacobian
+          fi
+          if test -f research/deligne_sign_audit/del12_verify_tasks.py; then
+            python -m research.deligne_sign_audit.del12_verify_tasks
+          fi

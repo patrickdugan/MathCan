@@ -1,0 +1,47 @@
+name: NOR-25 exact robust uniform reserve and informed-evasion Lean kernel
+
+on:
+  push:
+    paths:
+      - 'MathCan/NOR25UniformReserve.lean'
+      - 'MathCan.lean'
+      - 'research/nor25/**'
+      - '.github/workflows/nor25-uniform-reserve-lean.yml'
+  pull_request:
+    paths:
+      - 'MathCan/NOR25UniformReserve.lean'
+      - 'MathCan.lean'
+      - 'research/nor25/**'
+      - '.github/workflows/nor25-uniform-reserve-lean.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-two-stage-counts-and-transcript-axioms:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Kernel check exact counts, rejection monotonicity and schedule-visible evasion
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/NOR25UniformReserve.lean | tee nor25-uniform-reserve-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:|admit' nor25-uniform-reserve-axioms.txt; then
+            echo 'NOR25 unexpected admission, reduction marker or Lean error'
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nor25-uniform-reserve-kernel-axiom-inventory
+          path: nor25-uniform-reserve-axioms.txt

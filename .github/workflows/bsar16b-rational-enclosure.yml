@@ -1,0 +1,56 @@
+name: BSAR-16B rational dense Galerkin enclosure audit
+
+on:
+  pull_request:
+    paths:
+      - "experiments/bsar16/**"
+      - "research/bsar_audit/BSAR16B_RATIONAL_TIME_ENCLOSURE.md"
+      - ".github/workflows/bsar16b-rational-enclosure.yml"
+  push:
+    branches: [main, audit/bsar16b-rational-time-enclosure-20261122]
+    paths:
+      - "experiments/bsar16/**"
+      - ".github/workflows/bsar16b-rational-enclosure.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rational-time-enclosure:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Pin exact BSAR-14 source
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/bsar14_initial_triad_transfer.py)" = "aa25ad74be2347acf061d631f55338802eead212"
+          python -m py_compile experiments/bsar16/exact_residual.py experiments/bsar16/rational_enclosure.py experiments/bsar16/test_rational_enclosure.py
+      - name: Verify exact polynomial identities and residual error bounds
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest experiments.bsar16.test_exact_residual experiments.bsar16.test_rational_enclosure -v
+      - name: Freeze independent 12-case rational dense-path receipts
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar16b
+          python -m experiments.bsar16.rational_enclosure generate --out artifacts/bsar16b
+          python -m experiments.bsar16.rational_enclosure audit --out artifacts/bsar16b
+          sha256sum experiments/bsar16/rational_enclosure.py > artifacts/bsar16b/source.sha256
+      - name: Archive exact-rational interval certificates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsar16b-rational-dense-galerkin-enclosure
+          path: artifacts/bsar16b/
+          if-no-files-found: warn
+          retention-days: 14

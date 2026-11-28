@@ -1,0 +1,13 @@
+{
+  "scope": "post-hoc backend equivalence, same frozen roots and policy definitions; no timing comparison",
+  "denseReceiptBlob": "6498b3dee80980a35ea51260d086c4ed560229eb",
+  "factorizedSourceBlob": "aa7b0fffe5b75ee983d826b3f3bac30cad3acd78",
+  "fieldsCompared": 1797,
+  "maxAbsoluteNumericDelta": 6.217248937900877e-15,
+  "mismatches": [],
+  "mismatchCount": 0,
+  "status": "PASS",
+  "factorizedElapsedMs": 11127,
+  "sharedTransitionSlots": 864,
+  "sharedPermutationMetadataSlots": 168
+}

@@ -1,0 +1,29 @@
+name: AHR Q2 hardware receipt replay
+on:
+  pull_request:
+    paths:
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_01/Q2_HARDWARE_RESULTS.md'
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_01/HARDWARE_Q2_ARCHIVE.md'
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_01/hardware_q2_replay.py'
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_01/receipts/hardware_q2/**'
+      - '.github/workflows/ahr-q2-hardware-replay.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_01/Q2_HARDWARE_RESULTS.md'
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_01/hardware_q2_replay.py'
+      - 'research/arithmetic_holonomy_rotor/ibm_qpu_01/receipts/hardware_q2/**'
+      - '.github/workflows/ahr-q2-hardware-replay.yml'
+permissions:
+  contents: read
+jobs:
+  receipt-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reproduce archived QPU count and checksum audit
+        run: python research/arithmetic_holonomy_rotor/ibm_qpu_01/hardware_q2_replay.py

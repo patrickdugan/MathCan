@@ -1,0 +1,11 @@
+# Exact lazy-fill cost on a pinned separator cache
+
+Source: https://github.com/MoralityLabAI/LoopedTransformers/tree/dcc92fedecadf967626d922fb8a9d169841aa71c/experiments/logrank_bpd_22.
+
+For a fixed acyclic message dependency graph, direct request counts d, target cache C, and valid initial residents R, propagate request counts D_e=d_e+sum of parent misses in requester-to-dependency order. If e belongs to C intersect R, its miss count M_e is zero; if e belongs to C outside R, M_e=min(1,D_e); otherwise M_e=D_e. Work is sum_e w_e M_e for nonnegative local recomputation costs w_e. The end resident set is {e in C: e in R or D_e>0}. Each miss requests each dependency once, and selected cold messages fill on first request without further eviction. Induction proves these counts and the fill set independently of request ordering. Signed-query contractions, lookup and policy costs are separate.
+
+For a future update at owner o, delete from the filled set the directed edges whose source-side component contains o. Evaluate the same lazy-fill recurrence at this surviving set with a specified future demand forecast. Averaging over a public finite scenario set yields a two-epoch forecast; it does not establish the optimal dynamic policy or inherit the warm-cache submodularity guarantee.
+
+In the directed message DAG of a tree, nonbacktracking dependency paths from a candidate edge to its descendants are unique. Adding a cache target changes the incoming miss flow only through descendants. At each reached node recompute its miss count and fill flag; in each future scenario recompute misses using that fill flag and survival bit. Propagate differences whenever any current or future miss count changes. Induction proves equivalence to full evaluation for this tree case, including future resident changes. A reconvergent DAG requires accumulated differences before processing a node.
+
+22: 1,536 exact predicted unsigned-work and fill-state matches, 22,535 selected-step gain checks, 9,955 full independent greedy maxima and 768 stops at 12D. All 67,584 arm-query comparisons passed. Sparse delta matches 96 exposed-root hub trajectories at 96D and speeds the 64KiB retention planner 2.90-3.35x in a paired rerun. Retention reduces arithmetic 2.2-8.7% versus planned cold at that budget but remains slower. No Lean formalization, causal or confirmation claim.

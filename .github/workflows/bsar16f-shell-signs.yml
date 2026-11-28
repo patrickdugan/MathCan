@@ -1,0 +1,77 @@
+name: BSAR-16F rational shell-transfer sign persistence
+
+on:
+  pull_request:
+    paths:
+      - "experiments/bsar16/shell_signs.py"
+      - "experiments/bsar16/test_shell_signs.py"
+      - "research/bsar_audit/BSAR16F_SHELL_TRANSFER_SIGN_CERTIFICATES.md"
+      - ".github/workflows/bsar16f-shell-signs.yml"
+  push:
+    branches: [main]
+    paths:
+      - "experiments/bsar16/shell_signs.py"
+      - "experiments/bsar16/test_shell_signs.py"
+      - ".github/workflows/bsar16f-shell-signs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-shell-signs:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify source provenance and mathematical checker imports
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git hash-object scripts/bsar14_initial_triad_transfer.py)" = "aa25ad74be2347acf061d631f55338802eead212"
+          python -m py_compile experiments/bsar16/shell_signs.py experiments/bsar16/test_shell_signs.py
+      - name: Verify exact polynomial source, shell trilinear and sign controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest experiments.bsar16.test_shell_signs -v
+      - name: Freeze all twelve roots and thirty-six exact shell sign certificates
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/bsar16f
+          python -m experiments.bsar16.shell_signs generate --out artifacts/bsar16f
+          python -m experiments.bsar16.shell_signs audit --out artifacts/bsar16f
+          sha256sum experiments/bsar16/shell_signs.py > artifacts/bsar16f/source.sha256
+          python - <<'PY'
+          import json
+          from fractions import Fraction as Q
+          from pathlib import Path
+          root = Path("artifacts/bsar16f")
+          meta = json.loads((root/"manifest.json").read_text())
+          rows = json.loads((root/"rows.json").read_text())
+          assert meta["case_count"] == len(rows) == 12
+          assert meta["shell_certificate_count"] == 36
+          assert sum(len(r["shells"]) for r in rows) == 36
+          assert all(Q(s["final_signed_transfer_lower"]) > 0
+                     for r in rows for s in r["shells"])
+          assert all(s["shell_lattice_mode_count"] > 0
+                     for r in rows for s in r["shells"])
+          print("BSAR-16F full-window 12-case count:",meta["full_window_sign_cases"])
+          for row in rows:
+              print("source",row["frequency_N"],row["phase_sigma"],row["grid_M"],
+                    "delta",*(s["certified_duration"] for s in row["shells"]))
+          PY
+      - name: Archive exact shell-transfer polynomial and error certificates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bsar16f-rational-shell-sign-duration
+          path: artifacts/bsar16f/
+          if-no-files-found: warn
+          retention-days: 14

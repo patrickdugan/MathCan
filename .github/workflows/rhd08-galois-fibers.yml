@@ -1,0 +1,43 @@
+name: RHD-08 cyclotomic Galois decomposition and OneK fibers
+
+on:
+  push:
+    paths:
+      - 'research/rh_proof_distillation/RHD08_GALOIS_FIBERS.md'
+      - 'research/rh_proof_distillation/rhd08_coset_gate.py'
+      - 'tests/test_rhd08_coset_gate.py'
+      - '.github/workflows/rhd08-galois-fibers.yml'
+  pull_request:
+    paths:
+      - 'research/rh_proof_distillation/RHD08_GALOIS_FIBERS.md'
+      - 'research/rh_proof_distillation/rhd08_coset_gate.py'
+      - 'tests/test_rhd08_coset_gate.py'
+      - '.github/workflows/rhd08-galois-fibers.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-coset-certificate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify exact Galois coset and contraction contracts
+        run: python -m unittest tests.test_rhd08_coset_gate -v
+      - name: Produce deterministic full finite-gate receipt
+        run: |
+          mkdir -p rhd08
+          python -m research.rh_proof_distillation.rhd08_coset_gate --output rhd08/finite-galois-fibers.jsonl --limit 1500
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rhd08-prime-fiber-receipts
+          path: rhd08/
+          if-no-files-found: ignore

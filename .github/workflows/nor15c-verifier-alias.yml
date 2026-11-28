@@ -1,0 +1,47 @@
+name: NOR-15C exact first-accepted verifier alias theorem
+
+on:
+  push:
+    paths:
+      - 'MathCan/NOR15VerifierAlias.lean'
+      - 'MathCan.lean'
+      - 'research/nor15c/**'
+      - '.github/workflows/nor15c-verifier-alias.yml'
+  pull_request:
+    paths:
+      - 'MathCan/NOR15VerifierAlias.lean'
+      - 'MathCan.lean'
+      - 'research/nor15c/**'
+      - '.github/workflows/nor15c-verifier-alias.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  first-accepted-mask-kernel-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Verify alias obstruction theorem and its axiom inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/NOR15VerifierAlias.lean | tee nor15c-alias-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:|admit' nor15c-alias-axioms.txt; then
+            echo 'Admitted proof, native reduction axiom or compilation failure'
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nor15c-first-accepted-alias-lean-axioms
+          path: nor15c-alias-axioms.txt

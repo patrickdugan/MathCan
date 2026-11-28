@@ -1,0 +1,47 @@
+name: NOR-35 quota-preserving intra-atom curvature and reserve count Lean kernel
+
+on:
+  push:
+    paths:
+      - 'MathCan/NOR35IntraAtomCurvature.lean'
+      - 'MathCan.lean'
+      - 'research/nor35/**'
+      - '.github/workflows/nor35-intraatom-curvature-lean.yml'
+  pull_request:
+    paths:
+      - 'MathCan/NOR35IntraAtomCurvature.lean'
+      - 'MathCan.lean'
+      - 'research/nor35/**'
+      - '.github/workflows/nor35-intraatom-curvature-lean.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-intraatom-reserve-and-historical-quota-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Lean 4.35 kernel check per-atom reserve miss counts and eight-atom risk equivalence
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/NOR35IntraAtomCurvature.lean | tee nor35-intraatom-curvature-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool|^error:|admit' nor35-intraatom-curvature-axioms.txt; then
+            echo "NOR35 missing proof or nonstandard axiom"
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nor35-intraatom-curvature-kernel-axioms
+          path: nor35-intraatom-curvature-axioms.txt

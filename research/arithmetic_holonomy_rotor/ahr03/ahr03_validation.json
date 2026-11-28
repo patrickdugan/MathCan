@@ -1,0 +1,84 @@
+{
+  "symplectic_tangent_model": {
+    "stiffness_eigenfrequencies": [
+      0.9999999999999999,
+      1.0,
+      1.0,
+      3.0
+    ],
+    "rectangle_coordinate_size": 0.55,
+    "sphere_area": 0.3421975269255724,
+    "abs_holonomy_angle": 0.3421975269263648,
+    "noncommuting_order_operator_frobenius": 0.16392457023702356,
+    "path_order_state_L2_distance": 0.11426768544280745,
+    "analytic_state_L2_distance": 0.11426768544342464,
+    "holonomy_A": [
+      [
+        0.942019542911,
+        -0.33555801401,
+        0.0
+      ],
+      [
+        0.33555801401,
+        0.942019542916,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "holonomy_B": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.942019542911,
+        -0.33555801401
+      ],
+      [
+        0.0,
+        0.33555801401,
+        0.942019542916
+      ]
+    ]
+  },
+  "hypercube_face_moment_law": [
+    {
+      "d": 2,
+      "vertices": 4,
+      "faces": 1,
+      "observed_tr4_diff": -0.36634178919364047,
+      "predicted_tr4_diff": -0.36634178919363863,
+      "abs_error": 1.8318679906315083e-15
+    },
+    {
+      "d": 3,
+      "vertices": 8,
+      "faces": 6,
+      "observed_tr4_diff": -9.469240209814586,
+      "predicted_tr4_diff": -9.469240209814586,
+      "abs_error": 0.0
+    },
+    {
+      "d": 4,
+      "vertices": 16,
+      "faces": 24,
+      "observed_tr4_diff": -10.292049366863552,
+      "predicted_tr4_diff": -10.2920493668636,
+      "abs_error": 4.796163466380676e-14
+    },
+    {
+      "d": 5,
+      "vertices": 32,
+      "faces": 80,
+      "observed_tr4_diff": -398.87765680927487,
+      "predicted_tr4_diff": -398.87765680927566,
+      "abs_error": 7.958078640513122e-13
+    }
+  ]
+}

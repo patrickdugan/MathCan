@@ -1,0 +1,33 @@
+{
+  "schema": "RAM12-native-independent-zip-audit-v1",
+  "source_run": 43716751350,
+  "original_mathcan_train_commit": "c84e2025334e9a967c1297425a490f98d5b3d189",
+  "worklist_sha256": "f5876539862a0f4f913dc3af620be0d038555efcdd3611754e002dc353c3b2aa",
+  "artifact_id": 14162833338,
+  "artifact_sha256": "327dbd1382aca1a1c3c790e434341d582aafb85e5ad1b4f9b70ca84f21cae924",
+  "state_labels_sha256": "f744f779012c04d50a41798ee3805c91fbb8da922a174b09ccbde3310eb95e8f",
+  "lean_toolchain": "leanprover/lean4:v4.35.0",
+  "status": "passed",
+  "full_compilations": 152,
+  "source_cases": 76,
+  "raw_prefix_states": 282,
+  "dedup_prefix_states": 176,
+  "verified_prefix_actions": 230,
+  "split_roots": {
+    "train": 14,
+    "dev": 3,
+    "holdback": 5
+  },
+  "observed_training_positives": 137,
+  "observed_development_positives": 31,
+  "observed_holdback_positives": 62,
+  "axion_allowlist": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "negative_labels_created": 0,
+  "original_PEF_scored": 0,
+  "RAM10_prospective_scored": 0,
+  "provenance_note": "Independent local archive audit checked 76 source pairs, 152 compiler outcomes/log hashes and inventories, marker order and content, all original actions, and 230 certified state-action labels. Original reference theorem proofs are replaced by proposed scripts. Historical TRAIN-only study."
+}

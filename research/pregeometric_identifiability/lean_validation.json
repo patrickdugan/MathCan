@@ -1,0 +1,23 @@
+{
+  "axiom_dependencies": {
+    "decoder_constant_on_observation_fibers": [],
+    "no_uniform_decoder_of_indistinguishable_worlds": [],
+    "observation_preserving_update_cannot_separate": [],
+    "postprocessing_cannot_remove_decoder_obstruction": []
+  },
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "MathCan/OperationalIdentifiability.lean"
+  ],
+  "command_note": "Portable equivalent of the verified local compiler invocation.",
+  "compiler_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "exit_code": 0,
+  "printed_axiom_reports": 4,
+  "release_digest_verified": true,
+  "scope": "Four observation-map identifiability statements over arbitrary types. No spacetime or quantum-channel theorem.",
+  "source_contains_sorry_or_admit": false,
+  "source_sha256": "4d00e5d6a5acfd67b287d0358633c5487601bc01fcd5e10e412abd3044f6b93e",
+  "toolchain": "leanprover/lean4:v4.35.0"
+}

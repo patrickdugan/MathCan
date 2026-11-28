@@ -1,0 +1,70 @@
+name: RAM-11F historical native Lean 4.35 original-proof replay
+
+on:
+  push:
+    branches:
+      - research/ram11f-native-replay-20261115
+    paths:
+      - research/ram11f/**
+      - .github/workflows/ram11f-native-replay.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  independently-compile-all-original-scripts:
+    name: Native original-source dual Lean proof audit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    steps:
+      - name: Checkout immutable historical replay code and 76-script locked input
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Checkout original untouched MathCan TRAIN commit (not current main)
+        uses: actions/checkout@v4
+        with:
+          repository: patrickdugan/MathCan
+          ref: c84e2025334e9a967c1297425a490f98d5b3d189
+          path: _original
+          persist-credentials: false
+      - name: Install v4.35 Lean compiler from pinned project toolchain
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          lint: false
+          test: false
+          use-mathlib-cache: false
+          use-github-cache: false
+      - name: Set up Python interpreter
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate old source, immutable worklist and independent compiler audit implementation
+        run: |
+          set -euo pipefail
+          test "$(git -C _original rev-parse HEAD)" = "c84e2025334e9a967c1297425a490f98d5b3d189"
+          test "$(cat _original/lean-toolchain)" = "leanprover/lean4:v4.35.0"
+          echo 'f5876539862a0f4f913dc3af620be0d038555efcdd3611754e002dc353c3b2aa  research/ram11f/locked_worklist.jsonl' | sha256sum -c -
+          python -m unittest discover -s research/ram11f -p 'test_*.py' -v
+      - name: Build original MathCan old-source import dependencies
+        run: |
+          cd _original
+          lake build MathCan
+          lake env lean --version
+      - name: Evaluate all 76 distinct original MathCan scripts with two full-source Lean compiles
+        run: |
+          python research/ram11f/native_replay.py \
+            --mathcan _original \
+            --worklist research/ram11f/locked_worklist.jsonl \
+            --out "$RUNNER_TEMP/ram11f_native_out"
+      - name: Retain every candidate source, compiler failure, source axiom proof and receipt
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ram11f-native-old-mathcan-proofs-${{ github.run_id }}
+          path: ${{ runner.temp }}/ram11f_native_out/
+          retention-days: 30
+          if-no-files-found: warn

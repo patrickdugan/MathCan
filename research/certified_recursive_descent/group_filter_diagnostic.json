@@ -1,0 +1,553 @@
+{
+  "scope": "post-hoc frozen test diagnostic; conditional expectation under known synthetic law, no tuning",
+  "in": {
+    "roots": 192,
+    "branchChecks": 3072,
+    "meanBranchMaxError": 0.018240693102216644,
+    "maxError": 0.07442660617314689,
+    "meanBound": 0.09159593069134721,
+    "maxBound": 0.10517396814411033,
+    "meanRootEpsilon": 0.024168222933639683,
+    "boundChecks": {
+      "1": 192,
+      "4": 192
+    },
+    "maxRegret": {
+      "1": 0.02489244042251082,
+      "4": 0.024255232196259247
+    },
+    "values": [
+      {
+        "view": "true",
+        "kind": "fourier",
+        "probes": 1,
+        "observed": 105,
+        "expectedSuccess": 0.5625864065117244,
+        "meanRegret": 0
+      },
+      {
+        "view": "true",
+        "kind": "fourier",
+        "probes": 4,
+        "observed": 159,
+        "expectedSuccess": 0.8359198822498547,
+        "meanRegret": 0
+      },
+      {
+        "view": "true",
+        "kind": "learned",
+        "probes": 1,
+        "observed": 104,
+        "expectedSuccess": 0.5621184997959248,
+        "meanRegret": 0.0004679067157995851
+      },
+      {
+        "view": "true",
+        "kind": "learned",
+        "probes": 4,
+        "observed": 157,
+        "expectedSuccess": 0.833809660015361,
+        "meanRegret": 0.0021102222344933363
+      },
+      {
+        "view": "true",
+        "kind": "hard",
+        "probes": 1,
+        "observed": 97,
+        "expectedSuccess": 0.5313816962554939,
+        "meanRegret": 0.031204710256230454
+      },
+      {
+        "view": "true",
+        "kind": "hard",
+        "probes": 4,
+        "observed": 156,
+        "expectedSuccess": 0.8264320165974811,
+        "meanRegret": 0.00948786565237343
+      },
+      {
+        "view": "true",
+        "kind": "rnn",
+        "probes": 1,
+        "observed": 28,
+        "expectedSuccess": 0.1600536100024306,
+        "meanRegret": 0.40253279650929336
+      },
+      {
+        "view": "true",
+        "kind": "rnn",
+        "probes": 4,
+        "observed": 98,
+        "expectedSuccess": 0.5119480898817339,
+        "meanRegret": 0.3239717923681208
+      },
+      {
+        "view": "true",
+        "kind": "window",
+        "probes": 1,
+        "observed": 30,
+        "expectedSuccess": 0.16487290374278493,
+        "meanRegret": 0.39771350276893963
+      },
+      {
+        "view": "true",
+        "kind": "window",
+        "probes": 4,
+        "observed": 103,
+        "expectedSuccess": 0.5117426812223096,
+        "meanRegret": 0.3241772010275449
+      },
+      {
+        "view": "true",
+        "kind": "full",
+        "probes": 1,
+        "observed": 28,
+        "expectedSuccess": 0.1408553217301384,
+        "meanRegret": 0.42173108478158605
+      },
+      {
+        "view": "true",
+        "kind": "full",
+        "probes": 4,
+        "observed": 95,
+        "expectedSuccess": 0.504752456356385,
+        "meanRegret": 0.3311674258934695
+      },
+      {
+        "view": "true",
+        "kind": "uniform",
+        "probes": 1,
+        "observed": 31,
+        "expectedSuccess": 0.1786625190697625,
+        "meanRegret": 0.383923887441962
+      },
+      {
+        "view": "true",
+        "kind": "uniform",
+        "probes": 4,
+        "observed": 104,
+        "expectedSuccess": 0.5131078379103915,
+        "meanRegret": 0.3228120443394628
+      },
+      {
+        "view": "true",
+        "kind": "last",
+        "probes": 1,
+        "observed": 27,
+        "expectedSuccess": 0.14585139934130284,
+        "meanRegret": 0.4167350071704212
+      },
+      {
+        "view": "true",
+        "kind": "last",
+        "probes": 4,
+        "observed": 109,
+        "expectedSuccess": 0.5167895936873996,
+        "meanRegret": 0.31913028856245473
+      },
+      {
+        "view": "scrambled",
+        "kind": "fourier",
+        "probes": 1,
+        "observed": 40,
+        "expectedSuccess": 0.23542631963398938,
+        "meanRegret": 0.32716008687773496
+      },
+      {
+        "view": "scrambled",
+        "kind": "fourier",
+        "probes": 4,
+        "observed": 106,
+        "expectedSuccess": 0.5699822139753006,
+        "meanRegret": 0.2659376682745542
+      },
+      {
+        "view": "scrambled",
+        "kind": "learned",
+        "probes": 1,
+        "observed": 43,
+        "expectedSuccess": 0.23583373178981415,
+        "meanRegret": 0.3267526747219102
+      },
+      {
+        "view": "scrambled",
+        "kind": "learned",
+        "probes": 4,
+        "observed": 121,
+        "expectedSuccess": 0.6308239950464137,
+        "meanRegret": 0.20509588720344105
+      },
+      {
+        "view": "scrambled",
+        "kind": "hard",
+        "probes": 1,
+        "observed": 44,
+        "expectedSuccess": 0.24434217878733025,
+        "meanRegret": 0.31824422772439426
+      },
+      {
+        "view": "scrambled",
+        "kind": "hard",
+        "probes": 4,
+        "observed": 109,
+        "expectedSuccess": 0.5929888366578697,
+        "meanRegret": 0.24293104559198472
+      },
+      {
+        "view": "scrambled",
+        "kind": "rnn",
+        "probes": 1,
+        "observed": 40,
+        "expectedSuccess": 0.1785480810256895,
+        "meanRegret": 0.3840383254860351
+      },
+      {
+        "view": "scrambled",
+        "kind": "rnn",
+        "probes": 4,
+        "observed": 107,
+        "expectedSuccess": 0.5209915814327594,
+        "meanRegret": 0.3149283008170953
+      },
+      {
+        "view": "scrambled",
+        "kind": "window",
+        "probes": 1,
+        "observed": 30,
+        "expectedSuccess": 0.17009967515968324,
+        "meanRegret": 0.3924867313520411
+      },
+      {
+        "view": "scrambled",
+        "kind": "window",
+        "probes": 4,
+        "observed": 90,
+        "expectedSuccess": 0.49732734483996666,
+        "meanRegret": 0.3385925374098879
+      },
+      {
+        "view": "scrambled",
+        "kind": "full",
+        "probes": 1,
+        "observed": 35,
+        "expectedSuccess": 0.1557672931337573,
+        "meanRegret": 0.406819113377967
+      },
+      {
+        "view": "scrambled",
+        "kind": "full",
+        "probes": 4,
+        "observed": 106,
+        "expectedSuccess": 0.5223030982459128,
+        "meanRegret": 0.3136167840039416
+      },
+      {
+        "view": "scrambled",
+        "kind": "uniform",
+        "probes": 1,
+        "observed": 31,
+        "expectedSuccess": 0.1786625190697625,
+        "meanRegret": 0.383923887441962
+      },
+      {
+        "view": "scrambled",
+        "kind": "uniform",
+        "probes": 4,
+        "observed": 104,
+        "expectedSuccess": 0.5131078379103915,
+        "meanRegret": 0.3228120443394628
+      },
+      {
+        "view": "scrambled",
+        "kind": "last",
+        "probes": 1,
+        "observed": 25,
+        "expectedSuccess": 0.16531026284415992,
+        "meanRegret": 0.3972761436675644
+      },
+      {
+        "view": "scrambled",
+        "kind": "last",
+        "probes": 4,
+        "observed": 98,
+        "expectedSuccess": 0.5156915217213748,
+        "meanRegret": 0.3202283605284796
+      }
+    ]
+  },
+  "shift": {
+    "roots": 192,
+    "branchChecks": 3072,
+    "meanBranchMaxError": 0.04700166362317055,
+    "maxError": 0.056192514236808266,
+    "meanBound": 0.11586415715008908,
+    "maxBound": 0.1299317575017151,
+    "meanRootEpsilon": 0.046412433206500354,
+    "boundChecks": {
+      "1": 192,
+      "4": 192
+    },
+    "maxRegret": {
+      "1": 0.027385028581625726,
+      "4": 0.040912961871516496
+    },
+    "values": [
+      {
+        "view": "true",
+        "kind": "fourier",
+        "probes": 1,
+        "observed": 50,
+        "expectedSuccess": 0.29703829458005426,
+        "meanRegret": 0
+      },
+      {
+        "view": "true",
+        "kind": "fourier",
+        "probes": 4,
+        "observed": 128,
+        "expectedSuccess": 0.669465753210528,
+        "meanRegret": 0
+      },
+      {
+        "view": "true",
+        "kind": "learned",
+        "probes": 1,
+        "observed": 50,
+        "expectedSuccess": 0.29617816980023554,
+        "meanRegret": 0.0008601247798186521
+      },
+      {
+        "view": "true",
+        "kind": "learned",
+        "probes": 4,
+        "observed": 124,
+        "expectedSuccess": 0.6609116867293398,
+        "meanRegret": 0.00855406648118773
+      },
+      {
+        "view": "true",
+        "kind": "hard",
+        "probes": 1,
+        "observed": 54,
+        "expectedSuccess": 0.29063969962632047,
+        "meanRegret": 0.006398594953733776
+      },
+      {
+        "view": "true",
+        "kind": "hard",
+        "probes": 4,
+        "observed": 121,
+        "expectedSuccess": 0.6587639183141635,
+        "meanRegret": 0.010701834896363996
+      },
+      {
+        "view": "true",
+        "kind": "rnn",
+        "probes": 1,
+        "observed": 43,
+        "expectedSuccess": 0.16674296656046603,
+        "meanRegret": 0.1302953280195882
+      },
+      {
+        "view": "true",
+        "kind": "rnn",
+        "probes": 4,
+        "observed": 111,
+        "expectedSuccess": 0.5165656030035133,
+        "meanRegret": 0.1529001502070145
+      },
+      {
+        "view": "true",
+        "kind": "window",
+        "probes": 1,
+        "observed": 28,
+        "expectedSuccess": 0.16633737092590298,
+        "meanRegret": 0.13070092365415115
+      },
+      {
+        "view": "true",
+        "kind": "window",
+        "probes": 4,
+        "observed": 107,
+        "expectedSuccess": 0.5197150850170902,
+        "meanRegret": 0.14975066819343794
+      },
+      {
+        "view": "true",
+        "kind": "full",
+        "probes": 1,
+        "observed": 22,
+        "expectedSuccess": 0.15898677084093443,
+        "meanRegret": 0.1380515237391199
+      },
+      {
+        "view": "true",
+        "kind": "full",
+        "probes": 4,
+        "observed": 100,
+        "expectedSuccess": 0.5117410976815499,
+        "meanRegret": 0.1577246555289784
+      },
+      {
+        "view": "true",
+        "kind": "uniform",
+        "probes": 1,
+        "observed": 31,
+        "expectedSuccess": 0.1695347123423799,
+        "meanRegret": 0.1275035822376744
+      },
+      {
+        "view": "true",
+        "kind": "uniform",
+        "probes": 4,
+        "observed": 110,
+        "expectedSuccess": 0.5171247066413628,
+        "meanRegret": 0.15234104656916497
+      },
+      {
+        "view": "true",
+        "kind": "last",
+        "probes": 1,
+        "observed": 39,
+        "expectedSuccess": 0.15987952421301585,
+        "meanRegret": 0.13715877036703847
+      },
+      {
+        "view": "true",
+        "kind": "last",
+        "probes": 4,
+        "observed": 113,
+        "expectedSuccess": 0.5199908440690273,
+        "meanRegret": 0.1494749091415005
+      },
+      {
+        "view": "scrambled",
+        "kind": "fourier",
+        "probes": 1,
+        "observed": 31,
+        "expectedSuccess": 0.18116847744578213,
+        "meanRegret": 0.11586981713427215
+      },
+      {
+        "view": "scrambled",
+        "kind": "fourier",
+        "probes": 4,
+        "observed": 107,
+        "expectedSuccess": 0.5234312509017904,
+        "meanRegret": 0.14603450230873696
+      },
+      {
+        "view": "scrambled",
+        "kind": "learned",
+        "probes": 1,
+        "observed": 33,
+        "expectedSuccess": 0.18250452524431968,
+        "meanRegret": 0.11453376933573457
+      },
+      {
+        "view": "scrambled",
+        "kind": "learned",
+        "probes": 4,
+        "observed": 102,
+        "expectedSuccess": 0.5533959105925788,
+        "meanRegret": 0.11606984261794862
+      },
+      {
+        "view": "scrambled",
+        "kind": "hard",
+        "probes": 1,
+        "observed": 38,
+        "expectedSuccess": 0.18819080576563638,
+        "meanRegret": 0.10884748881441793
+      },
+      {
+        "view": "scrambled",
+        "kind": "hard",
+        "probes": 4,
+        "observed": 108,
+        "expectedSuccess": 0.5401621927443345,
+        "meanRegret": 0.12930356046619332
+      },
+      {
+        "view": "scrambled",
+        "kind": "rnn",
+        "probes": 1,
+        "observed": 33,
+        "expectedSuccess": 0.17076080677682828,
+        "meanRegret": 0.12627748780322592
+      },
+      {
+        "view": "scrambled",
+        "kind": "rnn",
+        "probes": 4,
+        "observed": 107,
+        "expectedSuccess": 0.513560065456263,
+        "meanRegret": 0.15590568775426497
+      },
+      {
+        "view": "scrambled",
+        "kind": "window",
+        "probes": 1,
+        "observed": 37,
+        "expectedSuccess": 0.16660320042653023,
+        "meanRegret": 0.13043509415352383
+      },
+      {
+        "view": "scrambled",
+        "kind": "window",
+        "probes": 4,
+        "observed": 102,
+        "expectedSuccess": 0.5156558789656494,
+        "meanRegret": 0.15380987424487824
+      },
+      {
+        "view": "scrambled",
+        "kind": "full",
+        "probes": 1,
+        "observed": 19,
+        "expectedSuccess": 0.16415294527256083,
+        "meanRegret": 0.13288534930749354
+      },
+      {
+        "view": "scrambled",
+        "kind": "full",
+        "probes": 4,
+        "observed": 92,
+        "expectedSuccess": 0.5193331260105051,
+        "meanRegret": 0.15013262720002293
+      },
+      {
+        "view": "scrambled",
+        "kind": "uniform",
+        "probes": 1,
+        "observed": 31,
+        "expectedSuccess": 0.1695347123423799,
+        "meanRegret": 0.1275035822376744
+      },
+      {
+        "view": "scrambled",
+        "kind": "uniform",
+        "probes": 4,
+        "observed": 110,
+        "expectedSuccess": 0.5171247066413628,
+        "meanRegret": 0.15234104656916497
+      },
+      {
+        "view": "scrambled",
+        "kind": "last",
+        "probes": 1,
+        "observed": 30,
+        "expectedSuccess": 0.1678462523447498,
+        "meanRegret": 0.12919204223530462
+      },
+      {
+        "view": "scrambled",
+        "kind": "last",
+        "probes": 4,
+        "observed": 94,
+        "expectedSuccess": 0.5176296808650408,
+        "meanRegret": 0.151836072345487
+      }
+    ]
+  }
+}

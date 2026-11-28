@@ -1,0 +1,89 @@
+{
+  "schema": "RAM14-v1-posthoc-gramian-native-coverage",
+  "date": "2026-11-16",
+  "status": "completed_third_audit_passed",
+  "study_class": "posthoc_after_RAM13_and_reference_proof_exposure",
+  "source_repo": "patrickdugan/MathCan",
+  "source_commit": "f427e0ef4a61093304d12ca2c0dc943d8d2429e5",
+  "source_file": "MathCan/GramianTransfer.lean",
+  "source_blob_sha1": "f07e99a3f27acba22c2c0c6b3f675a68ab774ab2",
+  "lean_version": "4.35.0",
+  "protocol_commit": "40e7c63fbccb5937146bc6df984d14a6b72510c7",
+  "first_native_run": 43791363290,
+  "first_artifact_id": 14192616133,
+  "first_artifact_digest": "sha256:c4a569fedcf148e2152f42a5dec56bf1b0b76bd1977b8f0931c8f9f6a61e71f0",
+  "first_case_receipt_sha256": "5fafd892b040ca5bc73d20002516fd45cf0a8f5409ff370590a1699c041fe0df",
+  "third_independent_run": 43791713791,
+  "third_artifact_id": 14192592821,
+  "third_artifact_digest": "sha256:a183149fa0103e8322593916d583033913ca41366fe00cd42665491cf3c98317",
+  "grammar_tests": "8/8 passed",
+  "generated_candidates": 35,
+  "original_compiler_rejections": 31,
+  "original_compiler_timeouts": 0,
+  "double_certified_candidates": 4,
+  "third_certified_candidates": 4,
+  "distinct_mathematical_theorems_certified": 2,
+  "verified_full_source_compiles": 12,
+  "false_certificates": 0,
+  "allowed_transitive_axiom_results": [
+    "propext"
+  ],
+  "per_theorem": {
+    "transport_iterate": {
+      "generated": 15,
+      "certified": 1
+    },
+    "observable_transport": {
+      "generated": 20,
+      "certified": 3
+    }
+  },
+  "per_family": {
+    "nat_induction": {
+      "generated": 18,
+      "certified": 2
+    },
+    "simp_prior": {
+      "generated": 12,
+      "certified": 0
+    },
+    "rewrite_prior": {
+      "generated": 5,
+      "certified": 2
+    }
+  },
+  "accepted": [
+    {
+      "theorem": "transport_iterate",
+      "index": 0,
+      "family": "nat_induction",
+      "script": "induction n generalizing x <;> simp_all [iterateState, transport, g.left_inv]",
+      "source_sha256": "9c017d5874f2a422ae02abdb24645a7d74b061ac3fd732e7b4ea7726f4d625db"
+    },
+    {
+      "theorem": "observable_transport",
+      "index": 0,
+      "family": "nat_induction",
+      "script": "induction n generalizing x <;> simp_all [iterateState, transport, g.left_inv]",
+      "source_sha256": "96d7442ae3ef41f888de222e682b774dd80f06d6c7f0cd06543a0002d66ab56f"
+    },
+    {
+      "theorem": "observable_transport",
+      "index": 18,
+      "family": "rewrite_prior",
+      "script": "simp [transport_iterate, g.left_inv]",
+      "source_sha256": "2e03d51f1d13bbfd07a483c03d65ff07a551c20db2e65f15e0b50f30c1883e16"
+    },
+    {
+      "theorem": "observable_transport",
+      "index": 19,
+      "family": "rewrite_prior",
+      "script": "simpa [transport_iterate, g.left_inv]",
+      "source_sha256": "2537e417948c1ba1e0ea3632c6ec148c509d8ddbb66856b6badc8fb048b7558b"
+    }
+  ],
+  "original_registered_RAM13_Gramian_result": "0 of 2 for every original policy; unchanged",
+  "prospective_generalization_claim": false,
+  "RAM08_original_PEF_case_scores_added": 0,
+  "RAM10_original_heldout_scores_added": 0
+}

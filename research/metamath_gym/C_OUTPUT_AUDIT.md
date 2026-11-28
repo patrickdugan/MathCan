@@ -1,0 +1,3 @@
+# C verifier output audit
+
+[Run 45857875123](https://github.com/patrickdugan/MathCan/actions/runs/45857875123) emitted an explicit missing distinct-variable error followed by an overall success summary. The earlier positive fixture and full pinned set.mm C checks returned successfully. Treat explicit errors as rejection even with a success footer, require clean success for positive certificates, archive contradictory diagnostics, and fail on crashes/timeouts/inconclusive output. The previous Python differential [run 45857646737](https://github.com/patrickdugan/MathCan/actions/runs/45857646737) passed. The new gate remains pending.
