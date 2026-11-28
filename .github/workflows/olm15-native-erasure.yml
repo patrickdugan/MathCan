@@ -1,0 +1,30 @@
+name: OLM-15 exact rational native SAE erasure
+
+on:
+  push:
+    paths:
+      - 'research/orbit_lock/OLM15_NATIVE_SAE_ERASURE.md'
+      - 'research/orbit_lock/native_erasure.py'
+      - 'tests/test_native_erasure.py'
+      - '.github/workflows/olm15-native-erasure.yml'
+  pull_request:
+    paths:
+      - 'research/orbit_lock/OLM15_NATIVE_SAE_ERASURE.md'
+      - 'research/orbit_lock/native_erasure.py'
+      - 'tests/test_native_erasure.py'
+      - '.github/workflows/olm15-native-erasure.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-rational-witnesses:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify curvature obstruction, erasure bounds, re-encoding and abstentions
+        run: python -m unittest discover -s tests -p 'test_native_erasure.py' -v
+      - name: Publish exact witness
+        run: python research/orbit_lock/native_erasure.py
