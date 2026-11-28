@@ -1,6 +1,8 @@
 # IBM QPU authorization gate
 
-**Decision: HOLD for cloud submission.**
+**Status update (2026-11-23):** The specifically approved Q2 pilot completed on `ibm_fez`, consuming 21 free QPU seconds. [Archived results](Q2_HARDWARE_RESULTS.md) document the pass. **HOLD for Q3 and any further cloud submission** pending a fresh calibration, resource estimate and separate approval.
+
+**Original simulator-only authorization gate (historical):**
 
 This agent run performed no IBM API calls or QPU submissions. The execution environment lacked a Qiskit installation and a visible IBM credential. Installed environment used Python 3.13, NumPy 2.3.5 and SciPy 1.17.0, so the Qiskit-specific synthesis checks must execute in CI or on a configured workstation. The Windows local path is not mounted here. Never log the credential, account metadata or token.
 

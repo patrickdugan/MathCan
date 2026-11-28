@@ -1,6 +1,6 @@
 # AHR-QPU-01: signed holonomy on IBM Quantum, simulator-first
 
-**Status (2026-11-23):** Local finite-dimensional verification passed. IBM circuit synthesis and hardware calibration are **unverified** in the current execution environment because Qiskit, Qiskit Aer and an IBM service credential were unavailable. QPU execution is explicitly gated. No QPU job was submitted.
+**Status (2026-11-23, updated):** The simulator checks passed, and the separately approved Q2 IBM Quantum run completed on `ibm_fez` qubits 9–10. At t=1.6 its prespecified signed-holonomy test passed (forward +38.90°, reverse −42.86°). [Hardware report](Q2_HARDWARE_RESULTS.md) and [immutable receipts](receipts/hardware_q2/) are archived on `main` with [offline count/checksum replay](hardware_q2_replay.py). Q3 remains simulation-only and requires separate approval.
 
 This package implements the first hardware experiment proposed in AHR-01 and AHR-07, and creates an exact Q3 research handoff using AHR-08/09. Its independent dense oracle fixes little-endian qubit ordering, phase sign, return-probability scale and signed Fourier calibration.
 
@@ -21,7 +21,7 @@ python -m pytest -q tests/test_optional_qiskit.py
 python experiment.py --mode compile_only # compares exact and Suzuki-2 synthesis
 ```
 
-A run under GitHub CI also checks native two-qubit compilation into a CX/RZ/SX/X basis. The eventual physical compilation must target a real IBM backend and record layout, gate counts, calibration timestamps and shots. The exact two-qubit matrix is the reference for every build.
+A run under GitHub CI also checks native two-qubit compilation into a CX/RZ/SX/X basis. Any further physical compilation must target the selected IBM backend and record layout, gate counts, calibration timestamps and shots. The exact two-qubit matrix is the reference for every build.
 
 ### Physical protocol
 
