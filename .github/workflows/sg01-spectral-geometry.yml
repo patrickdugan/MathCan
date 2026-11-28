@@ -22,11 +22,18 @@ jobs:
           test: false
           lint: false
           use-mathlib-cache: false
-      - name: Compile and report axioms
+      - name: Retrieve pinned Mathlib 4.35 and compiled cache
+        working-directory: experiments/deligne_mathlib
         run: |
           set -euo pipefail
-          lake env lean MathCan/SpectralGeometry.lean 2>&1 | tee sg01-kernel.log
-          if grep -q 'sorryAx' sg01-kernel.log; then exit 1; fi
+          lake update
+          lake exe cache get
+      - name: Compile and report axioms
+        working-directory: experiments/deligne_mathlib
+        run: |
+          set -euo pipefail
+          lake env lean "$GITHUB_WORKSPACE/MathCan/SpectralGeometry.lean" 2>&1 | tee "$GITHUB_WORKSPACE/sg01-kernel.log"
+          if grep -q 'sorryAx' "$GITHUB_WORKSPACE/sg01-kernel.log"; then exit 1; fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
