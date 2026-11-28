@@ -1,0 +1,46 @@
+name: PEF-06T additive-threshold and mixed-logit Lean controls
+on:
+  push:
+    paths:
+      - 'MathCan/CoalitionThreshold.lean'
+      - 'MathCan.lean'
+      - 'research/compactification/PEF06T_THRESHOLD_CONTROL.md'
+      - 'tests/test_coalition_threshold.py'
+      - '.github/workflows/pef06t-threshold.yml'
+  pull_request:
+    paths:
+      - 'MathCan/CoalitionThreshold.lean'
+      - 'MathCan.lean'
+      - 'research/compactification/PEF06T_THRESHOLD_CONTROL.md'
+      - 'tests/test_coalition_threshold.py'
+      - '.github/workflows/pef06t-threshold.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-oracle:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p test_coalition_threshold.py -v
+  lean:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: true
+          build-args: MathCan
+          test: false
+          lint: false
+          use-mathlib-cache: false
+      - name: Print all new theorem axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean MathCan/CoalitionThreshold.lean | tee pef06t-axioms.txt
+          if grep -Eq 'sorryAx|ofReduceBool' pef06t-axioms.txt; then exit 1; fi
