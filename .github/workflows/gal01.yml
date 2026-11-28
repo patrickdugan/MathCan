@@ -5,6 +5,7 @@ on:
       - 'MathCan/Galacticity.lean'
       - 'MathCan/GalacticityComposition.lean'
       - 'MathCan/GalacticityAccess.lean'
+      - 'MathCan/GalacticityMarkets.lean'
       - '.github/workflows/gal01.yml'
   workflow_dispatch:
 permissions:
@@ -20,3 +21,4 @@ jobs:
       - run: lake env lean MathCan/Galacticity.lean
       - run: lake env lean MathCan/GalacticityComposition.lean
       - run: lake env lean MathCan/GalacticityAccess.lean
+      - run: lake env lean MathCan/GalacticityMarkets.lean
