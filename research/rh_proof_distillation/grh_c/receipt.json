@@ -1,0 +1,18 @@
+{
+  "schema": "grh-c-stage0-v1",
+  "status": "finite-exact",
+  "counters": {
+    "lift_pairs": 13122,
+    "determinant_valuation": 4608,
+    "gram_pairs": 15625,
+    "comparison_cases": 187920,
+    "feasible_comparisons": 138760,
+    "coverage_pools": 109,
+    "coverage_steps": 155,
+    "rotated_frame_steps": 6,
+    "chain_cases": 1024,
+    "witness_checks": 256,
+    "negative_controls": 5
+  },
+  "scope": "Synthetic integer matrices, coordinate and rotated projectors, scalar bounds; not an independent GRH proof."
+}
