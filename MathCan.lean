@@ -163,3 +163,4 @@ import MathCan.SCCG10Admission
 
 import MathCan.MMSTRMEconomics
 import MathCan.CoalitionContextBound
+import MathCan.RHCompCertificates
