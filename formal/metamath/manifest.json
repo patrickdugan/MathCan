@@ -1,0 +1,253 @@
+{
+  "schema": "lean-setmm-port-v1",
+  "source_commit": "f0e61546b72fc4cbb541ce5ebba9cd8905561ddb",
+  "setmm_commit": "806509385370b29fe8b1723804777ac21b1ce194",
+  "ports": [
+    {
+      "metamath_label": "ml-mc-public-sound",
+      "source": "MathCan/NOR16PublicOutputCertificate.lean",
+      "source_blob": "dafaaf3f89b21e1f21cabbcdc45a1fb3bb1b5f54",
+      "lean_declaration": "MathCan.NOR16PublicOutputCertificate.sound_complete_public_output_certificate",
+      "scope": "set-valued translation",
+      "mapping": "A accepted programs, x planted, F prediction, B proposed. Restricted universal certificate and membership encode the Lean premises.",
+      "hypotheses": [
+        "|- x e. A",
+        "|- A. x e. A ( F ` x ) = B"
+      ],
+      "statement": "|- ( F ` x ) = B",
+      "proof_steps": 31
+    },
+    {
+      "metamath_label": "ml-mc-unanimity",
+      "source": "MathCan/NOR16PublicOutputCertificate.lean",
+      "source_blob": "dafaaf3f89b21e1f21cabbcdc45a1fb3bb1b5f54",
+      "lean_declaration": "MathCan.NOR16PublicOutputCertificate.accepted_program_unanimity_is_complete",
+      "scope": "set-valued translation",
+      "mapping": "Same unfolded certificate and membership.",
+      "hypotheses": [
+        "|- x e. A",
+        "|- A. x e. A ( F ` x ) = B"
+      ],
+      "statement": "|- ( F ` x ) = B",
+      "proof_steps": 31
+    },
+    {
+      "metamath_label": "ml-mc-public-unique",
+      "source": "MathCan/NOR16PublicOutputCertificate.lean",
+      "source_blob": "dafaaf3f89b21e1f21cabbcdc45a1fb3bb1b5f54",
+      "lean_declaration": "MathCan.NOR16PublicOutputCertificate.unique_accepted_candidate_certifies_future",
+      "scope": "set-valued translation",
+      "mapping": "A accepted programs, B unique, x planted, F prediction. Restricted universal premise expresses unique acceptance.",
+      "hypotheses": [
+        "|- x e. A",
+        "|- A. x e. A x = B"
+      ],
+      "statement": "|- ( F ` x ) = ( F ` B )",
+      "proof_steps": 30
+    },
+    {
+      "metamath_label": "ml-mc-incompatible-pair",
+      "source": "MathCan/NOR16PublicOutputCertificate.lean",
+      "source_blob": "dafaaf3f89b21e1f21cabbcdc45a1fb3bb1b5f54",
+      "lean_declaration": "MathCan.NOR16PublicOutputCertificate.incompatible_public_predictions_forbid_certificate",
+      "scope": "supporting pointwise lemma",
+      "mapping": "A and B differing predicted values, C proposed. Equality contradiction after specializing the two certificates; quantifier lifting remains open.",
+      "hypotheses": [
+        "|- -. A = B"
+      ],
+      "statement": "|- -. ( A = C /\\ B = C )",
+      "proof_steps": 29
+    },
+    {
+      "metamath_label": "ml-mc-precommit-unique",
+      "source": "MathCan/NOR44SessionOrdering.lean",
+      "source_blob": "764ce37c1221f8664bda6f2788ac0ee161c91e9b",
+      "lean_declaration": "MathCan.NOR44SessionOrdering.bound_signed_precommit_has_unique_reveal",
+      "scope": "set-valued translation",
+      "mapping": "Fixed context, F commit function, A original, x revealed, C receipt digest, D vector domain. x in D is type membership; binding universally quantified over D. Cryptographic binding remains a hypothesis.",
+      "hypotheses": [
+        "|- x e. D",
+        "|- ( F ` A ) = C",
+        "|- ( F ` x ) = C",
+        "|- A. x e. D ( ( F ` x ) = ( F ` A ) -> x = A )"
+      ],
+      "statement": "|- x = A",
+      "proof_steps": 76
+    },
+    {
+      "metamath_label": "ml-mc-repair-budget-equiv",
+      "source": "MathCan/GraphAuthorization.lean",
+      "source_blob": "502ada45d84639a926267d950288806e6b604082",
+      "lean_declaration": "MathCan.GraphAuthorization.repair_budget_equiv",
+      "scope": "natural arithmetic translation",
+      "mapping": "A=components, B=budget; 1<=A ensures Lean truncated subtraction equals ordinary subtraction. NN0 membership encodes Nat.",
+      "hypotheses": [
+        "|- A e. NN0",
+        "|- B e. NN0",
+        "|- 1 <_ A"
+      ],
+      "statement": "|- ( ( A - 1 ) <_ B <-> A <_ ( B + 1 ) )",
+      "proof_steps": 11
+    },
+    {
+      "metamath_label": "ml-mc-repair-budget-mono",
+      "source": "MathCan/GraphAuthorization.lean",
+      "source_blob": "502ada45d84639a926267d950288806e6b604082",
+      "lean_declaration": "MathCan.GraphAuthorization.repair_budget_mono",
+      "scope": "natural arithmetic translation",
+      "mapping": "A=components,B=b,C=c. All Nat premises retained.",
+      "hypotheses": [
+        "|- A e. NN0",
+        "|- B e. NN0",
+        "|- C e. NN0",
+        "|- B <_ C",
+        "|- A <_ ( B + 1 )"
+      ],
+      "statement": "|- A <_ ( C + 1 )",
+      "proof_steps": 80
+    },
+    {
+      "metamath_label": "ml-mc-obseq-refl",
+      "source": "MathCan/Intervention.lean",
+      "source_blob": "7d522bca485cc5a877a65897ce65246ba5b0d52b",
+      "lean_declaration": "MathCan.obsEqOn_refl",
+      "scope": "set-coded observable-trace translation",
+      "mapping": "A is set of valid action words; F(w) is readout(runActions step w s). Reflexivity for all valid words. List fold and valid-word definition are represented by trace graphs/domain, not rebuilt.",
+      "hypotheses": [],
+      "statement": "|- A. x e. A ( F ` x ) = ( F ` x )",
+      "proof_steps": 17,
+      "distinct": [
+        [
+          "A",
+          "x"
+        ],
+        [
+          "F",
+          "x"
+        ]
+      ]
+    },
+    {
+      "metamath_label": "ml-mc-obseq-symm",
+      "source": "MathCan/Intervention.lean",
+      "source_blob": "7d522bca485cc5a877a65897ce65246ba5b0d52b",
+      "lean_declaration": "MathCan.obsEqOn_symm",
+      "scope": "set-coded observable-trace translation",
+      "mapping": "F,G are trace readouts of s,t; A is all admissible words. The restricted universal equality is the unfolded behavioral equivalence.",
+      "hypotheses": [
+        "|- A. x e. A ( F ` x ) = ( G ` x )"
+      ],
+      "statement": "|- A. x e. A ( G ` x ) = ( F ` x )",
+      "proof_steps": 103,
+      "distinct": [
+        [
+          "A",
+          "x"
+        ],
+        [
+          "F",
+          "x"
+        ],
+        [
+          "G",
+          "x"
+        ]
+      ]
+    },
+    {
+      "metamath_label": "ml-mc-obseq-trans",
+      "source": "MathCan/Intervention.lean",
+      "source_blob": "7d522bca485cc5a877a65897ce65246ba5b0d52b",
+      "lean_declaration": "MathCan.obsEqOn_trans",
+      "scope": "set-coded observable-trace translation",
+      "mapping": "F,G,H are readout traces of s,t,r on valid word domain A. Restricted universal equality preserved by transitivity.",
+      "hypotheses": [
+        "|- A. x e. A ( F ` x ) = ( G ` x )",
+        "|- A. x e. A ( G ` x ) = ( H ` x )"
+      ],
+      "statement": "|- A. x e. A ( F ` x ) = ( H ` x )",
+      "proof_steps": 109,
+      "distinct": [
+        [
+          "A",
+          "x"
+        ],
+        [
+          "F",
+          "x"
+        ],
+        [
+          "G",
+          "x"
+        ],
+        [
+          "H",
+          "x"
+        ]
+      ]
+    },
+    {
+      "metamath_label": "ml-mc-obseq-action-subset",
+      "source": "MathCan/Intervention.lean",
+      "source_blob": "7d522bca485cc5a877a65897ce65246ba5b0d52b",
+      "lean_declaration": "MathCan.obsEqOn_action_subset",
+      "scope": "set-coded observable-trace translation",
+      "mapping": "A=small-admissible word set, B=large-admissible word set; F,G trace readouts. Action inclusion implies word inclusion; this certificate starts with the resulting word inclusion, leaving List.mem/fold derivation as a mapping obligation.",
+      "hypotheses": [
+        "|- A C_ B",
+        "|- A. x e. B ( F ` x ) = ( G ` x )"
+      ],
+      "statement": "|- A. x e. A ( F ` x ) = ( G ` x )",
+      "proof_steps": 76,
+      "distinct": [
+        [
+          "A",
+          "x"
+        ],
+        [
+          "B",
+          "x"
+        ],
+        [
+          "F",
+          "x"
+        ],
+        [
+          "G",
+          "x"
+        ]
+      ]
+    },
+    {
+      "metamath_label": "ml-mc-obseq-postcompose",
+      "source": "MathCan/Intervention.lean",
+      "source_blob": "7d522bca485cc5a877a65897ce65246ba5b0d52b",
+      "lean_declaration": "MathCan.obsEqOn_postcompose",
+      "scope": "set-coded observable-trace translation",
+      "mapping": "F,G fine trace readouts, H coarsen map; A admissible words. Quantified readout equality is preserved by pointwise function application.",
+      "hypotheses": [
+        "|- A. x e. A ( F ` x ) = ( G ` x )"
+      ],
+      "statement": "|- A. x e. A ( H ` ( F ` x ) ) = ( H ` ( G ` x ) )",
+      "proof_steps": 70,
+      "distinct": [
+        [
+          "A",
+          "x"
+        ],
+        [
+          "F",
+          "x"
+        ],
+        [
+          "G",
+          "x"
+        ],
+        [
+          "H",
+          "x"
+        ]
+      ]
+    }
+  ]
+}
