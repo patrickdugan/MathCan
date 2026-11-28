@@ -14,20 +14,17 @@ def closureSaving (u b c h : Int) : Int := (u - 1) * b - u * c - h
 
 theorem FactoringClosureMonotonicity (b c h : Int) (pos : 0 < c + h) :
     closureSaving 1 b c h < 0 := by
-  simp [closureSaving]
-  omega
+  simp [closureSaving] <;> omega
 
 theorem singleUseClosureIdentity (b c h : Int) :
     closureSaving 1 b c h = -(c + h) := by
-  simp [closureSaving]
-  omega
+  simp [closureSaving] <;> omega
 
 theorem rootShrinkClosureGrowth (b c h : Int) (shrink : c < b)
     (pos : 0 < c + h) :
     0 < rootSaving 1 b c ∧ closureSaving 1 b c h < 0 := by
   constructor
-  · simp [rootSaving]
-    omega
+  · simp [rootSaving] <;> omega
   · exact FactoringClosureMonotonicity b c h pos
 
 /-- A lower bound matched by a feasible witness certifies a minimum. -/
