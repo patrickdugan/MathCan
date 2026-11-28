@@ -1,0 +1,415 @@
+{
+  "status": "PASS",
+  "scope": "offline finite-dimensional checks; no hardware or complexity separation",
+  "seed": 20261124,
+  "algebra": {
+    "matrix_error": 8.881784197001252e-16,
+    "parity_lift_error": 0.0,
+    "branch_identity_error": 1.1107649934270853e-16,
+    "fixtures": 12
+  },
+  "witness": {
+    "short_time": [
+      {
+        "theta": 0.4,
+        "coefficient": [
+          0.1298061141028835,
+          0.0263130019990383
+        ],
+        "relative_error_at_001": 0.01801901788158084
+      },
+      {
+        "theta": 1.5707963267948966,
+        "coefficient": [
+          0.3333333333333333,
+          0.33333333333333326
+        ],
+        "relative_error_at_001": 0.018019021618600865
+      },
+      {
+        "theta": 3.141592653589793,
+        "coefficient": [
+          4.082155997157844e-17,
+          0.6666666666666666
+        ],
+        "relative_error_at_001": 0.018019025577337835
+      },
+      {
+        "theta": -1.5707963267948966,
+        "coefficient": [
+          -0.3333333333333333,
+          0.33333333333333326
+        ],
+        "relative_error_at_001": 0.018019021646690205
+      }
+    ],
+    "zero_defect_max_C": 3.1562434375920655e-16,
+    "time_grid": [
+      0.025,
+      4.0,
+      0.025
+    ],
+    "candidates": [
+      {
+        "theta": 0.7853981633974483,
+        "time": 3.025,
+        "C": 0.36008804859826715,
+        "convex_gaussian_fidelity_bound": 0.966459161464509,
+        "global_depolarization_threshold": 0.03833238689770394,
+        "return_p": 0.4621597393514593,
+        "target_amplitudes": [
+          [
+            -0.19191637912112058,
+            -0.6521716359797455
+          ],
+          [
+            0.6283995910803458,
+            0.13764084124186243
+          ],
+          [
+            0.0793725620507395,
+            0.010292192791893473
+          ],
+          [
+            0.0859878121281695,
+            0.039435671602102707
+          ],
+          [
+            0.1634830817640129,
+            -0.12208443888604725
+          ],
+          [
+            0.00030853960723595947,
+            -0.020841458066417073
+          ],
+          [
+            0.0990463851490501,
+            0.1826236403301845
+          ],
+          [
+            -0.006001861949088701,
+            -0.15294055039447008
+          ]
+        ]
+      },
+      {
+        "theta": 1.5707963267948966,
+        "time": 1.3,
+        "C": 0.5048795080804157,
+        "convex_gaussian_fidelity_bound": 0.9315949149145751,
+        "global_depolarization_threshold": 0.07817724009762841,
+        "return_p": 0.3493003115857111,
+        "target_amplitudes": [
+          [
+            -0.282168769654589,
+            0.5193082870678328
+          ],
+          [
+            0.0904577930679289,
+            -0.48044473512480057
+          ],
+          [
+            -0.1744295282834423,
+            -0.05990328487512095
+          ],
+          [
+            -0.07471479325598762,
+            -0.3537313303598748
+          ],
+          [
+            -0.3650649272666509,
+            -0.16474632699711952
+          ],
+          [
+            0.151370205221887,
+            0.0889616418540608
+          ],
+          [
+            0.01489213451409975,
+            -0.03650309344992892
+          ],
+          [
+            -0.0337264728984111,
+            0.23029355546228725
+          ]
+        ]
+      },
+      {
+        "theta": 2.356194490192345,
+        "time": 1.3,
+        "C": 0.6562225184701839,
+        "convex_gaussian_fidelity_bound": 0.8772837149456126,
+        "global_depolarization_threshold": 0.14024718291929986,
+        "return_p": 0.24890619939436978,
+        "target_amplitudes": [
+          [
+            -0.22259373159586832,
+            0.4464954983519949
+          ],
+          [
+            0.1738531856426159,
+            -0.38979469668011574
+          ],
+          [
+            -0.04763267272561755,
+            -0.0696790209744447
+          ],
+          [
+            0.08770113846774538,
+            -0.518798961457171
+          ],
+          [
+            -0.3811825088659162,
+            -0.16125729866823676
+          ],
+          [
+            0.1106825719382403,
+            0.0918863501031279
+          ],
+          [
+            -0.006433946228160209,
+            -0.0018598177422834844
+          ],
+          [
+            -0.1562286179845408,
+            0.2617462227929752
+          ]
+        ]
+      },
+      {
+        "theta": 3.141592653589793,
+        "time": 1.325,
+        "C": 0.7290035208492647,
+        "convex_gaussian_fidelity_bound": 0.842254973152099,
+        "global_depolarization_threshold": 0.18028003068331547,
+        "return_p": 0.22132129543225884,
+        "target_amplitudes": [
+          [
+            -0.21193684257124867,
+            0.42000484544013134
+          ],
+          [
+            0.18003953450295615,
+            -0.234056702266872
+          ],
+          [
+            0.06978413707846268,
+            -0.1676865030311806
+          ],
+          [
+            0.3101224583616363,
+            -0.5193310380950688
+          ],
+          [
+            -0.38119819636786445,
+            -0.1417299947114557
+          ],
+          [
+            0.07799548262781578,
+            0.06571487459845439
+          ],
+          [
+            0.002026927446982518,
+            0.04524140050376397
+          ],
+          [
+            -0.26288041633723674,
+            0.21366907332359755
+          ]
+        ]
+      }
+    ],
+    "selected": {
+      "theta": 3.141592653589793,
+      "time": 1.325,
+      "C": 0.7290035208492647,
+      "convex_gaussian_fidelity_bound": 0.842254973152099,
+      "global_depolarization_threshold": 0.18028003068331547,
+      "return_p": 0.22132129543225884,
+      "target_amplitudes": [
+        [
+          -0.21193684257124867,
+          0.42000484544013134
+        ],
+        [
+          0.18003953450295615,
+          -0.234056702266872
+        ],
+        [
+          0.06978413707846268,
+          -0.1676865030311806
+        ],
+        [
+          0.3101224583616363,
+          -0.5193310380950688
+        ],
+        [
+          -0.38119819636786445,
+          -0.1417299947114557
+        ],
+        [
+          0.07799548262781578,
+          0.06571487459845439
+        ],
+        [
+          0.002026927446982518,
+          0.04524140050376397
+        ],
+        [
+          -0.26288041633723674,
+          0.21366907332359755
+        ]
+      ]
+    }
+  },
+  "measurement_design": {
+    "ideal_projector_check": 1.0000000000000022,
+    "settings": 27,
+    "group_weight_squared_sum": 0.27175362708232526,
+    "threshold": 0.842254973152099,
+    "shots_model": "independent binomial/multinomial ideal measurements and illustrative global depolarization only; no device calibration",
+    "trials": [
+      {
+        "shots_per_setting": 1024,
+        "settings": 27,
+        "total_shots": 27648,
+        "illustrative_global_depolarization": 0.0,
+        "expected_fidelity": 1.0,
+        "mean_fidelity": 1.0003024051948637,
+        "hoeffding_one_sided_95_radius": 0.03987532109749923,
+        "witness_pass_fraction": 1.0
+      },
+      {
+        "shots_per_setting": 1024,
+        "settings": 27,
+        "total_shots": 27648,
+        "illustrative_global_depolarization": 0.1,
+        "expected_fidelity": 0.9125,
+        "mean_fidelity": 0.912660790449607,
+        "hoeffding_one_sided_95_radius": 0.03987532109749923,
+        "witness_pass_fraction": 0.9995
+      },
+      {
+        "shots_per_setting": 1024,
+        "settings": 27,
+        "total_shots": 27648,
+        "illustrative_global_depolarization": 0.15,
+        "expected_fidelity": 0.86875,
+        "mean_fidelity": 0.8685651898540425,
+        "hoeffding_one_sided_95_radius": 0.03987532109749923,
+        "witness_pass_fraction": 0.084
+      },
+      {
+        "shots_per_setting": 1024,
+        "settings": 27,
+        "total_shots": 27648,
+        "illustrative_global_depolarization": 0.2,
+        "expected_fidelity": 0.825,
+        "mean_fidelity": 0.8251302451477641,
+        "hoeffding_one_sided_95_radius": 0.03987532109749923,
+        "witness_pass_fraction": 0.0
+      },
+      {
+        "shots_per_setting": 2048,
+        "settings": 27,
+        "total_shots": 55296,
+        "illustrative_global_depolarization": 0.0,
+        "expected_fidelity": 1.0,
+        "mean_fidelity": 0.9998563171521212,
+        "hoeffding_one_sided_95_radius": 0.02819610995003271,
+        "witness_pass_fraction": 1.0
+      },
+      {
+        "shots_per_setting": 2048,
+        "settings": 27,
+        "total_shots": 55296,
+        "illustrative_global_depolarization": 0.1,
+        "expected_fidelity": 0.9125,
+        "mean_fidelity": 0.9124715961121176,
+        "hoeffding_one_sided_95_radius": 0.02819610995003271,
+        "witness_pass_fraction": 1.0
+      },
+      {
+        "shots_per_setting": 2048,
+        "settings": 27,
+        "total_shots": 55296,
+        "illustrative_global_depolarization": 0.15,
+        "expected_fidelity": 0.86875,
+        "mean_fidelity": 0.8690155469268714,
+        "hoeffding_one_sided_95_radius": 0.02819610995003271,
+        "witness_pass_fraction": 0.4125
+      },
+      {
+        "shots_per_setting": 2048,
+        "settings": 27,
+        "total_shots": 55296,
+        "illustrative_global_depolarization": 0.2,
+        "expected_fidelity": 0.825,
+        "mean_fidelity": 0.8248848531486065,
+        "hoeffding_one_sided_95_radius": 0.02819610995003271,
+        "witness_pass_fraction": 0.0
+      },
+      {
+        "shots_per_setting": 4096,
+        "settings": 27,
+        "total_shots": 110592,
+        "illustrative_global_depolarization": 0.0,
+        "expected_fidelity": 1.0,
+        "mean_fidelity": 0.9999786583807297,
+        "hoeffding_one_sided_95_radius": 0.019937660548749615,
+        "witness_pass_fraction": 1.0
+      },
+      {
+        "shots_per_setting": 4096,
+        "settings": 27,
+        "total_shots": 110592,
+        "illustrative_global_depolarization": 0.1,
+        "expected_fidelity": 0.9125,
+        "mean_fidelity": 0.9123031173416234,
+        "hoeffding_one_sided_95_radius": 0.019937660548749615,
+        "witness_pass_fraction": 1.0
+      },
+      {
+        "shots_per_setting": 4096,
+        "settings": 27,
+        "total_shots": 110592,
+        "illustrative_global_depolarization": 0.15,
+        "expected_fidelity": 0.86875,
+        "mean_fidelity": 0.8687138422005908,
+        "hoeffding_one_sided_95_radius": 0.019937660548749615,
+        "witness_pass_fraction": 0.9045
+      },
+      {
+        "shots_per_setting": 4096,
+        "settings": 27,
+        "total_shots": 110592,
+        "illustrative_global_depolarization": 0.2,
+        "expected_fidelity": 0.825,
+        "mean_fidelity": 0.8249028667574401,
+        "hoeffding_one_sided_95_radius": 0.019937660548749615,
+        "witness_pass_fraction": 0.0
+      }
+    ]
+  },
+  "branch_estimator": {
+    "t": 1.2,
+    "steps": 3,
+    "defects": 2,
+    "non_gaussian_strength": 1.2031523854174644,
+    "branch_count": 64,
+    "l1": 2.6101976582473423,
+    "exp_strength": 3.3305997251436814,
+    "exact_amplitude": [
+      -0.22585015681517664,
+      0.3296937980749376
+    ],
+    "sampled_amplitude": [
+      -0.2282639924470013,
+      0.3232370459114014
+    ],
+    "monte_carlo_samples": 20000,
+    "complex_rmse_se": 0.007128120145883023,
+    "absolute_sample_error": 0.006893203243688354,
+    "enumeration_error": 2.618455766672135e-16
+  }
+}

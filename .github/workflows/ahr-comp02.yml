@@ -1,0 +1,33 @@
+name: AHR-COMP-02 sparse curvature oracle
+on:
+  pull_request:
+    paths:
+      - 'research/arithmetic_holonomy_rotor/ahr_comp02/**'
+      - '.github/workflows/ahr-comp02.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/arithmetic_holonomy_rotor/ahr_comp02/**'
+      - '.github/workflows/ahr-comp02.yml'
+permissions:
+  contents: read
+jobs:
+  sparse-curvature-oracle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+    defaults:
+      run:
+        working-directory: research/arithmetic_holonomy_rotor/ahr_comp02
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements.txt
+      - run: python verify.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ahr-comp02-validation
+          path: research/arithmetic_holonomy_rotor/ahr_comp02/validation.json
